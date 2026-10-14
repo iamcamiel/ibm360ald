@@ -1,0 +1,12 @@
+{
+  "source_kind": "direct human coordinator-chat statement",
+  "received_date": "2026-10-14",
+  "raw_statement": "I'm thinking we can build a card-type database, where we record what we know about card types and their portions. For example, from the AP211 sheet we can learn that portion 13 of card-type 4191 has function \"A\"  with two inputs (pin D04 and D08) and one output; that portion 18 has function \"*OR\" with 5 inputs and a negating output on pin B04. From the socket listings, we an determine that the card-type has functions 03,06-43,B1 and B2,  that the complete part number is 5804191, and that it's a double card. If we build that database from what we can find in the sheets we've successfully transcribed, we can probably use that to answer lots of questions about unreadable functions, pin numbers, etc.",
+  "card_type": "4191",
+  "observations": [
+    {"source_page": "AP211", "portion": "13", "function": "A", "logical_input_count": 2, "named_input_pins": ["D04", "D08"], "logical_output_count": 1, "output_pin": null, "output_pin_status": "not supplied by the human; do not invent"},
+    {"source_page": "AP211", "portion": "18", "function_raw": "*OR", "function": "✲OR", "glyph_normalization": "previously approved open asterisk U+2732", "logical_input_count": 5, "named_input_pins": null, "logical_output_count": 1, "output_pin": "B04", "output_negated": true},
+    {"source_kind": "human interpretation of socket listings; independent listing extraction required", "part_number": "5804191", "card_width": "double", "portion_expression_raw": "03,06-43,B1 and B2", "portions": ["03", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "B1", "B2"]}
+  ],
+  "policy": "Keep exact raw statement and human facts separate from independently extracted model/listing observations. Missing labels are not unreadable labels. No general inference that every output triangle represents negation. Do not assume observed connected ports constitute a complete physical card pinout."
+}

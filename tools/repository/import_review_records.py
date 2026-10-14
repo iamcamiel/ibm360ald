@@ -69,6 +69,16 @@ def main():
     copy(args.reference/'ALD Scan Order.csv', repo/'notes/ALD Scan Order.csv',
          'Original scan order and current TIFF filename catalogue')
     shared = {
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/OR function human correction current audit.json':
+            'Manual verification/OR function human correction current audit.json',
+        'tmp/ald-text/ald/card-type-database/Direct human card-type observations.json':
+            'Card types/Direct human card-type observations.json',
+        'tmp/ald-text/ald/card-type-database/Direct human OR function correction.json':
+            'Card types/Direct human OR function correction.json',
+        'tmp/ald-text/ald/card-type-database/Direct human additional function corrections.json':
+            'Card types/Direct human additional function corrections.json',
+        'tmp/ald-text/ald/card-type-database/Direct human function whitespace and R TO corrections.json':
+            'Card types/Direct human function whitespace and R TO corrections.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Recorded and recovered UTF8 application current audit.json':
             'Manual verification/Recorded and recovered UTF8 application current audit.json',
         'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Workbook binding manifest v5.json':
@@ -630,12 +640,36 @@ def main():
             if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
                 copy(source,repo/'notes/Manual verification/Applied confirmed fields'/subdir/source.name,
                      'Guarded field application batch receipt or independent delta review')
-    for suffix in ['human-batch-v4-5796f6dd2e40','socket-high-followup-v1','definite-header-followup-v2']:
+    # Function-only human corrections reuse prior full-page native acceptance
+    # and keep their exact independently inspected deltas as separate history.
+    function_batch = workspace/'tmp/ald-text/ald/card-type-database/non-ap-OR-correction'
+    function_receipt = function_batch/'Non-AP OR function canonical publication receipt.json'
+    if function_receipt.is_file():
+        batch = read_json(function_receipt)
+        assert batch['passed'] is True
+        for page in batch['pages']:
+            folder = Path(page['source']['path']).parent.name
+            page_root = Path(page['independently_reviewed_candidate_quartet']['txt']['path']).parent.parent
+            assert page_root.resolve().is_relative_to(function_batch.resolve())
+            assert page_root.is_dir()
+            for source in sorted(page_root.rglob('*')):
+                if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                    copy(source,repo/'notes'/folder/'Human function correction history'/'OR'/page['page']/source.relative_to(page_root),
+                         'Exact human function correction, independently reviewed delta and preserved source acceptance')
+        for source in sorted(function_batch.glob('*')):
+            if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                copy(source,repo/'notes/Card types/Function correction history/OR'/source.name,
+                     'Human function correction batch publication or independent acceptance')
+    for suffix in ['human-batch-v4-5796f6dd2e40','socket-high-followup-v1','definite-header-followup-v2','card-type-human-followup-v1','or-function-human-followup-v1']:
         batch_root = workspace/'tmp/ald-text/ald/ap3/root'/suffix
         receipt_name = ('Bounded human batch publication receipt.json' if suffix.startswith('human')
                         else 'Definite header publication receipt.json' if suffix.startswith('definite')
+                        else 'Card type human AP211 publication receipt.json' if suffix.startswith('card-type')
+                        else 'OR function human publication receipt.json' if suffix.startswith('or-function')
                         else 'Socket High followup publication receipt.json')
         receipt_path = batch_root/receipt_name
+        if not receipt_path.exists() and suffix.startswith(('card-type','or-function')):
+            continue
         receipt = read_json(receipt_path)
         assert receipt['passed'] is True
         for page, item in receipt['pages'].items():

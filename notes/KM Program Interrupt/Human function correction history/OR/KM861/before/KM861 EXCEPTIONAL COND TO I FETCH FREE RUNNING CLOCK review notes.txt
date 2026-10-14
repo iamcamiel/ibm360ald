@@ -1,0 +1,75 @@
+KM861 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 37,
+  "A1_total_card_portions": 38,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 57,
+  "A1_documented_source_discrepancies": [],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "physical_common_output_ports",
+    "pins": [
+      "BM.D11",
+      "BM.D12"
+    ],
+    "printed_outputs": [
+      "D11",
+      "KD12"
+    ],
+    "junction": [
+      154,
+      34
+    ],
+    "evidence": "KM861 BM output native.png",
+    "description": "Upper D11 output bends down into the explicit diamond at KD12. Preserve both physical output pins on this one native rail."
+  },
+  {
+    "kind": "A1_source_block_inventory_difference",
+    "native_physical_blocks": 37,
+    "A1_card_portions": 38,
+    "unrepresented_A1_card": "3593E1 E-C3K4",
+    "evidence": "KM861 overview.png",
+    "description": "Full native source contains37 physical blocks including AQ3593A1 atK4. The additional A1-listed3593E1 has no visible block; no node or wiring is invented."
+  },
+  {
+    "kind": "native_source_reference_discrepancy",
+    "starred": "✲KC011BU4",
+    "inline": "KC011BQ4",
+    "evidence": "KM861 left caption fields native.png",
+    "description": "Starred native U is open at top with a bowl and no Q tail; inline reference has a clear Q tail. Preserve both printed readings."
+  },
+  {
+    "kind": "literal_source_block_identifier",
+    "node": "F3",
+    "printed": "F3",
+    "grid": "3B",
+    "evidence": "KM861 detail20.png",
+    "description": "Native printed identifier is F3; retain it literally in the normal bank3 B rank."
+  }
+]
+
+Original scan order
+Before KM851 STORAGE PROTECTION OVERLAPPING END OP.tif
+After KM871 IOCE RESTART ROS TIMER INHIBIT LATCHES.tif
+
+
+Detailed native source and preview comparison
+Native full source, all15 overlapping field crops, enlarged common BM outputs, lower control rails, BX/BW feedback, continuation table and title inspected. Header and both vertical footers print KM861. Approved245x103 lattice retained; no bank shifts. All57 physical inputs represented with one owner each. BM D11 and printed KD12 share a native rail with explicit diamond154r34. Lower AQ156, AX153, BJ154 feedback rails and separate reset160 traced from native; unjoined crossings retained. Native37 physical blocks match37 card portions; additional A1-listed3593E1 has no visible native block and is documented without invention. AU enlarged source is3178G1. Printed F3 block ID is literal. BCU starred KC011BU4 differs from inline KC011BQ4 and both are preserved. Footer11-04-70 LOG078 P.N.2585096 SDD BLK.CA; four engineering change lines and two continuation columns independently inspected. Final regenerated JuliaMono preview compared with native source.

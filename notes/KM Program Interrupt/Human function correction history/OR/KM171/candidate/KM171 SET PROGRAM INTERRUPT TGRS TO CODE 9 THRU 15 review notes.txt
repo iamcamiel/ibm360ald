@@ -1,0 +1,52 @@
+KM171 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 37,
+  "A1_total_card_portions": 43,
+  "A1_mismatches": [
+    "BT",
+    "CB",
+    "BL",
+    "BP",
+    "BQ",
+    "AG"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 71,
+  "documented_native_A1_differences": {
+    "BT": "Native printed card portion 3388U1 at E-C2F3. A1 lists 3388A1, B1, C1, D1 and F1 at this socket, with no U1. Clear native U1 is preserved.",
+    "CB": "Native board prefix F-C2; A1 lists the matching card portion at E-C2. Source literal F is preserved.",
+    "BL": "Native board prefix F-C2; A1 lists the matching card portion at E-C2. Source literal F is preserved.",
+    "BP": "Native board prefix F-C2; A1 lists the matching card portion at E-C2. Source literal F is preserved.",
+    "BQ": "Native board prefix F-C2; A1 lists the matching card portion at E-C2. Source literal F is preserved.",
+    "AG": "Native board prefix F-C2; A1 lists the matching card portion at E-C2. Source literal F is preserved."
+  },
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  "All43 source-native nodes and printed fields independently inspected; default bank grid verified against multiple rank borders. Native CD, AL and AW are literal UR, other OR gates retain their native readings. Printed A2 identifier uses digit2.",
+  "Enlarged native glyphs independently reviewed with coordinator: CB literal H T0 (preserved H), AN lower pin literal L07 (zero upper bowl partly damaged), AQ location E-C2D2. These are source literals, not normalized R/D alternatives.",
+  "Source title was independently confirmed as CODE9 and renamed by coordinator without changing TIF hash. Literal DS161 +F 01 EW 1◇ NOT PSW38, footer DSD BLK., C-B3J8C06, and separate hanging refs preserved. No wiring inferred from A1; omit handwriting.",
+  "BT card portion is source-native 3388U1, with a clear rounded U. A1 has no U1 portion at E-C2F3; the native literal is retained and this disagreement is recorded separately."
+]
+
+Original scan order
+Before KM161 PROGRAM INTERRUPT LATCH.tif
+After KM181 TURN ON PROGRAM INTERRUPT TGRS BY STORAGE AND INST FETCH.tif
+
+Human confirmed OR function correction: I see functions read as UR or, UH; these are both OR; same with ✲UR and ✲UH, these are ✲OR.
+Exact corrected fields: CD: UR -> OR, AL: UR -> OR, AW: UR -> OR
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
