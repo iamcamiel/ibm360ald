@@ -1,0 +1,70 @@
+KM421 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 48,
+  "A1_total_card_portions": 48,
+  "A1_mismatches": [
+    "CJ"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 85,
+  "A1_documented_source_discrepancies": [
+    "CJ"
+  ],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "author_native_preview_review_complete": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "unreadable print",
+    "location": "AK4 continuation footer, E-C2A�D04",
+    "evidence": "First location column after A is damaged in the native scan; possible 1 cannot be distinguished from surviving ink.",
+    "follow_up": "Check physical original for the AK4 footer glyph."
+  },
+  {
+    "kind": "native versus A1",
+    "location": "CJ7G",
+    "evidence": "Native source has a DOT function block without a printed card portion; the A1 listing has 48 card portions for the other 48 physical blocks."
+  },
+  {
+    "kind": "wiring review",
+    "evidence": "Native upper returns separate AZ.B02 to AN.B02, BG.B10 to CP.D11, BA.D06 to KN261, AA.B10 to AN.D04 and AJ.D13 to BF.D13 via column 162. BG.B09 drives BH.B07 only. BK.D02 branches at diamonds (113,46) and (113,40) to AD.D12. BB.D12 crosses the BK branch unjoined at row 44, turns at column 130, then reaches AR.B09. AG and AH have six and seven printed inputs respectively. Native destination KN281 is on row 13."
+  }
+]
+
+Original scan order
+Before KM391 PIR.tif
+After KM426 SPECIFICATION PAGE 2.tif
+
+
+Detailed native source and preview comparison
+KM421 SPECIFICATION PAGE 1 — native source review
+
+The 49 printed blocks comprise 48 card bearing gates plus the CJ7G DOT combiner; all 48 card portions on the sheet were compared with the A1 listing. The sheet has 85 printed input terminals. The native top, middle and bottom regions, footer table, and full printer grid rendering were compared visually.
+
+The upper returns were traced from enlarged native crops. AZ.B02 drives AN.B02; its paired D05 wire continues to KN241 and crosses the CP return without a join. BG.B10 drives CP.D11 through the row 11 bridge. BA.D06 continues to KN261 at row 10. AA.B10 drives AN.D04; AJ.D13 drives BF.D13 on a separate row 15 return. BB.D12 crosses the AD.D12 diamond without joining it and continues to AR.B09. The printed KN281 export is on row 13.
+
+The lower controls were checked against independent source crops. FLOATING POINT RX DP feeds AF.B04 and the AA/CH branches; STM feeds AG.B12 and AH.D05; ENABLE feeds AT.B07, AU.B03 and AV.D05; F15 feeds BD.D09. The adjacent D21, D22 and ENABLE verticals remain separate. AG has six printed input pins and AH has seven, including their top and bottom edge pins. The CJ DOT block has no printed card portion, so no card was inferred.
+
+The AK4 continuation line in the footer reads E-C2A�D04. The damaged character could be 1, but the source image does not resolve it. The replacement character is retained and the physical original should be checked. The AM4 footer location E-C2F8E06 has a clearly printed 8.
+
+
+FIRM READING APPLICATION
+REC-KM421-ec8425db: E-C2A�D04  -> E-C2A6D04
+Only the exact bound active fields above are superseded. Prior source uncertainty observations remain historical; all other unknown print remains unchanged. The immutable prior V5 records preserve original human replies or independent source-supported evidence. Original source TIFFs and predecessor snapshots are unchanged.
+Original source SHA256: 0452702393c81ccdc38c9711d83428cdf2f0d8d2714b17e520fe2fd07fed52c0
+Inventory SHA256: 78af0e1365ed5207197c5cfec1ae21dac06c01aa8968b725684728569ec8f09c

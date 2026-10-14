@@ -1,0 +1,128 @@
+EE021 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "duplicate_physical_port_references": [],
+  "A1_card_portions_matched": 0,
+  "A1_total_card_portions": 0,
+  "A1_direct_page_key_present": false,
+  "A1_fallback_search_card_records": 45571,
+  "A1_unmatched_card_portions": [
+    "BA",
+    "BB",
+    "BE",
+    "AW",
+    "AN",
+    "AG",
+    "AA",
+    "AP",
+    "AH",
+    "AB",
+    "AQ",
+    "AJ",
+    "AC",
+    "BC",
+    "BD",
+    "BF",
+    "AX",
+    "AR",
+    "AK",
+    "AD",
+    "AS",
+    "AL",
+    "AE",
+    "AT",
+    "AM",
+    "AF"
+  ],
+  "A1_status": "Direct page absent and physical fallback unavailable",
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 28,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 2,
+  "right_signal_blank_before_sign": true,
+  "right_signal_to_designation_continuous_wire": true,
+  "inline_reference_exactly_one_blank": true,
+  "input_signal_followed_immediately_by_wire": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "7B second ID character at native x7570-7620 y1370-1420",
+    "printed": "A�",
+    "candidate": "AA",
+    "evidence": "First A clear; second character erased. Own right output AA4 corroborates internal AA ID, but replacement remains in printed box."
+  },
+  {
+    "location": "BA4 right output damaged T at native x8350-8420 y1610-1720",
+    "printed": "+GA�E UPPER WORD",
+    "candidate": "+GATE UPPER WORD",
+    "evidence": "T almost entirely absent in native print; incoming label is clear. Retained source uncertainty."
+  },
+  {
+    "location": "footer dates",
+    "evidence": "Revision03-14-66 256652 and title DATE03-16-66 are different printed dates; both retained."
+  },
+  {
+    "location": "native geometry",
+    "evidence": "All26 open-bottom blocks inspected. All20 N inputs have actual wedges; A and AR inputs and all N/AR outputs have none. A outputs BE.B10/BF.B13 have wedges. 001 printed in every top border. Output routes, wire spans and unjoined crossings checked in native crops. All26 block columns and rows follow independently measured printer grid; no channel or box shifts to fit labels."
+  },
+  {
+    "location": "A1 corroboration",
+    "evidence": "Direct EE021 key absent. Exact card/portion/board/socket fallback search across full A1 data performed by private renderer; unavailable matches recorded in validation rather than inferred."
+  },
+  {
+    "location": "printer-grid calibration observation",
+    "evidence": "Native title frame left/right strokes measure columns210.427/241.403 using main-block fit. Frame span31cells and top row93 agree with confirmed specification; Fractional offset is a calibration observation consistent with glyph bearings, scan skew and pitch estimation; prescribed frame columns210..241 are retained with no layout exception."
+  },
+  {
+    "location": "input pins without wedges",
+    "evidence": "EE native non-wedge input labels occupy three cells immediately before the intact border; no extra wire cell is inserted between those labels and the border. Left BB.D09 rail measures column46, fitting BC.D13 input turn at column46."
+  },
+  {
+    "location": "source review coverage",
+    "evidence": "Private native overview, all gate groups, all five incoming labels, every output rail and hanging reference, left AR transfer wires, all shared rail junctions, connector footer and title inspected. No handwriting transcribed. Printer-grid specification and own native measurements reviewed."
+  }
+]
+
+Original scan order
+Before EE011 SENSE LATCH RESET.tif
+After EF001 SENSE AMPLIFIERS AND LATCHES BITS 00-03.tif
+
+Independent root review complete. Final245x103 canvas, allowed glyphs, orthogonal connected nets, unique physical pin references, input ownership, border-adjacent literal gate pins and bottom identifiers passed. Passive entry reference labels checked at their explicit source positions. Full previews and native critical crops reviewed. See companion independent_root_review and root verification.json.
+
+EF socket corroboration after AP canonical integration
+{
+  "source_report": "D:/Github/IBM360/tmp/ald-text/ee/EF socket crosscheck.json",
+  "canonical_merge_audit": "D:/Github/IBM360/tmp/ald-text/ef/canonical-merge/EF canonical merge audit.json",
+  "matched": 25,
+  "source_disagreements": [
+    {
+      "page": "EE021",
+      "node": "AX",
+      "location": "C-E3G4",
+      "card": "3106S1",
+      "status": "discrepancy",
+      "socket_listings": [
+        "EF431"
+      ],
+      "listed_cards": [
+        "3106"
+      ]
+    }
+  ],
+  "special_printed_references": [],
+  "policy": "Preserve literal source on diagram and listing; do not force disagreement to match."
+}
+
+User footer correction applied: uppercase sheet alphabet, exact P.N., one blank before title border after machine and part values. Companion and preview regenerated.

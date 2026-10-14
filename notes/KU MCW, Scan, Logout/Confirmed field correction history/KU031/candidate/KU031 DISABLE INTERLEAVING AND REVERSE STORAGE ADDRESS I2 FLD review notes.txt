@@ -1,0 +1,202 @@
+KU031 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 34,
+  "A1_total_card_portions": 34,
+  "A1_mismatches": [
+    "BQ",
+    "BR",
+    "BV",
+    "BU"
+  ],
+  "source_local_logic_blocks": [
+    "AY",
+    "AZ"
+  ],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 58,
+  "passed": true,
+  "duplicate_port_references": {},
+  "source_documented_A1_discrepancies": {
+    "BQ": {
+      "printed": "3365A1",
+      "location": "E-A2E6",
+      "evidence": "Native KU031 c4p2.png and c7p2.png clearly print A1/C1/B1/D1 at this socket; A1512-01 ALD index lists only F1/H1/J1 for KU031."
+    },
+    "BR": {
+      "printed": "3365C1",
+      "location": "E-A2E6",
+      "evidence": "Native KU031 c4p2.png and c7p2.png clearly print A1/C1/B1/D1 at this socket; A1512-01 ALD index lists only F1/H1/J1 for KU031."
+    },
+    "BV": {
+      "printed": "3365B1",
+      "location": "E-A2E6",
+      "evidence": "Native KU031 c4p2.png and c7p2.png clearly print A1/C1/B1/D1 at this socket; A1512-01 ALD index lists only F1/H1/J1 for KU031."
+    },
+    "BU": {
+      "printed": "3365D1",
+      "location": "E-A2E6",
+      "evidence": "Native KU031 c4p2.png and c7p2.png clearly print A1/C1/B1/D1 at this socket; A1512-01 ALD index lists only F1/H1/J1 for KU031."
+    }
+  },
+  "unreviewed_A1_mismatches": [],
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 4
+}
+
+Unclear source print and evidence
+[
+  {
+    "unreadable_print": [
+      {
+        "location": "Header row0 columns236/237/244",
+        "literal": "0��  KU03�",
+        "candidate": "000  KU031",
+        "evidence": "KU031 out0.png torn header; intact footer confirmspage.",
+        "before": "KU021 MAINTENANCE CONTROL 6 7.tif",
+        "after": "KU041 MCW BITS 32-35.tif"
+      },
+      {
+        "location": "BS4K output row68 last digit",
+        "literal": "D1�✲",
+        "candidate": "D10✲ orD1C✲",
+        "evidence": "KU031 BS output.png open rightedge oflastglyph; needindependentsourcecomparison."
+      }
+    ]
+  },
+  {
+    "source_local_logic": "AY7B/AZ7F bareOR DOT blocks retained literally with outputasteriskthreecolumnsafterborder. No fabricatedphysicalcards."
+  },
+  {
+    "source_discrepancy": "Left printed +RESET EXTENDED MCW versus right -RESET EXTENDED MCW retained. Polaritycrop KU031 extended input polarity.png confirms plus."
+  },
+  {
+    "native_route_evidence": "AR rail c114 is one column left of AS c115, preserving distinct row45/46 output runs. CD exits right c199, down row30, left to c184 and down row38; BZ uses the separate c183 rail down row42. Native bank7 crops show the adjacent rails unjoined."
+  },
+  {
+    "self_review": "All seven native bank crops, all left/right signal crops, dense feedback/control rail crops, connector footer and both final preview halves independently read. All 58 inputs have one declared driver; no shared edges, disconnected routes, unintended diamonds, overwritten pin text, or interior wires. Four native A1 index omissions documented, not rewritten. Header torn and BS output last glyph remain marked unreadable. The user confirmed the DEFREV text connective as ◇; native KU031 out1.png shows the same printed diamond in the right-margin output name."
+  },
+  {
+    "native_unjoined_crossings_at_pin_endpoints": {
+      "AE.B03": [
+        "PULSE",
+        "KU031 c1p1.png: PULSE vertical control rail crosses the E10 input at a printed unjoined plus."
+      ],
+      "AG.B08": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the GTP horizontal at an unjoined plus."
+      ],
+      "AH.D09": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the MACH horizontal at an unjoined plus."
+      ],
+      "AH.D07": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the RESET horizontal at an unjoined plus."
+      ],
+      "AH.D10": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the AU feedback horizontal at an unjoined plus."
+      ],
+      "AJ.B08": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the GTP horizontal at an unjoined plus."
+      ],
+      "AK.D09": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the MACH horizontal at an unjoined plus."
+      ],
+      "AK.D07": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the RESET horizontal at an unjoined plus."
+      ],
+      "AK.D12": [
+        "BK",
+        "KU031 control rails.png: BK vertical rail crosses the AV feedback horizontal at an unjoined plus."
+      ],
+      "BY.D10": [
+        "DEFINT",
+        "KU031 c5p0.png: DEFINT vertical rail crosses BY D10 input at a printed unjoined plus."
+      ]
+    }
+  }
+]
+
+Original scan order
+Before KU021 MAINTENANCE CONTROL 6 7.tif
+After KU041 MCW BITS 32-35.tif
+
+Source-derived header-code inference; damaged print remains marked � in the text and preview
+{
+  "recovery_id": "KU031-96b3304b0b",
+  "field": "upper-right three-character header code",
+  "row": 0,
+  "column": 235,
+  "literal_scan_transcription": "0��",
+  "covered_unreadable_cells": [
+    [
+      0,
+      236
+    ],
+    [
+      0,
+      237
+    ]
+  ],
+  "inferred_value": "000",
+  "provenance": "Source-derived from same physical sheet; not a reading of the damaged glyphs or a new human confirmation.",
+  "evidence": [
+    {
+      "source": "KU031 original TIFF, lower-left margin",
+      "value": "000",
+      "printer_row": 101,
+      "printer_column": 0,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU031 footerleft.png"
+    },
+    {
+      "source": "KU031 original TIFF, lower-right margin",
+      "value": "000",
+      "printer_row": 101,
+      "printer_column": 242,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU031 footerright.png"
+    },
+    {
+      "source": "KU031 original TIFF, upper-right header",
+      "value": "0��",
+      "printer_row": 0,
+      "printer_column": 235,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU031 header.png"
+    },
+    {
+      "source": "KU041 and KU061 original TIFFs, intact upper-right headers",
+      "value": "000",
+      "proof_crops": [
+        "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU041 neighbor header.png",
+        "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU061 neighbor header.png"
+      ],
+      "role": "format corroboration only; not used to override the subject sheet"
+    }
+  ],
+  "unchanged_visual_transcription": true,
+  "handoff": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\manual-verification\\source-derived-v2\\KU MCW, Scan, Logout\\Reviewed recoveries.json"
+}
+
+
+FIRM READING APPLICATION
+KU031-96b3304b0b: 0�� -> 000
+Only the exact bound active fields above are superseded. Prior source uncertainty observations remain historical; all other unknown print remains unchanged. The immutable prior V5 records preserve original human replies or independent source-supported evidence. Original source TIFFs and predecessor snapshots are unchanged.
+Original source SHA256: 3b8200b4f4149ffb948558ca3d8797f8b94d8e76aff617706f5585824395310b
+Inventory SHA256: 78af0e1365ed5207197c5cfec1ae21dac06c01aa8968b725684728569ec8f09c

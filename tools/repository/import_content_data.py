@@ -48,7 +48,7 @@ def main():
         planned[relative] = record
 
     content_keys = {'nodes', 'boxes', 'nets', 'wire_paths', 'wire_shapes', 'annotations',
-                    'sections', 'records', 'cards', 'connectors', 'cells'}
+                    'sections', 'records', 'cards', 'connectors', 'cells', 'sockets'}
     for entry in export['exported']:
         text = Path(entry['transcription_source'])
         published = Path(entry['destination'])
@@ -106,6 +106,26 @@ def main():
         path = exports/source
         if path.is_file():
             add(path, repo/destination, 'Reviewed collection content table')
+    # A few original A1 tables use a shared board model and a raw-column
+    # source table rather than a per-scan model. Import only auxiliaries bound
+    # to the exact current independently accepted field-application snapshot.
+    applications = workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Recorded and recovered UTF8 application current audit.json'
+    if applications.is_file():
+        batch = read(applications)
+        assert batch['passed'] is True
+        accepted_by_page = {Path(e['transcription_source']).name.split(' ',1)[0]:e
+                            for e in export['exported']}
+        for page in batch['pages']:
+            entry = accepted_by_page.get(page['page'])
+            if not entry or entry['review_record'].replace('\\','/') != applications.relative_to(workspace).as_posix():
+                continue
+            assert page['current_quartet']['txt']['sha256']==entry['text_sha256']
+            for auxiliary in page.get('current_auxiliary_existing_data',[]):
+                source = Path(auxiliary['path'])
+                assert source.suffix=='.json' and sha(source.read_bytes())==auxiliary['sha256']
+                assert source.resolve().is_relative_to(exports.resolve()) or source.resolve().is_relative_to((workspace/'tmp/ald-text/a1').resolve())
+                add(source,repo/'json'/Path(entry['source_relative']).parent/source.name,
+                    'Accepted existing A1 board model or source-column table')
     # Structured storage maps are useful independently of their printed layout.
     accepted = {Path(entry['source_relative']).name.split(' ', 1)[0]: entry for entry in export['exported']}
     for source in (workspace/'tmp/ald-text/a6').glob('* storage records.json'):

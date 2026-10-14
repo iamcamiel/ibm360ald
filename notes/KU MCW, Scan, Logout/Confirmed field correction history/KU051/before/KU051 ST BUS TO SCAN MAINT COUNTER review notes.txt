@@ -1,0 +1,148 @@
+KU051 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 13,
+  "A1_total_card_portions": 14,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [
+    {
+      "kind": "card portion",
+      "board": "02E-B3",
+      "sockets": [
+        "L4"
+      ],
+      "part_number": "5803308",
+      "card_type": "3308",
+      "portion": "K1",
+      "source_listings": [
+        "A1523-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1523-02 SOCKET LISTING"
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 13,
+  "passed": true,
+  "duplicate_port_references": {},
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 6
+}
+
+Unclear source print and evidence
+[
+  {
+    "unreadable_print": [
+      {
+        "location": "Header r0 c236/237/244",
+        "literal": "0��  KU05�",
+        "proposal": "000  KU051",
+        "evidence": "KU051 header.png: punched out characters",
+        "physical_copy_before": "KU041 MCW BITS 32-35.tif",
+        "physical_copy_after": "KU061 MCW BITS 36-39.tif"
+      },
+      {
+        "location": "AA 4A input row5",
+        "literal": "B1�",
+        "proposal": "B12",
+        "evidence": "KU051 AA input.png: final digit only upper arc survives",
+        "physical_copy_before": "KU041 MCW BITS 32-35.tif",
+        "physical_copy_after": "KU061 MCW BITS 36-39.tif"
+      },
+      {
+        "location": "AG 2F upper output row38",
+        "literal": "D1�",
+        "proposal": "D11",
+        "evidence": "KU051 AG output.png: final digit damaged",
+        "physical_copy_before": "KU041 MCW BITS 32-35.tif",
+        "physical_copy_after": "KU061 MCW BITS 36-39.tif"
+      },
+      {
+        "location": "ST59 printed origin alias row41",
+        "literal": "✲�T581BT4",
+        "proposal": "✲RT581BT4",
+        "evidence": "KU051 alias59.png: first letter damaged, separate inline origin clear",
+        "physical_copy_before": "KU041 MCW BITS 32-35.tif",
+        "physical_copy_after": "KU061 MCW BITS 36-39.tif"
+      }
+    ]
+  },
+  {
+    "source_A1_discrepancy": "The source has 13 card portions. A1 additionally lists 3308K1 E-B3L4 for KU051, absent from this native scan. No gate or wiring invented. Printed cable AK4 E-B3A2D03 differs from A1 CK4; literal source retained.",
+    "native_review": "Read every bank, full margin and footer crop. No wedges printed at these ports. All branch origins and left source reference spans retained; upper/lower outputs are separate nets. AP has only the printed B08 input, no printed output."
+  },
+  {
+    "self_review": "Reviewed both full-height final preview halves against native banks, margins, exact pin closeups, title and cable table. Confirmed all thirteen source blocks and input owners, separately routed upper/lower outputs, continuous unjoined endpoint crossings, no AP output, and six literal unreadable characters with reconstruction notes."
+  }
+]
+
+Original scan order
+Before KU041 MCW BITS 32-35.tif
+After KU061 MCW BITS 36-39.tif
+
+Source-derived header-code inference; damaged print remains marked � in the text and preview
+{
+  "recovery_id": "KU051-af2c0e3d1f",
+  "field": "upper-right three-character header code",
+  "row": 0,
+  "column": 235,
+  "literal_scan_transcription": "0��",
+  "covered_unreadable_cells": [
+    [
+      0,
+      236
+    ],
+    [
+      0,
+      237
+    ]
+  ],
+  "inferred_value": "000",
+  "provenance": "Source-derived from same physical sheet; not a reading of the damaged glyphs or a new human confirmation.",
+  "evidence": [
+    {
+      "source": "KU051 original TIFF, lower-left margin",
+      "value": "000",
+      "printer_row": 101,
+      "printer_column": 0,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU051 footerleft.png"
+    },
+    {
+      "source": "KU051 original TIFF, lower-right margin",
+      "value": "000",
+      "printer_row": 101,
+      "printer_column": 242,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU051 footerright.png"
+    },
+    {
+      "source": "KU051 original TIFF, upper-right header",
+      "value": "0��",
+      "printer_row": 0,
+      "printer_column": 235,
+      "proof_crop": "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU051 header.png"
+    },
+    {
+      "source": "KU041 and KU061 original TIFFs, intact upper-right headers",
+      "value": "000",
+      "proof_crops": [
+        "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU041 neighbor header.png",
+        "D:\Github\IBM360\tmp\ald-text\ku\source-derived-review\031_051\KU061 neighbor header.png"
+      ],
+      "role": "format corroboration only; not used to override the subject sheet"
+    }
+  ],
+  "unchanged_visual_transcription": true,
+  "handoff": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\manual-verification\\source-derived-v2\\KU MCW, Scan, Logout\\Reviewed recoveries.json"
+}

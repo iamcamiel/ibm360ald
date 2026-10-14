@@ -293,14 +293,16 @@ def receipts():
                     'WA glyph and footer current audit.json',
                     'FX RT V3 current publication audit.json',
                     'C2A human correction current audit.json',
-                    'AP001 human socket correction current audit.json']:
+                    'AP001 human socket correction current audit.json',
+                    'Recorded and recovered UTF8 application current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit.get('passed') is not True:continue
   for item in audit.get('pages',[]):
    page=item.get('page')
    if not page or not PAGE.fullmatch(page):continue
-   records[page]=[]
+   application_schema=(audit_name=='Recorded and recovered UTF8 application current audit.json')
+   records[page]=[{'blocked':True}] if application_schema else []
    checks=item.get('checks',{})
    if item.get('eligible') is not True or not checks or not all(value is True for value in checks.values()):continue
    source=item.get('source',{});sp=Path(source.get('path',''))
@@ -312,14 +314,32 @@ def receipts():
     cp=Path(chain['file'])
     if not cp.is_file() or not cp.resolve().is_relative_to(ROOT.resolve()) or sha(cp.read_bytes())!=chain.get('sha256'):
      valid=False;break
-   quartet=item.get('current_quartet',{})
+   quartet={k:v for k,v in item.get('current_quartet',{}).items() if v is not None}
    paths=[Path(x.get('path','')) for x in quartet.values()]
    text_paths=[p for p in paths if p.suffix=='.txt' and not p.stem.endswith(' review notes')]
-   if not valid or len(quartet)!=4 or len(text_paths)!=1:continue
+   if not valid or len(text_paths)!=1:continue
    text_path=text_paths[0]
    expected={text_path,text_path.with_suffix('.json'),text_path.with_name(text_path.stem+' review notes.txt'),text_path.with_name(text_path.stem+' preview.png')}
+   if application_schema:
+    if item.get('artifact_schema')=='reviewed-existing-A1-table-and-auxiliary-data-v1':
+     if text_path.parent.name!='A1 Socket Listing' or text_path.with_suffix('.json').exists():continue
+     expected.remove(text_path.with_suffix('.json'))
+    elif item.get('artifact_schema')!='reviewed-current-quartet-v1':continue
+    # Several original published previews used the text basename. This one
+    # explicitly registered schema binds that exact legacy path and hash.
+    preview=Path(quartet.get('preview',{}).get('path',''))
+    if preview in {text_path.with_suffix('.png'),text_path.with_name(text_path.stem+' JuliaMono preview.png')}:
+     expected.remove(text_path.with_name(text_path.stem+' preview.png'));expected.add(preview)
+    auxiliary=item.get('current_auxiliary_existing_data',[])
+    if len(expected)==3 and not auxiliary:continue
+    if not all(Path(a.get('path','')).is_file()
+      and (Path(a['path']).resolve().is_relative_to(EXPORTS.resolve())
+        or Path(a['path']).resolve().is_relative_to((ROOT/'tmp/ald-text/a1').resolve()))
+      and sha(Path(a['path']).read_bytes())==a.get('sha256') for a in auxiliary):continue
+   if len(quartet)!=len(expected):continue
    if set(paths)!=expected or text_path.name.split(' ',1)[0]!=page:continue
    if not all(p.is_file() and p.resolve().is_relative_to(EXPORTS.resolve()) and sha(p.read_bytes())==value.get('sha256') for p,value in zip(paths,quartet.values())):continue
+   if application_schema:records[page]=[]
    records[page].append({'receipt':str(audit_path.relative_to(ROOT)),'hashes':[sha(text_path.read_bytes())],
                          'text_path':str(text_path),'source_path':str(sp)})
  return records
@@ -335,6 +355,7 @@ def companion_metadata(txt):
 def reviewed(txt,page,hash_value,meta,proofs):
  holds=read_json(AUDIT/'Coordinator source review holds.json') or {}
  if page[:2] in holds.get('families',{}) or page in holds.get('pages',{}):return None
+ if any(proof.get('blocked') for proof in proofs.get(page,[])):return None
  for proof in proofs.get(page,[]):
   if proof['hashes'] is None or hash_value in proof['hashes']:return proof['receipt']
  # Table/CAS pages have their own completed visual verification, rather than
@@ -487,6 +508,9 @@ def main():
  AUDIT.mkdir(parents=True,exist_ok=True)
  (AUDIT/'export plan.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  if '--write' in sys.argv:
+  if '--expect-eligible' in sys.argv:
+   expected_count=int(sys.argv[sys.argv.index('--expect-eligible')+1])
+   assert len(plan)==expected_count, 'Current acceptance count differs from the complete scoped snapshot; no repository files written'
   assert not conflicts, 'Repository files have independent changes; inspect conflicts before export'
   report['export_in_progress']=True
   (AUDIT/'last export manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')

@@ -69,6 +69,14 @@ def main():
     copy(args.reference/'ALD Scan Order.csv', repo/'notes/ALD Scan Order.csv',
          'Original scan order and current TIFF filename catalogue')
     shared = {
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Recorded and recovered UTF8 application current audit.json':
+            'Manual verification/Recorded and recovered UTF8 application current audit.json',
+        'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Workbook binding manifest v5.json':
+            'Manual verification/Workbook binding manifest v5.json',
+        'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Workbook independent audit v5.json':
+            'Manual verification/Workbook independent audit v5.json',
+        'outputs/01a12afd-f7e4-7a21-aa71-cbee821ab67d/ALD manual verification questions v5.xlsx':
+            'Manual verification/ALD manual verification questions v5.xlsx',
         'tmp/ald-text/ald/Parallel until complete coordination broadcast.json':
             'Parallel until complete coordination broadcast.json',
         'tmp/ald-text/ald/repository-export/Coordinator source review holds.json':
@@ -101,6 +109,10 @@ def main():
             'Manual verification/2026-10-13 returned workbook answer receipt.json',
         'tmp/ald-text/ald/manual-verification/received/2026-10-13-46e7d24ea74f/Returned question workbook.xlsx':
             'Manual verification/2026-10-13 returned question workbook.xlsx',
+        'tmp/ald-text/ald/manual-verification/received/2026-10-14-5796f6dd2e40/Answer receipt.json':
+            'Manual verification/2026-10-14 returned V4 answer receipt.json',
+        'tmp/ald-text/ald/manual-verification/received/2026-10-14-5796f6dd2e40/Returned question workbook.xlsx':
+            'Manual verification/2026-10-14 returned V4 question workbook.xlsx',
         'tmp/ald-text/ald/manual-verification/spreadsheet/Workbook binding manifest v2.json':
             'Manual verification/Workbook binding manifest v2.json',
         'tmp/ald-text/ald/manual-verification/spreadsheet/Question recovery decisions v2.json':
@@ -424,6 +436,9 @@ def main():
     chain_map = {}
     selected_audit_pages = {(x['review_record'].replace('\\', '/'), x['page'])
                             for x in exported['exported']}
+    selected_audit_pages.update((x['review_record'].replace('\\','/'),
+                                Path(x['transcription_source']).name.split(' ',1)[0])
+                               for x in exported['exported'])
     for relative in shared:
         audit_path = workspace/relative
         if audit_path.parent != audit_root or not audit_path.is_file():
@@ -570,14 +585,79 @@ def main():
         accepted = read_json(human_ap_receipt)
         ap_entry = next(e for e in exported['exported'] if e['page']=='AP001')
         assert accepted['passed'] and accepted['human_answer']=='B-E1K6'
-        assert accepted['current_quartet']['txt']['sha256']==ap_entry['text_sha256']
-        for artifact in accepted['current_quartet'].values():
-            assert digest(Path(artifact['path']).read_bytes())==artifact['sha256']
+        # Subsequent independently reviewed human fields may supersede the
+        # current AP001 quartet. Preserve this exact first correction as
+        # history, bound to its immutable private candidate bytes.
+        human_manifest = read_json(human_ap/'Private correction manifest.json')
+        next_human_receipt = read_json(workspace/'tmp/ald-text/ald/ap3/root/human-batch-v4-5796f6dd2e40/Bounded human batch publication receipt.json')
+        assert next_human_receipt['passed'] is True
+        for kind, artifact in accepted['current_quartet'].items():
+            # Publication adds review annotations to the JSON and notes;
+            # the next batch preserves those exact published predecessor
+            # bytes rather than the earlier unannotated private candidates.
+            preserved = next_human_receipt['pages']['AP001']['before_quartet'][kind]
+            assert preserved['sha256']==artifact['sha256']
+            assert digest(Path(preserved['path']).read_bytes())==artifact['sha256']
+            source = Path(preserved['path'])
+            copy(source,repo/'notes/AP Parallel Adder/Human confirmed AP001 socket/Published prior socket quartet'/source.name,
+                 'Exact first human-confirmed socket publication before later human corrections')
         assert digest(Path(accepted['source']['path']).read_bytes())==accepted['source']['sha256']
         for source in sorted(human_ap.rglob('*')):
             if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
                 copy(source, repo/'notes/AP Parallel Adder/Human confirmed AP001 socket'/source.relative_to(human_ap),
                      'Exact human socket answer, independent acceptance and preserved before/candidate artifacts')
+
+    # Keep current field applications with their preserved full-source
+    # predecessors and independently checked deltas. Never copy private
+    # candidates until the matching guarded publication receipt exists.
+    application_root = workspace/'tmp/ald-text/ald/manual-verification/resolved-text-application-v1/non-ap'
+    for subdir, receipt_name in [('', 'First ten non-AP publication receipt.json'),
+                                ('older-firm','Remaining firm canonical publication receipt.json')]:
+        batch_root = application_root/subdir
+        receipt_path = batch_root/receipt_name
+        if not receipt_path.is_file():
+            continue
+        batch = read_json(receipt_path)
+        assert batch['passed'] is True
+        for item in batch['pages']:
+            folder = Path(item['source']['path']).parent.name
+            page_root = batch_root/item['page']
+            for source in sorted(page_root.rglob('*')):
+                if source.is_file() and source.suffix.lower() in {'.json','.txt','.png','.csv'}:
+                    copy(source,repo/'notes'/folder/'Confirmed field correction history'/item['page']/source.relative_to(page_root),
+                         'Preserved source acceptance, exact field proof and independently reviewed candidate history')
+        for source in sorted(batch_root.glob('*')):
+            if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                copy(source,repo/'notes/Manual verification/Applied confirmed fields'/subdir/source.name,
+                     'Guarded field application batch receipt or independent delta review')
+    for suffix in ['human-batch-v4-5796f6dd2e40','socket-high-followup-v1','definite-header-followup-v2']:
+        batch_root = workspace/'tmp/ald-text/ald/ap3/root'/suffix
+        receipt_name = ('Bounded human batch publication receipt.json' if suffix.startswith('human')
+                        else 'Definite header publication receipt.json' if suffix.startswith('definite')
+                        else 'Socket High followup publication receipt.json')
+        receipt_path = batch_root/receipt_name
+        receipt = read_json(receipt_path)
+        assert receipt['passed'] is True
+        for page, item in receipt['pages'].items():
+            for kind, artifact in item['before_quartet'].items():
+                source = Path(artifact['path'])
+                assert digest(source.read_bytes())==artifact['sha256']
+                copy(source,repo/'notes/AP Parallel Adder/Confirmed field correction history'/suffix/page/'before accepted'/source.name,
+                     'Exact published predecessor quartet before independently reviewed field corrections')
+            frozen = item['frozen_independent_review']
+            source = Path(frozen['path'])
+            assert digest(source.read_bytes())==frozen['sha256']
+            copy(source,repo/'notes/AP Parallel Adder/Confirmed field correction history'/suffix/page/'Frozen independent acceptance.json',
+                 'Independent exact field-delta acceptance preserved before owner publication annotations')
+        for source in sorted(batch_root.rglob('*')):
+            if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                copy(source,repo/'notes/AP Parallel Adder/Confirmed field correction history'/suffix/source.relative_to(batch_root),
+                     'Exact human replies or independently reviewed source recoveries and superseded artifact history')
+    v5_audit = read_json(workspace/'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Workbook independent audit v5.json')
+    assert v5_audit['passed'] is True and not v5_audit['failures']
+    for key in ['workbook','manifest']:
+        artifact = v5_audit[key]
+        assert digest(Path(artifact['path']).read_bytes())==artifact['sha256']
 
     # Reviewed question deductions remain distinct from diagram publications.
     # Import them only after exact candidate/tool bindings and independent
