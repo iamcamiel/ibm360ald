@@ -87,6 +87,10 @@ def main():
             'Manual verification/Workbook binding manifest v5.json',
         'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Workbook independent audit v5.json':
             'Manual verification/Workbook independent audit v5.json',
+        'tmp/ald-text/ald/manual-verification/spreadsheet-v5/Post-v5 recorded answers.json':
+            'Manual verification/Post-v5 recorded answers.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Independent integration guard review.json':
+            'Card types/Function correction history/Independent integration guard review.json',
         'outputs/01a12afd-f7e4-7a21-aa71-cbee821ab67d/ALD manual verification questions v5.xlsx':
             'Manual verification/ALD manual verification questions v5.xlsx',
         'tmp/ald-text/ald/Parallel until complete coordination broadcast.json':
