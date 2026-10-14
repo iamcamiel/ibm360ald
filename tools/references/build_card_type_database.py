@@ -10,8 +10,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 VERSION = "2.0"
-CONFIRMED_FUNCTION_PAIRS = ('A OR','N OR','OR OR','OR A','A A','N A','✲OR OR','AR ID','OR FL','A FL')
-UNDERSTOOD_FUNCTION_NAMES = frozenset(('A','N','OR','✲OR','R','AR','R T0','R T1','R T2','R T3','R T4','AR T','SW A','TD D'))
+CONFIRMED_FUNCTION_PAIRS = ('A OR','N OR','OR OR','OR A','A A','N A','✲OR OR','AR ID','OR FL','A FL','AR T')
+UNDERSTOOD_FUNCTION_NAMES = frozenset(('A','N','OR','✲OR','R','AR','R T0','R T1','R T2','R T3','R T4','SW A','TD D'))
 
 def function_labels(raw):
     """Name-aware conservative decomposition; never first-whitespace-token parsing."""
@@ -430,7 +430,7 @@ def build(args):
                 if expected!=[pair.get('primary_function'),pair.get('secondary_label')]:raise ValueError('Pair authority disagrees with exact parser rule')
                 pair_authority_ids[pair['printed_labels']]=aid
         for name in original.get('preserve_complete_names',[]):
-            if name in UNDERSTOOD_FUNCTION_NAMES:complete_name_authority_ids[name]=aid
+            if name in UNDERSTOOD_FUNCTION_NAMES:complete_name_authority_ids.setdefault(name,aid)
         initial_hashes[str(authority)]=sha(authority)
     recovery_by_page=defaultdict(list)
     post_answer_ids=set(); post_answer_inputs=[]

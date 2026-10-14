@@ -75,6 +75,12 @@ def main():
             'Card types/Function correction history/CA211 human primary function correction current audit.json',
         'tmp/ald-text/ald/card-type-database/Direct human CA211 AK function correction.json':
             'Card types/Direct human CA211 AK function correction.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/R TU human function correction current audit.json':
+            'Card types/Function correction history/R TU human function correction current audit.json',
+        'tmp/ald-text/ald/card-type-database/Direct human R TU function correction.json':
+            'Card types/Direct human R TU function correction.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/R TU integration guard review.json':
+            'Card types/Function correction history/R TU integration guard review.json',
         'tmp/ald-text/ald/card-type-database/Direct human card-type observations.json':
             'Card types/Direct human card-type observations.json',
         'tmp/ald-text/ald/card-type-database/Direct human OR function correction.json':
@@ -655,7 +661,8 @@ def main():
     for subdir,receipt_name,label in [
         ('non-ap-OR-correction','Non-AP OR function canonical publication receipt.json','OR'),
         ('non-ap-supplemental-function-correction','Non-AP supplemental function canonical publication receipt.json','Supplemental'),
-        ('CA211-human-function-correction','CA211 human function canonical publication receipt.json','CA211 exact primary function')]:
+        ('CA211-human-function-correction','CA211 human function canonical publication receipt.json','CA211 exact primary function'),
+        ('R-TU-human-function-correction','R TU human function canonical publication receipt.json','R TU exact function spelling')]:
         function_batch = workspace/'tmp/ald-text/ald/card-type-database'/subdir
         function_receipt = function_batch/receipt_name
         if not function_receipt.is_file():

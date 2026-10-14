@@ -296,7 +296,8 @@ def receipts():
                     'AP001 human socket correction current audit.json',
                     'Recorded and recovered UTF8 application current audit.json',
                     'OR function human correction current audit.json',
-                    'CA211 human primary function correction current audit.json']:
+                    'CA211 human primary function correction current audit.json',
+                    'R TU human function correction current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit.get('passed') is not True:continue
@@ -305,14 +306,15 @@ def receipts():
    if not page or not PAGE.fullmatch(page):continue
    application_schema=(audit_name in {'Recorded and recovered UTF8 application current audit.json',
                                      'OR function human correction current audit.json',
-                                     'CA211 human primary function correction current audit.json'})
+                                     'CA211 human primary function correction current audit.json',
+                                     'R TU human function correction current audit.json'})
    records[page]=[{'blocked':True}] if application_schema else []
    checks=item.get('checks',{})
    if item.get('eligible') is not True or not checks or not all(value is True for value in checks.values()):continue
    source=item.get('source',{});sp=Path(source.get('path',''))
    if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):continue
    valid=True
-   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit']:
+   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory']:
     chain=item.get(key)
     if not isinstance(chain,dict) or not chain.get('file'):continue
     cp=Path(chain['file'])
