@@ -9,7 +9,214 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "1.0"
+VERSION = "2.0"
+CONFIRMED_FUNCTION_PAIRS = ('A OR','N OR','OR OR','OR A','A A','N A','✲OR OR','AR ID','OR FL','A FL')
+UNDERSTOOD_FUNCTION_NAMES = frozenset(('A','N','OR','✲OR','R','AR','R T0','R T1','R T2','R T3','R T4','AR T','SW A','TD D'))
+
+def function_labels(raw):
+    """Name-aware conservative decomposition; never first-whitespace-token parsing."""
+    literal = raw if isinstance(raw,str) else None
+    normalized = norm(literal)
+    result={'raw_literal':literal,'normalized_printed_labels':normalized,'primary_function':None,
+            'secondary_function_labels':[],'secondary_printed_tail_literal':None,'parse_status':'Unresolved printed function name',
+            'complete_printed_label_preserved':True}
+    if normalized in UNDERSTOOD_FUNCTION_NAMES:
+        result.update(primary_function=normalized,parse_status='Understood complete function name; preserved as one name')
+    elif normalized in CONFIRMED_FUNCTION_PAIRS:
+        first,second=normalized.split(' ',1)
+        # Keep whitespace and subsequent label exactly as printed/modelled, including line breaks.
+        first_pattern=re.escape(first).replace('✲','[✲*]')
+        match=re.fullmatch(r'(\s*)('+first_pattern+r')(\s+)('+re.escape(second)+r')(\s*)',literal)
+        if match:
+            result.update(primary_function=first,secondary_function_labels=[{'normalized_name':second,'literal':match[4],
+                          'separator_literal':match[3],'trailing_layout_literal':match[5]}],
+                          secondary_printed_tail_literal=match[3]+match[4]+match[5],parse_status='Explicitly confirmed primary name and secondary printed label')
+    elif normalized in (None,''):
+        result['parse_status']='Missing/unprinted function'
+    elif normalized in ('OH','OK'):
+        result['parse_status']='Suggested function misread held; no glyph replacement authority'
+    elif normalized and '�' not in normalized and not any(c.isspace() for c in normalized):
+        result.update(primary_function=normalized,parse_status='One exact observed printed name; electrical meaning/catalog validation not asserted')
+    elif normalized and '�' not in normalized and re.fullmatch(r'[✲+]?[A-Z][A-Z-]* OR',normalized):
+        first=normalized.rsplit(' ',1)[0]
+        pattern=re.escape(first).replace('✲','[✲*]')
+        match=re.fullmatch(r'(\s*)('+pattern+r')(\s+)(OR)(\s*)',literal)
+        if match:
+            result.update(primary_function=first,secondary_function_labels=[{'normalized_name':'OR','literal':match[4],
+                'separator_literal':match[3],'trailing_layout_literal':match[5]}],secondary_printed_tail_literal=match[3]+match[4]+match[5],
+                parse_status='First intact observed label plus clear secondary OR; legal name/electrical meaning unvalidated')
+    return result
+
+def decoration_signature(port):
+    """Semantic-free prefix/star plus source-bound polarity marker; nulls are significant."""
+    evidence=port.get('polarity_decoration',{})
+    return {'direction':port.get('direction'),'physical_pin':port.get('physical_pin'),
+            'printed_label_literal':port.get('printed_label_literal'),'pin_name_readability':port.get('pin_name_readability'),
+            'drawn_connected_port':port.get('drawn_connected_port'),
+            'polarity_marker':evidence.get('marker','unknown'),
+            'polarity_annotation_consistency':evidence.get('model_consistency','unknown'),
+            'printed_control_prefix_literal':port.get('printed_control_prefix_literal'),
+            'adjacent_asterisk_literal':port.get('adjacent_asterisk'),
+            'separate_decoration_status':port.get('additional_decoration_evidence',{}).get('status'),
+            'output_negated_direct_human':port.get('output_negated')}
+
+def occurrence_signature(observation):
+    ports=[]
+    for port in observation.get('pins',[]):
+        signature=decoration_signature(port)
+        ports.append((json.dumps(signature,ensure_ascii=False,sort_keys=True),signature,port['JSON_pointer']))
+    ports.sort(key=lambda item:(item[0],item[2]))
+    value={'primary_function':observation.get('primary_function'),
+           'unresolved_function_literal':observation.get('function_literal') if observation.get('primary_function') is None else None,
+           'function_parse_status':observation.get('function_label_interpretation',{}).get('parse_status'),
+           'ports':[p[1] for p in ports],
+           'observed_connected_port_counts':observation.get('observed_connected_port_counts'),
+           'ports_with_unknown_connection_counts':observation.get('ports_with_unknown_connection_counts'),
+           'port_annotation_availability':observation.get('port_annotation_availability','available'),
+           'unassigned_direction_port_count':observation.get('unassigned_direction_port_count',0),
+           'source_review_pending':bool(observation.get('source_review_pending')),
+           'complete_physical_pinout':False,'scope':'Observed drawn subset only; no missing ports inferred'}
+    return {'signature_id':sid('v',json.dumps(value,ensure_ascii=False,sort_keys=True)),'value':value,
+            'port_observation_pointers':[{'JSON_pointer':p[2],'signature_port_index':i,
+                'decoration_field_recovery_dependencies':next((port.get('decoration_field_recovery_dependencies',[]) for port in observation['pins'] if port['JSON_pointer']==p[2]),[])} for i,p in enumerate(ports)]}
+
+def equivalence_note(observation, authority_id):
+    """A bounded human interpretation of the used subset; never a card pinout claim."""
+    connected=[p for p in observation['pins'] if p.get('drawn_connected_port') is True]
+    inputs=[p for p in connected if p.get('direction')=='input']
+    outputs=[p for p in connected if p.get('direction')=='output']
+    note={'authority_source_id':authority_id,'status':'Not established for this occurrence','equivalence_class':None,
+          'scope':'Exactly the observed connected input subset; full physical pinout remains unknown'}
+    if observation.get('primary_function')=='N':
+        note.update(status='Printed N preserved as a distinct observed variant; arity not inferred',observed_input_count=len(inputs))
+        if authority_id and not observation.get('source_review_pending') and observation.get('card_type_literal')=='0135' and observation.get('portion_literal')=='A1' and observation.get('port_annotation_availability','available')=='available' and len(inputs)==1 and observation['ports_with_unknown_connection_counts'].get('input')==0 and not observation.get('unassigned_direction_port_count'):
+            note.update(status='Human inspected 0135A1 single-used-input N variant; not converted to another function',human_interpretation_scope='Inspected 0135A1 notation; no inferred missing pins')
+        return note
+    if not authority_id or observation.get('port_annotation_availability','available')!='available' or observation.get('unassigned_direction_port_count') or observation.get('source_review_pending') or any(observation['ports_with_unknown_connection_counts'].values()) or len(outputs)!=1 or not inputs:return note
+    marker=lambda p:p.get('polarity_decoration',{}).get('marker','unknown')
+    labels={p.get('physical_pin') for p in inputs}
+    if None in labels or len(labels)!=len(inputs):return note
+    if observation.get('primary_function')=='A' and marker(outputs[0])=='triangle' and all(marker(p)=='none' for p in inputs):form='AND with inverted output'
+    elif observation.get('primary_function')=='OR' and marker(outputs[0])=='none' and all(marker(p)=='triangle' for p in inputs):form='OR with inverted inputs'
+    else:return note
+    note.update(status='Human-confirmed alternative notation pattern; used pins preserved',printed_form=form,
+                equivalence_class={'operation':'AND of used input signals with output inversion','used_input_pin_names':sorted(labels),
+                                   'output_pin':outputs[0].get('physical_pin')})
+    return note
+
+def function_combination(observation):
+    """Pin-independent drawn-count/decoration grouping; literal details remain elsewhere."""
+    value={'primary_function':observation.get('primary_function'),
+           'unresolved_function_literal':observation.get('function_literal') if observation.get('primary_function') is None else None,
+           'source_review_pending':bool(observation.get('source_review_pending')),
+           'port_annotation_availability':observation.get('port_annotation_availability','available'),
+           'unassigned_direction_port_count':observation.get('unassigned_direction_port_count',0),
+           'complete_physical_pinout':False,'scope':'Only observed drawn ports; unavailable connection is not zero'}
+    for side in ('input','output'):
+        known=[p for p in observation['pins'] if p['direction']==side and p['drawn_connected_port'] is True]
+        unknown=[p for p in observation['pins'] if p['direction']==side and p['drawn_connected_port'] is None]
+        unconnected=[p for p in observation['pins'] if p['direction']==side and p['drawn_connected_port'] is False]
+        decorations=Counter(json.dumps({'polarity_marker':p['polarity_decoration']['marker'],
+                             'asterisk_literal':p.get('adjacent_asterisk'),
+                             'control_prefix_literal':p.get('printed_control_prefix_literal'),
+                             'separate_decoration_status':p.get('additional_decoration_evidence',{}).get('status') if p.get('additional_decoration_evidence',{}).get('status') in ('Unverified separate decoration annotation','Separate model star annotation conflicts with source-bound field') else None},ensure_ascii=False,sort_keys=True) for p in known)
+        available=observation.get('port_annotation_availability','available')=='available'
+        unconnected_decorations=Counter(json.dumps({'polarity_marker':p['polarity_decoration']['marker'],
+                             'asterisk_literal':p.get('adjacent_asterisk'),'control_prefix_literal':p.get('printed_control_prefix_literal'),
+                             'separate_decoration_status':p.get('additional_decoration_evidence',{}).get('status') if p.get('additional_decoration_evidence',{}).get('status') in ('Unverified separate decoration annotation','Separate model star annotation conflicts with source-bound field') else None},ensure_ascii=False,sort_keys=True) for p in unconnected)
+        value[side]={'known_connected_count':len(known) if available else None,'connection_unknown_count':len(unknown) if available else None,
+                     'exact_connected_count':len(known) if available and not unknown and not observation.get('unassigned_direction_port_count') else None,
+                     'visible_unconnected_port_count':len(unconnected) if available else None,
+                     'all_annotated_port_count':len(known)+len(unknown)+len(unconnected) if available else None,
+                     'visible_unconnected_decoration_multiset':[{'decoration':json.loads(k),'count':v} for k,v in sorted(unconnected_decorations.items())],
+                     'known_decoration_multiset':[{'decoration':json.loads(k),'count':v} for k,v in sorted(decorations.items())],
+                     'unknown_connection_decorations':[decoration_signature(p) for p in unknown]}
+    # Unknown-port fields retain missing labels for evidence, but are not a pin identity grouping key.
+    for side in ('input','output'):
+        value[side]['unknown_connection_decorations']=[{k:d[k] for k in ('polarity_marker','printed_control_prefix_literal','adjacent_asterisk_literal')} | {'separate_decoration_status':d.get('separate_decoration_status') if d.get('separate_decoration_status') in ('Unverified separate decoration annotation','Separate model star annotation conflicts with source-bound field') else None} for d in value[side]['unknown_connection_decorations']]
+        value[side]['unknown_connection_decorations'].sort(key=lambda d:json.dumps(d,sort_keys=True,ensure_ascii=False))
+    label=lambda side:side.upper()+' '+('UNAVAILABLE' if value['port_annotation_availability']!='available' else str(value[side]['exact_connected_count']) if value[side]['exact_connected_count'] is not None else str(value[side]['known_connected_count'])+' KNOWN + '+str(value[side]['connection_unknown_count'])+' UNKNOWN')
+    counts=lambda side:{marker:sum(d['count'] for d in value[side]['known_decoration_multiset'] if d['decoration']['polarity_marker']==marker) for marker in ('triangle','none','unknown')}
+    readable=(value['primary_function'] or 'UNRESOLVED '+str(value['unresolved_function_literal']))+' | '+label('input')+' '+json.dumps(counts('input'),sort_keys=True)+' | '+label('output')+' '+json.dumps(counts('output'),sort_keys=True)
+    readable+=' | INPUT DECORATIONS '+json.dumps(value['input']['known_decoration_multiset'],sort_keys=True,ensure_ascii=False)+' | OUTPUT DECORATIONS '+json.dumps(value['output']['known_decoration_multiset'],sort_keys=True,ensure_ascii=False)
+    readable+=' | UNCONNECTED INPUTS '+str(value['input']['visible_unconnected_port_count'])+' '+json.dumps(value['input']['visible_unconnected_decoration_multiset'],sort_keys=True,ensure_ascii=False)
+    readable+=' | UNCONNECTED OUTPUTS '+str(value['output']['visible_unconnected_port_count'])+' '+json.dumps(value['output']['visible_unconnected_decoration_multiset'],sort_keys=True,ensure_ascii=False)
+    if value['input']['unknown_connection_decorations']:readable+=' | UNKNOWN INPUT DECORATIONS '+json.dumps(value['input']['unknown_connection_decorations'],sort_keys=True,ensure_ascii=False)
+    if value['output']['unknown_connection_decorations']:readable+=' | UNKNOWN OUTPUT DECORATIONS '+json.dumps(value['output']['unknown_connection_decorations'],sort_keys=True,ensure_ascii=False)
+    if value['unassigned_direction_port_count']:readable+=' | UNASSIGNED DIRECTION PORTS '+str(value['unassigned_direction_port_count'])
+    if value['source_review_pending']:readable+=' | SOURCE REVIEW PENDING'
+    return {'combination_id':sid('c',json.dumps(value,sort_keys=True,ensure_ascii=False)),'value':value,'readable_signature':readable}
+
+def function_shape_reviews(observations):
+    """Flag differing primary labels, never decide that an uncommon label is wrong."""
+    groups=defaultdict(list);held=[]
+    def example(o):
+        return {'observation_id':o['observation_id'],'page':o['page'],'scan_id':o['scan_id'],'source_id':o['source_id'],
+                'text_source_id':o['text_source_id'],'JSON_pointer':o['JSON_pointer'],'primary_function':o.get('primary_function'),
+                'function_literal':o['function_literal'],'secondary_function_labels':o['secondary_function_labels'],
+                'unit_literal':o.get('unit_code_literal'),'physical_instance_key':o.get('physical_instance_key'),
+                'pin_specific_signature_id':o['occurrence_signature']['signature_id'],
+                'port_observation_pointers':o['occurrence_signature']['port_observation_pointers'],
+                'field_recovery_dependencies':o['field_recovery_dependencies'],'source_review_pending':o['source_review_pending']}
+    for o in observations:
+        value=o['function_combination']['value'];reason=[]
+        if not o.get('primary_function'):reason.append('Primary name unresolved')
+        if o['source_review_pending']:reason.append('Pending native source review/correction')
+        if value['port_annotation_availability']!='available' or value['unassigned_direction_port_count']:reason.append('Port/side annotation unavailable')
+        for side in ('input','output'):
+            if value[side]['exact_connected_count'] is None:reason.append('Connected '+side+' count incomplete')
+            for entry in value[side]['known_decoration_multiset']+value[side]['visible_unconnected_decoration_multiset']:
+                deco=entry['decoration']
+                if deco['polarity_marker']=='unknown' or any('�' in str(deco[k]) for k in ('asterisk_literal','control_prefix_literal')):reason.append('Unreadable/unknown '+side+' decoration')
+                if deco.get('separate_decoration_status') in ('Unverified separate decoration annotation','Separate model star annotation conflicts with source-bound field'):reason.append('Unverified/conflicting separate '+side+' decoration')
+        if reason:
+            held.append({**example(o),'status':'Held; not a strong same-shape comparison','reasons':sorted(set(reason))})
+            continue
+        shape={k:v for k,v in value.items() if k not in ('primary_function','unresolved_function_literal','source_review_pending')}
+        groups[json.dumps(shape,sort_keys=True,ensure_ascii=False)].append(o)
+    flags=[]
+    for key,group in sorted(groups.items()):
+        names=sorted({o['primary_function'] for o in group})
+        if len(names)<2:continue
+        context=defaultdict(list)
+        for o in group:
+            pinshape={'unit':o.get('unit_code_normalized'),
+                      'ports':[{k:p.get(k) for k in ('direction','physical_pin','drawn_connected_port','printed_control_prefix_literal','adjacent_asterisk')} | {'polarity_marker':p['polarity_decoration']['marker']} for p in o['pins']]}
+            pinshape['ports'].sort(key=lambda p:json.dumps(p,sort_keys=True,ensure_ascii=False))
+            context[json.dumps(pinshape,sort_keys=True,ensure_ascii=False)].append(o)
+        matches=[{'context':json.loads(k),'competing_primary_names':sorted({o['primary_function'] for o in v}),
+                  'observation_ids':[o['observation_id'] for o in v]} for k,v in sorted(context.items()) if len({o['primary_function'] for o in v})>1]
+        flags.append({'shape_id':sid('s',key),'shape':json.loads(key),'competing_primary_names':names,
+                      'counts_by_primary_name':dict(sorted(Counter(o['primary_function'] for o in group).items())),
+                      'observation_count':len(group),'observations':[example(o) for o in group],
+                      'stronger_pin_and_unit_context_matches':matches,'status':'Review flag only; legal variations may share a shape',
+                      'automatic_correction_authorized':False,'majority_selection_applied':False})
+    return flags,held
+
+def polarity_evidence(port, text_lines, node, candidate_rows):
+    """Read actual accepted border cells; a model flag alone never establishes polarity."""
+    side=port.get('direction'); rr=node.get('row'); cc=node.get('column'); width=node.get('width',8)
+    evidence={'marker':'unknown','model_triangle_annotation':port.get('triangle_glyph'),'model_consistency':'unknown',
+              'source':'Current accepted UTF-8 border glyph, bound to accepted model/source identities; not a new native scan review',
+              'glyph_bindings':[],'polarity_interpretation':None}
+    if side not in ('input','output') or not isinstance(rr,int) or not isinstance(cc,int):return evidence
+    border=cc if side=='input' else cc+width-1
+    known_rows={b['row'] for b in port.get('literal_text_bindings',[])}
+    if port.get('wire_boundary_text_binding'):known_rows.add(port['wire_boundary_text_binding']['row'])
+    rows=sorted(known_rows) if known_rows else sorted(set(candidate_rows))
+    valid=[]
+    for row in rows:
+        if not isinstance(row,int) or not rr<=row<=rr+node.get('height',6) or not 0<=row<len(text_lines):continue
+        glyph=text_lines[row][border:border+1]
+        if glyph in ('◺','│','┌','┐','└','┘','┼'):
+            valid.append({'row':row,'column':border,'glyph':glyph})
+    evidence['glyph_bindings']=valid
+    if len(valid)!=1:return evidence
+    observed=valid[0]['glyph']=='◺';annotation=port.get('triangle_glyph')
+    evidence['model_consistency']='agrees' if annotation is observed else 'annotation absent' if annotation is None else 'conflict'
+    evidence['marker']='unknown' if evidence['model_consistency']=='conflict' else 'triangle' if observed else 'none'
+    evidence['polarity_interpretation']='inverted decoration' if evidence['marker']=='triangle' else 'ordinary border decoration' if evidence['marker']=='none' else None
+    return evidence
 UNITS = {x: "02" + x for x in "ABCEKL"}
 CARD = re.compile(r"^[0-9]{4}$")
 PORTION = re.compile(r"^[A-Z0-9]{2}$")
@@ -83,6 +290,46 @@ def canvas_candidate(mask,value):
             result[token.start()+j]=char if before=='�' else before
     return ''.join(result)
 
+def separate_decoration_evidence(port,text_lines,node,candidate_rows):
+    """Bind the actual contiguous pin-field token, preserving separate model flags."""
+    raw=port['raw_printed_and_geometry_fields'];side=port.get('direction');physical=port.get('physical_pin')
+    annotations={k:v for k,v in raw.items() if k in ('printed_qualifier','printed_terminal_asterisk','printed_control_prefix','numeric_control_prefix','control_prefix','printed_prefix')}
+    active_annotation=(raw.get('printed_terminal_asterisk') is True or raw.get('printed_qualifier') not in (None,False,'') or any(raw.get(k) not in (None,'') for k in ('printed_control_prefix','numeric_control_prefix','control_prefix','printed_prefix')))
+    result={'raw_separate_annotations':annotations,'status':'No additional separate annotation supplied','source_bound_full_pin_field':None,'glyph_binding':None,
+            'meaning_of_star_or_numeric_prefix':None}
+    rr=node.get('row');cc=node.get('column');width=node.get('width',8)
+    if not physical or side not in ('input','output') or not isinstance(rr,int) or not isinstance(cc,int):
+        if active_annotation:result['status']='Unverified separate decoration annotation'
+        return result
+    border=cc if side=='input' else cc+width-1;matches=[]
+    pattern=r'([0-9�]*'+re.escape(physical)+r'[✲*]?)'
+    for row in sorted(set(candidate_rows)):
+        if not isinstance(row,int) or not rr<=row<=rr+node.get('height',6) or not 0<=row<len(text_lines):continue
+        if text_lines[row][border:border+1] not in ('│','◺','┌','┐','└','┘','┼'):continue
+        if side=='input':
+            match=re.search(pattern+r'$',text_lines[row][max(0,border-12):border])
+            if not match:continue
+            literal=match[1];column=border-len(literal);wire=text_lines[row][column-1:column]
+        else:
+            match=re.match(pattern,text_lines[row][border+1:border+13])
+            if not match:continue
+            literal=match[1];column=border+1;wire=text_lines[row][column+len(literal):column+len(literal)+1]
+        # The printed field is visible even on a terminal with no outward wire.
+        # Its decoration binding must not upgrade the independent connection state.
+        if wire in (' ','─','┌','┐','└','┘','┼','◇'):
+            matches.append({'row':row,'column':column,'literal':literal,'border_column':border,
+                            'exterior_wire_contact_observed':wire!=' '})
+    if len(matches)!=1:
+        if active_annotation:result['status']='Unverified separate decoration annotation'
+        return result
+    binding=matches[0];literal=binding['literal'];star=literal[-1] if literal.endswith(('✲','*')) else None
+    prefix=literal[:-len(physical)-(1 if star else 0)]
+    result.update(status='Exact full pin-field decoration binding',source_bound_full_pin_field=literal,glyph_binding=binding,
+                  adjacent_asterisk_literal=star,printed_control_prefix_literal=prefix or None)
+    declared_star=raw.get('printed_terminal_asterisk') is True or raw.get('printed_qualifier') in ('✲','*')
+    if declared_star and not star:result['status']='Separate model star annotation conflicts with source-bound field'
+    return result
+
 def build(args):
     repo = args.repo_root.resolve(); out = args.output_root.resolve()
     if out == repo or repo in out.parents: raise ValueError("Private output must be outside the input repository")
@@ -93,6 +340,8 @@ def build(args):
     if args.question_manifest: initial_hashes[str(args.question_manifest)] = sha(args.question_manifest)
     sources, pages, file_sources = {}, {}, {}
     original_stats = {}
+    frozen_originals=read(args.original_source_registry)['sources'] if args.original_source_registry else None
+    if args.original_source_registry:initial_hashes[str(args.original_source_registry)]=sha(args.original_source_registry)
     def add_source(rel, role, expected=None, **extra):
         path = repo / rel; actual = sha(path)
         if expected is not None and actual != expected: raise ValueError("Accepted input hash mismatch: " + rel)
@@ -111,7 +360,9 @@ def build(args):
                        "original_scan_name": entry.get("original_scan_name"), 'scan_timestamp':entry.get('scan_timestamp'), "model_source_ids": []}
         original = args.source_root / slashes(entry["source_relative"])
         original_id = "t" + scan
-        sources[original_id] = {"path": slashes(entry["source_relative"]), "sha256": sha(original), "role": "Build-time observed original TIFF hash; accepted TXT/model snapshot is separate", "source_archive": True,
+        frozen=frozen_originals.get(original_id) if frozen_originals is not None else None
+        if frozen_originals is not None and (not frozen or frozen['path']!=slashes(entry['source_relative']) or str(frozen['scan_id'])!=scan):raise ValueError('Frozen original registry disagrees with exact scan identity: '+scan)
+        sources[original_id] = {"path": slashes(entry["source_relative"]), "sha256": frozen['sha256'] if frozen else sha(original), "role": "Frozen independently reviewed original-source registry; original bytes not rehashed in this build" if frozen else "Build-time observed original TIFF hash; accepted TXT/model snapshot is separate", "source_archive": True,
                                 "scan_id": scan, "original_scan_name": entry.get("original_scan_name")}
         pages[scan]["original_source_id"] = original_id
         original_stats[str(original)] = (original.stat().st_size, original.stat().st_mtime_ns)
@@ -132,23 +383,54 @@ def build(args):
             page["model_source_ids"].append(source_id)
             if isinstance(model, dict):
                 nested = model.get("source")
-                declared = model.get("source_sha256") or (nested.get("source_sha256") if isinstance(nested, dict) else None)
+                declarations={k:model[k] for k in ('source_sha256','native_source_sha256') if model.get(k)}
+                if isinstance(nested,dict):declarations.update({'source/'+k:nested[k] for k in ('source_sha256','native_source_sha256') if nested.get(k)})
+                declared=next(iter(declarations.values()),None)
                 page["source_TIFF_sha256_declared_by_accepted_model"] = declared
-                if declared and sources[page["original_source_id"]]["sha256"] != declared: raise ValueError("Original TIFF disagrees with accepted model: " + rel)
+                page['source_TIFF_hash_declarations']=[{'JSON_pointer':'/'+key,'sha256':value} for key,value in declarations.items()]
+                for value in declarations.values():
+                    if sources[page['original_source_id']]['sha256']!=value:raise ValueError('Original TIFF disagrees with accepted model: '+rel)
         documents.append((rel, source_id, model, page))
     human_id = "human-card-type-request"
     human_copy = out / "notes/Card types/Direct human card-type observations.json"
     human_copy.parent.mkdir(parents=True, exist_ok=True); human_copy.write_bytes(args.human_facts.read_bytes())
     sources[human_id] = {"path": human_copy.relative_to(out).as_posix(), "sha256": sha(args.human_facts), "role": "Direct human observations; independent of model readings", "external_input": True}
-    normalization_authorities=[]
+    normalization_authorities=[];pair_authority_ids={};complete_name_authority_ids={}
+    if args.original_source_registry:
+        copied=out/'notes/Card types/Frozen original source registry.json';copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(args.original_source_registry.read_bytes())
+        sources['frozen-original-registry']={'path':copied.relative_to(out).as_posix(),'sha256':sha(args.original_source_registry),'role':'Previously independently reviewed original TIFF hashes; reused without archive rehash','external_input':True}
+    pending_findings=[]
+    pending_review_id=None
+    if args.pending_native_review:
+        review=read(args.pending_native_review);copied=out/'notes/Card types'/args.pending_native_review.name
+        if review.get('passed') is not True or review.get('failures'):raise ValueError('Pending native review is not independently passing')
+        copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(args.pending_native_review.read_bytes())
+        pending_review_id=sid('h',args.pending_native_review.name)
+        sources[pending_review_id]={'path':copied.relative_to(out).as_posix(),'sha256':sha(args.pending_native_review),'role':'Independent source findings awaiting canonical correction; no implicit application','external_input':True}
+        initial_hashes[str(args.pending_native_review)]=sha(args.pending_native_review)
+        pending_findings=review.get('findings',[])
+    occurrence_authority_id=None
+    if args.occurrence_authority:
+        authority=args.occurrence_authority; copied=out/'notes/Card types'/authority.name
+        copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(authority.read_bytes())
+        occurrence_authority_id=sid('h',authority.name)
+        sources[occurrence_authority_id]={'path':copied.relative_to(out).as_posix(),'sha256':sha(authority),'role':'Direct human function-name and input/output decoration interpretation; suggestions are not correction authority','external_input':True}
+        initial_hashes[str(authority)]=sha(authority)
     for authority in args.function_authority:
         original=read(authority); copied=out/'notes/Card types'/authority.name
         copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(authority.read_bytes())
         aid=sid('h',authority.name)
         sources[aid]={'path':copied.relative_to(out).as_posix(),'sha256':sha(authority),'role':'Direct human function correction/normalization authority','external_input':True}
-        statements={k:original[k] for k in ('raw_statement','raw_statements') if k in original}
+        statements={k:original[k] for k in ('raw_statement','raw_statements','question','raw_answer') if k in original}
         if not statements:raise ValueError('Function authority lacks its exact raw human statement: '+str(authority))
         normalization_authorities.append({'source_id':aid,**statements,'semantic_whitespace_rule':original.get('semantic_whitespace_rule'),'active_JSON_rule':original.get('active_JSON_rule')})
+        for pair in original.get('confirmed_pairs',[]):
+            if pair.get('printed_labels') in CONFIRMED_FUNCTION_PAIRS:
+                expected=pair['printed_labels'].split(' ',1)
+                if expected!=[pair.get('primary_function'),pair.get('secondary_label')]:raise ValueError('Pair authority disagrees with exact parser rule')
+                pair_authority_ids[pair['printed_labels']]=aid
+        for name in original.get('preserve_complete_names',[]):
+            if name in UNDERSTOOD_FUNCTION_NAMES:complete_name_authority_ids[name]=aid
         initial_hashes[str(authority)]=sha(authority)
     recovery_by_page=defaultdict(list)
     post_answer_ids=set(); post_answer_inputs=[]
@@ -319,6 +601,23 @@ def build(args):
                     if value in inner and inner.count(value)==1:matches.append({'row':tr,'column':cc+1+inner.index(value),'literal':value})
                 return matches
             obs['literal_text_bindings']={key:field_cells(value,key) for key,value in [('printed_card_portion',literal),('function',node.get('function')),('unit',node.get('unit'))]}
+            interpreted=function_labels(obs['function_literal'])
+            interpreted['authority_source_id']=occurrence_authority_id
+            interpreted['authority_source_ids']=list(dict.fromkeys(x for x in (occurrence_authority_id,pair_authority_ids.get(norm(obs['function_literal'])),complete_name_authority_ids.get(norm(obs['function_literal']))) if x))
+            interpreted['source_literal_bindings']=obs['literal_text_bindings']['function']
+            interpreted['source_binding_status']='Exact unique accepted UTF-8 function literal' if len(interpreted['source_literal_bindings'])==1 else 'Accepted model literal; exact glyph placement unresolved'
+            obs['function_label_interpretation']=interpreted
+            obs['primary_function']=interpreted['primary_function']
+            obs['secondary_function_labels']=interpreted['secondary_function_labels']
+            obs['source_review_pending']=[]
+            for fi,finding in enumerate(pending_findings):
+                if str(finding.get('source_scan_id'))==page['scan_id'] and finding.get('node_pointer')==pointer:
+                    if finding.get('current_model',{}).get('sha256') and finding['current_model']['sha256']!=sources[source_id]['sha256']:raise ValueError('Pending native finding model binding is stale: '+page['page'])
+                    if finding.get('current_text',{}).get('sha256') and finding['current_text']['sha256']!=sources[page['text_source_id']]['sha256']:raise ValueError('Pending native finding text binding is stale: '+page['page'])
+                    if finding.get('source',{}).get('sha256') and finding['source']['sha256']!=sources[page['original_source_id']]['sha256']:raise ValueError('Pending native finding original source binding is stale: '+page['page'])
+                    obs['source_review_pending'].append({'source_id':pending_review_id,'JSON_pointer':f'/findings/{fi}',
+                        'kind':finding.get('kind'),'status':finding.get('status'),'best_guess':finding.get('best_guess'),
+                        'pin_pointer':finding.get('pin_pointer'),'current_literal_preserved':True,'application_authorized':False})
             obs['field_recovery_dependencies']={}
             for field,positions in obs['literal_text_bindings'].items():
                 occupied={(p['row'],p['column']+j) for p in positions for j in range(len(p['literal']))}
@@ -328,7 +627,8 @@ def build(args):
                 obs['field_recovery_dependencies'][field]=deps
             obs['embedded_history_dependency_pointers']=['/'+k for k in model if any(s in k for s in ('recover','human_','source_derived','firm_resolution'))]
             counts, named_counts, unknown_counts = Counter(), Counter(), Counter()
-            for pi, pin in enumerate(node.get("pins", [])):
+            obs['port_annotation_availability']='available' if isinstance(node.get('pins'),list) else 'unavailable'
+            for pi, pin in enumerate(node['pins'] if isinstance(node.get('pins'),list) else []):
                 if not isinstance(pin, dict): continue
                 label, labelkey = pin_label(pin); parsed = pin_parse(label); side = direction(pin)
                 parsed['physical_pin_basis']='Complete literal physical label' if parsed['physical_pin'] else None
@@ -398,22 +698,54 @@ def build(args):
                         if text_lines[tr][lc:lc+len(label)]==label:port['literal_text_bindings'].append({'row':tr,'column':lc,'literal':label})
                 occupied={(p['row'],p['column']+j) for p in port['literal_text_bindings'] for j in range(len(p['literal']))}
                 port['field_recovery_dependencies']=[q for q in repairs_for_page(page) if occupied & {tuple(x) for x in q['covered_cells']}]
+                port['polarity_decoration']=polarity_evidence(port,text_lines,node,candidate_rows)
+                port['polarity_decoration']['authority_source_id']=occurrence_authority_id
+                port['source_review_pending']=[f for f in obs['source_review_pending'] if f['pin_pointer']==port['JSON_pointer']]
+                if port['source_review_pending']:
+                    port['polarity_decoration']['current_accepted_marker_preserved']=port['polarity_decoration']['marker']
+                    port['polarity_decoration']['marker']='unknown'
+                    port['polarity_decoration']['polarity_interpretation']=None
+                    port['polarity_decoration']['status']='Pending native source correction; accepted literal retained, derived polarity held'
+                port['asterisk_interpretation']=None
+                port['numeric_prefix_interpretation']=None
+                port['additional_decoration_evidence']=separate_decoration_evidence(port,text_lines,node,candidate_rows)
+                full_binding=port['additional_decoration_evidence'].get('glyph_binding')
+                decoration_cells={(full_binding['row'],full_binding['column']+j) for j in range(len(full_binding['literal']))} if full_binding else set()
+                port['decoration_field_recovery_dependencies']=[q for q in repairs_for_page(page) if decoration_cells & {tuple(x) for x in q['covered_cells']}]
+                port['additional_decoration_evidence']['field_recovery_dependencies']=port['decoration_field_recovery_dependencies']
+                port['numeric_prefix_raw_parsed']=port['numeric_prefix']
+                port['adjacent_asterisk_raw_parsed']=port['adjacent_asterisk']
+                if port['additional_decoration_evidence']['status']=='Exact full pin-field decoration binding':
+                    port['adjacent_asterisk']=port['additional_decoration_evidence']['adjacent_asterisk_literal']
+                    port['printed_control_prefix_literal']=port['additional_decoration_evidence']['printed_control_prefix_literal']
+                    port['control_prefix_readability']='damaged' if '�' in str(port['printed_control_prefix_literal']) else 'readable' if port['printed_control_prefix_literal'] is not None else 'unprinted/not applicable'
                 obs["pins"].append(port)
                 if connected and side: counts[side] += 1
                 if connected is None and side:unknown_counts[side]+=1
                 if parsed["physical_pin"] and side: named_counts[side] += 1
                 pin_rows.append({"card_type": code, "portion": portion, "observation_id": obs_id, "page": page["page"], "scan_id": page["scan_id"],
                                  "source_id": source_id, "JSON_pointer": port["JSON_pointer"], "direction": side, "printed_label": label, "physical_pin": parsed["physical_pin"],
-                                 "numeric_control_prefix": parsed["numeric_prefix"], "drawn_connected_port": connected, "triangle_glyph": pin.get("triangle"), "output_negated": None})
-            obs["observed_connected_port_counts"] = {x: counts[x] for x in ("input", "output")}
-            obs['ports_with_unknown_connection_counts']={x:unknown_counts[x] for x in ('input','output')}
+                                 "numeric_control_prefix": port['printed_control_prefix_literal'], 'numeric_control_prefix_raw_parsed':port['numeric_prefix_raw_parsed'],
+                                 'adjacent_asterisk_literal':port['adjacent_asterisk'],'adjacent_asterisk_raw_parsed':port['adjacent_asterisk_raw_parsed'],
+                                 'additional_decoration_status':port['additional_decoration_evidence']['status'],'source_bound_full_pin_field':port['additional_decoration_evidence']['source_bound_full_pin_field'],
+                                 'decoration_field_binding':port['additional_decoration_evidence']['glyph_binding'],
+                                 'polarity_marker':port['polarity_decoration']['marker'],'source_review_pending':bool(port['source_review_pending']),
+                                 "drawn_connected_port": connected, "triangle_glyph": pin.get("triangle"), "output_negated": None})
+            available=obs['port_annotation_availability']=='available'
+            obs["observed_connected_port_counts"] = {x: counts[x] if available else None for x in ("input", "output")}
+            obs['ports_with_unknown_connection_counts']={x:unknown_counts[x] if available else None for x in ('input','output')}
+            obs['unassigned_direction_port_count']=sum(p['direction'] is None and p['drawn_connected_port'] is not False for p in obs['pins'])
             obs["observed_named_pin_counts"] = {x: named_counts[x] for x in ("input", "output")}
             obs['distinct_observed_physical_pin_names']={side:sorted({p['physical_pin'] for p in obs['pins'] if p['direction']==side and p['physical_pin']}) for side in ('input','output')}
+            obs['occurrence_signature']=occurrence_signature(obs)
+            obs['function_combination']=function_combination(obs)
+            obs['human_interpretation']=equivalence_note(obs,occurrence_authority_id)
             card(code)["diagram_observations"].append(obs); depiction_by_page[page["page"]].append(obs)
             observed_rows.append({"card_type": code, "portion": portion, "observation_id": obs_id, "page": page["page"], "scan_id": page["scan_id"], "source_id": source_id,
                                   "JSON_pointer": pointer, "printed_card_portion": literal, "function_literal": node.get("function"), "unit_literal": node.get("unit"),
-                                  "location_literal": location, "physical_instance_key": instance_key, "observed_input_connections": counts["input"], "observed_output_connections": counts["output"],
-                                  'inputs_connection_unknown':unknown_counts['input'],'outputs_connection_unknown':unknown_counts['output']})
+                                  "location_literal": location, "physical_instance_key": instance_key, "observed_input_connections": obs['observed_connected_port_counts']['input'], "observed_output_connections": obs['observed_connected_port_counts']['output'],
+                                  'inputs_connection_unknown':obs['ports_with_unknown_connection_counts']['input'],'outputs_connection_unknown':obs['ports_with_unknown_connection_counts']['output'],
+                                  'port_annotation_availability':obs['port_annotation_availability'],'source_review_pending':bool(obs['source_review_pending'])})
     human = read(args.human_facts); human_code = str(human["card_type"])
     for i, observation in enumerate(human["observations"]):
         ho={"observation_id": f"h{i}", "source_id": human_id, "JSON_pointer": f"/observations/{i}", "raw_observation": observation}
@@ -423,7 +755,7 @@ def build(args):
             ho['interpretation_scope']='Specific AP211 physical card membership, not an exhaustive type capability claim'
             ho['matching_listing_observation_ids']=[o['observation_id'] for o in card(human_code)['listing_observations'] if o['board_match_key']=='02B-D1' and o['socket_match_keys']==['D4','D5']]
         card(human_code)["human_observations"].append(ho)
-    portion_rows, conflict_rows = [], []
+    portion_rows, conflict_rows, occurrence_rows, combination_rows, shape_review_rows = [], [], [], [], []
     def variants(obs, key):
         result = defaultdict(list)
         for o in obs:
@@ -432,6 +764,9 @@ def build(args):
         rawfield='function' if key=='function_normalized' else 'unit' if key=='unit_code_normalized' else None
         byid={o['observation_id']:o for o in obs}
         return [{"value": k, "observation_ids": v,'text_bound_observation_ids':[oid for oid in v if rawfield and len(byid[oid]['literal_text_bindings'][rawfield])==1],
+                 'source_review_pending_observation_ids':[oid for oid in v if byid[oid].get('source_review_pending')],
+                 'nonpending_observation_ids':[oid for oid in v if not byid[oid].get('source_review_pending')],
+                 'status':'Pending accepted literal; not a confirmed genuine variant' if all(byid[oid].get('source_review_pending') for oid in v) else 'Accepted nonpending observed labels; pending IDs segregated',
                  'confidence':'Accepted model literal observations; exact text-binding status kept per observation; native shape not newly verified'} for k, v in sorted(result.items())]
     for code, data in sorted(cards.items()):
         memberships = defaultdict(list); instances = defaultdict(lambda: {"listing_observation_ids": [], "diagram_observation_ids": []})
@@ -470,7 +805,66 @@ def build(args):
             portiondata['human_confirmed_facts']=[{'human_observation_id':h['observation_id'],'source_id':h['source_id'],'JSON_pointer':h['JSON_pointer'],
                                                   'value':h['raw_observation'],'matching_diagram_observation_ids':h.get('matching_diagram_observation_ids',[])}
                                                  for h in data['human_observations'] if h['raw_observation'].get('portion')==p]
-            for role, facts in (("function", funcs), ("unit", units)):
+            portiondata['printed_function_label_facts']=funcs
+            portiondata['primary_function_facts']=variants(obs,'primary_function')
+            signature_groups=defaultdict(list)
+            for o in obs:signature_groups[o['occurrence_signature']['signature_id']].append(o)
+            portiondata['occurrence_variants']=[{'signature_id':key,'signature':group[0]['occurrence_signature']['value'],
+                'observation_count':len(group),'distinct_located_physical_instances':len({o['physical_instance_key'] for o in group if o['physical_instance_key']}),
+                'observations':[{'observation_id':o['observation_id'],'source_id':o['source_id'],'text_source_id':o['text_source_id'],
+                    'scan_id':o['scan_id'],'page':o['page'],'JSON_pointer':o['JSON_pointer'],
+                    'secondary_function_labels':o['secondary_function_labels'],'port_pointers':o['occurrence_signature']['port_observation_pointers'],
+                    'human_interpretation':o['human_interpretation']} for o in group]} for key,group in sorted(signature_groups.items())]
+            for variant in portiondata['occurrence_variants']:
+                occurrence_rows.append({'card_type':code,'portion':p,'signature_id':variant['signature_id'],
+                    'primary_function':variant['signature']['primary_function'],'unresolved_function_literal':variant['signature']['unresolved_function_literal'],
+                    'drawn_ports_and_decorations':variant['signature']['ports'],'observation_count':variant['observation_count'],
+                    'distinct_located_physical_instances':variant['distinct_located_physical_instances'],
+                    'observation_ids':[o['observation_id'] for o in variant['observations']],'physical_pinout_complete':False})
+            combinations=defaultdict(list)
+            for o in obs:combinations[o['function_combination']['combination_id']].append(o)
+            portiondata['function_combinations']=[]
+            for combo_id,group in sorted(combinations.items()):
+                combo=group[0]['function_combination'];value=combo['value']
+                item={'combination_id':combo_id,'combination':value,'readable_signature':combo['readable_signature'],
+                      'observation_count':len(group),'status':'Source review pending; no confirmed combination' if value['source_review_pending'] else 'Accepted printed/model subset observations; no complete pinout claim',
+                      'source_review_pending':value['source_review_pending'],
+                      'distinct_located_physical_instances':len({o['physical_instance_key'] for o in group if o['physical_instance_key']}),
+                      'detailed_signature_ids':sorted({o['occurrence_signature']['signature_id'] for o in group}),
+                      'observations':[{'observation_id':o['observation_id'],'source_id':o['source_id'],'text_source_id':o['text_source_id'],
+                            'page':o['page'],'scan_id':o['scan_id'],'JSON_pointer':o['JSON_pointer'],'secondary_function_labels':o['secondary_function_labels'],
+                            'source_review_pending':o['source_review_pending']} for o in group]}
+                portiondata['function_combinations'].append(item)
+                combination_rows.append({'card_type':code,'portion':p,'combination_id':combo_id,'primary_function':value['primary_function'],
+                    'readable_signature':combo['readable_signature'],'input_count':value['input']['exact_connected_count'],
+                    'known_input_count':value['input']['known_connected_count'],'unknown_input_count':value['input']['connection_unknown_count'],
+                    'output_count':value['output']['exact_connected_count'],'known_output_count':value['output']['known_connected_count'],
+                    'unknown_output_count':value['output']['connection_unknown_count'],'input_decorations':value['input']['known_decoration_multiset'],
+                    'output_decorations':value['output']['known_decoration_multiset'],'observation_count':len(group),
+                    'visible_unconnected_input_count':value['input']['visible_unconnected_port_count'],'visible_unconnected_output_count':value['output']['visible_unconnected_port_count'],
+                    'all_annotated_input_count':value['input']['all_annotated_port_count'],'all_annotated_output_count':value['output']['all_annotated_port_count'],
+                    'unconnected_input_decorations':value['input']['visible_unconnected_decoration_multiset'],'unconnected_output_decorations':value['output']['visible_unconnected_decoration_multiset'],
+                    'observation_ids':[o['observation_id'] for o in group],'detailed_signature_ids':item['detailed_signature_ids'],
+                    'source_review_pending':value['source_review_pending'],'physical_pinout_complete':False})
+            portiondata['connected_count_variants']=[{'value':{'input_count':i['combination']['input']['exact_connected_count'],
+                'known_input_count':i['combination']['input']['known_connected_count'],'unknown_input_count':i['combination']['input']['connection_unknown_count'],
+                'output_count':i['combination']['output']['exact_connected_count'],'known_output_count':i['combination']['output']['known_connected_count'],
+                'unknown_output_count':i['combination']['output']['connection_unknown_count']},'combination_id':i['combination_id'],
+                'observation_ids':[o['observation_id'] for o in i['observations']]} for i in portiondata['function_combinations']]
+            flags,held_shapes=function_shape_reviews(obs)
+            portiondata['shape_review_flags']=flags
+            portiondata['shape_review_held_observations']=held_shapes
+            for flag in flags:
+                shape_review_rows.append({'card_type':code,'portion':p,'shape_id':flag['shape_id'],'status':flag['status'],
+                    'competing_primary_names':flag['competing_primary_names'],'counts_by_primary_name':flag['counts_by_primary_name'],
+                    'input_count':flag['shape']['input']['exact_connected_count'],'output_count':flag['shape']['output']['exact_connected_count'],
+                    'input_decorations':flag['shape']['input']['known_decoration_multiset'],'output_decorations':flag['shape']['output']['known_decoration_multiset'],
+                    'unconnected_input_count':flag['shape']['input']['visible_unconnected_port_count'],'unconnected_output_count':flag['shape']['output']['visible_unconnected_port_count'],
+                    'unconnected_input_decorations':flag['shape']['input']['visible_unconnected_decoration_multiset'],'unconnected_output_decorations':flag['shape']['output']['visible_unconnected_decoration_multiset'],
+                    'observation_count':flag['observation_count'],'examples':[{'page':o['page'],'scan_id':o['scan_id'],'primary_function':o['primary_function'],'literal':o['function_literal'],'JSON_pointer':o['JSON_pointer']} for o in flag['observations']],
+                    'observation_ids':[o['observation_id'] for o in flag['observations']],
+                    'stronger_pin_and_unit_context_matches':flag['stronger_pin_and_unit_context_matches'],'automatic_correction_authorized':False})
+            for role, facts in (("function", portiondata['primary_function_facts']), ("unit", units)):
                 if len(facts) > 1:
                     conflict = {"subject": code + p, "field": role, "alternatives": facts, "manual_review_required": True, "reason": "Readable accepted literal alternatives; no majority selection"}
                     portiondata["conflicts"].append(conflict); conflict_rows.append(conflict)
@@ -490,6 +884,10 @@ def build(args):
     report = question_report(args.question_manifest, pages, cards, depiction_by_page, repo, post_answer_ids) if args.question_manifest else None
     if report: write(out / "notes/Card types/Question candidates.json", report)
     index = {"schema_version": VERSION, "snapshot_utc": export.get("created_utc"), "sources": sources, "pages": pages,
+             'function_occurrence_schema':{'authority_source_id':occurrence_authority_id,'confirmed_separate_function_pairs':CONFIRMED_FUNCTION_PAIRS,
+                 'understood_complete_function_names':sorted(UNDERSTOOD_FUNCTION_NAMES),'unknown_compounds_held':True,
+                 'decorations_require_source_bound_glyph':True,'asterisk_and_numeric_prefix_semantics':None,
+                 'occurrence_signatures_represent_drawn_subset_only':True},
              'function_normalization':{'raw_literals_preserved':True,'surrounding_layout_spaces_removed_from_normalized_values_only':True,'internal_whitespace_collapsed':True,
                                        'asterisk_equivalence':'ASCII * and previously approved U+2732 ✲','semantic_token_corrections_applied_by_builder':False,'human_authorities':normalization_authorities},
              "card_types": [{"card_type": c, "file": "json/Card types/" + c + ".json", "diagram_observations": len(d["diagram_observations"]), "listing_observations": len(d["listing_observations"]),
@@ -498,6 +896,28 @@ def build(args):
     csvwrite(out / "csv/Card types/Card portions.csv", list(portion_rows[0]) if portion_rows else [], portion_rows)
     csvwrite(out / "csv/Card types/Card observations.csv", list(observed_rows[0]) if observed_rows else [], observed_rows)
     csvwrite(out / "csv/Card types/Pin observations.csv", list(pin_rows[0]) if pin_rows else [], pin_rows)
+    csvwrite(out / 'csv/Card types/Function occurrences.csv',list(occurrence_rows[0]) if occurrence_rows else [],occurrence_rows)
+    csvwrite(out / 'csv/Card types/Function combinations.csv',list(combination_rows[0]) if combination_rows else [],combination_rows)
+    csvwrite(out / 'csv/Card types/Function shape review.csv',list(shape_review_rows[0]) if shape_review_rows else [],shape_review_rows)
+    write(out / 'notes/Card types/Function occurrence schema.json',{
+        'schema_version':VERSION,'authority_source_id':occurrence_authority_id,
+        'primary_function_rule':'Recognized complete names stay intact; only explicitly confirmed separate-name pairs use the first complete name. A single intact unvalidated name remains an observed label, without inferred electrical semantics.',
+        'confirmed_separate_function_pairs':CONFIRMED_FUNCTION_PAIRS,'recognized_multiword_names':sorted(x for x in UNDERSTOOD_FUNCTION_NAMES if ' ' in x),
+        'secondary_label_rule':'Raw subsequent labels and separating whitespace preserved exactly. Unknown/damaged compounds retained unresolved.',
+        'detailed_occurrences':'Pin-specific function/decorations/connection signatures, with exact per-observation model pointers and accepted UTF-8 border glyphs.',
+        'function_combinations':'Grouped by primary function, connected and unknown input/output counts, and sorted decoration multisets. Physical pin identities do not affect grouping.',
+        'count_semantics':{'known_connected_count':'Count of observed connected named or unnamed drawn ports; not a full card pinout.',
+            'exact_connected_count':'Known connected count only when annotation availability, connection and side assignment are established; otherwise null.',
+            'connection_unknown_count':'Count of observed ports whose connection is unknown; null when port metadata is unavailable.',
+            'visible_unconnected_port_count':'Explicit known-unconnected printed ports; decorations retained without increasing connected counts.',
+            'all_annotated_port_count':'Available observed port annotations, including connected, unknown and known-unconnected; not full physical pinout.',
+            'zero':'Only an available explicit port annotation set with no connected ports; unavailable is null, never zero.'},
+        'decoration_semantics':{'triangle':'Polarity decoration requires an exact accepted border glyph. Model/source disagreements and pending native corrections remain unknown.',
+            'asterisk':'Exact adjacent open/ASCII asterisk glyph retained; no automatic inversion meaning.',
+            'control_prefix':'Raw numeric/other printed control prefix retained; no Boolean meaning invented.'},
+        'N_rule':'Preserve N as N. The human single-used-input interpretation is restricted to inspected 0135A1 observations with exactly one known used input.',
+        'equivalence_rule':'Human equivalence of AND with inverted output and OR with inverted inputs applies only to the same fully known observed used-input subset/output pin. Detailed printed forms remain separate.',
+        'pending_native_review_source_id':pending_review_id,'canonical_inputs_mutated':False,'full_physical_pinout_complete':False})
     write(out / "notes/Card types/Conflicts.json", conflict_rows)
     # Detect concurrent snapshot changes rather than publish a mixed view.
     for path, before in initial_hashes.items():
@@ -509,17 +929,20 @@ def build(args):
         p=Path(path)
         if (p.stat().st_size,p.stat().st_mtime_ns)!=stat:raise ValueError('Original TIFF changed during read-only build: '+path)
     write(out / 'notes/Card types/Coverage exclusions.json',coverage_ledger)
-    original_registry={"status":"Build-time read-only observed original-source bindings; not retroactive native acceptance","sources":{k:v for k,v in sources.items() if v.get('source_archive')}}
+    original_registry={"status":"Frozen independently reviewed original-source bindings reused; no original archive rehash in this build" if frozen_originals is not None else "Build-time read-only observed original-source bindings; not retroactive native acceptance","sources":{k:v for k,v in sources.items() if v.get('source_archive')}}
     write(out / 'notes/Card types/Original source registry.json',original_registry)
     toolcopy=out/'tools/references/build_card_type_database.py';toolcopy.parent.mkdir(parents=True,exist_ok=True);toolcopy.write_bytes(Path(__file__).read_bytes())
     counts = {"accepted_text_pages_bound": len(pages), "accepted_content_files_bound": len(manifest['files']), "original_TIFF_hashes_bound":len(original_stats), "card_types": len(cards), "diagram_observations": len(observed_rows),
-              "listing_observations": len(listing_records), "pin_observations": len(pin_rows), "card_portions": len(portion_rows), "conflicts": len(conflict_rows), "skipped": dict(skipped)}
+              "listing_observations": len(listing_records), "pin_observations": len(pin_rows), "card_portions": len(portion_rows), 'occurrence_signatures':len(occurrence_rows),
+              'function_combinations':len(combination_rows),'shape_review_flags':len(shape_review_rows),
+              'shape_review_held_observations':sum(len(p['shape_review_held_observations']) for d in cards.values() for p in d['portions'].values()),
+              'source_review_pending_observations':sum(bool(o['source_review_pending']) for d in cards.values() for o in d['diagram_observations']), "conflicts": len(conflict_rows), "skipped": dict(skipped)}
     build_manifest = {"schema_version": VERSION, "status": "PRIVATE; awaits independent review", "created_utc": datetime.now(timezone.utc).isoformat(), "snapshot_utc": export.get("created_utc"),
                       "input_manifests": [{"path": "notes/Reviewed export provenance.json", "sha256": sha(export_path)}, {"path": "notes/Content data manifest.json", "sha256": sha(manifest_path)}],
                       "human_facts_sha256": sha(args.human_facts), 'additional_recorded_answer_inputs':post_answer_inputs, "builder_sha256": sha(Path(__file__)), "counts": counts, "question_report_counts": report["counts"] if report else None,
-                      "original_TIFF_bytes_rehashed": True, "original_source_scope": "Every accepted original TIFF read-hashed and checked against available accepted model declarations; sources never modified",
+                      "original_TIFF_bytes_rehashed": frozen_originals is None, "original_source_scope": "Frozen independently reviewed original-source registry reused without archive rehash; scan identities and available accepted model source declarations checked; sources never modified" if frozen_originals is not None else "Every accepted original TIFF read-hashed and checked against available accepted model declarations; sources never modified",
                       "outputs": [{"path": p.relative_to(out).as_posix(), "sha256": sha(p)} for p in sorted(out.rglob("*")) if p.is_file() and p.name not in ("Build manifest.json", "Database notes.txt")]}
-    notes = "Card type reference database\n\nPRIVATE, pending independent review. Snapshot: " + str(export.get("created_utc")) + "\n\n" + json.dumps(counts, ensure_ascii=False, indent=2) + "\n\n" + (
+    notes = "Card type reference database\n\nAccepted input snapshot: " + str(export.get("created_utc")) + "\nIndependent database audit.json and Database import receipt.json record review and publication.\n\n" + json.dumps(counts, ensure_ascii=False, indent=2) + "\n\n" + (
         "All accepted text and content-file hashes are verified before and after extraction.\n"
         "Observations retain source IDs and exact JSON pointers. Repeated depictions are not distinct physical cards.\n"
         "Shared A1 records retain the printed dependency of the original accepted listing.\n"
@@ -530,6 +953,19 @@ def build(args):
         "Derived model card/portion fields never replace a damaged printed identity for card-based question matching.\n"
         "Question candidates are proposals only. No question, workbook, canonical transcription or source scan is changed.\n"
         "AP211 direct human facts are preserved separately; a final build must follow its accepted corrected snapshot.\n")
+    notes += ('Function occurrences preserve primary complete function names and all secondary labels verbatim.\n'
+              'Only confirmed separate-name pairs are decomposed; unknown compounds and suggested OH/OK readings remain unresolved.\n'
+              'Triangle polarity decoration requires an exact accepted border glyph; model/glyph disagreements remain unknown.\n'
+              'N remains a distinct printed variant. Asterisks and numeric/control prefixes retain no invented Boolean meaning.\n'
+              'Human equivalence notes concern the matching observed used-input subset, never a complete physical card pinout.\n')
+    notes += ('Function combinations group by primary name, connected/unknown input and output counts, and decorations, ignoring physical pin identity. Detailed signatures retain the pins.\n'
+              'Visible known-unconnected ports retain separate counts and decoration multisets in every combination and shape key; they do not increase connected counts.\n'
+              'Missing port metadata gives unavailable/null counts; it is never reported as a known zero. Unlabeled drawn wires still count.\n'
+              'Pending native source findings: PX311 AG B09 missing triangle; KU641 printed BX B10 false triangle; AP743 AQ/4C function correction. Current accepted literals remain unchanged and combinations remain pending.\n'
+              'Three OH/OK observations remain held with OR as a best guess, requiring manual confirmation. The immutable independent native review records exact source identities and proof.\n')
+    notes += ('Function shape review flags compare distinct primary names on exactly known matching count/decoration shapes within the same card type and portion. They are review leads, never errors or automatic replacements.\n'
+              'Readable P remains P; P→A is a human hypothesis, not a blanket correction. Legal A/AR/OR variants and minority readings are preserved.\n'
+              'Incomplete, unavailable and source-review-pending geometry is kept in a separate held-observation list and excluded from strong shape flags.\n')
     (out / "notes/Card types/Database notes.txt").write_text(notes, encoding="utf-8")
     build_manifest['outputs']=[{'path':p.relative_to(out).as_posix(),'sha256':sha(p)} for p in sorted(out.rglob('*')) if p.is_file() and p.name!='Build manifest.json']
     write(out / "notes/Card types/Build manifest.json", build_manifest)
@@ -632,5 +1068,8 @@ if __name__ == "__main__":
     parser.add_argument("--source-root", required=True, type=Path, help="Original TIFF archive; read only")
     parser.add_argument('--function-authority',action='append',type=Path,default=[],help='Immutable direct human function authority, repeatable; retained in notes')
     parser.add_argument('--additional-answer-ledger',action='append',type=Path,default=[],help='Immutable post-workbook recorded answers, repeatable; retained as repair dependencies')
+    parser.add_argument('--occurrence-authority',type=Path,help='Immutable direct human function-name and decoration interpretation')
+    parser.add_argument('--original-source-registry',type=Path,help='Previously independently reviewed frozen original-source hash registry; avoids archive rehash, recorded explicitly')
+    parser.add_argument('--pending-native-review',type=Path,help='Independent native findings awaiting separate canonical correction; annotation only')
     parser.add_argument("--question-manifest", type=Path)
     build(parser.parse_args())

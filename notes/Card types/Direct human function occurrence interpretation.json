@@ -1,0 +1,35 @@
+{
+  "schema": "Direct human function occurrence interpretation v1",
+  "authority": "Direct human statements in the ALD coordinator conversation",
+  "recorded_date": "2026-10-14",
+  "raw_statements": [
+    "Right, that is an OR with inverted inputs, or an AND with an inverted output; those are a different notation for the same function; in the database, we should record occurrences of combinations of input/output decorations and function.",
+    "KS031 block BA does say 0135A1. It looks like if there is a second function name, it's the first one that determines the function. The N notation is a single used input variant. I see some functions that are probably misreads of other functions listed for the same portion, like \"OH\" for \"OR\", \"OK\" for \"OR\"."
+  ],
+  "confirmed_facts": [
+    {
+      "page": "KS031",
+      "block": "BA",
+      "printed_card_portion": "0135A1",
+      "supersedes": "The coordinator's inspection statement that this block said 0135H1 was incorrect. The current 0135A1 transcription remains valid."
+    },
+    {
+      "topic": "Multiple printed function names",
+      "interpretation": "Where separate function names are printed, the first function name determines the function. Preserve subsequent printed names as secondary labels.",
+      "implementation_limit": "A function name may contain spaces. Do not truncate legitimate multiword names such as R T0 or AR T to the first whitespace-delimited token."
+    },
+    {
+      "topic": "N notation in the inspected 0135A1 occurrences",
+      "interpretation": "N is a single used input variant. Preserve the printed N label and observed input/output decorations; this does not assert a complete physical pinout."
+    },
+    {
+      "topic": "Function occurrence database",
+      "interpretation": "Record combinations of the printed function and input/output decorations. OR with inverted inputs and AND with inverted output are equivalent notations for matching used inputs. Preserve the distinct printed representations and evidence."
+    }
+  ],
+  "suggested_misreads_requiring_source_verification": [
+    {"observed_function": "OH", "candidate": "OR"},
+    {"observed_function": "OK", "candidate": "OR"}
+  ],
+  "scope": "Database interpretation and source inspection. OH/OK are candidates, not blanket replacement authority. Original source TIFFs remain unchanged."
+}
