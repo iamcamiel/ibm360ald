@@ -330,7 +330,8 @@ def receipts():
     # Several original published previews used the text basename. This one
     # explicitly registered schema binds that exact legacy path and hash.
     preview=Path(quartet.get('preview',{}).get('path',''))
-    if preview in {text_path.with_suffix('.png'),text_path.with_name(text_path.stem+' JuliaMono preview.png')}:
+    if preview in {text_path.with_suffix('.png'),text_path.with_name(text_path.stem+' JuliaMono preview.png'),
+                   text_path.with_name(text_path.stem+' JuliaMono.png')}:
      expected.remove(text_path.with_name(text_path.stem+' preview.png'));expected.add(preview)
     auxiliary=item.get('current_auxiliary_existing_data',[])
     if len(expected)==3 and not auxiliary:continue

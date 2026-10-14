@@ -1,0 +1,51 @@
+AP233 source review
+
+28 visually reviewed card portions; 42 nets and 80 paths.
+73 printed input terminals comprise 73 driven inputs and 0 isolated jumper terminals and 0 UNUSED terminals.
+A1 validation: {"A1_card_portions_matched": 26, "A1_total_card_portions": 28, "A1_unmatched_card_portions": ["AR", "BC"], "A1_damaged_page_key_matches": []}. Inputs have one semantic net owner; no different-net shared edges, disconnected nets or multi-net diamonds. A1 validates card portions and connector references, not local gate pins.
+Only printed ◇ joins wires. Unjoined crossings use ┼ and retain independent net IDs.
+Source lettering, gate portions, external references, pins, footer and wiring inspected in native crops; layout normalized to the printer grid. No handwriting transcribed.
+
+Source review notes
+[
+  {
+    "location": "AR socket location",
+    "literal": "P-D1J4",
+    "reference_disagreement": "A1 lookup differs from printed prefix; native P retained.",
+    "evidence": "AR-unit-location-native.png shows a closed upper loop and no lower loop or diagonal, so literal P. Card 4633B1 and unit U03AM are readable."
+  },
+  {
+    "location": "BC socket location",
+    "literal": "R-D1F5",
+    "reference_disagreement": "A1 assigns 8008AS to B-D1F5/F6.",
+    "evidence": "six-rails-lower-native.png: clear upper loop and sloping lower leg, literal R retained."
+  },
+  {
+    "location": "Top page header",
+    "literal": "000  ��233",
+    "candidate": "000  AP233",
+    "evidence": "header-native.png: A/P lost at punched upper edge; footer AP233 remains legible."
+  },
+  {
+    "location": "Native AP233 geometry",
+    "evidence": "All 28 source card portions and every route inspected. Standard banks. AA/AB OR, AC/AD UR; AL/AM/AS OR; AW/AX/AY/AZ OR. Front rails NEG21c44, NEG22c46, NEG23c42, POS22c45, POS21c43, POS23c42. AE fanout c87, AK c114, HALF20 c92. Two lower half-sum rails c68/c69 and disjoint GROUP11 hook c68. Six rails AS156/AR157/AT158/AM159/AL160/AQ161 preserve every native diamond and thin isolated crossing. Upper parity convergence AW183/AX184/AY183/AZ176; lower BA184/BB176/BC177/BD176 verified against local seven-cell box width. AU D10 plain and AV B12 wedge have no asterisks. Output refs AP235/AP315. Native footer contains no connector table; no borrowed connector text. A1 checks portion identity, not local wire ownership. Independent coordinator review pending."
+  }
+]
+
+Original scan order
+{
+  "page": "AP233",
+  "title": "PADDER 4 BIT PARITY PREDICT 20-23",
+  "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AP Parallel Adder\\AP233 PADDER 4 BIT PARITY PREDICT 20-23.tif",
+  "assigned_group": "main",
+  "text_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\ALD Diagrams\\AP233 PADDER 4 BIT PARITY PREDICT 20-23.txt",
+  "status": "pending",
+  "scan_order": {
+    "original_name": "img20141207_14035819.tif",
+    "timestamp": "2014-12-07 14:03:58.190000",
+    "before": "AP231 PARALLEL ADDER BIT 23.tif",
+    "after": "AP234 FULL SUM ERROR CHECK BITS 16-23.tif"
+  }
+}
+
+Direct human OR token normalization: AC UR -> OR, AD UR -> OR, AV UR -> OR. Exact typed function labels only; source literal observations retained historically. IDs, units, pins, signals, widths, wire geometry and other uncertainties unchanged. Instruction: D:\Github\IBM360\tmp\ald-text\ald\ap3\root\or-function-human-followup-v1\Exact direct human OR token instruction.json

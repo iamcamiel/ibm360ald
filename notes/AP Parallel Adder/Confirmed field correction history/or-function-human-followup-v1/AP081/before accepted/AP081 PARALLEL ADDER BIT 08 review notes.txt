@@ -1,0 +1,905 @@
+AP081 source review
+
+30 visually reviewed card portions; 45 nets and 75 paths.
+61 printed input terminals comprise 54 driven inputs and 2 isolated jumper terminals and 5 UNUSED terminals.
+A1 validation: {"A1_card_portions_matched": 30, "A1_total_card_portions": 30, "A1_unmatched_card_portions": [], "A1_damaged_page_key_matches": []}. Inputs have one semantic net owner; no different-net shared edges, disconnected nets or multi-net diamonds. A1 validates card portions and connector references, not local gate pins.
+Only printed ◇ joins wires. Unjoined crossings use ┼ and retain independent net IDs.
+Source lettering, gate portions, external references, pins, footer and wiring inspected in native crops; layout normalized to the printer grid. No handwriting transcribed.
+
+Source review notes
+[
+  {
+    "location": "AL grid ID, AL-close.png; native row alignment to AD 1H",
+    "literal": "2H",
+    "evidence": "Two vertical stems distinguish H from the printed J05 above. Independent root read agrees. AL top rule shares the source row of AD 1H."
+  },
+  {
+    "location": "Lower-left SUM04 source reference, left-native-full.png",
+    "literal": "AP�41AV4",
+    "possible": "AP041AV4",
+    "evidence": "Named +SUM04 and AP041 reciprocal output support candidate; local source digit retained as unreadable."
+  },
+  {
+    "location": "AG/AH inputs, AG-close.png",
+    "literal": "BD10 / HG03",
+    "evidence": "Real B/H qualifiers retained separately from physical D10/G03 pins."
+  },
+  {
+    "location": "Top-left floating source labels",
+    "literal": "UNUSED 002 / UNUSED 001",
+    "evidence": "UNUSED001 feeds two D10 inputs; UNUSED002 feeds two G03 inputs and AK resistor. These are source-printed undriven exceptions."
+  },
+  {
+    "location": "AW input short",
+    "literal": "U12/U08",
+    "evidence": "Isolated printed jumper. Nearby SUM08 rail crosses without diamond."
+  },
+  {
+    "location": "BC printed gate",
+    "literal": "✲OR",
+    "evidence": "Literal source function; extended body covers all five input rows."
+  },
+  {
+    "location": "AQ location prefix",
+    "literal": "B-D2C3",
+    "evidence": "Worn B established from other portions on the same 4633 card and exact A1 card/portion/socket match."
+  },
+  {
+    "location": "Lower-left controls, left-native-full.png",
+    "literal": "CLOCK P3 EXTENDED / LEFT4 / SUM04 / RIGHT4 / ZERO SHIFT OR ENABLE SCAN",
+    "evidence": "Worn wording read using native stroke remnants and the same controls on adjoining reviewed bit pages. SUM04 reference digit remains explicitly uncertain."
+  },
+  {
+    "location": "Detailed latch rail audit, latch-input-row-measurement.png",
+    "evidence": "SUM12 AP121AV4 at r37 feeds BG D13 and AY D13; AV SUM08 feeds AX B10 only; SUM04 AP�41AV4 at r74 feeds AZ D11. P3/LEFT4/SUM04/RIGHT4/ZERO external rows72/73/74/75/76 respectively. Upper carry pin labels U11/U07/B02 and AJ/AK BG03 corrected from narrow native crops."
+  },
+  {
+    "location": "Direct measured printer grid",
+    "evidence": "245x103; native AS-AT-rails-native.png confirms AU c114 and BB c115 with unjoined crossing at AS pin endpoint. Native source node/grid columns independently verified; title93..102 and connector table34/36."
+  }
+]
+
+Original scan order
+{
+  "page": "AP081",
+  "title": "PARALLEL ADDER BIT 08",
+  "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AP Parallel Adder\\AP081 PARALLEL ADDER BIT 08.tif",
+  "assigned_group": "main",
+  "text_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\ALD Diagrams\\AP081 PARALLEL ADDER BIT 08.txt",
+  "status": "exact canvas; source layout review pending",
+  "scan_order": {
+    "original_name": "img20141207_13433183.tif",
+    "timestamp": "2014-12-07 13:43:31.830000",
+    "before": "AP075 PARITY 04-07 AND FULL SUM CHECK.tif",
+    "after": "AP091 PARALLEL ADDER BIT 09.tif"
+  },
+  "unreadable_characters": 1,
+  "unsupported_characters": [],
+  "rows": 103,
+  "columns": 245,
+  "exact_canvas": true,
+  "review_status": "draft; native content and exact grid reviewed, independent root review pending",
+  "validation": {
+    "A1_card_portions_matched": 30,
+    "A1_total_card_portions": 30,
+    "A1_unmatched_card_portions": [],
+    "A1_damaged_page_key_matches": [],
+    "printed_input_terminals": 61,
+    "driven_input_terminals": 54,
+    "isolated_jumper_terminals": 2,
+    "unused_source_terminals": 5,
+    "multiple_target_owners": {},
+    "different_net_shared_segments": [],
+    "disconnected_nets": [],
+    "unreadable_locations": 1,
+    "passed": true,
+    "printer_grid": {
+      "columns": 245,
+      "rows": 103,
+      "zero_based": true,
+      "node_left_columns": [
+        50,
+        73,
+        96,
+        119,
+        142,
+        165,
+        188
+      ],
+      "ordinary_top_rows": [
+        2,
+        9,
+        16,
+        23,
+        30,
+        37,
+        44,
+        51,
+        58,
+        65,
+        72,
+        79,
+        86
+      ],
+      "block_width": 8,
+      "ordinary_height": 7,
+      "title_frame": [
+        210,
+        93,
+        241,
+        102
+      ]
+    },
+    "physical_terminal_owners": [
+      {
+        "node": "AA",
+        "pin": "G02",
+        "row": 12,
+        "side": "input",
+        "net": "D-PADDA",
+        "semantic_terminal": "AA.G02"
+      },
+      {
+        "node": "AB",
+        "pin": "G04",
+        "row": 33,
+        "side": "input",
+        "net": "AB-PADDB",
+        "semantic_terminal": "AB.G04"
+      },
+      {
+        "node": "AG",
+        "pin": "BD10",
+        "row": 11,
+        "side": "input",
+        "net": "UNUSED001",
+        "semantic_terminal": "AG.D10"
+      },
+      {
+        "node": "AG",
+        "pin": "HG03",
+        "row": 13,
+        "side": "input",
+        "net": "UNUSED002",
+        "semantic_terminal": "AG.G03"
+      },
+      {
+        "node": "AG",
+        "pin": "G02",
+        "row": 10,
+        "side": "input",
+        "net": "D-PADDA",
+        "semantic_terminal": "AG.G02"
+      },
+      {
+        "node": "AG",
+        "pin": "G04",
+        "row": 14,
+        "side": "input",
+        "net": "AB-PADDB",
+        "semantic_terminal": "AG.G04"
+      },
+      {
+        "node": "AG",
+        "pin": "D13",
+        "row": 12,
+        "side": "output",
+        "net": "AG",
+        "semantic_terminal": "AG.D13"
+      },
+      {
+        "node": "AH",
+        "pin": "BD10",
+        "row": 21,
+        "side": "input",
+        "net": "UNUSED001",
+        "semantic_terminal": "AH.D10"
+      },
+      {
+        "node": "AH",
+        "pin": "G02",
+        "row": 17,
+        "side": "input",
+        "net": "D-PADDA",
+        "semantic_terminal": "AH.G02"
+      },
+      {
+        "node": "AH",
+        "pin": "",
+        "row": 19,
+        "side": "output",
+        "net": "AH",
+        "semantic_terminal": "AH.output"
+      },
+      {
+        "node": "AJ",
+        "pin": "BG03",
+        "row": 24,
+        "side": "input",
+        "net": "UNUSED002",
+        "semantic_terminal": "AJ.G03"
+      },
+      {
+        "node": "AJ",
+        "pin": "G04",
+        "row": 28,
+        "side": "input",
+        "net": "AB-PADDB",
+        "semantic_terminal": "AJ.G04"
+      },
+      {
+        "node": "AJ",
+        "pin": "",
+        "row": 26,
+        "side": "output",
+        "net": "AJ",
+        "semantic_terminal": "AJ.output"
+      },
+      {
+        "node": "AK",
+        "pin": "BG03",
+        "row": 33,
+        "side": "input",
+        "net": "UNUSED002",
+        "semantic_terminal": "AK.G03"
+      },
+      {
+        "node": "AC",
+        "pin": "J10",
+        "row": 45,
+        "side": "input",
+        "net": "CARRY14",
+        "semantic_terminal": "AC.J10"
+      },
+      {
+        "node": "AC",
+        "pin": "U11",
+        "row": 46,
+        "side": "input",
+        "net": "TRANSMIT11",
+        "semantic_terminal": "AC.U11"
+      },
+      {
+        "node": "AC",
+        "pin": "U07",
+        "row": 48,
+        "side": "input",
+        "net": "TRANSMIT10",
+        "semantic_terminal": "AC.U07"
+      },
+      {
+        "node": "AC",
+        "pin": "B02",
+        "row": 49,
+        "side": "input",
+        "net": "TRANSMIT09",
+        "semantic_terminal": "AC.B02"
+      },
+      {
+        "node": "AC",
+        "pin": "",
+        "row": 47,
+        "side": "output",
+        "net": "AC",
+        "semantic_terminal": "AC.output"
+      },
+      {
+        "node": "AD",
+        "pin": "D07",
+        "row": 52,
+        "side": "input",
+        "net": "TRANSMIT10",
+        "semantic_terminal": "AD.D07"
+      },
+      {
+        "node": "AD",
+        "pin": "B02",
+        "row": 56,
+        "side": "input",
+        "net": "TRANSMIT09",
+        "semantic_terminal": "AD.B02"
+      },
+      {
+        "node": "AD",
+        "pin": "G08",
+        "row": 54,
+        "side": "input",
+        "net": "CARRY11",
+        "semantic_terminal": "AD.G08"
+      },
+      {
+        "node": "AD",
+        "pin": "",
+        "row": 54,
+        "side": "output",
+        "net": "AD",
+        "semantic_terminal": "AD.output"
+      },
+      {
+        "node": "AE",
+        "pin": "B02",
+        "row": 59,
+        "side": "input",
+        "net": "TRANSMIT09",
+        "semantic_terminal": "AE.B02"
+      },
+      {
+        "node": "AE",
+        "pin": "B10",
+        "row": 63,
+        "side": "input",
+        "net": "CARRY10",
+        "semantic_terminal": "AE.B10"
+      },
+      {
+        "node": "AE",
+        "pin": "",
+        "row": 61,
+        "side": "output",
+        "net": "AE",
+        "semantic_terminal": "AE.output"
+      },
+      {
+        "node": "AF",
+        "pin": "B08",
+        "row": 68,
+        "side": "input",
+        "net": "CARRY09",
+        "semantic_terminal": "AF.B08"
+      },
+      {
+        "node": "AF",
+        "pin": "",
+        "row": 68,
+        "side": "output",
+        "net": "AF",
+        "semantic_terminal": "AF.output"
+      },
+      {
+        "node": "AL",
+        "pin": "",
+        "row": 52,
+        "side": "input",
+        "net": "AC",
+        "semantic_terminal": "AL.input1"
+      },
+      {
+        "node": "AL",
+        "pin": "",
+        "row": 53,
+        "side": "input",
+        "net": "AD",
+        "semantic_terminal": "AL.input2"
+      },
+      {
+        "node": "AL",
+        "pin": "",
+        "row": 55,
+        "side": "input",
+        "net": "AE",
+        "semantic_terminal": "AL.input3"
+      },
+      {
+        "node": "AL",
+        "pin": "",
+        "row": 56,
+        "side": "input",
+        "net": "AF",
+        "semantic_terminal": "AL.input4"
+      },
+      {
+        "node": "AL",
+        "pin": "J05",
+        "row": 54,
+        "side": "output",
+        "net": "AL",
+        "semantic_terminal": "AL.J05"
+      },
+      {
+        "node": "AM",
+        "pin": "G12",
+        "row": 12,
+        "side": "input",
+        "net": "AG",
+        "semantic_terminal": "AM.G12"
+      },
+      {
+        "node": "AM",
+        "pin": "G10",
+        "row": 12,
+        "side": "output",
+        "net": "AM",
+        "semantic_terminal": "AM.G10"
+      },
+      {
+        "node": "AN",
+        "pin": "",
+        "row": 17,
+        "side": "input",
+        "net": "AH",
+        "semantic_terminal": "AN.input1"
+      },
+      {
+        "node": "AN",
+        "pin": "",
+        "row": 21,
+        "side": "input",
+        "net": "AJ",
+        "semantic_terminal": "AN.input2"
+      },
+      {
+        "node": "AN",
+        "pin": "J02",
+        "row": 19,
+        "side": "output",
+        "net": "AN",
+        "semantic_terminal": "AN.J02"
+      },
+      {
+        "node": "AP",
+        "pin": "J07",
+        "row": 40,
+        "side": "input",
+        "net": "AL",
+        "semantic_terminal": "AP.J07"
+      },
+      {
+        "node": "AP",
+        "pin": "",
+        "row": 40,
+        "side": "output",
+        "net": "AP",
+        "semantic_terminal": "AP.output"
+      },
+      {
+        "node": "AQ",
+        "pin": "G10",
+        "row": 12,
+        "side": "input",
+        "net": "AM",
+        "semantic_terminal": "AQ.G10"
+      },
+      {
+        "node": "AQ",
+        "pin": "",
+        "row": 12,
+        "side": "output",
+        "net": "AQ",
+        "semantic_terminal": "AQ.output"
+      },
+      {
+        "node": "AR",
+        "pin": "G13",
+        "row": 19,
+        "side": "input",
+        "net": "AN",
+        "semantic_terminal": "AR.G13"
+      },
+      {
+        "node": "AR",
+        "pin": "",
+        "row": 19,
+        "side": "output",
+        "net": "AR",
+        "semantic_terminal": "AR.output"
+      },
+      {
+        "node": "AS",
+        "pin": "J11",
+        "row": 31,
+        "side": "input",
+        "net": "AU",
+        "semantic_terminal": "AS.J11"
+      },
+      {
+        "node": "AS",
+        "pin": "",
+        "row": 33,
+        "side": "output",
+        "net": "AS",
+        "semantic_terminal": "AS.output"
+      },
+      {
+        "node": "AS",
+        "pin": "J07",
+        "row": 35,
+        "side": "input",
+        "net": "AL",
+        "semantic_terminal": "AS.J07"
+      },
+      {
+        "node": "AT",
+        "pin": "J10",
+        "row": 38,
+        "side": "input",
+        "net": "BB",
+        "semantic_terminal": "AT.J10"
+      },
+      {
+        "node": "AT",
+        "pin": "",
+        "row": 40,
+        "side": "output",
+        "net": "AT",
+        "semantic_terminal": "AT.output"
+      },
+      {
+        "node": "AT",
+        "pin": "",
+        "row": 42,
+        "side": "input",
+        "net": "AP",
+        "semantic_terminal": "AT.input2"
+      },
+      {
+        "node": "AU",
+        "pin": "",
+        "row": 10,
+        "side": "input",
+        "net": "AQ",
+        "semantic_terminal": "AU.input1"
+      },
+      {
+        "node": "AU",
+        "pin": "",
+        "row": 14,
+        "side": "input",
+        "net": "AR",
+        "semantic_terminal": "AU.input2"
+      },
+      {
+        "node": "AU",
+        "pin": "J10",
+        "row": 12,
+        "side": "output",
+        "net": "AU",
+        "semantic_terminal": "AU.J10"
+      },
+      {
+        "node": "AV",
+        "pin": "",
+        "row": 31,
+        "side": "input",
+        "net": "AS",
+        "semantic_terminal": "AV.input1"
+      },
+      {
+        "node": "AV",
+        "pin": "",
+        "row": 35,
+        "side": "input",
+        "net": "AT",
+        "semantic_terminal": "AV.input2"
+      },
+      {
+        "node": "AV",
+        "pin": "J04",
+        "row": 33,
+        "side": "output",
+        "net": "AV",
+        "semantic_terminal": "AV.J04"
+      },
+      {
+        "node": "BB",
+        "pin": "J10",
+        "row": 12,
+        "side": "input",
+        "net": "AU",
+        "semantic_terminal": "BB.J10"
+      },
+      {
+        "node": "BB",
+        "pin": "J11",
+        "row": 12,
+        "side": "output",
+        "net": "BB",
+        "semantic_terminal": "BB.J11"
+      },
+      {
+        "node": "BG",
+        "pin": "D13",
+        "row": 47,
+        "side": "input",
+        "net": "SUM12",
+        "semantic_terminal": "BG.D13"
+      },
+      {
+        "node": "AW",
+        "pin": "U12",
+        "row": 54,
+        "side": "input",
+        "net": "AW-jumper",
+        "semantic_terminal": "AW.U12"
+      },
+      {
+        "node": "AW",
+        "pin": "U08",
+        "row": 55,
+        "side": "input",
+        "net": "AW-jumper",
+        "semantic_terminal": "AW.U08"
+      },
+      {
+        "node": "AW",
+        "pin": "",
+        "row": 54,
+        "side": "output",
+        "net": "AW",
+        "semantic_terminal": "AW.output"
+      },
+      {
+        "node": "AX",
+        "pin": "B10",
+        "row": 59,
+        "side": "input",
+        "net": "AV",
+        "semantic_terminal": "AX.B10"
+      },
+      {
+        "node": "AX",
+        "pin": "2",
+        "row": 63,
+        "side": "input",
+        "net": "CLOCKP3",
+        "semantic_terminal": "AX.2"
+      },
+      {
+        "node": "AX",
+        "pin": "G07",
+        "row": 61,
+        "side": "input",
+        "net": "ZERO",
+        "semantic_terminal": "AX.G07"
+      },
+      {
+        "node": "AX",
+        "pin": "",
+        "row": 61,
+        "side": "output",
+        "net": "AX",
+        "semantic_terminal": "AX.output"
+      },
+      {
+        "node": "AY",
+        "pin": "D13",
+        "row": 66,
+        "side": "input",
+        "net": "SUM12",
+        "semantic_terminal": "AY.D13"
+      },
+      {
+        "node": "AY",
+        "pin": "2",
+        "row": 70,
+        "side": "input",
+        "net": "CLOCKP3",
+        "semantic_terminal": "AY.2"
+      },
+      {
+        "node": "AY",
+        "pin": "D09",
+        "row": 68,
+        "side": "input",
+        "net": "LEFT4",
+        "semantic_terminal": "AY.D09"
+      },
+      {
+        "node": "AY",
+        "pin": "",
+        "row": 68,
+        "side": "output",
+        "net": "AY",
+        "semantic_terminal": "AY.output"
+      },
+      {
+        "node": "AZ",
+        "pin": "2",
+        "row": 77,
+        "side": "input",
+        "net": "CLOCKP3",
+        "semantic_terminal": "AZ.2"
+      },
+      {
+        "node": "AZ",
+        "pin": "D11",
+        "row": 73,
+        "side": "input",
+        "net": "SUM04",
+        "semantic_terminal": "AZ.D11"
+      },
+      {
+        "node": "AZ",
+        "pin": "B12",
+        "row": 75,
+        "side": "input",
+        "net": "RIGHT4",
+        "semantic_terminal": "AZ.B12"
+      },
+      {
+        "node": "AZ",
+        "pin": "",
+        "row": 75,
+        "side": "output",
+        "net": "AZ",
+        "semantic_terminal": "AZ.output"
+      },
+      {
+        "node": "BA",
+        "pin": "2J09",
+        "row": 80,
+        "side": "input",
+        "net": "CLOCKP2",
+        "semantic_terminal": "BA.2J09"
+      },
+      {
+        "node": "BA",
+        "pin": "",
+        "row": 82,
+        "side": "output",
+        "net": "BA",
+        "semantic_terminal": "BA.output"
+      },
+      {
+        "node": "BA",
+        "pin": "D07",
+        "row": 84,
+        "side": "input",
+        "net": "BE",
+        "semantic_terminal": "BA.D07"
+      },
+      {
+        "node": "BC",
+        "pin": "8",
+        "row": 67,
+        "side": "input",
+        "net": "AW",
+        "semantic_terminal": "BC.8"
+      },
+      {
+        "node": "BC",
+        "pin": "",
+        "row": 68,
+        "side": "input",
+        "net": "AX",
+        "semantic_terminal": "BC.input2"
+      },
+      {
+        "node": "BC",
+        "pin": "",
+        "row": 72,
+        "side": "input",
+        "net": "AY",
+        "semantic_terminal": "BC.input3"
+      },
+      {
+        "node": "BC",
+        "pin": "",
+        "row": 73,
+        "side": "input",
+        "net": "AZ",
+        "semantic_terminal": "BC.input4"
+      },
+      {
+        "node": "BC",
+        "pin": "L",
+        "row": 74,
+        "side": "input",
+        "net": "BA",
+        "semantic_terminal": "BC.L"
+      },
+      {
+        "node": "BC",
+        "pin": "U10",
+        "row": 68,
+        "side": "output",
+        "net": "BC",
+        "semantic_terminal": "BC.U10"
+      },
+      {
+        "node": "BD",
+        "pin": "D10",
+        "row": 68,
+        "side": "input",
+        "net": "BC",
+        "semantic_terminal": "BD.D10"
+      },
+      {
+        "node": "BD",
+        "pin": "B09✲",
+        "row": 68,
+        "side": "output",
+        "net": "BD",
+        "semantic_terminal": "BD.B09"
+      },
+      {
+        "node": "BE",
+        "pin": "D10",
+        "row": 75,
+        "side": "input",
+        "net": "BC",
+        "semantic_terminal": "BE.D10"
+      },
+      {
+        "node": "BE",
+        "pin": "D07",
+        "row": 75,
+        "side": "output",
+        "net": "BE",
+        "semantic_terminal": "BE.D07"
+      }
+    ],
+    "missing_input_owners": [],
+    "ambiguous_port_owners": [],
+    "paths_inside_block_interiors": [],
+    "text_letter_collisions": [],
+    "block_lattice_passed": true,
+    "canvas_dimensions_passed": true,
+    "uppercase_diagram_passed": true,
+    "footer_one_cell_gap_passed": true,
+    "unreadable_characters": 1
+  },
+  "nodes": 30,
+  "nets": 45,
+  "review_notes": [
+    {
+      "location": "AL grid ID, AL-close.png; native row alignment to AD 1H",
+      "literal": "2H",
+      "evidence": "Two vertical stems distinguish H from the printed J05 above. Independent root read agrees. AL top rule shares the source row of AD 1H."
+    },
+    {
+      "location": "Lower-left SUM04 source reference, left-native-full.png",
+      "literal": "AP�41AV4",
+      "possible": "AP041AV4",
+      "evidence": "Named +SUM04 and AP041 reciprocal output support candidate; local source digit retained as unreadable."
+    },
+    {
+      "location": "AG/AH inputs, AG-close.png",
+      "literal": "BD10 / HG03",
+      "evidence": "Real B/H qualifiers retained separately from physical D10/G03 pins."
+    },
+    {
+      "location": "Top-left floating source labels",
+      "literal": "UNUSED 002 / UNUSED 001",
+      "evidence": "UNUSED001 feeds two D10 inputs; UNUSED002 feeds two G03 inputs and AK resistor. These are source-printed undriven exceptions."
+    },
+    {
+      "location": "AW input short",
+      "literal": "U12/U08",
+      "evidence": "Isolated printed jumper. Nearby SUM08 rail crosses without diamond."
+    },
+    {
+      "location": "BC printed gate",
+      "literal": "✲OR",
+      "evidence": "Literal source function; extended body covers all five input rows."
+    },
+    {
+      "location": "AQ location prefix",
+      "literal": "B-D2C3",
+      "evidence": "Worn B established from other portions on the same 4633 card and exact A1 card/portion/socket match."
+    },
+    {
+      "location": "Lower-left controls, left-native-full.png",
+      "literal": "CLOCK P3 EXTENDED / LEFT4 / SUM04 / RIGHT4 / ZERO SHIFT OR ENABLE SCAN",
+      "evidence": "Worn wording read using native stroke remnants and the same controls on adjoining reviewed bit pages. SUM04 reference digit remains explicitly uncertain."
+    },
+    {
+      "location": "Detailed latch rail audit, latch-input-row-measurement.png",
+      "evidence": "SUM12 AP121AV4 at r37 feeds BG D13 and AY D13; AV SUM08 feeds AX B10 only; SUM04 AP�41AV4 at r74 feeds AZ D11. P3/LEFT4/SUM04/RIGHT4/ZERO external rows72/73/74/75/76 respectively. Upper carry pin labels U11/U07/B02 and AJ/AK BG03 corrected from narrow native crops."
+    },
+    {
+      "location": "Direct measured printer grid",
+      "evidence": "245x103; native AS-AT-rails-native.png confirms AU c114 and BB c115 with unjoined crossing at AS pin endpoint. Native source node/grid columns independently verified; title93..102 and connector table34/36."
+    }
+  ],
+  "content_review_status": "source reviewed, root review pending"
+}
+
+
+PRIVATE SOURCE-DERIVED RECOVERY DRAFT
+Accepted predecessor and all human answer history are preserved unchanged. Only the listed damaged fields and matching semantic strings change; physical uncertainty stays in source_derived_recoveries. Independent full-source and current-page reacceptance is pending.
+AP081-f70d01085b r74 c31: AP�41AV4 -> AP041AV4. The independent source-page output has a readable designation and matching signed signal, compatible with every surviving reference character. Original pixel uncertainty retained.
+
+Native literal corrections independently corroborated by root: lowerUNUSED001->UNUSED003 andBC6K outputU10->D10. Exact2extraTXTcells; samephysicalterminalpoints/wedges/paths/targets. Earlier snapshots retained. Deferred AP041AV4 source-derived digit remains physically damaged and separately recorded.
+
+AP3 independent full source/final preview acceptance by AP3 ap_main independent reviewer
+Full independent native/current recovery reacceptance: all15 whole source/current region pairs, original overview, signedSUM04 fragment and separately readable exact AP041native +SUM04 AV4 output/header namingAP061/AP081, currentwhole preview actually viewed. One deferred-ID reference digit AP�41AV4→AP041AV4 uniquelycompatible, originalphysicaldamage retained. Independent full native review caught two predecessor literal errors corroborated separately byroot: lowerUNUSED lead003 (upper002 distinct) andBC6K outputD10 (matchesnativeadjacentBDinputD10). Exactly3 predecessor TXTcells: r17c38 1→3, r68c173 U→D, r74c33 �→0. Only supported semanticport/reference/UNUSEDnetname changed; allphysicalterminalcoordinates, routingpoints, wedges, targets, junctionownership, banklocations preserved. Extra native corrections explicitly separated from deferredID; prior source-derived recovery history intact. Freshafter2affectedsource/current pairs and currentwholeactuallyviewed, owneractualreviewcomplete receipt. JuliaMono20/12x18 freezechecks currentrender/245x103alloweduppercase.
