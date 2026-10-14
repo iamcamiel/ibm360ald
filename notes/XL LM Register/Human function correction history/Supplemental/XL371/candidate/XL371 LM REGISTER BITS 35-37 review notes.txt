@@ -1,0 +1,135 @@
+XL371 source review
+
+Source TIFF inspected using native crops. Text is UTF-8; use JuliaMono and disable wrapping. Layout uses user-confirmed 245 by 103 printer grid; source topology, printed fields and junctions retained. Only visible printed diamonds join wires. Independent root review passed.
+
+Review notes
+[
+  {
+    "kind": "literal source fields",
+    "text": "AC2E unit prints TC6AA with open-right C; possible worn0 alternative is recorded. AY5F location prints L-C2G9, not normalized to neighboring5. BA physically occupies6B at165/9 but prints5B at its foot. Retain printed grid5B with separate physical_grid6B. No actual gate-bank departure.",
+    "evidence": [
+      "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\2E fields native.png",
+      "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\5F fields native.png",
+      "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\6B fields native.png"
+    ]
+  },
+  {
+    "kind": "literal connector table",
+    "text": "AB4 continuation prints02L-C1A6BC4, independently of the first-lineB04. Right-column designator readsHZ4 with worn upper shapes and A/W alternatives.",
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\table.png"
+  },
+  {
+    "kind": "literal external ST reference",
+    "text": "ST BUS36 reference printsFS041AA4. Retain041.",
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\left labels1.png"
+  },
+  {
+    "kind": "source-specific clock rails",
+    "text": "First two bit groups share E/F rails111–114: SET E111, RESET E112, RESET F113, SET F114. Third group has separate SET G115, SET H114, RESET G113, RESET G qualified112. No internal AR output connection is invented.",
+    "evidence": [
+      "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\rails upper source.png",
+      "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\rails lower source.png"
+    ]
+  },
+  {
+    "kind": "native fine ink",
+    "text": "Native output stripe87/88 has five clear cuts at3/5/31/33/45; other17/59/61/73 retain proven fine bridges. Ordinary vertical dash spacing remains certified.",
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\native thin ink audit.json"
+  },
+  {
+    "kind": "owner native and preview audit",
+    "text": "Every physical field, input and output port, external label, route, diamond, unjoined crossing, connector table, revision and footer inspected in individual native fields and complete route bands. Complete JuliaMono preview inspected after corrections. No sibling-page inference or automatic junctions. Independent root acceptance passed; see XL transcription index.json."
+  },
+  {
+    "kind": "native fine ink corroboration",
+    "text": "Native visual review corroborated by saved source-pixel paths for surviving thin ink strokes. This records physical ink only and infers no logical connections at plain crossings.",
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\xl\\low\\XL371\\native thin ink audit.json"
+  },
+  {
+    "kind": "A1 unmatched",
+    "text": "No unique exact A1 card/portion/board/socket match for AY. Native fields preserved; this does not imply a successful A1 cross-check for these portions."
+  }
+]
+
+Validation
+{
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [
+    "AA.OUT1",
+    "AA.OUT3",
+    "AC.OUT1",
+    "AC.OUT3",
+    "AD.OUT1",
+    "AW.OUT"
+  ],
+  "junction_errors": [],
+  "endpoint_errors": [],
+  "wire_paths_inside_blocks": [],
+  "hidden_junctions": [],
+  "text_collisions": [],
+  "unsupported_characters": [],
+  "lowercase_characters": [],
+  "footer_layout_checks": {
+    "part_label": true,
+    "machine_name": true,
+    "machine_right_margin": true,
+    "part_number": true,
+    "part_right_margin": true
+  },
+  "footer_layout_errors": [],
+  "A1_unmatched_card_portions": [
+    "AY"
+  ],
+  "printed_input_terminals": 45,
+  "disconnected_verified_fragments": [
+    "AA.OUT1",
+    "AA.OUT3",
+    "AC.OUT1",
+    "AC.OUT3",
+    "AD.OUT1",
+    "AW.OUT"
+  ],
+  "undocumented_disconnected_nets": [],
+  "documented_unverified_edges": 7,
+  "connectivity_certified": false,
+  "geometry_passed": true,
+  "A1_passed": false,
+  "native_source_review_passed": true,
+  "native_review_scope": [
+    "printed fields and labels",
+    "physical ports and wedges",
+    "open bottoms and grid identifiers",
+    "wire routes and diamonds",
+    "footer and connector table"
+  ]
+}
+
+Physical original scan order
+{
+  "before": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\XL341 LM REGISTER BITS 32-34.tif",
+  "after": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\XL401 LM REGISTER BITS 38-40.tif",
+  "source_scan": {
+    "id": "2127",
+    "relative": "XL LM Register\\img20141206_10413046.tif",
+    "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\img20141206_10413046.tif",
+    "newname": "XL371 LM REGISTER BITS 35-37.tif",
+    "newpath": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\XL371 LM REGISTER BITS 35-37.tif",
+    "page": "XL371",
+    "title": "LM REGISTER BITS 35-37",
+    "ordinal": "",
+    "scan_timestamp": "2014-12-06 10:41:30.460000",
+    "scan_order_evidence": "Original scan timestamp in filename",
+    "source": "visual review",
+    "note": "",
+    "size": "67372974"
+  }
+}
+
+Independent root acceptance: native overview and focused evidence, final preview, approved glyphs, exact printer grid, adjacent pins, footer padding, ownership and geometric checks passed. Unknown source spans remain unverified and excluded from confirmed wiring. See XL transcription index.json for current file hashes.
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AG: R TO -> R T0, AJ: R TO -> R T0, AL: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

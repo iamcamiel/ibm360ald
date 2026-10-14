@@ -1,0 +1,54 @@
+MP551 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 48,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "structural_passed": true,
+  "A1_agreement": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "literal output designation",
+    "detail": "The -EXT START DUMMY external output is printed BN4 though driven by BM; +GO TO ALT PSBAR is printed AF4 though driven by AM; -RECONFIGURE SELECT is printed BJ4 though driven by the AT return. All native source designations are retained."
+  },
+  {
+    "kind": "native multiple drivers",
+    "detail": "AK.B13 and BJ.B07 share the uninterrupted common stem with a printed diamond at BJ return row36, feeding AS.D04. BJ is recorded as an additional driver, preserving the printed connection. Root independently confirmed this from its tall native stem crop."
+  },
+  {
+    "kind": "native feedback review",
+    "detail": "AM feeds AS.D05 through row33 and BL.B08 via the far-right row29/31 hook, crossing AL row30 without a join. AT feedback through row34 feeds BK.B13 and BL.D09, separately from AK/BJ and -PSBAR ERR."
+  },
+  {
+    "kind": "literal source pins",
+    "block": "AL",
+    "detail": "The lower two left inputs print E09 and E08; both are preserved."
+  }
+]
+
+Original scan order
+Before MP541 CLOCK.tif
+After MP901 BUS LSA TERMINATION.tif
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: Final whole-body native/render layout and native footer reviewed. Upper dummy/external-start loops, flag detours and lower start/reset controls compared. Independently corroborated continuous AK/BJ shared printed output rail into AS.D04, separate AT feedback stem into BK/BL, and BL.B08 return via upper output diamond. Native AK D10, AL D07 and BC B09 inspected. Detailed native fields and pins reviewed by owner.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.

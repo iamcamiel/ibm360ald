@@ -1,0 +1,57 @@
+KS061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "duplicate_physical_port_references": [],
+  "physical_port_count": 95,
+  "unique_physical_port_count": 95,
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 34,
+  "A1_total_card_portions": 34,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 58,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "KS061 approved grid fit",
+    "evidence": "User explicitly approved the source-confirmed final bank columns143,166,189 on2026-10-12: KS061 shift approved. Full bank lefts50,73,96,119,143,166,189; six affected blocks AK,BG,AP,BA,AQ,AR. Native paired-border evidence retained."
+  },
+  {
+    "location": "Control routing",
+    "evidence": "Upper clock input steps through111/114 at rows19/18; VFL input climbs112 to BF D09; NOT FLPT climbs113 to AH D05. AT D07 runs68/108 to AH D04; AU D02 runs69/107 to AH B07. Other parallel trunks remain distinct crossings."
+  },
+  {
+    "location": "Exact route audit",
+    "evidence": "Every route measured against native pixels, horizontal rows pass. Enlarged source shows short/parallel NOT113,BH91,AC68,AD68/85 despite neighboring lines dominating aggregate projections. Long92 feedback confirmed through skewed native crops. ImmediateAU D04 corner61 confirmed. Native-specific final-three-bank shift approved by user on2026-10-12. Full JuliaMono preview inspected."
+  },
+  {
+    "location": "Printed lower input",
+    "evidence": "Exact native IO-label-native.png prints I'O with a raised curved apostrophe; retain the printed glyph rather than a slash."
+  }
+]
+
+Original scan order
+Before KS051 STAT TRIGGER D.tif
+After KS071 STATUS TRIGGER F.tif
+
+
+Final independent review: complete. All native fields, terminals, signal/reference labels, paths, junctions/crossings, footer and full JuliaMono preview checked. See D:\Github\IBM360\ALD_Visual_Transcriptions\KS review reports\KS061 independent audit.json
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AE: R TO -> R T0, BB: R TO -> R T0, BC: R TO -> R T0, BD: R TO -> R T0, BE: R TO -> R T0, BL: R TO -> R T0, BM: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

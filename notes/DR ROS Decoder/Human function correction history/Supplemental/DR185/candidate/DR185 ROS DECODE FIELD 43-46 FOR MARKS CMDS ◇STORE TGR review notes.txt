@@ -1,0 +1,60 @@
+DR185 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 31,
+  "A1_documented_native_exceptions": [],
+  "A1_total_card_portions": 31,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 65,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "detail": "All source fields and 65 printed input terminals traced. Explicit source diamonds retained; primary rail135 has a visible gap between field-inhibit segment ending38 and positive43 segment beginning40. BF.D09 and BE.D13 drive right-side R TO receivers independently of their upper output lines. Cardless DOT carries no A1 portion. Native GH close crop confirms C-D4G6."
+  },
+  {
+    "detail": "All 32 native function fields audited individually. FA and FB print open-top UR, retained literally. GH A OR, GG OR OR and DB OR have closed first glyphs. Exact function crop evidence retained privately."
+  }
+]
+
+Original scan order
+Before DR181 ROS DECODE FIELD 43 TO 46.tif
+After DR191 PARITY CHECKING.tif
+
+Source footer alignment audit
+{
+  "location": "SOURCE TITLE FRAME CALIBRATION",
+  "source_crop": "D:\\Github\\IBM360\\tmp\\ald-text\\dr\\footer-audit\\DR185 native footer.png",
+  "evidence": "Native exact footer frame visually inspected. Titles centered within c211..240; DATEc211/datec218/MACH.c227/machinec233, LOGc211/valuec222/FRAMEc227/frame02c239, P.N.c227/partc233, IBMc211/CORP.c215/SDDc223 where visibly printed/BLK.c227/blockc239. No non-footer text or topology changed.",
+  "SDD_printed": true,
+  "native_block": "GK",
+  "title_columns": [
+    215,
+    213
+  ]
+}
+All non-footer cells and non-footer JSON/topology/approval fields remain identical; see tmp/ald-text/dr/footer-audit/Footer diff ledger.json.
+
+Human confirmed OR function correction: I see functions read as UR or, UH; these are both OR; same with ✲UR and ✲UH, these are ✲OR.
+Exact corrected fields: FA: UR -> OR, FB: UR -> OR
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BG: R TO -> R T0, CE: R TO -> R T0, CB: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

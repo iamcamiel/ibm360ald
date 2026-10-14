@@ -1,0 +1,72 @@
+MA401 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 30,
+  "A1_mismatches": [
+    "AV"
+  ],
+  "A1_source_DOT_exemptions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 30,
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "geometry_passed": true,
+  "candidate_provisional": true,
+  "independent_review_complete": false,
+  "final_printer_grid_placement_accepted": false
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "All individual source blocks",
+    "evidence": "All30 native gates, named/unnamed physical ports and full top/middle/lower source rails individually read. AR/T upper unnamed physical outputs kept separate from named outputs. Twelve AR/AR T gates, twelve N gates, six passive input-only blocks."
+  },
+  {
+    "field": "Passive right-side physical inputs",
+    "evidence": "BN B07 and BR B09 are passive physical inputs printed on the RIGHT, with K replacing right border. Native side and semantic input role separately recorded; each is owned by exactly one source named AR output. BG/BK/BH/BJ passive inputs are on the left."
+  },
+  {
+    "field": "BG source function corroboration",
+    "printed": "R TO",
+    "evidence": "Focused BG function exact.png and parent native second read confirm R: surviving inward upper-right curve and slanted lower-right leg, matching same-page damaged R shape in AM function exact.png. Preliminary H/unknown readings withdrawn; no functional or A1 inference."
+  },
+  {
+    "field": "Source card literal",
+    "printed": "AV4050D1",
+    "evidence": "AV card exact.png clearly prints4050D1, retained independently of A1. Other AR/T cards are4060. AV socket A-A4H6."
+  },
+  {
+    "field": "Native labels",
+    "evidence": "SAB01/03/04 origins MA531AA4/AJ4/AB4 hang on row6/18/27 with native43 diamond and lower stub. Left aliases ✲MA501AF4/✲MA501AM4/✲MA501AF4 retained. SAB05 incoming literal MA051AZ4; SAB11 MA111AR4. Defeat reverse names use native literal diamond between INTERLEAVE andREVERSE. AM positive output BIT first B has an intact lower closed bowl despite damaged upper counter; roughYIT withdrawn. BottomAZ native Z angular glyph matchesAZ4 output, roughA2 withdrawn."
+  },
+  {
+    "field": "Crossings",
+    "evidence": "AJ→BH named output crosses externalDEFEAT_REVERSE at input endpoint11519 withoutdiamond; no join. AT/AU upper wraps cross N forward output lines withoutdiamond. AV upper output wraps20045→52→18475, crossing named AV output47 and AY output51 unjoined. AM upper loop11571–82 crosses sourceSAB10 at75 unjoined; named AM positive forward output is separate."
+  },
+  {
+    "field": "Footer source read",
+    "evidence": "Native complete three-column table manually read in footer_table_complete.png: ADreturn B3A2D04; AKreturn B3N7B02; tablefirstsecondcolumnB3A2D05; AVreturnsN2D09/B3A2D09. Source titleSAB BITS01-11POWERING, LDG153B,date08-14-69, PN2585498, BLK.BT,revision08-08-69713380. Clear000MA401 identity matches filename."
+  }
+]
+
+Original scan order
+Before MA321 STORAGE ADDRESS COMPARE 12-20.tif
+After MA411 SAB 06 AND SAB P8-15 POWERING.tif
+
+INDEPENDENT REVIEW: ACCEPTED
+Reviewer: root independent reader
+Native fields, pins, routes, labels, footer and final preview verified.
+
+AP K convention: preserve literal K and source-proven physical endpoints/ties. Renderer side and net targets are geometry bookkeeping; K alone does not establish electrical direction. K-control terminal electrical_role/logical_role/logical_direction remain null. No extra logical driver inferred. Source TIFF, UTF-8 TXT and preview bytes unchanged.

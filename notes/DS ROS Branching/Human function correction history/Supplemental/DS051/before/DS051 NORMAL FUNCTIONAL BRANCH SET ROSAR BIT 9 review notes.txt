@@ -1,0 +1,127 @@
+DS051 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 24,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 41,
+  "passed": true,
+  "pin_label_corners": [
+    {
+      "column": 92,
+      "row": 5,
+      "glyph": "└"
+    },
+    {
+      "column": 61,
+      "row": 19,
+      "glyph": "┘"
+    },
+    {
+      "column": 46,
+      "row": 26,
+      "glyph": "└"
+    },
+    {
+      "column": 153,
+      "row": 75,
+      "glyph": "┘"
+    },
+    {
+      "column": 69,
+      "row": 75,
+      "glyph": "└"
+    },
+    {
+      "column": 115,
+      "row": 56,
+      "glyph": "└"
+    },
+    {
+      "column": 115,
+      "row": 77,
+      "glyph": "┌"
+    },
+    {
+      "column": 107,
+      "row": 5,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 5,
+      "glyph": "┐"
+    },
+    {
+      "column": 107,
+      "row": 40,
+      "glyph": "┘"
+    },
+    {
+      "column": 107,
+      "row": 54,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 47,
+      "glyph": "┐"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 2
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "source_uncertainty",
+    "evidence": "AS lower input first character appears U-shaped damaged D; candidate D05 awaiting independent source review."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "BA OR second O open/damaged U shape; candidate OR."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "AD/AK/AN AR top output and labelled output are distinct circuits; preserve."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "Unlabelled BC input ports and BB repeated pin-count 3 fields need stable distinct reference keys."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "Input signals printed 1101200 and 1111C00 retain native ambiguous third/sixth glyph; candidates 1101000 and 1111100 must not replace visible source without review."
+  },
+  {
+    "kind": "floating_wire_annotations",
+    "evidence": "Root independently reviewed all nine native gate crops and full middle strips. BB markers 3/3/8, AZ markers 3/6, AV upper8 and BA lower3 occupy border column minus4, with three wire cells before a blank physical terminal. AP confirmed floating-marker treatment using AP181/AP441. Annotation values remain in stable internal port IDs, not invented physical pin codes."
+  },
+  {
+    "kind": "native_grid",
+    "evidence": "Normal native block columns and row ranks calibrated independently (x approximately 450+39.85c-0.16r, y344+59.82r). BC is a printed DOT with no card portion. AN and AG each have an isolated native input-to-input loop with no external driver. Starred left labels preserve their literal different page references. Native input strings 1101200 and 1111C00 retained."
+  }
+]
+
+Original scan order
+Before DS041 FORCE ROSAR 0 AND 1 ON 9020 OP.tif
+After DS065 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 62-68.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T06:07:40.661082+00:00",
+  "evidence": "Independent full source review: all nine gate crops, twelve complete native body bands and overview plus footer, 24 A1 card portions and BC DOT, all41inputs, two isolated local jumpers, all labels/output destinations. Numeric3/8/6 markers corrected to separate annotations four columns before blank ports per native shared alignment and AP convention. AS damaged pin initial and BA damaged function retained; corrected full preview reviewed."
+}

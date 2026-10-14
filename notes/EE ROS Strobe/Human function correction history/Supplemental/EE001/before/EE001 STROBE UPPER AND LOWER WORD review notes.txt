@@ -1,0 +1,267 @@
+EE001 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 0,
+  "A1_total_card_portions": 35,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 42,
+  "geometry_passed": true,
+  "A1_verification_complete": false,
+  "A1_total_source_card_portions": 35,
+  "A1_coverage_note": "Current listing has no native frame01 C-E2 or C-E3 board records",
+  "A1_unverified_card_portions": [
+    "BE",
+    "BD",
+    "BJ",
+    "BH",
+    "BF",
+    "BG",
+    "BK",
+    "BL",
+    "AZ",
+    "BB",
+    "BA",
+    "AU",
+    "AV",
+    "BC",
+    "AY",
+    "AW",
+    "AX",
+    "AN",
+    "AP",
+    "AQ",
+    "AR",
+    "AS",
+    "AT",
+    "AG",
+    "AH",
+    "AJ",
+    "AK",
+    "AL",
+    "AM",
+    "AA",
+    "AB",
+    "AC",
+    "AD",
+    "AE",
+    "AF"
+  ],
+  "A1_reference_lookup_records": 45568,
+  "passed": true,
+  "duplicate_port_references": [],
+  "wire_points_outside_printer_grid": [],
+  "pin_label_corners": [
+    {
+      "column": 84,
+      "row": 17,
+      "glyph": "┘"
+    },
+    {
+      "column": 84,
+      "row": 19,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 40,
+      "glyph": "┘"
+    },
+    {
+      "column": 84,
+      "row": 54,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 82,
+      "glyph": "┘"
+    },
+    {
+      "column": 138,
+      "row": 26,
+      "glyph": "└"
+    },
+    {
+      "column": 161,
+      "row": 26,
+      "glyph": "└"
+    },
+    {
+      "column": 184,
+      "row": 26,
+      "glyph": "└"
+    },
+    {
+      "column": 107,
+      "row": 47,
+      "glyph": "┘"
+    },
+    {
+      "column": 138,
+      "row": 40,
+      "glyph": "└"
+    },
+    {
+      "column": 161,
+      "row": 40,
+      "glyph": "└"
+    },
+    {
+      "column": 184,
+      "row": 40,
+      "glyph": "└"
+    },
+    {
+      "column": 138,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 138,
+      "row": 68,
+      "glyph": "└"
+    },
+    {
+      "column": 161,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 161,
+      "row": 68,
+      "glyph": "└"
+    },
+    {
+      "column": 184,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 184,
+      "row": 68,
+      "glyph": "└"
+    },
+    {
+      "column": 107,
+      "row": 82,
+      "glyph": "┘"
+    },
+    {
+      "column": 138,
+      "row": 82,
+      "glyph": "└"
+    },
+    {
+      "column": 161,
+      "row": 82,
+      "glyph": "└"
+    },
+    {
+      "column": 184,
+      "row": 82,
+      "glyph": "└"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "A1 page key",
+    "reading": "No EE001 key in ALD_pages",
+    "evidence": "Exact physical card-type portion board socket matches searched across all real A1 keys; physical evidence never used for gate wiring."
+  },
+  {
+    "location": "Entries BP BM BR",
+    "reading": "ENTR✲ MOD 65 KK211 KK4 LL4 MM4",
+    "evidence": "Native entry modules have a distinct printed field layout and are excluded from logic-card A1 portion count."
+  },
+  {
+    "location": "BH B03 and BG B12",
+    "reading": "Printed ✲ on output wire",
+    "evidence": "Native control-mid crop confirms these printed stars; retain both, with no inferred junction diamonds."
+  },
+  {
+    "location": "BH B03 to BG B12",
+    "reading": "Separate loop from BE D08 rail",
+    "evidence": "Native control-mid crop distinguishes the two nearby vertical routes; not inferred from neighboring page."
+  },
+  {
+    "location": "Footer BH4 physical continuation",
+    "reading": "C-E2F1B11",
+    "evidence": "Preserved printed source text despite BH block physical location C-E3G2; footer text is a connector continuation, not substituted for block location."
+  },
+  {
+    "location": "Printer grid",
+    "reading": "User-confirmed zero-based 245 by 103",
+    "evidence": "Native grid fit has x pitch37.6429 y pitch57.1846 and maximum residuals0.21 character and0.14 row; all38 source blocks align with supplied columns and top rows."
+  },
+  {
+    "location": "ENTR BP BM BR wire references",
+    "reading": "001 002 003 at column37",
+    "evidence": "Native printed entry references are separated from left signal stubs and followed by wires to block column50. They are entry wire references, not box-adjacent pin labels; normal EE021 source references start at supplied origin column31."
+  },
+  {
+    "location": "Title footer part-number label",
+    "reading": "P.No",
+    "evidence": "Full-size native title crop confirms P.No. Earlier P.N. reading corrected; open title frame rows93 through102 retained."
+  }
+]
+
+Original scan order
+Before ED461 ARRAY DRIVERS P14-QP3 P15-QP3.tif
+After EE011 SENSE LATCH RESET.tif
+
+Independent root review complete. Final245x103 canvas, allowed glyphs, orthogonal connected nets, unique physical pin references, input ownership, border-adjacent literal gate pins and bottom identifiers passed. Passive entry reference labels checked at their explicit source positions. Full previews and native critical crops reviewed. See companion independent_root_review and root verification.json.
+
+EF socket corroboration after AP canonical integration
+{
+  "source_report": "D:/Github/IBM360/tmp/ald-text/ee/EF socket crosscheck.json",
+  "canonical_merge_audit": "D:/Github/IBM360/tmp/ald-text/ef/canonical-merge/EF canonical merge audit.json",
+  "matched": 35,
+  "source_disagreements": [],
+  "special_printed_references": [
+    {
+      "page": "EE001",
+      "node": "BP",
+      "location": "KK4",
+      "card": "KK211",
+      "status": "printed special reference without physical socket",
+      "socket_listings": [],
+      "listed_cards": []
+    },
+    {
+      "page": "EE001",
+      "node": "BM",
+      "location": "LL4",
+      "card": "KK211",
+      "status": "printed special reference without physical socket",
+      "socket_listings": [],
+      "listed_cards": []
+    },
+    {
+      "page": "EE001",
+      "node": "BR",
+      "location": "MM4",
+      "card": "KK211",
+      "status": "printed special reference without physical socket",
+      "socket_listings": [],
+      "listed_cards": []
+    }
+  ],
+  "policy": "Preserve literal source on diagram and listing; do not force disagreement to match."
+}
+
+User footer correction applied: uppercase sheet alphabet, exact P.N., one blank before title border after machine and part values. Companion and preview regenerated.

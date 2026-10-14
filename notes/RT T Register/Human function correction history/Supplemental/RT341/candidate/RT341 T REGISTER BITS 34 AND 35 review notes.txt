@@ -1,0 +1,71 @@
+RT341 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 39,
+  "A1_total_card_portions": 39,
+  "A1_mismatches": [
+    "BR"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 82,
+  "geometry_passed": true,
+  "source_literal_A1_exceptions": {
+    "BR": "Native enlarged BR1J prints 419303 B-C4D6. Retain the directly legible scan literal even though A1 does not give a unique matching portion for this page."
+  },
+  "unresolved_A1_mismatches": [],
+  "passed": true,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "unreadable",
+    "row": 40,
+    "column": 243,
+    "field": "Positive ST BIT 34 final output designation second letter",
+    "candidates": [
+      "B",
+      "E"
+    ],
+    "detail": "Magnified scan has three surviving horizontal bars and a weak or absent right boundary. Preserve A�4 rather than using the related AB block to force a reading."
+  },
+  {
+    "kind": "source_native_geometry",
+    "detail": "AV5D and BV5L have eight source rows, with an extra blank row before the ID line. AV inputs meet offsets 3 and 7; BV inputs meet offsets 1 and 5. Native calibrated middle route crops confirm these distinct printed contacts and separate upper/lower loopbacks."
+  },
+  {
+    "kind": "source_review",
+    "detail": "All 42 native bodies, 82 printed inputs, outputs, pin qualifiers, distinct AV/BV contacts and eight-row bodies, control rails, reset paths, feedback loops, diamonds and crossings, signal labels, footer and connector table inspected. Final layout compared with original overview and enlarged route panels. RT341 page-specific shift is directly human approved. Native BR1J literal 419303 is retained despite the A1 omission. Independent root acceptance pending."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT321 T REGISTER BITS 32 AND 33.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT361 T REGISTER BITS 36 AND 37.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AW: R TO -> R T0, AZ: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

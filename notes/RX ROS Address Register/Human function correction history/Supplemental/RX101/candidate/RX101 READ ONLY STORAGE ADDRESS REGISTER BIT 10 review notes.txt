@@ -1,0 +1,123 @@
+RX101 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "A1_mismatches": [],
+  "A1_documented_native_discrepancies": [
+    {
+      "node": "5G",
+      "native_card_portion": "8002AD",
+      "native_location": "C-D3G6",
+      "A1_status": "omitted",
+      "native_evidence": "tmp/ald-text/rx/root/remaining_sources/RX101/RX101 bank5 strip1.png"
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 62,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [
+    {
+      "column": 69,
+      "row": 26,
+      "glyph": "└"
+    },
+    {
+      "column": 92,
+      "row": 38,
+      "glyph": "└"
+    },
+    {
+      "column": 68,
+      "row": 68,
+      "glyph": "┌"
+    },
+    {
+      "column": 92,
+      "row": 52,
+      "glyph": "└"
+    },
+    {
+      "column": 84,
+      "row": 82,
+      "glyph": "┘"
+    },
+    {
+      "column": 61,
+      "row": 68,
+      "glyph": "┐"
+    },
+    {
+      "column": 69,
+      "row": 46,
+      "glyph": "┌"
+    },
+    {
+      "column": 69,
+      "row": 48,
+      "glyph": "└"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586034",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  },
+  "source_review_complete": true,
+  "ready_for_publication": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "status": "Full native-source route review complete: 34 source boxes, 62 printed input terminals, and all seven right-side continuations. Root independently checked the 3H and 3N return crossings."
+  },
+  {
+    "location": "native/A1 difference",
+    "evidence": "Native bank5 strip1 shows 5G 8002AD C-D3G6; the A1 list omits this card."
+  },
+  {
+    "location": "source-open left loops",
+    "evidence": "Native 1D D12/D03, 1H B09/D03, and 2G B13/D03 are three isolated U-shaped conductors at offsets 2 and 4. Each ends in open air at the two printed inputs; no external source is drawn."
+  },
+  {
+    "location": "3A/3J top and lower risers",
+    "evidence": "Native c85 upper riser connects 2C.D13 to 3A.D11 and stops at row19. A separate c84 lower riser connects 2M.D02 to 3J.B03; the broad unprinted span separates these conductors."
+  },
+  {
+    "location": "right lower continuations",
+    "evidence": "Native right returns are row73 RD181 BJ4 from 2J.B05, row74 RX111 AK4 from 1K.B02, and row75 KK001 BB4 shared with 6G.B12/7H.D07/7K.B04 and 3K.B12. Row75 has a source diamond at c181."
+  }
+]
+
+Original scan order
+Before RX091 READ ONLY STORAGE ADDRESS REGISTER BIT 9.tif
+After RX111 READ ONLY STORAGE ADDRESS REGISTER BIT 11.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: 2N: R TO -> R T0, 3A: R TO -> R T0, 3N: R TO -> R T0, 5A: R TO -> R T0, 6A: R TO -> R T0, 7A: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

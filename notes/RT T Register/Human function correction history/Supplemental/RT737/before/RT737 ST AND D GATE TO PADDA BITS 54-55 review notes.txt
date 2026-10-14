@@ -1,0 +1,145 @@
+RT737 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 25,
+  "A1_total_card_portions": 29,
+  "A1_mismatches": [
+    "AS",
+    "AG",
+    "AP",
+    "AD"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_inside_pin_labels": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 65,
+  "geometry_passed": true,
+  "A1_connectors_matched": 6,
+  "A1_total_connector_records": 8,
+  "A1_connector_source_contradictions": [
+    {
+      "source": {
+        "board": "02R-E2",
+        "connector": "N3",
+        "pin": "D04",
+        "reference": "RT737AA4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    },
+    {
+      "source": {
+        "board": "02R-E2",
+        "connector": "N3",
+        "pin": "D05",
+        "reference": "RT737AB4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    }
+  ],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 6
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Complete own native source review",
+    "evidence": "All31 separate native block fields and physicalpins, wholepage and all4 source quadrants, sixpaired stem panels, externalclock and data references, printed openstars/borderwedges, every printedjoin and plaincrossing, header andDSDfooter and connectortable inspected. No bank shift. ExtraAY gate and firstbank ART routes retained. Right paired stem proof panel3 confirms ST56 rises on column133; the separate NST55 span ends at66 before this span begins at73. Source originalneighborsRT735/RT741."
+  },
+  {
+    "location": "Source duplicated printed identifier",
+    "evidence": {
+      "logical_id": "BE",
+      "printed_id": "BF",
+      "evidence": "BE native block.png:1N──BF is literal; AND2E also printsBF. Unique0514H1 portion and separate geometric position retain distinct ports."
+    }
+  },
+  {
+    "location": "Exact source damage",
+    "evidence": [
+      {
+        "column": 55,
+        "row": 5,
+        "location": "BA unitlastglyph",
+        "candidates": [
+          "A"
+        ],
+        "evidence": "BA native block.png"
+      },
+      {
+        "column": 58,
+        "row": 59,
+        "location": "BC primary outputinitialglyph",
+        "candidates": [
+          "D",
+          "U"
+        ],
+        "evidence": "BC native block.png"
+      },
+      {
+        "column": 58,
+        "row": 31,
+        "location": "BD primary outputinitialglyph",
+        "candidates": [
+          "D",
+          "U"
+        ],
+        "evidence": "BD native block.png"
+      },
+      {
+        "column": 139,
+        "row": 73,
+        "location": "AN upper inputinitialglyph",
+        "candidates": [
+          "B",
+          "E"
+        ],
+        "evidence": "AN native block.png"
+      },
+      {
+        "column": 143,
+        "row": 84,
+        "location": "AP socketinitialglyph",
+        "candidates": [
+          "B",
+          "E",
+          "F"
+        ],
+        "evidence": "AP native block.png"
+      },
+      {
+        "column": 143,
+        "row": 64,
+        "location": "AL printed bankdigit",
+        "candidates": [
+          "5",
+          "S"
+        ],
+        "evidence": "AL native block.png"
+      }
+    ]
+  },
+  {
+    "location": "Native primary connector board letters",
+    "evidence": "Connector table native.png prints R-E2N3D04 and R-E2N3D05 beside AA4/AB4. Root independently reviewed the surviving diagonal lower-right leg in both native initials on2026-10-13 and agreed literalR-E2 withA1disagreement."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT735 ST AND D GATE TO PADDA BITS 52-53.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT741 ST AND D GATE TO PADDA BITS 56-57.tif

@@ -1,0 +1,185 @@
+RX081 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 38,
+  "A1_total_card_portions": 47,
+  "A1_mismatches": [
+    "4C",
+    "5G",
+    "6G",
+    "4L"
+  ],
+  "A1_documented_exceptions": {
+    "4C": "Native 0518T1/C-D3F2, absent from A1.",
+    "5G": "Native 0518U1/C-D3F2; A1 has U1 only at C-D3B7 (4J).",
+    "6G": "Native 8002AD/C-D3F3, absent from A1.",
+    "4L": "Native 0518V1/C-D3F2, absent from A1."
+  },
+  "A1_unresolved_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 69,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [
+    {
+      "column": 92,
+      "row": 59,
+      "glyph": "┌"
+    },
+    {
+      "column": 92,
+      "row": 61,
+      "glyph": "└"
+    },
+    {
+      "column": 92,
+      "row": 33,
+      "glyph": "┌"
+    },
+    {
+      "column": 45,
+      "row": 54,
+      "glyph": "┌"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2396032",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  }
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "physical bank lattice",
+    "evidence": "Measured native block-wall alignment on RX081 gives the ordinary seven bank columns [50, 73, 96, 119, 142, 165, 188] on the 245-column printer grid. Standard-position residual is 2.47 native pixels RMS; the one-column-shifted alternative is 10.68 pixels RMS. No page-specific shift is applied."
+  },
+  {
+    "location": "native/A1 reconciliation",
+    "evidence": "RX081 native card inventory.json and card sheets/row A-N.png: 42 native blocks, 38 A1 socket matches, four source-only native blocks. Nine A1-only card portions (0518N1/P1/Q1 at B7 and six 0512 portions at D3) have no native box and are excluded from the rendering."
+  },
+  {
+    "location": "native signal captions and right continuations",
+    "evidence": "RX081/left labels upper hi.png, left labels middle hi.png, left labels lower hi.png, right labels upper hi.png, right labels lower hi.png, and overview.png; text positions follow the native row lattice. The compressed bottom reference glyph was compared with the neighboring RX bit family as KM831AU4."
+  },
+  {
+    "location": "footer connector references",
+    "evidence": "RX081/footer refs left hi.png and footer crossrefs native.png: the AA4, BA4, and BJ4 prefix glyphs are worn; independently compared to the ten A1 connector locations and native letter shapes. All ten native connector strings retained in their native table order."
+  },
+  {
+    "location": "direct card chains",
+    "evidence": "RX081 terminal sheets rows A/B/C/E/F/G/J/L show the thirteen horizontal pin-to-pin segments above.  Vertical crossings without diamonds stay unjoined."
+  },
+  {
+    "location": "J/K/L native local routes",
+    "evidence": "RX081/J K bank3-4 tight native.png, J K bank3-5 routes native.png, L M bank3-5 routes native.png, and terminal sheets/row K left.png: 3J D08 and B02 share a left strap; 3K B03 rises to 4J B13 and bridges its own upper output to 4K upper; 3L upper rises to 4K lower; 3J upper overpasses 4J into 5J upper. Native 4K output is B02, not D02."
+  },
+  {
+    "location": "3C upper to 5B",
+    "evidence": "RX081/upper banks 2-4 native.png and bank5 input sources full native.png: 3C upper output folds up to the first of two close bank-5 input rails, entering 5B row 13. It remains separate from 3C B13 row-19 output."
+  },
+  {
+    "location": "bank-5 lower folds into 6K",
+    "evidence": "RX081/J K bank4-6 routes native.png and J M banks5-7 tight native.png trace 4K B02 to 5K B03, 5J upper to 6K upper, 5L upper to 6K second, 5K upper to printed 6, and 5M upper to 6K lower. Crossing verticals have no diamonds."
+  },
+  {
+    "location": "upper-left native carry routes",
+    "evidence": "RX081/top left native.png: 1A upper goes over the 2A card to 3A upper triangle; 2B upper rises to the separate 3A lower triangle."
+  },
+  {
+    "location": "direct left input continuations",
+    "evidence": "RX081/left labels upper hi.png and left labels lower hi.png show the native source references and visible diamonds entering 1A D09, 2B D13, 1C B09, 3K B03, 3L B03, and 3N B05."
+  },
+  {
+    "location": "2C upper and J121 shared rail",
+    "evidence": "RX081/5E34 upper source full left.png and 5E34 left bend upstream.png trace 2C upper output right to x4570, down to the y2170 conductor, then right to x6015 and down into 5E blank34. RX081/5C5D x5940 rail 4x.png shows explicit diamonds at x5940 on this line and the 5D blank24 lead; the vertical rises into 5C blank17 and goes left at y2250 to the J121 EFF R01 / DS217BE4 printed continuation (root/remaining_sources/RX081/RX081 5C left junction fourfold.png). The same J121 line also rises separately into 5B blank14 (RX081/5B lower rail source x5150.png). Native source driver is 2C upper; DS217BE4 remains the left continuation label, not an assumed independent driver."
+  },
+  {
+    "location": "four right continuations",
+    "evidence": "RX081/overview.png, right labels upper hi.png, right labels lower hi.png: the 6G T branch enters KK101 zero; 7F D02 is the KK101 one line; 7M D10✲ enters KT011; 3N B05✲ enters RD181. RX081/6D output to 6G source right native.png separates 6D D02 left-fold from the adjacent KK101 zero line."
+  },
+  {
+    "location": "4A upper fold through bank 5",
+    "evidence": "RX081/upper banks 4-6 native.png, bank5 input coordinate guide.png, and 5E input folds tight native.png: the 4A upper output folds into 5B row 12 and continues on the right of two adjacent verticals to the lower blank inputs at 5C row 21, 5D row 28, and 5E row 35. The separate D09 rail to their left and its crossing horizontals remain unjoined."
+  },
+  {
+    "location": "two upper 5E blank sources",
+    "evidence": "RX081/5E card upper and five inputs.png, 5E three source verticals exact.png, 5E upper source crossing 8x.png, and 4E and 5D 5E crossover.png: 4G upper output runs right and rises on the left vertical into 5E blank32; 4F upper output runs right and rises on the adjacent right vertical into 5E blank33. Their close native crossing at y2940 has a bridge and no diamond."
+  },
+  {
+    "location": "bank-5 D09 rail, source-open at 5B",
+    "evidence": "RX081/5B D09 rail top coordinate close.png shows the left D09 vertical beginning at the 5B D09 lead (native x≈6150, y≈1400) and descending; it has no visible upstream driver on this page. The adjacent 4A upper-output vertical at x≈6230 crosses the D09 lead without a diamond. RX081/top right inputs detail.png and upper banks 4-6 native.png show D09 on 5B, 5C, 5D, 5E sharing the left vertical with explicit intermediate diamonds at 5C and 5D. Source driver is left open rather than inferred."
+  },
+  {
+    "location": "5B long vertical into 6D",
+    "evidence": "RX081/6G upper source coordinate guide.png and 5D to6D6G junction enlarged.png: follow the left long vertical from 5B right output past bridged 5C and 5D crossings; it bends right into 6D fourth input. The distinct 6D D02 output folds left and down into 6G upper, confirmed in 6D output to 6G source right native.png."
+  },
+  {
+    "location": "four 6D input folds",
+    "evidence": "RX081/6G upper source coordinate guide.png and 5D to6D6G junction enlarged.png: 5C bends down to 6D first input; 5D bends up one row to its second; 5E rises to its third; 5B long vertical bends into its fourth. Distinct crossings do not join."
+  },
+  {
+    "location": "6K to 6G return",
+    "evidence": "RX081/G M banks6-7 tight native.png and F G banks5-7 tight native.png: 6G lower left triangle follows a U route to 6K D02; the tall right leg bridges the RX231 horizontal rather than tapping it."
+  },
+  {
+    "location": "6G T and right N inputs",
+    "evidence": "RX081/F G banks5-7 tight native.png and 6D output to 6G source right native.png show T teeing at a diamond to 7G D02, rising through 7F B05, then entering the KK101 zero continuation at row 30. The neighboring 6D D02 return folds left and does not join that right continuation."
+  },
+  {
+    "location": "two distinct H-row conductors",
+    "evidence": "RX081/H row left bus native.png, H row middle bus native.png, H row right bus native.png, row53 source full left native.png, row54 55 full right native.png, and 5L5M vertical identity guide.png: 1H upper horizontal ends at bank-5 diamond and descends to 5J lower, 5K upper, and 5L lower blank. Its vertical bridges the lower horizontal. 7G B12 folds down to the lower RX231 continuation, which bends down at bank 5 into 5M B12 and at the right into 7M B10."
+  },
+  {
+    "location": "C row folds and 3F D09 rail",
+    "evidence": "RX081/C F vertical source 1-2.png, C F vertical source 2-3.png, and 3E 3F inlet rails exact native.png show the upper C outputs folding into the middle runs. The left tall vertical from 2C B10 reaches 3F D09, while 3E D11 bridges it."
+  },
+  {
+    "location": "CLOCK P3 BLOCKED lower rail",
+    "evidence": "RX081/1H clock tap exact native.png shows the sole hollow diamond on CLOCK P3 BLOCKED at the 1H vertical; lower controls bank5 exact native.png shows that line entering 5M 2D05. Neighboring SCAN-MC and YIAEI horizontals cross without taps at the 1H vertical."
+  },
+  {
+    "location": "SCAN-MC to 5L upper pair",
+    "evidence": "RX081/4L to 5L two input paths.png, 5L 6B08 lead coordinates.png, 5L 6B08 74 three rail 4x.png, and lower controls bank5 exact native.png: the top of three lower horizontal controls (SCAN-MC INH INT COND / RX001FA4) bends upward at native x≈5900 into 5L blank74; the same lead bends up again near x≈6118 to printed 6B08. The two close lower control lines have no junction to this riser."
+  },
+  {
+    "location": "YIAEI to 5L D06",
+    "evidence": "RX081/5L lower exact native.png and 5L 5M input rail diamonds native.png: the lowest close-spaced control horizontal bends upward into 5L D06 and bridges the neighboring clock and SCAN-MC lines."
+  },
+  {
+    "location": "final native-source review",
+    "evidence": "RX081/overview.png was compared region by region with the private 245×103 preview; the individual RX081/card sheets/row A.png through row N.png support all 42 native boxes and card print. Enlarged upper, middle, lower, right-continuation, connector, and footer crops listed in these notes were rechecked for the 69 printed input leads, source-only portions, crossing diamonds, polarity/reference spacing, and exact machine/part-number footer. The sole source-open D09 shared input rail has no visible upstream driver at its 5B lead and is explicitly documented."
+  }
+]
+
+Original scan order
+Before RX071 READ ONLY STORAGE ADDRESS REGISTER BIT 7.tif
+After RX091 READ ONLY STORAGE ADDRESS REGISTER BIT 9.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: 2A: R TO -> R T0, 5A: R TO -> R T0, 3B: R TO -> R T0, 4C: R TO -> R T0, 2E: R TO -> R T0, 4E: R TO -> R T0, 3F: R TO -> R T0, 5F: R TO -> R T0, 5G: R TO -> R T0, 4J: R TO -> R T0, 4L: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

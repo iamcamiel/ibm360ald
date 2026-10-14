@@ -1,0 +1,187 @@
+RX071 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 31,
+  "A1_total_card_portions": 31,
+  "A1_mismatches": [
+    "5G"
+  ],
+  "A1_documented_exceptions": {
+    "5G": "Native RX071 5G block clearly prints 8002AD; RX071 A1 socket listing omits this card portion."
+  },
+  "A1_unresolved_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 62,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [
+    {
+      "column": 84,
+      "row": 19,
+      "glyph": "┘"
+    },
+    {
+      "column": 62,
+      "row": 33,
+      "glyph": "┘"
+    },
+    {
+      "column": 131,
+      "row": 54,
+      "glyph": "┘"
+    },
+    {
+      "column": 93,
+      "row": 70,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 19,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 20,
+      "glyph": "└"
+    },
+    {
+      "column": 69,
+      "row": 40,
+      "glyph": "┌"
+    },
+    {
+      "column": 69,
+      "row": 41,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 47,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 48,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 55,
+      "glyph": "└"
+    },
+    {
+      "column": 69,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 68,
+      "row": 68,
+      "glyph": "┌"
+    },
+    {
+      "column": 85,
+      "row": 54,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 82,
+      "glyph": "┘"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586031",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  }
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "5G",
+    "evidence": "5G_native_enlarge.png shows 8002AD/C-D3G3; A1 has no matching RX071 card-portion row."
+  },
+  {
+    "location": "block lattice",
+    "evidence": "RX071 bank-wall proof.json/png measures x=[2372,3286,4236,5141,6066,6975,7875]. The human expressly approved page-specific columns [50,73,97,120,143,166,189]; these are applied."
+  },
+  {
+    "location": "upper C/D and D09",
+    "evidence": "upper_all_routes_native.png, upper_normal_vertical_native.png, top_4A_5A_parallel_native.png, and terminals_1250.png: distinct 1C/2C and 1D/3D local paths, 2C D13 rising to 3A B12, 1D D11 rising on the upper of the two parallel top rails into 5A D09, and the RX001GF4 D09 chain; ordinary bridge crossings are unjoined."
+  },
+  {
+    "location": "1E/1F/2F/1G/1H to bank 3",
+    "evidence": "E_routes_exact_native.png, EF_middle_native.png, EF_routes_exact_native.png, FGH_routes_exact_native.png, and GH_verticals_full_native.png: normal set enters 3E printed pin 8; 1E upper bridges it and enters 3E bare row 33. 1F upper enters 3E bare row 34, 2F upper enters 3F pin 8, 1G upper enters 3F bare row 40, and 1H upper enters 3F bare row 41. The 2H upper route begins below on the same aligned guide but is separated by a visible gap."
+  },
+  {
+    "location": "1E D10 to DS141",
+    "evidence": "Overview and E_routes_exact_native.png show the 1E D10✲ output rising on its own vertical to the row-14 DS141 right continuation."
+  },
+  {
+    "location": "bank 3 to OR stages",
+    "evidence": "overview.png and native middle bank crops show the four separate bank-3 outputs to 4E rows 31/32/34/35 and four to 4H rows 52/53/55/56; crossings have no diamonds."
+  },
+  {
+    "location": "right OR and indicator routes",
+    "evidence": "overview.png and right native crops show 4E/4H D02 into the distinct 5G triangle inputs, 5G T into 6F D12 and 6G D02 with FF4 continuation, and 6G B12 into 7H B12, 3K B12, and EE4 continuation."
+  },
+  {
+    "location": "2K bank-3 control rail",
+    "evidence": "3G_inputs_native.png, 3J_control_zoom_native.png, and lower_3H_3K_risers_zoom_native.png show the seven printed diamonds from the 2K upper output through 3C/3D/3E/3F, 3G D07, 3H bare row 56, and 3J bare row 59."
+  },
+  {
+    "location": "left control continuations",
+    "evidence": "left_500.png, left_2300.png, and left_4100.png show the native diamonds joining the caption/reference pairs before their indicated inputs; isolated paired input straps are visible in the terminal crops."
+  },
+  {
+    "location": "lower external controls",
+    "evidence": "lower_controls_native.png, lower_3H_3K_risers_zoom_native.png, and 3G_B04_lower_origin_zoom_native.png: RX003CF4 row 73 is the second of four lower horizontal controls and joins 2K/3K 2D05. RX001FA4 row 72 rises into 3H B08; RX001CD4 row 74 rises into 3G B04; RX001CC4 row 75 rises into 3H D06."
+  },
+  {
+    "location": "1F B10 to 4A D06",
+    "evidence": "1F_B10_riser_native.png, top_c68_c89_source_zoom_native.png, top_4A_5A_parallel_native.png, and 4A_D06_route_native.png: 1F B10 rises at native x≈3045, crosses the normal-set caption rail through a bridge, turns right on the lower of the two parallel top rails, then rises at native x≈4670 into 4A D06."
+  },
+  {
+    "location": "2H and lower returns",
+    "evidence": "GH_verticals_full_native.png and 2H_B02_right_route_native.png: 2H upper bare output rises into 3G bare row 46, separated by a gap from the aligned 1H vertical above; 2H B02✲ descends into the measured row-79 RD151 continuation. HIJK_lower_routes_native.png shows 2J bare to 3H bare row 55 and 2J B05 to 3N D12; the M/N source returns are individually visible at the native lower margin."
+  }
+]
+
+Original scan order
+Before RX061 READ ONLY STORAGE ADDRESS REGISTER BIT 6.tif
+After RX081 READ ONLY STORAGE ADDRESS REGISTER BIT 8.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: 3A: R TO -> R T0, 4A: R TO -> R T0, 5A: R TO -> R T0, 2N: R TO -> R T0, 3N: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

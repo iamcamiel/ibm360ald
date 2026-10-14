@@ -1,0 +1,50 @@
+FX057 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 30,
+  "A1_total_card_portions": 30,
+  "A1_mismatches": [],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 39,
+  "geometry_passed": true,
+  "passed": true,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "three hanging response-reference fanouts",
+    "evidence": "Each native first diamond/corner is c203, short stub c204, FX061 text c205; each WA corner is c214, WA text c215 on the next row. All nine native fanouts across FX021/051/057 independently calibrated and peer-corroborated. Evidence: hanging references native grid.png."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX055 SCU DISTRIBUTED SIMPLEX LINES.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX061 DIST SIMPLEX DRIVER LOADS.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BJ: R TO -> R T0, BK: R TO -> R T0, BL: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

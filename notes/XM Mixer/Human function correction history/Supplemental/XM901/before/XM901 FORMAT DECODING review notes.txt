@@ -1,0 +1,69 @@
+XM901 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 29,
+  "A1_direct_page_card_portions": 29,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 45,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native source",
+    "evidence": "XM901 FORMAT DECODING TIFF SHA-256 832a2695bb49572573ca0ead8e9e779b16f76b02f28905c0bde48b4706a64b69; 29 printed card portions checked against direct XM901 A1 socket listing."
+  },
+  {
+    "location": "Three-bit decode",
+    "evidence": "Seven printed 0135 product gates, six 3392 resistor/inverter input portions, three restoring inverters and two format inversion pairs traced in source crops c00, c10, c11, c20, c21."
+  },
+  {
+    "location": "Weather decode",
+    "evidence": "Native lower scan shows 4060C1/C2, 0518G1, 0135E1, two 3358C1 and 3388F1/G1/H1. Input, output and shared weather rail terminals checked in weather-left.png and weather-all.png."
+  },
+  {
+    "location": "Native route audit",
+    "evidence": "Terminal ownership follows native source. The seven E-bit product gates, weather rail and three weather pairs have manually placed turns and diamonds; independent full-preview/native root audit completed."
+  },
+  {
+    "location": "Native format and weather layout",
+    "evidence": "Original TIFF overview and weather-all/weather-left source crops show 3392H1 format-old inverter above 3392G1 resistor in one column; 3392J1 new resistor in adjacent left column. Lower weather pairs are tiered at output rows 75/82/89; 3388H1 weather-2 inverter sits immediately right of 3388G1 gate. Weather 4060C2 D03 and all three final weather outputs lack triangles."
+  },
+  {
+    "location": "Native connector footer",
+    "evidence": "Twelve literal footer connector strings copied from original TIFF x1200..3400,y5650..6600; lower IBM CORP. BLK. BG heading contains no SDD."
+  },
+  {
+    "location": "Native card codes and terminal symbols",
+    "evidence": "All 29 lower card continuation code pairs transcribed from original c00-c22 and weather crops. U61AC resistor inputs, 0135/3388 A gate inputs, and restoring inverter inputs print without inlet triangles; the three first E-bit inverter inputs, weather AR/N inlets, and 3358 inverter inlets retain their printed triangles. The final weather outputs and 4060C2 D03 print without output triangles."
+  },
+  {
+    "location": "Root native audit corrections",
+    "evidence": "Footer first connector is AU4 B-E3M8D06. The first EQ000 output label has the literal hyphen after 15. Weather 1 gate 3388F1 lower input is D04, confirmed in weather-all native crop. G111 0135E1 is printed in bank 6H with G101/G110, not the adjacent bank 7."
+  },
+  {
+    "location": "Independent root audit",
+    "evidence": "All native c00-c22 sectors, weather crops, footer, decoder bus pin ownership and final full preview inspected by root. Relocated G111 to literal 6H, corrected W1A D04 and AU4 footer, preserved first EQ000 hyphen and removed three invented corner diamonds."
+  }
+]
+
+Original scan order
+Before XM635 LM REG BIT RCVRS FOR PARITY PREDICT.tif
+After XM903 OLD AND NEW FORMAT DECODE.tif

@@ -1,0 +1,100 @@
+RB816 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 21,
+  "A1_documented_native_exceptions": [],
+  "A1_total_card_portions": 21,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 33,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": [],
+    "canvas_errors": []
+  },
+  "title_footer_errors": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 11,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native scan clipping",
+    "evidence": "Footer-clipping-native.png confirms IBM/SDD/BLK/block code, both000subpage fields and footer borders afterrow100 absent from image; missingfields remainblank. Do not infer standard printed contents."
+  },
+  {
+    "location": "Unreadable AA1B card",
+    "diagram": "r13c51..53",
+    "printed": "���5A1",
+    "candidate": "3595A1",
+    "evidence": "AA-native.png retains the three unreadable glyphs. A1221-01 independently identifies card 5803595, portion A1, socket 02B-B1D2, and RB816 A1; the recovered value is displayed in the diagram, not claimed as physically readable.",
+    "diagram_reading": "3595A1",
+    "physical_fragment": "���5A1",
+    "recovery_id": "RB816-ed7225895c"
+  },
+  {
+    "location": "Unreadable DE4 table row",
+    "diagram": "r100c34..46",
+    "printed": "��� � �������",
+    "candidate": "DE4 B-B1C7B05",
+    "evidence": "Table-clipping-native.png shows only topstrokes of11characters; spaces and absent hyphen cell remainblank. Entire nextcontinuationrow101 absentblank. Original scan neighbors and source filename included in sidecar."
+  },
+  {
+    "location": "Unreadable IND ROS90 destination",
+    "diagram": "r89c209",
+    "printed": "KT33�",
+    "candidate": "KT331",
+    "evidence": "IND90-output-native.png retains the damaged final glyph. KT331 prints matching -IND ROS 90 with source RB816DE4; the recovered destination is displayed in the diagram, not claimed as physically readable.",
+    "diagram_reading": "KT331",
+    "physical_fragment": "KT33�",
+    "recovery_id": "RB816-9237a3a2e1"
+  },
+  {
+    "location": "OR output qualifier",
+    "evidence": "Native D06T/D11T/D02T/B05T printed literalT afterphysicalpin retained, then immediate corner routes up. Numeric2prefixes remainparatecontrolqualifiers at upper/lowerAND clock inputs."
+  },
+  {
+    "location": "Source review",
+    "evidence": "All21gates including input-onlyRTO, pins, separateARoutputs, each latchloop andclockrail, externalreferencehooks, labels/diamonds/footer individually inspected. Exactnormalbankpositions. Root independent review pending."
+  },
+  {
+    "location": "Physical-copy lookup",
+    "scan_order": {
+      "original_name": "img20141205_21204592.tif",
+      "timestamp": "2014-12-05 21:20:45.920000",
+      "before": "RB815 ROS BIT POWERING 87-90 AND DE ROS BITS 86-90.tif",
+      "after": "RB817 CLOCK DISTRIBUTION.tif"
+    }
+  },
+  {
+    "location": "Source-derived recovery provenance",
+    "handoff": "tmp/ald-text/ald/manual-verification/source-derived-v2/RB B Register/Reviewed recoveries.json",
+    "recovery_ids": [
+      "RB816-ed7225895c",
+      "RB816-9237a3a2e1"
+    ],
+    "status": "Independently checked cross-page readings; native physical uncertainty retained."
+  }
+]
+
+Original scan order
+Before RB815 ROS BIT POWERING 87-90 AND DE ROS BITS 86-90.tif
+After RB817 CLOCK DISTRIBUTION.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: DF: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

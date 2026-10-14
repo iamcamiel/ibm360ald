@@ -1,0 +1,55 @@
+MP901 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 9,
+  "A1_total_card_portions": 9,
+  "A1_mismatches": [
+    "AL"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 10,
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "structural_passed": true,
+  "A1_agreement": false
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "literal source signal",
+    "detail": "The fifth ATR slot termination label is -ATR SLOT 5 ODD, as printed; it was not normalized to PTY."
+  },
+  {
+    "kind": "A1 page-key discrepancy",
+    "detail": "AL prints 0514H2 at A-C3K6. The exact card portion is indexed under MP141 in A1133-01 rather than MP901; retain the clear native AL field. Other nine portions match MP901 directly.",
+    "corroboration_page": "MP141",
+    "socket": "02A-C3K6",
+    "card_portion": "0514H2"
+  }
+]
+
+Original scan order
+Before MP551 PSBAR CONTROLS.tif
+After PK001 Roller Switches and Data Keys 00-15.tif
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: Whole-body native/render layout and native footer reviewed. Ten standalone resistor terminations and native SLOT5 ODD label compared. Native AL 0514H2 retained with documented A1 page-key discrepancy; no unprinted output added. Detailed native fields reviewed by owner.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AA: R TO -> R T0, AF: R TO -> R T0, AL: R TO -> R T0, AR: R TO -> R T0, AV: R TO -> R T0, AB: R TO -> R T0, AG: R TO -> R T0, AM: R TO -> R T0, AS: R TO -> R T0, AW: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

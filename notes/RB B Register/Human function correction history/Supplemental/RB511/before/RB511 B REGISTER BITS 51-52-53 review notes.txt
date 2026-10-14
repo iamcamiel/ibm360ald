@@ -1,0 +1,42 @@
+RB511 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 27,
+  "A1_documented_native_exceptions": [
+    "BG"
+  ],
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 46,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "detail": "All native blocks and adjacent pins read individually. Only CK L2 inverter exists; no L2 inverter is invented for bits 52 or 53. The upper PADDL51 return travels below AF, rises separately to row36, and remains distinct from the AB51 feedback at row37."
+  },
+  {
+    "detail": "BG4G native card portion is clearly 4198BA at B-C1B6. A1 omits BA while listing B1-B9 and BB onward; the scan portion is retained as a documented listing omission."
+  },
+  {
+    "detail": "The native connector table prints B-C1M6D05 and 02B-A1N6D05, although A1 connector entries say B05. Native D05 is preserved. Main N output literals D12, D05 and D02 have no printed star; indicator AR outputs and CK output retain their native stars."
+  }
+]
+
+Original scan order
+Before RB481 B REGISTER BITS 48-49-50.tif
+After RB541 B REGISTER BITS 54-55-PARITY 48-55.tif

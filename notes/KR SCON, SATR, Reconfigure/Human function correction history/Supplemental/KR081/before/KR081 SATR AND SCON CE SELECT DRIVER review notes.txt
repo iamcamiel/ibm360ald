@@ -1,0 +1,63 @@
+{
+  "validation": {
+    "unowned_output_ports": [],
+    "multiple_internal_driver_blocks": {},
+    "A1_ALD_reference_disagreements": [
+      "AT",
+      "AV",
+      "BL",
+      "BM"
+    ],
+    "A1_total_printed_portions": 36,
+    "A1_card_portions_matched": 36,
+    "A1_total_card_portions": 33,
+    "A1_mismatches": [],
+    "missing_input_owners": [],
+    "multiple_target_owners": {},
+    "different_net_shared_segments": [],
+    "disconnected_nets": [],
+    "junction_errors": [],
+    "wire_paths_inside_blocks": [],
+    "endpoint_errors": [],
+    "printed_input_terminals": 57,
+    "passed": true,
+    "canvas_columns": 245,
+    "canvas_rows": 103,
+    "path_errors": [],
+    "outside_canvas": [],
+    "text_collisions": [],
+    "hidden_junctions": [],
+    "unsupported_characters": [],
+    "unreadable_characters": 0,
+    "fixed_grid_geometry_errors": []
+  },
+  "evidence": [
+    {
+      "native_evidence": "tmp/ald-text/kr/control/KR081/crop-3400-0.png;crop-3400-1100.png;crop-3400-2200.png;crop-3400-3300.png;AJ.png",
+      "finding": "All six AR gates and their distinct primary and terminal outputs read individually. R TO terminals have unnamed LEFT plain inputs, unlike the right K terminals on KR071."
+    },
+    {
+      "native_evidence": "tmp/ald-text/kr/control/KR081/crop-5100-2200.png;AR marker.png",
+      "finding": "AR physical output B10 has literal K in right border cell. Electrical side remains output, with separate printed_border_marker metadata; no wedge substituted."
+    },
+    {
+      "native_evidence": "tmp/ald-text/kr/control/KR081/crop-6800-0.png;crop-6800-1100.png;crop-6800-3300.png;crop-6800-4400.png",
+      "finding": "AX→BB B02/BF D13 via184; AY→BC D04/BG D11 via181; AZ→BD B05/BH B12 via153; BA→BE B07/BJ D07 via154. Only visible diamonds join; neighboring rails cross unjoined."
+    },
+    {
+      "native_evidence": "tmp/ald-text/kr/control/KR081/crop-5100-4400.png;crop-6800-4400.png",
+      "finding": "AV D10 joins BL D09 at13875 and lower commonB13 rail182. BL D07 separate feedback passes BA rail unjoined, rises155→138 toBK D12. AC commonB08/D12 uses183; BM commonupperB09 uses176."
+    },
+    {
+      "native_evidence": "tmp/ald-text/kr/control/KR081/left inputs.png;output labels.png;footer connectors.png;crop-6800-5500.png;crop-8500-5500.png",
+      "finding": "All input names and printed text diamond preserved. Eight negative WA202 outputs read independently. Connector bank starts35/49, continuation indent2. Native KR081 identity matches filename; title/date11-06-69/log018/part2585112/BLK. BN and revision dates source-read."
+    }
+  ],
+  "scan_neighbors": {
+    "original_name": "img20141209_13041818.tif",
+    "timestamp": "2014-12-09 13:04:18.180000",
+    "before": "KR071 SCON AND SATR RESPONSE DRIVERS.tif",
+    "after": "KR101 SCON AND SATR SPECIFICATION EXCEPTION CHECKING.tif"
+  }
+}
+Root final review: Full JuliaMono preview and native overview, AR K output border, AZ/BA separate diamonds and fanouts, AX/AY returns, lower selection rails, BL input diamond and separate feedback crossing, source footer independently inspected. Plain unnamed R TO left inputs retained; A1 disagreements preserved; independent checks pass.

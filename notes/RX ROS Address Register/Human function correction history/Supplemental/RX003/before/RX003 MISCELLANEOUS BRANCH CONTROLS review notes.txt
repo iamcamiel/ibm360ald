@@ -1,0 +1,185 @@
+RX003 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 40,
+  "A1_total_card_portions": 40,
+  "A1_mismatches": [],
+  "A1_documented_native_discrepancies": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 55,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586027",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  },
+  "source_review_complete": true,
+  "ready_for_publication": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "physical bank lattice",
+    "evidence": "Native TIFF block-left walls measured at x=[2458,3281,4098,4924,5752,6584,7402] for banks 1–7. Linear fit to standard columns [50,73,96,119,142,165,188] has 3.95px RMS residual; shifted [50,73,97,120,143,166,189] has 13.06px RMS residual. Standard lattice retained."
+  },
+  {
+    "location": "right output typography",
+    "evidence": "RX003 right source labels upper native.png, middle native.png, and lower native.png show an uninterrupted printed rule between each caption and its right terminal ID. The caption-tail rules are rendered separately so the one blank between any inline reference and polarity remains visible."
+  },
+  {
+    "location": "native signal captions",
+    "evidence": "Full-resolution left source labels upper/middle/lower native crops and right source labels upper/middle/lower native crops; bottom-left CO011BE4 glyph needs later independent comparison."
+  },
+  {
+    "location": "native footer HU4 versus A1 HW4",
+    "evidence": "Enlarged RX003 footer HU HW detail.png: the prefix before native C-D3A7B03 has a rounded U-shaped middle glyph and is read HU4. A1 assigns HW4 to 02C-D3A7B03. Keep the native HU4 reading and document the index discrepancy rather than silently changing source text."
+  },
+  {
+    "location": "5A/5B–6B–7B upper chain",
+    "evidence": "RX003 5A 5B to 6B native.png and RX003 6B to 7B native.png show separate folded 5A/5B outputs, the two distinct 6B inputs, and the straight 6B B04 to 7B B03 run. The 7B B02 and 5C B13 lines continue to printed right captions."
+  },
+  {
+    "location": "5D/6D and 3D D07 shared branch",
+    "evidence": "RX003 5D 6D and right native.png shows 5D.D02✲ output through a true diamond into 6D.B13. RX003 5D D02 branch rail exact native.png follows that same x≈6150 vertical down to a second true diamond on the DR171 BB4 y≈2550 continuation, crosses RX071 CC4 y≈2600 plainly, then bends left y≈2700 into 3D.D07. 6D.D13✲ is a separate output to the AE4 caption."
+  },
+  {
+    "location": "5F/6F upper branch",
+    "evidence": "RX003 5F to 6F native.png: 5F D06 has a diamond before 6F B07 and a downward branch that turns right to KK201 / CLOCK P0-1. 6F D06 is a separate downward vertical that crosses the 5F rail at row 44 without a diamond. RX003 6F D06 left junction native.png and RX003 6F D06 to bank5 lower native.png show it bending left at native y≈4650, down at x≈5600, joining 5L.D09 at a diamond, and bending into 5M.B03."
+  },
+  {
+    "location": "7K/7L/7M paired input rails",
+    "evidence": "RX003 7KLM two rails native.png and RX003 lower right conductor native.png show paired verticals x≈7185 and x≈7220. Left rail is driven by 4K.D04 at a diamond at y≈4600, taps 7K.B02, 7L.D06 and 7M.B09. Right rail has a diamond to 6L.B10 at y≈4980, taps 7K.D08 and 7L.B09, bends into 7M.D07, and continues upward/right to KK211 CLOCK P2. The short input horizontals cross the adjacent rail without a diamond."
+  },
+  {
+    "location": "3F/3J/3K to 4K inputs",
+    "evidence": "RX003 4K lower driver native.png shows 3F output bending down at x≈4750 and crossing 4G.B07/4H.B08 leads without diamonds. RX003 3J and 4K crossing native.png shows this same 3F vertical crossing the 3J and 3K output horizontals without diamonds, then bending into 4K lower input. 3J output bends down at distinct x≈4785 into 4K upper input; 3K runs straight into 4K middle input."
+  },
+  {
+    "location": "M-row clock chain",
+    "evidence": "RX003 lower M chain native.png shows 2M output diamond at x≈3750 feeding 3L upper and 3M middle inputs; 3M.B02 continues through a diamond into 4M.B02, with lower branch folding right on the lower y≈5600 / row87 conductor to KK211 CLOCK P1. RX003 4M 5J parallel rises native.png shows 4M.D02 rising at x≈5330 into the lower blank 5J input, while 4K.D04 has a separate x≈5430 diamond/rise into 5J.B04; they cross without a diamond. RX003 5F B09 to 5J close native.png shows 4M.D02 rail continuing upward across 5J.B04 without a diamond into 5F.B09. RX003 PO2 right continuation native.png shows a diamond on that rail at y≈3650 and RX002 +PO-2 CLOCK continuation."
+  },
+  {
+    "location": "5L to 6L and PO-3",
+    "evidence": "RX003 5L D07 to 6L B12 native.png shows 5L.D07 output going through a diamond near x≈6440 into 6L.B12. RX003 5L output lower branch native.png follows its branch down to y≈5550; RX003 5L output right continuation native.png shows this upper of two close horizontals continuing to RX002 PO-3 CLOCK at row86. The lower y≈5600 row87 rail belongs to 3M.B02→KK211 CLOCK P1 and crosses no diamond into 5L branch."
+  },
+  {
+    "location": "4F/4G and 4H to 5G",
+    "evidence": "RX003 4G 5G complete terminals native.png shows the 4G upper bare output running straight into 5G upper blank input. The neighboring 4G.B07 output folds up at x≈5300 to the right-side 4F.KD11 output, crossing the upper bare output without a diamond; these two printed outputs share one physical conductor. RX003 4G4H to 5F5G native.png shows the separate 4H upper bare output folding up into 5G lower blank input and crossing the x≈5600 vertical without a diamond. The 4H.B08 output continues right on its own row."
+  },
+  {
+    "location": "3C/3D to 4D inputs",
+    "evidence": "RX003 3C3D to 4D native.png: 3C bare output folds down into 4D upper blank input and 3D bare output folds down into 4D lower blank input. RX003 4D middle edge native.png confirms no middle terminal; an earlier provisional card-edge inventory entry was removed."
+  },
+  {
+    "location": "4D to 5C/5D",
+    "evidence": "RX003 4D 5B5C5D source native.png: 4D.B10T output has a true diamond at x≈5430/y≈2300 and continues into 5D.B03; its vertical branch rises and bends into 5C.D11. The neighboring lower rails crossing at y≈2550–2750 are separate."
+  },
+  {
+    "location": "5B D07/D08 source-open short",
+    "evidence": "RX003 4D 5B5C5D source native.png: 5B.D07 and 5B.D08 share only a short x≈5600 vertical between y≈1550 and y≈1650. Above D07 and left of the segment are blank. Independent root source read agrees there is no visible driver or leftward lead; modeled as a source-open two-sink net, not inferred from A1."
+  },
+  {
+    "location": "YIASI top rail",
+    "evidence": "RX003 3C top rail origin native.png shows a diamond on the +YIASI/RX001CC4 upper horizontal at x≈3960, descending to 3C.D10. RX003 YIASI to 5A native.png shows the same upper horizontal bending down at x≈5600 into 5A.D02. The lower horizontal at y≈1300 merely crosses the 3C vertical without a diamond."
+  },
+  {
+    "location": "2B/2C upper feedback-shaped route",
+    "evidence": "RX003 2B B07 feedback native.png and RX003 2B output to 2C input native.png: the 2B.B07 output rises at x≈3690, folds left above 2B, descends at x≈3150, crosses the external BLOCK ROSAR SET BIT 7 input horizontal at y≈1550 without a diamond, then bends into 2C.B05. The external RX001DA4 conductor separately feeds 2B.B07 input."
+  },
+  {
+    "location": "2B B05 to 3C B12",
+    "evidence": "RX003 upper 2B2C3C native.png shows 2B.B05 output running right and folding down at x≈3925 into 3C.B12. Its vertical is distinct from adjacent x≈3960 YIASI→3C.D10 rail and crosses the other upper horizontal without a diamond."
+  },
+  {
+    "location": "2C D05 top output",
+    "evidence": "RX003 bank2 BC all terminals native.png establishes a previously omitted 2C.D05 upper output at y≈1800. Its conductor rises at x≈3650, crosses the 2B.B05 and B07 output horizontals without diamonds, bends right at y≈1280, and enters 5A.B02. It is distinct from 2B.B07 x≈3690 feedback-shaped route."
+  },
+  {
+    "location": "2C B05 lower output",
+    "evidence": "RX003 2C B05 vertical exact native.png: 2C.B05 output descends at native x≈3675 past the 3C.D13 and WAIT STATE BLOCK horizontals, with plain crossings. At y≈2580 it bends right; RX003 2C output lower continuation native.png follows that conductor to the right RX071 +BLOCK ROSAR SET BIT 7 YIASI / CC4 continuation. The nearby 3D.D07 rise crosses this conductor without a diamond."
+  },
+  {
+    "location": "middle right output continuations",
+    "evidence": "RX003 right source labels middle native.png and RX003 5J 5G outputs right native.png show 5G.D02 continuing on row47 to RX081 / EG4; 4H.B08 on row54 to DS208 / EF4; and 5J.B02 on row61 to RX201 / HU4. These horizontals cross the neighboring x≈7000 and x≈7770 verticals without diamonds."
+  },
+  {
+    "location": "lower right output continuations",
+    "evidence": "RX003 7KLM three outputs right native.png and RX003 four lower right clock refs native.png show 7L.D04 continuing to -CLOCK P3 BLOCKED / CG4 with lower RX101 and RX111 references, and 7M.B07 continuing to the analogous CF4 output with lower RX061, RX071, RX081, RX091 references. Both output rails have a genuine diamond at their right-side reference branches. RX003 5M D02 lower bend complete native.png shows 5M.D02 crossing the upper RX002 PO-3 and KK211 CLOCK P1 rails without diamonds, then bending into the lower DR185 -CLOCK P1 / AF4 conductor, which branches at a diamond to KC021. The bottom RY101 / CM4 line is driven separately by 1N.B10."
+  },
+  {
+    "location": "CLOCK P4 GATE input",
+    "evidence": "RX003 2C 3D inputs native.png shows external RX051AB4 CLOCK P4 GATE horizontal bending upward around x≈3880 to 3C.D13. RX003 clock P4 crossing native.png confirms its intersection with the 2C.B05 output vertical at x≈3670 is a plain crossing, not a join."
+  },
+  {
+    "location": "3D D06/D07 lower input rails",
+    "evidence": "RX003 3D rails left half.png and right half.png show 3D.D06 descending near native x≈3920 to the lower y≈2750 CLOCK P3 BLOCKED line, continuing right to RX051 CH4 and the lower RX021 reference branch. 3D.D07 descends near x≈3950 to y≈2700, runs right, rises at x≈6170 to the 5D.D02/DR171 shared vertical; RX003 3D D07 right diamond coordinate native.png shows its crossing with the RX071 CC4 y≈2600 line is plain, without a join. RX003 D06 CH4 RX021 right diamonds native.png shows the CH4/RX021 branch has paired diamonds near native x≈7730."
+  },
+  {
+    "location": "7K B04 tied to CLOCK P3 BLOCKED rail",
+    "evidence": "RX003 7K B04 long vertical upper source native.png follows the 7K.B04 output upward at native x≈7770 to the lower RX021 diamond at y≈2800; the vertical crosses the intervening KK201, RX081, RX002, DS208, and KK211 lines without diamonds. It is a second printed output on the 3D.D06/RX051 CH4 conductor, recorded as an additional driver."
+  },
+  {
+    "location": "WAIT STATE BLOCK to 5F",
+    "evidence": "RX003 wait state block to 5F native.png carries the RX029AU4 horizontal on y≈2550 toward x≈5550. RX003 5F B07 upper junction native.png shows its right bend descending across the lower rails without a diamond, then into 5F.B07."
+  },
+  {
+    "location": "mid-left external rails",
+    "evidence": "RX003 mid left source rails native.png: RY011EZ4 runs directly into 3F.B07; RY081EN4 has a diamond before 3F.B08 and descends at x≈3900; KJ311BG4 goes into 4G.B07; RX001CF4 goes into 4H.B08. RX003 3F B08 branch native.png shows the descending RY081EN4 rail crosses KJ311BG4, RX001CF4, and 3J.D05 without diamonds, then bends into 3J.D11."
+  },
+  {
+    "location": "left lower J/K route group",
+    "evidence": "RX003 lower left sources native.png: AP901CE4 feeds 1J.B12; DS431CM4 feeds 1K.D05; 1J.B12 output runs straight into 2J.B10. RX003 top J conductor pair native.png shows 1J.D10 output folding up/right around x≈3100 and x≈3650 into 3J.D05. RX003 1K 2K two outputs native.png shows 1K upper bare output folding down into 2K blank input, distinct from the 1K.D05 lower output."
+  },
+  {
+    "location": "1N upper output to 1M input",
+    "evidence": "RX003 x2880 rail left origin native.png and RX003 1M 1N loop junction native.png show 1N upper bare output rising at native x≈2880 to the y≈4000 upper loop; the left x≈2300 vertical descends into 1M blank input. The x≈2880 rail crosses 1J.D10, 1J.B12, 1K upper/D05, and 1M output without a diamond. 1J.D10 therefore remains separate and feeds 3J.D05."
+  },
+  {
+    "location": "1K D05 tied to 1L KD11 outputs",
+    "evidence": "RX003 1K D05 1L KD11 complete native.png shows both labels on the right edge of their boxes as printed outputs. The 1K.D05 lead turns down near native x≈2800 and returns left into 1L.KD11. The neighboring x≈2870 vertical crosses without a diamond. This is represented as one physical net with two drivers, not a fabricated input terminal."
+  },
+  {
+    "location": "bottom left 1M/1N",
+    "evidence": "RX003 1M to 2M native.png shows 1M bare output running straight through a plain crossing with the neighboring vertical into 2M blank input. RX003 1N and 2M bottom rails native.png shows RY081EC4 connected by a diamond to the CLOCK GATE C BOTTOM external line feeding 1N.B10."
+  },
+  {
+    "location": "2K to 3K",
+    "evidence": "RX003 2K D13 to 3K native.png: 2K.D13 output runs straight into 3K.B03 and crosses the adjacent x≈3900 descending RY081EN4 conductor without a diamond."
+  },
+  {
+    "location": "native footer connector table",
+    "evidence": "RX003 footer table plain.png and enlarged detail crops: forty lines in five columns, row order retained. Native first-column 02A-C2N5D05 appears to omit A1 connector T; native HU4 before C-D3A7B03 differs from A1 HW4. The 02E-B4M4B02 line is printed without an FE4 prefix. These are source readings under audit, not A1 substitutions."
+  },
+  {
+    "status": "Private source-reviewed 40-box transcription for independent root acceptance audit. Standard bank lattice and native card/terminal/route/footer passes complete; footer HU4 and N5 native-versus-A1 readings and source-open 5B D07/D08 are documented above. No canonical ALD Diagrams export from this builder."
+  }
+]
+
+Original scan order
+Before RX002 WAIT STATE BLOCK ROS CLOCK.tif
+After RX021 READ ONLY STORAGE ADDRESS REG BITS 0-1 AND 2.tif

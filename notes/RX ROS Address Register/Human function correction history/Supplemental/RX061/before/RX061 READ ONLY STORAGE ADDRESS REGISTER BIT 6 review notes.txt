@@ -1,0 +1,294 @@
+RX061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 28,
+  "A1_total_card_portions": 28,
+  "A1_mismatches": [
+    "3A",
+    "5G",
+    "2N",
+    "3N"
+  ],
+  "A1_documented_exceptions": {
+    "3A": "Native RX061 block is legible; no matching A1 RX061 card-portion row. Retain native print.",
+    "5G": "Native RX061 block is legible; no matching A1 RX061 card-portion row. Retain native print.",
+    "2N": "Native RX061 block is legible; no matching A1 RX061 card-portion row. Retain native print.",
+    "3N": "Native RX061 block is legible; no matching A1 RX061 card-portion row. Retain native print."
+  },
+  "A1_unresolved_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 62,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [
+    {
+      "column": 84,
+      "row": 19,
+      "glyph": "┘"
+    },
+    {
+      "column": 46,
+      "row": 19,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 20,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 33,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 34,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 40,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 41,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 54,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 55,
+      "glyph": "└"
+    },
+    {
+      "column": 46,
+      "row": 61,
+      "glyph": "┌"
+    },
+    {
+      "column": 46,
+      "row": 62,
+      "glyph": "└"
+    },
+    {
+      "column": 131,
+      "row": 54,
+      "glyph": "┘"
+    },
+    {
+      "column": 93,
+      "row": 70,
+      "glyph": "┌"
+    },
+    {
+      "column": 139,
+      "row": 5,
+      "glyph": "┌"
+    },
+    {
+      "column": 69,
+      "row": 47,
+      "glyph": "┌"
+    },
+    {
+      "column": 84,
+      "row": 82,
+      "glyph": "┘"
+    },
+    {
+      "column": 68,
+      "row": 68,
+      "glyph": "┌"
+    },
+    {
+      "column": 61,
+      "row": 47,
+      "glyph": "┐"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586030",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  }
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "3A",
+    "evidence": "Native printed block is legible in node_montage; no matching A1 RX061 card-portion row."
+  },
+  {
+    "location": "5G",
+    "evidence": "Native printed block is legible in node_montage; no matching A1 RX061 card-portion row."
+  },
+  {
+    "location": "2N",
+    "evidence": "Native printed block is legible in node_montage; no matching A1 RX061 card-portion row."
+  },
+  {
+    "location": "3N",
+    "evidence": "Native printed block is legible in node_montage; no matching A1 RX061 card-portion row."
+  },
+  {
+    "location": "block lattice",
+    "evidence": "Human approved RX061 bank columns [50,73,97,120,143,166,189] after exact native left-edge measurements [2286,3208,4177,5112,6026,6953,7874] and bank-shift proof crop; see RX061 physical bank shift proof.json/png."
+  },
+  {
+    "location": "left row 63",
+    "evidence": "Native RX061 prints \"+KUSAR BIT 6 FUR YIAEI\". Enlarged native word crops show KUSAR and FUR; preserved literally with no semantic correction."
+  },
+  {
+    "location": "2C→3A",
+    "evidence": "upper_right_full.png: 2C D13 row-19 output rises on column 84 into 3A D10 row-5 input."
+  },
+  {
+    "location": "1D D11→4A B05",
+    "evidence": "D_E_native_exact_wide.png and 4A_B05_route_native_exact.png: 1D D11 row-26 output rises on the c89 run to row 11, crosses toward the c108 riser, and ends at 4A B05 row-5 input. The 1D upper bare output is a separate lower bend via c91 into 3D bare row 26."
+  },
+  {
+    "location": "RX001GF4→D09 chain",
+    "evidence": "upper_right_full.png and 3C/3D/3E/3F terminal crops: INHIBIT NEXT ADDRESS 6-7 enters at row 9, descends next to bank 3, joins through printed diamonds at C/D/E D09 and terminates in F D09."
+  },
+  {
+    "location": "DS365AA4→3E bare row 33",
+    "evidence": "left_0.png, top_normal_set_full_native.png, 3E_bare33_vertical_full.png, and 3E_bare33_origin_zoom.png: NORMAL SET ROSAR BIT 6 and its DS365AA4 row-11 continuation join at a printed diamond; the row-10 rail bends down at c69, crosses the 1C→2C route and two E horizontals without a source junction, and enters 3E bare row-33 input."
+  },
+  {
+    "location": "DS217AP4→1D",
+    "evidence": "left_row23_enlarge.png and left_0.png: J97+J21◇EFF R00 TO ROSAR 6 row 26 joins the DS217AP4 row-27 continuation at a printed diamond before 1D D11."
+  },
+  {
+    "location": "DS217AY4→1G",
+    "evidence": "left_1.png: J103 TO ROSAR 6 7 10 row 47 joins DS217AY4 row 48 at the printed diamond before 1G B07."
+  },
+  {
+    "location": "DS211AA4→1M",
+    "evidence": "left_2.png: SET ROSAR 6 SCAN row 82 joins DS211AA4 row 83 at the printed diamond before 1M D06."
+  },
+  {
+    "location": "local input straps",
+    "evidence": "Native terminal crops show isolated short vertical straps directly between the paired left input pins at 1C, 1E, 1F, 1H, and 1J. They have no visible external driver; JSON driver is null."
+  },
+  {
+    "location": "4E→5G upper",
+    "evidence": "banks345_1.png: 4E triangle D02 row-33 output descends into 5G upper triangle input row 45."
+  },
+  {
+    "location": "4H→5G lower",
+    "evidence": "banks345_2.png and banks567_1.png: 4H triangle D02 row-54 output rises into 5G lower triangle input row 48."
+  },
+  {
+    "location": "5G→6F/6G",
+    "evidence": "banks567_1.png: 5G T output joins the right vertical at printed diamonds into 6F D04 row 40 and 6G D02 row 47; vertical continues to the row-30 right continuation."
+  },
+  {
+    "location": "6F→right",
+    "evidence": "banks567_1.png and right_1.png: 6F B03✲ output runs directly right to RX231, ROSAR BIT 6 EQUALS 1."
+  },
+  {
+    "location": "6G→7H",
+    "evidence": "banks567_1.png and banks567_2.png: 6G B12 output descends on the right vertical to a printed diamond at 7H B09 row 54."
+  },
+  {
+    "location": "7H→right",
+    "evidence": "banks567_2.png and right_1.png: 7H D11✲ output runs directly right to KT011, IND ROSAR 6."
+  },
+  {
+    "location": "2K→bank 3 control chain",
+    "evidence": "banks123_0.png through banks123_2.png, 3G_bare45_source_vertical.png, and 3G_bare45_source_card.png show the uninterrupted c87 vertical from 2K bare row-68 output to 3C pin 2 row 21. Printed diamonds feed 3D pin 2, 3E bare row 35, 3F pin 2, 3G bare row 45, 3G pin 2, 3H pin 2, and 3J pin 2. The 2G B13 horizontal bridges this vertical without a diamond."
+  },
+  {
+    "location": "bank 3→4E",
+    "evidence": "banks345_0.png and banks345_1.png show distinct right routes from 3C row 19 to 4E row 31, 3D row 26 to 4E row 32, 3E row 33 to 4E row 34, and 3F row 40 to 4E row 35. All crossing guides lack source diamonds."
+  },
+  {
+    "location": "bank 3→4H",
+    "evidence": "banks345_2.png shows distinct right routes from 3G row 47, 3H row 54, 3J row 61, and 3K row 68 to 4H bare rows 52, 53, 55, and 56 respectively."
+  },
+  {
+    "location": "1E→3E bare row 34",
+    "evidence": "E_native_exact_wide.png and E_crossing_zoom.png: 1E bare row-31 output descends at the near-right vertical into 3E bare row-34 input, crossing rows 32 and 33 without a source diamond."
+  },
+  {
+    "location": "1F→3E bare row 32",
+    "evidence": "1E_3E_native_route.png: 1F bare row-38 output rises on the short vertical next to bank 1 and turns right on row 32 into 3E bare input."
+  },
+  {
+    "location": "1G/2G→bank 3 F bare inputs",
+    "evidence": "F_G_native_exact_wide.png: two previously omitted native upper bare output wires leave 1G at row 45 and 2G at row 45. The 1G wire rises to 3F bare row 40 and the 2G bare wire rises to 3F bare row 39. Crossings lack junction diamonds."
+  },
+  {
+    "location": "2G B13→5A D05",
+    "evidence": "5A_D05_source_context.png, 5A_D05_source_lower.png, c90_middle_detail.png, top_normal_set_full_native.png, and top_three_risers_zoom.png: 2G B13 row-47 output runs past the bridged c87 control vertical and bends upward at native x≈3895/c90. That uninterrupted vertical meets the row-10 upper horizontal, which continues right under 4A B05 to 5A D05 row-5 input. Its crossings with inhibit and the 4A riser have no diamond."
+  },
+  {
+    "location": "1J→2G B13",
+    "evidence": "H_K_native_exact_wide.png and J_native_exact.png: 1J bare row-59 output runs right to the vertical at the 2G B13 input anchor and rises into B13 row 47. The adjacent 2J B05 input vertical is a separate lower-source route."
+  },
+  {
+    "location": "2J bare→3H bare",
+    "evidence": "c84_H_J_K_native.png: native 2J upper bare row-59 output was missing from draft. It rises on the c84 guide into 3H bare row-55; the c84 route from 2M below is physically separate."
+  },
+  {
+    "location": "2M→3J",
+    "evidence": "c84_H_J_K_native.png and banks123_3.png: 2M B04 row-82 output rises on the lower c84 guide into 3J B03 row-62 input. Its line is separate from the 2J upper bare output above."
+  },
+  {
+    "location": "2J→3N",
+    "evidence": "H_K_lower_routes_native.png and banks123_3.png: 2J B05 row-61 output descends on the c90 guide to 3N B10 row-89 input, crossing four lower horizontal rails without printed diamonds."
+  },
+  {
+    "location": "lower left controls",
+    "evidence": "lower_left_caption_rows_native.png, lower_bend_native_exact.png, and K_lower_native_exact.png: RX003CF4 row 72 branches at the c68 diamond into 2K 2D05 and continues via c92 into 3K D05; RX001FA4 row 74 climbs at c91 into 3H B08; RX001CD4 row 75 climbs at c89 into 3H D06. Crossings are unjoined."
+  },
+  {
+    "location": "KUSAR→2J B05",
+    "evidence": "row65_native_exact.png and pin8_B05_lower_junction_native.png: KUSAR row 63 and KM831AS4 row 64 join at the printed diamond and descend to the distinct 2J B05 input vertical; its row-66 horizontal crosses the adjacent long pin-8 vertical without a diamond."
+  },
+  {
+    "location": "1H→3F pin 8",
+    "evidence": "H_output_to_E_native.png: 1H upper bare output row 52 climbs on the c62 vertical into 3F pin 8 row 41. The adjacent c61 verticals for 1F bare, 1G bare, and 1G B07 are physically separate."
+  },
+  {
+    "location": "lower right rails",
+    "evidence": "K_left_lower_native_exact.png, lower_bend_native_exact.png, lower_cross_page_routes.png, F8_vertical_upper_native.png, F8_vertical_lower_native.png, H_output_to_E_native.png, and banks567_3.png: the 1G B07 output descends on the c61 vertical into the RX071 row-73 right continuation. The 6G B12/7H B09 vertical descends through row 73 without a junction and joins the row-75 KK101 continuation at a diamond; that row 75 returns left to 3K B12."
+  },
+  {
+    "location": "1M→2M and 2N",
+    "evidence": "banks123_3.png: 1M has two distinct right output wires, previously only the D06 row-82 pin was entered. The bare row-80 output bends into 2M bare row-82 input; D06 row-82 output descends into 2N D09 row-89 input."
+  }
+]
+
+Original scan order
+Before RX051 READ ONLY STORAGE ADDRESS REG BITS 3-4 AND 5.tif
+After RX071 READ ONLY STORAGE ADDRESS REGISTER BIT 7.tif

@@ -1,0 +1,89 @@
+DS113 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 23,
+  "A1_total_card_portions": 24,
+  "A1_mismatches": [
+    "AX"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 43,
+  "documented_A1_discrepancies": [
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "AX",
+      "detail": "High independent native crop1-2 confirms card0470A6K with appendedK in c195 right-border cell; preserve native suffix."
+    }
+  ],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "printer_grid",
+    "evidence": "245 columns by 103 rows. Fixed anchors and footer checked against native scan. Header r0c235, title r93-102c210-241, revision r93c173."
+  },
+  {
+    "kind": "unreadable_source",
+    "node": "AA",
+    "literal": "�12",
+    "source_bounds": [
+      2200,
+      600,
+      2350,
+      700
+    ],
+    "detail": "First input pin character damaged; readable suffix 12. B12 is plausible from the native output label but is not silently substituted. Neighbors source crop AA exact.png."
+  },
+  {
+    "kind": "native_commoned_outputs",
+    "node": "AK",
+    "pins": [
+      "D10",
+      "B12"
+    ],
+    "detail": "Native return rail commons the same card portion output pins; no source diamond printed. AX D02/D04 are commoned at the native output diamond."
+  },
+  {
+    "kind": "source_review",
+    "detail": "Native full-page and all nine source crops reviewed. AC/AD suffixes rechecked isolated at native scale: A6/A8. Decoder and local routes independently traced; both EFF IC annotations print DS215AF4 while hanging references differ. Independent review pending."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "AX",
+    "detail": "High independent native crop1-2 confirms card0470A6K with appendedK in c195 right-border cell; preserve native suffix."
+  },
+  {
+    "kind": "independent_literal_correction",
+    "detail": "High source review confirms AX lower floating3 atc184r49, physical inputblank atc187. Hardware continuation rows95/97/99/101 startc36, two columns right of main tags c34; secondary continuation remains in its printed column. Footer division literalSDD."
+  }
+]
+
+Original scan order
+Before DS111 NORMAL AND FAST BR SET ROSAR BIT 11.tif
+After DS121 NORMAL BRANCH SET ROSAR BIT 11.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T15:22:29.564646+00:00",
+  "evidence": "Independent high-agent native review and root whole-page comparison: all 43 input owners and card/output routes. AX lower input has blank physical port and floating numeral 3 at c184/r49; printed 0470A6K suffix retained with A1 base A6 noted. Connector continuations at c36, SDD footer, AK common outputs and AX diamond match source. One damaged AA pin remains unreadable. Validation passes."
+}
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BD: R TO -> R T0, BE: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

@@ -1,0 +1,150 @@
+DS412 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 31,
+  "A1_mismatches": [
+    "DD",
+    "GD",
+    "AF",
+    "AH",
+    "AM",
+    "BM",
+    "CM"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 31,
+  "documented_A1_discrepancies": [
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "AF",
+      "printed_location": "C-A3K6",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "AH",
+      "printed_location": "C-E3F4",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "AM",
+      "printed_location": "C-A3F4",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "BM",
+      "printed_location": "C-A3F4",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "CM",
+      "printed_location": "C-F3G4",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "DD",
+      "printed_location": "C-E4B3",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    },
+    {
+      "kind": "native_A1_discrepancy",
+      "node": "GD",
+      "printed_location": "C-E4B4",
+      "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+    }
+  ],
+  "passed": true,
+  "unsupported_characters": [],
+  "lowercase_characters": [],
+  "footer_spacing_errors": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "AF",
+    "printed_location": "C-A3K6",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "AH",
+    "printed_location": "C-E3F4",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "AM",
+    "printed_location": "C-A3F4",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "BM",
+    "printed_location": "C-A3F4",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "CM",
+    "printed_location": "C-F3G4",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "DD",
+    "printed_location": "C-E4B3",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_A1_discrepancy",
+    "node": "GD",
+    "printed_location": "C-E4B4",
+    "evidence": "Printed native location retained. Independently checked by ds_high against native scan. A1 board disagrees with source."
+  },
+  {
+    "kind": "native_trace",
+    "evidence": "All 31 gate fields and pin labels read from native crops. Seven AR unlabelled outputs feed inverter inputs; distinct labelled AR outputs feed passive termination rails. Clock chain and native diamonds traced. "
+  },
+  {
+    "kind": "printer_grid",
+    "evidence": "245 columns by 103 rows. Fixed anchors and footer checked against native scan. Header r0c235, title r93-102c210-241, revision r93c173."
+  },
+  {
+    "kind": "independent_native_correction",
+    "evidence": "Complete independent DS412 audit confirms title lines start c213. Native 412 footer exact.png. All 31 card fields, inputs, rails and outputs checked; seven native location/A1 discrepancies retained literally."
+  }
+]
+
+Original scan order
+Before DS411 ROS SENSE LATCH BITS 55-61 PARITY AND DISTRIBUTION.tif
+After DS421 ROS SENSE LATCH BITS 62-68 PARITY AND DISTRIBUTION.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T14:12:25.562567+00:00",
+  "evidence": "Complete independent native review: all 31 card fields and input owners, passive rails, clock chain, direct and negative outputs, hanging references, connector table and footer. Title lines restored to c213. Seven printed location/A1 differences remain literal and documented. Validation passes."
+}
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BA: R TO -> R T0, BB: R TO -> R T0, CA: R TO -> R T0, CB: R TO -> R T0, CC: R TO -> R T0, AN: R TO -> R T0, BN: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

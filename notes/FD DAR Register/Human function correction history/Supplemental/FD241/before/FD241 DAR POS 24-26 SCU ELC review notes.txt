@@ -1,0 +1,107 @@
+FD241 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 30,
+  "A1_total_card_portions": 30,
+  "A1_mismatches": [],
+  "A1_source_DOT_exemptions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 48,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "geometry_passed": true,
+  "candidate_provisional": true,
+  "independent_review_complete": false,
+  "final_printer_grid_placement_accepted": false
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "Source-specific grid identifiers",
+    "evidence": "BR2D/BQ2G/BP2L and AB1G/AG2H are literal native IDs, resolved from individual crops rather than rough overview labels."
+  },
+  {
+    "field": "Printed numeric controls and output suffixes",
+    "evidence": "All3 selector A lower pins retain numeric3; all6 reset/just-read legs numeric4; OR upper legs numeric6. BB/BD outputs plainB02✲T/D02✲T; BA/BC wedgeB02✲/D07✲; BL wedgeD10T, BN plainD02✲, BM plainB02✲. Native handwriting dash marks omitted."
+  },
+  {
+    "field": "Control target sets",
+    "evidence": "Native ordered rails111SCAN,112JUST,113RESET,114READ; source middle-tap diamonds and row58–61 origin diamonds retained. Per-bit feedback separate rail115; no adjacent-rail ownership inference."
+  },
+  {
+    "field": "Lower double N branch",
+    "evidence": "BL D10T branches at source diamond161,75 to BN B03 and BM B04. BN D02✲ feeds +INDDARBIT26 only; BM B02✲ drives BK D13 and +DARBIT26 through row89 return."
+  },
+  {
+    "field": "Footer/source review",
+    "evidence": "All30 native gate fields/ports and full page regions/routes/control rails/outputs/header/footer/table/revisions visually inspected. SourceLOG226, two-line titleSCUELC, BS, exact humanP.N. and oneblank before right border retained; no filename/header mismatch."
+  },
+  {
+    "field": "Owner control-rail correction before independent review",
+    "evidence": "Full-size rail_top/middle/bottom crops corrected READ to AP.B10/AS.B07/BJ.B10 and SCAN to AN.B12/AR.D06/BH.B12. Middle-bank RESET is AT.4D09 and JUST is AT.4D05; top/bottom RESET is AQ/BK.4D12 and JUST AQ/BK.4B13. Only four middle target diamonds and four origin diamonds appear on these source rails."
+  },
+  {
+    "field": "Literal corrections",
+    "evidence": "BF STBUS58 output source is FS241, not preliminary FS281. AE/AG/BG source function is R TO (letter O). BF upper D05 has damaged upper-left bearing; source closed right stroke and lower curve support D, retained with focused BF.png evidence."
+  }
+]
+
+Original scan order
+Before FD211 DAR POS 21-23 TAU ELC.tif
+After FD271 DAR POS 27-29 CE ELC AND OWN OTC.tif
+
+Owned candidate field/pin/render audit
+{
+  "page": "FD241",
+  "status": "Owning agent fields/ports/render checked; independent review pending",
+  "source_hash_sha256": "e5c1ca28ae4c35dd07d0577dd2000ffba237efa47d0911c6f9f270cd32cf1daf",
+  "validation": {
+    "A1_card_portions_matched": 30,
+    "A1_total_card_portions": 30,
+    "A1_mismatches": [],
+    "A1_source_DOT_exemptions": [],
+    "missing_input_owners": [],
+    "multiple_target_owners": {},
+    "different_net_shared_segments": [],
+    "disconnected_nets": [],
+    "junction_errors": [],
+    "wire_paths_inside_blocks": [],
+    "endpoint_errors": [],
+    "printed_input_terminals": 48,
+    "passed": true,
+    "unsupported_characters": [],
+    "text_collisions": [],
+    "hidden_junctions": [],
+    "unreadable_characters": 0,
+    "geometry_passed": true,
+    "candidate_provisional": true,
+    "independent_review_complete": false,
+    "final_printer_grid_placement_accepted": false,
+    "visible_source_field_errors": [],
+    "pin_adjacency_errors": [],
+    "canvas_columns": 245,
+    "canvas_rows": 103,
+    "preview_pixel_match_to_text": true,
+    "all_grid_IDs_two_strokes_visible": true
+  },
+  "artifact_sha256": {
+    ".txt": "a8d3a1cdfd63e918762562fab995f510d89ff305723d1a8cf53c05d1241701ac",
+    ".json": "05d91ebc53ff65f6f90eb453f49830c745eb992a871f62955f8a7d19ce60dbfc",
+    " preview.png": "3cdaa0d4ab26ad85b49fbd51bf38f6cc2604d8693e4c507e20033a9e7694fc6a"
+  }
+}
+
+INDEPENDENT REVIEW: ACCEPTED
+Reviewer: cw031 independent native source review
+Native fields, pins, routes, labels, footer and final preview verified.

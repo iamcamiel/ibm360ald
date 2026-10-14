@@ -1,0 +1,50 @@
+XM025 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 24,
+  "A1_direct_page_card_portions": 24,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 24,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native XM025 source",
+    "evidence": "All 24 physical card portions, six receiver groups, six inversion branches, right-side parity labels, and footer checked against native tiles in tmp/ald-text/xm/mid/XM025. Full rendered preview inspected."
+  },
+  {
+    "location": "Crossed lower input rails",
+    "evidence": "The 20-23 even source crosses the left K-row group and enters AR at 4K; the 24-27 even source enters AD at 1K. The native output labels follow these drivers: AL/BQ are 24-27, AY/BP are 20-23."
+  },
+  {
+    "location": "Independent audit",
+    "evidence": "Complete native overview, nine enlarged source sectors, focused lower rail crop, footer and full 245x103 preview agree. Accepted after independent source-bound audit."
+  }
+]
+
+Original scan order
+Before XM023 LM REG BIT RCVRS FOR PARITY PREDICT.tif
+After XM027 LM REG BIT RCVRS FOR PARITY PREDICT.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AV: R TO -> R T0, AX: R TO -> R T0, AM: R TO -> R T0, AZ: R TO -> R T0, BG: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
