@@ -1,0 +1,773 @@
+{
+  "nodes": [
+    {
+      "box": "C1",
+      "leg": "000000",
+      "address": "0100",
+      "fields": [
+        "A 0+T",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "0X──CA",
+      "comments": [
+        "STORE HALF",
+        "D21-23 TO STC",
+        "T TO B",
+        "CK D23"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        11
+      ]
+    },
+    {
+      "box": "C2",
+      "leg": "0X",
+      "address": "7C8",
+      "fields": [
+        "C ABC-1"
+      ],
+      "exit": "XX──CB",
+      "comments": [
+        "ABC-1 TO ABC"
+      ],
+      "grid": [
+        47,
+        11
+      ]
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "043E",
+      "fields": [
+        "S SET-MARK*STC",
+        "C ABC-1"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "ABC-1 TO ABC",
+        "SET MARK PER",
+        "STC"
+      ],
+      "grid": [
+        69,
+        11
+      ]
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "03BE",
+      "fields": [
+        "B 0+U",
+        "B →ST     AB→U",
+        "S MS-REQ*D-3",
+        "C ABC,STC+1"
+      ],
+      "exit": "XX──CD",
+      "comments": [
+        "REQ STORAGE",
+        "B-BYTE TO ST",
+        "ADD 1 TO ABC",
+        "AND STC",
+        "MASK SBB TO SB"
+      ],
+      "grid": [
+        91,
+        11
+      ]
+    },
+    {
+      "box": "C5",
+      "leg": "XX",
+      "address": "7CB",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "B 0+U",
+        "B →ST     AB→U",
+        "S SET-MARK*STC",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X1──CE",
+      "comments": [
+        "ADDRESS COMPARE",
+        "B-BYTE TO ST",
+        "SET MARK",
+        "SET ASC"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        113,
+        11
+      ]
+    },
+    {
+      "box": "E2",
+      "leg": "010000",
+      "address": "0110",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "S SET-MARK*J61",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X1──EB",
+      "comments": [
+        "STORE FULL",
+        "ADDRESS COMPARE",
+        "SET MARKS",
+        "CK D22-D23"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        47,
+        22
+      ]
+    },
+    {
+      "box": "G1",
+      "leg": "000010",
+      "address": "0102",
+      "fields": [
+        "A 0+T",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "XX──GA",
+      "comments": [
+        "STORE CHARACTER",
+        "D21-23 TO STC",
+        "T TO B"
+      ],
+      "grid": [
+        25,
+        33
+      ]
+    },
+    {
+      "box": "G3",
+      "leg": "XX",
+      "address": "04BE",
+      "fields": [
+        "S MS-REQ*D-3",
+        "C ABC-1"
+      ],
+      "exit": "XX──GC",
+      "comments": [
+        "REQ STORAGE",
+        "ABC-1 TO ABC"
+      ],
+      "grid": [
+        69,
+        33
+      ]
+    },
+    {
+      "box": "L1",
+      "leg": "000011",
+      "address": "0103",
+      "fields": [
+        "A 0+D",
+        "D J7→ABC"
+      ],
+      "exit": "XX──LA",
+      "comments": [
+        "INSERT CHAR",
+        "D21-23 TO ABC"
+      ],
+      "grid": [
+        25,
+        55
+      ]
+    },
+    {
+      "box": "L2",
+      "leg": "XX",
+      "address": "063E",
+      "fields": [
+        "C STC-1"
+      ],
+      "exit": "XX──LB",
+      "comments": [
+        "STC-1 TO STC",
+        "STC 7"
+      ],
+      "grid": [
+        47,
+        55
+      ]
+    },
+    {
+      "box": "L3",
+      "leg": "XX",
+      "address": "05BE",
+      "fields": [
+        "D MS→AB",
+        "C EEOP"
+      ],
+      "exit": "XX──LC",
+      "comments": [
+        "MDBO TO AB",
+        "EARLY END OP"
+      ],
+      "grid": [
+        69,
+        55
+      ]
+    },
+    {
+      "box": "L4",
+      "leg": "XX",
+      "address": "053E",
+      "fields": [
+        "B 0+U",
+        "B →ST     AB→U",
+        "L W◺E2"
+      ],
+      "exit": "X1──LD",
+      "comments": [
+        "CHAR TO T56-63",
+        "WRITE R1"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        91,
+        55
+      ]
+    },
+    {
+      "box": "Q1",
+      "leg": "000001",
+      "address": "0101",
+      "fields": [
+        "A 0+D",
+        "A →T",
+        "L W◺E2",
+        "C EEOP"
+      ],
+      "exit": "X1──QA",
+      "comments": [
+        "LOAD ADDRESS",
+        "D40-63 TO T",
+        "WRITE R1"
+      ],
+      "R_line": "R 0",
+      "grid": [
+        25,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      14,
+      "QT011.SDE"
+    ],
+    [
+      2,
+      15,
+      "(000000)"
+    ],
+    [
+      2,
+      16,
+      "(000001)"
+    ],
+    [
+      2,
+      17,
+      "(000010)"
+    ],
+    [
+      2,
+      18,
+      "(000011)"
+    ],
+    [
+      2,
+      19,
+      "(010000)"
+    ],
+    [
+      228,
+      14,
+      "QE021──CEE"
+    ],
+    [
+      228,
+      15,
+      "(X1)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583813"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QE001"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "INSERT CHAR LOAD ADDRESS"
+    ],
+    [
+      200,
+      101,
+      "HALF FULL CHAR STORE"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      254,
+      95
+    ],
+    [
+      148,
+      95,
+      254,
+      110
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        12,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        21,
+        14
+      ],
+      [
+        21,
+        80
+      ]
+    ],
+    [
+      [
+        21,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        21,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        21,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        21,
+        80
+      ],
+      [
+        25,
+        80
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        228,
+        14
+      ]
+    ],
+    [
+      [
+        132,
+        14
+      ],
+      [
+        132,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        132,
+        25
+      ]
+    ],
+    [
+      [
+        40,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        36
+      ],
+      [
+        109,
+        36
+      ],
+      [
+        109,
+        16
+      ],
+      [
+        113,
+        16
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        62,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        132,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        132,
+        80
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      21,
+      14,
+      "O"
+    ],
+    [
+      21,
+      25,
+      "O"
+    ],
+    [
+      21,
+      36,
+      "O"
+    ],
+    [
+      21,
+      58,
+      "O"
+    ],
+    [
+      132,
+      14,
+      "O"
+    ],
+    [
+      132,
+      25,
+      "O"
+    ],
+    [
+      132,
+      58,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "review_notes": [
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1398.48,
+    "first_header_y": 212.86,
+    "column_step": 663.67,
+    "row_step": 495.77
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QE001 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QE001",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "bea6b27035a43991d8fd897df6046a737e87ad86b48af1dd9b5a54b55e446356",
+    "text_sha256": "0dbff3d1ed33c124d8b02099656b2ccd1bd3cd218515326c874fc3bfd8377af1",
+    "content_sha256": "fc1c89a71e871c0294bd6eafdb2ab03fefe24afd66a938b89f74551b031632d2",
+    "verification_sha256": "e7151fbb005630ff121687df7225b83c62433d9a8036203f2d6df86116ec2a3b",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QE Convert, Branch, Execute CAS\\QE001 INSERT CHAR LOAD ADDRESS HALF FULL CHAR STORE.tif",
+    "source_sha256": "cf333bd7efb86859450092e4b5dc6ad5a2053528544c50805c788938ae9cae44",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:38.436778+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

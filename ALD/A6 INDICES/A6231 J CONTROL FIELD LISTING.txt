@@ -1,0 +1,137 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                                000 A6231 01
+
+
+
+          J FIELD     CONDITIONAL BRANCHES (ROSAR BIT 11) AND FUNCTIONAL BRANCHES
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 62-68
+                                                                                                                                                                              R    DREG(18-23)      1100000 J96    SET ROSAR 09 IF D18-21=0                                                                                  DS051
+                                                                                                                                                                                                                             10 IF D22=1                                                                                     DS061
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                                                                    11 IF D23=1                                                                                     DS075
+          CHAR                      ORDER                                                                                                                                     R    ✲ NEXT-INST✲IC   1100001 J97    SET ROSAR 06 IF EFFECTIVE R00=1                                                                           DS217
+                                                                                                                                                                                                                             07 IF EFFECTIVE R01=1                                                                           DS217
+                                                                                                                                                                                                                             08 IF EFFECTIVE RX FORMAT AND R12-15 = 0000                                                     DS217
+          R    0                0000000 J0     RESET ROSAR 11 (UNCONDITIONAL)                                                                                                                                                09 IF NOT EFFECTIVE RR FORMAT AND 4 BITS OF Q                                                   DS011.RX091
+          R    1                0000001 J1     SET ROSAR 11 (UNCONDITIONAL)                                                                              DS111                                                                  SELECTED BY IC21. 22 = 0000
+          R    W-CRY            0000010 J2     SET ROSAR 11 IF CARRY OUT OF SERIAL ADDER (STAH NOT USED)                                                 DS111                                                               10 IF IC21=1                                                                                    DS217
+          R    T(32)            0000011 J3     SET ROSAR 11 IF T32=1                                                                                     DS111                                                               11 IF IC22=1                                                                                    DS101
+          R    JCRY28           0000100 J4     SET ROSAR 11 IF PAL 28 CARRY = 0                                                                          DS111                R    DECIMAL          1100010 J98    SET ROSAR 09 IF E12-15 = 0000                                                                             DS051
+          R    LS→PB            0000101 J5     SET ROSAR 11 IF LOCAL STORE PUSHBUTTON ON                                                                 DS122                                                               10 IF E08-11 = 0000 OR STC = 000                                                                DS061
+          R    ◺TCS             0000110 J6     SET ROSAR 11 IF TIME CLOCK STEP                                                                           DS151                                                               11 IF ABC DOES NOT = 000 OR E12-15 = 0000                                                       DS071.DS101
+          R    ABC=0            0000111 J7     SET ROSAR 11 IF ABC = 000                                                                                 DS111                R    IC(21-22)        1100011 J99    SET ROSAR 10 IF IC21=1                                                                                    DS061
+          R    J47=0.OFLD       0001000 J8     SET ROSAR 11 IF PAL63=0 AND (STAG AND F4-7=POS OR NOT STAG                                                DS161                                                               11 IF IC22=1                                                                                    DS075
+                                               AND F4-7=NEG.                                                                                                                  R    W1=(01-15)       1100100 J100   SET ROSAR 10 IF SAL04-07 = 1 THRU 4 OR 10 THRU 15                                                         DS101
+          R    J57=0            0001001 J9     SET ROSAR 11 IF PAL40-64=0 (FOR WORD OVERLAP TEST)                                                        DS111                                                               11 IF SAL04-07 = 5 THRU 9 OR 10 THRU 15                                                         DS101
+          R    J47=0            0001010 J10    SET ROSAR 11 IF PAL32-63=0                                                                                DS111                R    STAE.F1SGN+      1100101 J101   SET ROSAR 10 IF STAE = 1                                                                                  DS061
+          R    BCNMΩ            0001011 J11    SET ROSAR 11 IF CONDITION NOT MET FOR BRANCH ON CONDITION OR                                              DS141                                                               11 IF F04-07 = PLUS SIGN                                                                        DS075
+                                               RR FORMAT AND E12-15=0                                                                                                         R    E(04-07)→ROA     1100110 J102   SET ROSAR 08 IF E04=1                                                                                     DS217
+          R    ◺LMT             0001100 J12    SET ROSAR 11 IF LIMIT LATCH IS ON                                                                         DS151                                                               09 IF E05=1                                                                                     DS217
+          R    IC3=3            0001101 J13    SET ROSAR 11 IF IC21-22=11                                                                                DS113                                                               10 IF E06=1                                                                                     DS061
+          R    ¬F04.            0001110 J14    SET ROSAR 11 IF F04=0 AND PAL CARRY 32=1                                                                  DS113                                                               11 IF E07=1                                                                                     DS071
+          R    D2=3             0001111 J15    SET ROSAR 11 IF D21-22=11                                                                                 DS141                R    E(02-07)→ROA     1100111 J103   SET ROSAR 06 IF E02=1                                                                                     DS217
+          R    E3≠1             0010000 J16    SET ROSAR 11 IF E12-15 DOES NOT = 001                                                                     DS141                                                               07 IF E03=1                                                                                     DS217
+          R    E3≠3             0010001 J17    SET ROSAR 11 IF E14-15 DOES NOT = 11                                                                      DS121                                                               08 IF E04=1                                                                                     DS217
+          R    ¬STAC            0010010 J18    SET ROSAR 11 IF STAC = 0                                                                                  DS113                                                               09 IF E05=1                                                                                     DS217
+          R    MCW04            0010011 J19    SET ROSAR 11 IF MAINTENANCE CONTROL WORD 04=1                                                             DS131                                                               10 IF E06=1                                                                                     DS217
+          R    XECTGR           0010100 J20    SET ROSAR 11 IF EXECUTE TGR = 1                                                                           DS131                                                               11 IF E07=1                                                                                     DS071
+          R    STO→PB           0010101 J21    SET ROSAR 11 IF STORE PUSH BUTTON ON                                                                      DS122                R    EDIT             1101000 J104   SET ROSAR 09 IF ABC = 111                                                                                 DS051
+          R    E(03)            0010110 J22    SET ROSAR 11 IF E03=1                                                                                     DS141                                                               10 IF E08-15 = 0000 OR STC = 111                                                                DS065
+          R    STC=7            0010111 J23    SET ROSAR 11 IF STC=111                                                                                   DS121                                                               11 IF E07=1 AND EDIT AND MARK LATCH = 1                                                         DS075
+          R    ¬E3.RR           0011000 J24    SET ROSAR 11 IF RR FORMAT AND E12-15 = 0000                                                               DS141                R    FLPT-UN.COMP     1101001 J105   SET ROSAR 10 IF FLTG. PT. UNNORMALIZED OPERATION                                                          DS061
+          R    DIS→PB           0011001 J25    SET ROSAR 11 IF DISPLAY PUSHBUTTON ON                                                                     DS122                                                               11 IF FLTG. PT. COMPARE OPERATION                                                               DS075
+          R    HSMOVE           0011010 J26    SET ROSAR 11 IF E08-15 GREATER THAN 6 AND BOTH ABC.                                                       DS121                R    ◺W(01-02)        1101010 J106   SET ROSAR 10 IF SAL BIT 01 IS ON                                                                          DS041
+                                               AND STC=000                                                                                                                                                                   11 IF SAL BIT 02 IS ON                                                                          DS101
+          R    ◺ATRSEL          0011011 J27    SET ROSAR 11 IF RECEIVE ATR SELECT IS ON                                                                  DS171                R    LOGIC-COMP       1101011 J107   SET ROSAR 09 IF SAL00-07 = 0                                                                              DS051
+          R    UFLD             0011100 J28    SET ROSAR 11 IF SAL0=1 AND INGATING NOT INHIBITED OR F0=1                                                 DS151                                                               10 IF (ABC = 111 AND SAL00-07 = 01 OR (SAL00-07                                                 DS065
+                                               AND INGATING INHIBITED (UNDERFLOW)                                                                                                                                               DOES NOT = 0 AND CARRY OUT OF S ADDER)
+          R    M/DVD            0011101 J29    SET ROSAR 11 IF DECIMAL MULTIPLY OR DIVIDE                                                                DS131                                                               11 IF STC = 111 OR E08-15 = 0                                                                   DS071.DS075
+          R    IPL◺PSW          0011110 J30    SET ROSAR 11 IF IPL OR PSW PUSHBUTTON ON                                                                  DS151                R    STAD.STAG        1101100 J108   SET ROSAR 10 IF STAD=1                                                                                    DS061
+          R    IC-PB            0011111 J31    SET ROSAR 11 IF SET INSTR. COUNTER PUSHBUTTON ON                                                          DS122                                                               11 IF STAG=1                                                                                    DS075
+          R    E3≠4             0100000 J32    SET ROSAR 11 IF E12-15 DOES NOT = 100                                                                     DS141                R    J1=0/1.J18=0     1101101 J109   SET ROSAR 10 IF PAL07-11 = 0 OR PAL06. 08-11 = ALL ONES                                                   DS065
+          R    E2=E3            0100001 J33    SET ROSAR 11 IF F08-11 = E12-15                                                                           DS121                                                               11 IF PAL07-67 = 0                                                                              DS075
+          R    STT→PB           0100010 J34    SET ROSAR 11 IF START PUSHBUTTON ON                                                                       DS122                R    SAS2.3.4         1101110 J110   SET ROSAR 09 IF SCAN ADDRESS SEQUENCER 2 = 1                                                              DS051
+          R    ◺FLT             0100011 J35    SET ROSAR 11 IF FLT MODE                                                                                  DS131                                                               10 IF SCAN ADDRESS SEQUENCER 3 = 1                                                              DS061
+          R    HLD◺IN           0100100 J36    SET ROSAR 11 IF HOLD I/O LINE (DIRECT CONTROL)                                                            DS151                                                               11 IF SCAN ADDRESS SEQUENCER 4 = 1                                                              DS075
+          R    SB→PB            0100101 J37    SET ROSAR 11 IF MAIN STORE BYTE PUSHBUTTON ON                                                             DS151                R    J1=0.J17=0       1101111 J111   SET ROSAR 10 IF PAL08-15=0                                                                                DS065
+          R    D22=1            0100110 J38    SET ROSAR 11 IF D22=1                                                                                     DS141                                                               11 IF PAL07-63=0                                                                                DS075
+          R    ABC=7            0100111 J39    SET ROSAR 11 IF ABC=111                                                                                   DS121                R    FLR              1111000 J120   SET ROSAR 08 IF CARRY OUT OF SERIAL ADDER (STAH NOT USED)                                                 DS365
+          R    ◺T(63)           0101000 J40    SET ROSAR 11 IF T REG BIT 63=1                                                                            DS171                                                               09 IF STAC = STAF                                                                               DS051
+          R    ◺IOCE            0101001 J41    SET ROSAR 11 IF IOCE OPERATION                                                                            DS171                                                               10 IF FLTG. PT. CHARACTERISTIC DIFFERENCE IS NOT                                                DS068
+          R    ◺IOERR           0101010 J42    SET ROSAR 11 IF IOCE ERROR                                                                                DS171                                                                  GREATER THAN 8 FOR SHORT OR NOT GREATER THAN
+          R    ◺STATE0          0101011 J43    SET ROSAR 11 IF IN STATE 0                                                                                DS171                                                                  16 FOR LONG
+          R    ◺REG-SET         0101100 J44    SET ROSAR 11 IF REGISTER SET PUSHBUTTON ON                                                                DS171                                                               11 IF SAL00-07=0                                                                                DS071
+          R    ◺512CRY          0101101 J45    SET ROSAR 11 IF CARRY INTO PAL 54                                                                         DS111                R    ✲ NEXT-INST✲D    1111001 J121   SET ROSAR 06 IF EFFECTIVE R00=1                                                                           DS217.RX091
+          R    ◺SAS=18          0101110 J46    SET ROSAR 11 IF SCAN ADDRESS SEQUENCER = 18                                                               DS151                                                               07 IF EFFECTIVE R01=1                                                                           DS217
+          R    E3=255           0110000 J48    SET ROSAR 11 IF E08-15 = 1111 1111                                                                        DS141                                                               08 IF EFFECTIVE RX FORMAT AND R12-15 = 0000                                                     DS217
+          R    SAS=0            0110001 J49    SET ROSAR 11 IF SCAN ADDRESS SEQUENCER = 0                                                                DS122                                                               09 IF NOT EFFECTIVE RR FORMAT AND 4 BITS OF Q                                                   DS215.RX091
+          R    STAB             0110010 J50    SET ROSAR 11 IF STAB = 1                                                                                  DS131                                                                  SELECTED BY D21. 22 = 0000
+          R    RELI/O           0110100 J52    SET ROSAR 11 IF RELEASE I/O LINE (DIRECT CONTROL)                                                         DS151                                                               10 IF D21=1                                                                                     DS065
+          R    SAS=13           0110101 J53    SET ROSAR 11 IF SCAN ADDRESS SEQUENCER = 13                                                               DS122                                                               11 IF D22=1                                                                                     DS101
+          R    STC≠3            0110111 J55    SET ROSAR 11 IF STC DOES NOT = 011                                                                        DS121                R    J(58-63)         1111010 J122   SET ROSAR 09 IF PAL58-61 = 0000                                                                           DS051
+          R    4<E3             1000000 J64    SET ROSAR 11 IF E12-13 DOES NOT = 00                                                                      DS141                                                               10 IF PAL62=1                                                                                   DS065
+          R    ABC≠3            1000001 J65    SET ROSAR 11 IF ABC DOES NOT = 011                                                                        DS121                                                               11 IF PAL63=1                                                                                   DS071
+          R    STAH             1000010 J66    SET ROSAR 11 IF STAH=1 (SERIAL ADDER CARRY)                                                               DS131                R    A1=0.J5=0        1111011 J123   SET ROSAR 10 IF A08-11 = 0000                                                                             DS061
+          R    CONTIN           1000011 J67    SET ROSAR 11 IF NOT MCW 6 AND FAIL TGR AND NOT UNCONDI-                                                                                                                       11 IF PAL40-43 = 0000                                                                           DS071
+                                                                TIONAL TERMINATION OR PASS TGR AND NOT FAIL                                                                   R    ALT.MS-TEST      1111100 J124   SET ROSAR 10 IF ALTERNATE TEST MUST BE FETCHED (FLT)                                                      DS061
+                                                                TGR AND NOT UNCONDITIONAL TERMINATION OR                                                                                                                     11 IF TEST IS IN STORAGE (FLT)                                                                  DS075
+                                                                REPEAT LATCH                                                                                                  R    ◺J47≠0.          1111101 J125   SET ROSAR 10 IF NO CARRY FROM PAL 32 AND PAL 32-63                                                        DS041
+          R    W=0              1000100 J68    SET ROSAR 11 IF SAL00-07 = 0                                                                              DS121                     ◺¬CRY   ◺CRY                                 NOT ZERO.
+          R    TCS/ST           1000101 J69    SET ROSAR 11 IF INTERRUPT OR TIME CLOCK STEP OR STOP TGR=1                                                DS122                                                               11 IF CARRY FROM PAL 32 AND PAL 32-63                                                           DS101
+          R    3<STC            1000111 J71    SET ROSAR 11 IF STC GREATER THAN 011                                                                      DS121                                                                  NOT ZERO.
+          R    J47=1            1010000 J80    SET ROSAR 11 IF PAL32-62 = 0 AND PAL63=1                                                                  DS111
+          R    STAA             1010001 J81    SET ROSAR 11 IF STAA = 1                                                                                  DS113
+          R    DECDIV           1010010 J82    SET ROSAR 11 IF DECIMAL DIVIDE OPERATION                                                                  DS131
+          R    ◺TIC             1010011 J83    SET ROSAR 11 IF (TIC OR GAP) AND NOT REPEAT FLT                                                           DS131
+          R    STAF=C           1010100 J84    SET ROSAR 11 IF STAF = STAC (SIGNS ALIKE)                                                                 DS113
+          R    ROS→PB           1010101 J85    SET ROSAR 11 IF ROS TRANSFER PUSHBUTTON ON                                                                DS122
+          R    JCRY4            1010110 J86    SET ROSAR 11 IF A CARRY EXISTS INTO PAL4 DURING FLPT OP.                                                  DS151
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                     15 MAY 70 713666                                 ┌──────────────────────────────────────────────────┐ A
+                                                                                                                                                                                                                                                                                                      │ J CONTROL FIELD LISTING                          │ 6
+                                                                                                                                                                                                                                                                                                      │ DATE 8 MAY 70 MACH. 7201-02                      │ 2
+                                                                                                                                                                                                                                                                                                      │                     FRAME      02                │ 3
+                                                                                                                                                                                                                                                                                                      │                     P.No.      2586559           │ 1
+                                                                                                                                                                                                                                                                                                      │                                                  │ 000
+                                                                                                                                                                                                                                                                                                      │ IBM CORP. SDD  PAGE        1                     │

@@ -1,0 +1,72 @@
+DR191 PARITY CHECKING - TRANSLATION NOTES
+
+Reference scan: DR ROS Decoder\DR191 PARITY CHECKING.tif
+Original scan: DR191 PARITY CHECKING.tif
+Original scan timestamp: 2014-12-08 10:57:21.025223
+Preceding scan: DR185 ROS DECODE FIELD 43-46 FOR MARKS CMD STORE TGR.tif
+Following scan: DR201 SCAN CODE CONTROL LINES DECODE FIELDS 17-19 25-30 31-35.tif
+Review record: tmp\ald-text\dr\root reviews.json
+
+PAGE NOTES
+
+DR191 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 43,
+  "A1_documented_native_exceptions": [
+    "DK"
+  ],
+  "A1_total_card_portions": 38,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 77,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "detail": "Native DX and EA print open-top UR. BL D06 and KB08 are separate output rails. Duplicate EG identifiers retained as printed, with unique internal IDs. Native 8D13,2B05,2B09,2B08,2D07 controls and output suffixT are preserved literally."
+  },
+  {
+    "detail": "UM left B03 reaches BIT44 source, and right B03 reaches BIT46 external reference. Preserve native physical wires without deriving direction from function meaning."
+  },
+  {
+    "detail": "All44 native function fields audited individually. DX/EA visibly print UR, BL/UL/DN closed OR. Native grid IDs UL/UQ/UM have open-top U glyphs, while physical-copy footer appears DQ4; retained literal discrepancy. Right labels43 and46 visibly print RUSLTH, retained as printed."
+  },
+  {
+    "detail": "Root independently checked A1344-01: five3312 F1/G1/H1/J1/K1 portions at02C-D4H5 are indexed toDR181 although native DR191 prints them. Exact A1 evidence attached per node. Native DK3311E3 has no indexed A1 record; A1 instead lists3311B1 atC2, so this single native discrepancy remains explicit."
+  },
+  {
+    "detail": "Four left labels individually confirmed open-top U in native labels.png: -RUS DATA LTH BIT34,+RUS DATA LTH BIT35,+RUS DATA LTH BIT34,-RUSLTH BIT45. Other visible closed O labels retained separately."
+  }
+]
+
+Original scan order
+Before DR185 ROS DECODE FIELD 43-46 FOR MARKS CMD STORE TGR.tif
+After DR201 SCAN CODE CONTROL LINES DECODE FIELDS 17-19 25-30 31-35.tif
+
+Source footer alignment audit
+{
+  "location": "SOURCE TITLE FRAME CALIBRATION",
+  "source_crop": "D:\\Github\\IBM360\\tmp\\ald-text\\dr\\footer-audit\\DR191 native footer.png",
+  "evidence": "Native exact footer frame visually inspected. Titles centered within c211..240; DATEc211/datec218/MACH.c227/machinec233, LOGc211/valuec222/FRAMEc227/frame02c239, P.N.c227/partc233, IBMc211/CORP.c215/SDDc223 where visibly printed/BLK.c227/blockc239. No non-footer text or topology changed.",
+  "SDD_printed": true,
+  "native_block": "EH",
+  "title_columns": [
+    218
+  ]
+}
+All non-footer cells and non-footer JSON/topology/approval fields remain identical; see tmp/ald-text/dr/footer-audit/Footer diff ledger.json.

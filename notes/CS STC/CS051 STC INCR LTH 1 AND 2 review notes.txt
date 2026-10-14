@@ -1,0 +1,99 @@
+CS051 STC INCR LTH 1 AND 2 - TRANSLATION NOTES
+
+Reference scan: CS STC\CS051 STC INCR LTH 1 AND 2.tif
+Original scan: img20141208_09353468.tif
+Original scan timestamp: 2014-12-08 09:35:34.680000
+Preceding scan: CS041 STC INCR LTH 0.tif
+Following scan: CS061 STC DECODE.tif
+Review record: tmp\ald-text\cs\CS root reviews.json
+
+PAGE NOTES
+
+CS051 source review
+
+View TXT with JuliaMono and wrapping disabled. Canvas 245 columns × 103 rows. 32 printed blocks; 68 input terminals; 48 connected nets; 28 reviewed source diamonds.
+
+{
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 26,
+  "A1_mismatches": [
+    "BC"
+  ],
+  "noncard_blocks": 2,
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 68,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1,
+  "known_source_A1_exception": {
+    "node": "BC",
+    "printed_card_portion": "0494A1",
+    "printed_location": "A-C1F4",
+    "source_independently_confirmed": true
+  },
+  "native_graph_audit": {
+    "owned_nets": 48,
+    "missing_endpoints": [],
+    "split_nets": {},
+    "ambiguous_components": []
+  },
+  "geometry_and_character_checks_passed": true,
+  "source_review_passed_with_documented_exception": true,
+  "A1_count_explanation": "32 printed blocks comprise 30 card portions and 2 noncard DOT blocks. 29 card portions match exact A1 type/portion/board/socket evidence using 26 page-key records plus global fallback. BC source 0494A1 / A-C1F4 is a documented literal-source exception.",
+  "raw_validation_passed": false,
+  "source_evidenced_A1_exception": {
+    "node": "BC",
+    "printed_card_portion": "0494A1",
+    "printed_location": "A-C1F4",
+    "source_independently_confirmed": true
+  },
+  "A1_card_portions_corroborated": 29,
+  "printed_card_portions": 30
+}
+
+Source evidence and unreadable print
+[
+  {
+    "location": "Grid and native calibration",
+    "evidence": "Human-approved 245×103 fixed lattice; all seven block banks use 50,73,96,119,142,165,188 and rows2+7k with I skipped. Native scan distortion is accommodated only in image sampling, without extra rendered channels. Measured bank4→5 gap approximately964 pixels versus approximately923 for bank3→4 at local40-pixel pitch. These pixel measurements do not establish a printer-grid exception. Local bank5 calibration recovers HY rail134 and CLOCK rail137."
+  },
+  {
+    "location": "Critical native topology",
+    "evidence": "AQ.B09 feedback drives AG.B05. The upper DREG rail ends before the AQ return starts at row33; their same-column sections are separate. DREG drives AB.B10 and AM.D04 only. Both page and trigger agents plus root reviewed the full native feedback/gap crops. AP.D10 enables AA through AF only; CLOCK separately enables AG. HY.B02 enables AK through AT only; CLOCK separately enables AU. FORCE011 feeds AR.B02, while lower TGR1 feeds AN.B05."
+  },
+  {
+    "location": "Source ridge interruption",
+    "evidence": "The TGR1 horizontal stroke has a native ink break with matching collinear ends at (102,67)–(103,67). That raster detector gap is bridged; root reviewed the native crop. All48 nets then have a unique connected native graph with all68 input endpoints owned once. Two tiny unowned disconnected raster detections were discarded."
+  },
+  {
+    "location": "Layout details",
+    "evidence": "Printed card fields, open block bottoms, border wedges, two-stroke grid/ID footers, native source diamonds and pin corners retained. No source reference table is printed in the lower blank margin. Left name-to-origin and output name-to-finalID spans are reconstructed at approved columns as decorative source text; hanging references retain their native corner/stub. All output names begin211 with blank210."
+  },
+  {
+    "location": "BC receiver, 1M",
+    "printed": "0494A1 A-C1F4",
+    "evidence": "Root and page agent independently read this source literally. A1 lists0145 portions at02A-C1F4 and does not corroborate0494A1 there. Preserve the printed type/portion/location and report this source/A1 discrepancy; do not force another socket or type to make it pass."
+  },
+  {
+    "location": "Title separator between1 and2",
+    "printed": "STC INCR LTH 1�2",
+    "proposed": "Possible Ω, unconfirmed",
+    "evidence": "Hollow round glyph with pointed bottom remains unreadable; root reviewed native title crop and requested replacement character. Original scan immediately before is CS041 STC INCR LTH0; immediately after is CS061 STC DECODE."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\CS STC\CS041 STC INCR LTH 0.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\CS STC\CS061 STC DECODE.tif
+
+Explicit user header/footer correction: uppercase lettering; P.N. label; machine and part values at columns233–239, blank240 and border241; header has two blank cells after000. Native footer/header evidence inspected; diagram wiring unchanged.
+
+Unreadable printed characters retained as �: 1.

@@ -1,0 +1,137 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                                000 A6241 01
+
+
+
+          K FIELD     CONDITIONAL BRANCHES (ROSAR BIT 10)                                                                                                                     M FIELD     SERIAL ADDER A SIDE CONTROLS
+                                                                                                                                                                              THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 69-73
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 57-61
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER                                                                                                                                     CHAR                      ORDER
+
+
+          R    0                00000   K0     RESET ROSAR 10 (UNCONDITIONAL)                                                                                                 B    +0               00000   M0     ZERO GATED WITH PARITY
+          R    1                00001   K1     SET ROSAR 10 (UNCONDITIONAL)                                                                              DS201                B    +◺DECAB          00100   M4     DECODE F REG BITS 05-07 TO SELECT BIT OF AB BYTE AND GATE                                                 AR421
+          R    E3=15            00010   K2     SET ROSAR 10 IF E12-15 = 1111                                                                             DS205                                                     SELECTED BIT TO SAA06. GATE ZEROES TO SAA00-05 AND 07.
+          R    E2=0/            00011   K3     SET ROSAR 10 IF E08-11 INCR LATCHES = 0000 OR STC = 000                                                   DS205                B    -U,CRY           00101   M5     SBA00-07 COMP TO SA00-07. HOT CARRY TO SA07.                                                              AR401
+          R    E2=15            00100   K4     SET ROSAR 10 IF E08-11 = 1111                                                                             DS205                                                     IF CARRY OUT-SAVE IN STAH                                                                                 AR411
+          R    STAD             00101   K5     SET ROSAR 10 IF STAD = 1                                                                                  DS205                B    -◺U              00111   M7     SBA00-07 COMP TO SA00-07. HOT CARRY TO SA07.                                                              AR411
+          R    D(21)            00110   K6     SET ROSAR 10 IF D21 = 1                                                                                   DS205                                                     1 TO SA00 IF NOT 9020 OP
+          R    ◺RRS             00111   K7     SET ROSAR 10 ON RESTART TIMEOUT SIGNAL.                                                                   DS171                B    ?U✲E1            01100   M12    AND FUNCTION IF E06-07=00. OR FUNCTION IF E06-07=10.                                                      AR421
+          R    STAG             01000   K8     SET ROSAR 10 IF STAG = 1                                                                                  DS205                                                     EXCLUSIVE OR FUNCTION IF E06-07=11
+          R    PSW39            01001   K9     SET ROSAR 10 IF PSW 39 = 1 (SIGNIFICANCE MASK)                                                            DS205                B    +U1,U0           01101   M13    SBA00-03 TO SA04-07 .SBA04-07 TO SA00-03                                                                  AR401
+          R    DEC              01010   K10    SET ROSAR 10 IF E00-03 = 1111 (VFL DECIMAL)                                                               DS205                B    +U1,0            01111   M15    SBA04-07 L4 TO SA00-03 (SA04-07=0000)                                                                     AR401.AR411
+          R    STAE             01011   K11    SET ROSAR 10 IF STAE = 1                                                                                  DS205                B    +U0,0            10001   M17    SBA00-03 TO SBA00-03 (SA04-07=0000)                                                                       AR401.AR411
+          R    ¬RR,C            01100   K12    SET ROSAR 10 IF IC21-22 = 11 OR (NOT RR AND IC21-22 = 00)                                                 DS161                B    .U               10010   M18    AND FUNCTION. SBA00-07 TO SA00-07                                                                         AR421
+          R    W1=15            01101   K13    SET ROSAR 10 IF SAL 04-07 = 1111                                                                          DS205                B    +U               10011   M19    SBA00-07 TO SA00-07                                                                                       AR401
+          R    J47≠0            01110   K14    SET ROSAR 10 IF E07 = 0 AND PAL 32 NOT EOR FIXED PT. OVER-                                                DS261                                                                                                                                                               AR411
+                                               FLOW (FAST PATH) OR IF E07 = 1 AND PAL 32 EOR FIXED PT.                                                                        B    VU               10100   M20    EXCLUSIVE OR FUNCTION. SBA00-07 TO SA00-07                                                                AR421
+                                               OVERFLOW OR IF E07 = 1 AND PAL 32-63 = 0                                                                                       B    +15,U0           10101   M21    ZONE TO SA00-03 (1111 IF PSW12=0. 0101 IF PSW12=1)                                                        AR401. AR411
+          R    W1=1             01111   K15    SET ROSAR 10 IF SAL 04-07 = 0001                                                                          DS201                                                     BOTH SBA00-03 AND SBA00-03 COMP TO SA00-03 USED).
+          R    E23=0            10000   K16    SET ROSAR 10 IF E08-15 = 0000                                                                             DS201                                                     SBA00-03 R4 TO SA04-07
+          R    WCRY             10001   K17    SET ROSAR 10 IF CARRY OUT OF SERIAL ADDER (STAH NOT USED)                                                 DS201                B    ΩU               10110   M22    OR FUNCTION. SBA00-07 TO SA00-07                                                                          AR421
+          R    E=0/             10010   K18    SET ROSAR 10 IF E08-15 = 0000 OR STC = 111                                                                DS201                B    +15,U1           10111   M23    ZONE TO SA00-03 (1111 IF PSW12=0. 0101 IF PSW12=1)                                                        AR401
+          R    E3=0             10011   K19    SET ROSAR 10 IF E12-15 = 0000                                                                             DS201                                                     BOTH SBA00-03 AND SBA00-03 COMP TO SA00-03 USED).                                                         AR411
+          R    E3=0/            10100   K20    SET ROSAR 10 IF E12-15 = 0000 OR STC = 111                                                                DS201                                                     SBA04-07 TO SA04-07
+          R    INTRP            10101   K21    SET ROSAR 10 IF PROGRAM INTERRUPT                                                                         DS201                B    +6U              11000   M24    SBA00-07+6 TO SA00-07. SERIAL CARRY TO SA07.                                                              AR401
+          R    F1≠1             10110   K22    SET ROSAR 10 IF F04-07 DOES NOT = 1                                                                       DS201                                                     DECIMAL CORRECT 00-03. 04-07. SET STAA IF SUM                                                             AR411
+          R    F1≠9             10111   K23    SET ROSAR 10 IF F04-07 DOES NOT = 9                                                                       DS201                                                     NOT ZERO. SET STAE IF INVALID DIGIT
+          R    T→RAR            11000   K24    INHIBIT ROSAR AND SET ROSAR 00-11 TO T40-51 (SCAN)                                                        DS211                B    +6U0,0           11001   M25    SBA00-03+6 TO SA00-03 (SA04-07=0000). DECIMAL                                                             AR401
+          R    EXCEP            11001   K25    INHIBIT ROSAR IF EXCEPTION INTERRUPT AND FORCE                                                            DS208                                                     CORRECT 00-03. SET STAA IF SUM NOT ZERO 00-03.                                                            AR411
+                                               ADDRESS TO ROSAR PER SOURCE OF EXCEPTION                                                                                                                            SET STAE IF INVALID DIGIT 00-03
+          R    6<E23            11010   K26    SET ROSAR 10 IF E08-15 IS GREATER THAN 6                                                                  DS205                B    +6U0,S           11010   M26    SBA00-03+6 TO SA00-03. CORRECT SIGN TO SA04-07                                                            AR411
+          R    MOVE             11011   K27    SET ROSAR 10 IF MOVE OPERATION                                                                            DS161                                                     (1100 OR 1101 IF PSW12=0. 1010 OR 1011 IF
+          R    UFMSK            11100   K28    SET ROSAR 10 IF F01 = 1 AND PSW BIT 38 = 0 OR                                                             DS161                                                     PSW12=1). DECIMAL CORRECT 00-03. SET STAA IF
+                                               STAD = 0 AND PSW BIT 38 = 0 AND MULT OR DVD                                                                                                                         SUM NOT ZERO 00-03. SET STAE IF INVALID DIGIT IN 00-03 OR
+          R    SPEC             11111   K31    INHIBIT ROSAR IF SPECIFICATION INTERRUPT AND FORCE                                                        DS261                                                     INVALID SIGN IN 04-07. SET STAC IF SA04-07 IS NEG.SIGN.
+                                               ADDR 010 ROSAR. BLOCK LOCAL STORE WRITE                                                                                        B    +0,U1            11011   M27    SBA04-07 TO SA04-07 (SA00-03=0000)                                                                        AR401
+                                                                                                                                                                                                                                                                                                                             AR411
+                                                                                                                                                                              B    -U               11100   M28    SBA00-07 COMP TO SA00-07. SERIAL CARRY TO SA07.                                                           AR401
+                                                                                                                                                                                                                   DECIMAL CORRECT 00-03. 04-07. SET STAA IF SUM
+                                                                                                                                                                                                                   NOT ZERO. SET STAE IF INVALID DIGIT
+                                                                                                                                                                              B    +0,U0            11101   M29    SBA00-03 R4 TO SA04-07 (SA00-03=0000)                                                                     AR401
+                                                                                                                                                                                                                                                                                                                             AR411
+                                                                                                                                                                              B    -U0,0            11110   M30    SBA00-03 COMP TO SA00-03.(SA04-07=0000). HOT                                                              AR411
+                                                                                                                                                                                                                   CARRY TO SA03. DECIMAL CORRECT 00-03. SET STAA
+                                                                                                                                                                                                                   IF SUM NOT ZERO 00-03. SET STAE IF INVALID DIGIT 00-03.
+                                                                                                                                                                              B    +0,U             11111   M31    SBA01-07 TO SA01-07. 0 TO SA00                                                                            AR411
+
+
+          L FIELD     MEMORY REQUESTS AND MARK SETTING
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 43-46
+
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER
+
+
+                                0000    L0     NO OPERATION
+          S    STOP1            0001    L1     INHIBIT RISE OF NEXT P2 FOR 1 CYCLE (BUS NOT INHIBITED)                                                   KC021
+          S    STOP2            0010    L2     INHIBIT RISE OF NEXT P2 FOR 2 CYCLES (BUS NOT INHIBITED)                                                  KC021
+          S    ◺MS-REQ-LOG      0011    L3     REQUEST LOGOUT WORDS FROM STORAGE PER ABC                                                                 DR181
+          S    SET-MARK-0-7     0100    L4     SET MARKS 0-7                                                                                             CT041
+          S    SET-MARK-0-3     0101    L5     SET MARKS 0-3                                                                                             CT021
+          S    SET-MARK✲STC     0110    L6     SET MARKS PER STC                                                                                         CT011
+          S    SET-MARK✲J61     0111    L7     SET MARKS 0-3 IF PAL61=0. SET MARKS 4-7 IF PAL 61=1                                                       CT011                N FIELD     SERIAL ADDER B SIDE CONTROLS
+          S    MS-REQ✲IC-3      1000    L8     IC REQUESTS STORAGE (3 CYCLE)                                                                             DR181
+          S    MS-REQ✲IC-4      1001    L9     IC REQUESTS STORAGE (4 CYCLE)                                                                             DR181                THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 74-77
+          S    MS-REQ✲D-3       1010    L10    D REQUESTS STORAGE (3 CYCLE)                                                                              DR181
+          S    MS-REQ✲D-4       1011    L11    D REQUESTS STORAGE (4 CYCLE)                                                                              DR181
+          S    MS✲IC-3✲D=11     1100    L12    IF D21.22=3 IC REQUESTS STORAGE (3 CYCLE) AND                                                             DR181                EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+                                               TURN ON INSTRUCTION MEMORY FETCH TGR                                                                      KD201                CHAR                      ORDER
+          S    MS-REQ✲SCAN4     1101    L13    SCAN REQUESTS STORAGE (4 CYCLE)                                                                           DR181
+          S    ◺RQ-XY-STO✲D     1110    L14    REQUEST TO STORE XY REG. (REQUIRES SET MARKS)                                                             DR185
+                                                                                                                                                                              B    0                0000    N0     ZERO GATED WITH PARITY                                                                                    AR901
+                                                                                                                                                                              B    V                0010    N2     SBB00-07 TO SB00-07                                                                                       AR901
+                                                                                                                                                                              B    0,V1             0011    N3     SBB04-07 TO SB04-07 (SB00-03=0000)                                                                        AR901
+                                                                                                                                                                              B    V0,+             0100    N4     PLUS SIGN TO SB04-07 (1100 IF PSW12=0. 1010 IF                                                            AR901
+                                                                                                                                                                                                                   PSW12=1) SBB00-03 TO SB00-03
+                                                                                                                                                                              B    QUOT             0101    N5     B66-67 TO 2 BITS OF SAL00-07 SELECTED BY MULTIPLE                                                         AR901
+                                                                                                                                                                                                                   SEL. QUOTIENT INSERTION ORDERS (FIELD G 20. 21)                                                           AR901
+                                                                                                                                                                              B    0,V              0110    N6     SBB01-07 TO SB01-07. 0 TO SB00                                                                            AR901
+                                                                                                                                                                              B    9,V1             0111    N7     1001 TO SB00-03 (EFFECTIVELY ADDS +9). SBB04-07 TO SB04-07                                                AR901
+                                                                                                                                                                              B    -64              1000    N8     11000000 TO SB00-07 (EFFECTIVELY ADDS -64)                                                                AR901
+                                                                                                                                                                              B    V0,0             1010    N10    SBB00-03 TO SB00-03 (SB04-07=0000)                                                                        AR901
+                                                                                                                                                                              B    -1               1011    N11    11111111 TO SB00-07 (EFFECTIVELY ADDS -1)                                                                 AR901
+                                                                                                                                                                              B    V0,-             1100    N12    MINUS SIGN TO SB04-07 (1101 IF PSW12=0. 1011 IF                                                           AR901
+                                                                                                                                                                                                                   PSW12=1) SBB00-03 TO SB00-03
+                                                                                                                                                                              B    V0,V0            1110    N14    SBB00-03 TO BOTH SB00-03 AND SB04-07                                                                      AR901
+                                                                                                                                                                              B    1                1111    N15    00000001 TO SB00-07 (EFFECTIVELY ADDS +1)                                                                 AR901
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                      15 MAY 70 713666                                 ┌──────────────────────────────────────────────────┐ A
+                                                                                                                                                                                                                                                                                                       │ K TO N CONTROL FIELD LISTING                     │ 6
+                                                                                                                                                                                                                                                                                                       │ DATE 8 MAY 70 MACH. 7201-02                      │ 2
+                                                                                                                                                                                                                                                                                                       │                     FRAME      02                │ 4
+                                                                                                                                                                                                                                                                                                       │                     P.No.      2586560           │ 1
+                                                                                                                                                                                                                                                                                                       │                                                  │ 000
+                                                                                                                                                                                                                                                                                                       │ IBM CORP. SDD  PAGE        1                     │

@@ -1,0 +1,66 @@
+MP421 LOGICAL REG PTY CHK - TRANSLATION NOTES
+
+Reference scan: MP PSBAR\MP421 LOGICAL REG PTY CHK.tif
+Original scan: img20141205_12293177.tif
+Original scan timestamp: 2014-12-05 12:29:31.770000
+Preceding scan: MP411 PHYSICAL REG PARITY CHK.tif
+Following scan: MP431 LOGICAL REG PTY CHK.tif
+Review record: tmp\ald-text\mp\root layout review.json
+
+PAGE NOTES
+
+MP421 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 25,
+  "A1_total_card_portions": 25,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 51,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "structural_passed": true,
+  "A1_agreement": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native local input jumper",
+    "block": "AC",
+    "pins": [
+      "AC.strap",
+      "AC.upper"
+    ],
+    "detail": "The printed short left-side strap has no additional driver; it is retained as a local jumper."
+  },
+  {
+    "kind": "native local input jumper",
+    "block": "AJ",
+    "pins": [
+      "AJ.upper",
+      "AJ.strap"
+    ],
+    "detail": "The printed short left-side strap has no additional driver; it is retained as a local jumper."
+  }
+]
+
+Original scan order
+Before MP411 PHYSICAL REG PARITY CHK.tif
+After MP431 LOGICAL REG PTY CHK.tif
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: Whole-body native/render layout and native footer reviewed. Parity-tree inputs, outputs and crossing/join distinctions compared; MP441 separate latch feedback rails and MP541 delay/daisy clock chain checked. Native MP541 +B2 AJ4 output independently confirmed. Detailed native fields and pins reviewed by owner.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.

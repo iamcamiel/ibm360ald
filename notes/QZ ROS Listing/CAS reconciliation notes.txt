@@ -1,0 +1,46 @@
+CAS RECONCILIATION OF THE 49 FLAGGED ROS WORDS
+
+All 49 requested words have been reviewed. Forty-six corresponding CAS boxes
+were available. After corrections, 48 words have complete bits and satisfy
+the parity checks (including the unused-word convention).
+
+One word remains for a physical-copy check:
+03AA — QZ031-04, source row 23; CAS QT031 E5.
+The scan currently reads N=0100, P4=1. The CAS box does not show an active
+serial-adder input and cannot settle this N-field reading. The last parity
+group and whole-word parity are even. The source values have been retained;
+cross_check_ready=false. See 03AA review.png.
+Preceding and following words: 03A9 (QT031 A5); 03AB (QT031 C5).
+
+No CAS exists for 0300 or 0535 in the QZ references. Both are EC 713381
+unused words: P1=1, every readable remaining ROS bit zero. Their missing
+cells were filled from this pattern and are explicitly labelled as inferences.
+
+0E00 is referred to QQ451 C9 by the May listing, but the available QQ451
+sheet was revised in June and no longer contains that ROS address. Two faded
+zeros were recovered from the QZ scan alone. The word now passes parity,
+but its control fields have not been independently confirmed by a CAS box.
+
+0EB2 control fields match the available CAS box. Its next address illustrates
+a genuine revision limit: the May listing points to 0F38/0F39, whereas the
+June QQ431 diagram draws 0FB9. The old QZ word is preserved.
+
+0AAF belongs to QQ041 E5; the formerly transcribed E9 reference was corrected.
+
+Four unreadable parity bits were inferred after the other group bits were
+checked: 0224 P2=1, 0C24 P2=0, 0F24 P2=1, 0F25 P4=1.
+These are parity inferences, not CAS symbols or direct scan readings.
+
+An additional issue was caught outside the original 49: 0528 had two false
+ones in the N field. Enlarged zeros and the unused-word pattern confirm N0.
+
+CAS reconciliation.csv provides one review row per requested word.
+CAS reconciliation.json gives field decode orders, old/new bit strings,
+every correction with evidence, and neighbouring words for physical review.
+CAS recovered fields.json combines this work with the earlier 0536/0537
+recoveries. All 80 QZ text files and ROS words.csv/json have been updated.
+
+Full catalog: 2816 addresses, 16 planes, 176 addresses per plane.
+2815 pass validation; only 03AA remains flagged. No blank bit cells remain.
+Inference and revision warnings remain in the machine-readable results.
+Original TIFF files were not changed.

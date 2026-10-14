@@ -1,0 +1,2742 @@
+{
+  "nodes": [
+    {
+      "box": "A1",
+      "leg": "XX",
+      "address": "000C",
+      "fields": [
+        "D PSW→S23",
+        "C 0→STAD",
+        "C 0→STAH"
+      ],
+      "exit": "X*──AA",
+      "comments": [
+        "CE OR IOCE",
+        "MACHINE CK INTR",
+        "INTERRUPT CODE",
+        "TO S REG"
+      ],
+      "R_line": "R       IC3=3",
+      "previous_grid": [
+        31,
+        5
+      ],
+      "grid": [
+        25,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A3",
+      "leg": "◺PGINT",
+      "address": "0007",
+      "fields": [
+        "L R*24→S",
+        "C 0→STAG"
+      ],
+      "exit": "X*──AC",
+      "comments": [
+        "PAGING ADDRESS",
+        "SPECIFICATION",
+        "INTERRUPT BRANCH IF",
+        "INTERRUPT WAS NOT",
+        "FROM CSS INSTRUCTION."
+      ],
+      "R_line": "R        ¬STAC",
+      "previous_grid": [
+        75,
+        5
+      ],
+      "grid": [
+        69,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A4",
+      "leg": "X0",
+      "address": "002C",
+      "fields": [
+        "L R◺GP8→T"
+      ],
+      "exit": "XX──AD",
+      "comments": [
+        "CSS INSTRUCTION.",
+        "SORT BIN BASE TO T."
+      ],
+      "previous_grid": [
+        97,
+        5
+      ],
+      "grid": [
+        91,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A5",
+      "leg": "XX",
+      "address": "0015",
+      "fields": [
+        "A 0+T",
+        "A →B",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──AE",
+      "comments": [
+        "FETCH SORT BIN BASE",
+        "SAVE AREA."
+      ],
+      "previous_grid": [
+        119,
+        5
+      ],
+      "grid": [
+        113,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A6",
+      "leg": "XX",
+      "address": "0016",
+      "fields": [
+        "D MS→ST",
+        "L W◺GP13",
+        "S STOP2"
+      ],
+      "exit": "XX──AF",
+      "comments": [
+        "RESTORE GPR13."
+      ],
+      "previous_grid": [
+        141,
+        5
+      ],
+      "grid": [
+        135,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A7",
+      "leg": "XX",
+      "address": "0017",
+      "fields": [
+        "A 0+S",
+        "A →T",
+        "L W◺GP12",
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "XX──AG",
+      "comments": [
+        "RESTORE GPR12.",
+        "SET SPEC ERROR."
+      ],
+      "previous_grid": [
+        163,
+        5
+      ],
+      "grid": [
+        157,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A9",
+      "leg": "0STPR",
+      "address": "002E",
+      "fields": [],
+      "exit": "XX──AI",
+      "comments": [
+        "DELAY 01 CPU",
+        "CYCLES TO CHECK",
+        "FOR STORAGE",
+        "PROTECTION",
+        "INTERRUPTION"
+      ],
+      "previous_grid": [
+        207,
+        5
+      ],
+      "grid": [
+        201,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "C4",
+      "leg": "X0",
+      "address": "0352",
+      "fields": [
+        "S STOP2",
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──CD",
+      "comments": [
+        "CE MCH CK INTR"
+      ],
+      "previous_grid": [
+        97,
+        16
+      ],
+      "grid": [
+        91,
+        11
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "C6",
+      "leg": "XX",
+      "address": "0783",
+      "fields": [
+        "",
+        "S STOP1",
+        "L ◺MACH-RESET"
+      ],
+      "exit": "XX──CF",
+      "comments": [
+        "MACHINE RESET TO",
+        "CLEAR ERROR TGRS."
+      ],
+      "previous_grid": [
+        141,
+        16
+      ],
+      "grid": [
+        135,
+        11
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "C7",
+      "leg": "XX",
+      "address": "0948",
+      "fields": [
+        "",
+        "A B+0+8",
+        "A →AR18",
+        "C 0→SCAN-MODE"
+      ],
+      "exit": "X1──CG",
+      "comments": [
+        "TOFF FLT MODE",
+        "16 TO F REG"
+      ],
+      "R_line": "R            1",
+      "previous_grid": [
+        163,
+        16
+      ],
+      "grid": [
+        157,
+        11
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "C8",
+      "leg": "X1",
+      "address": "002D",
+      "fields": [
+        "A 0+S",
+        "A →IC",
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "XX──CH",
+      "comments": [
+        "RESTORE IC AND GO",
+        "TO END OP WITH SPEC-",
+        "IFICATION ERROR."
+      ],
+      "previous_grid": [
+        185,
+        16
+      ],
+      "grid": [
+        179,
+        11
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E1",
+      "leg": "◺XINT",
+      "address": "0006",
+      "fields": [
+        "D PSW→S23",
+        "C 0→STAD",
+        "C 1→STAH"
+      ],
+      "exit": "X*──EA",
+      "comments": [
+        "EXTERNAL INTR",
+        "INTERRUPT CODE TO",
+        "S REG"
+      ],
+      "R_line": "R       IC3=3",
+      "previous_grid": [
+        31,
+        27
+      ],
+      "grid": [
+        25,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E2",
+      "leg": "X0",
+      "address": "0350",
+      "fields": [
+        "A IC+0-8",
+        "A →T",
+        "L W*24",
+        "S MS-REQ*D-4",
+        "C 3→STC",
+        "C INH-MS-PROT"
+      ],
+      "exit": "X*──EB",
+      "comments": [
+        "D REG STORAGE",
+        "ADJUST IC VALUE",
+        "BRANCH ON IOCE",
+        "MCH CHECK INTR",
+        "SAVE IC IN WORK",
+        "REG"
+      ],
+      "R_line": "R       ◺IOERR",
+      "previous_grid": [
+        53,
+        27
+      ],
+      "grid": [
+        47,
+        22
+      ],
+      "label_row": 8
+    },
+    {
+      "box": "E3",
+      "leg": "X0",
+      "address": "0B50",
+      "fields": [
+        "A 8+0+8",
+        "A →AR18",
+        "D PSW→ST",
+        "S SET-MARK-0-7",
+        "C 0→STAG",
+        "C 0→BR-INV-ADR"
+      ],
+      "exit": "X*──EC",
+      "comments": [],
+      "R_line": "R         STAH",
+      "comment_column": 77,
+      "previous_grid": [
+        75,
+        27
+      ],
+      "grid": [
+        69,
+        22
+      ],
+      "label_row": 8
+    },
+    {
+      "box": "E6",
+      "leg": "XX",
+      "address": "0B86",
+      "fields": [
+        "S MS-REQ*D-4",
+        "C INH-MS-PROT"
+      ],
+      "exit": "XX──EF",
+      "comments": [],
+      "previous_grid": [
+        141,
+        27
+      ],
+      "grid": [
+        135,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E7",
+      "leg": "XX",
+      "address": "078E",
+      "fields": [
+        "A 8+0+8",
+        "A →AR18",
+        "S SET-MARK*STC",
+        "C 0→STAG",
+        "C 0→BR-INV-ADR"
+      ],
+      "exit": "X1──EG",
+      "comments": [
+        "STORE OLD PSW",
+        "EXCEPT INTR CODE",
+        "16 TO B REG"
+      ],
+      "R_line": "R            1",
+      "previous_grid": [
+        163,
+        27
+      ],
+      "grid": [
+        157,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E8",
+      "leg": "X1",
+      "address": "0353",
+      "fields": [
+        "A BL2+D",
+        "A →D",
+        "S MS-REQ*D-3",
+        "C IF-INV-TGR",
+        "C INH-MS-PROT"
+      ],
+      "exit": "XX──EH",
+      "comments": [
+        "NEW PSW ADDR TO",
+        "D REG",
+        "FETCH NEW PSW",
+        "RESET IF INVALID",
+        "ADDRESS TGRS"
+      ],
+      "previous_grid": [
+        185,
+        27
+      ],
+      "grid": [
+        179,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E9",
+      "leg": "XX",
+      "address": "0944",
+      "fields": [],
+      "exit": "0X──EI",
+      "comments": [],
+      "R_line": "R 0",
+      "previous_grid": [
+        207,
+        27
+      ],
+      "grid": [
+        201,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G1",
+      "leg": "◺SVC",
+      "address": "0008",
+      "fields": [
+        "D PSW→S23",
+        "C 0→STAD",
+        "C 1→STAH"
+      ],
+      "exit": "X*──GA",
+      "comments": [
+        "SUPERVISOR CALL",
+        "INTERRUPT CODE TO",
+        "S REG"
+      ],
+      "R_line": "R       IC3=3",
+      "previous_grid": [
+        31,
+        38
+      ],
+      "grid": [
+        25,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J2",
+      "leg": "X1",
+      "address": "0351",
+      "fields": [
+        "A IC+0-16",
+        "A →T",
+        "L W*24",
+        "S MS-REQ*D-4",
+        "C 3→STC",
+        "C INH-MS-PROT"
+      ],
+      "exit": "X*──JB",
+      "comments": [
+        "D REQ STORAGE",
+        "ADJUST IC VALUE",
+        "BRANCH ON IOCE",
+        "MCH CHECK INTR",
+        "SAVE IC IN WORK",
+        "REG"
+      ],
+      "R_line": "R       ◺IOERR",
+      "previous_grid": [
+        53,
+        49
+      ],
+      "grid": [
+        47,
+        44
+      ],
+      "label_row": 8
+    },
+    {
+      "box": "J4",
+      "leg": "XX",
+      "address": "0B4F",
+      "fields": [
+        "A →T",
+        "B 1+0",
+        "B →F",
+        "D ◺T→EXTREG",
+        "S STOP2"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "PSBA TO EXT REG",
+        "RESET T REG"
+      ],
+      "previous_grid": [
+        97,
+        49
+      ],
+      "grid": [
+        91,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J5",
+      "leg": "XX",
+      "address": "0B85",
+      "fields": [
+        "B 1+U",
+        "B →ST      F→U",
+        "C ◺1→INTR-GATE"
+      ],
+      "exit": "11──JE",
+      "comments": [
+        "STC=6.TON SELECT.",
+        "02 HEX TO ST6."
+      ],
+      "R_line": "R 1          1",
+      "previous_grid": [
+        119,
+        49
+      ],
+      "grid": [
+        113,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J6",
+      "leg": "11",
+      "address": "0B57",
+      "fields": [
+        "A →T",
+        "A →B"
+      ],
+      "exit": "X*──JF",
+      "comments": [
+        "RESTART TIMEOUT"
+      ],
+      "R_line": "R       RELI/O",
+      "previous_grid": [
+        141,
+        49
+      ],
+      "grid": [
+        135,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J8",
+      "leg": "00",
+      "address": "0B80",
+      "fields": [
+        "A BL2+0",
+        "D PSW→ST",
+        "S SET-MARK*STC"
+      ],
+      "exit": "XX──JH",
+      "comments": [
+        "NOT IOCE MCH CK",
+        "INTR AND RESPONSE",
+        "STC 0"
+      ],
+      "previous_grid": [
+        185,
+        49
+      ],
+      "grid": [
+        179,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J9",
+      "leg": "XX",
+      "address": "0B87",
+      "fields": [
+        "S SET-MARK*J61",
+        "C STC+1"
+      ],
+      "exit": "XX──JI",
+      "comments": [
+        "SET MARKS 4-7"
+      ],
+      "previous_grid": [
+        207,
+        49
+      ],
+      "grid": [
+        201,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L1",
+      "leg": "◺PRTG",
+      "address": "000A",
+      "fields": [
+        "D PSW→S23",
+        "C 0→STAD",
+        "C 1→STAH",
+        "S SET-MARK-0-7"
+      ],
+      "exit": "X*──LA",
+      "comments": [
+        "PROGRAM INTR",
+        "INTERRUPT CODE TO",
+        "S REG"
+      ],
+      "R_line": "R       IC3=3",
+      "printed_address": "000A",
+      "previous_grid": [
+        31,
+        60
+      ],
+      "grid": [
+        25,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L3",
+      "leg": "XX",
+      "address": "0BA4",
+      "fields": [
+        "B V0,0+0,U1",
+        "B →ST     AB→U",
+        "C ABC,STC+1"
+      ],
+      "exit": "XX──LC",
+      "comments": [],
+      "comment_column": 77,
+      "previous_grid": [
+        75,
+        60
+      ],
+      "grid": [
+        69,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L4",
+      "leg": "XX",
+      "address": "0BA5",
+      "fields": [
+        "A 0+S",
+        "A R→A",
+        "C ABC,STC+1"
+      ],
+      "exit": "XX──LD",
+      "comments": [
+        "ABC=2,STC=4"
+      ],
+      "previous_grid": [
+        97,
+        60
+      ],
+      "grid": [
+        91,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L5",
+      "leg": "XX",
+      "address": "0B84",
+      "fields": [
+        "B 0+U",
+        "B →ST     AB→U",
+        "C STC+1"
+      ],
+      "exit": "XX──LE",
+      "comments": [
+        "ABC=3,STC=5",
+        "INSERT BOX ADDR",
+        "INTO PSBA 9-12"
+      ],
+      "previous_grid": [
+        119,
+        60
+      ],
+      "grid": [
+        113,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L6",
+      "leg": "10",
+      "address": "0B56",
+      "fields": [
+        "A →T",
+        "A →B"
+      ],
+      "exit": "X*──LF",
+      "comments": [
+        "RESTART TIMEOUT"
+      ],
+      "R_line": "R       RELI/O",
+      "previous_grid": [
+        141,
+        60
+      ],
+      "grid": [
+        135,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L7",
+      "leg": "X0",
+      "address": "0B52",
+      "fields": [
+        "D PSW→S23"
+      ],
+      "exit": "**──LG",
+      "comments": [
+        "BR ON RESTART",
+        "TIMEOUT OR COUNT=0.",
+        "INTR CODE TO S REG"
+      ],
+      "R_line": "R ◺RRS   J47=0",
+      "previous_grid": [
+        163,
+        60
+      ],
+      "grid": [
+        157,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L8",
+      "leg": "01",
+      "address": "0B81",
+      "fields": [
+        "S MS-REQ*D-4",
+        "C INH-MS-PROT"
+      ],
+      "exit": "X0──LH",
+      "comments": [
+        "IOCE MCH CK INTR."
+      ],
+      "R_line": "R            0",
+      "previous_grid": [
+        185,
+        60
+      ],
+      "grid": [
+        179,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N2",
+      "leg": "X1",
+      "address": "0947",
+      "fields": [
+        "A IC+0-16",
+        "A →T",
+        "L W*24",
+        "C 3→STC"
+      ],
+      "exit": "X1──NB",
+      "comments": [
+        "ADJUST IC VALUE",
+        "SAVE IN WORK REG"
+      ],
+      "R_line": "R            1",
+      "previous_grid": [
+        53,
+        71
+      ],
+      "grid": [
+        47,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N6",
+      "leg": "00",
+      "address": "0B54",
+      "fields": [
+        "A B-1",
+        "A →R",
+        "C 0→STC"
+      ],
+      "exit": "X*──NF",
+      "comments": [
+        "DECREMENT COUNT",
+        "BR ON RESPONSE"
+      ],
+      "R_line": "R       RELI/O",
+      "grid": [
+        135,
+        66
+      ],
+      "previous_transcribed_box": "N5",
+      "previous_grid": [
+        141,
+        71
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N7",
+      "leg": "X1",
+      "address": "0B53",
+      "fields": [
+        "A 0+1",
+        "A →B",
+        "L R*24→T",
+        "C ◺0→INTR-GATE",
+        "C 0→INT-TGR"
+      ],
+      "exit": "**──NG",
+      "comments": [],
+      "R_line": "R STAE ◺IOERR",
+      "previous_grid": [
+        163,
+        71
+      ],
+      "grid": [
+        157,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N8",
+      "leg": "10",
+      "address": "0B82",
+      "fields": [],
+      "exit": "0X──NH",
+      "comments": [
+        "NOT IOCE MCH CHECK INTR AND NO RESPONSE.",
+        "DELAY TO ALLOW INTR│REQUEST TGR TO DROP",
+        "BEFORE END OP."
+      ],
+      "R_line": "R 0",
+      "previous_grid": [
+        185,
+        71
+      ],
+      "grid": [
+        179,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q1",
+      "leg": "◺IOIN",
+      "address": "000E",
+      "fields": [
+        "C 0→STAD",
+        "C 1→STAH"
+      ],
+      "exit": "X*──QA",
+      "comments": [
+        "I-O INTERRUPT"
+      ],
+      "R_line": "R       IC3=3",
+      "previous_grid": [
+        31,
+        82
+      ],
+      "grid": [
+        25,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q2",
+      "leg": "X0",
+      "address": "0946",
+      "fields": [
+        "A IC+0-8",
+        "A →T",
+        "L W*24",
+        "C 3→STC"
+      ],
+      "exit": "X1──QB",
+      "comments": [
+        "ADJUST IC VALUE",
+        "SAVE IN WORK REG"
+      ],
+      "R_line": "R            1",
+      "previous_grid": [
+        53,
+        82
+      ],
+      "grid": [
+        47,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q3",
+      "leg": "X1",
+      "address": "0B51",
+      "fields": [
+        "L R◺PSBAR→S,T",
+        "S STOP1",
+        "C 1→STAH",
+        "C 0→ABC"
+      ],
+      "exit": "XX──QC",
+      "comments": [
+        "I/O INTERRUPT OR",
+        "IOCE MCH CK INTR.",
+        "DELAY TO INSURE",
+        "THAT PSBAR IS IN.",
+        "IF PSW STORE REQ.",
+        "RESULTED IN SWITCH",
+        "TO ALT. PSBA."
+      ],
+      "previous_grid": [
+        75,
+        82
+      ],
+      "grid": [
+        69,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q4",
+      "leg": "XX",
+      "address": "0BA2",
+      "fields": [
+        "A 0+TL1",
+        "A →A",
+        "B V+0",
+        "B →F",
+        "C ABC+1"
+      ],
+      "exit": "XX──QD",
+      "comments": [
+        "ABC=0,STC=3",
+        "BOX ADDR TO",
+        "F REG"
+      ],
+      "previous_grid": [
+        97,
+        82
+      ],
+      "grid": [
+        91,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q5",
+      "leg": "XX",
+      "address": "0BA3",
+      "fields": [
+        "B 0+U1,0",
+        "B →ST      F→U"
+      ],
+      "exit": "XX──QE",
+      "comments": [
+        "ABC=1,STC=3",
+        "BOX ADDR TO LEFT",
+        "HALF OF ST3"
+      ],
+      "output_port_row": 3,
+      "previous_grid": [
+        119,
+        82
+      ],
+      "grid": [
+        113,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q6",
+      "leg": "01",
+      "address": "0B55",
+      "fields": [
+        "L R*24→T",
+        "C ◺0→INTR-GATE",
+        "C 0→INT-TGR"
+      ],
+      "exit": "1*──QF",
+      "comments": [
+        "TIMEOUT COMPLETE",
+        "IC TO T REG",
+        "TOF SELECT",
+        "BR ON IOCE MCH CK."
+      ],
+      "R_line": "R 1    ◺IOERR",
+      "previous_grid": [
+        141,
+        82
+      ],
+      "grid": [
+        135,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q8",
+      "leg": "11",
+      "address": "0B83",
+      "fields": [
+        "S MS-REQ*D-4",
+        "C INH-MS-PROT"
+      ],
+      "exit": "X0──QH",
+      "comments": [
+        "IOCE MCH CK INTR."
+      ],
+      "R_line": "R            0",
+      "previous_grid": [
+        185,
+        82
+      ],
+      "grid": [
+        179,
+        77
+      ],
+      "label_row": 7
+    }
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "scan_order_neighbors": {
+    "preceding": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT071 INVALID OP CODES AND ADDRESSES SS FORMAT.tif",
+    "following": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY001 ROS CONTROLLED LOG OUT STORE CONSOLE DATA KEYS.tif"
+  },
+  "review_notes": [
+    "Portal I glyphs recovered from source output serials: QT041──A1E, QJ031──L1E",
+    "Full-resolution L3/Q5 crops recover omitted 0 and comma punctuation: V0,0+0,U1 and 0+U1,0.",
+    "New full-resolution comment crops show CSS INSTRUCTION. / SORT BIN BASE TO T. and FETCH SORT BIN BASE / SAVE AREA.; replaced earlier blank comment gaps with visible print.",
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value.",
+    "Human confirms L1 000A and the visible vertical wire between INTR and REQUEST."
+  ],
+  "recoveries": [
+    "L1 prints00��; proposed000A follows QZ and circuit context. Entry glyph reads◺PRTG.",
+    "Q1 final address glyph recovered as E, 000E.",
+    "Q5 damaged B recovered as 0BA3 from visible bowls and predecessor next address.",
+    {
+      "box": "L1",
+      "printed_value": "00��",
+      "proposed_reconstruction": "000A",
+      "evidence": "Last two address glyphs have missing strokes; proposed000A follows QZ and circuit context."
+    }
+  ],
+  "revision_notes": [
+    "Source 0350 E2, 0351 J2 and 0353 E8 are relocated from older QZ QJ001 entries.",
+    "C4 contains 0352; older QZ C4 contains 0BA2 now printed at Q4. Q3 0B51 also moved from older C3."
+  ],
+  "wire_paths": [
+    [
+      [
+        40,
+        3
+      ],
+      [
+        44,
+        3
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        44,
+        25
+      ]
+    ],
+    [
+      [
+        40,
+        36
+      ],
+      [
+        44,
+        36
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        44,
+        58
+      ]
+    ],
+    [
+      [
+        44,
+        3
+      ],
+      [
+        44,
+        58
+      ]
+    ],
+    [
+      [
+        44,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        44,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        5
+      ],
+      [
+        25,
+        5
+      ]
+    ],
+    [
+      [
+        84,
+        3
+      ],
+      [
+        91,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        128,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        157,
+        3
+      ]
+    ],
+    [
+      [
+        84,
+        3
+      ],
+      [
+        88,
+        3
+      ],
+      [
+        88,
+        10
+      ],
+      [
+        177,
+        10
+      ],
+      [
+        177,
+        14
+      ],
+      [
+        179,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        3
+      ],
+      [
+        198,
+        3
+      ],
+      [
+        198,
+        18
+      ],
+      [
+        228,
+        18
+      ]
+    ],
+    [
+      [
+        194,
+        14
+      ],
+      [
+        198,
+        14
+      ],
+      [
+        198,
+        18
+      ]
+    ],
+    [
+      [
+        216,
+        3
+      ],
+      [
+        220,
+        3
+      ],
+      [
+        220,
+        18
+      ],
+      [
+        198,
+        18
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        64,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        64,
+        47
+      ]
+    ],
+    [
+      [
+        64,
+        25
+      ],
+      [
+        64,
+        78
+      ]
+    ],
+    [
+      [
+        64,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        64,
+        78
+      ],
+      [
+        69,
+        78
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        44,
+        80
+      ],
+      [
+        44,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        44,
+        80
+      ],
+      [
+        47,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        66,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        80
+      ],
+      [
+        66,
+        80
+      ]
+    ],
+    [
+      [
+        66,
+        69
+      ],
+      [
+        66,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        88,
+        25
+      ],
+      [
+        88,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        88,
+        21
+      ],
+      [
+        176,
+        21
+      ],
+      [
+        176,
+        25
+      ],
+      [
+        179,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        175,
+        14
+      ],
+      [
+        175,
+        27
+      ],
+      [
+        179,
+        27
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        157,
+        25
+      ]
+    ],
+    [
+      [
+        172,
+        25
+      ],
+      [
+        179,
+        25
+      ]
+    ],
+    [
+      [
+        194,
+        25
+      ],
+      [
+        201,
+        25
+      ]
+    ],
+    [
+      [
+        216,
+        25
+      ],
+      [
+        228,
+        25
+      ]
+    ],
+    [
+      [
+        84,
+        80
+      ],
+      [
+        91,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        80
+      ],
+      [
+        130,
+        80
+      ],
+      [
+        130,
+        74
+      ],
+      [
+        68,
+        74
+      ],
+      [
+        68,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        130,
+        58
+      ],
+      [
+        130,
+        54
+      ],
+      [
+        88,
+        54
+      ],
+      [
+        88,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        128,
+        47
+      ],
+      [
+        131,
+        47
+      ],
+      [
+        131,
+        45
+      ],
+      [
+        135,
+        45
+      ]
+    ],
+    [
+      [
+        150,
+        47
+      ],
+      [
+        154,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        154,
+        58
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        154,
+        69
+      ]
+    ],
+    [
+      [
+        154,
+        47
+      ],
+      [
+        154,
+        69
+      ]
+    ],
+    [
+      [
+        154,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        154,
+        69
+      ],
+      [
+        157,
+        69
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        174,
+        58
+      ],
+      [
+        174,
+        43
+      ],
+      [
+        133,
+        43
+      ],
+      [
+        133,
+        80
+      ]
+    ],
+    [
+      [
+        133,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        133,
+        58
+      ],
+      [
+        135,
+        58
+      ]
+    ],
+    [
+      [
+        133,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        133,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        69
+      ],
+      [
+        176,
+        69
+      ],
+      [
+        176,
+        47
+      ]
+    ],
+    [
+      [
+        176,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        176,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        176,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        176,
+        69
+      ],
+      [
+        176,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        80
+      ],
+      [
+        154,
+        80
+      ],
+      [
+        154,
+        86
+      ],
+      [
+        174,
+        86
+      ],
+      [
+        174,
+        71
+      ],
+      [
+        179,
+        71
+      ]
+    ],
+    [
+      [
+        174,
+        71
+      ],
+      [
+        174,
+        81
+      ],
+      [
+        179,
+        81
+      ]
+    ],
+    [
+      [
+        194,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        220,
+        47
+      ],
+      [
+        220,
+        36
+      ],
+      [
+        132,
+        36
+      ],
+      [
+        132,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        197,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        197,
+        80
+      ]
+    ],
+    [
+      [
+        197,
+        80
+      ],
+      [
+        197,
+        41
+      ],
+      [
+        65,
+        41
+      ],
+      [
+        65,
+        27
+      ],
+      [
+        69,
+        27
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        228,
+        69
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      44,
+      25,
+      "O"
+    ],
+    [
+      44,
+      47,
+      "O"
+    ],
+    [
+      44,
+      69,
+      "O"
+    ],
+    [
+      44,
+      80,
+      "O"
+    ],
+    [
+      64,
+      25,
+      "O"
+    ],
+    [
+      64,
+      47,
+      "O"
+    ],
+    [
+      66,
+      69,
+      "O"
+    ],
+    [
+      88,
+      21,
+      "O"
+    ],
+    [
+      198,
+      18,
+      "O"
+    ],
+    [
+      154,
+      47,
+      "O"
+    ],
+    [
+      154,
+      58,
+      "O"
+    ],
+    [
+      154,
+      69,
+      "O"
+    ],
+    [
+      133,
+      47,
+      "O"
+    ],
+    [
+      133,
+      58,
+      "O"
+    ],
+    [
+      133,
+      69,
+      "O"
+    ],
+    [
+      176,
+      47,
+      "O"
+    ],
+    [
+      176,
+      58,
+      "O"
+    ],
+    [
+      176,
+      69,
+      "O"
+    ],
+    [
+      197,
+      58,
+      "O"
+    ],
+    [
+      66,
+      80,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_rows": 102,
+  "wiring_evidence": [
+    "All 42 available-page ordinary exits corroborated with QZ next/selector and scan review. N8 source portal QG031.NFE retained; QG031 scan absent from inventory, QZ next 0A94 recorded.",
+    "Incoming QY001.NFE reaches A1 000C.",
+    "N5 printed label is physically in restart column; explicit grid used. Close E2/J2, N2/Q2 and L8/Q8 return trunks preserved separately."
+  ],
+  "canvas_columns": 245,
+  "box_label_corrections": {
+    "N5": "N6"
+  },
+  "source_QZ_location_discrepancies": [
+    {
+      "address": "0B54",
+      "source_printed_box": "N6",
+      "source_grid": [
+        135,
+        66
+      ],
+      "QZ_printed_box": "N5",
+      "reason": "Native N6 label/bank6 and NF exit disagree with historical QZ N5 location; source print retained."
+    }
+  ],
+  "legacy_source_grid": {
+    "first_right": 1420,
+    "column_step": 658,
+    "first_header_y": 251,
+    "row_step": 495
+  },
+  "legacy_text": [
+    [
+      7,
+      4,
+      "CHECK"
+    ],
+    [
+      7,
+      5,
+      "MACHINE CHECK"
+    ],
+    [
+      7,
+      6,
+      "INTERRUPT"
+    ],
+    [
+      7,
+      7,
+      "FORCED ADDRESS."
+    ],
+    [
+      7,
+      10,
+      "QY001.NFE"
+    ],
+    [
+      7,
+      11,
+      "(XX)"
+    ],
+    [
+      235,
+      23,
+      "QT041──AIE"
+    ],
+    [
+      235,
+      24,
+      "(XX)"
+    ],
+    [
+      235,
+      30,
+      "QJ031──LIE"
+    ],
+    [
+      235,
+      31,
+      "(0A)"
+    ],
+    [
+      235,
+      74,
+      "QG031──NFE"
+    ],
+    [
+      235,
+      75,
+      "(0X)TO END OP"
+    ],
+    [
+      230,
+      55,
+      "INTR AND RESPONSE."
+    ],
+    [
+      230,
+      56,
+      "REQUEST TGR TO DROP"
+    ],
+    [
+      77,
+      36,
+      "STORE OLD PSW"
+    ],
+    [
+      77,
+      37,
+      "16 TO B REG"
+    ],
+    [
+      77,
+      38,
+      "BR ON CE MCH"
+    ],
+    [
+      77,
+      39,
+      "CHECK INTR"
+    ],
+    [
+      77,
+      68,
+      "ABC=2.STC=3"
+    ],
+    [
+      77,
+      69,
+      "COMBINE BOX ADDR"
+    ],
+    [
+      77,
+      70,
+      "AND PART OF PSBA"
+    ],
+    [
+      235,
+      79,
+      "RESPONSE RECEIVED"
+    ],
+    [
+      235,
+      80,
+      "IC TO T REG"
+    ],
+    [
+      235,
+      81,
+      "TOF SELECT"
+    ],
+    [
+      235,
+      82,
+      "BR ON IOCE MCH"
+    ],
+    [
+      235,
+      83,
+      "CHECK INTERRUPT"
+    ],
+    [
+      235,
+      84,
+      "OR ERROR FROM"
+    ],
+    [
+      235,
+      85,
+      "IOCE IF NORMAL"
+    ],
+    [
+      235,
+      86,
+      "I/O INTERRUPT"
+    ],
+    [
+      235,
+      87,
+      "(STAE)"
+    ]
+  ],
+  "legacy_footer": [
+    [
+      156,
+      101,
+      "│                      │                    │                                       │"
+    ],
+    [
+      156,
+      102,
+      "│ 713671 04/28/70      │ MACH C7201-02      │ DATE 09/04/70    SHEET 1 QU001        │"
+    ],
+    [
+      156,
+      103,
+      "│ 714949 09/04/70      │ NAME               │ LOG 334         VERSION               │"
+    ],
+    [
+      156,
+      104,
+      "│                      │ MODE MANUAL        │ STORE OLD PSW FOR INTERRUPTION        │"
+    ],
+    [
+      156,
+      105,
+      "│                      │ P.No. 2583895      │                                       │"
+    ],
+    [
+      156,
+      106,
+      "│                      │ IBM CORP. SDD      │                                       │"
+    ],
+    [
+      156,
+      107,
+      "│                      │                    │                                       │"
+    ]
+  ],
+  "text": [
+    [
+      2,
+      0,
+      ".MCHK"
+    ],
+    [
+      2,
+      1,
+      "MACHINE CHECK"
+    ],
+    [
+      2,
+      2,
+      "INTERRUPT"
+    ],
+    [
+      2,
+      3,
+      "FORCED ADDRESS."
+    ],
+    [
+      2,
+      5,
+      "QY001.NFE"
+    ],
+    [
+      2,
+      6,
+      "(XX)"
+    ],
+    [
+      229,
+      18,
+      "QT041"
+    ],
+    [
+      239,
+      18,
+      "AIE"
+    ],
+    [
+      229,
+      19,
+      "(XX)"
+    ],
+    [
+      229,
+      25,
+      "QJ031"
+    ],
+    [
+      239,
+      25,
+      "LIE"
+    ],
+    [
+      229,
+      26,
+      "(0A)"
+    ],
+    [
+      229,
+      69,
+      "QG031"
+    ],
+    [
+      239,
+      69,
+      "NFE"
+    ],
+    [
+      229,
+      70,
+      "(0X)TO END OP"
+    ],
+    [
+      71,
+      31,
+      "STORE OLD PSW"
+    ],
+    [
+      71,
+      32,
+      "16 TO B REG"
+    ],
+    [
+      71,
+      33,
+      "BR ON CE MCH"
+    ],
+    [
+      71,
+      34,
+      "CHECK INTR"
+    ],
+    [
+      71,
+      63,
+      "ABC=2.STC=3"
+    ],
+    [
+      71,
+      64,
+      "COMBINE BOX ADDR"
+    ],
+    [
+      71,
+      65,
+      "AND PART OF PSBA"
+    ],
+    [
+      156,
+      74,
+      "RESPONSE RECEIVED"
+    ],
+    [
+      156,
+      75,
+      "IC TO T REG"
+    ],
+    [
+      156,
+      76,
+      "TOF SELECT"
+    ],
+    [
+      156,
+      77,
+      "BR ON IOCE MCH"
+    ],
+    [
+      156,
+      78,
+      "CHECK INTERRUPT"
+    ],
+    [
+      156,
+      79,
+      "OR ERROR FROM"
+    ],
+    [
+      156,
+      80,
+      "IOCE IF NORMAL"
+    ],
+    [
+      156,
+      81,
+      "I/O INTERRUPT"
+    ],
+    [
+      156,
+      82,
+      "(STAE)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714949"
+    ],
+    [
+      164,
+      98,
+      "09/04/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583895"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "09/04/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "334"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QU001"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "STORE OLD PSW FOR INTERRUPTION"
+    ],
+    [
+      1,
+      94,
+      "Q"
+    ],
+    [
+      1,
+      95,
+      "U"
+    ],
+    [
+      1,
+      96,
+      "0"
+    ],
+    [
+      1,
+      97,
+      "0"
+    ],
+    [
+      1,
+      98,
+      "1"
+    ]
+  ],
+  "wire_shapes": {
+    "88,3": "┬",
+    "198,14": "┤",
+    "220,18": "┴",
+    "88,21": "├",
+    "175,21": "┼",
+    "44,25": "┼",
+    "64,25": "┬",
+    "175,25": "┼",
+    "176,25": "┴",
+    "44,36": "┤",
+    "133,45": "┼",
+    "44,47": "├",
+    "64,47": "┤",
+    "133,47": "├",
+    "197,47": "┼",
+    "133,58": "├",
+    "154,58": "┼",
+    "176,58": "├",
+    "197,58": "┤",
+    "64,69": "┼",
+    "133,69": "├",
+    "154,69": "┴",
+    "176,69": "┼",
+    "197,69": "┼",
+    "176,71": "┼",
+    "66,78": "┼",
+    "44,80": "┴",
+    "66,80": "┴",
+    "174,81": "├"
+  },
+  "wire_text_overlays": {
+    "197,74": {
+      "printed_glyph": "I",
+      "underlying_shape": "│",
+      "reason": "Native return wire passes through N8 caption; clear printed character or � retained visibly, explicit native route remains underneath."
+    },
+    "197,75": {
+      "printed_glyph": "│",
+      "underlying_shape": "│",
+      "reason": "Human physical-copy confirmation: visible vertical wire between INTR and REQUEST, with no recovered punctuation."
+    }
+  },
+  "source_layout_repairs": [
+    "Native counter0B54 is printed N6/NF in bank6, aligned with J6/L6/Q6, not old model N5/NE in bank5. Moved it to135,66 while retaining every control field; QZ itself still names N5, preserved explicitly as a historical source/QZ location discrepancy. N6 response native.png proves the printed label and alignment.",
+    "Native response return lattice.png proves L8/Q8 common return on rail197 and row41 to E3 field5 row27, not artificial below-footer92. Rail197 obscures the separator in INTR│REQUEST at caption row75, confirmed as visible vertical wire │ by the human. L5 returns at54 below J4/J5 captions, not41. Q6 special branch goes down154 to86, then along174 to N8 input71/Q8 input81, avoiding the N7 response paragraph. Q8 common return corner197,80 is plain┘, not synthetic O.",
+    "Peer overview and direct original crops Q3 adjacent input original.png/L3 input return original.png/Q5 output return original.png restore Q3 upper common input at L-field1 row78 and N2/Q2 input at C1→STAH row80; C0→ABC row81 has no external wire. Two inherited adjacent O glyphs replaced by the single native junction66,80. Q5 output is normal row80, and its return goes up130 to74 then left68 and up to L3 C-field3 row58; removed artificial bottom94 loop and blank-field60 input. Local native field-letter centers are one column left of target lattice, so measured63/65/67/129 rails map64/66/68/130.",
+    "Native N8 caption reassembled from mislocated old continuation text. INTR/REQUEST separator confirmed by the human as the vertical wire; N7 RESPONSE RECEIVED lines restored below N7."
+  ],
+  "rendered_rows": 102,
+  "rendered_columns": 245,
+  "layout_migration": {
+    "staged_only": true,
+    "review_status": "Independent review required",
+    "normal_rows": "ACEGJLNQ",
+    "S_row": 88,
+    "F_row": 22,
+    "F_row_manual_check_pending": true,
+    "expanded_band_inverted": false,
+    "issues": [],
+    "outside_body_nonwire_cells": []
+  },
+  "root_grid_migration_review": {
+    "page": "QU001",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "b7950c25bc8ec11c15985f28a73f5d7edb0aee4eef032d03109fac174a27e9f5",
+    "text_sha256": "01884b6f7920a9fe1ed5876eef198bb25439bd9d2f73d342d6240eb35b7a9f46",
+    "content_sha256": "2e336cff03af4a007190889f52ed1f13b7ec51ebbb2471ac9192e17ed1213d91",
+    "verification_sha256": "cd73b80f9092bdc1edb6e25ab94d106f1728b306d6fcc6f0de4daa699905da3d",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QU Interrupt PSW CAS\\QU001 STORE OLD PSW FOR INTERRUPTION.tif",
+    "source_sha256": "7f6e3ad478be3b3de8067a0c2f147ee429890f6e6b5ca1a59493fb2e55702ac9",
+    "source_review_scope": "Resolve only the two damaged L1 address glyphs and show the existing vertical wire between INTR and REQUEST. No punctuation added. Existing control fields, other addresses, caption wording and all wire geometry retain prior acceptance. Direct human physical-copy replies: proposed L1 address000A is correct; INTR/REQUEST separator is the wire.",
+    "retained_notes": [
+      "L1 address and N8 visible wire restored from direct human physical-copy confirmation. Current annotations reconstruct the complete accepted grid. No unreadable print remains."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T13:11:38.951327+00:00",
+    "backup_directory": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\manual-verification\\confirmed\\QU001\\before human confirmation",
+    "human_confirmation": {
+      "page": "QU001",
+      "confirmed_printed_values": {
+        "L1 ROS address": "000A",
+        "N8 INTR/REQUEST separator": "│ (visible vertical wire)"
+      },
+      "manual_check_resolved": true,
+      "confirmation": "Direct human physical-copy replies: proposed L1 address000A is correct; INTR/REQUEST separator is the wire.",
+      "confirmed_utc": "2026-10-13T13:11:38.951327+00:00",
+      "text_regions": [
+        {
+          "row": 55,
+          "column": 38,
+          "text": "0A"
+        },
+        {
+          "row": 75,
+          "column": 197,
+          "text": "│"
+        }
+      ],
+      "scope": "Resolve only the two damaged L1 address glyphs and show the existing vertical wire between INTR and REQUEST. No punctuation added. Existing control fields, other addresses, caption wording and all wire geometry retain prior acceptance."
+    }
+  },
+  "resolved_by_physical_copy": [
+    {
+      "box": "L1",
+      "kind": "unreadable printed characters",
+      "printed_value": "00��",
+      "proposed_reconstruction": "000A",
+      "evidence": "Last two address glyphs have missing strokes; proposed000A follows QZ and circuit context.",
+      "scan_order_neighbors": {
+        "preceding": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT071 INVALID OP CODES AND ADDRESSES SS FORMAT.tif",
+        "following": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY001 ROS CONTROLLED LOG OUT STORE CONSOLE DATA KEYS.tif"
+      }
+    },
+    {
+      "box": "N8",
+      "kind": "caption separator obscured by printed wire",
+      "grid": [
+        197,
+        75
+      ],
+      "printed_value": "�",
+      "evidence": "Native return rail197 passes through the INTR/REQUEST separator; root reviewed crop and required � unless clearer native print resolves it."
+    }
+  ],
+  "unresolved": [],
+  "human_manual_verification": {
+    "page": "QU001",
+    "confirmed_printed_values": {
+      "L1 ROS address": "000A",
+      "N8 INTR/REQUEST separator": "│ (visible vertical wire)"
+    },
+    "manual_check_resolved": true,
+    "confirmation": "Direct human physical-copy replies: proposed L1 address000A is correct; INTR/REQUEST separator is the wire.",
+    "confirmed_utc": "2026-10-13T13:11:38.951327+00:00",
+    "text_regions": [
+      {
+        "row": 55,
+        "column": 38,
+        "text": "0A"
+      },
+      {
+        "row": 75,
+        "column": 197,
+        "text": "│"
+      }
+    ],
+    "scope": "Resolve only the two damaged L1 address glyphs and show the existing vertical wire between INTR and REQUEST. No punctuation added. Existing control fields, other addresses, caption wording and all wire geometry retain prior acceptance."
+  },
+  "historical_source_layout_repairs_before_physical_copy": [
+    "Native counter0B54 is printed N6/NF in bank6, aligned with J6/L6/Q6, not old model N5/NE in bank5. Moved it to135,66 while retaining every control field; QZ itself still names N5, preserved explicitly as a historical source/QZ location discrepancy. N6 response native.png proves the printed label and alignment.",
+    "Native response return lattice.png proves L8/Q8 common return on rail197 and row41 to E3 field5 row27, not artificial below-footer92. Rail197 obscures the separator in INTR�REQUEST at caption row75, retained as � with explicit underlying wire overlay. L5 returns at54 below J4/J5 captions, not41. Q6 special branch goes down154 to86, then along174 to N8 input71/Q8 input81, avoiding the N7 response paragraph. Q8 common return corner197,80 is plain┘, not synthetic O.",
+    "Peer overview and direct original crops Q3 adjacent input original.png/L3 input return original.png/Q5 output return original.png restore Q3 upper common input at L-field1 row78 and N2/Q2 input at C1→STAH row80; C0→ABC row81 has no external wire. Two inherited adjacent O glyphs replaced by the single native junction66,80. Q5 output is normal row80, and its return goes up130 to74 then left68 and up to L3 C-field3 row58; removed artificial bottom94 loop and blank-field60 input. Local native field-letter centers are one column left of target lattice, so measured63/65/67/129 rails map64/66/68/130.",
+    "Native N8 caption reassembled from mislocated old continuation text. INTR/REQUEST separator retained as � pending independent glyph reading; N7 RESPONSE RECEIVED lines restored below N7."
+  ]
+}

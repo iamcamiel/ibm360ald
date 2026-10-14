@@ -1,0 +1,75 @@
+RX001 ADDRESS INHIBIT FOR ROSAR - TRANSLATION NOTES
+
+Reference scan: RX ROS Address Register\RX001 ADDRESS INHIBIT FOR ROSAR.tif
+Original scan: img20141206_09371073.tif
+Original scan timestamp: 2014-12-06 09:37:10.730000
+Preceding scan: RW381 PROGRAM STATUS WORD BITS 38 AND 39.tif
+Following scan: RX002 WAIT STATE BLOCK ROS CLOCK.tif
+Review record: tmp\ald-text\rx\review\RX001 acceptance receipt.json
+
+PAGE NOTES
+
+RX001 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 46,
+  "A1_total_card_portions": 46,
+  "A1_mismatches": [],
+  "A1_native_exceptions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 66,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586025",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  }
+}
+
+Unclear source print and evidence
+[
+  {
+    "status": "Native-source review",
+    "detail": "Compared the 46 source card portions, 66 printed input terminals, repeated-stage headings, all source-visible routing, right continuations, connector list, and footer against the RX001 native TIFF and enlarged crops. A1 independently matches all 46 portions."
+  },
+  {
+    "status": "Source-open 5D.D06",
+    "detail": "The 5D.D06 conductor returns west through the A/C boundary and down at native x≈3060. Its descending stroke ends with a rounded cap above the separate 1N.D11 diamond; the 4× crop x3060 lower native fourfold.png shows a white gap. The model uses an explicit source_open driver for ED.input-27 and does not join across the gap."
+  },
+  {
+    "status": "Source-open upper-right controls",
+    "detail": "DA4, CC4, BB4, and CD4 captions, references, right identifiers, and visible rightward conductors are transcribed. Their incoming portions cross several close upper rails; no unverified local card owner is assigned."
+  },
+  {
+    "status": "Separated crossings",
+    "detail": "4A.D07 ends above the 4A.D09 crossover. 3A.D12 feeds 4E.B02 by its upper A-row fold; its nearby lower vertical ends at a printed gap. 3F.B04 feeds 6A.B08 and the CF4 continuation at a source diamond."
+  }
+]
+
+Original scan order
+Before RW381 PROGRAM STATUS WORD BITS 38 AND 39.tif
+After RX002 WAIT STATE BLOCK ROS CLOCK.tif

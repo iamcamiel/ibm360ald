@@ -1,0 +1,71 @@
+KX311 TIMING GATE TGR CHECK RESPONSE TGR - TRANSLATION NOTES
+
+Reference scan: KX IO Controls\KX311 TIMING GATE TGR CHECK RESPONSE TGR.tif
+Original scan: KX311 TIMING GATE TGR CHECK RESPONSE TGR.tif
+Original scan timestamp: 2014-12-11 20:23:43.172313
+Preceding scan: KX191 PSA LOGOUT RESET SCAN WORD.tif
+Following scan: KX411 RELEASE CPU LTH AND CONDITION CODE 01 AND CODE 10 TERMINATIO.tif
+Review record: tmp\ald-text\kx\KX root reviews.json
+
+PAGE NOTES
+
+KX311 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 21,
+  "A1_total_card_portions": 21,
+  "A1_mismatches": [
+    "BA"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "semantic_driver_errors": [],
+  "printed_input_terminals": 34,
+  "confirmed_A1_source_disagreements": [
+    "BA"
+  ],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Source reading evidence
+[
+  {
+    "item": "Source/A1 disagreement",
+    "evidence": "BA native.png clearly prints3388D1/E-E3F6. A1 KX311 card records list only3388H1 at F6 (AP), noD1. Retained printed BA3388D1; all21othercardportions corroborate. No pin wiring inferred from A1."
+  },
+  {
+    "item": "Identity and literal source text",
+    "evidence": "Header000KX311 and both vertical footerIDs agree with filename. All22 native gate crops and five original-pixel gate sheets reviewed. Printed3B ID isAD,5D IDCL. Native numeric prefixes BS2D04,AD2D02,AF4B08/4B09/4D06,CC2B04/3B03,CE4B05 retained. CJinput wedge and D07T plainoutput; APB02✲outputwedge; ALinputwedge/plainB03output; CF B09✲T and inline6; CGinputwedge/D02✲plainoutput; CH B03✲outputwedge independently checked."
+  },
+  {
+    "item": "Continuous native upper wiring",
+    "evidence": "AF rails original.png continuous trace: machine-reset c90r15→AF4B09r25; clockc91r21→AD2D02r14 andc68diamondr21→BS2D04r24 only. BSoutc84r26→AF4B08r24; AEupperB02c85r45→AF4D06r27; timingfeedbacklowerc91r33→AFD05r28, separated fromupperclockr14–21. BJoutput bends original.png: upperD10c66r24–28 andlowerB12✲c69r26–33. Nativeunjoined crossings retained. Timingtruec160diamondsr19/24/33 feedsAR.D02/CK.B10/AF.D05; inhibitc161r37→CK.B08crossestruefeedbackunjoined. Complementc182r26diamond→AL.D04/AP.B03. Everyprintedcontinuationdiamond andcornerretained."
+  },
+  {
+    "item": "Continuous native lower wiring",
+    "evidence": "lower rails exact.png: CAupperB02→CD.D05; CAlowerD05c92r75–89→CB.D09. CCoutc138r68–73→CFupper, CDout→CFmiddlewithliteralinline6, CEoutc130r82–77→CFlower. CFoutputdiamondc161r75feedsCG.B05andnegativeoutputr79. CGD02✲c181diamondsr75/89→CH.D04r68andCE.D07c115r84feedback,withunjoinednegativecrossingr79. Originalpixelsandcalibratednine-sourceviewsreviewed."
+  },
+  {
+    "item": "Footer and connector table",
+    "evidence": "Original footer exact.png: TIMING GATE TGR / CHECK RESPONSE TGR,DATE06-13-72,LOG143,FRAME02,P.N.2585344,SDDBLK.CN. Sixrevisionrowsandallthreeconnectortablecolumnsverifiedfromrevision exact.png/table exact.png. Sourceblankspanandindentationretained."
+  },
+  {
+    "item": "Owner source-versus-preview review",
+    "evidence": "Complete JuliaMono20/cell12/row18 preview and allsixfull-resolutionrenderregions compared against nativeoverview,ninecalibratedregions,allgatecrops andcontinuousrails. Pinlabelsborderadjacent,wholepin-cornervisibilitychecked,nativediamonds/crossings/sourcegapspreserved. Finalbodyuppercaseapprovedcharset;0unreadableglyphs. Independentrootreviewremainsseparate."
+  }
+]
+
+Original scan order
+Source KX311 TIMING GATE TGR CHECK RESPONSE TGR.tif
+Before KX191 PSA LOGOUT RESET SCAN WORD.tif (KX191 PSA LOGOUT RESET SCAN WORD.tif)
+After KX411 RELEASE CPU LTH AND CONDITION CODE 01 AND CODE 10 TERMINATIO.tif (KX411 RELEASE CPU LTH AND CONDITION CODE 01 AND CODE 10 TERMINATIO.tif)

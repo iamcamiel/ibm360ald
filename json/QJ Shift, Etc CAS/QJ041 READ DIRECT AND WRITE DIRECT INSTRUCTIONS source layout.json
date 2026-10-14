@@ -1,0 +1,933 @@
+{
+  "nodes": [
+    {
+      "box": "C1",
+      "leg": "000100",
+      "address": "0084",
+      "fields": [
+        "A 0+D",
+        "D J7→ABC"
+      ],
+      "exit": "0X──CA",
+      "comments": [
+        "WRITE DIRECT",
+        "DATA BYTE ADDR.",
+        "TO ABC."
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        11
+      ]
+    },
+    {
+      "box": "C2",
+      "leg": "0X",
+      "address": "0728",
+      "fields": [
+        "A E2+0",
+        "D MS→AB",
+        "S STOP1"
+      ],
+      "exit": "X*──CB",
+      "comments": [
+        "DATA TO AB REG.",
+        "OP CODE TO ADDER",
+        "FOR TEST."
+      ],
+      "R_line": "R        ◺IOCF",
+      "grid": [
+        47,
+        11
+      ]
+    },
+    {
+      "box": "C3",
+      "leg": "X0",
+      "address": "070E",
+      "fields": [
+        "C 1→TIME-GATE"
+      ],
+      "exit": "X*──CC",
+      "comments": [
+        "ISSUE INTERRUPT.",
+        "RAISE HOLD IF DATA",
+        "OPERATION.",
+        "GATE OUT CONTROL."
+      ],
+      "R_line": "R       J47=0.",
+      "grid": [
+        69,
+        11
+      ]
+    },
+    {
+      "box": "C4",
+      "leg": "X1",
+      "address": "074F",
+      "fields": [
+        "B 0+U",
+        "B →G      AB→U",
+        "S STOP2"
+      ],
+      "exit": "X0──CD",
+      "comments": [
+        "DATA TO G REG.",
+        "AFTER DELAY ON",
+        "DATA OPERATION."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        11
+      ]
+    },
+    {
+      "box": "C5",
+      "leg": "X0",
+      "address": "074E",
+      "fields": [
+        "C 0→TIME-GATE"
+      ],
+      "exit": "XX──CE",
+      "comments": [
+        "DROP GATE.",
+        "DROP HOLD."
+      ],
+      "grid": [
+        113,
+        11
+      ]
+    },
+    {
+      "box": "G4",
+      "leg": "X1",
+      "address": "070F",
+      "fields": [
+        "A →A,B",
+        "L R◺PSBAR→S,T",
+        "C 1→STAD"
+      ],
+      "exit": "0X──GD",
+      "comments": [
+        "CLEAR A,B REGS.",
+        "TURN ON STAT D",
+        "TO INDICATE TO",
+        "PSBAR-HANDLING",
+        "ROUTINE THAT",
+        "ENTRY IS FROM",
+        "WRITE DIRECT."
+      ],
+      "R_line": "R 0",
+      "grid": [
+        91,
+        33
+      ]
+    },
+    {
+      "box": "L1",
+      "leg": "000101",
+      "address": "0085",
+      "fields": [
+        "D D→STC"
+      ],
+      "exit": "0X──LA",
+      "comments": [
+        "READ DIRECT",
+        "DATA BYTE ADDR.",
+        "TO STC."
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        55
+      ]
+    },
+    {
+      "box": "L2",
+      "leg": "0X",
+      "address": "0BBC",
+      "fields": [],
+      "exit": "X*──LB",
+      "comments": [],
+      "R_line": "R       HLD◺IN",
+      "grid": [
+        47,
+        55
+      ]
+    },
+    {
+      "box": "L3",
+      "leg": "X1",
+      "address": "0BB1",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "S STOP2",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──LC",
+      "comments": [
+        "ADDRESS STORE",
+        "COMPARE TEST.",
+        "HOLD UP OP."
+      ],
+      "grid": [
+        69,
+        55
+      ]
+    },
+    {
+      "box": "L4",
+      "leg": "XX",
+      "address": "0BB4",
+      "fields": [
+        "S STOP2"
+      ],
+      "exit": "XX──LD",
+      "comments": [
+        "DELAY FOR HOLD",
+        "1.0 MICROSECS."
+      ],
+      "grid": [
+        91,
+        55
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "XX",
+      "address": "0BB5",
+      "fields": [],
+      "exit": "X*──LE",
+      "comments": [
+        "IS HOLD IN STILL",
+        "PRESENT."
+      ],
+      "R_line": "R       HLD◺IN",
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "L6",
+      "leg": "X0",
+      "address": "0BB2",
+      "fields": [
+        "D DIR-CTL→F"
+      ],
+      "exit": "XX──LF",
+      "comments": [
+        "GATE SELECTED",
+        "DATA TO F REG."
+      ],
+      "grid": [
+        135,
+        55
+      ]
+    },
+    {
+      "box": "L7",
+      "leg": "XX",
+      "address": "0BB6",
+      "fields": [
+        "B 0+U",
+        "B →ST      F→U",
+        "S SET-MARK*STC"
+      ],
+      "exit": "XX──LG",
+      "comments": [
+        "DATA BYTE TO",
+        "ST REG PER STC."
+      ],
+      "grid": [
+        157,
+        55
+      ]
+    },
+    {
+      "box": "L8",
+      "leg": "XX",
+      "address": "0BB7",
+      "fields": [
+        "S MS-REQ*D-3",
+        "C 1→TIME-GATE"
+      ],
+      "exit": "XX──LH",
+      "comments": [
+        "SEND INTERRUPT",
+        "TO SENDING CE.",
+        "STORE DATA BYTE."
+      ],
+      "grid": [
+        179,
+        55
+      ]
+    },
+    {
+      "box": "N3",
+      "leg": "X0",
+      "address": "0BB0",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "D DIR-CTL→F",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──NC",
+      "comments": [],
+      "grid": [
+        69,
+        66
+      ]
+    },
+    {
+      "box": "Q6",
+      "leg": "X1",
+      "address": "0BB3",
+      "fields": [
+        "C ◺HDD-T-O-CHK"
+      ],
+      "exit": "XX──QF",
+      "comments": [
+        "HOLD LINE STILL",
+        "ACTIVE. TURN ON",
+        "MACHINE CHECK",
+        "INTERRUPT. SET",
+        "CODE 4 IN PSW."
+      ],
+      "grid": [
+        135,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      14,
+      "QT005.CAE"
+    ],
+    [
+      2,
+      15,
+      "(000100)"
+    ],
+    [
+      2,
+      16,
+      "(000101)"
+    ],
+    [
+      229,
+      14,
+      "QT041──CEE"
+    ],
+    [
+      229,
+      15,
+      "(XX)"
+    ],
+    [
+      229,
+      36,
+      "QK021──GDE"
+    ],
+    [
+      229,
+      37,
+      "(0X)"
+    ],
+    [
+      229,
+      58,
+      "QY041──GFE"
+    ],
+    [
+      229,
+      59,
+      "(XX)"
+    ],
+    [
+      69,
+      35,
+      "IOCF OPERATION"
+    ],
+    [
+      154,
+      34,
+      "TO COMMON PSBAR ROUTINE AND TIMING ROUTINE"
+    ],
+    [
+      154,
+      35,
+      "FOR RESULTS OF I/O OPERATIONS PAGE."
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714944"
+    ],
+    [
+      164,
+      98,
+      "05/22/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583826"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "06/25/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "246"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QJ041"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "READ DIRECT AND"
+    ],
+    [
+      200,
+      101,
+      "WRITE DIRECT INSTRUCTIONS"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      95
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        11,
+        14
+      ],
+      [
+        21,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        21,
+        14
+      ],
+      [
+        21,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        67,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        67,
+        14
+      ],
+      [
+        67,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        89,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        89,
+        14
+      ],
+      [
+        89,
+        24
+      ],
+      [
+        111,
+        24
+      ],
+      [
+        111,
+        16
+      ],
+      [
+        113,
+        16
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        229,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        229,
+        36
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        62,
+        58
+      ],
+      [
+        67,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        67,
+        58
+      ],
+      [
+        67,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        133,
+        58
+      ],
+      [
+        135,
+        58
+      ]
+    ],
+    [
+      [
+        133,
+        58
+      ],
+      [
+        133,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        229,
+        58
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        155,
+        69
+      ],
+      [
+        155,
+        60
+      ],
+      [
+        157,
+        60
+      ]
+    ],
+    [
+      [
+        150,
+        80
+      ],
+      [
+        197,
+        80
+      ],
+      [
+        197,
+        58
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      21,
+      14,
+      "O"
+    ],
+    [
+      67,
+      14,
+      "O"
+    ],
+    [
+      89,
+      14,
+      "O"
+    ],
+    [
+      67,
+      58,
+      "O"
+    ],
+    [
+      133,
+      58,
+      "O"
+    ],
+    [
+      197,
+      58,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "recoveries": [
+    {
+      "box": "C2",
+      "recovered": "0728",
+      "evidence": "The enlarged scan shows two closed lobes in the last character; C1 next-address and QZ C2 corroborate 0728."
+    }
+  ],
+  "review_notes": [
+    "The ROS prefix in the read-direct boxes is 0BB, not 0BF. All nine enlarged address headers agree with QZ.",
+    "L8 and Q6 return to QY041.GFE, not AFE.",
+    "Footer source audit: vertical title-block dividers retained; invented horizontal enclosing rules removed.",
+    "Final scan/reference audit distinguishes signal-name hyphens, arithmetic decrements and comparison signs from genuine transfer arrows."
+  ],
+  "source_operator_audit": [
+    {
+      "page": "QJ041",
+      "box": "Q6",
+      "address": "0BB3",
+      "property": "fields",
+      "index": 0,
+      "old": "C ◺HDD-T-O→CHK",
+      "new": "C ◺HDD-T-O-CHK",
+      "evidence": [
+        {
+          "old": "HDD-T-O→CHK",
+          "new": "HDD-T-O-CHK",
+          "evidence": "QJ041 Q6 source"
+        }
+      ]
+    }
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1380.53,
+    "first_header_y": 41.5,
+    "column_step": 661.71,
+    "row_step": 494.5
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QJ041 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QJ041",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "24e3e681e1d09376cf1abe04df2dda924a06698f74e5b5ed81eecdb8662597f3",
+    "text_sha256": "025afb26b4263d2d97e48ce8e7cbc902b9e52c1d490a93db34f5c78280a34d2c",
+    "content_sha256": "4e6e8b4f71d97a593e147c8ed7c6eac890cbce9ae192df29862a7632dfe3de18",
+    "verification_sha256": "c181e83ade26f293f9c6b5a865e313a4032fcb9bc92c28b305c1f70649646547",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QJ Shift, Etc CAS\\QJ041 READ DIRECT AND WRITE DIRECT INSTRUCTIONS.tif",
+    "source_sha256": "338f8862e1ea26eabae9a68842bf6195fca5da0fb5a38b15158da0f95306633f",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:39.799176+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

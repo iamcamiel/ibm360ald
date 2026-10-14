@@ -1,0 +1,1459 @@
+{
+  "nodes": [
+    {
+      "box": "C2",
+      "leg": "100000",
+      "address": "CA0",
+      "fields": [
+        "L R◺PSBAR→S,T"
+      ],
+      "exit": "0X──CB",
+      "comments": [
+        "LOAD PREFERENTIAL",
+        "STORAGE BASE ADDRESS",
+        "INTO S.T"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "0X",
+      "address": "0A95",
+      "fields": [
+        "A 0+D",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "USE D REG TO",
+        "DETERMINE WHERE",
+        "TO STORE PSBA."
+      ],
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "0A97",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "S SET-MARK*J61",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "0X──CD",
+      "comments": [
+        "CHECK ASC",
+        "STORE PSBA"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E5",
+      "leg": "1X",
+      "address": "0AAF",
+      "fields": [
+        "C 0→STAG"
+      ],
+      "exit": "0X──EE",
+      "comments": [
+        "PROGRAM INTERRUPT",
+        "TO END OP."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G2",
+      "leg": "100001",
+      "address": "CA1",
+      "fields": [
+        "C STC-1"
+      ],
+      "exit": "0X──GB",
+      "comments": [
+        "STC=0"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        47,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G3",
+      "leg": "0X",
+      "address": "0A99",
+      "fields": [
+        "D MS→T*D(21)",
+        "S STOP1",
+        "C STC-1"
+      ],
+      "exit": "XX──GC",
+      "comments": [
+        "STC=7",
+        "NEW PREFERENTIAL",
+        "STORAGE BASE ADDRESS",
+        "TO T REG."
+      ],
+      "grid": [
+        69,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G4",
+      "leg": "XX",
+      "address": "0A9B",
+      "fields": [
+        "B V0,0+0",
+        "B →ST",
+        "C 1→STAG"
+      ],
+      "exit": "*X──GD",
+      "comments": [
+        "STC = 6. CORRECT",
+        "PARITY 16-23 TO BE",
+        "PARITY 16-19.",
+        "STAT G INHIBITS",
+        "DE DECODE."
+      ],
+      "R_line": "R INTRP",
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "0X",
+      "address": "0AAD",
+      "fields": [
+        "A 0+T",
+        "A →D",
+        "S MS-REQ*D-4"
+      ],
+      "exit": "XX──GE",
+      "comments": [
+        "SPECIAL REQUEST",
+        "TO CHECK IF PSA",
+        "IS VALID"
+      ],
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G6",
+      "leg": "XX",
+      "address": "0ACF",
+      "fields": [
+        "S STOP2"
+      ],
+      "exit": "XX──GF",
+      "comments": [
+        "WAIT FOR HDWR",
+        "TO CHECK PSA"
+      ],
+      "grid": [
+        135,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G7",
+      "leg": "XX",
+      "address": "0AAE",
+      "fields": [
+        "C 0→STAG"
+      ],
+      "exit": "0X──GG",
+      "comments": [
+        "BRANCH ON SPEC",
+        "ERROR IF PSA",
+        "NOT VALID"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        157,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G8",
+      "leg": "0X",
+      "address": "0AAC",
+      "fields": [
+        "D ◺T→PSBAR",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "0X──GH",
+      "comments": [
+        "LOAD NEW PSA",
+        "INTO PSBAR.",
+        "FORCE INSTRUCTION",
+        "REFETCH."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        179,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L7",
+      "leg": "XX",
+      "address": "0504",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*SCAN4"
+      ],
+      "exit": "XX──LG",
+      "comments": [],
+      "grid": [
+        157,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L8",
+      "leg": "XX",
+      "address": "0506",
+      "fields": [
+        "        SCAN C",
+        "S SET-MARK-0-7"
+      ],
+      "exit": "X*──LH",
+      "comments": [],
+      "R_line": "R        SAS=0",
+      "grid": [
+        179,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L9",
+      "leg": "X1",
+      "address": "042D",
+      "fields": [
+        "        SCAN C",
+        "C 0→SCAN-MODE"
+      ],
+      "exit": "0X──LI",
+      "comments": [],
+      "R_line": "R            0",
+      "grid": [
+        201,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N1",
+      "leg": ".PTLO",
+      "address": "0AD1",
+      "fields": [
+        "L R*24→S",
+        "C ◺13→ADR-SQCR",
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──NA",
+      "comments": [],
+      "grid": [
+        25,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N2",
+      "leg": "XX",
+      "address": "07B6",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-LTWD",
+        "L W*24",
+        "S STOP2"
+      ],
+      "exit": "XX──NB",
+      "comments": [
+        "WAIT FOR REGS TO",
+        "BECOME STABLE.",
+        "SCAN OUT S REG",
+        "PARITIES. SAVE IN",
+        "LSWR."
+      ],
+      "grid": [
+        47,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N3",
+      "leg": "XX",
+      "address": "0736",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-SREG",
+        "L R*24→S",
+        "S STOP1"
+      ],
+      "exit": "XX──NC",
+      "comments": [
+        "SCAN OUT S REG.",
+        "INTO T REG."
+      ],
+      "grid": [
+        69,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N4",
+      "leg": "XX",
+      "address": "070C",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*SCAN4"
+      ],
+      "exit": "XX──ND",
+      "comments": [],
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N5",
+      "leg": "XX",
+      "address": "0732",
+      "fields": [
+        "        SCAN C",
+        "S SET-MARK-0-7"
+      ],
+      "exit": "X0──NE",
+      "comments": [],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N6",
+      "leg": "X0",
+      "address": "042C",
+      "fields": [
+        "        SCAN C",
+        "S STOP1",
+        "C ADRSQCR-1"
+      ],
+      "exit": "XX──NF",
+      "comments": [],
+      "grid": [
+        135,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N7",
+      "leg": "XX",
+      "address": "0591",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-LTWD",
+        "L W*24",
+        "S STOP1"
+      ],
+      "exit": "XX──NG",
+      "comments": [
+        "SCAN OUT LEFT IND",
+        "WD TO T REG.SAVE IN",
+        "LSWR"
+      ],
+      "grid": [
+        157,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N8",
+      "leg": "XX",
+      "address": "0592",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-RTWD",
+        "L R*24→S",
+        "S STOP1"
+      ],
+      "exit": "XX──NH",
+      "comments": [
+        "SCAN OUT RIGHT",
+        "IND WD TO T REG.",
+        "PUT LEFT WD IN",
+        "S REG."
+      ],
+      "grid": [
+        179,
+        66
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 1413.2,
+    "first_header_y": 293.08,
+    "column_step": 656.52,
+    "row_step": 497.36
+  },
+  "text": [
+    [
+      2,
+      22,
+      "SPSB-LPSB"
+    ],
+    [
+      2,
+      23,
+      "QT005.CAE"
+    ],
+    [
+      2,
+      24,
+      "(100000)"
+    ],
+    [
+      2,
+      25,
+      "(100001)"
+    ],
+    [
+      4,
+      11,
+      "STORE PREFERENTIAL"
+    ],
+    [
+      4,
+      12,
+      "STOR BASE ADDR REG"
+    ],
+    [
+      4,
+      13,
+      "(SPSB)"
+    ],
+    [
+      4,
+      33,
+      "LOAD PREFERENTIAL"
+    ],
+    [
+      4,
+      34,
+      "STOR BASE ADDR REG"
+    ],
+    [
+      4,
+      35,
+      "(LPSB)"
+    ],
+    [
+      3,
+      66,
+      "PARTIAL LOGOUT"
+    ],
+    [
+      3,
+      67,
+      "DIAGNOSE KERNEL"
+    ],
+    [
+      3,
+      68,
+      "ENTRY IS FROM"
+    ],
+    [
+      3,
+      69,
+      "DIAGNOSE INST."
+    ],
+    [
+      3,
+      70,
+      "QQ171.CH"
+    ],
+    [
+      229,
+      14,
+      "QQ031"
+    ],
+    [
+      239,
+      14,
+      "CDE"
+    ],
+    [
+      229,
+      15,
+      "(0X)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "11/19/69"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  05/21/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ041"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     048"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583841"
+    ],
+    [
+      200,
+      100,
+      "LOAD.STORE PREF STOR BASE ADDR"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "AND DIAGNOSE KERNEL AD1"
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        46,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        68,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        112,
+        25
+      ],
+      [
+        113,
+        25
+      ]
+    ],
+    [
+      [
+        46,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        68,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        90,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        112,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        134,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        156,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        178,
+        36
+      ],
+      [
+        179,
+        36
+      ]
+    ],
+    [
+      [
+        155,
+        60
+      ],
+      [
+        157,
+        60
+      ]
+    ],
+    [
+      [
+        178,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        200,
+        58
+      ],
+      [
+        201,
+        58
+      ]
+    ],
+    [
+      [
+        46,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        68,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        90,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        112,
+        69
+      ],
+      [
+        113,
+        69
+      ]
+    ],
+    [
+      [
+        134,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        134,
+        71
+      ],
+      [
+        135,
+        71
+      ]
+    ],
+    [
+      [
+        156,
+        69
+      ],
+      [
+        157,
+        69
+      ]
+    ],
+    [
+      [
+        178,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        109,
+        36
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        197,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        229,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        25
+      ],
+      [
+        219,
+        25
+      ],
+      [
+        219,
+        14
+      ]
+    ],
+    [
+      [
+        194,
+        36
+      ],
+      [
+        219,
+        36
+      ]
+    ],
+    [
+      [
+        216,
+        58
+      ],
+      [
+        219,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        195,
+        69
+      ],
+      [
+        195,
+        64
+      ],
+      [
+        155,
+        64
+      ],
+      [
+        155,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        109,
+        36
+      ],
+      [
+        109,
+        25
+      ],
+      [
+        113,
+        25
+      ]
+    ],
+    [
+      [
+        8,
+        23
+      ],
+      [
+        23,
+        23
+      ]
+    ],
+    [
+      [
+        23,
+        14
+      ],
+      [
+        23,
+        36
+      ]
+    ],
+    [
+      [
+        23,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        23,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.87
+    },
+    {
+      "path": [
+        [
+          74,
+          19
+        ],
+        [
+          75,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.696
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          30
+        ],
+        [
+          119,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.783
+    },
+    {
+      "path": [
+        [
+          52,
+          41
+        ],
+        [
+          53,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.739
+    },
+    {
+      "path": [
+        [
+          74,
+          41
+        ],
+        [
+          75,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          96,
+          41
+        ],
+        [
+          97,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          41
+        ],
+        [
+          119,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          140,
+          41
+        ],
+        [
+          141,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          162,
+          41
+        ],
+        [
+          163,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          41
+        ],
+        [
+          185,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.792
+    },
+    {
+      "path": [
+        [
+          161,
+          65
+        ],
+        [
+          163,
+          65
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.962
+    },
+    {
+      "path": [
+        [
+          184,
+          63
+        ],
+        [
+          185,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.833
+    },
+    {
+      "path": [
+        [
+          206,
+          63
+        ],
+        [
+          207,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.696
+    },
+    {
+      "path": [
+        [
+          52,
+          74
+        ],
+        [
+          53,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          74
+        ],
+        [
+          75,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          96,
+          74
+        ],
+        [
+          97,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          118,
+          74
+        ],
+        [
+          119,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.739
+    },
+    {
+      "path": [
+        [
+          140,
+          74
+        ],
+        [
+          141,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          76
+        ],
+        [
+          141,
+          76
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.708
+    },
+    {
+      "path": [
+        [
+          162,
+          74
+        ],
+        [
+          163,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          184,
+          74
+        ],
+        [
+          185,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          112,
+          41
+        ],
+        [
+          115,
+          41
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          200,
+          63
+        ],
+        [
+          203,
+          63
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.978
+    }
+  ],
+  "cells": [
+    [
+      219,
+      14,
+      "O"
+    ],
+    [
+      219,
+      25,
+      "O"
+    ],
+    [
+      219,
+      36,
+      "O"
+    ],
+    [
+      109,
+      36,
+      "O"
+    ],
+    [
+      23,
+      23,
+      "O"
+    ]
+  ],
+  "wiring_evidence": [
+    "Source return bus traced: C4/E5/G8/L9 join the QQ031 return; diagnose scan loop N8 returns to L7 and crosses the N5/N6 scan-out path without a junction."
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "454d48693af6f1739954547eba6ed74ddca3950e72b1064f1e6005714c23dbbc",
+    "old_txt_sha256": "9bf04ad91f69add9f0d7bfd1548eebf8880cf279458fad284e65ecfc6571ef57",
+    "new_txt_sha256": "7cf4bb72aa1464d9eef0ddb7ec1ab7ee91c5586bcbf3cdb15bd6683b1a96d907",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [
+    [
+      3,
+      70
+    ]
+  ],
+  "wire_shapes": {
+    "197,58": "┬",
+    "155,60": "├",
+    "155,64": "├",
+    "195,65": "┤"
+  },
+  "wire_erase": [],
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ041",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "9bf04ad91f69add9f0d7bfd1548eebf8880cf279458fad284e65ecfc6571ef57",
+    "text_sha256": "7cf4bb72aa1464d9eef0ddb7ec1ab7ee91c5586bcbf3cdb15bd6683b1a96d907",
+    "content_sha256": "ef9bad3874fafbfe326accfbea31a3b3f9d907c87a2c3c2b5b4bfbf19809b3e1",
+    "verification_sha256": "db3a863ea3226a6a82b19201303a0d18f880fb904a4a35d9e12a69e05e09d883",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.tif",
+    "source_sha256": "454d48693af6f1739954547eba6ed74ddca3950e72b1064f1e6005714c23dbbc",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ041",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.txt",
+      "reviewed_txt_sha256": "7cf4bb72aa1464d9eef0ddb7ec1ab7ee91c5586bcbf3cdb15bd6683b1a96d907",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.tif",
+      "source_sha256": "454d48693af6f1739954547eba6ed74ddca3950e72b1064f1e6005714c23dbbc",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Source review and revised targeted regions pass within stated review scope; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "c92e8ea6380da957c534e521440de7614ac0edf0526ecf8510193304046df8f5",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 content.json",
+      "reviewed_content_sha256": "ef9bad3874fafbfe326accfbea31a3b3f9d907c87a2c3c2b5b4bfbf19809b3e1",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 verification.json",
+      "reviewed_verification_sha256": "db3a863ea3226a6a82b19201303a0d18f880fb904a4a35d9e12a69e05e09d883",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 staged preview.png",
+      "dimensions_pass": true,
+      "hash_matches_owner_manifest": true
+    },
+    "baseline_audit": {
+      "page": "QQ041",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ041\\QQ041 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.txt",
+      "old_sha256": "9bf04ad91f69add9f0d7bfd1548eebf8880cf279458fad284e65ecfc6571ef57",
+      "new_sha256": "7cf4bb72aa1464d9eef0ddb7ec1ab7ee91c5586bcbf3cdb15bd6683b1a96d907",
+      "content_sha256": "ef9bad3874fafbfe326accfbea31a3b3f9d907c87a2c3c2b5b4bfbf19809b3e1",
+      "nodes": 22,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 23,
+          "label": "QT005.CAE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:54.332335+00:00"
+  }
+}

@@ -1,0 +1,1763 @@
+{
+  "nodes": [
+    {
+      "box": "A3",
+      "leg": "X1",
+      "address": "081D",
+      "fields": [
+        "L R*24→T",
+        "C SET-CR"
+      ],
+      "exit": "X1──AC",
+      "comments": [
+        "LOGICAL EOP SEQ"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        69,
+        0
+      ]
+    },
+    {
+      "box": "G6",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "FROM",
+        "QT031.AGE"
+      ],
+      "exit": "******──GF",
+      "comments": [],
+      "grid": [
+        135,
+        33
+      ]
+    },
+    {
+      "box": "J1",
+      "leg": "X0",
+      "address": "081C",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──JA",
+      "comments": [
+        "LAST CYC D STOR",
+        "D + 8",
+        "START DEST FET"
+      ],
+      "grid": [
+        25,
+        44
+      ]
+    },
+    {
+      "box": "J3",
+      "leg": "XX",
+      "address": "05BA",
+      "fields": [
+        "S STOP1"
+      ],
+      "exit": "**──JC",
+      "comments": [],
+      "R_line": "R STAD",
+      "grid": [
+        69,
+        44
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "1*",
+      "address": "0632",
+      "fields": [
+        "D MS→ST",
+        "C 0→STAD",
+        "C INV-ADR→TGR"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "YES",
+        "MDBO TO ST",
+        "RESET STAG"
+      ],
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "J5",
+      "leg": "XX",
+      "address": "0789",
+      "fields": [
+        "A IC+0+8",
+        "A →IC",
+        "S MS-REQ*IC-3",
+        "C STC-1",
+        "C 1→INST-MSREQ"
+      ],
+      "exit": "XX──JE",
+      "comments": [
+        "START SRCE FET",
+        "IC + 8",
+        "STC - 1"
+      ],
+      "grid": [
+        113,
+        44
+      ]
+    },
+    {
+      "box": "J6",
+      "leg": "XX",
+      "address": "078A",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "C STC+1"
+      ],
+      "exit": "X*──JF",
+      "comments": [
+        "WOT WORD TEST",
+        "IC(11) - D R4",
+        "STC + 1"
+      ],
+      "R_line": "R         STC=7",
+      "grid": [
+        135,
+        44
+      ]
+    },
+    {
+      "box": "J7",
+      "leg": "X0",
+      "address": "079E",
+      "fields": [
+        "A 0+S",
+        "A →A"
+      ],
+      "exit": "X*──JG",
+      "comments": [
+        "POSSIBLE WOT",
+        "S TO A"
+      ],
+      "R_line": "R        J57=0",
+      "grid": [
+        157,
+        44
+      ]
+    },
+    {
+      "box": "J8",
+      "leg": "X1",
+      "address": "079D",
+      "fields": [
+        "A 0+T",
+        "A →B",
+        "C INV-ADR→TGR"
+      ],
+      "exit": "******──JH",
+      "comments": [
+        "WOT",
+        "T TO B",
+        "BRANCH TO INSTR"
+      ],
+      "R_line": "R E(02-07)→ROA",
+      "grid": [
+        179,
+        44
+      ]
+    },
+    {
+      "box": "L7",
+      "leg": "X1",
+      "address": "079F",
+      "fields": [],
+      "exit": "X0──LG",
+      "comments": [
+        "NWOT"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        157,
+        55
+      ]
+    },
+    {
+      "box": "L8",
+      "leg": "X0",
+      "address": "079C",
+      "fields": [
+        "D MS→AB",
+        "C INV-ADR→TGR"
+      ],
+      "exit": "******──LH",
+      "comments": [
+        "NWOT",
+        "MDBO TO AB",
+        "BRANCH TO INSTR"
+      ],
+      "R_line": "R E(02-07)→ROA",
+      "grid": [
+        179,
+        55
+      ]
+    },
+    {
+      "box": "N4",
+      "leg": "0X",
+      "address": "0630",
+      "fields": [
+        "D MS→ST",
+        "C INV-ADR→TGR"
+      ],
+      "exit": "******──ND",
+      "comments": [
+        "NO",
+        "MDBO TO ST",
+        "BRANCH TO INSTR"
+      ],
+      "R_line": "R E(04-07)→ROA",
+      "grid": [
+        91,
+        66
+      ]
+    },
+    {
+      "box": "S6",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "FROM",
+        "QT031.CGE"
+      ],
+      "exit": "******──SF",
+      "comments": [],
+      "grid": [
+        135,
+        88
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      1,
+      "QP031.ECE"
+    ],
+    [
+      2,
+      2,
+      "(X1)"
+    ],
+    [
+      2,
+      5,
+      "QP041.JEE"
+    ],
+    [
+      2,
+      6,
+      "(X1)"
+    ],
+    [
+      2,
+      8,
+      "QP051.ADE"
+    ],
+    [
+      2,
+      9,
+      "(X1)"
+    ],
+    [
+      2,
+      37,
+      "QP002.NFE"
+    ],
+    [
+      2,
+      38,
+      "(XX)"
+    ],
+    [
+      2,
+      40,
+      "QP031.EIE"
+    ],
+    [
+      2,
+      41,
+      "(0X)"
+    ],
+    [
+      2,
+      42,
+      "(1*)"
+    ],
+    [
+      2,
+      44,
+      "QP041.LIE"
+    ],
+    [
+      2,
+      45,
+      "(XX)"
+    ],
+    [
+      2,
+      48,
+      "QP021.GEE"
+    ],
+    [
+      2,
+      49,
+      "(X0)"
+    ],
+    [
+      2,
+      50,
+      "(X1)"
+    ],
+    [
+      2,
+      52,
+      "QP011.LIE"
+    ],
+    [
+      2,
+      53,
+      "(X0)"
+    ],
+    [
+      2,
+      58,
+      "QP051.JIE"
+    ],
+    [
+      2,
+      59,
+      "(XX)"
+    ],
+    [
+      2,
+      62,
+      "QP051.EGE"
+    ],
+    [
+      2,
+      63,
+      "(X1)"
+    ],
+    [
+      2,
+      70,
+      "QP001.GDE"
+    ],
+    [
+      2,
+      71,
+      "(XX)"
+    ],
+    [
+      2,
+      72,
+      "QP011.CBE"
+    ],
+    [
+      2,
+      73,
+      "(XX)"
+    ],
+    [
+      2,
+      74,
+      "QP021.CCE"
+    ],
+    [
+      2,
+      75,
+      "(XX)"
+    ],
+    [
+      2,
+      76,
+      "QP041.QEE"
+    ],
+    [
+      2,
+      77,
+      "(XX)"
+    ],
+    [
+      2,
+      80,
+      "QP031.JIE"
+    ],
+    [
+      2,
+      81,
+      "(X0)"
+    ],
+    [
+      229,
+      3,
+      "QP001──ACE"
+    ],
+    [
+      229,
+      4,
+      "(X1)"
+    ],
+    [
+      229,
+      8,
+      "QP001──GFE"
+    ],
+    [
+      229,
+      9,
+      "(010010)"
+    ],
+    [
+      229,
+      12,
+      "QP011──GFE"
+    ],
+    [
+      229,
+      13,
+      "(010001)"
+    ],
+    [
+      229,
+      14,
+      "(010011)"
+    ],
+    [
+      229,
+      16,
+      "QP021──GFE"
+    ],
+    [
+      229,
+      17,
+      "(010100)"
+    ],
+    [
+      229,
+      18,
+      "(010110)"
+    ],
+    [
+      229,
+      19,
+      "(010111)"
+    ],
+    [
+      229,
+      24,
+      "QP031──GFE"
+    ],
+    [
+      229,
+      25,
+      "(010101)"
+    ],
+    [
+      229,
+      28,
+      "QP041──GFE"
+    ],
+    [
+      229,
+      29,
+      "(011110)"
+    ],
+    [
+      229,
+      30,
+      "(011111)"
+    ],
+    [
+      229,
+      32,
+      "QS101──GFE"
+    ],
+    [
+      229,
+      33,
+      "(110010)"
+    ],
+    [
+      229,
+      36,
+      "QS111──GFE"
+    ],
+    [
+      229,
+      37,
+      "(110011)"
+    ],
+    [
+      229,
+      40,
+      "QS121──GFE"
+    ],
+    [
+      229,
+      41,
+      "(110001)"
+    ],
+    [
+      229,
+      55,
+      "QP001──SFE"
+    ],
+    [
+      229,
+      56,
+      "(0010)"
+    ],
+    [
+      229,
+      60,
+      "QP011──SFE"
+    ],
+    [
+      229,
+      61,
+      "(0001)"
+    ],
+    [
+      229,
+      62,
+      "(0011)"
+    ],
+    [
+      229,
+      64,
+      "QP021──SFE"
+    ],
+    [
+      229,
+      65,
+      "(0100)"
+    ],
+    [
+      229,
+      66,
+      "(0110)"
+    ],
+    [
+      229,
+      67,
+      "(0111)"
+    ],
+    [
+      229,
+      71,
+      "QP031──SFE"
+    ],
+    [
+      229,
+      72,
+      "(0101)"
+    ],
+    [
+      229,
+      75,
+      "QP041──SFE"
+    ],
+    [
+      229,
+      76,
+      "(1110)"
+    ],
+    [
+      229,
+      77,
+      "(1111)"
+    ],
+    [
+      229,
+      79,
+      "QP051──SFE"
+    ],
+    [
+      229,
+      80,
+      "(1100)"
+    ],
+    [
+      229,
+      81,
+      "(1101)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583837"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QP061"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "LOGICAL GEN OPS"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      254,
+      95
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        84,
+        3
+      ],
+      [
+        229,
+        3
+      ]
+    ],
+    [
+      [
+        23,
+        1
+      ],
+      [
+        23,
+        8
+      ]
+    ],
+    [
+      [
+        23,
+        1
+      ],
+      [
+        69,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        1
+      ],
+      [
+        23,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        5
+      ],
+      [
+        23,
+        5
+      ]
+    ],
+    [
+      [
+        10,
+        8
+      ],
+      [
+        23,
+        8
+      ]
+    ],
+    [
+      [
+        21,
+        3
+      ],
+      [
+        21,
+        52
+      ]
+    ],
+    [
+      [
+        21,
+        3
+      ],
+      [
+        69,
+        3
+      ]
+    ],
+    [
+      [
+        21,
+        47
+      ],
+      [
+        25,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        48
+      ],
+      [
+        21,
+        48
+      ]
+    ],
+    [
+      [
+        10,
+        52
+      ],
+      [
+        21,
+        52
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        86,
+        47
+      ]
+    ],
+    [
+      [
+        86,
+        40
+      ],
+      [
+        86,
+        69
+      ]
+    ],
+    [
+      [
+        86,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        86,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        10,
+        40
+      ],
+      [
+        86,
+        40
+      ]
+    ],
+    [
+      [
+        10,
+        44
+      ],
+      [
+        19,
+        44
+      ],
+      [
+        19,
+        43
+      ],
+      [
+        66,
+        43
+      ],
+      [
+        66,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        58
+      ],
+      [
+        66,
+        58
+      ]
+    ],
+    [
+      [
+        66,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        37
+      ],
+      [
+        110,
+        37
+      ],
+      [
+        110,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        128,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        47
+      ],
+      [
+        154,
+        47
+      ],
+      [
+        154,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        154,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        62
+      ],
+      [
+        154,
+        62
+      ],
+      [
+        154,
+        58
+      ]
+    ],
+    [
+      [
+        172,
+        47
+      ],
+      [
+        176,
+        47
+      ],
+      [
+        176,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        176,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        176,
+        58
+      ]
+    ],
+    [
+      [
+        23,
+        65
+      ],
+      [
+        23,
+        76
+      ]
+    ],
+    [
+      [
+        23,
+        65
+      ],
+      [
+        132,
+        65
+      ],
+      [
+        132,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        70
+      ],
+      [
+        23,
+        70
+      ]
+    ],
+    [
+      [
+        10,
+        72
+      ],
+      [
+        23,
+        72
+      ]
+    ],
+    [
+      [
+        10,
+        74
+      ],
+      [
+        23,
+        74
+      ]
+    ],
+    [
+      [
+        10,
+        76
+      ],
+      [
+        23,
+        76
+      ]
+    ],
+    [
+      [
+        10,
+        80
+      ],
+      [
+        176,
+        80
+      ],
+      [
+        176,
+        60
+      ],
+      [
+        179,
+        60
+      ]
+    ],
+    [
+      [
+        194,
+        47
+      ],
+      [
+        198,
+        47
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        198,
+        58
+      ]
+    ],
+    [
+      [
+        198,
+        47
+      ],
+      [
+        198,
+        69
+      ],
+      [
+        220,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        198,
+        69
+      ]
+    ],
+    [
+      [
+        150,
+        91
+      ],
+      [
+        154,
+        91
+      ],
+      [
+        154,
+        69
+      ],
+      [
+        198,
+        69
+      ]
+    ],
+    [
+      [
+        220,
+        55
+      ],
+      [
+        220,
+        79
+      ]
+    ],
+    [
+      [
+        220,
+        55
+      ],
+      [
+        229,
+        55
+      ]
+    ],
+    [
+      [
+        220,
+        60
+      ],
+      [
+        229,
+        60
+      ]
+    ],
+    [
+      [
+        220,
+        64
+      ],
+      [
+        229,
+        64
+      ]
+    ],
+    [
+      [
+        220,
+        71
+      ],
+      [
+        229,
+        71
+      ]
+    ],
+    [
+      [
+        220,
+        75
+      ],
+      [
+        229,
+        75
+      ]
+    ],
+    [
+      [
+        220,
+        79
+      ],
+      [
+        229,
+        79
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        220,
+        36
+      ]
+    ],
+    [
+      [
+        220,
+        8
+      ],
+      [
+        220,
+        40
+      ]
+    ],
+    [
+      [
+        220,
+        8
+      ],
+      [
+        229,
+        8
+      ]
+    ],
+    [
+      [
+        220,
+        12
+      ],
+      [
+        229,
+        12
+      ]
+    ],
+    [
+      [
+        220,
+        16
+      ],
+      [
+        229,
+        16
+      ]
+    ],
+    [
+      [
+        220,
+        24
+      ],
+      [
+        229,
+        24
+      ]
+    ],
+    [
+      [
+        220,
+        28
+      ],
+      [
+        229,
+        28
+      ]
+    ],
+    [
+      [
+        220,
+        32
+      ],
+      [
+        229,
+        32
+      ]
+    ],
+    [
+      [
+        220,
+        36
+      ],
+      [
+        229,
+        36
+      ]
+    ],
+    [
+      [
+        220,
+        40
+      ],
+      [
+        229,
+        40
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      23,
+      1,
+      "O"
+    ],
+    [
+      23,
+      5,
+      "O"
+    ],
+    [
+      23,
+      8,
+      "O"
+    ],
+    [
+      21,
+      47,
+      "O"
+    ],
+    [
+      21,
+      48,
+      "O"
+    ],
+    [
+      21,
+      52,
+      "O"
+    ],
+    [
+      86,
+      47,
+      "O"
+    ],
+    [
+      66,
+      47,
+      "O"
+    ],
+    [
+      110,
+      47,
+      "O"
+    ],
+    [
+      154,
+      47,
+      "O"
+    ],
+    [
+      154,
+      58,
+      "O"
+    ],
+    [
+      176,
+      47,
+      "O"
+    ],
+    [
+      176,
+      58,
+      "O"
+    ],
+    [
+      23,
+      70,
+      "O"
+    ],
+    [
+      23,
+      72,
+      "O"
+    ],
+    [
+      23,
+      74,
+      "O"
+    ],
+    [
+      23,
+      76,
+      "O"
+    ],
+    [
+      198,
+      47,
+      "O"
+    ],
+    [
+      198,
+      58,
+      "O"
+    ],
+    [
+      198,
+      69,
+      "O"
+    ],
+    [
+      154,
+      69,
+      "O"
+    ],
+    [
+      220,
+      55,
+      "O"
+    ],
+    [
+      220,
+      60,
+      "O"
+    ],
+    [
+      220,
+      64,
+      "O"
+    ],
+    [
+      220,
+      71,
+      "O"
+    ],
+    [
+      220,
+      75,
+      "O"
+    ],
+    [
+      220,
+      79,
+      "O"
+    ],
+    [
+      220,
+      69,
+      "O"
+    ],
+    [
+      220,
+      8,
+      "O"
+    ],
+    [
+      220,
+      12,
+      "O"
+    ],
+    [
+      220,
+      16,
+      "O"
+    ],
+    [
+      220,
+      24,
+      "O"
+    ],
+    [
+      220,
+      28,
+      "O"
+    ],
+    [
+      220,
+      32,
+      "O"
+    ],
+    [
+      220,
+      36,
+      "O"
+    ],
+    [
+      220,
+      40,
+      "O"
+    ]
+  ],
+  "canvas_rows": 116,
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "review_notes": [
+    "QP041.LIE entry routed one row above J1 header so its source input reaches J3 without header text erasure. Close buses and crossing direction retained.",
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value.",
+    "Full-resolution dispatch field audit confirms the printed abbreviation ROA before the border; source reading retained."
+  ],
+  "wiring_evidence": {
+    "method": "All routes manually rebuilt from source scan. QZ next addresses corroborate ordinary routes; source controls and printed incoming masks retain selector-specific fans. Functional and dummy fan outputs reviewed visually. Crossings and close parallel buses explicitly preserved.",
+    "QZ_ordinary_routes_corroborated": 8,
+    "source_revision_routes": 0,
+    "functional_or_dummy_routes_reviewed": 5,
+    "incoming_references_reviewed": [
+      {
+        "reference": "QP031.ECE",
+        "reached_boxes": [
+          "A3"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP041.JEE",
+        "reached_boxes": [
+          "A3"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP051.ADE",
+        "reached_boxes": [
+          "A3"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP002.NFE",
+        "reached_boxes": [
+          "J5"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP031.EIE",
+        "reached_boxes": [
+          "J4",
+          "N4"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP041.LIE",
+        "reached_boxes": [
+          "J3"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP021.GEE",
+        "reached_boxes": [
+          "A3",
+          "J1"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP011.LIE",
+        "reached_boxes": [
+          "A3",
+          "J1"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP051.JIE",
+        "reached_boxes": [
+          "J3"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP051.EGE",
+        "reached_boxes": [
+          "J7",
+          "L7"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP001.GDE",
+        "reached_boxes": [
+          "J6"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP011.CBE",
+        "reached_boxes": [
+          "J6"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP021.CCE",
+        "reached_boxes": [
+          "J6"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP041.QEE",
+        "reached_boxes": [
+          "J6"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      },
+      {
+        "reference": "QP031.JIE",
+        "reached_boxes": [
+          "L8"
+        ],
+        "note": "Physical shared rule; printed selectors determine active target. Source route visually reviewed."
+      }
+    ],
+    "rendered_preview": "Final normalized layout visually inspected after routing and caption repairs."
+  },
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1303.0,
+    "column_step": 663.7,
+    "first_header_y": 226.2,
+    "row_step": 495.1
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QP061 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QP061",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "60491ddf12664d5d4eb20053adaa2bc89fd98dddc4cb7ef312fd8046a95dfe29",
+    "text_sha256": "0bcbf9fc8aa17ed4e6fc38414b3add0c79f36f84758316cea24e90114b7ce75f",
+    "content_sha256": "b026652a0a9d52baf970a04b87fa7c9bcfbeec2c54314fd34c1bdb42dac8f0e6",
+    "verification_sha256": "874049436e100e23a4fc3c5940299a9f4ee2b81bd2b907b287dcbf1052615644",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QP Logical CAS\\QP061 LOGICAL GEN OPS.tif",
+    "source_sha256": "b6c08bbf12368f3dc47ba9ea6ad3728819f498a1e1ada401c92d08d337d3878d",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:41.137345+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

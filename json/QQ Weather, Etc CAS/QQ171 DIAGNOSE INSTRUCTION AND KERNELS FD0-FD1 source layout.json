@@ -1,0 +1,1548 @@
+{
+  "nodes": [
+    {
+      "box": "C2",
+      "leg": "000011",
+      "address": "083",
+      "fields": [
+        "B -1+0",
+        "B →F",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "0X──CB",
+      "comments": [
+        "STC=0,ABC=0",
+        "FF HEX TO F REG"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "0X",
+      "address": "0B28",
+      "fields": [
+        "B -1+U",
+        "B →F",
+        "B          F→U",
+        "C ◺ABC-1,STC+1"
+      ],
+      "exit": "X*──CC",
+      "comments": [
+        "STC 0 TO 1,ABC 0 TO 7",
+        "FE HEX TO F REG.",
+        "BRANCH IF IN",
+        "STATE ZERO."
+      ],
+      "R_line": "R      ◺STATE0",
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "X1",
+      "address": "0B2B",
+      "fields": [
+        "D MS→AB",
+        "D MS0→T",
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "X1──CD",
+      "comments": [
+        "STATE ZERO",
+        "INGATE MCW"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C7",
+      "leg": "X1",
+      "address": "0B1D",
+      "fields": [
+        "        SCAN C",
+        "D TB→◺MCW",
+        "C 1→CTRCTL-TGR"
+      ],
+      "exit": "XX──CG",
+      "comments": [
+        "OPERATIONAL",
+        "KERNEL OR",
+        "STATE ZERO"
+      ],
+      "grid": [
+        157,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C8",
+      "leg": "XX",
+      "address": "0B2C",
+      "fields": [
+        "        SCAN C",
+        "C 0→SCAN-MODE",
+        "C ◺0→CC"
+      ],
+      "exit": "XX──CH",
+      "comments": [
+        "STC=1,ABC=7"
+      ],
+      "R_line": "R T→RAR",
+      "grid": [
+        179,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E4",
+      "leg": "X0",
+      "address": "0B2A",
+      "fields": [
+        "B -1+U",
+        "B →F",
+        "B          F→U",
+        "D MS→AB",
+        "D MS0→S"
+      ],
+      "exit": "XX──ED",
+      "comments": [
+        "STATE=1,2 OR 3",
+        "INGATE MCW",
+        "FD HEX TO F REG"
+      ],
+      "grid": [
+        91,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E5",
+      "leg": "XX",
+      "address": "0B29",
+      "fields": [
+        "B V∀U",
+        "B          F→U"
+      ],
+      "exit": "XX──EE",
+      "comments": [
+        "STC=2,ABC=7",
+        "CHECK IF MCW 8-15",
+        "IS ADDR OF OPER-",
+        "ATIONAL KERNEL"
+      ],
+      "grid": [
+        113,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E6",
+      "leg": "XX",
+      "address": "0B13",
+      "fields": [
+        "A 0+S",
+        "A →T",
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "X*──EF",
+      "comments": [
+        "MCW TO T REG"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        135,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E7",
+      "leg": "X0",
+      "address": "0B1C",
+      "fields": [
+        "        SCAN C",
+        "C 0→SCAN-MODE"
+      ],
+      "exit": "X1──EG",
+      "comments": [
+        "GO TO SET SPEC.",
+        "CODE FOR INTR."
+      ],
+      "R_line": "R            1",
+      "grid": [
+        157,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J2",
+      "leg": "X0",
+      "address": "0FD0",
+      "fields": [
+        "C ABC,STC+1"
+      ],
+      "exit": "XX──JB",
+      "comments": [
+        "UPDATE TO NEXT",
+        "LOGOUT WORD"
+      ],
+      "grid": [
+        47,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J3",
+      "leg": "XX",
+      "address": "0B2D",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "S ◺MS-REQ-LOG",
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──JC",
+      "comments": [
+        "REQUEST LOGOUT",
+        "WORD PER ABC VALUE",
+        "SETUP STORE ADDR."
+      ],
+      "grid": [
+        69,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J4",
+      "leg": "XX",
+      "address": "0B1E",
+      "fields": [
+        "        SCAN C",
+        "D MS→AB",
+        "C ◺7→ADR-SQCR",
+        "S STOP1"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "INGATE LOGOUT",
+        "WORD"
+      ],
+      "grid": [
+        91,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J5",
+      "leg": "XX",
+      "address": "0B1F",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-LTWD",
+        "L W*24",
+        "S STOP2"
+      ],
+      "exit": "XX──JE",
+      "comments": [
+        "PUT A REG WITH",
+        "GOOD PARITY INTO",
+        "WORK REG."
+      ],
+      "grid": [
+        113,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J6",
+      "leg": "XX",
+      "address": "0B2E",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "A →T",
+        "D SCANOUT-RTWD",
+        "L R*24→S",
+        "S STOP1"
+      ],
+      "exit": "XX──JF",
+      "comments": [
+        "PUT B REG WITH",
+        "GOOD PARITY INTO",
+        "T REG. WORK REG",
+        "TO S REG."
+      ],
+      "grid": [
+        135,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J7",
+      "leg": "XX",
+      "address": "0B2F",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──JG",
+      "comments": [],
+      "grid": [
+        157,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J8",
+      "leg": "XX",
+      "address": "0B30",
+      "fields": [
+        "        SCAN C",
+        "C 0→SCAN-MODE",
+        "S SET-MARK-0-7"
+      ],
+      "exit": "X*──JH",
+      "comments": [
+        "STORE LOGOUT WORDS.",
+        "BRANCH IF SIX HAVE",
+        "BEEN STORED."
+      ],
+      "R_line": "R        STC=7",
+      "grid": [
+        179,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N2",
+      "leg": "X1",
+      "address": "0FD1",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──NB",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        47,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N6",
+      "leg": "0X",
+      "address": "0B34",
+      "fields": [
+        "C 1→STAD"
+      ],
+      "exit": "X0──NF",
+      "comments": [
+        "1ST DBL WORD"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        135,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q2",
+      "leg": ".WRAP",
+      "address": "0AD3",
+      "fields": [
+        "C ◺0→CC"
+      ],
+      "exit": "X0──QB",
+      "comments": [],
+      "grid": [
+        47,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q3",
+      "leg": "X0",
+      "address": "0B32",
+      "fields": [
+        "A 0+◺K",
+        "A →T",
+        "L W*24",
+        "S SET-MARK-0-7"
+      ],
+      "exit": "XX──QC",
+      "comments": [
+        "1ST WD WRAP DATA",
+        "TO L/S WORK REG"
+      ],
+      "grid": [
+        69,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q4",
+      "leg": "XX",
+      "address": "0B37",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "L R*24→S",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──QD",
+      "comments": [
+        "1ST WORD WRAP DATA",
+        "TO S REG",
+        "SETUP STORE ADDR."
+      ],
+      "grid": [
+        91,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q5",
+      "leg": "XX",
+      "address": "0B38",
+      "fields": [
+        "A 0+◺K",
+        "A →T"
+      ],
+      "exit": "*X──QE",
+      "comments": [
+        "2ND WD WRAP DATA",
+        "TO T REG",
+        "STORE WRAP DATA.",
+        "STAT D ON IF 2ND",
+        "DBL WORD IS BEING",
+        "STORED"
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        113,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q6",
+      "leg": "1X",
+      "address": "0B36",
+      "fields": [
+        "C 0→STAD"
+      ],
+      "exit": "X*──QF",
+      "comments": [
+        "2ND DBL WORD",
+        "BR IF COUNT",
+        "EQUAL ZERO"
+      ],
+      "R_line": "R        SAS=0",
+      "grid": [
+        135,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q7",
+      "leg": "X1",
+      "address": "0B33",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──QG",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        157,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q8",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──QH",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        179,
+        77
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 1437.21,
+    "first_header_y": 201.72,
+    "column_step": 655.41,
+    "row_step": 495.67
+  },
+  "text": [
+    [
+      4,
+      9,
+      "DIAGNOSE INST"
+    ],
+    [
+      2,
+      14,
+      "QT005.CAE"
+    ],
+    [
+      2,
+      15,
+      "(000011)"
+    ],
+    [
+      197,
+      9,
+      "T→RAR CAUSES BRANCH"
+    ],
+    [
+      197,
+      10,
+      "TO DIAGNOSE KERNEL"
+    ],
+    [
+      197,
+      11,
+      "SPECIFIED BY MCW"
+    ],
+    [
+      197,
+      12,
+      "BITS 8-19"
+    ],
+    [
+      229,
+      25,
+      "QQ001"
+    ],
+    [
+      239,
+      25,
+      "EGE"
+    ],
+    [
+      229,
+      26,
+      "(X1)"
+    ],
+    [
+      19,
+      45,
+      "LOGOUT MAIN STORAGE"
+    ],
+    [
+      19,
+      46,
+      "DIAGNOSE KERNEL"
+    ],
+    [
+      19,
+      47,
+      "ENTRY IS FROM"
+    ],
+    [
+      19,
+      48,
+      "DIAGNOSE INST"
+    ],
+    [
+      19,
+      49,
+      "QQ171.CH"
+    ],
+    [
+      19,
+      67,
+      "RESET CHECKS"
+    ],
+    [
+      19,
+      68,
+      "DIAGNOSE KERNEL"
+    ],
+    [
+      19,
+      69,
+      "ENTRY IS FROM"
+    ],
+    [
+      19,
+      70,
+      "DIAGNOSE INST"
+    ],
+    [
+      19,
+      71,
+      "QQ171.CH"
+    ],
+    [
+      19,
+      78,
+      "WRAP"
+    ],
+    [
+      19,
+      79,
+      "DIAGNOSE KERNEL"
+    ],
+    [
+      19,
+      80,
+      "ENTRY IS FROM"
+    ],
+    [
+      19,
+      81,
+      "DIAGNOSE INST"
+    ],
+    [
+      19,
+      82,
+      "QQ171.CH"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  05/21/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ171"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     048"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583846"
+    ],
+    [
+      200,
+      100,
+      "DIAGNOSE INSTRUCTION AND"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "KERNELS FD0.FD1"
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        46,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        68,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        89,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        156,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        155,
+        16
+      ],
+      [
+        157,
+        16
+      ]
+    ],
+    [
+      [
+        178,
+        14
+      ],
+      [
+        179,
+        14
+      ]
+    ],
+    [
+      [
+        89,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        112,
+        25
+      ],
+      [
+        113,
+        25
+      ]
+    ],
+    [
+      [
+        134,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        155,
+        25
+      ],
+      [
+        157,
+        25
+      ]
+    ],
+    [
+      [
+        45,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        68,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        90,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        112,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        134,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        156,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        178,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        45,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        134,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        68,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        68,
+        82
+      ],
+      [
+        69,
+        82
+      ]
+    ],
+    [
+      [
+        90,
+        80
+      ],
+      [
+        91,
+        80
+      ]
+    ],
+    [
+      [
+        112,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        134,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        156,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        80
+      ],
+      [
+        131,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        153,
+        25
+      ],
+      [
+        153,
+        16
+      ],
+      [
+        157,
+        16
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        65,
+        69
+      ],
+      [
+        65,
+        64
+      ],
+      [
+        175,
+        64
+      ],
+      [
+        175,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        153,
+        69
+      ],
+      [
+        153,
+        76
+      ],
+      [
+        67,
+        76
+      ],
+      [
+        67,
+        78
+      ],
+      [
+        69,
+        78
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          19
+        ],
+        [
+          75,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          95,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          19
+        ],
+        [
+          163,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          161,
+          21
+        ],
+        [
+          163,
+          21
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.981
+    },
+    {
+      "path": [
+        [
+          184,
+          19
+        ],
+        [
+          185,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          95,
+          30
+        ],
+        [
+          97,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.981
+    },
+    {
+      "path": [
+        [
+          118,
+          30
+        ],
+        [
+          119,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.739
+    },
+    {
+      "path": [
+        [
+          140,
+          30
+        ],
+        [
+          141,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          161,
+          30
+        ],
+        [
+          163,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.943
+    },
+    {
+      "path": [
+        [
+          51,
+          52
+        ],
+        [
+          53,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.925
+    },
+    {
+      "path": [
+        [
+          74,
+          52
+        ],
+        [
+          75,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          96,
+          52
+        ],
+        [
+          97,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          52
+        ],
+        [
+          119,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          140,
+          52
+        ],
+        [
+          141,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.958
+    },
+    {
+      "path": [
+        [
+          162,
+          52
+        ],
+        [
+          163,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.783
+    },
+    {
+      "path": [
+        [
+          184,
+          52
+        ],
+        [
+          185,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.792
+    },
+    {
+      "path": [
+        [
+          51,
+          74
+        ],
+        [
+          53,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          74
+        ],
+        [
+          141,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          74,
+          85
+        ],
+        [
+          75,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          87
+        ],
+        [
+          75,
+          87
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.75
+    },
+    {
+      "path": [
+        [
+          96,
+          85
+        ],
+        [
+          97,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          85
+        ],
+        [
+          119,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.696
+    },
+    {
+      "path": [
+        [
+          140,
+          85
+        ],
+        [
+          141,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.792
+    },
+    {
+      "path": [
+        [
+          162,
+          85
+        ],
+        [
+          163,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          134,
+          85
+        ],
+        [
+          137,
+          85
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.989
+    }
+  ],
+  "cells": [
+    [
+      153,
+      25,
+      "O"
+    ]
+  ],
+  "wiring_evidence": [
+    "C8 uses T→RAR to dispatch to the operational kernel address in MCW bits 8-19, so its two apparent fixed NEXT outcomes are not ordinary fixed-address wires. N2 and Q7 NEXT-INST exits both reach Q8 functional target."
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "0a7bd5c382e1f5931e0b4dfe183d63dbcaa7a84bdb1c97058bd3bf847006ca93",
+    "old_txt_sha256": "dce4cd667f11a2f1386d43c9a7c2711b48469e0c96a1a07e40fe486a221cc822",
+    "new_txt_sha256": "781e48f50fda3541ffdc275a83819a0cb105864395b54455801fa6b1c96f4892",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [
+    [
+      19,
+      49
+    ],
+    [
+      19,
+      71
+    ],
+    [
+      19,
+      82
+    ]
+  ],
+  "wire_shapes": {
+    "89,14": "┬",
+    "155,16": "┬",
+    "45,60": "├",
+    "85,64": "┬",
+    "65,69": "┴",
+    "131,76": "┼",
+    "131,80": "┴",
+    "153,80": "┬",
+    "175,80": "┴"
+  },
+  "wire_erase": [],
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ171",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "dce4cd667f11a2f1386d43c9a7c2711b48469e0c96a1a07e40fe486a221cc822",
+    "text_sha256": "781e48f50fda3541ffdc275a83819a0cb105864395b54455801fa6b1c96f4892",
+    "content_sha256": "3169220b891d0b8c77bed447fa27f8e02a6e2f67969702cc266a2c6d1a75a473",
+    "verification_sha256": "f1753133ac4a141dd44a68ba8cc86c1603a2399147ef7b5514a09c61b6dd7994",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ171 DIAGNOSE INSTRUCTION AND KERNELS FD0-FD1.tif",
+    "source_sha256": "0a7bd5c382e1f5931e0b4dfe183d63dbcaa7a84bdb1c97058bd3bf847006ca93",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ171",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 DIAGNOSE INSTRUCTION AND KERNELS FD0-FD1.txt",
+      "reviewed_txt_sha256": "781e48f50fda3541ffdc275a83819a0cb105864395b54455801fa6b1c96f4892",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ171 DIAGNOSE INSTRUCTION AND KERNELS FD0-FD1.tif",
+      "source_sha256": "0a7bd5c382e1f5931e0b4dfe183d63dbcaa7a84bdb1c97058bd3bf847006ca93",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Source review and revised targeted regions pass within stated review scope; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "9f7ffb2ff63514e53019ed3f50302e82d4155e3a668a909aa913d9b4514292fe",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 content.json",
+      "reviewed_content_sha256": "3169220b891d0b8c77bed447fa27f8e02a6e2f67969702cc266a2c6d1a75a473",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 verification.json",
+      "reviewed_verification_sha256": "f1753133ac4a141dd44a68ba8cc86c1603a2399147ef7b5514a09c61b6dd7994",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 staged preview.png",
+      "dimensions_pass": true,
+      "hash_matches_owner_manifest": true
+    },
+    "baseline_audit": {
+      "page": "QQ171",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 DIAGNOSE INSTRUCTION AND KERNELS FD0-FD1.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ171\\QQ171 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ171 DIAGNOSE INSTRUCTION AND KERNELS FD0-FD1.txt",
+      "old_sha256": "dce4cd667f11a2f1386d43c9a7c2711b48469e0c96a1a07e40fe486a221cc822",
+      "new_sha256": "781e48f50fda3541ffdc275a83819a0cb105864395b54455801fa6b1c96f4892",
+      "content_sha256": "3169220b891d0b8c77bed447fa27f8e02a6e2f67969702cc266a2c6d1a75a473",
+      "nodes": 25,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 14,
+          "label": "QT005.CAE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:54.599848+00:00"
+  }
+}

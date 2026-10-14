@@ -1,0 +1,73 @@
+RS315 S REGISTER PARITY 16-23 AND 24-31 - TRANSLATION NOTES
+
+Reference scan: RS S Register\RS315 S REGISTER PARITY 16-23 AND 24-31.tif
+Original scan: img20141205_22594170.tif
+Original scan timestamp: 2014-12-05 22:59:41.700000
+Preceding scan: RS305 S REGISTER PARITY 00-07 AND 08-15.tif
+Following scan: RT321 T REGISTER BITS 32 AND 33.tif
+Review record: tmp\ald-text\rs\RS root reviews.json
+
+PAGE NOTES
+
+RS315 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "semantic_driver_errors": [],
+  "printed_input_terminals": 61,
+  "confirmed_A1_source_disagreements": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 3
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "Native source and JuliaMono review",
+    "reading": "All12 native affine-grid views and complete JuliaMono preview reviewed;33 card portions match A1,61 physical inputs traced. Printed IDs BT7C and BU7J bus gates and BS2M delay retained, with lower AR T function. Anonymous Q/R gate outputs stay separate from printed G03/G04 outputs. Source PN2585929, BLK.BV, no SDD.",
+    "details": "Upper negative OR output rises138 to13, crosses184 and drops19 to BT.D12; lower rises138 to55, crosses184 and drops61 to BU.D12. Upper SDB/SAD outputs44/45; lower SDB output86 precedes controls87–92, avoiding false overlap. Lower feedback89 and controls have separate adjacent rails; lower SADDL G04 returns via68 to BS.D07 on82. Source upper branch referencesRT757/RT775 and lowerRT757/RT777 preserved. Rendered bend check96 turns, no hidden bends."
+  },
+  {
+    "kind": "Unclear printed fields",
+    "readings": {
+      "Lower LS reset source": "RT901�E4",
+      "BB4 primary": "B-C3�3D05",
+      "BB4 continuation": "02B-B3�3D05"
+    },
+    "candidates": {
+      "Lower LS reset source": "RT901CE4 (A is another possible reading of the damaged first letter)",
+      "BB4 primary": "B-C3A3D05",
+      "BB4 continuation": "02B-B3N3D05"
+    },
+    "reason": "Three glyphs have missing strokes; candidate readings remain separate for physical-copy inspection.",
+    "evidence": [
+      "tmp/ald-text/rs/late/RS315/lower control refs enlarged.png",
+      "tmp/ald-text/rs/late/RS315/footer table native.png"
+    ]
+  },
+  {
+    "kind": "Footer optical comparison",
+    "reading": "AB4 B-B3A8D04 and continuation02B-B4A1D09",
+    "reason": "Native enlargement shows two separate loops in8, top pin final4 and continuation final9; do not fill from socket or pin patterns.",
+    "evidence": "tmp/ald-text/rs/late/RS315/AB table enlarged.png"
+  }
+]
+
+Original scan order
+Before RS305 S REGISTER PARITY 00-07 AND 08-15.tif
+After RT321 T REGISTER BITS 32 AND 33.tif
+
+Unreadable printed characters retained as �: 3.

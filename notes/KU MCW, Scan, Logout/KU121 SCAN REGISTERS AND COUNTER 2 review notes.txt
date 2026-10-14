@@ -1,0 +1,76 @@
+KU121 SCAN REGISTERS AND COUNTER 2 - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU121 SCAN REGISTERS AND COUNTER 2.tif
+Original scan: img20141209_17545230.tif
+Original scan timestamp: 2014-12-09 17:54:52.300000
+Preceding scan: KU111 SCAN REGISTERS AND COUNTER 1.tif
+Following scan: KU131 SCAN REGISTERS AND COUNTER 3.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU121 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [
+    "CA"
+  ],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 71,
+  "passed": true,
+  "duplicate_port_references": {},
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "AZ.B09 and AZ.D08",
+    "evidence": "Native scan prints separate isolated corner terminals; no incoming wire connects either mark to the adjacent vertical. Their owners are explicit source-open markers, not inferred signal drivers."
+  },
+  {
+    "location": "AJ.D10 feedback to AH.D04, AL.D07, AN.D06",
+    "evidence": "Native KU121 AJ vertical context.png, AJ mid tap.png, and AH AJ trunk end.png: AJ output rises and turns left to the printed diamond on the shared vertical; AL.D07 has a second diamond, and the vertical ends at AN.D06."
+  },
+  {
+    "location": "-CLOCK P1 bank-five trunk",
+    "evidence": "Native KU121 bank5 control native.png: one continuous vertical links AX.D05, AY.D05, AZ.D05, BA.D05 to the -CLOCK P1 line; two middle taps have printed diamonds."
+  },
+  {
+    "location": "+CLOCK PO upper bank-five trunk",
+    "evidence": "Native KU121 c5p0.png: top +CLOCK PO branch through AV.D12 continues vertically to printed AW.D07 diamond and terminates at AX.B03 corner."
+  },
+  {
+    "location": "AX.D04 lower rail",
+    "evidence": "Native KU121 AX AY lower rails zoom.png shows its vertical crossing the first and second lower rails unjoined and turning left on the third, +NOT SPLIT LOGOUT."
+  },
+  {
+    "location": "AY.D02 control rail",
+    "evidence": "Native KU121 AY D02 end.png and horizontally continued native strips in root_review trace the pin vertical to +GT SCAN CTR TO SCTR LTH, KU411AG4."
+  },
+  {
+    "location": "Three lower control rails and AT/AQ junctions",
+    "evidence": "Native KU121 AY lower horizontal native.png and KU121 AT lower rails zoom.png: -SET SCAN CTR TO MAX is the upper rail and has the AT.D10 diamond, +GT ADDR SEQ TO SCTR LTH is the middle rail left of AT.B13, and AQ.D04 descends from a separate diamond through AT.B12 to the right-hand -FLT COUNTER 1 continuation. A printed gap separates the GT ADDR SEQ and AQ branches. The third rail is +NOT SPLIT LOGOUT. KU121 lower rails to right middle.png and KU121 lower rails to right edge.png confirm the right-hand endpoints and caption."
+  }
+]
+
+Original scan order
+Before KU111 SCAN REGISTERS AND COUNTER 1.tif
+After KU131 SCAN REGISTERS AND COUNTER 3.tif

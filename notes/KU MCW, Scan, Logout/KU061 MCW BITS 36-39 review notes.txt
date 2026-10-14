@@ -1,0 +1,83 @@
+KU061 MCW BITS 36-39 - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU061 MCW BITS 36-39.tif
+Original scan: img20141209_17492640.tif
+Original scan timestamp: 2014-12-09 17:49:26.400000
+Preceding scan: KU051 ST BUS TO SCAN MAINT COUNTER.tif
+Following scan: KU071 MCW BITS 40-43.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 23,
+  "A1_total_card_portions": 24,
+  "A1_mismatches": [
+    "AN"
+  ],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [
+    {
+      "kind": "card portion",
+      "board": "02E-A2",
+      "sockets": [
+        "C6"
+      ],
+      "part_number": "5803596",
+      "card_type": "3596",
+      "portion": "A4",
+      "source_listings": [
+        "A1512-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1512-01 SOCKET LISTING"
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 36,
+  "passed": true,
+  "duplicate_port_references": {},
+  "source_documented_A1_discrepancies": {
+    "AN": {
+      "printed": "3595A4",
+      "location": "E-A2C6",
+      "evidence": "Tight native KU061 AN field crop shows 3595A4: the fourth digit has a flat top and open lower bowl matching 5, whereas A1 socket listing has 3596A4. Literal source retained."
+    }
+  },
+  "unreviewed_A1_mismatches": [],
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "native_review": "All literal fields, pins, wedges, labels, footer and connectors read directly from KU061 native crops. The four larger OR boxes retain nine-row heights. GT rail c68 and reset rail c67 are source-confirmed; c69 carries isolated negative-output feedback legs with intervening gaps. Diamonds occur only at the native branch positions; crossing wires remain unjoined."
+  },
+  {
+    "self_review": "Compared both full-height rendered preview halves with every native block bank, input/output margins, connector table and revision/title crops. All 24 card portions and 36 physical inputs match. Four raw DG branches, four negative feedback returns, distinct GT/reset rails, nine-row OR blocks and source junction/crossing placement are retained."
+  },
+  {
+    "exact_wire_calibration": "Native seven-cell box width corroborates blank AND-output bend at c84, four cells after right border80. Negative-feedback corner KU061 c130 follows its three printed pin characters without an extra space."
+  },
+  {
+    "source_A1_discrepancy": "AN 3B prints 3595A4, while A1 lists 3596A4 at E-A2C6. Independent 4x enlargement of native AN card field confirms the printed 5; no card replacement inferred."
+  }
+]
+
+Original scan order
+Before KU051 ST BUS TO SCAN MAINT COUNTER.tif
+After KU071 MCW BITS 40-43.tif

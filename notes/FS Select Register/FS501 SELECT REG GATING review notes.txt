@@ -1,0 +1,53 @@
+FS501 SELECT REG GATING - TRANSLATION NOTES
+
+Reference scan: FS Select Register\FS501 SELECT REG GATING.tif
+Original scan: img20141208_15280439.tif
+Original scan timestamp: 2014-12-08 15:28:04.390000
+Preceding scan: FS361 SELECT REGISTER PARITY P16-23 AND P24-31.tif
+Following scan: FS511 SELECT REG RESET FROM SCON.tif
+Review record: tmp\ald-text\fs\FS root reviews.json
+
+PAGE NOTES
+
+FS501 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 21,
+  "A1_total_card_portions": 21,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 27,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "misplaced_border_wedges": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "native layout",
+    "evidence": "All card fields, physical ports, literal numeric2 qualifiers and native diamonds independently inspected. Ordinary aligned block lattice and open bottoms retained. R TC/R TO latch companion inputs and unlabeled latch outputs are printed without physical pin numbers. No connector continuation table is printed. Source strips are retained privately for review."
+  },
+  {
+    "location": "native printer grid fit",
+    "evidence": "Seven native block border anchors fit x=1342.155+36.188c-0.0669r and y=849.960-0.0787c+54.154r. Max residual2.58px horizontal and5.72px vertical; ordinary canonical bank spacing verified. No bank shift proposed. Private native fit.json records anchors."
+  },
+  {
+    "location": "unjoined crossings at qualified clock inputs",
+    "evidence": "AB.2D12, AC.2D10, AD.2B08 and AE.2B04 have horizontal CLOCK attachment at first wire cellc91 crossed by vertical WRITE_ENABLE rail without diamond. Separate source clock railc90 has its own diamonds. Validator requires strict horizontal expected attachment and pure vertical crossing rail, with no diamond. Numeric2 prefixes remain literal."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS361 SELECT REGISTER PARITY P16-23 AND P24-31.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS511 SELECT REG RESET FROM SCON.tif

@@ -1,0 +1,175 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                                      000 A6511 01
+
+
+
+
+          DESCRIPTION OF TAPE FORMAT AND CONTENTS                   ROS        THE FORMAT OF ROS TESTS IS DIFFERENT. THE                             HARDCORE REPAIR PROCEDURE                                  ROS                                                           ROS
+          ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                    FORMAT    TESTS CONSIST OF ONLY 2 DOUBLE WORDS EACH. -                           ■■■■■■■■■■■■■■■■■■■■■■■■                                   PLANE     INDICATIONS AND PROCEDURE                           PLANE     INDICATIONS AND PROCEDURE
+                                                                              THE FIRST IS THE TEST-NUMBER/ALTERNATE-TEST-
+          ID INFORMATION:                                                     NUMBER AND IS READ INTO STORAGE LOCATIONS
+                                                                              100 OR 200. THE MASK AND MCW ARE FOUND IN                           INTRO       THE HARDCORE TESTS HAVE BEEN                       4        ON: UT CT FAIL. S=ALL 1'S EXCEPT                     B        ON: UT CT FAIL. A PASSING
+           THE FIRST 8 BYTES OF EACH PHYSICAL RECORD                          THEIR NORMAL LOCATIONS. THE REMAINING WORDS                                    COMPLETELY REWRITTEN. EVERY                        ■■■       FOR A SINGLE ZERO. T=ALL 0'S.                       ■■■       DUMMY TEST WAS RUN. IT'S CT
+          CONSIST OF ID INFORMATION AND IS LOADED INTO                        IN EACH BUFFER ARE NOT USED. EACH ROS TEST                                     ATTEMPT WAS MADE TO SIMPLIFY                                 JUMPER E-A3H4B04 (-ROS TEST 4                                 BIT FAILED TO FORCE THE NEXT
+          PSA STORAGE LOCATIONS 0-7 EACH TIME A RECORD                        RECORD CONTAINS 600 TESTS (ENOUGH FOR 6 ROS                                    HARDCORE TROUBLESHOOTING.                                    LTH. KU201) TO D08. THIS BRINGS                               TEST TO RUN. CE SEARCHED
+          IS READ. THE FIRST 4 BYTES ARE AS FOLLOWS:                          WORDS). FOLLOWED BY TWO DUMMY TESTS.                                                                                                        UP SCAN-OUT-S-AND-T AND ALSO                                  INSTEAD. KU391AD4.
+                                                                                                                                                              EACH HARDCORE STOP DISPLAYS                                 SCAN-BYPASS EVERY CYCLE. SCOPE                                       RETRY: BBL. (TO REPEAT
+                       FT SS EC L0                                  DUMMY      THE LAST FLT TEST RECORD WILL PROBABLY BE                                     A NUMBER AS ROS PLANE. THIS                                  E-B3D7D10 (+ZERO RESULT. KU311).                                       THIS DUMMY TEST. RETRY
+                                                                    TESTS     SHORTER THAN NORMAL AND WILL HAVE EITHER ONE                                   NUMBER IS THE PROCEDURE                                      ZERO RESULT BEING ACTIVE CAUSES                                        WITH REPEAT KEY ON).
+          F=HEX DIGIT INDICATING TAPE FOR 7201-02 CE.                         OR TWO DUMMY TESTS AT THE END TO MAKE THE                                      SECTION TO BE USED. THESE                                    THIS TEST TO BE RUN. ZERO RESULT                                     BYPASS: SET T=ALL 1'S. L.
+          T=RECORD TYPE: 0 IPL OR LOADER (SS AND ECL=0)                       TOTAL NUMBER OF TESTS EVEN. THE PURPOSE OF                                     NUMBERS ARE NOT IN THE SAME                                  SHOULD NOT BE ACTIVE UNLESS S-                                         NORMAL STOP 3 IS ALSO
+                        1 HARDCORE TESTS                                      THE DUMMY TESTS IS BECAUSE THE LAST TEST IS                                    ORDER THEY APPEAR ON TAPE.                                   REG OR'D WITH T-REG IS ALL 1'S.                                        BYPASSED.
+                        2 ROS TESTS                                           NOT REPEATED AS MANY TIMES AS THE OTHERS.                                                                                                   MCW BITS 8-15 (FOUND IN STORAGE
+                        5 ZERO-CYCLE TESTS                                                                                                                    TO DISPLAY STORAGE. IT IS                                   BYTE 100 IF BFR-1 ON. ELSE 200                       C        ON: UT CT FAIL. THE TEST IN
+                        6 ONE-CYCLE TESTS                         TERMINAL     FOLLOWING THE LAST TEST RECORD IS A RESTART                        DISPLAY    NECESSARY TO RETURN SCAN CON-                                IN DECIMAL. INDICATE WHICH BIT                      ■■■       BUFFER 1 (THE FIRST HARDCORE
+                        F TERMINATING RECORD AT END               TEST        IPL AND A SHORT TERMINATION TEST RECORD. THE                        STORAGE    TROL TO NORM AND SYSTEM RESET.                               IS BEING TESTED.                                              TEST) WAS NOT RUN. BFR-1 TGR
+          SS=SEGMENT NUMBER (T=5 OR 6)                                        PURPOSE OF THIS RECORD IS TO STOP THE                                                                                                              RETRY: BBL.                                            (KU431BH4) SHOULD BE INVERTED
+           =ROS PLANE NUMBER (T=2)                                            TESTING AND PROVIDE THE INDICATIONS LISTED                                     L.=LOAD. B.=BACKSPACE. EXAMPLE:                                     BYPASS: IF A BIT 32-47 IS                              TO ON AT THE FIRST TIC.
+          ECL=LAST 3 DECIMAL DIGITS OF EC LEVEL OF                            ON PAGE A6503.                                                      ABBREVS    BBL.=BACKSPACE. BACKSPACE. LOAD.                                            BEING TESTED L.                                       RETRY: SET T=ALL 1'S.
+          0=UNUSED BITS.      SEGMENT OR ROS PLANE.                                                                                                          UT=UNCONDITIONAL TERMINATE BIT.                                                                                                     BBB(OR REWIND). LOAD.
+                                                                              STORAGE                                                                        CT=CONDITIONAL TERMINATE BIT.                                               IF A BIT 48-63 IS                                     BYPASS: SET T=ALL 1'S. L.
+          THE REMAINING 4 BYTES CONSIST OF A PHYSICAL                         LOCATION  HEX CONTENTS             DESCRIPTION                                 ERSLT=EXPECTED RESULT BIT.                                                  BEING TESTED SET                                        REPEAT AS NECESSARY TO
+          RECORD COUNT. STARTING WITH ONE.                                                                                                                   ATN=ALTERNATE TEST NUMBER.                                                  T=7FFF FFFF. L.                                         BYPASS HARDCORE TESTS.
+                                                                               000   F1 00 00 00 00 NN NN NN TERM TEST ID
+          STORAGE                                                              100   00 00 00 00 00 00 00 00                                                                                                     5        ON: UT CT FAIL. S=ALL 0'S.                           D        ON: UT CT FAIL. UNABLE TO STOP
+          LOCATION   HEX CONTENTS             DESCRIPTION                      108   FF FF FF FF FF 00 03 00 MCW HAS UT                                                                                         ■■■       T=ALL 1'S EXCEPT FOR A SINGLE                       ■■■       ON FAILURE. BUT UT WORKS.
+                                                                                (WORDS 110 THRU 178 ALL ZEROES)                                                                                                           ZERO. THIS IS AN ALTERNATIVE                                  KU391AT4.
+           000   F0 00 00 00 00 00 00 01 INITIAL IPL ID                        180   FF FF FF FF FF FF FF FF                                                                                                              METHOD TO TEST THE SAME THING                                        RETRY: BBL.
+           008   02 00 00 00 A0 60 00 02 READ LOADER ID                        200   00 00 00 00 00 00 00 00                                                                                                              4 DOES. USE PROCEDURE FOR 4.                                         BYPASS: SET T=7FFF FFFF.
+           010   02 00 00 18 60 00 00 28 READ LOADER                           208   FF FF FF FF 03 00 00 00 DUMMY TEST                                                                                                          RETRY: BBL.                                                     NORMAL STOP 2       L.
+                                                                                (WORDS 210 THRU 278 ALL ZEROES)                                                                                                                  BYPASS: SET T=FF00 00FF.                                        ALSO BYPASSED.
+           000   F0 00 00 00 00 00 00 02 LOADER ID                             280   00 00 00 00 FF FF FF FF                                                                                                                                        BBL.
+           018   02 00 00 00 A0 00 00 08 READ TEST REC ID                                                                                                                                                        6        ON: CT ERSLT PASS.                                   E        ON: UT CT FAIL.
+           020   02 00 01 00 A0 00 00 88 READ TEST BFR 1            REW        AFTER THIS RECORD ARE FIVE COPIES OF THE                           ROS                                                           ■■■       OFF: FAIL. THIS IS A DUMMY TEST                     ■■■       OFF: ERSLT PASS. A DUMMY FAIL-
+           028   08 00 00 30 00 00 00 00 TIC TO 030                 IPL       REWIND IPL.                                                         PLANE      INDICATIONS AND PROCEDURE                                    AND SHOULD NOT STOP. MCW BITS                                 ING TEST WITHOUT CT FAILED TO
+           030   02 00 02 00 A0 00 00 88 READ TEST BFR 2                                                                                                                                                                  8-15 UNIQUE. (SEE 4 FOR MCW                                   FORCE THE NEXT TEST TO RUN. CE
+           038   08 00 00 20 00 00 00 00 TIC TO 020                            000   F0 00 00 00 00 NN NN NN REWIND ID                                                                                                    DISPLAY PROCEDURE).                                           SEARCHED INSTEAD. MOMENTARILY
+                 NOTE-   WHERE 88 APPEARS ABOVE.                               008   07 00 00 00 60 00 00 01 REWIND CCW                            0         ON: CT UT FAIL. SYSTEM RESET                                                                                               GROUND E-A3L6B04 (-MACHINE
+                 ROS TESTS USE 10 INSTEAD.                                     010   08 00 00 10 00 00 00 00 TIC TO 10                            ■■■        SHOULD RESET ALL THREE.                             7        ON: ERSLT PASS.                                               RESET TO MCW. KU591) TO TURN
+                                                                                                                                                              IF STORAGE BYTE 0 IS:                             ■■■       OFF: UT CT FAIL. A NON-STOPPING                               OFF TERMINATE BITS. E-A3H7D06
+           000   F1 00 FC L0 00 00 00 03 HARDCORE 1 ID                        THE LAST COPY HAS ID STARTING FF. THE SECOND                                      F1: THE LAST TEST IN A                                    TEST TO LOAD T-REG WITH NEW DATA.                             (+FETCH NEXT TEST. KU391)
+            HARDCORE TEST RECORD NUMBER 1 HERE.                               F MARKS THE LAST RECORD FOR MANUFACTURING                                             RECORD WAS NOT RUN. THIS                              E-R3F6D11 (+CONTINUE. KU391)                                  SHOULD BE A PLUS LEVEL.
+                                                                              PURPOSES. THE LAST RECORD IS FOLLOWED BY AN                                           IS NOT SERIOUS. SINCE THE                             SHOULD BE A PLUS LEVEL.                                              RETRY: BBL.
+           000   F0 00 00 00 00 00 00 04 RESTART IPL ID             END       END OF FILE.                                                                          LAST TEST IS A DUMMY. IT                                                                                                   BYPASS: SET T=7FFF FFFF.
+           008   03 00 00 00 60 00 00 01 NO OPERATION                                                                                                               INDICATES POSSIBLE IOCE                      8        ON: UT CT FAIL. ATN SEARCH ON                                          NORMAL STOP 2       L.
+           010   03 00 00 00 60 00 00 01 NO OPERATION                                                                                                               PROBLEMS SUCH AS THE LAST                   ■■■       LOAD FAILED. PRESS SYSTEM RESET.                                       ALSO BYPASSED.
+                                                                                                                                                                    TIC PULSE MISSING.                                    UT CT FAIL SHOULD ALL RESET.
+           000   F1 00 EC L0 00 00 00 05 HARDCORE 2 ID                                                                                                              RETRY: BBBL.                                          PASS SHOULD SET. E-B3E5B02                           F        ON: UT CT FAIL. A FAILING TEST
+            HARDCORE TEST RECORD NUMBER 2 HERE.                                                                                                                     BYPASS: SET T=FF00 00FF.                              (+FETCH ALTERNATE TEST. KU391)                      ■■■       STOPS EVEN THOUGH THERE ARE NO
+                                                                                                                                                                                     BBL.                                 SHOULD BE A PLUS LEVEL.                                       TERMINATE BITS. MOMENTARILY
+           000   F0 00 00 00 00 00 00 06 RESTART IPL ID                                                                                                             TO SEARCH FOR THIS LAST                                      RETRY: BBL.                                            GROUND E-A3L6B04 (-MACHINE
+           008   03 00 00 00 60 00 00 01 NO OPERATION                                                                                                               TEST WHICH WAS NOT RUN:                                      BYPASS: SET T=ALL 1'S. L.                              RESET TO MCW. KU591) TO TURN
+           010   03 00 00 00 60 00 00 01 NO OPERATION                                                                                                               SET T=FF 00 FF 00. BBBBL.                                      REPEAT AS NECESSARY TO                               OFF TERMINATE BITS. E-R3F6D11
+                                                                                                                                                                F2: HARDCORE STOPS HAVE BEEN                                       BYPASS ALL HARDCORE TESTS.                           (+CONTINUE. KU391) SHOULD BE A
+           000   F1 00 EC L0 00 00 00 07 HARDCORE 3 ID                                                                                                              MISSED. IF BOTH STOPS 2                                                                                             PLUS LEVEL.
+            HARDCORE TEST RECORD NUMBER 3 HERE.                                                                                                                     AND 3 ARE MISSED. BFR-1                      9        ON: UT CT FAIL. A SEARCH WAS IN                                      RETRY: BBL.
+                                                                                                                                                                    TRIGGER (KU531) MAY BE                      ■■■       PROGRESS WHEN THE GAP WAS                                            BYPASS: SET T=7FFF FFFF.
+           000   F0 00 00 00 00 00 00 08 RESTART IPL ID                                                                                                             STUCK ON.                                             ENCOUNTERED. WHEN THE NEXT TEST                                        NORMAL STOP 2       L.
+           008   03 00 00 00 60 00 00 01 NO OPERATION                                                                                                                                                                     RECORD BEGAN. THE SEARCHING                                            ALSO BYPASSED.
+           010   03 00 00 00 60 00 00 01 NO OPERATION                                                                                              1         ON: UT DSBL-TMR FAIL BFR-1.                                  FAILED TO RESUME. PRESS SYSTEM
+                                                                                                                                                  ■■■        FIRST NORMAL STOP. PROVING                                   RESET. UT CT FAIL SHOULD ALL                                  BEFORE NORMAL STOP 1:
+           000   F1 00 EC L0 00 00 00 09 HARDCORE 4 ID                                                                                                       ABILITY TO STOP.                                             RESET. PASS SHOULD SET.                                        S-REG NOT CHANGING: TESTS
+            HARDCORE TEST RECORD NUMBER 4 HERE.                                                                                                                     RETRY: SET T=ALL 1'S. BBBL.                           E-B3E5B02 (+FETCH ALTERNATE                                      NOT COMING INTO CE.
+                                                                                                                                                                    CONTINUE: LOAD.                                       TEST. KU391) SHOULD BE A PLUS                                    DISABLE CHECK SWITCH NOT
+           000   F0 00 00 00 00 00 00 0A RESTART IPL ID                                                                                                                                                                   LEVEL.                                                           ON. STORAGE NOT CONFIGURED
+           008   03 00 00 00 60 00 00 01 NO OPERATION                                                                                              2         ON: CT DSBL-TMR FAIL BFR-1.                                         RETRY: BBL.                                               PROPERLY.
+           010   03 00 00 00 60 00 00 01 NO OPERATION                                                                                             ■■■        SECOND NORMAL STOP. PROVING                                         BYPASS: SET T=ALL 1'S. L.                               S-REG CHANGING AND
+                                                                                                                                                             FAIL FORCES NEXT TEST AND CE                                          REPEAT AS NECESSARY TO                                  T-REG NOT CHANGING:
+           000   F1 00 EC L0 00 00 00 0B HARDCORE 5 ID                                  SPECIAL PROCEDURES                                                   IS ABLE TO STOP ON FAIL.                                              BYPASS ALL HARDCORE TESTS.                                SEARCHING. COULD BE ZERO
+            HARDCORE TEST RECORD NUMBER 5 HERE.                                         ■■■■■■■■■■■■■■■■■■                                                          RETRY: BBL.                                                                                                              RESULT IS NEVER ACTIVE.
+                                                                                                                                                                    CONTINUE: LOAD.                              A        ON: UT CT FAIL. A SEARCH WAS                                       KU311.
+           000   F0 00 00 00 00 00 00 0C RESTART IPL ID                        TO RESTART AN FLT:                                                                                                               ■■■       NOT IN PROGRESS WHEN THE GAP WAS                                 T-REG CHANGING: RUNNING
+           008   03 00 00 00 60 00 00 01 NO OPERATION                         1. SYSTEM RESET                                                      3         ON: UT DSBL-TMR PASS.                                        ENCOUNTERED. WHEN THE NEXT TEST                                    TESTS. BUT UNABLE TO
+           010   03 00 00 00 60 00 00 01 NO OPERATION                         2. SET ROS ADR KEYS TO BD2 (IF TEST IS IN BFR 1)                    ■■■        THIRD NORMAL STOP. PROVING CT                                RECORD BEGAN. THE SEARCHING                                        STOP. MAYBE CONTINUE IS
+                                                                                                    AD2 (IF TEST IS IN BFR 2)                                FORCES NEXT TEST AND CE IS ABLE                              FAILED TO RESUME. PRESS SYSTEM                                     STUCK ACTIVE. KU391.
+           000   FT SS EC L0 00 00 00 0D TEST REC ID                          3. REPEAT KEY ON.                                                              TO STOP ON UNCONDITIONAL TERM.                               RESET. UT CT FAIL SHOULD ALL                                  AFTER NORMAL STOP 1: ALL THE
+           100   ───S REG─── ───T REG───                                      4. SCAN MODE SWITCH IN FLT POSITION.                                                  RETRY: SET T=FF00 00FF.                               RESET. PASS SHOULD SET.                                          1-BITS IN S ARE NOT GETTING
+           108   ───MASK──── ───MCW─────                                      5. PRESS ROS TRANSFER.                                                                CONTINUE: LOAD.      BBL.                             E-B3E5D02 (+FETCH ALTERNATE                                      TO PAL. SEE PAL PROCEDURE.
+             (WORDS 110 THRU 178 NOT SHOWN)                                                                                                                   ROS OR ZERO CYCLE TESTS                                     TEST. KU391) SHOULD BE A PLUS                                 AFTER NORMAL STOP 2: ALL THE
+           180   TRUE COMP COMP TRUE                                           THE TEST WILL NOW BE REPEATING.                                                FOLLOW.                                                     LEVEL.                                                           1-BITS IN T ARE NOT GETTING
+                 TEST-NUMBER ALT-TEST-NUM                                                                                                                                                                                        RETRY: BBBL.                                              TO PAL OR UT DOES NOT CAUSE
+           200   ───S REG─── ───T REG───                                       TO RUN A TEST ONCE TO CHECK FOR PASS OR FAIL:                      PAL         TO TROUBLESHOOT PAL AND DATA                                       BYPASS: SET T=ALL 1'S. L.                                 A STOP.
+           208   ───MASK──── ───MCW─────                                      1. MACHINE MUST BE READY TO REPEAT A TEST IF                        PROCEDURE  PATHS FROM ST-REG. JUMPER                                             TO BYPASS REMAINING
+             (WORDS 210 THRU 278 NOT SHOWN)                                      REPEAT KEY IS ON AND START IS PRESSED.                                      E-A3H4B04 (-ROS TEST 4 LTH.                                           HARDCORE TESTS.                                         PAL PROCEDURE IS LOCATED
+           280   TRUE COMP COMP TRUE                                          2. REPEAT KEY OFF.                                                             KU201) TO D08. THIS BRINGS UP                                                                                   TAPE          BELOW ROS PLANE 3. AT LEFT.
+           100   ───S REG─── ───T REG───                                      3. PRESS START.                                                                SCAN-OUT-S-AND-T AND ALSO SCAN-                                                                                 RUNS
+           108   ───MASK──── ───MCW─────                                       THIS WORKS FOR BOTH FLT AND ROS TESTS.                                        BYPASS EVERY CYCLE. SCOPE                                                                                       AWAY
+             (WORDS 110 THRU 178 NOT SHOWN)                                                                                                                  E-B3D7D10 (+ZERO RESULT. KU311).                                                                                ■■■
+           180   TRUE COMP COMP TRUE                                           TO RUN TWO TESTS ALTERNATELY:                                                 USING THE STORE PUSHBUTTON. LOAD
+             THIS PATTERN REPEATS UNTIL 71 (DECIMAL)                          1. JUMPER C-D4F2D11 (-SET PASS + FAIL. DR201)                                  FAILING REG (S OR T) WITH ALL
+             TESTS HAVE BEEN WRITTEN. THE PHYSICAL                               TO C-D4F2D12 (-INVERT BFR TGR. DR201).                                      1'S. ZERO RESULT WILL BE ACTIVE
+             RECORD THEN ENDS WITH A DUMMY TEST:                              2. REPEAT KEY ON TO RUN CONTINUOUSLY. OFF TO                                   WHEREVER THE BIT CORRESPONDING
+           200   00 00 00 00 00 00 00 00 THE LAST TEST                           STOP AFTER EACH TEST IS RUN.                                                TO THE FAILING BIT IS ON IN THE
+           208   FF FF FF FF 03 00 00 00 IS ALWAYS IN                         3. PRESS START.                                                                OTHER REGISTER.
+             (WORDS 210 THRU 278 ALL ZEROES) BUFFER 2.                         THIS ALLOWS COMPARING THE RESULTS OF TWO TESTS.
+           280   00 00 00 00 FF FF FF FF                                       ONE IN BUFFER 1. THE OTHER IN BUFFER 2. IF
+                                                                               ALTERNATE SWEEP IN THE SCOPE IS USED. EACH
+                                                                               TRACE CORRESPONDS TO ONE OF THE TESTS.
+
+                                                                               TO DISPLAY CONDITIONS THAT ARE PRESENT WHILE
+                                                                               THE TAPE DRIVE IS READING THE GAP:
+                                                                              1. POSITION THE TAPE SO THAT THE GAP IN QUESTION
+                                                                                 IS NEXT.
+                                                                              2. SET S AND T AS REQUIRED.
+                                                                              3. JUMPER E-B3H6B12 (+FLT COND SUBSYSTEM RESET.
+                                                                                 KU291) TO D08 GROUND.
+                                                                              4. LOAD.
+                                                                              5. AFTER STOPPING IN THE GAP. A RESTART CAN USUALLY
+                                                                                 BE ACCOMPLISHED BY QUICKLY TOUCHING E-B3H6D12 TO GND.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                          1 SEP 70 714945
+                                                                                                                                                                                                                          22 FEB 71 714952
+
+                                                                                                                                                                                                                                                                                       ┌────────────────────────────────────────────────────────────────┐
+                                                                                                                                                                                                                                                                                       │ FLT AND ROS TEST TAPE FORMAT                                   │
+                                                                                                                                                                                                                                                                                       │ SPECIAL AND HARDCORE PROCEDURE                                 │ A
+                                                                                                                                                                                                                                                                                       │ DATE 4 FEB 71 MACH. 7201-02                                    │ 6
+                                                                                                                                                                                                                                                                                       │                                                                │ 5
+                                                                                                                                                                                                                                                                                       │                                       FRAME      02            │ 1
+                                                                                                                                                                                                                                                                                       │                                   P.No.    2586568             │ 1
+                                                                                                                                                                                                                                                                                       │                                                                │ 000
+                                                                                                                                                                                                                                                                                       │ IBM CORP SDD PAGE                1                             │

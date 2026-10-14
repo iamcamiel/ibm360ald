@@ -1,0 +1,39 @@
+ROS SOURCE CORRECTIONS - 10 OCTOBER 2026
+
+Fixed the emulator ROS text and the VHDL ROS memory to match the verified QZ
+listings. All 2816 words now agree, including their leading cells, all 99 ROS
+bits, control-field boundaries, next-address values, validity and parity.
+There are no outstanding source-comparison findings.
+
+15 emulator rows were repaired:
+0094 023F 031C 0528 071A 078B 07A3 0835 089A 0CCF 0D00 0D97 0E3F 0F21 0F84
+13 VHDL words were repaired. The VHDL values for 0528 and 089A were already
+correct; those two emulator rows needed formatting/group-boundary repairs.
+
+0F21 intentionally uses E0 from the May 1970 QZ listing. The later March 1972
+QQ441 CAS diagram prints an E operation. This historical revision difference
+is retained in the original comparison evidence; the requested source repairs
+use the QZ value consistently in both implementations.
+
+Validation passed:
+- Exact coverage: 16 planes of 176 addresses, including intentional gaps.
+- Canonical field widths, all bits and controls, validity, and parity.
+- Actual production C++ init_ros loading/parity code in an isolated fixture.
+- Every listed address through the actual VHDL ROSMEM in simulation.
+- VHDL halt holds output; reset overrides halt.
+- 28 FPGA compatibility cases; required and declared FPGA revision both 1.11.
+- Generated ALD logic: 48 sections, 11656 matched Boolean assignments.
+- Generated ALD schedule: 48 sections, 9013 matched second-pass assignments.
+
+Tests did not run the full emulator/CPU, build or deploy a bitstream, or alter
+preserved hardware/MVT trials. Hardware use requires a matching revision 1.11
+bitstream. Detailed test results and logs are in:
+D:/Github/IBM360/ibm360m65/gen/ros-qz-r11-20261010
+
+ROS source corrections.json retains before/after values for every source edit
+and the hashes validated by the tests. ROS source validation.json and its
+differences CSV give the post-fix comparison (zero differences).
+
+Emulator comparison.json, Emulator differences.csv, and Emulator comparison
+notes.txt preserve the earlier pre-fix findings as historical evidence.
+The verified QZ transcriptions and original TIFF scans were not changed.

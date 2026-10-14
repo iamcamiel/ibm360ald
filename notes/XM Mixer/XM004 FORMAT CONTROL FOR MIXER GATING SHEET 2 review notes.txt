@@ -1,0 +1,72 @@
+XM004 FORMAT CONTROL FOR MIXER GATING SHEET 2 - TRANSLATION NOTES
+
+Reference scan: XM Mixer\XM004 FORMAT CONTROL FOR MIXER GATING SHEET 2.tif
+Original scan: img20141206_10591093.tif
+Original scan timestamp: 2014-12-06 10:59:10.930000
+Preceding scan: XM003 XY BYTE 0 PARITY PREDICT SHEET 3 OF 3.tif
+Following scan: XM005 FORMAT RCVRS FOR PARITY PREDICT.tif
+Review record: tmp\ald-text\xm\audits\XM004.json
+
+PAGE NOTES
+
+XM004 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 44,
+  "A1_total_card_portions": 44,
+  "A1_direct_page_card_portions": 44,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 51,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native source and physical listing",
+    "evidence": "The XM004 10200x6600 TIFF was inspected as sixteen native quadrants plus focused terminal, routing, and footer crops. All 44 card portions match direct XM004 A1 records."
+  },
+  {
+    "location": "Source geometry",
+    "evidence": "All block banks use ordinary fixed columns 50,73,96,119,142,165,188. Printed grid/rank retained separately from routing; no bank shift is applied."
+  },
+  {
+    "location": "Wired output rails",
+    "evidence": "AJ.D02 with AM.B12 and AK.D13 with AN.B03 each meet on their own diamonded rail. Neighboring AL.B04 and AP.D12 rails remain separate; plain crossings are not joins."
+  },
+  {
+    "location": "Right-side continuations",
+    "evidence": "All 32 printed right-side terminals and continuation references were read from margin-0 through margin-3 native crops and linked to source paths. Close bank-6/7 rails were checked in upper-rail-crossings-2x; raw format and weather rails in raw-five-left-trace, raw-five-across-top, raw-weather-left-trace, and raw-weather-bottom-turns."
+  },
+  {
+    "location": "Unusual literal continuation",
+    "evidence": "Printed AJ4 at the +FMTN-0-1-2-6-7 right margin is driven by AU.D09; its vertical crosses AT.D09 plainly. The continuation code was retained literally."
+  },
+  {
+    "location": "Independent root literal and layout corrections",
+    "evidence": "Root read all16native panels and all4margin bands. Source AG originXM901BA4, AD inputliteralNEW6. BJ has sixrefs061/081/101/121/141/161; AV first261,AY first381,BL first141,BD first061,BV first501,BM first411. AU marginAJ4 referenceXM021. Complete lists/hanging hooks restored, including primary lower junction on multilevel references. Footer flows34/36 then48/50 fromrow94, AE literalL-B2J1E11, AG continuation02L-B1M8D05, printedSD. Bank3 N inputs andAZ/BA inputs are plainly bordered; individual source wedges corrected, directpin-corner geometry retained."
+  },
+  {
+    "location": "Final source and preview peer",
+    "evidence": "Root compared native overview, all16card panels, all4margin bands and continuous paired-output/raw/rightreturn paths with complete final preview. xm_high_resume independently checked corrected margin lists/footer and individual inlet focus images, finding no new discrepancy. Damaged BM board-letter ink is corroborated as L-B2J3 by exact native socket/card portion and A1 record; no board-location normalization applied to footer literals."
+  }
+]
+
+Original scan order
+Before XM003 XY BYTE 0 PARITY PREDICT SHEET 3 OF 3.tif
+After XM005 FORMAT RCVRS FOR PARITY PREDICT.tif

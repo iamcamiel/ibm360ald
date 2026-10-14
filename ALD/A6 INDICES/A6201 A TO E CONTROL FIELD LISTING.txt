@@ -1,0 +1,134 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                           000 A6201 01
+
+
+
+          A FIELD     INGATING TO A.B.IC                                                                                                                                      D FIELD     END OPS AND INGATING SERIAL ADDER TO F
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 06-09
+                                                                                                                                                                              THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 17-19
+                                                                                                                                                                              EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     CHAR                      ORDER
+          CHAR                      ORDER
+
+                                                                                                                                                                                                    000     D0     NO OPERATION
+                                0000    A0     NO OPERATION                                                                                                                   C    NEOP             001     D1     NORMAL END OP                                                                                             DR051
+          A    R                0001    A1     PAL32-63 TO B32-63                                                                                        DR021                                                     SET BLOCK I FETCH TGR IF EXCEPTIONAL CONDITION TO I FETCH.
+          A    B.IC             0010    A2     PAL32-63 TO B32-63 AND PAL40-63 TO IC00-23                                                                DR021                                                     GATE INTERRUPT PRIORITY.
+          A    A.B              0011    A3     PAL32-63 TO BOTH A00-31 AND B32-63                                                                        DR021.RY031                                               IF R REGISTER OP IS NOT RR FORMAT THEN GATE Q TO LAR
+          A    AB17             0100    A4     PAL08-63 TO AB08-63 (DOES NOT RESET A00-07)                                                               DR021                                                     PER IC21-22. IF RR AND NOT BRANCH THEN GATE R8-11 TO LAR.
+          A    AB               0101    A5     PAL04-67 TO AB04-67 (RESETS A00-03)                                                                       DR021                                                     OR IF RR AND BRANCH THEN GATE R12-15 TO LAR.
+          A    AB38             0110    A6     PAL24-67 TO AB24-67                                                                                       DR021                                                     CHECK FOR Q-BUFFER REFILL AND START I FETCH SEQUENCERS
+          A    B38M             0111    A7     PAL24-67 TO AB24-67 (PAL66.67 = 00. VALUE OF                                                              DR021                                                     IF THE BUFFER IS TO BE REFILLED.
+                                               MULTIPLE SELECTION REGISTER (M1M2) TO PAL64.65)                                                                                C    EEOP             010     D2     EARLY END OP                                                                                              DR051
+          A    J9B8             1000    A8     PAL28-31 TO B64-67(PAL24-27 MUST = 0000 FOR                                                               DR021                                                     CHECK FOR Q-BUFFER REFILL AND START I FETCH SEQUENCERS
+                                               CORRECT PARITY)                                                                                                                                                     IF THE BUFFER IS TO BE REFILLED.
+          D    MS→AB            1001    A9     SDBO 00-63 TO AB00-63                                                                                     DR021                C    BEOP             011     D3     BRANCH END OP                                                                                             DR051
+          A    IC               1010    A10    PAL40-63 TO IC00-23                                                                                       DR021                                                     SET BLOCK I FETCH TGR IF EXCEPTIONAL CONDITION TO I FETCH.
+          A    A                1011    A11    PAL32-63 TO A00-31                                                                                        DR021                                                     GATE INTERRUPT PRIORITY.
+          A    J49B             1100    A12    PAL32-63 TO B32-63. PAL28-31 TO B64-67                                                                    DR021                                                     IF R REGISTER OP IS NOT RR FORMAT THEN GATE Q TO LAR
+                                               (PAL24-27 MUST = 0000 FOR CORRECT PARITY)                                                                                                                           PER D21-22. IF RR AND NOT BRANCH THEN GATE R8-11 TO LAR.
+          A    B8               1101    A13    PAL64-67 TO B64-67                                                                                        DR021                                                     OR IF RR AND BRANCH THEN GATE R12-15 TO LAR.
+          A    AB18             1110    A14    PAL08-67 TO AB08-67 (DOES NOT RESET A00-07)                                                                                                                         CHECK FOR Q-BUFFER REFILL AND START I FETCH SEQUENCERS
+                                                                                                                                                                                                                   IF THE BUFFER IS TO BE REFILLED.
+                                                                                                                                                                              C    DIR-CNTL→F       100     D4     DIRECT CONTROL 00-07 TO F00-07.                                                                           DR051
+                                                                                                                                                                              B    F0               101     D5     SAL00-03 TO F00-03                                                                                        DR051
+                                                                                                                                                                              B    F1               110     D6     SAL04-07 TO F04-07                                                                                        DR051
+                                                                                                                                                                              B    F                111     D7     SAL00-07 TO F00-07                                                                                        DR051.RF901
+
+          B FIELD     INGATING LOCAL STORE TO S.T
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 10-11
+
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER
+                                                                                                                                                                              E FIELD     INGATING TO E.R. E INCREMENTING AND DECREMENTING AND EMIT
+                                                                                                                                                                                          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 81.21-24 ✲
+                                00      B0     NO OPERATION                                                                                              DR021
+          L    →S               01      B1     LOCAL STORE DATA REG OUTPUT BUS00-31 TO S00-31                                                            DR021                EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          L    →T               10      B2     LOCAL STORE DATA REG OUTPUT BUS00-31 TO T32-63                                                            DR021.RY031          CHAR                      ORDER
+          L    →S.T             11      B3     LOCAL STORE DATA REG OUTPUT BUS00-31 TO BOTH                                                              DR021                                      ✲
+                                               S00-31 AND T32-63                                                                                                                                    00000   E0     NO OPERATION
+                                                                                                                                                                              C    E2+1             00001   E1     E08-11 PLUS 1 TO E08-11                                                                                   DR051
+                                                                                                                                                                              C    E3+1             00010   E2     E12-15 PLUS 1 TO E12-15                                                                                   DR051
+                                                                                                                                                                              A    E                00011   E3     PAL56-63 TO E08-15                                                                                        DR071
+                                                                                                                                                                              C    E2.3-1           00100   E4     E08-11 MINUS 1 TO E08-11. E12-15 MINUS 1 TO E12-15                                                        DR051.CE901
+                                                                                                                                                                              C    E2-1             00101   E5     E08-11 MINUS 1 TO E08-11                                                                                  DR051
+          C FIELD     REGISTER INGATING TO D.K.Q.S.T. PSW.N.G                                                                                                                 C    E3-1             00110   E6     E12-15 MINUS 1 TO E12-15                                                                                  DR051
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 12-16                                                                                                                 C    E23-1            00111   E7     E08-15 MINUS 1 TO E08-15                                                                                  DR051
+                                                                                                                                                                              D    CON→E3           01000   E8     CONSTANT TO E12-15 (5 IF FLTG. PT. DIVIDE. 15                                                             DR051
+                                                                                                                                                                                                                   IF FLTG. PT. OR FXD. PT. MULTIPLY. 0 IF OTHER)
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     D    D1→E3            01001   E9     D18-21 TO E12-15                                                                                          DR051
+          CHAR                      ORDER                                                                                                                                     D    R→E              01010   E10    R00-15 TO E00-15                                                                                          DR071
+                                                                                                                                                                              A    R                01011   E11    PAL56-63 TO R08-15                                                                                        DR071
+                                                                                                                                                                              D    Q01→R            01100   E12    Q00-15 TO R00-15                                                                                          DR071
+                                00000   C0     NO OPERATION                                                                                                                   D    Q23→R            01101   E13    Q16-31 TO R00-15                                                                                          DR071
+          D    PSW→ST           00001   C1     PSW BITS TO S00-15. T32-39 (SYS MASK.KEY.AMWP.ILC.CC.                                                     DR031                D    Q45→R            01110   E14    Q32-47 TO R00-15                                                                                          DR071
+                                               PRG MASK). INTERRUPT RESET. SDBO00-63 TO Q00-63                                                                                D    Q67→R            01111   E15    Q48-63 TO R00-15                                                                                          DR071
+          D    PSW→S23          00010   C2     PSW BITS TO S16-31 (INTERRUPTION CODE)                                                                    DR041                B    ◺NX→V            10000   E16    GATE N BYTE TO SBB-00-07 PER W10 OR W14 MICRO ORDER                                                       XN231
+          D    ST04→PSW         00011   C3     S00-07 TO PSW (SYSTEM MASK). S08-15 TO PSW (KEY.AMWP) T34-39                                              DR031                B    ◺0001→V0         10001   E17    GATE 0001 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+                                               TO PSW (CC. PROG MASK)                                                                                                         B    ◺0010→V0         10010   E18    GATE 0010 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    T                00100   C4     PAL32-63 TO T32-63                                                                                        DR031                B    ◺0011→V0         10011   E19    GATE 0011 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    DT               00101   C5     PAL08-31 TO D00-23. PAL 32-63 TO T32-63                                                                   DR031                B    ◺0100→V0         10100   E20    GATE 0100 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    JWT              00110   C6     PAL40-63 TO T40-63 AND SAL00-07 TO T32-39                                                                 DR031                B    ◺0101→V0         10101   E21    GATE 0101 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    T.D              00111   C7     PAL32-63 TO T32-63. PAL40-63 TO D00-23                                                                    DR031                B    ◺0110→V0         10110   E22    GATE 0110 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    MS1→T            01000   C8     SDBO32-63 TO T32-63                                                                                       DR041                B    ◺0111→V0         11111   E23    GATE 0111 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    MS→ST            01001   C9     SDBO00-63 TO ST00-63                                                                                      DR041                B    ◺1000→V0         11000   E24    GATE 1000 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    MS0→T            01010   C10    SDBO00-31 TO T32-63                                                                                       DR041                B    ◺1001→V0         11001   E25    GATE 1001 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    ADR←KEYS→D       01011   C11    ADDRESS KEYS TO D00-23                                                                                    DR041                B    ◺1010→V0         11010   E26    GATE 1010 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    DWS              01100   C12    PAL40-63 TO D00-23. SAL00-07 TO ST PER STC                                                                DR031                B    ◺1011→V0         11011   E27    GATE 1011 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          B    ST               01110   C14    SAL00-07 TO ST PER STC                                                                                    DR031                B    ◺1100→V0         11100   E28    GATE 1100 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          A    D                01111   C15    PAL40-63 TO D00-23                                                                                        DR031                B    ◺1101→V0         11101   E29    GATE 1101 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          C    ATRSEL◺RESET     10000   C16    RESET ATR SELECT LATCH                                                                                    DR031                B    ◺1110→V0         11110   E30    GATE 1110 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    T4→PSW           10001   C17    T34-39 TO PSW (CC.PROG MASK)                                                                              DR031                B    ◺1111→V0         11111   E31    GATE 1111 TO SBB 00-03.ZEROES TO SBB 04-07                                                                RY065
+          D    DATA-KEYS→ST     10010   C18    DATA KEYS TO ST00-63                                                                                      DR031
+          D    TB→◺MCW          10011   C19    T32-39.52 TO MAINTENANCE CONTROL WORD 0-7. 20. T53-57 TO                                                  DR031
+                                               ADR SEQ0-4. T58-61 TO FLT COUNTER 0-3. T62. 63 TO FLT
+                                               CLOCK 0. 1  B TO EXTENDED MCW
+          D    MS→Q             10100   C20    SDBO00-63 TO Q00-63                                                                                       DR031
+          A    TIF              10101   C21    (SDBO 00-63) TO Q00-63 AND TWO BYTES OF Q TO R PER D21.22.                                                DR031
+                                               IF ROSAR 10=1. PAL 32-63 T33-63.63
+                                               RESET EXECUTE AND ADDR STORE COMP IF BXH OR BXLF AND
+                                               ROSAR 10=1                                                                                                                     ✲ BIT 81 ON BLOCKS GATING A BYTE FROM ST TO SBB 00-07
+          B    G                10110   C22    SAL00-07 TO G00-07 (DIRECT CONTROL)                                                                       DR031                . REFERENCE ALD RTB31. RTB36
+          D    ◺LM→N.Q→R✲IC     10111   C23    TWO BYTES OF LM TO N. AND TWO BYTES OF Q TO R PER                                                         DR031
+                                               IC 21-22.
+          A    DTS              11000   C24    PAL08-31 TO D00-23. PAL32-63 TO T32-63. SAL 00-07 TO ST                                                   DR021
+                                               PER STC
+          D    MS→T✲D(21)       11010   C26    SDBO00-31 TO T32-63 IF D21=0.-SDBO32-63 TO T32-63 IF D21=1                                                DR041
+          D    S0→PSW           11100   C28    S00-07. 16-19' TO PSW00-07. 16-19 (SYSTEM MASK)                                                           DR031
+          D    MS0→S            11101   C29    SDBO00-31 TO S00-31                                                                                       DR041
+          A    ◺K               11110   C30    PAL 32-63 TO K 00-31                                                                                      DR041
+          B    ◺N1              11111   C31    SAL 00-07 TO N 08-15                                                                                      DR031
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                             15 MAY 70  713666                                ┌──────────────────────────────────────────────────┐ A
+                                                                                                                                                                                                                                                                              │ A TO E CONTROL FIELD LISTING                     │ 6
+                                                                                                                                                                                                                                                                              │ DATE 8 MAY 70 MACH. 7201-02                      │ 2
+                                                                                                                                                                                                                                                                              │                     FRAME      02                │ 0
+                                                                                                                                                                                                                                                                              │                     P.No.      2586556           │ 1
+                                                                                                                                                                                                                                                                              │                                                  │ 000
+                                                                                                                                                                                                                                                                              │ IBM CORP. SDD  PAGE        1                     │

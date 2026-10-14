@@ -1,0 +1,1770 @@
+{
+  "nodes": [
+    {
+      "box": "A9",
+      "leg": "11",
+      "address": "042B",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B V+0",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "00──AI",
+      "comments": [
+        "F3-6 WAS +1",
+        "AND SHIFTED OUT",
+        "6. STORE FROM",
+        "D AND GET",
+        "CORRECT CHAR.",
+        "FROM S."
+      ],
+      "R_line": "R 0          0",
+      "grid": [
+        201,
+        0
+      ]
+    },
+    {
+      "box": "C1",
+      "leg": "01",
+      "address": "0441",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR  NEOP"
+      ],
+      "exit": "******──CA",
+      "comments": [
+        "COMPARE OPERATION",
+        "SET COND REG AND",
+        "END OP.",
+        "R REG TO E",
+        "LOCAL STORE T"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        25,
+        11
+      ]
+    },
+    {
+      "box": "C2",
+      "leg": "00",
+      "address": "0240",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "**──CB",
+      "comments": [
+        "NOT COMPARE OR",
+        "UNNORM. STORE",
+        "HIGH ORDER IF",
+        "NORMALIZATION",
+        "NOT REQUIRED"
+      ],
+      "R_line": "R 0      UFLO",
+      "grid": [
+        47,
+        11
+      ]
+    },
+    {
+      "box": "C3",
+      "leg": "01",
+      "address": "0449",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR  NEOP"
+      ],
+      "exit": "******──CC",
+      "comments": [
+        "COMPARE END OP",
+        "AND SET COND REG",
+        "R REG. TO E",
+        "LOCAL STORE T"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        69,
+        11
+      ]
+    },
+    {
+      "box": "C4",
+      "leg": "00",
+      "address": "0248",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "**──CD",
+      "comments": [
+        "HIGH ORDER TO T",
+        "AND STORE WITH",
+        "CHAR FROM F.",
+        "BRANCH ON CHAR",
+        "OV OR UNDERFLOW"
+      ],
+      "R_line": "R 0      UFLO",
+      "grid": [
+        91,
+        11
+      ]
+    },
+    {
+      "box": "C5",
+      "leg": "01",
+      "address": "0445",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR  NEOP"
+      ],
+      "exit": "******──CE",
+      "comments": [
+        "COMPARE INST.",
+        "END OP",
+        "SET COND REG.",
+        "R REG. TO E",
+        "LOCAL STORE T"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        113,
+        11
+      ]
+    },
+    {
+      "box": "C6",
+      "leg": "10",
+      "address": "0246",
+      "fields": [
+        "A B8+DT",
+        "A L→AB18,T",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "10──CF",
+      "comments": [
+        "DT LEFT TO DT",
+        "AND F-1 TO F",
+        "TO NORMALIZE"
+      ],
+      "R_line": "R 1          0",
+      "grid": [
+        135,
+        11
+      ]
+    },
+    {
+      "box": "C7",
+      "leg": "10",
+      "address": "042A",
+      "fields": [
+        "A AB18+0",
+        "A L→AB17,T",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A1≠0→INH"
+      ],
+      "exit": "**──CG",
+      "comments": [
+        "ABL4 TO AB T",
+        "AND F-1 TO F",
+        "INHIB IF NO",
+        "LEAD ZEROS.",
+        "BRANCH ON",
+        "LEAD ZEROS AND",
+        "RES ZERO."
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        157,
+        11
+      ]
+    },
+    {
+      "box": "E9",
+      "leg": "00",
+      "address": "0428",
+      "fields": [
+        "A A+0",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "0*──EI",
+      "comments": [],
+      "R_line": "R 0      UFLO",
+      "grid": [
+        201,
+        22
+      ]
+    },
+    {
+      "box": "G1",
+      "leg": "00",
+      "address": "0440",
+      "fields": [
+        "A AB+0",
+        "A R→DT",
+        "B 1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A(07)≠0→INH"
+      ],
+      "exit": "**──GA",
+      "comments": [
+        "SHIFT FRACTION",
+        "RIGHT 4 IF",
+        "FRACTION OVERFLOW",
+        "STORE LOW ORDER",
+        "OP NOT COMPARE",
+        "OR UNOR"
+      ],
+      "R_line": "R J1=0/1.J18=0",
+      "grid": [
+        25,
+        33
+      ]
+    },
+    {
+      "box": "G2",
+      "leg": "10",
+      "address": "0242",
+      "fields": [
+        "A B8+DT",
+        "A L→AB17,DT",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "00──GB",
+      "comments": [
+        "NOT COMPARE OR",
+        "UNNORM. SHIFT",
+        "FRACTION LEFT",
+        "4 IF LEAD ZERO."
+      ],
+      "R_line": "R 0          0",
+      "grid": [
+        47,
+        33
+      ]
+    },
+    {
+      "box": "G3",
+      "leg": "00",
+      "address": "0448",
+      "fields": [
+        "A 0+DT",
+        "A L→DT",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A1≠0→INH"
+      ],
+      "exit": "**──GC",
+      "comments": [
+        "NOT COMP OR UN.",
+        "DT LEFT 4 TO DT",
+        "AND F-1 TO F",
+        "IF NORM NEEDED.",
+        "BRANCH ON LEAD",
+        "ZEROS OR",
+        "ZERO FRACTION"
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        69,
+        33
+      ]
+    },
+    {
+      "box": "G4",
+      "leg": "10",
+      "address": "024A",
+      "fields": [
+        "A 0+DT",
+        "A L→DT",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1"
+      ],
+      "exit": "**──GD",
+      "comments": [
+        "DT LEFT 4 TO DT",
+        "AND F-1 TO F",
+        "STORE LOW ORDER",
+        "BRANCH ON LEAD",
+        "ZEROS."
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        91,
+        33
+      ]
+    },
+    {
+      "box": "G5",
+      "leg": "00",
+      "address": "0444",
+      "fields": [
+        "A B8-DT,C8",
+        "A →B8,DTS",
+        "B 0+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A(07)≠0→INH"
+      ],
+      "exit": "**──GE",
+      "comments": [
+        "NOT COMP OR UN",
+        "COMPLEMENT DT",
+        "IF FRACTION IS",
+        "MINUS. STORE",
+        "LOW ORDER",
+        "BRANCH ON LEAD",
+        "ZEROS OR FRAC 0"
+      ],
+      "R_line": "R J1=0/1.J18=0",
+      "grid": [
+        113,
+        33
+      ]
+    },
+    {
+      "box": "G6",
+      "leg": "00",
+      "address": "0244",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "0*──GF",
+      "comments": [
+        "HIGH ORDER TO T",
+        "AND STORE WITH",
+        "CHAR FROM F.",
+        "BRANCH ON",
+        "CHAR. OV OR",
+        "UNDERFLOW."
+      ],
+      "R_line": "R 0      UFLO",
+      "grid": [
+        135,
+        33
+      ]
+    },
+    {
+      "box": "J9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──JI",
+      "comments": [],
+      "output_symbol": "",
+      "grid": [
+        201,
+        44
+      ]
+    },
+    {
+      "box": "L1",
+      "leg": "10",
+      "address": "0442",
+      "fields": [
+        "A AB+0",
+        "A R→DT",
+        "B 1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A(07)≠0→INH"
+      ],
+      "exit": "**──LA",
+      "comments": [
+        "UNNORMALIZED OP",
+        "SHIFT FRACTION",
+        "RIGHT 4 IF",
+        "OVERFLOW.",
+        "STORE LOW ORDER"
+      ],
+      "R_line": "R 1 J1=0.J17=0",
+      "grid": [
+        25,
+        55
+      ]
+    },
+    {
+      "box": "L2",
+      "leg": "11",
+      "address": "0243",
+      "fields": [
+        "L WF*E2",
+        "C 0→STAD  EEOP"
+      ],
+      "exit": "**──LB",
+      "comments": [
+        "NOT COMPARE OR",
+        "UNNORM",
+        "FRACTION IS ZERO",
+        "STORE HIGH ORDER"
+      ],
+      "R_line": "R PSW39",
+      "grid": [
+        47,
+        55
+      ]
+    },
+    {
+      "box": "L3",
+      "leg": "10",
+      "address": "044A",
+      "fields": [
+        "B 0+U",
+        "B →F       F→U",
+        "L WF*E2Ω1"
+      ],
+      "exit": "1*──LC",
+      "comments": [
+        "UNNORM",
+        "CHAR THROUGH",
+        "SADD SO BRANCH",
+        "CAN BE MADE",
+        "AFTER NEXT CYCLE"
+      ],
+      "R_line": "R 1 J1=0.J17=0",
+      "grid": [
+        69,
+        55
+      ]
+    },
+    {
+      "box": "L4",
+      "leg": "11",
+      "address": "024B",
+      "fields": [
+        "B 1+U",
+        "B →F       F→U",
+        "C 0→STAD"
+      ],
+      "exit": "**──LD",
+      "comments": [
+        "FRACTION IS ZERO.",
+        "RESTORE CHAR.",
+        "SINCE ONE NORM.",
+        "CYCLE HAS BEEN",
+        "TAKEN",
+        "BRANCH ON MASK"
+      ],
+      "R_line": "R PSW39",
+      "grid": [
+        91,
+        55
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "10",
+      "address": "0446",
+      "fields": [
+        "A 0-DT",
+        "A →DT",
+        "B 0+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A(07)≠0→INH"
+      ],
+      "exit": "1*──LE",
+      "comments": [
+        "UNNORMALIZED",
+        "COMPLEMENT DT",
+        "IF FRACTION",
+        "MINUS. STORE",
+        "LOW ORDER",
+        "BRANCH ON ZERO",
+        "FUNCTION"
+      ],
+      "R_line": "R 1 J1=0.J17=0",
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "L6",
+      "leg": "11",
+      "address": "0247",
+      "fields": [
+        "L WF*E2",
+        "C 0→STAD"
+      ],
+      "exit": "**──LF",
+      "comments": [
+        "ZERO FRACTION",
+        "STORE HIGH ORDER.",
+        "BRANCH ON LOST",
+        "SIGN.",
+        "MASK."
+      ],
+      "R_line": "R PSW39",
+      "grid": [
+        135,
+        55
+      ]
+    },
+    {
+      "box": "L8",
+      "leg": "10",
+      "address": "044E",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "**──LH",
+      "comments": [
+        "UNNORM",
+        "HIGH ORDER TO T",
+        "AND STORE WITH",
+        "CHAR FROM F."
+      ],
+      "R_line": "R STAD   UFLO",
+      "grid": [
+        179,
+        55
+      ]
+    },
+    {
+      "box": "Q8",
+      "leg": "11",
+      "address": "044F",
+      "fields": [
+        "L WF*E2",
+        "C 0→STAD  EEOP",
+        "C 1→STAA*J18=0"
+      ],
+      "exit": "**──QH",
+      "comments": [
+        "FRACTION IS ZERO",
+        "SET RESULT",
+        "TO ZERO"
+      ],
+      "R_line": "R PSW39",
+      "grid": [
+        179,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      3,
+      "QC061.EIE"
+    ],
+    [
+      2,
+      4,
+      "(00)"
+    ],
+    [
+      2,
+      5,
+      "(01)"
+    ],
+    [
+      2,
+      6,
+      "(10)"
+    ],
+    [
+      2,
+      10,
+      "QC071.NBE"
+    ],
+    [
+      2,
+      11,
+      "(00)"
+    ],
+    [
+      2,
+      12,
+      "(01)"
+    ],
+    [
+      2,
+      13,
+      "(10)"
+    ],
+    [
+      23,
+      4,
+      "TRANSFER OF ONE OPERAND"
+    ],
+    [
+      23,
+      5,
+      "WITH OUT ADD OR SUB"
+    ],
+    [
+      63,
+      4,
+      "FRACTION SUBTRACTION"
+    ],
+    [
+      2,
+      25,
+      "QC061.AGE"
+    ],
+    [
+      2,
+      26,
+      "(00)"
+    ],
+    [
+      2,
+      27,
+      "(01)"
+    ],
+    [
+      2,
+      28,
+      "(10)"
+    ],
+    [
+      2,
+      36,
+      "QC061.NIE"
+    ],
+    [
+      2,
+      37,
+      "(00)"
+    ],
+    [
+      2,
+      38,
+      "(01)"
+    ],
+    [
+      2,
+      39,
+      "(10)"
+    ],
+    [
+      2,
+      52,
+      "QC071.JCE"
+    ],
+    [
+      2,
+      53,
+      "(00)"
+    ],
+    [
+      2,
+      54,
+      "(10)"
+    ],
+    [
+      2,
+      55,
+      "(11)"
+    ],
+    [
+      2,
+      58,
+      "QC071.JFE"
+    ],
+    [
+      2,
+      59,
+      "(00)"
+    ],
+    [
+      2,
+      60,
+      "(01)"
+    ],
+    [
+      2,
+      61,
+      "(10)"
+    ],
+    [
+      229,
+      3,
+      "QC051──AIE"
+    ],
+    [
+      229,
+      4,
+      "(00)"
+    ],
+    [
+      229,
+      25,
+      "QC051──CBE"
+    ],
+    [
+      229,
+      26,
+      "(00001)"
+    ],
+    [
+      229,
+      58,
+      "QC051──LHE"
+    ],
+    [
+      229,
+      59,
+      "(00.01.10.11)"
+    ],
+    [
+      229,
+      71,
+      "QC051──LBE"
+    ],
+    [
+      229,
+      72,
+      "(0X.1X)"
+    ],
+    [
+      229,
+      28,
+      "NO LEAD ZERO"
+    ],
+    [
+      229,
+      29,
+      "STORE HI ORDER"
+    ],
+    [
+      229,
+      30,
+      "WITH CHAR."
+    ],
+    [
+      229,
+      31,
+      "BRANCH ON"
+    ],
+    [
+      229,
+      32,
+      "OV OR UND."
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583807"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QC021"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "FLT. PT. ADD INSTS"
+    ],
+    [
+      200,
+      101,
+      "POST NORM AND FRACT COR"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      259,
+      95
+    ]
+  ],
+  "scan_order_neighbors": {
+    "preceding": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC001 FLT PT RR LOADS SIGNED LOADS AND HALVE.tif",
+    "following": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC031 FLT PT MULTIPLY.tif"
+  },
+  "recoveries": [
+    {
+      "box": "A9",
+      "field": "address",
+      "recovered": "042B",
+      "previous_reading": "0429",
+      "evidence": "Full-resolution source glyph crop and matching QZ page/box/controls; crop QC021 A9 audit.png"
+    },
+    {
+      "box": "C7",
+      "field": "leg",
+      "previous_reading": "00",
+      "recovered": "10",
+      "evidence": "Full-resolution QC021 C6 C7 mask full.png shows clear10; C6 exit10 direct rule and QZ042A corroborate."
+    }
+  ],
+  "wire_paths": [
+    [
+      [
+        10,
+        3
+      ],
+      [
+        110,
+        3
+      ],
+      [
+        110,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        10
+      ],
+      [
+        21,
+        10
+      ],
+      [
+        21,
+        3
+      ]
+    ],
+    [
+      [
+        110,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        110,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        110,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        25
+      ],
+      [
+        66,
+        25
+      ]
+    ],
+    [
+      [
+        66,
+        14
+      ],
+      [
+        66,
+        58
+      ]
+    ],
+    [
+      [
+        66,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        66,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        66,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        36
+      ],
+      [
+        21,
+        36
+      ]
+    ],
+    [
+      [
+        21,
+        14
+      ],
+      [
+        21,
+        58
+      ]
+    ],
+    [
+      [
+        21,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        21,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        21,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        58
+      ],
+      [
+        21,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        52
+      ],
+      [
+        132,
+        52
+      ]
+    ],
+    [
+      [
+        132,
+        14
+      ],
+      [
+        132,
+        58
+      ]
+    ],
+    [
+      [
+        132,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        132,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        132,
+        58
+      ],
+      [
+        135,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        44,
+        14
+      ],
+      [
+        44,
+        8
+      ],
+      [
+        176,
+        8
+      ],
+      [
+        176,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        86,
+        14
+      ],
+      [
+        86,
+        8
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        130,
+        14
+      ],
+      [
+        130,
+        8
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        64,
+        14
+      ],
+      [
+        64,
+        31
+      ],
+      [
+        220,
+        31
+      ],
+      [
+        220,
+        25
+      ],
+      [
+        229,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        108,
+        14
+      ],
+      [
+        108,
+        31
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        154,
+        36
+      ],
+      [
+        154,
+        31
+      ]
+    ],
+    [
+      [
+        216,
+        25
+      ],
+      [
+        229,
+        25
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        198,
+        14
+      ],
+      [
+        198,
+        3
+      ],
+      [
+        201,
+        3
+      ]
+    ],
+    [
+      [
+        198,
+        14
+      ],
+      [
+        198,
+        25
+      ],
+      [
+        201,
+        25
+      ]
+    ],
+    [
+      [
+        216,
+        3
+      ],
+      [
+        229,
+        3
+      ]
+    ],
+    [
+      [
+        40,
+        36
+      ],
+      [
+        44,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        44,
+        36
+      ],
+      [
+        44,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        62,
+        36
+      ],
+      [
+        64,
+        36
+      ],
+      [
+        64,
+        38
+      ],
+      [
+        69,
+        38
+      ]
+    ],
+    [
+      [
+        84,
+        36
+      ],
+      [
+        88,
+        36
+      ],
+      [
+        88,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        88,
+        36
+      ],
+      [
+        88,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        88,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        108,
+        36
+      ],
+      [
+        108,
+        47
+      ],
+      [
+        88,
+        47
+      ]
+    ],
+    [
+      [
+        128,
+        36
+      ],
+      [
+        132,
+        36
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        42,
+        58
+      ],
+      [
+        42,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        86,
+        58
+      ],
+      [
+        86,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        130,
+        58
+      ],
+      [
+        130,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        58
+      ],
+      [
+        64,
+        58
+      ],
+      [
+        64,
+        71
+      ],
+      [
+        229,
+        71
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        108,
+        58
+      ],
+      [
+        108,
+        71
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        154,
+        58
+      ],
+      [
+        154,
+        71
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        198,
+        80
+      ],
+      [
+        198,
+        71
+      ]
+    ],
+    [
+      [
+        179,
+        58
+      ],
+      [
+        175,
+        58
+      ],
+      [
+        175,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        229,
+        58
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      21,
+      3,
+      "O"
+    ],
+    [
+      66,
+      25,
+      "O"
+    ],
+    [
+      66,
+      36,
+      "O"
+    ],
+    [
+      21,
+      36,
+      "O"
+    ],
+    [
+      110,
+      14,
+      "O"
+    ],
+    [
+      110,
+      36,
+      "O"
+    ],
+    [
+      132,
+      52,
+      "O"
+    ],
+    [
+      132,
+      36,
+      "O"
+    ],
+    [
+      108,
+      31,
+      "O"
+    ],
+    [
+      154,
+      31,
+      "O"
+    ],
+    [
+      198,
+      14,
+      "O"
+    ],
+    [
+      44,
+      36,
+      "O"
+    ],
+    [
+      88,
+      36,
+      "O"
+    ],
+    [
+      88,
+      47,
+      "O"
+    ],
+    [
+      86,
+      80,
+      "O"
+    ],
+    [
+      130,
+      80,
+      "O"
+    ],
+    [
+      175,
+      80,
+      "O"
+    ],
+    [
+      108,
+      71,
+      "O"
+    ],
+    [
+      154,
+      71,
+      "O"
+    ],
+    [
+      198,
+      71,
+      "O"
+    ],
+    [
+      86,
+      8,
+      "O"
+    ],
+    [
+      130,
+      8,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": [
+    "All 11 ordinary ROS routes corroborate QZ. Functional J1/J18 correction fans, zero-fraction fans and three NEXT-INST*IC outputs to GO J9 checked directly against source; close adjacent traces use separate input rows without spurious joins."
+  ],
+  "review_notes": [
+    "Portal I glyphs recovered from source output serials: QC051──A1E",
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1413.93,
+    "first_header_y": 267.76,
+    "column_step": 659.34,
+    "row_step": 495.31
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QC021 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QC021",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "03145c575be6b6f0d67fcf949870d161ca592a25cb624104ed84b47197edbf49",
+    "text_sha256": "f98d4154abc98bf506c2fe7574fa6a50abaa8ffde96698f51174e93b8f00b937",
+    "content_sha256": "12635c87fc439d5057abc39665da9a82620b162029aacbe3443215b3b265ec98",
+    "verification_sha256": "7ee238e3514b9b7a64545f681228fbedbde49b047d955f675916db6f15843ed9",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC021 FLT PT ADD INSTS POST NORM AND FRACT COR.tif",
+    "source_sha256": "6800731b3a641d2485d12f6689910d96b71e02ab519b49fd2b5f22d4bebd4bb7",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:37.849414+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

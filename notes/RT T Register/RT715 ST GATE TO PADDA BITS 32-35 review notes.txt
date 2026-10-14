@@ -1,0 +1,161 @@
+RT715 ST GATE TO PADDA BITS 32-35 - TRANSLATION NOTES
+
+Reference scan: RT T Register\RT715 ST GATE TO PADDA BITS 32-35.tif
+Original scan: img20141205_23251771.tif
+Original scan timestamp: 2014-12-05 23:25:17.710000
+Preceding scan: RT713 D GATE TO PADDA BITS 28-31.tif
+Following scan: RT717 ST GATE TO PADDA BITS 36-39.tif
+Review record: tmp\ald-text\recovery-v2\rt\before\original reviews\root\final visual review.json
+
+PAGE NOTES
+
+RT715 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 36,
+  "A1_total_card_portions": 36,
+  "A1_mismatches": [],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_inside_pin_labels": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 84,
+  "geometry_passed": true,
+  "A1_connectors_matched": 6,
+  "A1_total_connector_records": 7,
+  "A1_connector_source_contradictions": [
+    {
+      "source": {
+        "board": "02B-E1",
+        "connector": "N3",
+        "pin": "B04",
+        "reference": "RT715BH4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    },
+    {
+      "source": {
+        "board": "02B-C4",
+        "connector": "N5",
+        "pin": "B04",
+        "reference": "RT715BH4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [
+        {
+          "kind": "connector pin",
+          "board": "02B-C4",
+          "sockets": [
+            "N5T"
+          ],
+          "connector": "N5",
+          "pin": "B04",
+          "ALD_reference": "RT715BU4",
+          "source_listings": [
+            "A1234-02 SOCKET LISTING"
+          ],
+          "source_listing": "A1234-02 SOCKET LISTING"
+        }
+      ],
+      "source_literal_preserved": true
+    }
+  ],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 3
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native source review",
+    "evidence": "All native 40 block fields and main route quadrants inspected. Annotated first-bank, left-lower and right-middle/lower stem proofs resolve nearby data/control rails. Five-input OR OR macros and reversed BQ control pin order preserved. AB narrow white cross centers match overprinted unjoined crosses; actual one-cell diamonds on control rails are distinct. All footer fields and connector print are source-reviewed. Three missing AB unit cells are the only replacement characters; original neighbors are RT713 and RT717."
+  },
+  {
+    "location": "Control set-into separators",
+    "evidence": "Parent confirmed explicit historical user approval and restored → to the ALD subset. Printed field arrows are preserved literally."
+  },
+  {
+    "location": "Native completion",
+    "evidence": "Own full native overview, all forty block functions and fields/pins/triangles, every control/data stem, twenty main AND-to-OR paths and sixteen ART/termination/DOT paths, all printed diamond joins and unjoined crossings, all references, header, connector table, complete title/footer/revision inspected. Native plain crosses at AB row21 remain unjoined after same-scale comparison against the GTK row46 one-cell diamond, independently agreed by root. User-approved right arrow was restored centrally and native control arrows are literal. BH table has B-E1N3B04 and 02B-C4N5B04; A1 instead records BU4 for the latter and omits the former. Native BH4 retained. BE input label reads E08 in the native crop; retained for root comparison rather than silently replacing with B08."
+  },
+  {
+    "location": "Four DOT output open stars",
+    "evidence": "Each native DOT output has a border wedge followed by the empty three-cell numeric-pin field and an open star: BF/BH star at column130, BS/BT at200. Native DOT cropped output comparison reveals these markers; all four are preserved with explicit unlabelled physical-port metadata. BH turns vertically in the cell after its star (131); native enlarged marker-and-bend proof confirms this, and preserves the separate ending negative-ST33 rail above. Direct human approval on 2026-10-13 permits the separate native extra cell before bank5; banks5–7 and their associated native routes move one cell right. BF/BH bank4 stars and output bends stay at130/131, giving the source gap before the adjacent right-bank control stems. Right DOT output endpoints are201 after their star200."
+  },
+  {
+    "location": "Human-approved extra cell before bank5",
+    "evidence": {
+      "human_approved": true,
+      "question": "Approve RT715’s proposed left columns [50, 73, 96, 119, 143, 166, 189]? The native border comparison shows an extra cell before bank 5; banks 5–7 would move one cell right.",
+      "answer": "Approve RT715 shift",
+      "question_item_id": "[\"request_user_input_async\",\"call_068e781272ab427995c84d74fd37aacf\",0]",
+      "date": "2026-10-13",
+      "banks": [
+        50,
+        73,
+        96,
+        119,
+        143,
+        166,
+        189
+      ],
+      "native_evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\rt\\root\\RT715\\bank shift proposal.json",
+      "proof": "D:\\Github\\IBM360\\tmp\\ald-text\\rt\\root\\RT715\\bank shift native proof.png",
+      "root_independently_viewed_actual_paired_borders_and_local_glyph_pitch": true
+    }
+  },
+  {
+    "location": "BF output bend under approved paired-bank lattice",
+    "evidence": "approved bank4 output and bank5 stems proof.png: the BF star stays130 and its endpoint131; its remote vertical bend is135, between the ST34 data stem134 and C0 stem137. The paired bank4/bank5 borders establish this wider intervening span. BH immediate bend131 stays fixed. Old right-bank-anchored column labels in earlier proof predate the approved extra cell."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT713 D GATE TO PADDA BITS 28-31.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT717 ST GATE TO PADDA BITS 36-39.tif
+
+SOURCE UNREADABLE CELLS
+
+[
+  {
+    "column": 169,
+    "row": 19,
+    "location": "AB erased unit code",
+    "candidates": [
+      "3AC"
+    ],
+    "evidence": "AB native block.png. Pale circle removes three printed cells after U0; surviving fragments are insufficient for the complete glyphs."
+  },
+  {
+    "column": 170,
+    "row": 19,
+    "location": "AB erased unit code",
+    "candidates": [
+      "3AC"
+    ],
+    "evidence": "AB native block.png. Pale circle removes three printed cells after U0; surviving fragments are insufficient for the complete glyphs."
+  },
+  {
+    "column": 171,
+    "row": 19,
+    "location": "AB erased unit code",
+    "candidates": [
+      "3AC"
+    ],
+    "evidence": "AB native block.png. Pale circle removes three printed cells after U0; surviving fragments are insufficient for the complete glyphs."
+  }
+]
+
+Unreadable printed characters retained as �: 3.

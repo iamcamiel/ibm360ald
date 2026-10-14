@@ -1,0 +1,78 @@
+RQ822 ROS 97-99 BACKUP REG FOR INDICATORS - TRANSLATION NOTES
+
+Reference scan: RQ Q Register\RQ822 ROS 97-99 BACKUP REG FOR INDICATORS.tif
+Original scan: img20141205_22350068.tif
+Original scan timestamp: 2014-12-05 22:35:00.680000
+Preceding scan: RQ821 GCT ROS BITS EXCLUSIVE OR FOR PARITY.tif
+Following scan: RQ831 CLOCK FOR IC Q AND R REGS.tif
+Review record: tmp\ald-text\rq\RQ independent root acceptance.json
+
+PAGE NOTES
+
+RQ822 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 15,
+  "A1_total_card_portions": 15,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [
+    "N CE indicator and feedback"
+  ],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 24,
+  "invalid_net_drivers": [],
+  "unassigned_output_ports": [],
+  "documented_unused_jumpers": [],
+  "documented_A1_mismatches": [],
+  "unresolved_A1_mismatches": [],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_wire_gap",
+    "net": "N CE indicator and feedback",
+    "column": 131,
+    "row": 68,
+    "detail": "Source tile22 shows a whole printer-cell blank immediately left of the CE indicator diamond. Preserved as scanned; return stub and driven output remain separate in the route model. Electrical continuity cannot be certified from this scan."
+  },
+  {
+    "kind": "independent_root_corrections",
+    "detail": "Upper A clock inputs belong to AB/BB/CB, not AD/BD/CD. BD feedback is D12, not D10. Last clock rail bends at rows56/59 are corners, not diamonds. Input signal names start at column0; right signs have one preceding blank; revisions begin column173."
+  },
+  {
+    "kind": "source_review",
+    "detail": "All fifteen card portions checked against A1; three repeated five-gate groups and their pin labels were read at native resolution. Separate AR outputs and four source clock diamonds and two final clock elbows are represented explicitly. Full-page overview and all occupied native tiles, right labels, output rail rows, connector list and footer were compared with the 245 by 103 preview."
+  }
+]
+
+Original scan order
+Before RQ821 GCT ROS BITS EXCLUSIVE OR FOR PARITY.tif
+After RQ831 CLOCK FOR IC Q AND R REGS.tif
+
+Independent root acceptance
+Native first/second/third gate groups, all 15 portions and 24 input terminals, separate AR outputs, clock rails, feedback, output captions, connector list, literal footer and corrected JuliaMono preview compared. Corrected D12 feedback and upper A ownership; last clock bends preserved as corners. Source gap at c131/r68 retained; this acceptance certifies scanned layout, with electrical continuity of that return unresolved.
+{
+  "page": "RQ822",
+  "accepted": true,
+  "reviewer": "root",
+  "date": "2026-10-13",
+  "source_sha256": "97bd67c2a49c208ffa29adb49efcf1898970098c3a3389b195e049de4f8a31d9",
+  "text_sha256": "3b3009280fe113fc993326b560ea9779ca39a307fb7ce176b9a0e903daeb4a57",
+  "preview_sha256": "b0a343103db8c7ef5e996e657001a98c8714abde8017266bce70e675a843b74d",
+  "review": "Native first/second/third gate groups, all 15 portions and 24 input terminals, separate AR outputs, clock rails, feedback, output captions, connector list, literal footer and corrected JuliaMono preview compared. Corrected D12 feedback and upper A ownership; last clock bends preserved as corners. Source gap at c131/r68 retained; this acceptance certifies scanned layout, with electrical continuity of that return unresolved.",
+  "preserved_source_exceptions": [
+    "N CE indicator and feedback has the whole-cell gap visible in source tile22 at column131 row68; route validation truthfully reports one disconnected net."
+  ]
+}

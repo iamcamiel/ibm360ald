@@ -1,0 +1,78 @@
+KU011 MAINTENANCE CONTROL BITS 3 4 5 - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU011 MAINTENANCE CONTROL BITS 3 4 5.tif
+Original scan: img20141209_17453262.tif
+Original scan timestamp: 2014-12-09 17:45:32.620000
+Preceding scan: KU001 MAINTENANCE CONTROL BITS 0-2.tif
+Following scan: KU021 MAINTENANCE CONTROL 6 7.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU011 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 21,
+  "A1_total_card_portions": 21,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 36,
+  "passed": true,
+  "duplicate_port_references": {},
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 3
+}
+
+Unclear source print and evidence
+[
+  {
+    "source_content": "All21 gates/ports read from native KU011 bank crops. B05 output on BB1L retained explicitly. Bare crossings do not connect."
+  },
+  {
+    "unreadable_print": [
+      {
+        "location": "Left ST37 signal row75 columns4,5",
+        "literal": "+ST ��S 37",
+        "candidate": "+ST BUS 37",
+        "evidence": "KU011 ST37 label.png: glyph damage removes loop/right upright; intact repeated STBUS signals corroborate only.",
+        "before": "KU001 MAINTENANCE CONTROL BITS 0-2.tif",
+        "after": "KU021 MAINTENANCE CONTROL 6 7.tif"
+      }
+    ]
+  },
+  {
+    "unreadable_print": [
+      {
+        "location": "Footer row95 column41 connector",
+        "literal": "02E-B3�3D09",
+        "candidate": "02E-B3H3D09 or02E-B3W3D09",
+        "evidence": "KU011 connector H3 full.png: upper half of socket letter missing, surviving strokes do not certifyH/W.",
+        "before": "KU001 MAINTENANCE CONTROL BITS 0-2.tif",
+        "after": "KU021 MAINTENANCE CONTROL 6 7.tif"
+      }
+    ]
+  },
+  {
+    "self_review": "Both full rendered halves compared against native overview, everybank/control/margin/footer crop and close feedback/rail crops; corrected AM rail to nativec153, preserved c68/69 input stub crossing and c161 ROS crossing. Footeropenbottom retained, output blanks/routing/table print checked."
+  }
+]
+
+Original scan order
+Before KU001 MAINTENANCE CONTROL BITS 0-2.tif
+After KU021 MAINTENANCE CONTROL 6 7.tif
+
+Unreadable printed characters retained as �: 3.

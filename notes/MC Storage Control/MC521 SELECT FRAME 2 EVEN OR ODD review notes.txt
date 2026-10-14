@@ -1,0 +1,224 @@
+MC521 SELECT FRAME 2 EVEN OR ODD - TRANSLATION NOTES
+
+Reference scan: MC Storage Control\MC521 SELECT FRAME 2 EVEN OR ODD.tif
+Original scan: img20141205_11420093.tif
+Original scan timestamp: 2014-12-05 11:42:00.930000
+Preceding scan: MC511 SELECT FRAME 1 EVEN OR ODD.tif
+Following scan: MC531 SELECT FRAME 3 EVEN OR ODD.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Supplementary source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+Independent whole-page source review: PASS
+Accepted TXT SHA256: 4abc6b0f2c3171d82ed15f689da8745b044318a375b8ce5e2962c9b818cd0586
+
+MC521 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 18,
+  "A1_native_source_discrepancies": [],
+  "A1_direct_page_matches": [
+    "AA",
+    "AB",
+    "AC",
+    "AD",
+    "AE",
+    "AF",
+    "AG",
+    "AH",
+    "AJ",
+    "AK",
+    "AM",
+    "AP",
+    "AR",
+    "AS",
+    "AU",
+    "BA",
+    "BB",
+    "BC"
+  ],
+  "A1_cross_page_fallbacks": [],
+  "A1_total_card_portions": 18,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_in_pin_text": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 36,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Source reading and topology",
+    "evidence": "MC521 overview, overlapping native tiles and enlarged upper lanes/control label/reference read. Eighteen blocks,36 inputs, all captions offset1. AA outputs cross separately; native feedback rails/gutter diamonds checked independently ofMC511. Source timing reference is MC501XX2, AU3313B1 inputsB03/B04 and outputD02; card3003 bankA-B1J2, control4060B1/B2. Whole JuliaMono preview compared with source."
+  },
+  {
+    "location": "INVALID source label",
+    "retained_text": "+DELAYED INVALID ADDRESS B�S",
+    "candidate": "BUS",
+    "evidence": "root/MC521 control labels native.png",
+    "decision": "U-shaped glyph heavily missing; retain one replacement character."
+  }
+]
+
+Original scan order
+Before MC511 SELECT FRAME 1 EVEN OR ODD.tif
+After MC531 SELECT FRAME 3 EVEN OR ODD.tif
+
+
+SOURCE-DERIVED V2 CANDIDATE REVIEW
+Handoff SHA256: 70038cad6873e1faf5c284d82ac54615c9350c82feffe824c3e585e11d88a716
+Physical glyph damage is preserved as historical uncertainty; the new text is source-derived inference. No new raw human physical-copy answer is asserted. All wire routes, junctions, crossings, pins, block placement, columns and signs are unchanged.
+
+[
+  {
+    "id": "MC521-dee7f82649",
+    "original_fragment": "+DELAYED INVALID ADDRESS B�S",
+    "recovered_reading": "+DELAYED INVALID ADDRESS BUS",
+    "row": 39,
+    "column": 0,
+    "covered_cells": [
+      [
+        39,
+        26
+      ]
+    ],
+    "provenance": "Source-derived inference; independently checked against accepted printed evidence. This does not establish physical legibility.",
+    "native_physical_uncertainty": "Original damaged print and its historical readings remain preserved in the before snapshot and existing review notes.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "MC521-dee7f82649",
+      "page": "MC521",
+      "candidate": "+DELAYED INVALID ADDRESS BUS",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "MC331",
+          "scan_id": "1420",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\MC Storage Control\\MC331 SELECT CONTROL POWERING.txt",
+          "text_sha256": "6c807071ac379a30c839e1999293266414c8585b645cea442cfc648c476fa8dc",
+          "model_sha256": "ddb8beea7aaad749399220815999a2e5e812ec60195fa4e96403cc4023dac133",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 68,
+          "column": 211,
+          "excerpt": "                                                                                                                                                                └─B12◺U03AM │D10────────────────────────────◇───── +DELAYED INVALID ADDRESS BUS───BG4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "+DELAYED INVALID ADDRESS B�S"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+DELAYED INVALID ADDRESS BUS"
+          ]
+        }
+      ]
+    },
+    "previous_independent_check": {
+      "id": "MC521-dee7f82649",
+      "page": "MC521",
+      "candidate": "+DELAYED INVALID ADDRESS BUS",
+      "verdict": "Approved High",
+      "reason": "Independently readable printed fields establish one compatible value, with signs and qualifiers preserved.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "MC331",
+          "scan_id": "1420",
+          "row": 68,
+          "column": 211,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_printed_input": {
+          "row": 39,
+          "signal": "+DELAYED INVALID ADDRESS B�S",
+          "reference": "MC331BG4",
+          "source_line": "+DELAYED INVALID ADDRESS B�S───MC331BG4──────────────────────────┼◇│ │   │      │          │    │      │           │                                            ││   │      │                                                                        "
+        },
+        "actual_compatible_values": [
+          "+DELAYED INVALID ADDRESS BUS"
+        ],
+        "actual_source_mates": [
+          "MC331BG4"
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence": [
+      {
+        "page": "MC331",
+        "scan_id": "1420",
+        "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\MC Storage Control\\MC331 SELECT CONTROL POWERING.txt",
+        "text_sha256": "6c807071ac379a30c839e1999293266414c8585b645cea442cfc648c476fa8dc",
+        "model_sha256": "ddb8beea7aaad749399220815999a2e5e812ec60195fa4e96403cc4023dac133",
+        "model_hash_status": "Frozen accepted model hash",
+        "row": 68,
+        "column": 211,
+        "excerpt": "                                                                                                                                                                └─B12◺U03AM │D10────────────────────────────◇───── +DELAYED INVALID ADDRESS BUS───BG4",
+        "field": "printed output signal and designation",
+        "full_printer_row": "                                                                                                                                                                └─B12◺U03AM │D10────────────────────────────◇───── +DELAYED INVALID ADDRESS BUS───BG4",
+        "nearby_printer_rows": [
+          {
+            "row": 66,
+            "text": "                                                                                                                                                                │    │N     │"
+          },
+          {
+            "row": 67,
+            "text": "                                                                                                                                                                │    │      │"
+          },
+          {
+            "row": 68,
+            "text": "                                                                                                                                                                └─B12◺U03AM │D10────────────────────────────◇───── +DELAYED INVALID ADDRESS BUS───BG4"
+          },
+          {
+            "row": 69,
+            "text": "                                                                                                                                                                     │3313E1│                               └MC511    └MC521   └MC531"
+          },
+          {
+            "row": 70,
+            "text": "                                                                                                                                                                     │A-B1K4│"
+          }
+        ],
+        "accepted_reference_record": "tmp\\ald-text\\mc\\root\\MC accepted TXT hashes.json",
+        "frozen_full_row_verified": true
+      }
+    ],
+    "new_human_confirmation": null,
+    "raw_human_reply": null,
+    "human_history": "No raw physical-copy human reply is included for this reading in the approved handoff (original status: Answer needed). Prior quartet and review history are preserved, with no new human answer asserted.",
+    "semantic_updates": [
+      {
+        "json_path": [
+          "printed_labels",
+          56,
+          "text"
+        ],
+        "before": "+DELAYED INVALID ADDRESS B�S",
+        "after": "+DELAYED INVALID ADDRESS BUS"
+      }
+    ]
+  }
+]

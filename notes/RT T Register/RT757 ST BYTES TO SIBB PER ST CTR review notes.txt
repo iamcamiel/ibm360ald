@@ -1,0 +1,2010 @@
+RT757 ST BYTES TO SIBB PER ST CTR - TRANSLATION NOTES
+
+Reference scan: RT T Register\RT757 ST BYTES TO SIBB PER ST CTR.tif
+Original scan: img20141206_08570783.tif
+Original scan timestamp: 2014-12-06 08:57:07.830000
+Preceding scan: RT755 ST BYTES TO SIBB PFR ST CTR.tif
+Following scan: RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Next source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+Original source review notes — historical physical-print snapshot
+
+RT757 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [
+    "AT",
+    "AV",
+    "AM"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_inside_pin_labels": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 62,
+  "geometry_passed": true,
+  "A1_connectors_matched": 10,
+  "A1_total_connector_records": 10,
+  "A1_connector_source_contradictions": [],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 23
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "native source review",
+    "evidence": "Own twenty-seven native block fields and pins, every external signal/reference, main and parity rails, sixteen main and four parity AND-to-OR routes, eight control diamonds, both R terminations, unusual ST55 column107 loop beside output108/109, printed connector rows and complete footer/title inspected. Literal native AV and AM socket lines conflict with A1 and remain preserved. White abrasion in AT fields and a small group of left labels is explicitly flagged, not filled from context."
+  },
+  {
+    "location": "Washed source characters",
+    "evidence": "AT portion and last location glyph and several upper-left input/control label glyphs are abraded. Exact replacement cells retained. Original scan neighbors RT755 before and RT771 after."
+  },
+  {
+    "location": "Native socket conflicts",
+    "evidence": "AV literally reads F-E3L3 and AM E-E3L3; directly inspected enlarged native glyphs have straight bars and absent B bowls, unlike rounded B at AL. A1 lists B-B3L3. Literal conflicts retained for independent root inspection."
+  },
+  {
+    "location": "Lower rails",
+    "evidence": "ST55 from RT541BB4 descends column107 to AL upper B12. AC output descends separately at108 to row58; AA output descends109 to row59. ST63 takes the distinct left column91 loop down to AN D11."
+  },
+  {
+    "location": "Parity R termination",
+    "evidence": "AE B05 output turns at column200 from row40 to row50. Diamond200/50 joins a left branch to184/50, down54 into BC D09. AB B05 row5 has diamond180/5 and the independent down26 BB termination."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT755 ST BYTES TO SIBB PFR ST CTR.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif
+
+
+Source-derived recovery v2 — reviewed staging
+[
+  {
+    "stable_id": "RT757-b225b3d079",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "��� ST BYTE 16-23 TO SIBB",
+    "recovered_reading": "+GT ST BYTE 16-23 TO SIBB",
+    "row": 33,
+    "column": 0,
+    "covered_cells": [
+      [
+        33,
+        0
+      ],
+      [
+        33,
+        1
+      ],
+      [
+        33,
+        2
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "left input signal name, text row 33",
+    "question": "What is the complete signal name printed at this position? Current fragment: “��� ST BYTE 16-23 TO SIBB”.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "RT757-b225b3d079",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 16-23 TO SIBB",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+          "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+          "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 46,
+          "column": 211,
+          "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "��� ST BYTE 16-23 TO SIBB"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+GT ST BYTE 16-23 TO SIBB"
+          ]
+        },
+        {
+          "independent_printed_field_audit": {
+            "id": "RT757-b225b3d079",
+            "page": "RT757",
+            "proposed_candidate": "+GT ST BYTE 16-23 TO SIBB",
+            "rule": "Known source reference + printed signed source output",
+            "verdict": "Approved High",
+            "subject_row": 33,
+            "subject_column": 0,
+            "subject_line": "��� ST BYTE 16-23 TO SIBB──────RT836AL4───────────────────────────◇┼┼┼───────────────────────────────────────┼─────────────────────┼┼──◇┼┼┼─────────────────────┼┘   │U03AA │─────┼────┐",
+            "target_printed_field": {
+              "row": 33,
+              "signal": "��� ST BYTE 16-23 TO SIBB",
+              "reference": "RT836AL4"
+            },
+            "actual_compatible_values": [
+              "+GT ST BYTE 16-23 TO SIBB"
+            ],
+            "actual_source_mates": [
+              "RT836AL4"
+            ],
+            "independently_checked_matches": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 46,
+                "signal": "+GT ST BYTE 16-23 TO SIBB",
+                "reference": "RT836AL4",
+                "designation": "AL4",
+                "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+                "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+                "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+              }
+            ],
+            "evidence_checks": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 46,
+                "column": 211,
+                "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+                "literal_verified": true,
+                "text_hash_verified": true,
+                "model_hash_verified": true
+              }
+            ],
+            "problems": []
+          }
+        }
+      ]
+    },
+    "independent_handoff_check": {
+      "id": "RT757-b225b3d079",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 16-23 TO SIBB",
+      "verdict": "Approved High",
+      "reason": "Actual readable independent printed fields establish one compatible signed complete-field value without retained conflicts. Every cited literal and current text/model hash passed the individual field audit.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "row": 46,
+          "column": 211,
+          "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+          "literal_verified": true,
+          "text_hash_verified": true,
+          "model_hash_verified": true,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_row": 33,
+        "subject_column": 0,
+        "subject_line": "��� ST BYTE 16-23 TO SIBB──────RT836AL4───────────────────────────◇┼┼┼───────────────────────────────────────┼─────────────────────┼┼──◇┼┼┼─────────────────────┼┘   │U03AA │─────┼────┐",
+        "target_printed_field": {
+          "row": 33,
+          "signal": "��� ST BYTE 16-23 TO SIBB",
+          "reference": "RT836AL4"
+        },
+        "actual_compatible_values": [
+          "+GT ST BYTE 16-23 TO SIBB"
+        ],
+        "actual_source_mates": [
+          "RT836AL4"
+        ],
+        "actual_readable_matches": [
+          {
+            "page": "RT836",
+            "scan_id": "2005",
+            "row": 46,
+            "signal": "+GT ST BYTE 16-23 TO SIBB",
+            "reference": "RT836AL4",
+            "designation": "AL4",
+            "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+            "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+            "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+          }
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence_bindings": [
+      {
+        "page": "RT836",
+        "row": 46,
+        "column": 211,
+        "excerpt": "                                                                                          ││                    │││┌─────────────────────────────────────────┼───────────────────◇─────────────────────────◇────── +GT ST BYTE 16-23 TO SIBB──────AL4",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "current_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.json",
+        "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.tif",
+    "source_sha256": "e72b617d157313892c3936ccce25da16aa4c28788a58ffe5307ae195325afa58",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "after_scan": "RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif"
+  },
+  {
+    "stable_id": "RT757-508be6f49a",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "+GT ST ��TE 48-55 TO SIBB",
+    "recovered_reading": "+GT ST BYTE 48-55 TO SIBB",
+    "row": 35,
+    "column": 0,
+    "covered_cells": [
+      [
+        35,
+        7
+      ],
+      [
+        35,
+        8
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "left input signal name, text row 35",
+    "question": "What is the complete signal name printed at this position? Current fragment: “+GT ST ��TE 48-55 TO SIBB”.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "RT757-508be6f49a",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 48-55 TO SIBB",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+          "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+          "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 69,
+          "column": 211,
+          "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "+GT ST ��TE 48-55 TO SIBB"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+GT ST BYTE 48-55 TO SIBB"
+          ]
+        },
+        {
+          "independent_printed_field_audit": {
+            "id": "RT757-508be6f49a",
+            "page": "RT757",
+            "proposed_candidate": "+GT ST BYTE 48-55 TO SIBB",
+            "rule": "Known source reference + printed signed source output",
+            "verdict": "Approved High",
+            "subject_row": 35,
+            "subject_column": 0,
+            "subject_line": "+GT ST ��TE 48-55 TO SIBB──────RT836AR4───────────────────────────┼◇┼┼───────────────────────────────────────┼─────────────────────┼┼──┼◇┼┼───────────────────────B10│B-B3L3│     │    │",
+            "target_printed_field": {
+              "row": 35,
+              "signal": "+GT ST ��TE 48-55 TO SIBB",
+              "reference": "RT836AR4",
+              "source_line": "+GT ST ��TE 48-55 TO SIBB──────RT836AR4───────────────────────────┼◇┼┼───────────────────────────────────────┼─────────────────────┼┼──┼◇┼┼───────────────────────B10│B-B3L3│     │    │                                                             "
+            },
+            "actual_compatible_values": [
+              "+GT ST BYTE 48-55 TO SIBB"
+            ],
+            "actual_source_mates": [
+              "RT836AR4"
+            ],
+            "independently_checked_matches": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 69,
+                "signal": "+GT ST BYTE 48-55 TO SIBB",
+                "reference": "RT836AR4",
+                "designation": "AR4",
+                "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+                "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+                "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+              }
+            ],
+            "evidence_checks": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 69,
+                "column": 211,
+                "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+                "literal_verified": true,
+                "text_hash_verified": true,
+                "model_hash_verified": true
+              }
+            ],
+            "problems": []
+          }
+        }
+      ]
+    },
+    "independent_handoff_check": {
+      "id": "RT757-508be6f49a",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 48-55 TO SIBB",
+      "verdict": "Approved High",
+      "reason": "Actual readable independent printed fields establish one compatible signed complete-field value without retained conflicts. Every cited literal and current text/model hash passed the individual field audit.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "row": 69,
+          "column": 211,
+          "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+          "literal_verified": true,
+          "text_hash_verified": true,
+          "model_hash_verified": true,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_row": 35,
+        "subject_column": 0,
+        "subject_line": "+GT ST ��TE 48-55 TO SIBB──────RT836AR4───────────────────────────┼◇┼┼───────────────────────────────────────┼─────────────────────┼┼──┼◇┼┼───────────────────────B10│B-B3L3│     │    │",
+        "target_printed_field": {
+          "row": 35,
+          "signal": "+GT ST ��TE 48-55 TO SIBB",
+          "reference": "RT836AR4",
+          "source_line": "+GT ST ��TE 48-55 TO SIBB──────RT836AR4───────────────────────────┼◇┼┼───────────────────────────────────────┼─────────────────────┼┼──┼◇┼┼───────────────────────B10│B-B3L3│     │    │                                                             "
+        },
+        "actual_compatible_values": [
+          "+GT ST BYTE 48-55 TO SIBB"
+        ],
+        "actual_source_mates": [
+          "RT836AR4"
+        ],
+        "actual_readable_matches": [
+          {
+            "page": "RT836",
+            "scan_id": "2005",
+            "row": 69,
+            "signal": "+GT ST BYTE 48-55 TO SIBB",
+            "reference": "RT836AR4",
+            "designation": "AR4",
+            "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+            "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+            "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+          }
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence_bindings": [
+      {
+        "page": "RT836",
+        "row": 69,
+        "column": 211,
+        "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "current_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.json",
+        "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.tif",
+    "source_sha256": "e72b617d157313892c3936ccce25da16aa4c28788a58ffe5307ae195325afa58",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "after_scan": "RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif"
+  },
+  {
+    "stable_id": "RT757-18771a3555",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "+ST BIT ��",
+    "recovered_reading": "+ST BIT 29",
+    "row": 36,
+    "column": 0,
+    "covered_cells": [
+      [
+        36,
+        8
+      ],
+      [
+        36,
+        9
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "left input signal name, text row 36",
+    "question": "What is the complete signal name printed at this position? Current fragment: “+ST BIT ��”.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "RT757-18771a3555",
+      "page": "RT757",
+      "candidate": "+ST BIT 29",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "RS281",
+          "scan_id": "1935",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RS S Register\\RS281 S REGISTER BITS 28 AND 29.txt",
+          "text_sha256": "ebf525392689c24377e1db6b0824460efa09610d31359832cfeae3bb2d9b5e37",
+          "model_sha256": "be3ff4aa61253ec943f72557bed68fd2554e88a46ca54b1fa3373c337d0a814e",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 89,
+          "column": 211,
+          "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "+ST BIT ��"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+ST BIT 29"
+          ]
+        },
+        {
+          "independent_printed_field_audit": {
+            "id": "RT757-18771a3555",
+            "page": "RT757",
+            "proposed_candidate": "+ST BIT 29",
+            "rule": "Known source reference + printed signed source output",
+            "verdict": "Approved High",
+            "subject_row": 36,
+            "subject_column": 0,
+            "subject_line": "+ST BIT ��─────────────────────RS281BB4───────────────────────────┼┼┼┼───────────────────────────────────────┼─────────────────────┼┘  ││││                          │6E──AY│     │    │",
+            "target_printed_field": {
+              "row": 36,
+              "signal": "+ST BIT ��",
+              "reference": "RS281BB4",
+              "source_line": "+ST BIT ��─────────────────────RS281BB4───────────────────────────┼┼┼┼───────────────────────────────────────┼─────────────────────┼┘  ││││                          │6E──AY│     │    │                                                             "
+            },
+            "actual_compatible_values": [
+              "+ST BIT 29"
+            ],
+            "actual_source_mates": [
+              "RS281BB4"
+            ],
+            "independently_checked_matches": [
+              {
+                "page": "RS281",
+                "scan_id": "1935",
+                "row": 89,
+                "signal": "+ST BIT 29",
+                "reference": "RS281BB4",
+                "designation": "BB4",
+                "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+                "text_sha256": "ebf525392689c24377e1db6b0824460efa09610d31359832cfeae3bb2d9b5e37",
+                "model_sha256": "be3ff4aa61253ec943f72557bed68fd2554e88a46ca54b1fa3373c337d0a814e"
+              }
+            ],
+            "evidence_checks": [
+              {
+                "page": "RS281",
+                "scan_id": "1935",
+                "row": 89,
+                "column": 211,
+                "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+                "literal_verified": true,
+                "text_hash_verified": true,
+                "model_hash_verified": true
+              }
+            ],
+            "problems": []
+          }
+        }
+      ]
+    },
+    "independent_handoff_check": {
+      "id": "RT757-18771a3555",
+      "page": "RT757",
+      "candidate": "+ST BIT 29",
+      "verdict": "Approved High",
+      "reason": "Actual readable independent printed fields establish one compatible signed complete-field value without retained conflicts. Every cited literal and current text/model hash passed the individual field audit.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "RS281",
+          "scan_id": "1935",
+          "row": 89,
+          "column": 211,
+          "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+          "literal_verified": true,
+          "text_hash_verified": true,
+          "model_hash_verified": true,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_row": 36,
+        "subject_column": 0,
+        "subject_line": "+ST BIT ��─────────────────────RS281BB4───────────────────────────┼┼┼┼───────────────────────────────────────┼─────────────────────┼┘  ││││                          │6E──AY│     │    │",
+        "target_printed_field": {
+          "row": 36,
+          "signal": "+ST BIT ��",
+          "reference": "RS281BB4",
+          "source_line": "+ST BIT ��─────────────────────RS281BB4───────────────────────────┼┼┼┼───────────────────────────────────────┼─────────────────────┼┘  ││││                          │6E──AY│     │    │                                                             "
+        },
+        "actual_compatible_values": [
+          "+ST BIT 29"
+        ],
+        "actual_source_mates": [
+          "RS281BB4"
+        ],
+        "actual_readable_matches": [
+          {
+            "page": "RS281",
+            "scan_id": "1935",
+            "row": 89,
+            "signal": "+ST BIT 29",
+            "reference": "RS281BB4",
+            "designation": "BB4",
+            "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+            "text_sha256": "ebf525392689c24377e1db6b0824460efa09610d31359832cfeae3bb2d9b5e37",
+            "model_sha256": "be3ff4aa61253ec943f72557bed68fd2554e88a46ca54b1fa3373c337d0a814e"
+          }
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence_bindings": [
+      {
+        "page": "RS281",
+        "row": 89,
+        "column": 211,
+        "excerpt": "                                                                                           └────────────────────────────────────────────────────────────────────────────────────────◇───────────────────────◇───── +ST BIT 29─────────────────────BB4",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RS S Register\\RS281 S REGISTER BITS 28 AND 29.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\tmp\\ald-text\\rs\\source-derived-v2\\before\\RS281\\RS281 S REGISTER BITS 28 AND 29.txt",
+        "frozen_text_sha256": "ebf525392689c24377e1db6b0824460efa09610d31359832cfeae3bb2d9b5e37",
+        "current_text_sha256": "34db048ac97f745f05b7458d8cf64ee81d021315cfd9c94c2ee25c9bdfc25a30",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\tmp\\ald-text\\rs\\source-derived-v2\\before\\RS281\\RS281 S REGISTER BITS 28 AND 29.json",
+        "model_sha256": "be3ff4aa61253ec943f72557bed68fd2554e88a46ca54b1fa3373c337d0a814e",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": true
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.tif",
+    "source_sha256": "e72b617d157313892c3936ccce25da16aa4c28788a58ffe5307ae195325afa58",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "after_scan": "RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif"
+  },
+  {
+    "stable_id": "RT757-44b638b902",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "+GT ST ���� 56-63 TO SIBB",
+    "recovered_reading": "+GT ST BYTE 56-63 TO SIBB",
+    "row": 49,
+    "column": 0,
+    "covered_cells": [
+      [
+        49,
+        7
+      ],
+      [
+        49,
+        8
+      ],
+      [
+        49,
+        9
+      ],
+      [
+        49,
+        10
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "left input signal name, text row 49",
+    "question": "What is the complete signal name printed at this position? Current fragment: “+GT ST ���� 56-63 TO SIBB”.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "RT757-44b638b902",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 56-63 TO SIBB",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+          "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+          "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 37,
+          "column": 211,
+          "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "+GT ST ���� 56-63 TO SIBB"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+GT ST BYTE 56-63 TO SIBB"
+          ]
+        },
+        {
+          "independent_printed_field_audit": {
+            "id": "RT757-44b638b902",
+            "page": "RT757",
+            "proposed_candidate": "+GT ST BYTE 56-63 TO SIBB",
+            "rule": "Known source reference + printed signed source output",
+            "verdict": "Approved High",
+            "subject_row": 49,
+            "subject_column": 0,
+            "subject_line": "+GT ST ���� 56-63 TO SIBB──────RT836AF4───────────────────────────┼┼┼◇───────────────────────────────────────┼─────────────────────────┼┼┼◇───────────────────────D06│B-B3L3│                           │",
+            "target_printed_field": {
+              "row": 49,
+              "signal": "+GT ST ���� 56-63 TO SIBB",
+              "reference": "RT836AF4",
+              "source_line": "+GT ST ���� 56-63 TO SIBB──────RT836AF4───────────────────────────┼┼┼◇───────────────────────────────────────┼─────────────────────────┼┼┼◇───────────────────────D06│B-B3L3│                           │                                            "
+            },
+            "actual_compatible_values": [
+              "+GT ST BYTE 56-63 TO SIBB"
+            ],
+            "actual_source_mates": [
+              "RT836AF4"
+            ],
+            "independently_checked_matches": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 37,
+                "signal": "+GT ST BYTE 56-63 TO SIBB",
+                "reference": "RT836AF4",
+                "designation": "AF4",
+                "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+                "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+                "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+              }
+            ],
+            "evidence_checks": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 37,
+                "column": 211,
+                "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+                "literal_verified": true,
+                "text_hash_verified": true,
+                "model_hash_verified": true
+              }
+            ],
+            "problems": []
+          }
+        }
+      ]
+    },
+    "independent_handoff_check": {
+      "id": "RT757-44b638b902",
+      "page": "RT757",
+      "candidate": "+GT ST BYTE 56-63 TO SIBB",
+      "verdict": "Approved High",
+      "reason": "Actual readable independent printed fields establish one compatible signed complete-field value without retained conflicts. Every cited literal and current text/model hash passed the individual field audit.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "row": 37,
+          "column": 211,
+          "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+          "literal_verified": true,
+          "text_hash_verified": true,
+          "model_hash_verified": true,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_row": 49,
+        "subject_column": 0,
+        "subject_line": "+GT ST ���� 56-63 TO SIBB──────RT836AF4───────────────────────────┼┼┼◇───────────────────────────────────────┼─────────────────────────┼┼┼◇───────────────────────D06│B-B3L3│                           │",
+        "target_printed_field": {
+          "row": 49,
+          "signal": "+GT ST ���� 56-63 TO SIBB",
+          "reference": "RT836AF4",
+          "source_line": "+GT ST ���� 56-63 TO SIBB──────RT836AF4───────────────────────────┼┼┼◇───────────────────────────────────────┼─────────────────────────┼┼┼◇───────────────────────D06│B-B3L3│                           │                                            "
+        },
+        "actual_compatible_values": [
+          "+GT ST BYTE 56-63 TO SIBB"
+        ],
+        "actual_source_mates": [
+          "RT836AF4"
+        ],
+        "actual_readable_matches": [
+          {
+            "page": "RT836",
+            "scan_id": "2005",
+            "row": 37,
+            "signal": "+GT ST BYTE 56-63 TO SIBB",
+            "reference": "RT836AF4",
+            "designation": "AF4",
+            "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+            "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+            "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+          }
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence_bindings": [
+      {
+        "page": "RT836",
+        "row": 37,
+        "column": 211,
+        "excerpt": "                                                                     │   ┌──────┐        │││    ┌──────┐         ││    ┌──────┐     │         ┌──────┐       └─────────────────────────────────────────────◇────── +GT ST BYTE 56-63 TO SIBB──────AF4",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "current_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.json",
+        "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.tif",
+    "source_sha256": "e72b617d157313892c3936ccce25da16aa4c28788a58ffe5307ae195325afa58",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "after_scan": "RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif"
+  },
+  {
+    "stable_id": "RT757-93be80aafa",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "B-B3L�",
+    "recovered_reading": "B-B3L3",
+    "row": 70,
+    "column": 74,
+    "covered_cells": [
+      [
+        70,
+        79
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block AT (grid 2K) — board/socket location",
+    "question": "What is the complete board/socket location printed in block AT (grid 2K)? Current fragment: “B-B3L�”.",
+    "basis": "Readable independent A1 page/card/portion/socket tuple preserves both actual printed subject masks. No normalized subject location or card guess was treated as a readable literal.",
+    "decision": {
+      "id": "RT757-93be80aafa",
+      "page": "RT757",
+      "candidate": "B-B3L3",
+      "confidence": "High",
+      "rule": "A1-joint-actual-card-location-masks",
+      "basis": "Readable independent A1 page/card/portion/socket tuple preserves both actual printed subject masks. No normalized subject location or card guess was treated as a readable literal.",
+      "evidence": [
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 50,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 31,
+          "column": 58,
+          "excerpt": "5803330 3330",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 30,
+          "column": 38,
+          "excerpt": "L3          SINGLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 44,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 ALD page reference"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 53,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 56,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 59,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 62,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 65,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 50,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 53,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 56,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 59,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 62,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 65,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 35,
+          "column": 50,
+          "excerpt": "AD AE AF AR",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 35,
+          "column": 53,
+          "excerpt": "AD AE AF AR",
+          "field": "A1 printed portion"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT757-93be80aafa",
+      "page": "RT757",
+      "candidate": "B-B3L3",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references. The subject physical location is itself damaged; the card and physical-location masks were jointly matched to all accepted A1 references. The normalized model location was not used as literal evidence.",
+      "kind": "location",
+      "mask": "B-B3L�",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A1",
+          "portion": "A1",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A2",
+          "portion": "A2",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A3",
+          "portion": "A3",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A4",
+          "portion": "A4",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A5",
+          "portion": "A5",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A6",
+          "portion": "A6",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A7",
+          "portion": "A7",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A8",
+          "portion": "A8",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330A9",
+          "portion": "A9",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AA",
+          "portion": "AA",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AB",
+          "portion": "AB",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AC",
+          "portion": "AC",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AD",
+          "portion": "AD",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AE",
+          "portion": "AE",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AF",
+          "portion": "AF",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        },
+        {
+          "value": "B-B3L3",
+          "board": "02B-B3",
+          "socket": "L3",
+          "card": "3330AR",
+          "portion": "AR",
+          "ALD_page": "RT757",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "3330��",
+          "joint_mask_recovery": true
+        }
+      ],
+      "compatible_exact_values": [
+        "B-B3L3"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT757",
+          "scan_id": "1988",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.txt",
+          "text_sha256": "68821f0fe34f9b51dd082c2bc5eb7645d12df24181dc2d5f86932c7a5caf6c4c",
+          "model_sha256": "429777dd9100030f9a77bad83d7d44e75e3affd8cdfb7d62f4291f1d202f4e2c",
+          "row": 70,
+          "column": 74,
+          "excerpt": "                                                                  └┼┼┼D07│B-B3L�│          ││              ││                         │└┼┼┼D07│B-B3L3│           │",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 50,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 31,
+          "column": 58,
+          "excerpt": "5803330 3330",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 30,
+          "column": 38,
+          "excerpt": "L3          SINGLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 44,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 53,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 56,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 59,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 62,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 33,
+          "column": 65,
+          "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 50,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 53,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 56,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 59,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 62,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 34,
+          "column": 65,
+          "excerpt": "A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 35,
+          "column": 50,
+          "excerpt": "AD AE AF AR",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 35,
+          "column": 53,
+          "excerpt": "AD AE AF AR",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "RT757",
+          "scan_id": "1988",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.txt",
+          "text_sha256": "68821f0fe34f9b51dd082c2bc5eb7645d12df24181dc2d5f86932c7a5caf6c4c",
+          "model_sha256": "429777dd9100030f9a77bad83d7d44e75e3affd8cdfb7d62f4291f1d202f4e2c",
+          "row": 69,
+          "column": 74,
+          "excerpt": "                                                                  ││││   │3330��│          ││              ││                         │││││   │3330A1│           │",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 50,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 31,
+        "column": 58,
+        "excerpt": "5803330 3330",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 30,
+        "column": 38,
+        "excerpt": "L3          SINGLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 96,
+        "column": 229,
+        "excerpt": "G 430       BOARD 02B-B3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 44,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 53,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 56,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 59,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 62,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 33,
+        "column": 65,
+        "excerpt": "RT757 A1 A2 A3 A4 A5 A6",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 50,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 53,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 56,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 59,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 62,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 34,
+        "column": 65,
+        "excerpt": "A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 35,
+        "column": 50,
+        "excerpt": "AD AE AF AR",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 35,
+        "column": 53,
+        "excerpt": "AD AE AF AR",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT757 ST BYTES TO SIBB PER ST CTR.tif",
+    "source_sha256": "e72b617d157313892c3936ccce25da16aa4c28788a58ffe5307ae195325afa58",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "after_scan": "RT771 PARITY ADJUSTMENT PADDA 04-07 AND 32-39.tif"
+  }
+]
+
+Current recovery status
+Source-derived reviewed staging; publication requires companion current root/peer acceptance receipt.
+Current unresolved � cells: 11
+Original physical marker cells before source-derived recovery: 23
+Original damage records remain physical evidence; the logical recoveries do not make damaged glyphs newly legible.
+
+Current source-derived A1 compatibility (separate from historical native flags)
+[
+  {
+    "page": "RT757",
+    "block": "AT",
+    "node_index": 4,
+    "classification": "Still partial; unresolved portion retained",
+    "unique_compatible_match": false,
+    "still_partial": true,
+    "before_values": {
+      "card_type": "3330",
+      "portion": "��",
+      "printed_card_portion": "3330��",
+      "location": "B-B3L�"
+    },
+    "current_values": {
+      "card_type": "3330",
+      "portion": "��",
+      "printed_card_portion": "3330��",
+      "location": "B-B3L3"
+    },
+    "A1_evidence": [],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT757-93be80aafa"
+    ]
+  }
+]
+
+SOURCE UNREADABLE CELLS
+
+[
+  {
+    "column": 0,
+    "row": 32,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 1,
+    "row": 32,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 2,
+    "row": 32,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 8,
+    "row": 36,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 9,
+    "row": 36,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 0,
+    "row": 33,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 1,
+    "row": 33,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 2,
+    "row": 33,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 7,
+    "row": 35,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 8,
+    "row": 35,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 7,
+    "row": 49,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 8,
+    "row": 49,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 9,
+    "row": 49,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 10,
+    "row": 49,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 0,
+    "row": 34,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 1,
+    "row": 34,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 2,
+    "row": 34,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 0,
+    "row": 31,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 1,
+    "row": 31,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 2,
+    "row": 31,
+    "location": "Washed left signal label",
+    "candidates": [
+      "See surviving native left upper/lower labels"
+    ],
+    "evidence": "Own native left upper labels.png and left lower labels.png; no substitution from related pages."
+  },
+  {
+    "column": 78,
+    "row": 69,
+    "location": "AT printed_card_portion",
+    "candidates": [
+      "A9"
+    ],
+    "evidence": "AT AU washed fields native.png; erased portions retained despite A1 context."
+  },
+  {
+    "column": 79,
+    "row": 69,
+    "location": "AT printed_card_portion",
+    "candidates": [
+      "A9"
+    ],
+    "evidence": "AT AU washed fields native.png; erased portions retained despite A1 context."
+  },
+  {
+    "column": 79,
+    "row": 70,
+    "location": "AT location",
+    "candidates": [
+      "3"
+    ],
+    "evidence": "AT AU washed fields native.png; erased portions retained despite A1 context."
+  }
+]
+
+Unreadable printed characters retained as �: 11.

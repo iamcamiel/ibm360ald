@@ -1,0 +1,749 @@
+RT621 T REGISTER BITS 62 AND 63 - TRANSLATION NOTES
+
+Reference scan: RT T Register\RT621 T REGISTER BITS 62 AND 63.tif
+Original scan: img20141205_23134866.tif
+Original scan timestamp: 2014-12-05 23:13:48.660000
+Preceding scan: RT601 T REGISTER BITS 60 AND 61.tif
+Following scan: RT625 T REGISTER PARITY 32-39 AND 40-47.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Next source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+Original source review notes — historical physical-print snapshot
+
+RT621 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 34,
+  "A1_total_card_portions": 36,
+  "A1_mismatches": [
+    "BS",
+    "BC"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 72,
+  "geometry_passed": true,
+  "source_literal_A1_exceptions": {
+    "BS": "BS5M native location prefix is unreadable between B and E; �-C3D2 preserves source uncertainty while A1 suggests B-C3D2.",
+    "BC": "BC7M native location prefix is unreadable between B and E; �-C3D2 preserves source uncertainty while A1 suggests B-C3D2."
+  },
+  "unresolved_A1_mismatches": [],
+  "passed": true,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 2
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_body_pin_review",
+    "detail": "All 36 A1 card portions and 72 printed input terminals were checked against enlarged native TIFF crops. Their literal fields match the source, with no unreadable characters."
+  },
+  {
+    "kind": "footer_crosscheck",
+    "detail": "The enlarged RT621 footer was read directly from the original TIFF: four printed columns with 9, 9, 9 and 1 entries. The machine title identifies P.N. 2585945 and BLK. BZ."
+  },
+  {
+    "kind": "native_unreadable_location_prefixes",
+    "detail": "BS5M and BC7M location-prefix glyphs are damaged in the original gray TIFF. Same-page B/E/F comparison rules out F but does not securely distinguish B from E. Each unresolved cell is � in the TXT; A1 suggests B but is not used to silently restore missing native print. Independent proof/report: tmp/ald-text/rt/high/prefix_RT621/independent original gray prefix findings.json. Scan neighbors: RT601 before, RT625 after in original order."
+  },
+  {
+    "kind": "native_roof_calibration",
+    "detail": "RT621 uses the T-register two-bit page grid. The top AQ/AR boxes and bottom BQ/BR boxes were compared with native source bank crops; the right-hand output labels occupy their own blank-separated margin columns."
+  },
+  {
+    "kind": "native_special_gate",
+    "detail": "AS5E and BS5M are printed OR gates with distinct upper and lower inputs. AJ/BJ feed the upper inputs and AP/BP feed the lower inputs on separate stems."
+  },
+  {
+    "kind": "native_T06_crossings",
+    "detail": "The four T06AA left/right pairs were traced separately. AQ G10 continues to +PADDL 62; BQ G03 rises on c92 from row54 to +PADDL 63 on row47, crossing its upper-output/BK-upper row52 without a diamond; AR J11 descends on c87 and bends along row38 then c199 into +SADDL 06 on row36, crossing -ST BIT 62 at row37 without a diamond; BR G05 continues to +SADDL 07. Native proofs: low/independent/RT621/BQ G03 vertical complete native.png and SADDL06 bend tight native.png."
+  },
+  {
+    "kind": "native_input_top",
+    "detail": "The -DATA KEY 62 TO ST top line, with PX211AF4 cross-reference, bends into AG G08. The middle -DATA KEY 63 TO ST line, with PX211AP4 cross-reference, bends into BG D10."
+  },
+  {
+    "kind": "native_wire_review",
+    "detail": "RT621 source crops were used for port positions, junction diamonds and right-side output labels. The +SADDL 06 right rule is the AR J11 output; +PADDL 63 is the BQ G03 output. Their crossings with adjacent storage/control nets have no source diamond and remain separate."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT601 T REGISTER BITS 60 AND 61.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT625 T REGISTER PARITY 32-39 AND 40-47.tif
+
+Source SHA-256: 5ed3978a3294a1b71591ac227bd66ba093599e3e6d071a16061a88d450a4bc49
+
+
+Source-derived recovery v2 — reviewed staging
+[
+  {
+    "stable_id": "RT621-011dff5f16",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "�-C3D2",
+    "recovered_reading": "B-C3D2",
+    "row": 84,
+    "column": 143,
+    "covered_cells": [
+      [
+        84,
+        143
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block BS (grid 5M) — board/socket location",
+    "question": "What is the complete board/socket location printed in block BS (grid 5M)? Current fragment: “�-C3D2”.",
+    "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+    "decision": {
+      "id": "RT621-011dff5f16",
+      "page": "RT621",
+      "candidate": "B-C3D2",
+      "confidence": "High",
+      "rule": "A1-exact-page-card-portion-location",
+      "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+      "evidence": [
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 18,
+          "column": 161,
+          "excerpt": "30 31 33 34 35 36",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 6,
+          "column": 163,
+          "excerpt": "D3          5804193 4193",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 5,
+          "column": 143,
+          "excerpt": "D2          DOUBLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 8,
+          "column": 149,
+          "excerpt": "RT621 01 02",
+          "field": "A1 ALD page reference"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT621-011dff5f16",
+      "page": "RT621",
+      "candidate": "B-C3D2",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.",
+      "kind": "location",
+      "mask": "�-C3D2",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-C3D2",
+          "board": "02B-C3",
+          "socket": "D2",
+          "card": "419333",
+          "portion": "33",
+          "ALD_page": "RT621",
+          "source_listing": "A1233-01 SOCKET LISTING",
+          "subject_card_mask": "419333",
+          "joint_mask_recovery": false
+        }
+      ],
+      "compatible_exact_values": [
+        "B-C3D2"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT621",
+          "scan_id": "1956",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.txt",
+          "text_sha256": "598a9f7f74828f9bc40209bd03ee2be1dcdf15e7f667b75e90e67933dd114a7d",
+          "model_sha256": "d1d45734bd05ef16af9927bf3dc5eb876467cde3c871e2ec3f84a3b47d72e838",
+          "row": 84,
+          "column": 143,
+          "excerpt": "                                                                                                            └──────4G12│B-C3D2│           └───│�-C3D2│                                 │    │�-C3D2│       │                                         ",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 18,
+          "column": 161,
+          "excerpt": "30 31 33 34 35 36",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 6,
+          "column": 163,
+          "excerpt": "D3          5804193 4193",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 5,
+          "column": 143,
+          "excerpt": "D2          DOUBLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 8,
+          "column": 149,
+          "excerpt": "RT621 01 02",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "RT621",
+          "scan_id": "1956",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.txt",
+          "text_sha256": "598a9f7f74828f9bc40209bd03ee2be1dcdf15e7f667b75e90e67933dd114a7d",
+          "model_sha256": "d1d45734bd05ef16af9927bf3dc5eb876467cde3c871e2ec3f84a3b47d72e838",
+          "row": 83,
+          "column": 143,
+          "excerpt": "                                                                                                            │  └───4D04│419330│           │   │419333│                                 │    │419337│       │                                         ",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1233-01",
+        "row": 18,
+        "column": 161,
+        "excerpt": "30 31 33 34 35 36",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 6,
+        "column": 163,
+        "excerpt": "D3          5804193 4193",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 5,
+        "column": 143,
+        "excerpt": "D2          DOUBLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 97,
+        "column": 229,
+        "excerpt": "G 501       BOARD 02B-C3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 8,
+        "column": 149,
+        "excerpt": "RT621 01 02",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.tif",
+    "source_sha256": "5ed3978a3294a1b71591ac227bd66ba093599e3e6d071a16061a88d450a4bc49",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT601 T REGISTER BITS 60 AND 61.tif",
+    "after_scan": "RT625 T REGISTER PARITY 32-39 AND 40-47.tif"
+  },
+  {
+    "stable_id": "RT621-6a782d919a",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "�-C3D2",
+    "recovered_reading": "B-C3D2",
+    "row": 84,
+    "column": 189,
+    "covered_cells": [
+      [
+        84,
+        189
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block BC (grid 7M) — board/socket location",
+    "question": "What is the complete board/socket location printed in block BC (grid 7M)? Current fragment: “�-C3D2”.",
+    "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+    "decision": {
+      "id": "RT621-6a782d919a",
+      "page": "RT621",
+      "candidate": "B-C3D2",
+      "confidence": "High",
+      "rule": "A1-exact-page-card-portion-location",
+      "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+      "evidence": [
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 19,
+          "column": 155,
+          "excerpt": "37",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 6,
+          "column": 163,
+          "excerpt": "D3          5804193 4193",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 5,
+          "column": 143,
+          "excerpt": "D2          DOUBLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 8,
+          "column": 149,
+          "excerpt": "RT621 01 02",
+          "field": "A1 ALD page reference"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT621-6a782d919a",
+      "page": "RT621",
+      "candidate": "B-C3D2",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.",
+      "kind": "location",
+      "mask": "�-C3D2",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-C3D2",
+          "board": "02B-C3",
+          "socket": "D2",
+          "card": "419337",
+          "portion": "37",
+          "ALD_page": "RT621",
+          "source_listing": "A1233-01 SOCKET LISTING",
+          "subject_card_mask": "419337",
+          "joint_mask_recovery": false
+        }
+      ],
+      "compatible_exact_values": [
+        "B-C3D2"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT621",
+          "scan_id": "1956",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.txt",
+          "text_sha256": "598a9f7f74828f9bc40209bd03ee2be1dcdf15e7f667b75e90e67933dd114a7d",
+          "model_sha256": "d1d45734bd05ef16af9927bf3dc5eb876467cde3c871e2ec3f84a3b47d72e838",
+          "row": 84,
+          "column": 189,
+          "excerpt": "                                                                                                            └──────4G12│B-C3D2│           └───│�-C3D2│                                 │    │�-C3D2│       │                                         ",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 19,
+          "column": 155,
+          "excerpt": "37",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 6,
+          "column": 163,
+          "excerpt": "D3          5804193 4193",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 5,
+          "column": 143,
+          "excerpt": "D2          DOUBLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 8,
+          "column": 149,
+          "excerpt": "RT621 01 02",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "RT621",
+          "scan_id": "1956",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.txt",
+          "text_sha256": "598a9f7f74828f9bc40209bd03ee2be1dcdf15e7f667b75e90e67933dd114a7d",
+          "model_sha256": "d1d45734bd05ef16af9927bf3dc5eb876467cde3c871e2ec3f84a3b47d72e838",
+          "row": 83,
+          "column": 189,
+          "excerpt": "                                                                                                            │  └───4D04│419330│           │   │419333│                                 │    │419337│       │                                         ",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1233-01",
+        "row": 19,
+        "column": 155,
+        "excerpt": "37",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 6,
+        "column": 163,
+        "excerpt": "D3          5804193 4193",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 5,
+        "column": 143,
+        "excerpt": "D2          DOUBLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 97,
+        "column": 229,
+        "excerpt": "G 501       BOARD 02B-C3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 8,
+        "column": 149,
+        "excerpt": "RT621 01 02",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT621 T REGISTER BITS 62 AND 63.tif",
+    "source_sha256": "5ed3978a3294a1b71591ac227bd66ba093599e3e6d071a16061a88d450a4bc49",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT601 T REGISTER BITS 60 AND 61.tif",
+    "after_scan": "RT625 T REGISTER PARITY 32-39 AND 40-47.tif"
+  }
+]
+
+Current recovery status
+Source-derived reviewed staging; publication requires companion current root/peer acceptance receipt.
+Current unresolved � cells: 0
+Original physical marker cells before source-derived recovery: 2
+Original damage records remain physical evidence; the logical recoveries do not make damaged glyphs newly legible.
+
+Current source-derived A1 compatibility (separate from historical native flags)
+[
+  {
+    "page": "RT621",
+    "block": "BS",
+    "node_index": 28,
+    "classification": "Unique current source-derived card/portion/board/socket compatibility",
+    "unique_compatible_match": true,
+    "still_partial": false,
+    "before_values": {
+      "card_type": "4193",
+      "portion": "33",
+      "printed_card_portion": "419333",
+      "location": "�-C3D2"
+    },
+    "current_values": {
+      "card_type": "4193",
+      "portion": "33",
+      "printed_card_portion": "419333",
+      "location": "B-C3D2"
+    },
+    "A1_evidence": [
+      {
+        "kind": "card portion",
+        "board": "02B-C3",
+        "sockets": [
+          "D2",
+          "D3"
+        ],
+        "part_number": "5804193",
+        "card_type": "4193",
+        "portion": "33",
+        "source_listings": [
+          "A1233-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1233-01 SOCKET LISTING"
+      }
+    ],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT621-011dff5f16"
+    ]
+  },
+  {
+    "page": "RT621",
+    "block": "BC",
+    "node_index": 35,
+    "classification": "Unique current source-derived card/portion/board/socket compatibility",
+    "unique_compatible_match": true,
+    "still_partial": false,
+    "before_values": {
+      "card_type": "4193",
+      "portion": "37",
+      "printed_card_portion": "419337",
+      "location": "�-C3D2"
+    },
+    "current_values": {
+      "card_type": "4193",
+      "portion": "37",
+      "printed_card_portion": "419337",
+      "location": "B-C3D2"
+    },
+    "A1_evidence": [
+      {
+        "kind": "card portion",
+        "board": "02B-C3",
+        "sockets": [
+          "D2",
+          "D3"
+        ],
+        "part_number": "5804193",
+        "card_type": "4193",
+        "portion": "37",
+        "source_listings": [
+          "A1233-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1233-01 SOCKET LISTING"
+      }
+    ],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT621-6a782d919a"
+    ]
+  }
+]

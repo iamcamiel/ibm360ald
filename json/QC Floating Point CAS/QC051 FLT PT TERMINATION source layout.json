@@ -1,0 +1,1335 @@
+{
+  "nodes": [
+    {
+      "box": "A2",
+      "leg": "00",
+      "address": "0924",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR NEOP"
+      ],
+      "exit": "******──AB",
+      "comments": [
+        "SP NORM OR DP",
+        "VALID CHAR.",
+        "END OP AND SET",
+        "COND REG.",
+        "R REG TO E",
+        "LOCAL STORE T"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        47,
+        0
+      ]
+    },
+    {
+      "box": "A9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──AI",
+      "comments": [],
+      "output_symbol": "",
+      "grid": [
+        201,
+        0
+      ]
+    },
+    {
+      "box": "C7",
+      "leg": "00",
+      "address": "09A4",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──CG",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        157,
+        11
+      ]
+    },
+    {
+      "box": "E2",
+      "leg": "01",
+      "address": "0925",
+      "fields": [
+        "C 1→OFLO/UFLO"
+      ],
+      "exit": "*0──EB",
+      "comments": [
+        "DP OR SP NORM",
+        "CHAR OV OR UNDFW",
+        "SET INTRPT TGRS"
+      ],
+      "R_line": "R UFMSK      0",
+      "grid": [
+        47,
+        22
+      ]
+    },
+    {
+      "box": "E3",
+      "leg": "10",
+      "address": "01C2",
+      "fields": [
+        "A →T",
+        "L WF*E2Ω1",
+        "C EEOP",
+        "C 1→STAA*J18=0"
+      ],
+      "exit": "XX──EC",
+      "comments": [
+        "UNDERFLOW AND",
+        "MASK OFF.",
+        "STORE TRUE ZERO.",
+        "SET STAA"
+      ],
+      "grid": [
+        69,
+        22
+      ]
+    },
+    {
+      "box": "E4",
+      "leg": "XX",
+      "address": "078C",
+      "fields": [
+        "L WF*E2"
+      ],
+      "exit": "0X──ED",
+      "comments": [
+        "FINISH STORE",
+        "DP TRUE ZERO"
+      ],
+      "R_line": "R 0",
+      "grid": [
+        91,
+        22
+      ]
+    },
+    {
+      "box": "G6",
+      "leg": "01",
+      "address": "09A5",
+      "fields": [
+        "C 1→OFLO/UFLO"
+      ],
+      "exit": "*0──GF",
+      "comments": [
+        "CHAR OVER OR",
+        "UNDERFLOW.",
+        "SET INTRPT TGRS"
+      ],
+      "R_line": "R UFMSK      0",
+      "grid": [
+        135,
+        33
+      ]
+    },
+    {
+      "box": "G7",
+      "leg": "10",
+      "address": "09A6",
+      "fields": [
+        "A →T",
+        "L WF*E2Ω1",
+        "C EEOP"
+      ],
+      "exit": "XX──GG",
+      "comments": [
+        "UNDERFLOW AND",
+        "MASK OFF",
+        "STORE TRUE ZERO"
+      ],
+      "grid": [
+        157,
+        33
+      ]
+    },
+    {
+      "box": "G8",
+      "leg": "XX",
+      "address": "09A7",
+      "fields": [
+        "L WF*E2"
+      ],
+      "exit": "00──GH",
+      "comments": [
+        "STORE ZERO IN R1"
+      ],
+      "R_line": "R 0          0",
+      "grid": [
+        179,
+        33
+      ]
+    },
+    {
+      "box": "J2",
+      "leg": "11",
+      "address": "0927",
+      "fields": [
+        "C 1→OFLO/UFLO",
+        "C EEOP"
+      ],
+      "exit": "00──JB",
+      "comments": [
+        "SP UNNORM WITH",
+        "PRE-SHIFT",
+        "CHAR OVERFLOW"
+      ],
+      "R_line": "R 0          0",
+      "grid": [
+        47,
+        44
+      ]
+    },
+    {
+      "box": "J3",
+      "leg": "00",
+      "address": "01C0",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR NEOP"
+      ],
+      "exit": "******──JC",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        69,
+        44
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "0X",
+      "address": "09CC",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR NEOP"
+      ],
+      "exit": "******──LE",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "N2",
+      "leg": "10",
+      "address": "0926",
+      "fields": [
+        "A 0+DJ13",
+        "A →DT",
+        "C 0→STAD"
+      ],
+      "exit": "1*──NB",
+      "comments": [
+        "SP UNNORM WITH",
+        "PRE-SHIFT",
+        "VALID CHAR",
+        "CHECK FOR ZERO",
+        "FRACTION",
+        "SET STAA IF",
+        "FRACT EQ ZERO."
+      ],
+      "R_line": "R 1      J47=0",
+      "grid": [
+        47,
+        66
+      ]
+    },
+    {
+      "box": "N3",
+      "leg": "11",
+      "address": "0253",
+      "fields": [
+        "A →T",
+        "L WF*E2",
+        "C EEOP",
+        "C 1→STAA*J18=0"
+      ],
+      "exit": "*0──NC",
+      "comments": [
+        "FRACTION EQ ZERO",
+        "TRUE ZERO TO R1"
+      ],
+      "R_line": "R PSW39",
+      "grid": [
+        69,
+        66
+      ]
+    },
+    {
+      "box": "N4",
+      "leg": "1X",
+      "address": "09CE",
+      "fields": [
+        "A →JWT",
+        "B 0+U F→U",
+        "L WF*E2",
+        "C DVD-CHECK"
+      ],
+      "exit": "0X──ND",
+      "comments": [
+        "LOST SIG. MASK ON",
+        "SET INTRPT TGRS.",
+        "STORE RESULT CHAR",
+        "WITH ZERO FRACT."
+      ],
+      "R_line": "R 0",
+      "grid": [
+        91,
+        66
+      ]
+    },
+    {
+      "box": "Q1",
+      "leg": "XX",
+      "address": "092E",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "1*──QA",
+      "comments": [
+        "HIGH FRAC TO LS"
+      ],
+      "R_line": "R 1 J1=0.J17=0",
+      "output_port_row": 6,
+      "grid": [
+        25,
+        77
+      ]
+    },
+    {
+      "box": "Q3",
+      "leg": "10",
+      "address": "0252",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C SET-CR NEOP"
+      ],
+      "exit": "******──QC",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        69,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      1,
+      "QC001.EEE"
+    ],
+    [
+      2,
+      2,
+      "(00)"
+    ],
+    [
+      2,
+      5,
+      "QC021.AIE"
+    ],
+    [
+      2,
+      6,
+      "(00)"
+    ],
+    [
+      2,
+      12,
+      "QC041.NDE"
+    ],
+    [
+      2,
+      13,
+      "(00)"
+    ],
+    [
+      2,
+      18,
+      "QC001.LDE"
+    ],
+    [
+      2,
+      19,
+      "(00)"
+    ],
+    [
+      2,
+      22,
+      "QG001.QAE"
+    ],
+    [
+      2,
+      23,
+      "(00)"
+    ],
+    [
+      2,
+      25,
+      "QG011.NCE"
+    ],
+    [
+      2,
+      26,
+      "(00)"
+    ],
+    [
+      2,
+      27,
+      "QC021.CBE"
+    ],
+    [
+      2,
+      28,
+      "(00001)"
+    ],
+    [
+      2,
+      36,
+      "QC031.EHE"
+    ],
+    [
+      2,
+      37,
+      "(00001)"
+    ],
+    [
+      2,
+      41,
+      "QC001.QIE"
+    ],
+    [
+      2,
+      42,
+      "(000011)"
+    ],
+    [
+      2,
+      58,
+      "QC021.LBE"
+    ],
+    [
+      2,
+      59,
+      "(0X.1X)"
+    ],
+    [
+      2,
+      60,
+      "QC071.NIE"
+    ],
+    [
+      2,
+      61,
+      "(0X.1X)"
+    ],
+    [
+      2,
+      69,
+      "QC021.LHE"
+    ],
+    [
+      2,
+      70,
+      "(00.01.10.11)"
+    ],
+    [
+      2,
+      80,
+      "QC071.LIE"
+    ],
+    [
+      2,
+      81,
+      "(XX)"
+    ],
+    [
+      2,
+      86,
+      "QC041.AHE"
+    ],
+    [
+      2,
+      87,
+      "(10)"
+    ],
+    [
+      2,
+      91,
+      "QC031.EDE"
+    ],
+    [
+      2,
+      92,
+      "(XX)"
+    ],
+    [
+      2,
+      94,
+      "QC041.EDE"
+    ],
+    [
+      2,
+      95,
+      "(XX)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583810"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QC051"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "FLT. PT. TERMINATION"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      259,
+      95
+    ]
+  ],
+  "scan_order_neighbors": {
+    "preceding": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC041 FLT PT DIVIDE.tif",
+    "following": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC061 FLT PT ADD TYPE COMPARE CHARACTERISTICS.tif"
+  },
+  "revision_notes": [
+    "C7 09A4 and N3 0253 recovered from damaged printed glyphs and QZ successor corroboration."
+  ],
+  "wire_paths": [
+    [
+      [
+        10,
+        1
+      ],
+      [
+        47,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        5
+      ],
+      [
+        23,
+        5
+      ],
+      [
+        23,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        12
+      ],
+      [
+        23,
+        12
+      ],
+      [
+        23,
+        18
+      ]
+    ],
+    [
+      [
+        10,
+        18
+      ],
+      [
+        23,
+        18
+      ],
+      [
+        23,
+        27
+      ]
+    ],
+    [
+      [
+        10,
+        22
+      ],
+      [
+        23,
+        22
+      ]
+    ],
+    [
+      [
+        10,
+        25
+      ],
+      [
+        23,
+        25
+      ]
+    ],
+    [
+      [
+        10,
+        27
+      ],
+      [
+        47,
+        27
+      ]
+    ],
+    [
+      [
+        44,
+        3
+      ],
+      [
+        44,
+        69
+      ]
+    ],
+    [
+      [
+        44,
+        3
+      ],
+      [
+        47,
+        3
+      ]
+    ],
+    [
+      [
+        44,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        44,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        66,
+        25
+      ],
+      [
+        66,
+        45
+      ],
+      [
+        69,
+        45
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        25
+      ],
+      [
+        110,
+        25
+      ],
+      [
+        110,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        88,
+        47
+      ],
+      [
+        88,
+        3
+      ]
+    ],
+    [
+      [
+        62,
+        3
+      ],
+      [
+        201,
+        3
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        132,
+        58
+      ],
+      [
+        132,
+        3
+      ]
+    ],
+    [
+      [
+        84,
+        80
+      ],
+      [
+        132,
+        80
+      ],
+      [
+        132,
+        3
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        176,
+        14
+      ],
+      [
+        176,
+        3
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        66,
+        69
+      ],
+      [
+        66,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        40,
+        83
+      ],
+      [
+        66,
+        83
+      ],
+      [
+        66,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        88,
+        69
+      ],
+      [
+        88,
+        60
+      ],
+      [
+        113,
+        60
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        110,
+        69
+      ],
+      [
+        110,
+        61
+      ],
+      [
+        113,
+        61
+      ]
+    ],
+    [
+      [
+        10,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        10,
+        41
+      ],
+      [
+        23,
+        41
+      ],
+      [
+        23,
+        36
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        154,
+        36
+      ],
+      [
+        154,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        179,
+        36
+      ]
+    ],
+    [
+      [
+        194,
+        36
+      ],
+      [
+        198,
+        36
+      ],
+      [
+        198,
+        23
+      ],
+      [
+        156,
+        23
+      ],
+      [
+        156,
+        12
+      ],
+      [
+        157,
+        12
+      ]
+    ],
+    [
+      [
+        10,
+        80
+      ],
+      [
+        25,
+        80
+      ]
+    ],
+    [
+      [
+        10,
+        91
+      ],
+      [
+        23,
+        91
+      ],
+      [
+        23,
+        94
+      ],
+      [
+        175,
+        94
+      ],
+      [
+        175,
+        38
+      ],
+      [
+        179,
+        38
+      ]
+    ],
+    [
+      [
+        10,
+        94
+      ],
+      [
+        23,
+        94
+      ]
+    ],
+    [
+      [
+        10,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        60
+      ],
+      [
+        23,
+        60
+      ],
+      [
+        23,
+        58
+      ]
+    ],
+    [
+      [
+        10,
+        86
+      ],
+      [
+        155,
+        86
+      ],
+      [
+        155,
+        16
+      ],
+      [
+        157,
+        16
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      23,
+      1,
+      "O"
+    ],
+    [
+      23,
+      18,
+      "O"
+    ],
+    [
+      23,
+      22,
+      "O"
+    ],
+    [
+      23,
+      25,
+      "O"
+    ],
+    [
+      44,
+      25,
+      "O"
+    ],
+    [
+      44,
+      47,
+      "O"
+    ],
+    [
+      44,
+      69,
+      "O"
+    ],
+    [
+      66,
+      25,
+      "O"
+    ],
+    [
+      88,
+      3,
+      "O"
+    ],
+    [
+      132,
+      3,
+      "O"
+    ],
+    [
+      176,
+      3,
+      "O"
+    ],
+    [
+      66,
+      69,
+      "O"
+    ],
+    [
+      66,
+      80,
+      "O"
+    ],
+    [
+      88,
+      69,
+      "O"
+    ],
+    [
+      23,
+      36,
+      "O"
+    ],
+    [
+      154,
+      36,
+      "O"
+    ],
+    [
+      23,
+      94,
+      "O"
+    ],
+    [
+      23,
+      58,
+      "O"
+    ],
+    [
+      66,
+      80,
+      "O"
+    ]
+  ],
+  "canvas_rows": 116,
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": [
+    "All 10 ordinary ROS output routes corroborate QZ; five NEXT-INST*IC termination paths reach printed GO A9; Q1 output is placed at the source bottom control-field row."
+  ],
+  "review_notes": [
+    "Portal I glyphs recovered from source output serials: QC021.A1E, QC001.Q1E",
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1384.58,
+    "first_header_y": 244.4,
+    "column_step": 666.27,
+    "row_step": 494.31
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QC051 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QC051",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "e3b068d09eb107c3693b57cd1ed1408ecc533654a3edca1eca536185783cc4da",
+    "text_sha256": "3e094680d09a9b4748eecd1199fa99a3721cece6cf03d2216371b483d3ea924c",
+    "content_sha256": "86c81e026133c423adae05e72ed2490cf6d11ea9bf8644d1abf7d3f30a7cd493",
+    "verification_sha256": "daed282db634915bd033194f2761f69930b09b530570a8d217bbafab77417a63",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC051 FLT PT TERMINATION.tif",
+    "source_sha256": "61d611f105ebd0617c94bcf15a56b7fce815c44fa19db3bc1acaad5680acbf3d",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:38.119819+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

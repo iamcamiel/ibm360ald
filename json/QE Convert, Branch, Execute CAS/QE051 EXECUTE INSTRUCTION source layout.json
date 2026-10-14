@@ -1,0 +1,1037 @@
+{
+  "nodes": [
+    {
+      "box": "A2",
+      "leg": "01",
+      "address": "0625",
+      "fields": [
+        "D MS→Q   MS→AB",
+        "D Q67→R"
+      ],
+      "exit": "XX──AB",
+      "comments": [
+        "E 8-11 NOT ZERO",
+        "D 21-22 EQ 11",
+        "MDBO TO Q,AB",
+        "Q48-63 TO R"
+      ],
+      "grid": [
+        47,
+        0
+      ]
+    },
+    {
+      "box": "E1",
+      "leg": "000100",
+      "address": "0104",
+      "fields": [
+        "C STC-1"
+      ],
+      "exit": "0X──EA",
+      "comments": [
+        "EXECUTE",
+        "INSTRUCTION",
+        "111 TO STC.",
+        "HDWR BRANCH",
+        "IF SPEC INTPT"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        22
+      ]
+    },
+    {
+      "box": "E2",
+      "leg": "00",
+      "address": "0624",
+      "fields": [
+        "D Q→R*D   MS→Q",
+        "D MS→AB",
+        "C ABC+1"
+      ],
+      "exit": "0X──EB",
+      "comments": [
+        "E 8-11 NOT ZERO",
+        "D 21-22 NOT 11",
+        "MDBO TO Q,AB",
+        "ABC+1 TO ABC",
+        "Q TO R*D21-22"
+      ],
+      "R_line": "R 0",
+      "grid": [
+        47,
+        22
+      ]
+    },
+    {
+      "box": "G8",
+      "leg": "1*",
+      "address": "082B",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──GH",
+      "comments": [
+        "PROGRAM",
+        "INTERRUPT"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        179,
+        33
+      ]
+    },
+    {
+      "box": "J1",
+      "leg": "0X",
+      "address": "0828",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "D J7→ABC"
+      ],
+      "exit": "**──JA",
+      "comments": [
+        "D 21-23 TO ABC",
+        "ADD ONE TO",
+        "ADDRESS OF SUBT",
+        "INSTRUCTION",
+        "BRANCH IF R1",
+        "EQUALS 0",
+        "BRANCH IF",
+        "D 21-22 ≠ 11"
+      ],
+      "R_line": "R E2=0/   D2=3",
+      "grid": [
+        25,
+        44
+      ]
+    },
+    {
+      "box": "J2",
+      "leg": "11",
+      "address": "0627",
+      "fields": [
+        "D MS→Q   MS→AB",
+        "D Q67→R"
+      ],
+      "exit": "XX──JB",
+      "comments": [
+        "E 8-11 ZERO",
+        "D 21-22 EQ 11",
+        "MDBO TO Q",
+        "Q48-63 TO R"
+      ],
+      "grid": [
+        47,
+        44
+      ]
+    },
+    {
+      "box": "J3",
+      "leg": "XX",
+      "address": "083C",
+      "fields": [
+        "B -64.U   AB→U",
+        "C ABC+1"
+      ],
+      "exit": "*X──JC",
+      "comments": [
+        "11000000 ANDED",
+        "WITH OP CODE",
+        "TO BRANCH ON",
+        "RR FORMAT",
+        "7 TO ABC.",
+        "BRANCH IF R1",
+        "EQUALS 0."
+      ],
+      "R_line": "R E2=0/",
+      "grid": [
+        69,
+        44
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "1X",
+      "address": "0633",
+      "fields": [
+        "B 0+U",
+        "B →ST     AB→U",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X*──JD",
+      "comments": [
+        "BRANCH ON SAL=0",
+        "SET ASC TGR"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "J5",
+      "leg": "X0",
+      "address": "07A8",
+      "fields": [
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──JE",
+      "comments": [
+        "FETCH REMAINING",
+        "SYLLABLES OF",
+        "SUBJ. INSTRUCTION"
+      ],
+      "R_line": "R 1          1",
+      "grid": [
+        113,
+        44
+      ]
+    },
+    {
+      "box": "J6",
+      "leg": "XX",
+      "address": "07AB",
+      "fields": [
+        "D MS→Q",
+        "S STOP2",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X1──JF",
+      "comments": [
+        "MDBO TO Q",
+        "WAIT 2 CYCLES",
+        "SET ASC TGR"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        135,
+        44
+      ]
+    },
+    {
+      "box": "J9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──JI",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        201,
+        44
+      ]
+    },
+    {
+      "box": "L4",
+      "leg": "0X",
+      "address": "0631",
+      "fields": [
+        "B V0ΩU",
+        "B →ST     AB→U",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X*──LD",
+      "comments": [
+        "FOR E2 NOT 0",
+        "OR IN ST BITS",
+        "STC ≠ 7",
+        "ABC POINTS TO",
+        "SUBJ. INSTR-8-15"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        55
+      ]
+    },
+    {
+      "box": "L7",
+      "leg": "X1",
+      "address": "07A9",
+      "fields": [
+        "A 0+T",
+        "A →R",
+        "C 1→XEC-TGR"
+      ],
+      "exit": "*X──LG",
+      "comments": [
+        "SET XEC TGR"
+      ],
+      "R_line": "R INTRP",
+      "grid": [
+        157,
+        55
+      ]
+    },
+    {
+      "box": "L8",
+      "leg": "0X",
+      "address": "0829",
+      "fields": [
+        "D R→E",
+        "C 1→STAG"
+      ],
+      "exit": "XX──LH",
+      "comments": [
+        "SET STAG G",
+        "R TO E REG."
+      ],
+      "grid": [
+        179,
+        55
+      ]
+    },
+    {
+      "box": "L9",
+      "leg": "XX",
+      "address": "08BC",
+      "fields": [
+        "L →T",
+        "C BEOP"
+      ],
+      "exit": "******──LI",
+      "comments": [
+        "GO TO NORMAL",
+        "I FETCH SEQ"
+      ],
+      "R_line": "R NEXT-INST*D",
+      "grid": [
+        201,
+        55
+      ]
+    },
+    {
+      "box": "N2",
+      "leg": "10",
+      "address": "0626",
+      "fields": [
+        "D Q→R*D   MS→Q",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──NB",
+      "comments": [
+        "E 8-11 ZERO",
+        "D 21-22 NOT 11",
+        "MDBO TO Q",
+        "Q TO R*D21-22",
+        "SET ASC"
+      ],
+      "grid": [
+        47,
+        66
+      ]
+    },
+    {
+      "box": "N7",
+      "leg": "XX",
+      "address": "07BC",
+      "fields": [
+        "C 1→XEC-TGR"
+      ],
+      "exit": "*X──NG",
+      "comments": [
+        "SET XEC TGR",
+        "BRANCH ON",
+        "PROG. INTPT."
+      ],
+      "R_line": "R INTRP",
+      "grid": [
+        157,
+        66
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      5,
+      25,
+      "QT011.SDE"
+    ],
+    [
+      5,
+      26,
+      "(000100)"
+    ],
+    [
+      109,
+      41,
+      "THIS SEQUENCE IS TO AVOID AN EXTRA REQUEST IN RR"
+    ],
+    [
+      109,
+      42,
+      "FORMAT SINCE THIS CAN CAUSE AN INVALID ADD OR"
+    ],
+    [
+      109,
+      43,
+      "PROTECTION"
+    ],
+    [
+      198,
+      67,
+      "XEC TGR ON."
+    ],
+    [
+      198,
+      68,
+      "ASC TGR ON."
+    ],
+    [
+      198,
+      69,
+      "STAT G ON."
+    ],
+    [
+      198,
+      70,
+      "SUBJ. INSTR."
+    ],
+    [
+      198,
+      71,
+      "IN Q-REG."
+    ],
+    [
+      198,
+      72,
+      "HDWR FORCED"
+    ],
+    [
+      198,
+      73,
+      "GPR IN T."
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583818"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QE051"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "EXECUTE"
+    ],
+    [
+      200,
+      101,
+      "INSTRUCTION"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      95
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        16,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        43,
+        25
+      ],
+      [
+        43,
+        40
+      ],
+      [
+        23,
+        40
+      ],
+      [
+        23,
+        47
+      ],
+      [
+        25,
+        47
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        45,
+        47
+      ],
+      [
+        45,
+        3
+      ],
+      [
+        47,
+        3
+      ]
+    ],
+    [
+      [
+        45,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        45,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        45,
+        47
+      ],
+      [
+        45,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        3
+      ],
+      [
+        65,
+        3
+      ],
+      [
+        65,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        65,
+        47
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        87,
+        25
+      ],
+      [
+        87,
+        60
+      ],
+      [
+        91,
+        60
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        89,
+        47
+      ],
+      [
+        89,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        89,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        111,
+        47
+      ],
+      [
+        111,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        111,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        111,
+        58
+      ]
+    ],
+    [
+      [
+        128,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        47
+      ],
+      [
+        153,
+        47
+      ],
+      [
+        153,
+        56
+      ],
+      [
+        157,
+        56
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        157,
+        69
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        177,
+        58
+      ],
+      [
+        177,
+        36
+      ],
+      [
+        179,
+        36
+      ]
+    ],
+    [
+      [
+        177,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        172,
+        69
+      ],
+      [
+        177,
+        69
+      ],
+      [
+        177,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        201,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        36
+      ],
+      [
+        197,
+        36
+      ],
+      [
+        197,
+        52
+      ],
+      [
+        219,
+        52
+      ],
+      [
+        219,
+        58
+      ],
+      [
+        216,
+        58
+      ]
+    ],
+    [
+      [
+        197,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      45,
+      47,
+      "O"
+    ],
+    [
+      45,
+      25,
+      "O"
+    ],
+    [
+      65,
+      47,
+      "O"
+    ],
+    [
+      89,
+      47,
+      "O"
+    ],
+    [
+      111,
+      47,
+      "O"
+    ],
+    [
+      111,
+      58,
+      "O"
+    ],
+    [
+      177,
+      58,
+      "O"
+    ],
+    [
+      197,
+      47,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": {
+    "ordinary": "Source-traced rules checked against QZ next base and J/K selectors. Shared rules selected by printed incoming legs.",
+    "functional": "G8 NEXT-INST*IC and L9 NEXT-INST*D reach printed QT001.CCB dummy through the shared end-operation rule."
+  },
+  "review_notes": [
+    "Footer source audit: vertical title-block dividers retained; invented horizontal enclosing rules removed.",
+    "Final scan/reference audit distinguishes signal-name hyphens, arithmetic decrements and comparison signs from genuine transfer arrows."
+  ],
+  "source_operator_audit": [
+    {
+      "page": "QE051",
+      "box": "L7",
+      "address": "07A9",
+      "property": "fields",
+      "index": 2,
+      "old": "C 1→XEC→TGR",
+      "new": "C 1→XEC-TGR",
+      "evidence": [
+        {
+          "old": "XEC→TGR",
+          "new": "XEC-TGR",
+          "evidence": "QE051 L7 source; PDF F42"
+        }
+      ]
+    },
+    {
+      "page": "QE051",
+      "box": "N7",
+      "address": "07BC",
+      "property": "fields",
+      "index": 0,
+      "old": "C 1→XEC→TGR",
+      "new": "C 1→XEC-TGR",
+      "evidence": [
+        {
+          "old": "XEC→TGR",
+          "new": "XEC-TGR",
+          "evidence": "QE051 L7 source; PDF F42"
+        }
+      ]
+    }
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1491.64,
+    "first_header_y": 230.67,
+    "column_step": 654.31,
+    "row_step": 495.68
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QE051 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QE051",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "35eb4a70503c75b4bc251b03a1830432d313568fbc0184864f15caba09051677",
+    "text_sha256": "8891ce17f7f61ee3f7f4d3c19d848c05e75a1a87f6198225b71ba22b6b72b17d",
+    "content_sha256": "f42977d7e945e697713e8d1364d6d115873fd8bf465b30f80e4963605e1d5478",
+    "verification_sha256": "c6de69980a747ec2b8e5a81157012427e9dec13a684ac3535e1c15d4b9e73d72",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QE Convert, Branch, Execute CAS\\QE051 EXECUTE INSTRUCTION.tif",
+    "source_sha256": "5ea5e4c1f6aa36ddb96ff864a4c71a6065226a96c1c51a68dfd48694220886b5",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:38.967761+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

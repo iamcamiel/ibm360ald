@@ -1,0 +1,131 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                               000 A6261 01
+
+
+
+          V FIELD     E AND Q REGISTERS TO PARALLEL ADDER B-SIDE                                                                                                              S FIELD     SCAN MODE SPECIAL CONTROL LINES
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 97-99                                                                                                                 THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 17-19. 25-30. 31-35
+
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER                                                                                                                                     CHAR                      ORDER
+
+
+               0                000     V0     ZERO GATED WITH PARITY                                                                                                              BITS 17-19
+          A    E3               001     V1     E12-15 TO PB60-63                                                                                         RQ801
+          A    E2               010     V2     E08-11 TO PB60-63                                                                                         RQ801
+          A    E23              011     V3     E08-15 TO PB56-63                                                                                         RQ801                C    ADRSQNCR-1       010     SD2    SUB 1 FROM ADDRESS SEQUENCERS                                                                             DR201
+          A    Q7               100     V4     Q52-63 TO PB52-63                                                                                         RQ811                C    ◺16→ADR-SQCR     011     SD3    SET ADDRESS SEQUENCERS TO 16                                                                              DR201
+          A    Q5               101     V5     Q36-47 TO PB52-63                                                                                         RQ811                C    ◺15→ADR-SQCR     100     SD4    SET ADDRESS SEQUENCERS TO 15                                                                              DR201
+          A    Q3               110     V6     Q20-31 TO PB52-63                                                                                         RQ811                D    MSK-ADR→SAB      101     SD5    GATE MASK ADDRESS TO SAB                                                                                  DR201
+          A    Q1               111     V7     Q04-15 TO PB52-63                                                                                         RQ811                D    SCANOUT-SREG     110     SD6    SCAN OUT S REG                                                                                            DR201
+
+
+
+
+                                                                                                                                                                                   BITS 25-30
+
+
+                                                                                                                                                                              C    1→CTRCTL-TGR     000001  SF1    SET SCAN COUNTER CONTROL TGR                                                                              DR201
+          W FIELD     FAA AND MISC CONTROL LINES                                                                                                                              C    STOP.1→UNCND     000100  SF4    STOP SCAN AND TDN UNCONDITIONAL TERMINATION                                                               DR201
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 02-05                                                                                                                 C    0→TIC.GAP        000101  SF5    RESET TIC AND GAP LATCHES                                                                                 DR201
+                                                                                                                                                                              C    1→MCH-CK-TRP     000110  SF6    SET MACHINE CHECK INTERRUPT                                                                               DR201
+                                                                                                                                                                              D    SCANOUT-TREG     000111  SF7    SCAN OUT T REG                                                                                            DR201
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     C    0→PASS/FAIL      001000  SF8    RESET PASS OR FAIL TGRS                                                                                   DR201
+          CHAR                      ORDER
+
+
+               0                0000    W0     NO OPERATION
+          C    ◺13→ADR-SQCR     0001    W1     SET SCAN ADDRESS SEQUENCER TO 13                                                                          DR011
+          C    ◺LMT1            0010    W2     RESET LIMIT LATCH.THEN SET LIMIT LATCH IF                                                                 DR011                     BITS 31-35
+                                               NO CARRY FROM EITHER PADDER BIT 32 OR 48
+          C    ◺LMT2            0011    W3     SET LIMIT LATCH IF CARRY FROM EITHER PADDER                                                               DR011
+                                               BIT 32 OR 48                                                                                                                   D    SCANOUT-RIWD     00001   SG1    SCAN OUT RIGHT INDICATOR WORD                                                                             DR201
+          C    SAMPLE◺VALUE     0100    W4     SAMPLE TD.SE-DE ASSIGNMENT COMPARATOR ON                                                                  DR011                D    SCANOUT-LIWD     00100   SG4    SCAN OUT LEFT INDICATOR WORD                                                                              DR201
+                                               BITS 0-3 OF F REG ON SATAR. CHECK A REG                                                                                        C    1→PASS/FAIL      01000   SG8    SET PASS OR FAIL TGRS                                                                                     DR201
+                                               02-05 FOR VALID CE ON SCON                                                                                                     C    ◺INVERT-BFR1     01001   SG9    INVERT THE BUFFER 1 TGR                                                                                   DR201
+          D    ◺MS→LM           0101    W5     SDBO 00-63 TO LM REG 00-63                                                                                DR011                C    FLTINITIALIZE    01010   SG10   INITIALIZE AT START OF RECORD                                                                             DR201
+          L    ✲ RDATR2         1000    W8     GATE ADDRESS TRANSLATION REGISTER SECTION                                                                 DR011                C    ◺7→ADR-SQCR      01011   SG11   SET ADDRESS SEQUENCERS TO 7                                                                               DR201
+                                               2 TO L.S. BUSS                                                                                                                 C    ◺MACH-RESET      01100   SG12   MACHINE RESET                                                                                             DR201
+          D    ◺LDAD-REG        1001    W9     T REG TO ATR OR PSAR OR EXTERNAL REG TO                                                                   DR011                C    0→SCAN-MODE      01101   SG13   RESET SCAN MODE TGR                                                                                       DR201
+                                               CCR PER REGISTER SELECTION SWITCH                                                                                              D    SCAN-IN          01110   SG14   SCAN IN                                                                                                   DR201
+          B    ✲✲ ◺N0→V         1010    W10    GATE N00-07 TO SERIAL ADDER B SIDE 00-07                                                                  DR011                C    ◺23→ADR-SQCR     01111   SG15   SET ADDRESS SEQUENCERS TO 23                                                                              DR201
+          L    ✲ RDGREG         1011    W11    GATE G 00-07 TO L.S. BUSS BITS 24-31                                                                      DR011
+          L    ✲ RDEXTBUS       1100    W12    GATE EXTERNAL BUSS TO L.S. BUSS                                                                           DR011
+          L    ◺GEN-BUS-PAR     1101    W13    GENERATE LOCAL STORE BUSS PARITY                                                                          DR011
+          B    ✲✲ ◺N1→V         1110    W14    GATE N08-15 TO SERIAL ADDER B SIDE 00-07                                                                  DR011
+          D    ◺T→M             1111    W15    GATE T 32-63 TO LM 32-63                                                                                  DR011
+
+
+
+
+
+
+
+
+
+
+
+               ✲ THESE MICRO ORDERS ALSO ACTIVATE H64 MICRO ORDER
+
+
+               ✲✲ THESE MICRO ORDERS ALSO ACTIVATE E16 MICRO ORDER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                          ┌────────────────────────────────────────────────┐
+                                                                                                                                                                                                                                                                                                          │ V.W AND S CNTRL FIELD LISTING                  │
+                                                                                                                                                                                                                                                                                                          │                                                │ A
+                                                                                                                                                                                                                                                                                                          │ DATE 8 MAY 70 MACH. 7201-02                    │ 6
+                                                                                                                                                                                                                                                                                                          │                                                │ 2
+                                                                                                                                                                                                                                                                                                          │                          FRAME      02         │ 6
+                                                                                                                                                                                                                                                                                                          │                                                │ 1
+                                                                                                                                                                                                                                                                                                          │                          P.N.          2586562 │
+                                                                                                                                                                                                                                                                                                          │                                                │ 000
+                                                                                                                                                                                                                                                                                                          │ IBM CORP. SDD            PAGE                1 │

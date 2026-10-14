@@ -1,0 +1,87 @@
+KM831 EXCEPTIONAL CONDITION FOR MANUAL CNTLS OR PROG STG COMP - TRANSLATION NOTES
+
+Reference scan: KM Program Interrupt\KM831 EXCEPTIONAL CONDITION FOR MANUAL CNTLS OR PROG STG COMP.tif
+Original scan: img20141209_12183393.tif
+Original scan timestamp: 2014-12-09 12:18:33.930000
+Preceding scan: KM811 EXCEPTIONAL CONDITION FOR INTERRUPTS AND TIME CLOCK STEP.tif
+Following scan: KM821 EXCEPTIONAL CONDITION FOR I FETCH OR INV INST ADDRESS.tif
+Review record: tmp\ald-text\km\KM root reviews.json
+
+PAGE NOTES
+
+KM831 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 26,
+  "A1_mismatches": [
+    "AD",
+    "AF"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 68,
+  "A1_documented_source_discrepancies": [
+    "AD",
+    "AF"
+  ],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "source_A1_card_discrepancy",
+    "node": "AD",
+    "printed": "1365D1",
+    "socket_listing_counterpart": "3365D1",
+    "evidence": "KM831 detail10.png readable literal first digit1, preserved despite A1 type3365."
+  },
+  {
+    "kind": "source_A1_card_discrepancy",
+    "node": "AF",
+    "printed": "1365K1",
+    "socket_listing_counterpart": "3365K1",
+    "evidence": "KM831 detail11.png readable literal first digit1, preserved despite A1 type3365."
+  },
+  {
+    "kind": "printed_operator",
+    "printed": "◇",
+    "evidence": "KM831 operator native.png",
+    "description": "Four diagonal edges printed inline in LPSW◇STORE and BIT7/8/9/10◇D captions; differs from rounded O and numeric0. Printed text operator, not a wire junction."
+  },
+  {
+    "kind": "unreadable_printed_border",
+    "node": "AS",
+    "pin": "D06",
+    "column": 165,
+    "row": 49,
+    "printed": "�",
+    "candidates": [
+      "damaged ◺",
+      "literal L"
+    ],
+    "evidence": "KM831 AS rails native.png",
+    "description": "Native border has a vertical stroke and foot; diagonal is unrecoverable. Root independently reviewed. Do not assert plain or wedge source state. Incoming c161 rail turns directly into D06."
+  }
+]
+
+Original scan order
+Before KM811 EXCEPTIONAL CONDITION FOR INTERRUPTS AND TIME CLOCK STEP.tif
+After KM821 EXCEPTIONAL CONDITION FOR I FETCH OR INV INST ADDRESS.tif
+
+
+Detailed native source and preview comparison
+
+Unreadable printed characters retained as �: 1.

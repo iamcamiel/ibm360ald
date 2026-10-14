@@ -1,0 +1,26 @@
+{
+  "page": "FX061",
+  "reviewer": "/root/ct_011_021",
+  "review_mode": "read-only",
+  "reviewed_txt_sha256": "609ad59eb5e62a101d31d0217e3a3d53ce0a6bb34ea1fb88850bc00412a3b5c3",
+  "scope": ["All lower resistor fan-in groups AF, AY, AP, AG, AZ, AN, BA, BB", "Lower +6 service bus AL, AM, AU", "Native AN collinear overlaps and source-supported logical owners", "AY/AZ printed card and socket fields", "Exported lower layout versus native source crops"],
+  "source_evidence": ["simplex/FX061/AN native.png", "simplex/FX061/left_lower.png", "simplex/FX061/right_lower.png", "simplex/FX061/footer_full.png", "simplex/fx_loads.py build061/resistor", "simplex/output/FX061 DIST SIMPLEX DRIVER LOADS.json", "simplex/output/FX061 DIST SIMPLEX DRIVER LOADS preview.png"],
+  "new_findings": [],
+  "corroborated_ownership": {
+    "AF": "A04=P00-07 FX001BA6; B04=00 FX001AU6; C04=01 FX001AV6; E04=03 FX001AX6; B06=05 FX001AZ6",
+    "AY": "A04=02 FX001AW6; B04=07 FX011AM6; C04=06 FX011AN6; E04=08 FX011AP6; B06=04 FX001AY6",
+    "AP": "E06=SCU02 FX053AS6",
+    "AG": "B06=P3 FX011AQ6; C06=SEL-RESPONSE PAM+RCU1 FX021AP4; D06=SEL-RESPONSE PAM+RCU2 FX021AQ4; D04=SCU04 FX053AU6",
+    "AZ": "B06=SEL-RESPONSE PAM3 FX021AR4; C06=SELECT*-RESPONSE SCU03 FX057AR4; D06=SYS RESET1 FX491AG6; D04=SYS RESET2 FX491AH6",
+    "AN": "D09=SCU08 FX055AP6; B11=SCU05 FX053AV6; C11=SCU P3 FX055AQ6; D11=RESET1 FX055AR6",
+    "BA": "D09=SCU06 FX055AN6; B11=SCU07 FX055AM6; C11=SELECT*-RESPONSE SCU02 FX057AQ4; D11=SELECT*-RESPONSE SCU01 FX057AP4",
+    "BB": "A09=RESET2 FX055AS6"
+  },
+  "source_exceptions": [
+    {"location": "c91 r80..81", "nets": ["AZ_C06", "AN_D09"], "assessment": "Both literal native vertical strokes use this column and overlap one cell edge. No printed diamond authorizes a join; preserve separate declared owners and report geometry ambiguity."},
+    {"location": "r81 c90..91", "nets": ["AN_B11", "AN_D09"], "assessment": "Native AN D09 is the upper physical pin, B11 the next row. Incoming SCU08 horizontal and outgoing SCU05 pin stub overlap one edge. No diamond; separate declared owners remain source-supported."},
+    {"location": "AY / AZ", "assessment": "Native card3707A1, AY E-A2L8 and AZ E-A2M8 are clear. Source values retained independently of missing A1 page-index entries."},
+    {"location": "lower service bus", "assessment": "AL +6VOLT YA061 E-A2B7 unnamed input, AM E04 E-A2A8, AU E04 E-A2K8; two visible diamonds on c137 connect these three service ports. No inferred resistor output ports."}
+  ],
+  "conclusion": "No new lower ownership or transcription finding. The two known source overlaps remain unresolved native geometry exceptions and must remain visible in validation; they are not a clean geometry pass."
+}

@@ -1,0 +1,60 @@
+KU141 SCAN REGISTERS AND COUNTER 4 - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU141 SCAN REGISTERS AND COUNTER 4.tif
+Original scan: img20141209_17563310.tif
+Original scan timestamp: 2014-12-09 17:56:33.100000
+Preceding scan: KU131 SCAN REGISTERS AND COUNTER 3.tif
+Following scan: KU161 ADDRESS SEQ DECODE.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU141 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 29,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [
+    "CA"
+  ],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 63,
+  "passed": true,
+  "duplicate_port_references": {},
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "AZ.B09 and AZ.D08",
+    "evidence": "Native KU141 b5 upper.png shows a short input pair separate from the D05 clock trunk; no external driver is printed."
+  },
+  {
+    "location": "KU141 upper address sequence rail group",
+    "evidence": "Native KU141 upper three rails.png and KU141 right upper native.png show AW.D06 continuing to the first -ADDRESS SEQUENCE 4 line, AS.B07 to +ADDRESS SEQUENCE 4, and the CA output/AS.B05 input branch to the lower -ADDRESS SEQUENCE 4 line. The three horizontal traces have no mutual junction."
+  },
+  {
+    "location": "KU141 lower counter and sequencer rails",
+    "evidence": "Native KU141 lower counter native.png and KU141 lower captions native.png distinguish the AQ.D04 -FLT COUNTER 3 continuation, -SET SCAN CTR TO MAX, +NOT SPLIT LOGOUT, and +GT SCTR LTH TO ROS TEST SEQ rails. The fixed text grid offsets their long paths around pin labels without changing terminals."
+  }
+]
+
+Original scan order
+Before KU131 SCAN REGISTERS AND COUNTER 3.tif
+After KU161 ADDRESS SEQ DECODE.tif

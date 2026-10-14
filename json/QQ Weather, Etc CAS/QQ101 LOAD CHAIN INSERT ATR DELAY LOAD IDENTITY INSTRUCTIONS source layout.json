@@ -1,0 +1,1841 @@
+{
+  "nodes": [
+    {
+      "box": "C1",
+      "leg": "010010",
+      "address": "0D12",
+      "fields": [
+        "L WG*E2Ω1"
+      ],
+      "exit": "0X──CA",
+      "comments": [
+        "FIRST OPRND TO",
+        "THIRD OPRND LOC."
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C2",
+      "leg": "0X",
+      "address": "0BBD",
+      "fields": [
+        "D MS→ST",
+        "S STOP1"
+      ],
+      "exit": "*X──CB",
+      "comments": [
+        "SECOND OPRND",
+        "IS IN S OR T."
+      ],
+      "R_line": "R D(21)",
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "0X",
+      "address": "0BCD",
+      "fields": [
+        "A 0+S",
+        "A →T"
+      ],
+      "exit": "1X──CC",
+      "comments": [
+        "IN S. MOVE TO T."
+      ],
+      "R_line": "R            1",
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "1X",
+      "address": "0BCF",
+      "fields": [
+        "L WG*E2"
+      ],
+      "exit": "XX──CD",
+      "comments": [
+        "STORE SECOND",
+        "IN FIRST LOCN."
+      ],
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C5",
+      "leg": "XX",
+      "address": "0BD1",
+      "fields": [],
+      "exit": "X*──CE",
+      "comments": [
+        "SET COND. CODE",
+        "3 IF T(63) = 1.",
+        "0 IF T(63) = 0."
+      ],
+      "R_line": "R       ◺T(63)",
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C6",
+      "leg": "X0",
+      "address": "0BD6",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP",
+        "C ◺0→CC"
+      ],
+      "exit": "******──CF",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        135,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──CI",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        201,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E6",
+      "leg": "X1",
+      "address": "0BD7",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP",
+        "C ◺3→CC"
+      ],
+      "exit": "******──EF",
+      "comments": [],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        135,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G1",
+      "leg": "001110",
+      "address": "0D8E",
+      "fields": [
+        "A E23+0",
+        "A →A",
+        "L R◺ATR2→S"
+      ],
+      "exit": "XX──GA",
+      "comments": [
+        "PUT ATR2 IN S.",
+        "SAVE R1.R2 VALUE IN A."
+      ],
+      "grid": [
+        25,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G2",
+      "leg": "XX",
+      "address": "0B9E",
+      "fields": [
+        "A E3+0",
+        "A L→E"
+      ],
+      "exit": "XX──GB",
+      "comments": [
+        "PUT R2 VALUE IN R1 TO",
+        "WRITE LOCAL STORE."
+      ],
+      "grid": [
+        47,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G3",
+      "leg": "XX",
+      "address": "0BCC",
+      "fields": [
+        "A 0+S",
+        "A →T"
+      ],
+      "exit": "XX──GC",
+      "comments": [
+        "PUT ATR2 INTO",
+        "T FOR STORE."
+      ],
+      "grid": [
+        69,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G4",
+      "leg": "XX",
+      "address": "0BCE",
+      "fields": [
+        "A A+0",
+        "A L→E",
+        "L WG*E2"
+      ],
+      "exit": "XX──GD",
+      "comments": [
+        "STORE ATR2 IN R2.",
+        "RESTORE R1.R2 VALUE."
+      ],
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "XX",
+      "address": "0BD4",
+      "fields": [
+        "L R◺ATR1→T"
+      ],
+      "exit": "XX──GE",
+      "comments": [
+        "PUT ATR1 WORD IN T."
+      ],
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G6",
+      "leg": "XX",
+      "address": "0BD5",
+      "fields": [
+        "L WG*E2"
+      ],
+      "exit": "10──GF",
+      "comments": [
+        "STORE ATR1 IN R1."
+      ],
+      "R_line": "R          1 0",
+      "grid": [
+        135,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G7",
+      "leg": "10",
+      "address": "0ACE",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──GG",
+      "comments": [
+        "NORMAL END-OP."
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        157,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L1",
+      "leg": "001100",
+      "address": "0D8C",
+      "fields": [
+        "A →T",
+        "D ◺CE-ID→F"
+      ],
+      "exit": "XX──LA",
+      "comments": [
+        "IDENTITY TO F",
+        "REGISTER 06-07.",
+        "CLEAR T REG."
+      ],
+      "grid": [
+        25,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L2",
+      "leg": "XX",
+      "address": "0AC7",
+      "fields": [
+        "A F1+0",
+        "A →T",
+        "L WG*E2"
+      ],
+      "exit": "10──LB",
+      "comments": [
+        "STORE ID IN",
+        "LOCAL STORE."
+      ],
+      "R_line": "R          1 0",
+      "grid": [
+        47,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N3",
+      "leg": "00",
+      "address": "0ACC",
+      "fields": [
+        "B 1+U",
+        "B →ST",
+        "S STOP1"
+      ],
+      "exit": "X*──NC",
+      "comments": [
+        "400 NSEC. DELAY",
+        "COUNT LOOPS",
+        "IN F REG. BRANCH",
+        "ON INTERRUPT.",
+        "SAVE COUNT IN T",
+        "BYTE 4."
+      ],
+      "R_line": "R       TCS/ST",
+      "extra": [
+        [
+          [
+            10,
+            2
+          ],
+          "F→U"
+        ]
+      ],
+      "grid": [
+        69,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N4",
+      "leg": "X0",
+      "address": "0AC8",
+      "fields": [
+        "B V+0",
+        "B →F",
+        "S STOP2"
+      ],
+      "exit": "0*──ND",
+      "comments": [
+        "600 NSEC. DELAY",
+        "BRANCH OUT ON",
+        "256 COUNT.",
+        "DELAY COUNT TO F."
+      ],
+      "R_line": "R      0 W-CRY",
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N5",
+      "leg": "01",
+      "address": "0ACD",
+      "fields": [
+        "B 0+0",
+        "B →F",
+        "C E23-1"
+      ],
+      "exit": "*0──NE",
+      "comments": [
+        "CLEAR F REG.",
+        "REDUCE DELAY",
+        "MULTIPLIER BY ONE."
+      ],
+      "R_line": "R E23=0 0",
+      "output_symbol": "─",
+      "grid": [
+        113,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q1",
+      "leg": "001011",
+      "address": "0D8B",
+      "fields": [],
+      "exit": "01──QA",
+      "comments": [],
+      "R_line": "R          0 1",
+      "output_symbol": "─",
+      "grid": [
+        25,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q6",
+      "leg": "X0",
+      "address": "0ACA",
+      "fields": [],
+      "exit": "10──QF",
+      "comments": [],
+      "R_line": "R          1 0",
+      "grid": [
+        135,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "S4",
+      "leg": "X1",
+      "address": "0AC9",
+      "fields": [
+        "A 0+T",
+        "A →◺K"
+      ],
+      "exit": "X*──SD",
+      "comments": [],
+      "R_line": "R         ◺TCS",
+      "grid": [
+        91,
+        88
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "S5",
+      "leg": "X1",
+      "address": "0ACB",
+      "fields": [
+        "C 1→STAA*J47=0"
+      ],
+      "exit": "XX──SE",
+      "comments": [],
+      "grid": [
+        113,
+        88
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 1358.02,
+    "first_header_y": 238.53,
+    "column_step": 657.5,
+    "row_step": 495.84
+  },
+  "text": [
+    [
+      2,
+      11,
+      "LOAD"
+    ],
+    [
+      2,
+      12,
+      "CHAIN"
+    ],
+    [
+      2,
+      13,
+      "(LC)"
+    ],
+    [
+      2,
+      14,
+      "QT011.SDE"
+    ],
+    [
+      2,
+      15,
+      "(010010)"
+    ],
+    [
+      25,
+      9,
+      "OP CODE 52 LOAD CHAIN"
+    ],
+    [
+      2,
+      33,
+      "INSERT ADDRESS"
+    ],
+    [
+      2,
+      34,
+      "TRANSLATOR"
+    ],
+    [
+      2,
+      35,
+      "(IATR)"
+    ],
+    [
+      2,
+      36,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      37,
+      "(001110)"
+    ],
+    [
+      25,
+      31,
+      "OP CODE 0E IATR"
+    ],
+    [
+      2,
+      55,
+      "LOAD"
+    ],
+    [
+      2,
+      56,
+      "IDENTITY"
+    ],
+    [
+      2,
+      57,
+      "(LI)"
+    ],
+    [
+      2,
+      58,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      59,
+      "(001100)"
+    ],
+    [
+      25,
+      53,
+      "OP CODE 0C LOAD IDENTITY"
+    ],
+    [
+      2,
+      77,
+      "DELAY"
+    ],
+    [
+      2,
+      78,
+      "INSTRUCTION"
+    ],
+    [
+      2,
+      79,
+      "(DLY)"
+    ],
+    [
+      2,
+      80,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      81,
+      "(001011)"
+    ],
+    [
+      25,
+      75,
+      "OP CODE 0B DELAY"
+    ],
+    [
+      2,
+      91,
+      "QT041.AGE"
+    ],
+    [
+      2,
+      92,
+      "FROM TIMER"
+    ],
+    [
+      2,
+      93,
+      "(X0)"
+    ],
+    [
+      89,
+      83,
+      "COUNT TO K REG."
+    ],
+    [
+      89,
+      84,
+      "BRANCH ON TIMER"
+    ],
+    [
+      89,
+      85,
+      "UPDATE SIGNAL"
+    ],
+    [
+      114,
+      86,
+      "STAT A ON."
+    ],
+    [
+      114,
+      87,
+      "REMEMBER DELAY INSTRUCTION."
+    ],
+    [
+      229,
+      91,
+      "QT041"
+    ],
+    [
+      239,
+      91,
+      "SFE"
+    ],
+    [
+      229,
+      92,
+      "TIMER UPDATE."
+    ],
+    [
+      229,
+      93,
+      "(XX)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714949"
+    ],
+    [
+      164,
+      98,
+      "08/14/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  09/04/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ101"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     334"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583845"
+    ],
+    [
+      200,
+      100,
+      "LOAD CHAIN.INSERT ATR.DELAY."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "LOAD IDENTITY INSTRUCTIONS"
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        46,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        16
+      ],
+      [
+        91,
+        16
+      ]
+    ],
+    [
+      [
+        112,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        134,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        134,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        24,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        68,
+        35
+      ],
+      [
+        69,
+        35
+      ]
+    ],
+    [
+      [
+        90,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        134,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        156,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        46,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        90,
+        67
+      ],
+      [
+        91,
+        67
+      ]
+    ],
+    [
+      [
+        90,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        112,
+        69
+      ],
+      [
+        113,
+        69
+      ]
+    ],
+    [
+      [
+        134,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        90,
+        91
+      ],
+      [
+        91,
+        91
+      ]
+    ],
+    [
+      [
+        112,
+        91
+      ],
+      [
+        113,
+        91
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        65,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        153,
+        36
+      ]
+    ],
+    [
+      [
+        123,
+        58
+      ],
+      [
+        126,
+        58
+      ]
+    ],
+    [
+      [
+        85,
+        69
+      ],
+      [
+        87,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        109,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        91
+      ],
+      [
+        109,
+        91
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        67,
+        14
+      ],
+      [
+        67,
+        25
+      ],
+      [
+        89,
+        25
+      ],
+      [
+        89,
+        16
+      ],
+      [
+        91,
+        16
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ],
+      [
+        131,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        109,
+        69
+      ],
+      [
+        109,
+        65
+      ],
+      [
+        67,
+        65
+      ],
+      [
+        67,
+        67
+      ],
+      [
+        69,
+        67
+      ]
+    ],
+    [
+      [
+        128,
+        69
+      ],
+      [
+        131,
+        69
+      ],
+      [
+        131,
+        64
+      ],
+      [
+        65,
+        64
+      ],
+      [
+        65,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        107,
+        80
+      ],
+      [
+        107,
+        67
+      ],
+      [
+        113,
+        67
+      ]
+    ],
+    [
+      [
+        106,
+        91
+      ],
+      [
+        109,
+        91
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        201,
+        14
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        175,
+        25
+      ],
+      [
+        175,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        175,
+        36
+      ],
+      [
+        175,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        109,
+        69
+      ],
+      [
+        109,
+        65
+      ],
+      [
+        67,
+        65
+      ],
+      [
+        67,
+        67
+      ],
+      [
+        69,
+        67
+      ]
+    ],
+    [
+      [
+        128,
+        69
+      ],
+      [
+        131,
+        69
+      ],
+      [
+        131,
+        64
+      ],
+      [
+        65,
+        64
+      ],
+      [
+        65,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        87,
+        69
+      ],
+      [
+        87,
+        91
+      ],
+      [
+        91,
+        91
+      ]
+    ],
+    [
+      [
+        85,
+        91
+      ],
+      [
+        85,
+        67
+      ],
+      [
+        91,
+        67
+      ]
+    ],
+    [
+      [
+        8,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.708
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.708
+    },
+    {
+      "path": [
+        [
+          96,
+          21
+        ],
+        [
+          97,
+          21
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.75
+    },
+    {
+      "path": [
+        [
+          118,
+          19
+        ],
+        [
+          119,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.652
+    },
+    {
+      "path": [
+        [
+          140,
+          19
+        ],
+        [
+          141,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          140,
+          30
+        ],
+        [
+          141,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          30,
+          41
+        ],
+        [
+          31,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.87
+    },
+    {
+      "path": [
+        [
+          74,
+          40
+        ],
+        [
+          75,
+          40
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          96,
+          41
+        ],
+        [
+          97,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          140,
+          41
+        ],
+        [
+          141,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.792
+    },
+    {
+      "path": [
+        [
+          162,
+          41
+        ],
+        [
+          163,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          63
+        ],
+        [
+          53,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.708
+    },
+    {
+      "path": [
+        [
+          74,
+          72
+        ],
+        [
+          75,
+          72
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.826
+    },
+    {
+      "path": [
+        [
+          74,
+          74
+        ],
+        [
+          75,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.87
+    },
+    {
+      "path": [
+        [
+          96,
+          72
+        ],
+        [
+          97,
+          72
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.75
+    },
+    {
+      "path": [
+        [
+          96,
+          74
+        ],
+        [
+          97,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          118,
+          74
+        ],
+        [
+          119,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          85
+        ],
+        [
+          141,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          96,
+          96
+        ],
+        [
+          97,
+          96
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          118,
+          96
+        ],
+        [
+          119,
+          96
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.652
+    },
+    {
+      "path": [
+        [
+          68,
+          19
+        ],
+        [
+          71,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.989
+    },
+    {
+      "path": [
+        [
+          134,
+          19
+        ],
+        [
+          137,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.978
+    },
+    {
+      "path": [
+        [
+          156,
+          41
+        ],
+        [
+          159,
+          41
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.967
+    },
+    {
+      "path": [
+        [
+          129,
+          63
+        ],
+        [
+          132,
+          63
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.923
+    },
+    {
+      "path": [
+        [
+          91,
+          74
+        ],
+        [
+          93,
+          74
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.967
+    },
+    {
+      "path": [
+        [
+          112,
+          74
+        ],
+        [
+          115,
+          74
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.978
+    },
+    {
+      "path": [
+        [
+          112,
+          96
+        ],
+        [
+          115,
+          96
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    }
+  ],
+  "cells": [
+    [
+      67,
+      14,
+      "O"
+    ],
+    [
+      131,
+      14,
+      "O"
+    ],
+    [
+      109,
+      69,
+      "O"
+    ],
+    [
+      131,
+      69,
+      "O"
+    ],
+    [
+      109,
+      91,
+      "O"
+    ],
+    [
+      175,
+      14,
+      "O"
+    ],
+    [
+      175,
+      25,
+      "O"
+    ],
+    [
+      87,
+      69,
+      "O"
+    ]
+  ],
+  "wiring_evidence": [
+    "Full scan traced. N4 loops to N3 B input; N5 loops to N3 S input. Q1 loads N5 through a separate path which crosses the N4 exit without joining. Functional exits C6/E6/G7 share the QT001 dummy."
+  ],
+  "wire_erase": [
+    [
+      63,
+      62,
+      131,
+      65
+    ],
+    [
+      89,
+      70,
+      89,
+      91
+    ],
+    [
+      108,
+      80,
+      108,
+      80
+    ],
+    [
+      63,
+      62,
+      68,
+      70
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "9bae62bab1e57495a56885c6dd81b54e103b7c0996d29fe68b3d80af380ea4b3",
+    "old_txt_sha256": "fdc6ba5bad7771767f33a2d68795c88c06f41015e06346bfe7e1c40347ee428e",
+    "new_txt_sha256": "83c4c64fb33ba9a35c15bce00ca0ccf631db90d6caa75551cbd346344f4de055",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "65,14": "┬",
+    "200,14": "┼",
+    "89,16": "┬",
+    "67,25": "┴",
+    "68,36": "┤",
+    "153,36": "┬",
+    "153,58": "┤",
+    "109,67": "┼",
+    "85,69": "┼",
+    "107,69": "┼",
+    "153,69": "┤",
+    "107,71": "├",
+    "85,80": "┼",
+    "87,80": "┼"
+  },
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ101",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "fdc6ba5bad7771767f33a2d68795c88c06f41015e06346bfe7e1c40347ee428e",
+    "text_sha256": "83c4c64fb33ba9a35c15bce00ca0ccf631db90d6caa75551cbd346344f4de055",
+    "content_sha256": "43ca8e940caf3722f5d33aa377c1815288a1218ecb5cc4970d8972a8bf2457b4",
+    "verification_sha256": "8c4f1b6cbfeb6ee0d1270dcdb78932f75f2f40394c23fd687cc54ae0088b827b",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ101 LOAD CHAIN INSERT ATR DELAY LOAD IDENTITY INSTRUCTIONS.tif",
+    "source_sha256": "9bae62bab1e57495a56885c6dd81b54e103b7c0996d29fe68b3d80af380ea4b3",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ101",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 LOAD CHAIN INSERT ATR DELAY LOAD IDENTITY INSTRUCTIONS.txt",
+      "reviewed_txt_sha256": "83c4c64fb33ba9a35c15bce00ca0ccf631db90d6caa75551cbd346344f4de055",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ101 LOAD CHAIN INSERT ATR DELAY LOAD IDENTITY INSTRUCTIONS.tif",
+      "source_sha256": "9bae62bab1e57495a56885c6dd81b54e103b7c0996d29fe68b3d80af380ea4b3",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Source review and revised targeted regions pass within stated review scope; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "83c4c64fb33ba9a35c15bce00ca0ccf631db90d6caa75551cbd346344f4de055",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 content.json",
+      "reviewed_content_sha256": "43ca8e940caf3722f5d33aa377c1815288a1218ecb5cc4970d8972a8bf2457b4",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 verification.json",
+      "reviewed_verification_sha256": "8c4f1b6cbfeb6ee0d1270dcdb78932f75f2f40394c23fd687cc54ae0088b827b",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 staged preview.png",
+      "dimensions_pass": true,
+      "hash_matches_owner_manifest": true
+    },
+    "baseline_audit": {
+      "page": "QQ101",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 LOAD CHAIN INSERT ATR DELAY LOAD IDENTITY INSTRUCTIONS.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ101\\QQ101 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ101 LOAD CHAIN INSERT ATR DELAY LOAD IDENTITY INSTRUCTIONS.txt",
+      "old_sha256": "fdc6ba5bad7771767f33a2d68795c88c06f41015e06346bfe7e1c40347ee428e",
+      "new_sha256": "83c4c64fb33ba9a35c15bce00ca0ccf631db90d6caa75551cbd346344f4de055",
+      "content_sha256": "43ca8e940caf3722f5d33aa377c1815288a1218ecb5cc4970d8972a8bf2457b4",
+      "nodes": 24,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 14,
+          "label": "QT011.SDE",
+          "wire_column": 11
+        },
+        {
+          "row": 36,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        },
+        {
+          "row": 58,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        },
+        {
+          "row": 80,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        },
+        {
+          "row": 91,
+          "label": "QT041.AGE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:54.536834+00:00"
+  }
+}

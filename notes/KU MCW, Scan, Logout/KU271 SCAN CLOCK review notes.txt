@@ -1,0 +1,58 @@
+KU271 SCAN CLOCK - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU271 SCAN CLOCK.tif
+Original scan: img20141209_18042773.tif
+Original scan timestamp: 2014-12-09 18:04:27.730000
+Preceding scan: KU261 FLT INTERFACE POWERING IOCE DECODE POWERING.tif
+Following scan: KU281 FLT IOCE INTERFACE SELECTOR.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU271 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 43,
+  "A1_total_card_portions": 43,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 79,
+  "passed": true,
+  "duplicate_pin_references": {},
+  "A1_documented_source_discrepancies": [],
+  "duplicate_port_references": {},
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "KU271 c131 near rows 61-63",
+    "evidence": "KU271 BS AX exact.png and KU271 center rails r60-73 sliced.png",
+    "finding": "The vertical from BS.D10 rises on c131 but the scan shows a full wire gap before the separate AQ-to-AX.D09 rail resumes. The two same-column portions are not joined."
+  },
+  {
+    "source_review": "All 43 native card portions, 79 input terminals, signal margins, center rails, cable table and footer were checked against native whole-page and enlarged crops. The densely packed rails were spaced to keep every vertical beside its printed pin label. Foreign pin-stub crossings have no source diamond and remain unjoined."
+  },
+  {
+    "location": "KU271 AQ output row26 and BS stub",
+    "evidence": "KU271 right labels 1.png; KU271 BS AX exact.png",
+    "finding": "The AQ row26 horizontal ends locally without a signal legend. The KU231 right-edge reference prints BS4 on row23, but the separate BS.D10 vertical has a visible wire gap below the AQ-to-AX rail; this text does not imply a bridge."
+  }
+]
+
+Original scan order
+Before KU261 FLT INTERFACE POWERING IOCE DECODE POWERING.tif
+After KU281 FLT IOCE INTERFACE SELECTOR.tif

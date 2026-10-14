@@ -1,0 +1,107 @@
+RS281 S REGISTER BITS 28 AND 29 - TRANSLATION NOTES
+
+Reference scan: RS S Register\RS281 S REGISTER BITS 28 AND 29.tif
+Original scan: img20141205_22573022.tif
+Original scan timestamp: 2014-12-05 22:57:30.220000
+Preceding scan: RS261 S REGISTER BITS 26 AND 27.tif
+Following scan: RS301 S REGISTER BITS 30 AND 31.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+RS281 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 35,
+  "A1_total_card_portions": 35,
+  "A1_mismatches": [
+    "AS",
+    "BT"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "semantic_driver_errors": [],
+  "printed_input_terminals": 68,
+  "confirmed_A1_source_disagreements": [
+    "AS",
+    "BT"
+  ],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 6
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "Native content and layout review",
+    "reading": "All12 calibrated source regions and full JuliaMono preview reviewed; nominal bank columns50,73,96,119,142,165,188. All37 blocks and68physical inputs traced, with35card portions corroborated againstA1 plus2confirmed misplaced references.",
+    "details": "AdditionalAC/BC negative-bus inverters and four-inputBS combined-bitOR preserved. SourceST30/31 referencesRS301AD4/BD4 retained. Main positive outputs are rows47/89; nativeKM421,RT901AA4,RT903AE4,KN281AR4 andBLK.BW preserved. Source short wires after branch diamonds retained."
+  },
+  {
+    "kind": "A1 page association mismatch",
+    "blocks": [
+      "AS",
+      "BT"
+    ],
+    "literal": "0518T1/U1 at B-C3C3",
+    "reason": "Native RS281 has these two delays; A1 associates them with RS261, not RS281. Native source preserved."
+  },
+  {
+    "kind": "Unclear printed connector fields",
+    "readings": {
+      "AB4 primary": "B-C3�5D04",
+      "AB4 continuation": "02B-B3�5�04",
+      "AC4 primary": "B-C3�4�09",
+      "AC4 first continuation": "02A-D4�2�02",
+      "BC4 primary": "B-C3�4D10"
+    },
+    "candidates": {
+      "AB4 primary": "B-C3A5D04",
+      "AB4 continuation": "02B-B3N5D04",
+      "AC4 primary": "B-C3M4B09",
+      "AC4 first continuation": "02A-D4B2B02",
+      "BC4 primary": "B-C3M4D10"
+    },
+    "reason": "AB4 continuation retains two damaged source glyphs. A1223-02 row 81 uniquely lists N5 B04 RS281AB4 at 02B-B3; this supports 02B-B3N5B04 in the text. Other unclear connector fields retain � and remain open for physical-copy inspection. No wiring or other field changed.",
+    "evidence": [
+      "tmp/ald-text/rs/late/RS281/footer column 0.png",
+      "tmp/ald-text/rs/late/RS281/footer column 1.png"
+    ],
+    "recovered_readings": {
+      "AB4 continuation": "02B-B3N5B04"
+    },
+    "recovery_id": "RS281-a717c65d20",
+    "recovery_provenance": "Source-derived from independently accepted A1223-02 printed socket listing; two source glyphs remain physically damaged",
+    "original_fragment": "02B-B3�5�04",
+    "covered_cells": [
+      [
+        97,
+        42
+      ],
+      [
+        97,
+        44
+      ]
+    ]
+  },
+  {
+    "kind": "Rendered wire bend review",
+    "reading": "All genuine path turns checked against final text. Upper key input bends in the free cell before its pin; the adjacent lower key rail stays one cell to its left. Lower SDB output bends after the three-character pin field rather than beneath its final character. The two adjacent OR input return bends stay one cell left of the moved lower key rail, preserving the native left-to-right wire order. Bank geometry unchanged.",
+    "evidence": "tmp/ald-text/rs/late/RS281 final bend audit.json"
+  }
+]
+
+Original scan order
+Before RS261 S REGISTER BITS 26 AND 27.tif
+After RS301 S REGISTER BITS 30 AND 31.tif
+
+Unreadable printed characters retained as �: 6.

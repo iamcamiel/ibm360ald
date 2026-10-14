@@ -1,0 +1,56 @@
+KU181 ADDRESS SEQ DECODE - TRANSLATION NOTES
+
+Reference scan: KU MCW, Scan, Logout\KU181 ADDRESS SEQ DECODE.tif
+Original scan: img20141209_17585564.tif
+Original scan timestamp: 2014-12-09 17:58:55.640000
+Preceding scan: KU171 ADDRESS SEQ DECODE POWERING.tif
+Following scan: KU191 SCAN IN WORD GENERATION.tif
+Review record: tmp\ald-text\ku\KU root reviews.json
+
+PAGE NOTES
+
+KU181 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 32,
+  "A1_total_card_portions": 32,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 52,
+  "passed": true,
+  "duplicate_pin_references": {},
+  "A1_documented_source_discrepancies": [],
+  "duplicate_port_references": {},
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "native_unjoined_crossings_at_pin_endpoints": {
+      "AG.B10": "+WRAP DE",
+      "AH.B13": "+WRAP DE",
+      "AL.D09": "-ADDR SEQ EQ XX111 KU161AH4",
+      "BM.B12": "+WRAP DE"
+    }
+  },
+  {
+    "source_review": "All 32 gates and 52 printed inputs read against enlarged native crops. Top CLOCK P0 feeds BJ.D12; CLOCK P1 feeds BH.D07. AZ return feeds BJ.D13. Upper sequence-2 rail and 10XXX rail are separate; lower WRAP rail starts below them. AY return drives AU.B10 and crosses NOT-ROS without a diamond. Only native diamonds joined. Printed bare OR outputs retain blank labels."
+  }
+]
+
+Original scan order
+Before KU171 ADDRESS SEQ DECODE POWERING.tif
+After KU191 SCAN IN WORD GENERATION.tif

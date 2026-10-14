@@ -1,0 +1,65 @@
+DS205 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 57-61 - TRANSLATION NOTES
+
+Reference scan: DS ROS Branching\DS205 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 57-61.tif
+Original scan: img20141208_11211039.tif
+Original scan timestamp: 2014-12-08 11:21:10.390000
+Preceding scan: DS201 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 57-61.tif
+Following scan: DS208 K14 FAST SET ROSAR 10 AND VICE AND SCAN-MC SET ROSAR 10-11.tif
+Review record: tmp\ald-text\ds\root\DS native independent review ledger.json
+
+PAGE NOTES
+
+DS205 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 30,
+  "documented_native_A1_discrepancies": [],
+  "A1_total_card_portions": 30,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 66,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "type": "native crossings",
+    "detail": "Several transfer outputs pass vertically through a neighboring input endpoint without a printed diamond. Their pin-adjacent horizontal continuations were traced separately: CE951AP4 feeds AC B04, CE951AL4 feeds AL D06, CE951AM4 feeds AM D13, DS208AU4 feeds HS B05, DS215QC4 feeds HT B04, and lower corresponding controls feed BB/BC. They are not front-stage cascades. STAG source row56 drops to its hanging-origin row57 and routes below HK to row60 before rising to HS."
+  },
+  {
+    "type": "decoded ownership",
+    "detail": "Ten decoded origins and all 24 matrix pin targets traced in unscaled unit-upper/middle/lower/bottom and narrow pin-5/decoded-lower-114 crops. Upper JJ c114 ends at AU D04 r56; lower KK c114 starts at AV B03 r63. JJ c137 ends AQ D07 r38; DD starts a separate c137 segment r47 to BD B08 r73. MM c138 crosses JJ AQ input endpoint without diamond. CC c136 returns to AY D12 r70; FF c135 feeds AQ B07 and BF D07. Native printed endpoint diamond at BD D10 c138 r75 retained."
+  },
+  {
+    "type": "source inspection",
+    "detail": "All twelve detailed native crops plus overview, footer and connector table read. Upper card bank C-B3K5 and lower C-B3J5; native HK/HS/HT identifiers preserved. Native DOT blocks AJ and AZ have no card-portion number."
+  },
+  {
+    "type": "passive termination",
+    "detail": "CB2C printed R T1 U61AC 3392A1 C-B3F5 B12 is a passive input terminal; no active output invented."
+  }
+]
+
+Original scan order
+Before DS201 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 57-61.tif
+After DS208 K14 FAST SET ROSAR 10 AND VICE AND SCAN-MC SET ROSAR 10-11.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T10:57:30.132465+00:00",
+  "evidence": "Root compared native overview with complete UTF-8 preview and enlarged decoded-lower pin/rail strip, checking unjoined crossings versus printed diamonds. Verified upper/lower C-B3K5/C-B3J5 banks, 30 ordinary portions plus two DOTs, 66 inputs, printed output targets and footer. Native transfer rails traced independently by agent through all twelve detailed tiles; validation passes."
+}

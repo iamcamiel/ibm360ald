@@ -1,0 +1,89 @@
+AP319 PADDER CARRY INTO GROUP - TRANSLATION NOTES
+
+Reference scan: AP Parallel Adder\AP319 PADDER CARRY INTO GROUP.tif
+Original scan: img20141207_18183224.tif
+Original scan timestamp: 2014-12-07 18:18:32.240000
+Preceding scan: AP317 GROUP CARRY AND TRANSMIT.tif
+Following scan: AP321 PARALLEL ADDER BIT 32.tif
+Review record: tmp\ald-text\ald\AP root reviews.json
+
+PAGE NOTES
+
+AP319 native source review
+
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "diamond_owner_errors": [],
+  "same_block_output_owner_links": [
+    {
+      "net": "N27",
+      "owner": "AM",
+      "ports": [
+        [
+          84,
+          68
+        ],
+        [
+          84,
+          69
+        ]
+      ],
+      "kind": "same block output owner; not an external wire"
+    }
+  ],
+  "rendered_wire_turns_erased": [],
+  "nodes": 33,
+  "nets": 48,
+  "paths": 147,
+  "unreadable_characters": 0,
+  "printed_input_terminals": 83,
+  "driven_input_terminals": 79,
+  "undriven_or_isolated_input_terminals": 4,
+  "printer_grid_verified": true,
+  "exact_canvas": true,
+  "block_lattice_errors": [],
+  "wire_inside_block_errors": [],
+  "unattached_input_errors": [],
+  "passed": true,
+  "rendered_junctions_checked": 57,
+  "rendered_junctions_erased": []
+}
+
+[
+  {
+    "kind": "source and grid",
+    "evidence": "Original AP319 TIFF SHA256 93bcda6206adb6728ea605ee441304e331f83059ce6b042cfccd9431101870c7; 33/33 cards match A1 card portions. Normal printer grid independently confirmed from unwarped raw AA/BF card and footer borders. OCR +7/+3 phase was an alias, not a shifted layout."
+  },
+  {
+    "kind": "pins and topology",
+    "evidence": "private-pin-netlist.json consolidates 48 physical nets and all 83 printed input contacts; no unowned or multiply owned input. All external rails, braided input groups, feedback and 57 source junctions compared with standard native crops and a source-aligned overlay. AM paired outputs form one joined owner net. AA.B09 c61 ends at r59, while AF.output c61 rises only to r70, with a source-blank r60-r69 gap."
+  },
+  {
+    "kind": "contact glyphs",
+    "evidence": "All 33 source cards audited contact by contact against original TIFF native crops. native-ports-ledger.json records wedge/plain for every printed input and output; BF and BG output labels preserve the source ✲ after B03. AA/BF/BG/AM/AN/AP/AQ/AS/BC/BD/BE include plain right borders where printed; AQ/AR/BH/BJ include plain left borders."
+  },
+  {
+    "kind": "source-isolated rail",
+    "evidence": "Bank5 c135 joins AS.D11, AT.D11, AV.D11, AY.D11 but no driver is printed; preserved undriven. Crossings at rows 23/24/30/36/48/54/58/59 show bridges rather than diamonds."
+  },
+  {
+    "kind": "source-specific text",
+    "evidence": "BH function T1 verified against full-resolution crop. Right group11 carry is at row47, directly on BD.B10 output. Single right refs AP151, AP311 and R1823 print inline. All 13 lower-left AQ/BF/BG annotation fields restored from footer-left-notes-native.png."
+  },
+  {
+    "kind": "render",
+    "evidence": "Exact 245x103 UTF-8 rendering visually compared with the original on source-vs-draft-overlay.png; all card boundaries, footer, input/output captions and long carry rails aligned."
+  }
+]
+
+Scan neighbors
+{
+  "original_name": "img20141207_18183224.tif",
+  "timestamp": "2014-12-07 18:18:32.240000",
+  "before": "AP317 GROUP CARRY AND TRANSMIT.tif",
+  "after": "AP321 PARALLEL ADDER BIT 32.tif"
+}

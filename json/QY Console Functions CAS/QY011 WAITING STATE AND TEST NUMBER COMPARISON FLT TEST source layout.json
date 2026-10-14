@@ -1,0 +1,1393 @@
+{
+  "nodes": [
+    {
+      "box": "A3",
+      "leg": "00",
+      "address": "02D0",
+      "fields": [
+        "        SCAN C",
+        "C FLTINITIALIZE"
+      ],
+      "exit": "X1──AC",
+      "comments": [
+        "RESET-BFR1 TGR.",
+        "TO BUFFER TWD."
+      ],
+      "R_line": "R           1",
+      "previous_grid": [
+        75,
+        5
+      ],
+      "grid": [
+        69,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A4",
+      "leg": "X1",
+      "address": "033F",
+      "fields": [
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "X0──AD",
+      "comments": [
+        "SET SCAN MODE"
+      ],
+      "R_line": "R           0",
+      "previous_grid": [
+        97,
+        5
+      ],
+      "grid": [
+        91,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "A5",
+      "leg": "X0",
+      "address": "081E",
+      "fields": [
+        "        SCAN C",
+        "C ◺MACH-RESET",
+        "C 0→STP,STPLP"
+      ],
+      "exit": "XX──AE",
+      "comments": [
+        "MACHINE RESET",
+        "RESET STOP AND",
+        "MANUAL TGR."
+      ],
+      "previous_grid": [
+        119,
+        5
+      ],
+      "grid": [
+        113,
+        0
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "C3",
+      "leg": "10",
+      "address": "02D2",
+      "fields": [
+        "        SCAN C"
+      ],
+      "exit": "X1──CC",
+      "comments": [],
+      "R_line": "R           1",
+      "previous_grid": [
+        75,
+        16
+      ],
+      "grid": [
+        69,
+        11
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E1",
+      "leg": "XX",
+      "address": "0706",
+      "fields": [
+        "        SCAN C",
+        "C ◺15→ADR-SQCR"
+      ],
+      "exit": "XX──EA",
+      "comments": [
+        "16 TO ADDR SEQ"
+      ],
+      "previous_grid": [
+        31,
+        27
+      ],
+      "grid": [
+        25,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E2",
+      "leg": "XX",
+      "address": "05B3",
+      "fields": [
+        "        SCAN C"
+      ],
+      "exit": "**──EB",
+      "comments": [
+        "BRANCH PER",
+        "TEST IN STORAGE",
+        "AND ALT TEST"
+      ],
+      "R_line": "R ALT,MS-TEST",
+      "previous_grid": [
+        53,
+        27
+      ],
+      "grid": [
+        47,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E3",
+      "leg": "01",
+      "address": "02D1",
+      "fields": [
+        "        SCAN C",
+        "C ◺15→ADR-SQCR",
+        "C 0→TIC,GAP",
+        "C ◺INVERT-BFR1"
+      ],
+      "exit": "X1──EC",
+      "comments": [
+        "15 TO ADDR SEQ",
+        "TOF TIC AND GAP"
+      ],
+      "R_line": "R           1",
+      "previous_grid": [
+        75,
+        27
+      ],
+      "grid": [
+        69,
+        22
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G3",
+      "leg": "11",
+      "address": "02D3",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*SCAN4",
+        "C ◺INVERT-BFR1"
+      ],
+      "exit": "XX──GC",
+      "comments": [
+        "SCAN STO REQ"
+      ],
+      "previous_grid": [
+        75,
+        38
+      ],
+      "grid": [
+        69,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G4",
+      "leg": "XX",
+      "address": "08B3",
+      "fields": [
+        "        SCAN C",
+        "C 0→TIC,GAP"
+      ],
+      "exit": "XX──GD",
+      "comments": [
+        "TOF TIC GAP"
+      ],
+      "previous_grid": [
+        97,
+        38
+      ],
+      "grid": [
+        91,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G7",
+      "leg": "XX",
+      "address": "0833",
+      "fields": [
+        "        SCAN C",
+        "D MS0→S",
+        "S STOP2"
+      ],
+      "exit": "XX──GG",
+      "comments": [
+        "MDBO 00-31 TO S"
+      ],
+      "previous_grid": [
+        163,
+        38
+      ],
+      "grid": [
+        157,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G8",
+      "leg": "XX",
+      "address": "07B3",
+      "fields": [
+        "        SCAN C",
+        "S STOP2"
+      ],
+      "exit": "XX──GH",
+      "comments": [
+        "WAIT FOR S REG",
+        "TO BECOME STABLE"
+      ],
+      "previous_grid": [
+        185,
+        38
+      ],
+      "grid": [
+        179,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G9",
+      "leg": "XX",
+      "address": "0733",
+      "fields": [
+        "        SCAN C",
+        "A SCAN-BYPASS",
+        "D SCANOUT-SREG",
+        "D SCANOUT-TREG"
+      ],
+      "exit": "XX──GI",
+      "comments": [
+        "SCAN OUT S,T",
+        "TO PADDL"
+      ],
+      "previous_grid": [
+        207,
+        38
+      ],
+      "grid": [
+        201,
+        33
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J1",
+      "leg": ".BFR1",
+      "address": "0BD2",
+      "fields": [
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──JA",
+      "comments": [
+        "RUN FLT BFR 1."
+      ],
+      "previous_grid": [
+        31,
+        49
+      ],
+      "grid": [
+        25,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J2",
+      "leg": "XX",
+      "address": "0BD3",
+      "fields": [
+        "        SCAN C",
+        "C ◺INVERT-BFR1"
+      ],
+      "exit": "XX──JB",
+      "comments": [],
+      "previous_grid": [
+        53,
+        49
+      ],
+      "grid": [
+        47,
+        44
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "L1",
+      "leg": "XX",
+      "address": "0250",
+      "fields": [
+        "        SCAN C",
+        "C ◺15→ADR-SQCR"
+      ],
+      "exit": "X*──LA",
+      "comments": [
+        "15 TO ADDR SEQ",
+        "BRANCH ON PADDL",
+        "ZERO RESULT",
+        "PROCEED TO SCAN",
+        "IN IF ZERO"
+      ],
+      "R_line": "R       J47=0",
+      "previous_grid": [
+        31,
+        60
+      ],
+      "grid": [
+        25,
+        55
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N2",
+      "leg": ".PTSC",
+      "address": "06B0",
+      "fields": [
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──NB",
+      "comments": [
+        "TON SCAN MODE",
+        "PARTIAL SCAN IN"
+      ],
+      "previous_grid": [
+        53,
+        71
+      ],
+      "grid": [
+        47,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N3",
+      "leg": "XX",
+      "address": "08C4",
+      "fields": [
+        "        SCAN C",
+        "C ◺7→ADR-SQCR"
+      ],
+      "exit": "XX──NC",
+      "comments": [],
+      "previous_grid": [
+        75,
+        71
+      ],
+      "grid": [
+        69,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N4",
+      "leg": "XX",
+      "address": "0388",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*SCAN4",
+        "C ◺MACH-RESET",
+        "C 0→PASS/FAIL"
+      ],
+      "exit": "XX──ND",
+      "comments": [],
+      "previous_grid": [
+        97,
+        71
+      ],
+      "grid": [
+        91,
+        66
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q2",
+      "leg": ".SCNT",
+      "address": "0AD2",
+      "fields": [
+        "C 1→SCAN-MODE"
+      ],
+      "exit": "XX──QB",
+      "comments": [
+        "FULL SCAN IN.",
+        "RUN FLT BFR 2."
+      ],
+      "previous_grid": [
+        53,
+        82
+      ],
+      "grid": [
+        47,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q3",
+      "leg": "XX",
+      "address": "06B3",
+      "fields": [
+        "        SCAN C",
+        "C ◺15→ADR-SQCR"
+      ],
+      "exit": "X1──QC",
+      "comments": [],
+      "R_line": "R           1",
+      "previous_grid": [
+        75,
+        82
+      ],
+      "grid": [
+        69,
+        77
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "Q4",
+      "leg": "X1",
+      "address": "081F",
+      "fields": [
+        "        SCAN C",
+        "S MS-REQ*SCAN4",
+        "C ◺MACH-RESET",
+        "C 0→PASS/FAIL"
+      ],
+      "exit": "XX──QD",
+      "comments": [
+        "SCAN STO REQ",
+        "MACHINE RESET",
+        "TOFF MATCH AND",
+        "NOT MATCH",
+        "BEGIN SCAN IN"
+      ],
+      "R_line": "R",
+      "previous_grid": [
+        97,
+        82
+      ],
+      "grid": [
+        91,
+        77
+      ],
+      "label_row": 7
+    }
+  ],
+  "unresolved": [],
+  "wire_paths": [
+    [
+      [
+        12,
+        12
+      ],
+      [
+        69,
+        12
+      ]
+    ],
+    [
+      [
+        12,
+        19
+      ],
+      [
+        89,
+        19
+      ],
+      [
+        89,
+        4
+      ],
+      [
+        91,
+        4
+      ]
+    ],
+    [
+      [
+        84,
+        3
+      ],
+      [
+        91,
+        3
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        87,
+        14
+      ],
+      [
+        87,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        128,
+        3
+      ],
+      [
+        131,
+        3
+      ],
+      [
+        131,
+        21
+      ],
+      [
+        23,
+        21
+      ],
+      [
+        23,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        67,
+        25
+      ],
+      [
+        67,
+        4
+      ],
+      [
+        69,
+        4
+      ]
+    ],
+    [
+      [
+        67,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        67,
+        25
+      ],
+      [
+        67,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        87,
+        25
+      ],
+      [
+        87,
+        90
+      ],
+      [
+        12,
+        90
+      ]
+    ],
+    [
+      [
+        84,
+        80
+      ],
+      [
+        91,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        179,
+        36
+      ]
+    ],
+    [
+      [
+        194,
+        36
+      ],
+      [
+        201,
+        36
+      ]
+    ],
+    [
+      [
+        216,
+        36
+      ],
+      [
+        219,
+        36
+      ],
+      [
+        219,
+        53
+      ],
+      [
+        23,
+        53
+      ],
+      [
+        23,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        67,
+        47
+      ],
+      [
+        67,
+        78
+      ],
+      [
+        69,
+        78
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        111,
+        58
+      ],
+      [
+        111,
+        4
+      ],
+      [
+        113,
+        4
+      ]
+    ],
+    [
+      [
+        89,
+        58
+      ],
+      [
+        89,
+        79
+      ],
+      [
+        91,
+        79
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        228,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        80
+      ],
+      [
+        228,
+        80
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      87,
+      3,
+      "O"
+    ],
+    [
+      67,
+      14,
+      "O"
+    ],
+    [
+      67,
+      25,
+      "O"
+    ],
+    [
+      89,
+      58,
+      "O"
+    ],
+    [
+      87,
+      80,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "recoveries": [
+    {
+      "box": "Q3",
+      "address": "06B3",
+      "evidence": "Enlarged scan clearly shows 06B3; matching QZ next address and controls corroborate. Source crop QY011 root detail.png."
+    }
+  ],
+  "review_notes": [
+    "Left input QY031.QBE label and its (10) branch mask occupy separate rows.",
+    "Final scan/reference audit distinguishes signal-name hyphens, arithmetic decrements and comparison signs from genuine transfer arrows."
+  ],
+  "source_operator_audit": [
+    {
+      "page": "QY011",
+      "box": "A5",
+      "address": "081E",
+      "property": "fields",
+      "index": 1,
+      "old": "C ◺MACH→RESET",
+      "new": "C ◺MACH-RESET",
+      "evidence": [
+        {
+          "old": "MACH→RESET",
+          "new": "MACH-RESET",
+          "evidence": "QY001 N5 source; PDF SG12"
+        }
+      ]
+    },
+    {
+      "page": "QY011",
+      "box": "N4",
+      "address": "0388",
+      "property": "fields",
+      "index": 2,
+      "old": "C ◺MACH→RESET",
+      "new": "C ◺MACH-RESET",
+      "evidence": [
+        {
+          "old": "MACH→RESET",
+          "new": "MACH-RESET",
+          "evidence": "QY001 N5 source; PDF SG12"
+        }
+      ]
+    },
+    {
+      "page": "QY011",
+      "box": "Q4",
+      "address": "081F",
+      "property": "fields",
+      "index": 2,
+      "old": "C ◺MACH→RESET",
+      "new": "C ◺MACH-RESET",
+      "evidence": [
+        {
+          "old": "MACH→RESET",
+          "new": "MACH-RESET",
+          "evidence": "QY001 N5 source; PDF SG12"
+        }
+      ]
+    }
+  ],
+  "canvas_rows": 102,
+  "canvas_columns": 245,
+  "legacy_source_grid": {
+    "first_right": 1382.66,
+    "first_header_y": 153.78,
+    "column_step": 664.81,
+    "row_step": 496.3
+  },
+  "legacy_text": [
+    [
+      7,
+      17,
+      "QY031.QBE"
+    ],
+    [
+      7,
+      18,
+      "(10)"
+    ],
+    [
+      7,
+      24,
+      "QY041.LHE"
+    ],
+    [
+      7,
+      25,
+      "(X1)"
+    ],
+    [
+      7,
+      95,
+      "QY031.JEE"
+    ],
+    [
+      7,
+      96,
+      "(X1)"
+    ],
+    [
+      235,
+      74,
+      "QY021"
+    ],
+    [
+      249,
+      74,
+      "NDE"
+    ],
+    [
+      235,
+      75,
+      "(XX)"
+    ],
+    [
+      235,
+      85,
+      "QY015"
+    ],
+    [
+      249,
+      85,
+      "QDE"
+    ],
+    [
+      235,
+      86,
+      "(XX)"
+    ],
+    [
+      5,
+      100,
+      "Q"
+    ],
+    [
+      5,
+      101,
+      "Y"
+    ],
+    [
+      5,
+      102,
+      "0"
+    ],
+    [
+      5,
+      103,
+      "1"
+    ],
+    [
+      5,
+      104,
+      "1"
+    ]
+  ],
+  "legacy_footer": [
+    [
+      159,
+      101,
+      "713671"
+    ],
+    [
+      159,
+      102,
+      "714949"
+    ],
+    [
+      170,
+      101,
+      "04/28/70"
+    ],
+    [
+      170,
+      102,
+      "08/14/70"
+    ],
+    [
+      181,
+      101,
+      "MACH"
+    ],
+    [
+      181,
+      102,
+      "NAME"
+    ],
+    [
+      181,
+      103,
+      "MODE"
+    ],
+    [
+      181,
+      104,
+      "P.N."
+    ],
+    [
+      181,
+      105,
+      "IBM CORP."
+    ],
+    [
+      193,
+      101,
+      "C7201-02"
+    ],
+    [
+      193,
+      103,
+      "MANUAL"
+    ],
+    [
+      193,
+      104,
+      "2583897"
+    ],
+    [
+      193,
+      105,
+      "SDD"
+    ],
+    [
+      205,
+      101,
+      "DATE   09/04/70"
+    ],
+    [
+      205,
+      102,
+      "LOG       334"
+    ],
+    [
+      226,
+      101,
+      "SHEET   1 QY011"
+    ],
+    [
+      226,
+      102,
+      "VERSION"
+    ],
+    [
+      208,
+      104,
+      "WAITING STATE AND TEST NUMBER"
+    ],
+    [
+      208,
+      105,
+      "COMPARISON  FLT TEST"
+    ]
+  ],
+  "text": [
+    [
+      2,
+      12,
+      "QY031.QBE"
+    ],
+    [
+      2,
+      13,
+      "(10)"
+    ],
+    [
+      2,
+      19,
+      "QY041.LHE"
+    ],
+    [
+      2,
+      20,
+      "(X1)"
+    ],
+    [
+      2,
+      90,
+      "QY031.JEE"
+    ],
+    [
+      2,
+      91,
+      "(X1)"
+    ],
+    [
+      229,
+      69,
+      "QY021"
+    ],
+    [
+      239,
+      69,
+      "NDE"
+    ],
+    [
+      229,
+      70,
+      "(XX)"
+    ],
+    [
+      229,
+      80,
+      "QY015"
+    ],
+    [
+      239,
+      80,
+      "QDE"
+    ],
+    [
+      229,
+      81,
+      "(XX)"
+    ],
+    [
+      2,
+      95,
+      "Q"
+    ],
+    [
+      2,
+      96,
+      "Y"
+    ],
+    [
+      2,
+      97,
+      "0"
+    ],
+    [
+      2,
+      98,
+      "1"
+    ],
+    [
+      2,
+      99,
+      "1"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714949"
+    ],
+    [
+      164,
+      98,
+      "08/14/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583897"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "09/04/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "334"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QY011"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "WAITING STATE AND TEST NUMBER"
+    ],
+    [
+      200,
+      101,
+      "COMPARISON  FLT TEST"
+    ],
+    [
+      1,
+      94,
+      "Q"
+    ],
+    [
+      1,
+      95,
+      "Y"
+    ],
+    [
+      1,
+      96,
+      "0"
+    ],
+    [
+      1,
+      97,
+      "1"
+    ],
+    [
+      1,
+      98,
+      "1"
+    ]
+  ],
+  "wire_shapes": {
+    "87,3": "┬",
+    "67,12": "┼",
+    "67,14": "├",
+    "67,19": "┼",
+    "67,21": "┼",
+    "111,21": "┼",
+    "67,25": "┼",
+    "87,36": "┼",
+    "111,36": "┼",
+    "67,53": "┼",
+    "87,53": "┼",
+    "111,53": "┼",
+    "67,58": "┼",
+    "87,58": "┼",
+    "89,58": "┬",
+    "67,69": "┼",
+    "87,69": "┼",
+    "89,69": "┼",
+    "87,80": "┼"
+  },
+  "source_layout_repairs": [],
+  "rendered_rows": 102,
+  "rendered_columns": 245,
+  "layout_migration": {
+    "staged_only": true,
+    "review_status": "Independent review required",
+    "normal_rows": "ACEGJLNQ",
+    "S_row": 88,
+    "F_row": 22,
+    "F_row_manual_check_pending": true,
+    "expanded_band_inverted": false,
+    "issues": [],
+    "outside_body_nonwire_cells": []
+  },
+  "root_grid_migration_review": {
+    "page": "QY011",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "9c07a10c3309dc2f5836abd5db12e59b49087868a735a25c83fa93e8d893282f",
+    "text_sha256": "5b46d13d93fc74fd0e0a55e35ab33d7d41994d78a483920f2d1ca5ead5ef593e",
+    "content_sha256": "1ed7cbe5a387827532abdc81bbd523d310cb32c83061523286759a11ad45cda9",
+    "verification_sha256": "41c8bcb4a993d6022d3c1e6de61c9cb7a2416f2b65af5c4dad075e5b1dbc10e1",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY011 WAITING STATE AND TEST NUMBER COMPARISON FLT TEST.tif",
+    "source_sha256": "6546355fd6f2cdab262545a53aaf37b75b3ad17ed117d5463fef979b5d704c81",
+    "source_review_scope": "Owner native full-page overview and all31 native footer/title reviews; root independent dimensions/character/grid/control/header/selector/label/QZ-record checks and unchanged output-reachability audit on each clean page. Root inspected native/preview pairs QS021/QY011 and QT041 footer/preview, with native footer anchors and literal initial I/T comparison. Other unchanged fields inherited from prior reviewed text; not all newly reread.",
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:36.587556+00:00"
+  }
+}

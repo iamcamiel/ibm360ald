@@ -1,0 +1,109 @@
+KM851 STORAGE PROTECTION OVERLAPPING END OP - TRANSLATION NOTES
+
+Reference scan: KM Program Interrupt\KM851 STORAGE PROTECTION OVERLAPPING END OP.tif
+Original scan: img20141209_12201869.tif
+Original scan timestamp: 2014-12-09 12:20:18.690000
+Preceding scan: KM841 CPU STORE CYCLE AT END OP TO EXCEPTIONAL CONDITION.tif
+Following scan: KM861 EXCEPTIONAL COND TO I FETCH FREE RUNNING CLOCK.tif
+Review record: tmp\ald-text\km\KM root reviews.json
+
+PAGE NOTES
+
+KM851 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 29,
+  "A1_mismatches": [
+    "AA",
+    "AW"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 51,
+  "A1_documented_source_discrepancies": [
+    "AA",
+    "AW"
+  ],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_virtual_logic_block",
+    "node": "AA",
+    "printed_unit": "DOT",
+    "printed_card": "",
+    "printed_location": "E-C3",
+    "evidence": "KM851 DOT native.png"
+  },
+  {
+    "kind": "native_undriven_common_input_tie",
+    "pins": [
+      "AQ.D08",
+      "AQ.D12"
+    ],
+    "evidence": "KM851 detail21.png",
+    "description": "Short local tie has no drawn driver. Preserve native input inclusion without inventing a driver."
+  },
+  {
+    "kind": "native_cross_block_common_outputs",
+    "pins": [
+      "AC.B12.output",
+      "AF.B07T"
+    ],
+    "evidence": "KM851 AF AE AR complete native.png",
+    "description": "AC output rail returns up to the T at AF.B07T; the two physical outputs are explicitly commoned in the printed source. The PROCESS rail crosses the AE/AR D05 tie without a diamond."
+  },
+  {
+    "kind": "native_undriven_common_input_tie",
+    "pins": [
+      "BA.D08",
+      "BA.B12"
+    ],
+    "evidence": "KM851 BB BA input rails native.png",
+    "description": "The local BA tie at column138 is separate from the adjacent BB.D13 PROCESS rail at column137; no driver is drawn."
+  },
+  {
+    "kind": "unreadable_printed_caption_mark",
+    "printed": "- SCAN IN WORD 4�",
+    "row": 79,
+    "column": 226,
+    "candidates": [
+      "✲"
+    ],
+    "evidence": "KM851 detail42.png",
+    "description": "A malformed printed mark occupies one glyph position immediately after WORD 4. Preserve it as unreadable rather than forcing an asterisk."
+  },
+  {
+    "kind": "standalone_latch_annotation",
+    "column": 161,
+    "row": 19,
+    "printed": "L",
+    "physical_input": "BC.in2",
+    "evidence": "KM851 BC input rails native.png",
+    "description": "L is a standalone annotation with horizontal wire continuing to the unlabeled physical OR input."
+  }
+]
+
+Original scan order
+Before KM841 CPU STORE CYCLE AT END OP TO EXCEPTIONAL CONDITION.tif
+After KM861 EXCEPTIONAL COND TO I FETCH FREE RUNNING CLOCK.tif
+
+
+Detailed native source and preview comparison
+Native source overview, all15 overlapping crops, critical upper feedback, OR input rails, DOT, AP ports, continuation table and title inspected. Confirmed page identity KM851. Fixed approved printer grid; no bank shifts. All51 physical inputs included. AC.B12 and AF.B07T are visibly commoned outputs. BA and AQ short common-input ties have no printed driver. PROCESS KM841AE4 crosses the D05 common rail unjoined. Native AW3593E1 is absent from A1 references; virtual DOT has no card. Standalone L before BC has its original wire gap. Footer AV4 E-C3ACB05 is readable. Malformed printed mark after WORD4 is retained as � with candidate✲. Final JuliaMono preview compared with native source.
+
+Unreadable printed characters retained as �: 1.

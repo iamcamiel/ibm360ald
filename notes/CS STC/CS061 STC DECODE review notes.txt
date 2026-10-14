@@ -1,0 +1,68 @@
+CS061 STC DECODE - TRANSLATION NOTES
+
+Reference scan: CS STC\CS061 STC DECODE.tif
+Original scan: img20141208_09361770.tif
+Original scan timestamp: 2014-12-08 09:36:17.700000
+Preceding scan: CS051 STC INCR LTH 1 AND 2.tif
+Following scan: CT011 MARK TRIGGERS 0 AND 1.tif
+Review record: tmp\ald-text\cs\CS root reviews.json
+
+PAGE NOTES
+
+CS061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 35,
+  "A1_total_card_portions": 32,
+  "A1_mismatches": [],
+  "noncard_blocks": 0,
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 71,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Grid",
+    "evidence": "Human-approved 245×103 fixed lattice. Nine native box anchors fit the canonical bank columns and rows within 0.13 cell. Native wire ridges reviewed with text masked; all source diamonds selected by inspection of native crossing contact sheets."
+  },
+  {
+    "location": "Topology corrections",
+    "evidence": "Native AA output drives both BE and BB. AB.B04 is external negative increment latch1. AD.D04 is external positive increment latch1. Lower positive latch2 drives AM.D02, AR.B09, AV.B05, AZ.D02; negative latch1 drives AM.D04. Top AB4 output comes from AB, BB4 from BB; bottom BD4 comes from BU. These replace earlier draft rail conflations."
+  },
+  {
+    "location": "Text interruptions",
+    "evidence": "Source pin and reference labels interrupt printed strokes; decorative left label-to-origin and right name-to-reference spans are rendered from the confirmed native columns and excluded from electrical path connectivity validation."
+  },
+  {
+    "location": "Source ridge interruptions",
+    "evidence": "Four source-continuous strokes bridge raster detector gaps at (107,1)-(107,2), (72,47)-(73,47), (136,45)-(136,46), (108,67)-(108,68). Vertical ink next to input origin final4 was removed as text, not wiring. Tiny unowned disconnected raster detections discarded."
+  },
+  {
+    "location": "Layout source details",
+    "evidence": "AC output retains its native one-row jog from row24 to row25 near column139. Source open box bottoms, border wedges, literal fields, output tags and card locations retained. Footer source table columns start35 with pitch14 and two-character continuation indentation."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\CS STC\CS051 STC INCR LTH 1 AND 2.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\CT Mark Triggers\CT011 MARK TRIGGERS 0 AND 1.tif
+
+Additional reviewed pin evidence
+AJ D12 and AP D09 retain D, corroborated by the same 0135A1/0135B1 card portions on AA/AC showing D12/D09. Neighboring D13 degrades similarly; U03AF has a distinctly full open U. This is a repeated-card pin reading, not a generic substitution.
+
+A1 scope: 35 printed portions matched against 32 page-key records plus exact global fallback.
+
+Explicit user header/footer correction: uppercase lettering; P.N. label; machine and part values at columns233–239, blank240 and border241; header has two blank cells after000. Native footer/header evidence inspected; diagram wiring unchanged.

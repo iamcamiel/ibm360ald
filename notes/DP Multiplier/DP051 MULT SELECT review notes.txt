@@ -1,0 +1,102 @@
+DP051 MULT SELECT - TRANSLATION NOTES
+
+Reference scan: DP Multiplier\DP051 MULT SELECT.tif
+Original scan: DP051 MULT SELECT.tif
+Original scan timestamp: 2014-12-08 10:33:43.279868
+Preceding scan: DP031 MULT DECODE M1 AND M2.tif
+Following scan: DP071 MULT SEL.tif
+Review record: tmp\ald-text\dp\DP root reviews.json
+
+PAGE NOTES
+
+DP051 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 24,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 64,
+  "A1_documented_source_discrepancies": [],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "printer_grid",
+    "evidence": "Native source fitted user zero-based245 by103 printer grid; block columns50,73,96,119,142,165,188; normal keyed row positions; title r93 through102 open bottom.",
+    "exceptions": []
+  },
+  {
+    "kind": "native_rail_gap",
+    "column": 111,
+    "upper": "FLT POINT ends at row33",
+    "lower": "M1 begins at AE B12 row39 and extends to AL B07 row73",
+    "source_crop": "tmp/ald-text/dp/select/051 rail111 gap.png"
+  },
+  {
+    "kind": "native_reference",
+    "printed": "DP031BU4",
+    "field": "MPR TERM plus input",
+    "evidence": "Readable literal source retained."
+  },
+  {
+    "kind": "native_reference",
+    "printed": "DP031AV4",
+    "field": "M1 plus input",
+    "evidence": "Native V strokes reviewed independently by parent."
+  }
+]
+
+Original scan order
+Before DP031 MULT DECODE M1 AND M2.tif
+After DP071 MULT SEL.tif
+
+
+Detailed native source and preview comparison
+DP051 MULT SELECT native visual extraction
+
+The native 10200 by 6600 TIFF and overview were inspected, followed by native crops of every gate, pin group, selector rail, output label, connector table and title box. Confirmed fields and traced nets are stored in DP051 extraction.json. The extraction contains 24 blocks, 64 printed input terminals and 40 driven nets. Every declared source input has one owning output. All 24 card type and portion plus board and socket combinations match the A1 Socket Listing. A1 supplied no pin wiring.
+
+Final UTF-8 text and JuliaMono preview use the approved 245 by103 printer grid. Native source was checked across multiple box borders and keyed rows, preserving shared columns, printed spans, continuation stubs and pin-adjacent corners. No printer-grid exceptions were needed. All geometry, character, connectivity and single input-owner checks pass.
+
+Important source trace evidence
+BK D10 drives AA D04, AF B02 and AL B09. BL D04 drives AB D02 and AK D11. These are separate long rails and cross the external control lines without joining except where the native scan shows a diamond.
+Upper FLT POINT routing and lower M1 routing reuse a native column in disconnected sections. The upper section stops at AC B13; the lower section owns AE B12, AK B13 and AL B07. Preserve the gap between the two segments.
+The left D07 BD and D09 BJ routing likewise has separate vertically aligned TX segments; retain the native discontinuity.
+The second output of each selector OR has a printed K marker before its pin. The first output has a printed star after the pin. Preserve K and ✲ at their printed positions and store physical pins separately from annotations.
+The source MPR TERM plus reference literally prints DP031BU4. Do not force another page reference onto it.
+The lower M1 plus reference is DP031AV4. The V is formed by separated upper strokes and has no Y stem. Parent independently reviewed the enlarged crop and corroborated the corresponding DP031 AV4 output.
+
+Unclear printed characters
+No replacement characters currently required for DP051 extracted fields.
+
+Original scan order for physical-copy lookup
+This scan DP051 MULT SELECT.tif
+Before DP031 MULT DECODE M1 AND M2.tif
+After DP071 MULT SEL.tif
+
+Independent root review
+Parent inspected source overview, enlarged MPR reference and M1 reference crops, and reviewed the footer. Final diagram geometry and preview are exported for independent aggregate review.
+
+Visual preview comparison
+The exported JuliaMono preview was compared with the native overview and enlarged native crops of the control rails, latch and selector groups, scan routing, output labels, continuation table and title frame. Box grid labels fill all six interior cells with two printed horizontal strokes between grid and ID.
+
+Explicit user footer correction
+{
+  "scope": "explicit user footer correction",
+  "evidence": "User relayed through AP: sheet abbreviation P.N.; machine name and part number each end at c239, exactly one blank c240 before right border c241. Previous native footer source inspection retained; only specified footer labels/spacing changed."
+}

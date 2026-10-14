@@ -1,0 +1,66 @@
+DS365 NORMAL BRANCH SETS FOR ROSAR BITS 6 7 8 9 10 11 - TRANSLATION NOTES
+
+Reference scan: DS ROS Branching\DS365 NORMAL BRANCH SETS FOR ROSAR BITS 6 7 8 9 10 11.tif
+Original scan: img20141208_11275621.tif
+Original scan timestamp: 2014-12-08 11:27:56.210000
+Preceding scan: DS261 Y BRANCH DECODER.tif
+Following scan: DS401 ROS SENSE LATCH BITS 47-54 PARITY AND DISTRIBUTION.tif
+Review record: tmp\ald-text\ds\root\DS native independent review ledger.json
+
+PAGE NOTES
+
+DS365 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 22,
+  "documented_native_A1_discrepancies": [],
+  "A1_total_card_portions": 22,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 43,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "type": "layout",
+    "detail": "Native page inspected in overview and detail00-detail23 plus footer/table. Grid positions normalized, preserving open box bottoms, all pin-level wedges, literal functions, printed source spans and adjacent pin corner directions."
+  },
+  {
+    "type": "local-jumper",
+    "location": "3L HJ C-C3C4 0413A1 D03 and D13",
+    "detail": "Native isolated local jumper connects these two input pins. No external driven output exists on this input net. Both physical inputs retained with driver null; this explicitly documented exception is not inferred wiring."
+  },
+  {
+    "type": "printed inconsistency",
+    "detail": "The third NORMAL K SET input line DS205AJ4 has no printed suffix C; retain its native unsuffixed wording. EE and GG print the same card type/portion 3321C1 on different sockets; preserve both. Connector DD4 lists C-C3N5B03 literally. The local jumper block prints 3L-HJ; internal ID AG is only a model key and its printed ID is preserved as HJ. See AG-detail.png."
+  },
+  {
+    "type": "printer-grid",
+    "detail": "Native page fit checked against AP-confirmed 245 by 103 printer canvas. Block columns 50/73/96/119/142/165/188; 7-row block grid A through N skipping I. Pin text directly abuts intact border or native wedge; source starts column31, output page205/name211/designation242. Title frame93..102, columns210..241."
+  }
+]
+
+Original scan order
+Before DS261 Y BRANCH DECODER.tif
+After DS401 ROS SENSE LATCH BITS 47-54 PARITY AND DISTRIBUTION.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T11:03:16.325230+00:00",
+  "evidence": "Root compared native overview and complete UTF-8 preview across ROSAR 6-11 paths, top ROSLTH terminations, lower J111 gate, source labels, connector table and footer. Verified isolated HJ D03/D13 local input jumper, 22 ordinary portions, 43 physical inputs and native unsuffixed DS205AJ4 line. Agent audited twelve detailed source tiles; validation passes."
+}

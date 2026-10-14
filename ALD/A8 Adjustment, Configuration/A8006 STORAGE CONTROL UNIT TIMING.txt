@@ -1,0 +1,139 @@
+
+
+
+
+
+                                                                                                                                                                                                                                                                              000 A8006 01
+
+
+                          SCI-PULSES                                         │
+                          ──────────                                         │
+                                                                             │  DATA BIT 38 B-D4C7B03 (MB709AD6)                                                                  SPECIAL PULSES                                                                NOTES
+         │TO ACTIVATE THE FOLLOWING SIGNALS USE RIPPLE FETCH│                │  DATA BIT 62 B-D3D6B03 (MB715AD6)                                                                  ──────────────                                                                ─────
+         │ALL ONES. (SEE NOTES TO RIGHT)                    │                │  DATA BIT 63 B-D3D6D05 (MB715AE6)
+                                                                             │                                                                                                                                                             1. RIPPLE PROCEDURE FOR SCI.SE/DE TIMING
+                                                                             │                                                                       1. SET DELAY LINE KS201AL4(C-A4F4-D13) AT 60 NS. THEN                                 A. PUT SE/DE IN TEST MODE. TURN ON IN THE
+                                                                             │                            SYNC POINTS                                   SET DELAY LINE KS201AM4(C-A4F4-B02) AT 50-70NS SO                                     CCR REG- OF SE/DE THE COMMUNICATE BIT FOR
+       1.A.SELECT. ADJUST DELAY LINE MC707AG(01A-B2K2) SUCH                  │                                                                          THAT THE CLOCK PULSE FROM KS201AQ4(C-A4H6-D04) WILL                                   THE CE FROM WHICH THE TIMING IS TO BE
+          THAT MC707AJ4(A-B2B5-B13) GOES MINUS 15+6-0NS. AFTER               │                                                                          BE P0 PLUS 140±10NS.                                                                  DONE.
+          STG 2 TGR(A-B2B5-B09).                                             │  SE 1 EVEN  A-B1M2-B08           SE/DE 6 EVEN  A-B1N4-B08                                                                                                   B. TAKE SE/DE OUT OF TEST MODE.
+                                                                             │        ODD  A-B1M2-B05                    ODD  A-B1N4-B05                                                                                                   C. TURN ON ILOS AND THE COMMUNICATE BITS IN
+                                                                             │                                                                       SPECIAL                 🯐─────────────🯓                                                  THE CE CCR REG.
+       STG 2 TGR        ────🯓                                                │                                                                       SYNC FOR P0 B0     ────🯑               🯒─────                                         D. REMOVE PLUG CARD(02A-C3F7) AND JUMPER
+       MC706AL4              🯒──────────────────────────────────             │  SE 2 EVEN  A-B1N2-B08           SE/DE 7 EVEN  A-B1M5-B08             ZA001AH            1.2V→                                                                 PIN(02A-B3B3-D12) TO GND.(THIS STEP NOT
+       A-B2B5-B09        1.9V→                                               │        ODD  A-B1N2-B05                    ODD  A-B1M5-B05             A-D3F8-B06                                                                               REQUIRED ON CCC SYSTEMS.)
+                                                                             │                                                                       A-D3F8-B06                                                                            E. SET ATR AND PSBAR REG TO ALL ZEROES
+                                                                             │                                                                                                                                                             F. LOAD ATR SLOT 1 WITH THE TAG OF THE
+                        ────🯓                    🯐──────────────────🯓        │  SE 3 EVEN  A-B1M3-B08           SE/DE 8 EVEN  A-B1N5-B08                                       ────🯓                     🯐───────────────────🯓                SE/DE TO BE RIPPLED.
+       MC707AJ4              🯒──────────────────🯑                    🯒────   │        ODD  A-B1M3-B05                    ODD  A-B1N5-B05             KS201AQ4                       🯒───────────────────🯑                     🯒────        G. WHEN PERFORMING ACCEPT DELAY
+       A-B2B5-B13              1.9V→                                         │                                                                       C-A4H6-D04                                 1.2V→                                         TIMINGS FOR THE 7289-04 DE, GROUND
+                                                                             │                                                                       P0+140                                                                                   POINT 02C-B4H4B03 IN THE DE TO
+                               │<15+6-0NS                                    │  SE 4 EVEN  A-B1N3-B08           SE/DE 9 EVEN  A-B1M6-B08                                      │<────140±10-NS────>│                                           SUPPRESS TAG PARITY CHECKS.
+                                                                             │        ODD  A-B1N3-B05                    ODD  A-B1M6-B05
+                                                                             │
+                                                                             │
+            B. SET DELAY LINE MC707BL4 (A-B2G3-D13) AT 100NS.                │  SE 5 EVEN  A-B1M4-B08           SE/DE 10 EVEN  A-B1N6-B08            2. ADJUST DELAY LINE LS991FG(A-C4F2-B02) SO THAT
+            C. PUT CE IN DEFEAT INTERLEAVE MODE, ADJUST                      │        ODD  A-B1M4-B05                    ODD  A-B1N6-B05                LS991FN4(A-C4H6-B02) WILL RISE AT P0-1 TIME ±5NS
+               DELAY LINE MC707BG4 (02A-B2K2-B02) SUCH THAT                  │
+               MC707BH4 (A-B2B5-D13) GOES MINUS 40±5 NS. AFTER               │                                                                                               🯐──────────────────────🯓
+               STG 2 TGR (A-B2B5-B09).                                       │                                                                       -CLOCK P0-1        ────🯑                        🯒─────
+                                                                             │                                                                       LS991CD4
+                                                                             │    5. LATE SCI CLEAN UP                                               A-C4G3-D09         1.2V→
+                                     ────🯓                                   │       ─────────────────
+                    STG 2 TGR             🯒────────────────────────────      │                                                                                        ±5NS──>│
+                    MC706AL4       1.9V                                      │      ADJUST THE SERIES DELAYS AT A-A2L7 FOR THE FOLLOWING                                     🯐─────────────────🯓
+                    A-B2B5-B09                                               │      DISPLAY.                                                                            ────🯑                   🯒─────
+                                                                             │                                                                       LS991FN4
+                                                                             │                                                                       A-C4H6-B02         1.2V→
+                                     ────🯓                                   │  LATE SCI CLEAN UP       🯐────────
+                    MC707BH4              🯒─────────────────────────         │  MC711BL4           ────🯑
+                    A-B2B5-D13              1.9V→                            │  A-B2G6-B09           ←1.2V
+                                                                             │                                                                       3. SET DELAY LINE RW081BN4 AT 50NS SO THAT THE CLOCK
+                                                 │<40±5NS                    │                     ─>│ │<15+5-0NS                                       PULSE FROM RW081BP4(E-C2K2-B02) WILL BE P0 PLUS
+                                                                             │                                                                          85±5NS
+                                                                             │                          🯐───────────
+                                                                             │  CLOCK B0           ────🯑
+                                                                             │  MC768AB4                 ←1.2V
+       2. 7251-09 AND 7289-04 TIMING                                         │  A-B2H4-B02                                                           SPECIAL                 🯐─────────────🯓
+          THE STORAGE UNITS SHOULD BE ADJUSTED PRIOR TO                      │                                                                       SYNC FOR P0 B0     ────🯑               🯒─────
+          PROCEEDING BEYOND THIS STEP.                                       │                                                                       ZA001AH            1.2V→
+                                                                             │                                                                       A-D3F8-B06
+                                                                             │                                                                       A-D3F8-B04
+       3. SELECT DELAY                                                       │
+          TIME THE SELECT DELAYS.(SEE A8007)                                 │
+                                                                             │                                                                                                            🯐───────────────
+                                                                             │                                                                       RW081BP4                        ────🯑
+                                                                             │                                                                       (E-C2K2-B02)                   1.2V→
+       4. ACCEPT DELAY                                                       │                                                                       P0+85
+          THE STORAGE SWITCH UNIT SHOULD BE TIMED PRIOR TO THIS              │
+          STEP PER SE OR DE PAGE A0500.                                      │                                                                                                │<────85±5NS────>│
+                                                                             │
+          SYNC EXTERNAL (+) ON THE SELECT PULSE PER SYNC POINTS              │
+          LISTED BELOW. ADJUST THE APPROPRIATE ACCEPT DELAY IN               │
+          THE 7251-09 OR 7289-04 SO THAT THE LATEST BIT OF 30                │
+          38,62,63 LEADS P0 B0 REFERENCE BY 15±3NS.                          │                                                                       4. ADJUST DELAY LINE ZA001BC(A-D3D7B02) SO THAT
+                                                                             │                                                                          ZA001BH4(A-D3L3B09) RISES AT P0+70NS±3NS.
+                                                                             │                                                                          ADJUST DEALY LINE ZA001BK(A-D3E7D13) SO THAT
+                                                                             │                                                                          ZA001BH4(A-D3L3B09) HAS A PULSE WIDTH OF 30NS±3NS.
+                                                                             │                                                                          THEN ADJUST DELAY LINE ZA001BP(A-D3E7B02) SO THAT
+                                                                             │                                                                          ZA001BS4(A-D3H7D04) RISES AT P0+130NS±3NS.
+       SPECIAL SYNC          🯐───────────────🯓                               │
+       FOR P0 B0        ────🯑                 🯒─────                         │
+       A-D3F8-B04         ←1.2V                                              │
+                                                                             │
+                                                                             │                                                                       SYNC FOR P0             🯐─────────────🯓
+                   >│  │<15±3NS                                              │                                                                       ZA001AH            ────🯑               🯒─────
+                                                                             │                                                                       A-D3F8B04                                ─>│  │<─30±3NS
+                        🯐───────────────                                     │
+                   ────🯑                                                     │                                                                                                │<──70±3NS──>│
+       DATA BIT 30                                                           │
+       MB707AD6                                                              │
+       B-D3D4B03       ←1.2V                                                 │                                                                                                                 🯐─────🯓
+                                                                             │                                                                       +SAMPLE ONE                          ────🯑       🯒─────
+                                                                             │                                                                       ZA001BH4
+                                                                             │                                                                       A-D3L3B09
+                                                                             │
+                                                                             │                                                                                                │<─────130±3NS────────>│
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │                                                                                                                            🯐────🯓
+                                                                             │                                                                       +SAMPLE TWO                                     ────🯑      🯒─────
+                                                                             │                                                                       ZA001BS4
+                                                                             │                                                                       A-D3H7D04
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+                                                                             │
+
+
+                                                                                                                                                                                                            15 MAY 70 713666
+                                                                                                                                                                                                             1 NOV 70 714945
+
+
+
+
+
+                                                                                                                                                                                                                                                          ───────────────────────────────────────────
+                                                                                                                                                                                                                                                          │          STORAGE CONTROL UNIT           │
+                                                                                                                                                                                                                                                          │                 TIMING                  │  A
+                                                                                                                                                                                                                                                          │DATE  15 OCT 70 MACH.  7201-02           │  8
+                                                                                                                                                                                                                                                          │                                         │  0
+                                                                                                                                                                                                                                                          │                   FRAME       02        │  0
+                                                                                                                                                                                                                                                          │                                         │  6
+                                                                                                                                                                                                                                                          │                   P.No.   2586590       │
+                                                                                                                                                                                                                                                          │                                         │000
+                                                                                                                                                                                                                                                          │IBM CORP. SDD  PAGE              1       │
+                                                                                                                                                                                                                                                          │                                         │

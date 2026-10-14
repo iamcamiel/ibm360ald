@@ -1,0 +1,323 @@
+{
+  "reviewer": "/root/ct_011_021",
+  "pages": [
+    "FX021",
+    "FX051",
+    "FX057"
+  ],
+  "scope": "Read-only independent native dense selection/response groups, physical pin mapping, gate/function/unit/card/socket fields, local R TO terminations, common selection rail, response/selection branch ownership, external labels and hanging references, plus current model and JuliaMono preview comparison. Footer and connector tables were not independently audited in this focused pass.",
+  "source_evidence": [
+    "simplex/FX021/left_upper.png",
+    "simplex/FX021/right_upper.png",
+    "simplex/FX021/left_lower.png",
+    "simplex/FX021/right_lower.png",
+    "simplex/FX051/left_upper.png",
+    "simplex/FX051/right_upper.png",
+    "simplex/FX051/left_lower.png",
+    "simplex/FX051/right_lower.png",
+    "simplex/FX057/left_upper.png",
+    "simplex/FX057/right_upper.png",
+    "simplex/FX057/left_lower.png",
+    "simplex/FX057/right_lower.png",
+    "gating/response peer evidence/* native.png"
+  ],
+  "corroborated": [
+    "FX021 selection 00 FS001BA4 enters BM.B03; upper BM.B04 reaches BS.B03 via its native upward detour; separate unnamed lower output reaches BL's unnamed R TO input. Selection 01 FS001BB4 enters BP.D04, BP.D02 reaches BT.D09 and separate unnamed lower reaches BN. Selection 02 FS001BC4 enters BQ.B10, BQ.B09 reaches BU.B07 and separate unnamed lower reaches BR.",
+    "FX021 common AA.D10 feeds AD.D02/AE.D04/AF.B13. AA inputs are KX091BN2 at D12 and BC.B02 at D13; BC.D05 continues separately to FS511 +TIMING GATE TRIG. AK/AL/AM outputs feed AP/AQ/AR, whose physical D06/D05/D07 starred outputs branch to ELC AT.B13/AU.D09/AV.B08 and select-response lines. ELC outputs are B02/D06/D07 starred.",
+    "FX051 selection 03 FS001BD4 enters BM.D13; BM.D11 reaches BQ.B03 and separate BM.D13 reaches BJ.D11. Selection 04 FS041BA4 enters BN.B03; BN.B04 reaches BR.D09 and BN.B03 reaches BK.B09. Selection 05 FS041BB4 enters BP.D04; BP.D02 reaches BS.B07 and BP.D04 reaches BL.D12.",
+    "FX051 AA.B07 starred common output feeds AD.D02/AE.D04/AF.B13 and external FX057 -SCON SELECT GATE. AA inputs KX091BP2 at D07 and BA.D10 at B09; BA.B13 continues separately to FX021 +TIMING GATE TRIG. Response AP/AQ/AR D06/D05/D07 starred feed AT.D12/AU.D04/AV.B05 respectively; ELC output B10/B03/D02 starred. First AT socket E-A1K6 is literal source, others E-A1H6.",
+    "FX057 selection 24 FS241BH4 enters BR.B07; BR.B05 reaches BP.B03 and separate BR.B07 reaches BJ.D04. Selection 25 FS241BJ4 enters BS.B12; BS.D10 reaches BQ.D09 and BS.B12 reaches BK.D05. Selection 26 FS241BK4 enters BT.B12; BT.D10 reaches BM.B07 and separate unnamed lower reaches BL's unnamed R TO input.",
+    "FX057 external FX051AA4 selection rail enters at row 51 with a source diamond; its upper AD.D02 branch at row 47 is a corner without diamond. AE.D04 branch has a source diamond; lowest AF.B13 branch is a corner. AP/AQ/AR D06/D05/D07 starred feed AT.D12/AU.B08/AV.B09, with ELC B10/D07/B07 starred outputs. The repeated third AR/R TO physical card portions 0514K1/K2 in E-A1G7 are preserved.",
+    "Across all nine groups, the two physical T06AA right ports remain distinct; no semantic role inferred from A1. OR input/output wedges and A/N border wedges match native. The AR-to-OR routes cross the common selection rail without invented junctions. Native response branches remain on their respective printed rows, including TAU's branch at the N physical output row and PAM/SCU's raised selection-response branch. Literal open stars remain in pin and signal names."
+  ],
+  "findings": [
+    {
+      "id": "WA_HANGING_STUB",
+      "status": "Resolved: nine native WA hanging corner/stubs present at c214 with text at215; final native/reference geometry checked and preview reviewed.",
+      "pages": [
+        "FX021",
+        "FX051",
+        "FX057"
+      ],
+      "rows": {
+        "FX021": [
+          44,
+          65,
+          86
+        ],
+        "FX051": [
+          52,
+          72,
+          79
+        ],
+        "FX057": [
+          44,
+          65,
+          86
+        ]
+      },
+      "description": "All nine native WA401/WA501 hanging references have a corner/stub immediately before W; reviewed exports only rendered the FX061 stub and left each WA reference floating. Shared select_response printed WA text at column 215 without its native corner/stub. Focused native evidence and pre-fix hashes are in response peer evidence/reviewed snapshot.json. Owner notified and independently calibrating native corner columns."
+    }
+  ],
+  "additional_source_calibration": {
+    "status": "Resolved: first nine branch diamonds/corners c203, short c204 wire, FX061 at205; native affine crops independently corroborated and final cells checked.",
+    "description": "Independent affine crops and owner's independently generated native-grid crops agree that all nine first response branch diamonds and their hanging corners belong at c203, with a single wire cell at c204 and FX061 text at c205. Pre-fix model placed them at c204. WA corner belongs c214 followed by W at215. Owner is correcting both placements together; no graph owner changes required."
+  },
+  "result": "Focused independent dense response review closed: source owners, physical pins, routes and printed external labels corroborated. Both repeated reference geometry findings resolved. Scope excludes independent footer and connector-table review.",
+  "pre_fix_snapshot": {
+    "FX021": {
+      "txt_sha256": "cbad8c58dfc0278246ad29b917ef3de69b80740ce371e200bf4697066c56a176",
+      "model_sha256": "a698f89317b8bc9dc3ed8c2bd9be0fe877a37167eb8d3b3e0efac19f46975127",
+      "rows": {
+        "44": [
+          "───◇───── -SEL-RESPONS",
+          "   └FX061     WA401"
+        ],
+        "65": [
+          "───◇───── -SEL-RESPONS",
+          "   └FX061     WA401"
+        ],
+        "86": [
+          "───◇───── -SEL-RESPONS",
+          "   └FX061     WA401"
+        ]
+      },
+      "scope": "Read-only independent native response/selection groups, physical pin fields, branch owners and corresponding export preview; not independent footer/connector-table audit."
+    },
+    "FX051": {
+      "txt_sha256": "e730842b9de5ea86bde301bbe74aed9c50367c36c444b0698ad4c23ad696ecef",
+      "model_sha256": "0bf943930e2292d5e872e8693c544766e65f73b154449e37681dead633d8bd3d",
+      "rows": {
+        "52": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ],
+        "72": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ],
+        "79": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ]
+      },
+      "scope": "Read-only independent native response/selection groups, physical pin fields, branch owners and corresponding export preview; not independent footer/connector-table audit."
+    },
+    "FX057": {
+      "txt_sha256": "ab67955fa9d154c796c0b3eb5f588efa69df82b9f230849e059f58385536b4e4",
+      "model_sha256": "d36e063b9c9fcd234af21927290e38aeed41a96b2e8778c9f91953bbff500b3c",
+      "rows": {
+        "44": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ],
+        "65": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ],
+        "86": [
+          "───◇───── -SELECT✲-RES",
+          "   └FX061     WA501"
+        ]
+      },
+      "scope": "Read-only independent native response/selection groups, physical pin fields, branch owners and corresponding export preview; not independent footer/connector-table audit."
+    }
+  },
+  "final_snapshot": {
+    "FX021": {
+      "txt_sha256": "094a8f3fff2b33974a810609f719447e5571d5ad18fa9f9c6b490f6bf8f44dff",
+      "model_sha256": "3144400266a8e25e8cb08f287f265862e312789d93c237d39952daf0bedf976b",
+      "validation_sha256": "4aea2ae2a339e6c1812de4dba7fccf8efea47c6b12b65f6f53a3ca4b10e59d16",
+      "native_reference_geometry_checks": {
+        "44": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "65": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "86": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        }
+      },
+      "reviewed_preview": "D:\\Github\\IBM360\\tmp\\ald-text\\fx\\simplex\\output\\FX021 PAM OR SYSTEM CONSOLE SIMPLEX SIGNALS preview.png"
+    },
+    "FX051": {
+      "txt_sha256": "4b8becb2cf26c56267f366898fbb5db578f590a2f50ec57c886805b4214830fb",
+      "model_sha256": "a1a3fb06967e04035b30cc4296d646c7cbd365f18ce2b0b7d73fc350813895d4",
+      "validation_sha256": "4aea2ae2a339e6c1812de4dba7fccf8efea47c6b12b65f6f53a3ca4b10e59d16",
+      "native_reference_geometry_checks": {
+        "52": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "72": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "79": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        }
+      },
+      "reviewed_preview": "D:\\Github\\IBM360\\tmp\\ald-text\\fx\\simplex\\output\\FX051 TAU SIMPLEX SIGNALS preview.png"
+    },
+    "FX057": {
+      "txt_sha256": "61a94083acec8b15e77ad01c4226fe72bca7e9c573970e580ee63b16f1d6d743",
+      "model_sha256": "9374f0f020a3ba09b1614ca1c9f8b7e968dee310ef8facffdc9daab4464c179f",
+      "validation_sha256": "5dbb648b3028b0efb7a39df3baebf57859ed9c49f5849d22aed8401e336f4899",
+      "native_reference_geometry_checks": {
+        "44": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "65": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        },
+        "86": {
+          "actual": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "expected": [
+            "◇",
+            "└",
+            "─",
+            "└",
+            "W",
+            " "
+          ],
+          "passed": true
+        }
+      },
+      "reviewed_preview": "D:\\Github\\IBM360\\tmp\\ald-text\\fx\\simplex\\output\\FX057 SCU SIMPLEX SIGNALS preview.png"
+    }
+  }
+}

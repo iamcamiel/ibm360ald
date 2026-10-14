@@ -1,0 +1,123 @@
+STATUS: HISTORICAL PRE-FIX COMPARISON
+All findings below were resolved in the emulator and VHDL ROS sources on
+10 October 2026. See ROS source correction notes.txt and ROS source
+validation.json for the current zero-difference comparison.
+
+QZ LISTINGS COMPARED WITH EMULATOR ROS SOURCE
+
+Compared all 2816 addresses with ibm360m65/src/ros.txt. Address coverage is exact.
+Group widths and field order were checked against hercules/360_ros.cpp.
+Comparison includes the leading ND-labelled cell, 99 ROS bit cells, actual
+software field decoding, E/H/U extension bits and next-address bases.
+
+15 QZ transcription words were corrected after inspecting the original scans
+and corresponding CAS evidence (33 changed bit cells). 03AA N=0000 remains
+recorded as user-confirmed. All 2816 QZ words pass the parity/unused checks.
+
+After these corrections:
+2803 words match all 100 loaded bit cells; 13 have physical bit differences.
+089A additionally differs in software interpretation despite identical bits.
+There are therefore 14 addresses with remaining findings.
+
+The VHDL ROS constants match all 2816 software-loaded bit arrays. The address
+permutation and every array index were checked. However, malformed text
+field boundaries make software controls differ from VHDL at 089A and 0D97.
+
+The emulator loader reports no active-word group-parity failures. Its valid
+flag suppresses checks on 023F, 07A3, 0CCF and 0E3F. The first three are
+unused words containing stray bits; 0E3F is populated in the QZ/CAS listing.
+
+ADDRESS  FINDING (QZ / EMULATOR)
+
+0094  ND 1/0  QK001 C1
+Source-confirmed leading-cell difference
+QZ leading ND-labelled cell is clearly 1; emulator has 0. The decoded control fields match.
+QZ source row 1; emulator source line 109; QZ EC 713671.
+
+023F  C0/C8  
+Stray emulator bits in an unused word
+QZ is the unused-word template; enlarged C glyphs are zeros. Emulator contains C8. Its valid flag is false, so the loader does not check its parity.
+QZ source row 28; emulator source line 418; QZ EC 713381.
+
+031C  NEXT 4A8/8A8  QS051 A8
+QZ scan and CAS branch agree
+QZ next-address base is 04A8, emulator 08A8. QS051 A8 connects to 04AA/04AB at C5/C6 on the relevant branch; these corroborate the QZ base. The two changed high bits preserve parity.
+QZ source row 29; emulator source line 560; QZ EC 713671.
+
+071A  L0/L6  QS011 E8
+Damaged scan corroborated by CAS
+QZ L=0000; emulator L6 (SET-MARK*STC). The two source cells are damaged but have zero-shaped remnants. QS011 E8 has no L micro-order and supports L0. The physical copy can provide direct confirmation.
+QZ source row 27; emulator source line 1268; QZ EC 713671.
+
+078B  L0/L3  QS101 G5
+Damaged scan corroborated by CAS; printed reference differs
+QZ L=0000; emulator L3 (MS-REQ-LOG). Source cells are damaged zero-shaped remnants. QS101 Q5, ROS 078B, has no L micro-order. The QZ scan itself prints G5; retain that printed reference and record the actual CAS location Q5 separately.
+QZ source row 28; emulator source line 1341; QZ EC 713671.
+
+07A3  K0/K1  
+Stray emulator bits in an unused word
+QZ is the unused-word template; enlarged K glyphs have zero curves. Emulator contains K1. Both valid flags are false.
+QZ source row 16; emulator source line 1365; QZ EC 713381.
+
+0835  V0/V3  QE041 C5
+QZ scan and CAS controls agree
+QZ V0; emulator V3 (E23 serial-adder input). QE041 C5 has MS to Q and no serial-adder micro-order. The three QZ V zeros are clear. The QZ reference was corrected from misread C8 to C5.
+QZ source row 18; emulator source line 1472; QZ EC 713671.
+
+089A  C14/C7  QB041 C4
+Confirmed software field-boundary error
+The 100 bits match QZ and VHDL, but the text groups C as 0111 and D as 0000 instead of C=01110, D=000. The software loader therefore reads C7 rather than C14. QZ and QB041 C4 show ST (C14). Raw-bit and parity checks cannot catch this error.
+QZ source row 7; emulator source line 1533; QZ EC 713671.
+
+0CCF  G0/G12  
+Stray emulator bits in an unused word
+QZ is the unused-word template; all five G zeros are clear. Emulator has G12. Its partial parity pattern resembles an unused word but the controls are not all zero. Both valid flags are false.
+QZ source row 24; emulator source line 2294; QZ EC 713381.
+
+0D00  R0/R1; U0/U8  QQ291 C2
+QZ scan and CAS controls agree
+QZ R0/U0; emulator R1/U8. Enlarged QZ zeros are clear, and QQ291 C2 prints IC+0. Emulator selects F for U input and T45R instead of the zero input. The paired errors preserve parity.
+QZ source row 1; emulator source line 2304; QZ EC 713671.
+
+0D97  T11/T0  QQ261 N1
+Confirmed malformed emulator input row
+The P/Q area is split into one-bit groups and the row contains only 99 printed cells. Software group decoding yields T0, while the loaded/VHDL bit positions yield R1/T6. QZ is R0/T11; QQ261 N1 prints B+0, supporting T11. This is a genuine software/VHDL decode disagreement despite their bit arrays matching.
+QZ source row 4; emulator source line 2415; QZ EC 713671.
+
+0E3F  P1 0/1  QQ511 L4
+Confirmed valid-flag difference
+QZ bit 1 is clearly 0; emulator has 1. init_ros() consequently marks this populated word invalid and skips its parity checks. QQ511 L4 contains the active 0E3F box. This finding concerns the valid flag, not just an otherwise harmless parity bit.
+QZ source row 28; emulator source line 2544; QZ EC 713671.
+
+0F21  E0/E3  QQ441 G8
+Source-confirmed difference; CAS revision limit
+The four QZ E zeros are clear; emulator has E3. The QZ reference reads QQ441 G8 (corrected from misread Q8). The available March 1972 QQ441 revision prints an E operation at G8, while the QZ listing is May 1970. Do not assume the different revisions must match.
+QZ source row 34; emulator source line 2691; QZ EC 713671.
+
+0F84  A0/A13  QQ401 C6
+Source-confirmed difference with CAS corroboration
+QZ A0, leading ND-labelled cell 1 and P2=0; emulator A13, leading cell 0 and P2=1. The QZ A zeros and other differing cells are clear. QQ401 C6 prints the output to K and read GP7, with no B8 input micro-order corresponding to A13. The available CAS is an April 1971 revision of the May 1970 QZ word.
+QZ source row 21; emulator source line 2750; QZ EC 713671.
+
+ADDITIONAL INPUT FORMATTING ISSUE
+
+0528 also has malformed grouping and only 99 printed bit cells. Its unused
+word is all zero apart from its unused indicator, so zero initialization
+makes its effective bits and controls match. It still needs formatting repair.
+
+REVIEW AND PROVENANCE
+
+Emulator differences.csv lists all 14 remaining findings, exact bit positions,
+source rows/lines, CAS references, evidence, and neighbouring words.
+Emulator comparison.json contains every address, source hashes, field and
+parity comparisons, VHDL checks and original-versus-corrected scan evidence.
+Emulator comparison scan corrections.json records the 15 QZ corrections.
+
+QZ references at 0835 and 0F21 were also corrected from C8 to C5 and Q8 to G8.
+At 078B the scan really prints G5, while CAS locates that address at Q5;
+the printed reference is retained and the discrepancy is recorded.
+
+This is a source-data comparison. Later CAS revisions are not proof that
+a historical QZ word should be replaced. No emulator or VHDL source files
+were changed, and no live emulator run or private ROS copy was modified.
+All original TIFF sizes and modification timestamps were verified unchanged.

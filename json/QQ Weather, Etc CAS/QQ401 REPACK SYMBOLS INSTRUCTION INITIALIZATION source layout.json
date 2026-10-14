@@ -1,0 +1,2228 @@
+{
+  "nodes": [
+    {
+      "box": "C1",
+      "leg": "001111",
+      "address": "0D8F",
+      "fields": [
+        "A IC+0",
+        "A →T",
+        "L R◺GP7→S",
+        "C 0→STC"
+      ],
+      "exit": "XX──CA",
+      "comments": [
+        "360 IC TO T.",
+        "NEXT WCT ADDR.",
+        "TO S REG."
+      ],
+      "grid": [
+        25,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "0F81",
+      "fields": [
+        "A 0+S",
+        "A →A",
+        "L R◺GP8→S"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "WCT ADDRESS",
+        "TO A REG.IRXT",
+        "AND TWICE BIN NO.",
+        "TO S REG."
+      ],
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "0F82",
+      "fields": [
+        "A A+S",
+        "A →IC",
+        "B V+0",
+        "B →F",
+        "L W*24"
+      ],
+      "exit": "XX──CD",
+      "comments": [
+        "WCTA + (2 X BIN NO.)",
+        "TO IC.STATUS.IRXT",
+        "CODE TO F.STC=0.",
+        "SAVE 360 IC IN",
+        "WORKING REGISTER."
+      ],
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C5",
+      "leg": "XX",
+      "address": "0F83",
+      "fields": [
+        "A F1+0",
+        "B 0+U1,U0",
+        "B →F",
+        "B          F→U",
+        "L R◺GP11→T",
+        "S MS-REQ*IC-3",
+        "C 1→STC(00)"
+      ],
+      "exit": "XX──CE",
+      "comments": [
+        "IRXT CODE TEST",
+        "IN PADDER.REQUEST",
+        "BIN DISP.ADDRESS",
+        "FROM WCT.DP BITS",
+        "TO T REG.STC TO 4.",
+        "REVERSE IRXT AND",
+        "STATUS IN F."
+      ],
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C6",
+      "leg": "XX",
+      "address": "0F84",
+      "fields": [
+        "A →◺K",
+        "L R◺GP7→S"
+      ],
+      "exit": "X*──CF",
+      "comments": [
+        "CLEAR K FOR SYMBOL",
+        "COUNT.STC = 4.",
+        "NEXT WCT ADDRESS",
+        "TO S REG."
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        135,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C7",
+      "leg": "X1",
+      "address": "0F87",
+      "fields": [
+        "B 0+0",
+        "B →ST",
+        "L W◺GP11",
+        "C STC+1"
+      ],
+      "exit": "**──CG",
+      "comments": [
+        "TEST DP BITS IN T.",
+        "RESET DP BITS AND",
+        "STORE IN GPR11.",
+        "STC 4 TO 5."
+      ],
+      "R_line": "R        T(32)",
+      "grid": [
+        157,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C8",
+      "leg": "X0",
+      "address": "0F88",
+      "fields": [
+        "A A+◺32",
+        "A →T,D",
+        "D MS→AB",
+        "L W◺GP7",
+        "C STC+1"
+      ],
+      "exit": "XX──CH",
+      "comments": [
+        "FIRST WCT ORDER",
+        "ADDR.TO T AND D.",
+        "REGS.AND GPR7.",
+        "STC 5 TO 6.",
+        "BIN DISP.ADDR.",
+        "TO AB REGS."
+      ],
+      "grid": [
+        179,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G4",
+      "leg": "XX",
+      "address": "0F8B",
+      "fields": [
+        "A →T",
+        "D IC→ABC",
+        "L R◺GP2→S"
+      ],
+      "exit": "XX──GD",
+      "comments": [
+        "SET AB BYTE POINTER",
+        "TO DISPLACEMENT ADDR.",
+        "START STC = 6.",
+        "CLEAR T REG.",
+        "ODTA TO S REG."
+      ],
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "XX",
+      "address": "0F8C",
+      "fields": [
+        "A 0+S",
+        "A →IC",
+        "B 0+U",
+        "B →ST",
+        "B         AB→U",
+        "S MS-REQ*IC-4",
+        "C ABC,STC+1"
+      ],
+      "exit": "XX──GE",
+      "comments": [
+        "GATE FIRST BYTE",
+        "OF DISP.ADDR.TO",
+        "T REG.BYTE 6.",
+        "DEVELOP BIN DISP.",
+        "ADDRESS IN T REG.",
+        "ODTA TO IC.",
+        "REQUEST ODT WORDS."
+      ],
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "G6",
+      "leg": "XX",
+      "address": "0F8D",
+      "fields": [
+        "A 0+D",
+        "B 0+U",
+        "B →ST",
+        "B         AB→U",
+        "D J7→ABC",
+        "L W◺GP9"
+      ],
+      "exit": "XX──GF",
+      "comments": [
+        "WCT ORDER BYTE",
+        "ADDRESS TO ABC.",
+        "GATE SECOND BYTE",
+        "OF DISP.ADDR.TO",
+        "T REG.BYTE 7.",
+        "BIN DISP.ADDRESS",
+        "TO GPR 9."
+      ],
+      "grid": [
+        135,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G7",
+      "leg": "XX",
+      "address": "0F8E",
+      "fields": [
+        "A 0+T",
+        "A →B",
+        "L R◺GP10→T",
+        "C 0→STC"
+      ],
+      "exit": "XX──GG",
+      "comments": [
+        "BIN DISP.ADDRESS",
+        "TO B REG.SORT BIN",
+        "BASE ADDR.TO T."
+      ],
+      "grid": [
+        157,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G8",
+      "leg": "XX",
+      "address": "0F8A",
+      "fields": [
+        "A B+T",
+        "A →T",
+        "B →F",
+        "L W◺GP6",
+        "S MS-REQ*D-3",
+        "C STC-1"
+      ],
+      "exit": "XX──GH",
+      "comments": [
+        "COMPUTE SORT BIN",
+        "ADDRESS.STORE IN",
+        "GPR6.REQUEST WCT",
+        "WORDS.ZERO TO F.",
+        "STC.0 TO 7."
+      ],
+      "grid": [
+        179,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G9",
+      "leg": "XX",
+      "address": "0F8F",
+      "fields": [
+        "B ◺0111→V0",
+        "B V0,V0+0",
+        "B →F1",
+        "D MS→Q",
+        "D MS→LM",
+        "L R◺GP4→T"
+      ],
+      "exit": "XX──GI",
+      "comments": [
+        "GATE ODT WORDS TO",
+        "LM AND Q REGS.",
+        "ORMA TO T REG.",
+        "0111 TO F1."
+      ],
+      "grid": [
+        201,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L4",
+      "leg": "1X",
+      "address": "0F9A",
+      "fields": [
+        "A 0+D",
+        "A →T",
+        "B 1+0",
+        "L W◺GP7"
+      ],
+      "exit": "X0──LD",
+      "comments": [
+        "FROM DELETE N1",
+        "OR DELETE."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L6",
+      "leg": "X0",
+      "address": "0F94",
+      "fields": [
+        "B →F",
+        "L R*24→S",
+        "C 1→STAG",
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "XX──LF",
+      "comments": [
+        "ORMA NOT ON DOUBLE",
+        "WORD BOUNDARY."
+      ],
+      "grid": [
+        135,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N1",
+      "leg": "XX",
+      "address": "0F93",
+      "fields": [
+        "B V.U",
+        "B          F→U",
+        "D ◺LM→N,Q→R*IC",
+        "C STC+1"
+      ],
+      "exit": "XX──NA",
+      "comments": [
+        "FIRST ODT DESC TO N.R",
+        "REGS.CHECK ORMA."
+      ],
+      "grid": [
+        25,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N2",
+      "leg": "XX",
+      "address": "0FC4",
+      "fields": [
+        "A →T",
+        "D MS→AB",
+        "D R→E",
+        "L W◺FP2"
+      ],
+      "exit": "X*──NB",
+      "comments": [
+        "WCT WORDS TO AB.",
+        "FIRST ODT DESC.",
+        "TO E REG.CLEAR",
+        "FPR2 FOR INSERT.",
+        "BRANCH IF ORMA",
+        "ON DOUBLE WORD",
+        "BOUNDARY."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        47,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N3",
+      "leg": "X1",
+      "address": "0F95",
+      "fields": [
+        "A ◺2+◺2",
+        "A →T",
+        "B ◺0010→V0",
+        "B V∀U",
+        "B         AB→U",
+        "L W◺FP4"
+      ],
+      "exit": "0X──NC",
+      "comments": [
+        "CONSTANT 4 TO",
+        "FPR4 FOR INSERT",
+        "SYMBOLS.",
+        "WCT ORDER TO",
+        "SADDER FOR TEST",
+        "DELETE N2",
+        "(00100000)."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        69,
+        66
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "N4",
+      "leg": "0X",
+      "address": "0F98",
+      "fields": [
+        "A 0+D",
+        "A →T",
+        "B ◺0001→V0",
+        "B V∀U",
+        "B         AB→U",
+        "L W◺GP7"
+      ],
+      "exit": "X*──ND",
+      "comments": [
+        "WCT ORDER TO",
+        "SADDER FOR TEST",
+        "DELETEN1",
+        "(00010000).",
+        "STORE CURRENT",
+        "WCTA IN GPR7."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "N5",
+      "leg": "X0",
+      "address": "0F9C",
+      "fields": [
+        "A B+0",
+        "A →T",
+        "B ◺0011→V0",
+        "B V∀U",
+        "L W◺FP1",
+        "C ABC+1"
+      ],
+      "exit": "X*──NE",
+      "comments": [],
+      "R_line": "R          W=0",
+      "extra": [
+        [
+          [
+            9,
+            4
+          ],
+          "AB→U"
+        ]
+      ],
+      "grid": [
+        113,
+        66
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "N6",
+      "leg": "X0",
+      "address": "0F9E",
+      "fields": [
+        "A →B",
+        "B ◺N0→V",
+        "B V∀U",
+        "B         AB→U"
+      ],
+      "exit": "X*──NF",
+      "comments": [],
+      "R_line": "R          W=0",
+      "grid": [
+        135,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N7",
+      "leg": "X0",
+      "address": "0F50",
+      "fields": [
+        "A 0+◺K",
+        "A →D",
+        "L R◺GP4→T",
+        "C ABC-1"
+      ],
+      "exit": "XX──NG",
+      "comments": [
+        "NOT DELETE ORDER.",
+        "READOUT ORMA FOR",
+        "DELETE SYMBOL",
+        "UPDATE.",
+        "SYMBOL COUNT TO B.",
+        "FOR MULTIPLY.",
+        "ABC BACK TO ORDER",
+        "BYTE."
+      ],
+      "grid": [
+        157,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N8",
+      "leg": "XX",
+      "address": "0F85",
+      "fields": [
+        "A BL2+T",
+        "A →T",
+        "D J7→STC",
+        "L R◺FP1→S"
+      ],
+      "exit": "XX──NH",
+      "comments": [
+        "UPDATE ORMA TO",
+        "BYPASS DELETED",
+        "SYMBOLS.(S/C X 4)",
+        "+ ORMA.STC TO",
+        "4 IF COUNT ODD.",
+        "0 IF EVEN.B REG.",
+        "ORDERS TO S REG."
+      ],
+      "grid": [
+        179,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N9",
+      "leg": "XX",
+      "address": "0F97",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "L R◺GP3→S",
+        "C 1→STAG"
+      ],
+      "exit": "XX──NI",
+      "comments": [
+        "RESTORE ORDERS IN B REG.",
+        "NDT ADDRESS TO S.",
+        "STAT G ON TO INDICATE",
+        "TO MOVE ROUTINES THAT",
+        "ENTRY IS FROM DELETE",
+        "ROUTINE."
+      ],
+      "grid": [
+        201,
+        66
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 2000,
+    "first_header_y": 645,
+    "column_step": 596.5,
+    "row_step": 446.8
+  },
+  "text": [
+    [
+      2,
+      1,
+      "QQ511.EIE"
+    ],
+    [
+      5,
+      2,
+      "(001111)"
+    ],
+    [
+      5,
+      3,
+      "RE-ENTRY FROM"
+    ],
+    [
+      5,
+      4,
+      "INTERRUPT"
+    ],
+    [
+      5,
+      5,
+      "ROUTINE."
+    ],
+    [
+      5,
+      11,
+      "REPACK"
+    ],
+    [
+      5,
+      12,
+      "SYMBOLS"
+    ],
+    [
+      5,
+      13,
+      "(RPSB)"
+    ],
+    [
+      2,
+      14,
+      "QT051.AAE"
+    ],
+    [
+      5,
+      15,
+      "(001111)"
+    ],
+    [
+      25,
+      10,
+      "OP CODE (0F)"
+    ],
+    [
+      2,
+      41,
+      "QQ421.LGE"
+    ],
+    [
+      5,
+      42,
+      "(0X.1X)FROM"
+    ],
+    [
+      5,
+      43,
+      "PRIOR DELETE"
+    ],
+    [
+      5,
+      44,
+      "TYPE ORDER."
+    ],
+    [
+      5,
+      45,
+      "STAT D ON IF"
+    ],
+    [
+      5,
+      46,
+      "FROM DELETE OR"
+    ],
+    [
+      5,
+      47,
+      "DELETEN1."
+    ],
+    [
+      2,
+      49,
+      "QQ521.NIE"
+    ],
+    [
+      5,
+      50,
+      "(X1)NEXT"
+    ],
+    [
+      5,
+      51,
+      "C/T ENTRY."
+    ],
+    [
+      194,
+      2,
+      "INTERRUPT ENTRIES────────→"
+    ],
+    [
+      229,
+      1,
+      "QQ501"
+    ],
+    [
+      239,
+      1,
+      "CFE"
+    ],
+    [
+      229,
+      4,
+      "(X0)"
+    ],
+    [
+      194,
+      9,
+      "NDT PAGE OVERFLOW ENTRY─→"
+    ],
+    [
+      229,
+      8,
+      "QQ521"
+    ],
+    [
+      239,
+      8,
+      "CGE"
+    ],
+    [
+      229,
+      11,
+      "(X1)"
+    ],
+    [
+      229,
+      58,
+      "QQ511"
+    ],
+    [
+      239,
+      58,
+      "LFE"
+    ],
+    [
+      229,
+      59,
+      "(XX)SPEC CHECK"
+    ],
+    [
+      229,
+      60,
+      "TERMINATION."
+    ],
+    [
+      229,
+      69,
+      "QQ411"
+    ],
+    [
+      239,
+      69,
+      "NIE"
+    ],
+    [
+      229,
+      70,
+      "(XX)"
+    ],
+    [
+      229,
+      84,
+      "QQ421"
+    ],
+    [
+      239,
+      84,
+      "NFE"
+    ],
+    [
+      229,
+      85,
+      "(X1)"
+    ],
+    [
+      229,
+      86,
+      "DELETE"
+    ],
+    [
+      229,
+      90,
+      "QQ411"
+    ],
+    [
+      239,
+      90,
+      "NEE"
+    ],
+    [
+      229,
+      91,
+      "(X1)"
+    ],
+    [
+      229,
+      92,
+      "DELETEN1"
+    ],
+    [
+      229,
+      94,
+      "QQ411"
+    ],
+    [
+      239,
+      94,
+      "NDE"
+    ],
+    [
+      229,
+      95,
+      "(X1)"
+    ],
+    [
+      229,
+      96,
+      "DELETEN2"
+    ],
+    [
+      5,
+      77,
+      "RPSB.LOCAL STORAGE REGISTER ASSIGNMENTS."
+    ],
+    [
+      5,
+      79,
+      "GPR0 HISTORY SYMBOL COUNT"
+    ],
+    [
+      5,
+      80,
+      "GPR1 CURRENT SYMBOL COUNT"
+    ],
+    [
+      5,
+      81,
+      "GPR2 OLD DESCRIPTOR TABLE ADDRESS"
+    ],
+    [
+      5,
+      82,
+      "GPR3 NEW DESCRIPTOR TABLE ADDRESS"
+    ],
+    [
+      5,
+      83,
+      "GPR4 OLD REFRESH MEMORY ADDRESS"
+    ],
+    [
+      5,
+      84,
+      "GPR5 NEW REFRESH MEMORY ADDRESS"
+    ],
+    [
+      5,
+      85,
+      "GPR6 NEXT SORT BIN ADDRESS"
+    ],
+    [
+      5,
+      86,
+      "GPR7 WORK CONTROL TABLE ADDRESS"
+    ],
+    [
+      5,
+      87,
+      "GPR8 STATUS CODE(BITS 0-3)IRXT CODE"
+    ],
+    [
+      5,
+      88,
+      "     (BITS 4-7).2XBIN NO.(27-31)"
+    ],
+    [
+      5,
+      89,
+      "GPR9 SORT BIN START DISP.ADDRESS"
+    ],
+    [
+      5,
+      90,
+      "GPR10 SORT BIN BASE ADDRESS"
+    ],
+    [
+      5,
+      91,
+      "GPR11 NEW DSCRPTR TABLE PAGE ADDRESS"
+    ],
+    [
+      5,
+      92,
+      "FPR0 ORMA FOR INTERRUPT ROUTINES"
+    ],
+    [
+      5,
+      93,
+      "FPR1 DELETE ROUTINES WORK REG"
+    ],
+    [
+      5,
+      94,
+      "FPR2 INSERT SYMBOL COUNT (BYTES)"
+    ],
+    [
+      5,
+      95,
+      "FPR3 NRMA FOR INTERRUPT ROUTINES."
+    ],
+    [
+      5,
+      96,
+      "FPR4 CONSTANT (00000004)"
+    ],
+    [
+      5,
+      97,
+      "FPR5 ORIGINAL HISTORY BYTE COUNT"
+    ],
+    [
+      5,
+      98,
+      "FPR6 MULT INT IND.ORIG C/C BYTE CNT"
+    ],
+    [
+      5,
+      99,
+      "FPR7 NOT USED"
+    ],
+    [
+      111,
+      75,
+      "WCT ORDER TO"
+    ],
+    [
+      111,
+      76,
+      "SADDER FOR TEST"
+    ],
+    [
+      111,
+      77,
+      "DELETE(00110000)."
+    ],
+    [
+      111,
+      78,
+      "ORDER NOT DELETEN2."
+    ],
+    [
+      111,
+      79,
+      "SAVE B REG.ORDERS"
+    ],
+    [
+      111,
+      80,
+      "IN FPR1 TEMPORARILY."
+    ],
+    [
+      111,
+      81,
+      "ABC TO BATCH NO."
+    ],
+    [
+      133,
+      75,
+      "ORDER NOT DELETEN1."
+    ],
+    [
+      133,
+      76,
+      "TEST BATCH NUMBERS"
+    ],
+    [
+      133,
+      77,
+      "FOR MATCH."
+    ],
+    [
+      133,
+      78,
+      "CLEAR B64-67 OF"
+    ],
+    [
+      133,
+      79,
+      "ANY RESIDUE."
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714952"
+    ],
+    [
+      164,
+      98,
+      "01/05/71"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  04/16/71"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ401"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     200"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583858"
+    ],
+    [
+      200,
+      100,
+      "REPACK SYMBOLS INSTRUCTION"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "INITIALIZATION"
+    ]
+  ],
+  "wire_erase": [
+    [
+      18,
+      -2,
+      274,
+      98
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        19,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        19,
+        1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        23,
+        12
+      ],
+      [
+        25,
+        12
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        153,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        153,
+        14
+      ],
+      [
+        153,
+        1
+      ],
+      [
+        238,
+        1
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        175,
+        14
+      ],
+      [
+        179,
+        14
+      ]
+    ],
+    [
+      [
+        175,
+        14
+      ],
+      [
+        175,
+        8
+      ],
+      [
+        238,
+        8
+      ]
+    ],
+    [
+      [
+        194,
+        14
+      ],
+      [
+        197,
+        14
+      ],
+      [
+        197,
+        31
+      ],
+      [
+        89,
+        31
+      ],
+      [
+        89,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        128,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        179,
+        36
+      ]
+    ],
+    [
+      [
+        194,
+        36
+      ],
+      [
+        201,
+        36
+      ]
+    ],
+    [
+      [
+        216,
+        36
+      ],
+      [
+        219,
+        36
+      ],
+      [
+        219,
+        65
+      ],
+      [
+        23,
+        65
+      ],
+      [
+        23,
+        68
+      ],
+      [
+        25,
+        68
+      ]
+    ],
+    [
+      [
+        40,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        113,
+        69
+      ]
+    ],
+    [
+      [
+        128,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        157,
+        69
+      ]
+    ],
+    [
+      [
+        172,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        216,
+        69
+      ],
+      [
+        238,
+        69
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        65,
+        69
+      ],
+      [
+        65,
+        52
+      ],
+      [
+        133,
+        52
+      ],
+      [
+        133,
+        58
+      ],
+      [
+        135,
+        58
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        238,
+        58
+      ]
+    ],
+    [
+      [
+        19,
+        41
+      ],
+      [
+        87,
+        41
+      ],
+      [
+        87,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        109,
+        58
+      ],
+      [
+        109,
+        67
+      ],
+      [
+        113,
+        67
+      ]
+    ],
+    [
+      [
+        19,
+        49
+      ],
+      [
+        67,
+        49
+      ],
+      [
+        67,
+        67
+      ],
+      [
+        69,
+        67
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        110,
+        69
+      ],
+      [
+        110,
+        94
+      ],
+      [
+        238,
+        94
+      ]
+    ],
+    [
+      [
+        128,
+        69
+      ],
+      [
+        132,
+        69
+      ],
+      [
+        132,
+        90
+      ],
+      [
+        238,
+        90
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        155,
+        69
+      ],
+      [
+        155,
+        84
+      ],
+      [
+        238,
+        84
+      ]
+    ],
+    [
+      [
+        14,
+        1
+      ],
+      [
+        19,
+        1
+      ]
+    ],
+    [
+      [
+        14,
+        14
+      ],
+      [
+        19,
+        14
+      ]
+    ],
+    [
+      [
+        14,
+        41
+      ],
+      [
+        19,
+        41
+      ]
+    ],
+    [
+      [
+        14,
+        49
+      ],
+      [
+        19,
+        49
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          30,
+          17
+        ],
+        [
+          31,
+          17
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.909
+    },
+    {
+      "path": [
+        [
+          30,
+          19
+        ],
+        [
+          31,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          19
+        ],
+        [
+          75,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          19
+        ],
+        [
+          119,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          19
+        ],
+        [
+          141,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          19
+        ],
+        [
+          163,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          19
+        ],
+        [
+          185,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          96,
+          41
+        ],
+        [
+          97,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          41
+        ],
+        [
+          119,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          41
+        ],
+        [
+          141,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          41
+        ],
+        [
+          163,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          41
+        ],
+        [
+          185,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          41
+        ],
+        [
+          207,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          95,
+          63
+        ],
+        [
+          97,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.938
+    },
+    {
+      "path": [
+        [
+          140,
+          63
+        ],
+        [
+          141,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          74
+        ],
+        [
+          53,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          72
+        ],
+        [
+          75,
+          72
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.909
+    },
+    {
+      "path": [
+        [
+          74,
+          74
+        ],
+        [
+          75,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          95,
+          72
+        ],
+        [
+          97,
+          72
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          96,
+          74
+        ],
+        [
+          97,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          117,
+          72
+        ],
+        [
+          119,
+          72
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.98
+    },
+    {
+      "path": [
+        [
+          118,
+          74
+        ],
+        [
+          119,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          74
+        ],
+        [
+          141,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          74
+        ],
+        [
+          163,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          74
+        ],
+        [
+          185,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          74
+        ],
+        [
+          207,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          188,
+          13
+        ],
+        [
+          191,
+          13
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          134,
+          74
+        ],
+        [
+          137,
+          74
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          235,
+          87
+        ],
+        [
+          238,
+          87
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.951
+    },
+    {
+      "path": [
+        [
+          235,
+          92
+        ],
+        [
+          238,
+          92
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.915
+    },
+    {
+      "path": [
+        [
+          235,
+          96
+        ],
+        [
+          237,
+          96
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.945
+    },
+    {
+      "path": [
+        [
+          237,
+          96
+        ],
+        [
+          239,
+          96
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.782
+    }
+  ],
+  "cells": [
+    [
+      153,
+      14,
+      "O"
+    ],
+    [
+      175,
+      14,
+      "O"
+    ],
+    [
+      65,
+      69,
+      "O"
+    ],
+    [
+      110,
+      69,
+      "O"
+    ],
+    [
+      132,
+      69,
+      "O"
+    ],
+    [
+      155,
+      69,
+      "O"
+    ]
+  ],
+  "wiring_evidence": [
+    "Upper interrupt and page-overflow exits, G9-to-N1 return, three delete exits and two left reentry rules were manually traced. Separate L4-to-N5 and N4 delete-output rules are preserved."
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "2da292880b4de1b0ffd11e08ca708b17e41cd3386d9ba92dc0b0c20ab79c2abf",
+    "old_txt_sha256": "a75969d7ef2166166152b7abbb5cd9a9688f968966754d1eab1fcc123e721e35",
+    "new_txt_sha256": "cd92f4f442cb8ca519d565e4602feb5a92a56179d0852f76831f571a633b00f4",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "67,52": "┼",
+    "87,52": "┼",
+    "219,58": "┼",
+    "65,65": "┼",
+    "67,65": "┼",
+    "109,65": "┼"
+  },
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ401",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "a75969d7ef2166166152b7abbb5cd9a9688f968966754d1eab1fcc123e721e35",
+    "text_sha256": "cd92f4f442cb8ca519d565e4602feb5a92a56179d0852f76831f571a633b00f4",
+    "content_sha256": "0939cbe63ff0b95f8ee97be6cf1f594650fcdde18c59c7ca4970df8fc521874c",
+    "verification_sha256": "4e167925c08828dc693915cff51a3f7be49a385d631f8009ddfc49522424a103",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.tif",
+    "source_sha256": "2da292880b4de1b0ffd11e08ca708b17e41cd3386d9ba92dc0b0c20ab79c2abf",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ401",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.txt",
+      "reviewed_txt_sha256": "cd92f4f442cb8ca519d565e4602feb5a92a56179d0852f76831f571a633b00f4",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.tif",
+      "source_sha256": "2da292880b4de1b0ffd11e08ca708b17e41cd3386d9ba92dc0b0c20ab79c2abf",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Source review and revised targeted regions pass within stated review scope; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "0caa3e25b834ec38f447c4e03ce9fd677cccb1615419a391b4fe47d82ddcab19",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 content.json",
+      "reviewed_content_sha256": "0939cbe63ff0b95f8ee97be6cf1f594650fcdde18c59c7ca4970df8fc521874c",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 verification.json",
+      "reviewed_verification_sha256": "4e167925c08828dc693915cff51a3f7be49a385d631f8009ddfc49522424a103",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 staged preview.png",
+      "dimensions_pass": true,
+      "hash_matches_owner_manifest": true
+    },
+    "baseline_audit": {
+      "page": "QQ401",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ401\\QQ401 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.txt",
+      "old_sha256": "a75969d7ef2166166152b7abbb5cd9a9688f968966754d1eab1fcc123e721e35",
+      "new_sha256": "cd92f4f442cb8ca519d565e4602feb5a92a56179d0852f76831f571a633b00f4",
+      "content_sha256": "0939cbe63ff0b95f8ee97be6cf1f594650fcdde18c59c7ca4970df8fc521874c",
+      "nodes": 24,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 1,
+          "label": "QQ511.EIE",
+          "wire_column": 11
+        },
+        {
+          "row": 14,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        },
+        {
+          "row": 41,
+          "label": "QQ421.LGE",
+          "wire_column": 11
+        },
+        {
+          "row": 49,
+          "label": "QQ521.NIE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:55.307857+00:00"
+  }
+}

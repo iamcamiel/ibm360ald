@@ -1,0 +1,53 @@
+FS241 SELECT REGISTER BIT 24-27 - TRANSLATION NOTES
+
+Reference scan: FS Select Register\FS241 SELECT REGISTER BIT 24-27.tif
+Original scan: img20141208_15250651.tif
+Original scan timestamp: 2014-12-08 15:25:06.510000
+Preceding scan: FS201 SELECT REGISTER BIT 20-23.tif
+Following scan: FS281 SELECT REGISTER BIT 28 TO 30.tif
+Review record: tmp\ald-text\fs\FS root reviews.json
+
+PAGE NOTES
+
+FS241 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 27,
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [],
+  "noncard_blocks": 0,
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 42,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native topology review",
+    "evidence": "All 27 blocks and native pins reviewed individually. Bit 26 uses separate BE receiver and bottom BF/BG chain. First three OR outputs print an asterisk before T; final AR output has T only. Three SCU reset controls, fourth lower gate with only two inputs, and no fourth negative external output are preserved."
+  },
+  {
+    "location": "Feedback crossings",
+    "evidence": "Native bit 27 feedback/output is r68 via c154 and c89; bit 26 uses r69 via c155 and c92. Scan wire ridges at y4394.5 and4457 fit rows68 and69. GT/reset are c91/c90 relative to bank96, confirmed by native corner/diamond positions. These route differences do not alter ordinary block columns."
+  },
+  {
+    "location": "Calibration",
+    "evidence": "Five native block left/top anchors corroborate ordinary 73/96/119/142/165 bank columns, column pitch40.2087 pixels. Native crops and all source bands retained privately. All four reference-table columns read independently."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS201 SELECT REGISTER BIT 20-23.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS281 SELECT REGISTER BIT 28 TO 30.tif

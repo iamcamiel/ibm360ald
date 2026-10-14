@@ -1,0 +1,1984 @@
+{
+  "nodes": [
+    {
+      "box": "A1",
+      "leg": "111100",
+      "address": "01BC",
+      "fields": [
+        "A 0+T",
+        "A →D",
+        "B 0,V+0,U",
+        "B →F      AB→U",
+        "C SAVE-SIGNS"
+      ],
+      "exit": "0X──AA",
+      "comments": [
+        "SP MULTIPLY",
+        "HIGH ORDER OP 2",
+        "FROM T TO D.",
+        "CHAR SUM TO F"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        0
+      ]
+    },
+    {
+      "box": "A2",
+      "leg": "0X",
+      "address": "01C4",
+      "fields": [
+        "A →AB",
+        "B ¬64+U",
+        "B →F       F→U",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X*──AB",
+      "comments": [
+        "NO LEADING ZERO",
+        "ZERO TO A REG",
+        "F-64 TO F",
+        "SELECT MULT AND",
+        "BEGIN ALGRM",
+        "BRANCH ON SP"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        47,
+        0
+      ]
+    },
+    {
+      "box": "A4",
+      "leg": "00",
+      "address": "01CC",
+      "fields": [
+        "A →AB",
+        "B ¬64+U",
+        "B →F       F→U",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X*──AD",
+      "comments": [
+        "PRE-NORM DONE",
+        "SELECT MULT FOR",
+        "ALGORITHM F-64",
+        "TO F. ZERO TO A",
+        "REG BRANCH ON SP"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        91,
+        0
+      ]
+    },
+    {
+      "box": "A5",
+      "leg": "X0",
+      "address": "0148",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "C SEL-MPL*E3",
+        "C E3-1",
+        "C 0→STC"
+      ],
+      "exit": "X1──AE",
+      "comments": [
+        "MULTIPLY",
+        "ALGORITHM"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        113,
+        0
+      ]
+    },
+    {
+      "box": "A6",
+      "leg": "X1",
+      "address": "014B",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X*──AF",
+      "comments": [
+        "MULTIPLY ALGRM",
+        "AB LEFT 2 +DT",
+        "MULT SHIFT RIGHT",
+        "4 TO AB BRANCH",
+        "ON E COUNTER IF",
+        "WORD DONE"
+      ],
+      "R_line": "R         E3≠1",
+      "grid": [
+        135,
+        0
+      ]
+    },
+    {
+      "box": "A7",
+      "leg": "X0",
+      "address": "014A",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "L RF*E2→S",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X1──AG",
+      "comments": [
+        "MULTIPLY ALGRM",
+        "READ LOW ORDER",
+        "MULTIPLIER TO",
+        "S FOR DECODING"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        157,
+        0
+      ]
+    },
+    {
+      "box": "A8",
+      "leg": "X1",
+      "address": "0149",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X1──AH",
+      "comments": [
+        "MULTIPLY",
+        "ALGORITHM"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        179,
+        0
+      ]
+    },
+    {
+      "box": "A9",
+      "leg": "X1",
+      "address": "014D",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X*──AI",
+      "comments": [
+        "MULTIPLY",
+        "ALGORITHM",
+        "BRANCH ON E",
+        "COUNTER IF",
+        "WORD DONE"
+      ],
+      "R_line": "R         E3≠4",
+      "grid": [
+        201,
+        0
+      ]
+    },
+    {
+      "box": "E1",
+      "leg": "0X",
+      "address": "01CD",
+      "fields": [
+        "A →B,T",
+        "D CON→E3",
+        "L RF*E2→S",
+        "C 0→STC"
+      ],
+      "exit": "**──EA",
+      "comments": [
+        "ZEROS TO T AND B",
+        "15 TO E COUNTER.",
+        "BRANCH ON LEAD",
+        "ZEROS."
+      ],
+      "R_line": "R A1=0.J5=0",
+      "grid": [
+        25,
+        22
+      ]
+    },
+    {
+      "box": "E2",
+      "leg": "01",
+      "address": "01C5",
+      "fields": [
+        "A 0+DT",
+        "A →DT"
+      ],
+      "exit": "10──EB",
+      "comments": [
+        "DT HAS LEADING",
+        "ZEROS.",
+        "ENTRY FROM RX SP",
+        "+ DP MULT IF 2ND",
+        "OPERAND HAS",
+        "LEAD ZERO.",
+        "GG041 + GH401"
+      ],
+      "R_line": "R 1          0",
+      "grid": [
+        47,
+        22
+      ]
+    },
+    {
+      "box": "E3",
+      "leg": "10",
+      "address": "01CE",
+      "fields": [
+        "A 0+DT",
+        "A L→DT",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "**──EC",
+      "comments": [
+        "DT LEFT 4 TO DT",
+        "AND F-1 TO F IF",
+        "LEAD ZEROS BRANCH",
+        "ON LEAD ZEROS OR",
+        "LEAD FRACTION"
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        69,
+        22
+      ]
+    },
+    {
+      "box": "E4",
+      "leg": "11",
+      "address": "01CF",
+      "fields": [
+        "A →T",
+        "L WF*E2Ω1",
+        "C EEOP"
+      ],
+      "exit": "XX──ED",
+      "comments": [
+        "FRACTION IS ZERO.",
+        "STORE ZERO AT",
+        "R1+1"
+      ],
+      "grid": [
+        91,
+        22
+      ]
+    },
+    {
+      "box": "E5",
+      "leg": "X0",
+      "address": "014C",
+      "fields": [
+        "A ABL2+0",
+        "A R→AB",
+        "B QUOT+0",
+        "B →ST",
+        "C MPLY-END"
+      ],
+      "exit": "XX──EE",
+      "comments": [
+        "LAST CYCLE OF",
+        "MULTIPLY ALGRM",
+        "SELECT +DT IF",
+        "NEEDED.SAVE",
+        "2 LOW ORDER",
+        "BITS OF FRACT.",
+        "STORE IN ST",
+        "BYTE ZERO",
+        "FORMAT 00XX 0000"
+      ],
+      "grid": [
+        113,
+        22
+      ]
+    },
+    {
+      "box": "E6",
+      "leg": "XX",
+      "address": "06BE",
+      "fields": [
+        "A ABL2+0",
+        "A →AB,DTS",
+        "B V0.V0+0",
+        "C ABC-1"
+      ],
+      "exit": "X*──EF",
+      "comments": [
+        "FRACTION TO DT",
+        "REG AND ADD +DT",
+        "IF NEEDED.",
+        "MOVE SAVED BITS",
+        "IN ST TO FORMAT",
+        "00XX 00XX",
+        "MAKE ABC=7"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        135,
+        22
+      ]
+    },
+    {
+      "box": "E7",
+      "leg": "X1",
+      "address": "0787",
+      "fields": [
+        "A 0+DT",
+        "A L→DT",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A1≠0→INH"
+      ],
+      "exit": "0X──EG",
+      "comments": [
+        "SP MULTIPLY",
+        "ONE CYCLE OF",
+        "POST NORM IF",
+        "NEEDED.STORE",
+        "LOW ORDER."
+      ],
+      "R_line": "R 0",
+      "grid": [
+        157,
+        22
+      ]
+    },
+    {
+      "box": "E8",
+      "leg": "0X",
+      "address": "09C8",
+      "fields": [
+        "A 0+D",
+        "A →JWT",
+        "B 0+U      F→U",
+        "L WF*E2",
+        "C RSLT-SIGN→LS"
+      ],
+      "exit": "0*──EH",
+      "comments": [
+        "HIGH ORDER TO T",
+        "AND STORE WITH",
+        "CHAR FROM F",
+        "BRANCH ON CHAR",
+        "OV OR UNDERFLOW"
+      ],
+      "R_line": "R         UFLO",
+      "grid": [
+        179,
+        22
+      ]
+    },
+    {
+      "box": "J1",
+      "leg": "0X",
+      "address": "01C9",
+      "fields": [
+        "D CON→E3",
+        "L RF*E2Ω1→S",
+        "C 0→STC"
+      ],
+      "exit": "**──JA",
+      "comments": [
+        "LOW ORDER OP 1",
+        "TO S. 15 TO E",
+        "COUNTER. ZEROS",
+        "TO STC.",
+        "BRANCH ON LEAD",
+        "ZEROS IN FRACTS"
+      ],
+      "R_line": "R A1=0.J5=0",
+      "grid": [
+        25,
+        44
+      ]
+    },
+    {
+      "box": "J2",
+      "leg": "11",
+      "address": "01C7",
+      "fields": [
+        "A 0+DT",
+        "A →DT"
+      ],
+      "exit": "10──JB",
+      "comments": [
+        "BOTH HAVE",
+        "LEAD ZEROS."
+      ],
+      "R_line": "R 1          0",
+      "grid": [
+        47,
+        44
+      ]
+    },
+    {
+      "box": "J3",
+      "leg": "10",
+      "address": "01CA",
+      "fields": [
+        "A 0+DT",
+        "A L→DT",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "**──JC",
+      "comments": [
+        "DT LEFT 4 TO DT",
+        "F-1 TO F IF LEAD",
+        "ZERO BRANCH ON",
+        "LEAD ZERO OR",
+        "ZERO FRACTION"
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        69,
+        44
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "11",
+      "address": "01CB",
+      "fields": [
+        "A →T",
+        "L WF*E2Ω1",
+        "C EEOP"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "FRACTION IS ZERO.",
+        "STORE ZERO AT",
+        "R1+1"
+      ],
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "J7",
+      "leg": "X0",
+      "address": "0786",
+      "fields": [
+        "A AB+0",
+        "A L→AB,DT",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2Ω1",
+        "C A1≠0→INH"
+      ],
+      "exit": "**──JG",
+      "comments": [
+        "DP MULTIPLY ONE",
+        "CYCLE OF POST",
+        "NORM IF NEEDED.",
+        "BRANCH ON POST",
+        "NORM NEEDED."
+      ],
+      "R_line": "R J1=0/1.J18=0",
+      "grid": [
+        157,
+        44
+      ]
+    },
+    {
+      "box": "J8",
+      "leg": "1X",
+      "address": "09CA",
+      "fields": [
+        "A 0-1",
+        "B 0.V1+0",
+        "B →ST",
+        "C J7→STC"
+      ],
+      "exit": "XX──JH",
+      "comments": [
+        "POST NORM NEEDED",
+        "CHANGE FORMAT IN",
+        "ST 0 TO 0000 00XX",
+        "MAKE STC=7 FOR",
+        "NEXT CYCLE INGATE"
+      ],
+      "grid": [
+        179,
+        44
+      ]
+    },
+    {
+      "box": "J9",
+      "leg": "XX",
+      "address": "078F",
+      "fields": [
+        "B V+U",
+        "B →ST     AB→U",
+        "L WF*E2Ω1",
+        "C A1≠0→INH"
+      ],
+      "exit": "0X──JI",
+      "comments": [
+        "TAKE ST BYTE ZERO",
+        "FORMAT 0000 00XX",
+        "ADD AB BYTE 7",
+        "FORMAT XXXX XX00",
+        "AND STORE IN ST 7",
+        "STORE LOW ORDER.",
+        "INH DOES NOT INH",
+        "SAL TO ST BUT",
+        "FILLS UFLO TO",
+        "LOOK AT F REG."
+      ],
+      "R_line": "R 0",
+      "grid": [
+        201,
+        44
+      ]
+    },
+    {
+      "box": "L2",
+      "leg": "10",
+      "address": "01C6",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "L W*24"
+      ],
+      "exit": "X*──LB",
+      "comments": [
+        "AB HAS LEADING",
+        "ZEROS. LOW ORDER",
+        "OP 1 TO B BRANCH",
+        "ON SP"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        47,
+        55
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "X1",
+      "address": "0145",
+      "fields": [
+        "A A13+0",
+        "A L→AB17",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "10──LE",
+      "comments": [
+        "SP BEGIN PRE",
+        "NORM AB REG",
+        "INSERT ZEROS",
+        "IN B.",
+        "F-1 TO F."
+      ],
+      "R_line": "R 1          0",
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "N1",
+      "leg": "101100",
+      "address": "01AC",
+      "fields": [
+        "A 0+T",
+        "A →D",
+        "B 0,V+0,U",
+        "B →F      AB→U",
+        "L RF*E3Ω1→T",
+        "C SAVE-SIGNS"
+      ],
+      "exit": "0X──NA",
+      "comments": [
+        "DP MULTIPLY",
+        "HIGH ORDER OP 2",
+        "FROM T TO D AND",
+        "LOW ORDER OP 2",
+        "TO T CHAR SUM",
+        "TO F"
+      ],
+      "R_line": "R SPEC       1",
+      "grid": [
+        25,
+        66
+      ]
+    },
+    {
+      "box": "N4",
+      "leg": "00",
+      "address": "01C8",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "L W*24"
+      ],
+      "exit": "X*──ND",
+      "comments": [
+        "PRE-NORM OF DT",
+        "DONE. LOW ORDER",
+        "OP 1 TO B",
+        "BRANCH ON SP",
+        "GO TO PRE-SHIFT",
+        "OF AB REG"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        91,
+        66
+      ]
+    },
+    {
+      "box": "N6",
+      "leg": "10",
+      "address": "0142",
+      "fields": [
+        "A AB17+0",
+        "A L→AB17,T",
+        "B -1+U",
+        "B →F       F→U",
+        "L WF*E2",
+        "C A1≠0→INH"
+      ],
+      "exit": "**──NF",
+      "comments": [
+        "PRE NORMALIZING",
+        "AB LEFT 4 TO AB",
+        "AND T. F-1 TO F",
+        "AND STORE LOW",
+        "ORDER IN R1."
+      ],
+      "R_line": "R J1=0.J17=0",
+      "grid": [
+        135,
+        66
+      ]
+    },
+    {
+      "box": "N7",
+      "leg": "11",
+      "address": "0143",
+      "fields": [
+        "A →T",
+        "L WF*E2Ω1",
+        "C EEOP"
+      ],
+      "exit": "XX──NG",
+      "comments": [
+        "ZEROS TO T REG",
+        "RESULT FRAC.",
+        "IS ZERO."
+      ],
+      "grid": [
+        157,
+        66
+      ]
+    },
+    {
+      "box": "N9",
+      "leg": "X1",
+      "address": "0147",
+      "fields": [
+        "A →T",
+        "L RF*E2→S"
+      ],
+      "exit": "00──NI",
+      "comments": [
+        "SP HIGH ORDER TO",
+        "S AND ZEROS TO T"
+      ],
+      "R_line": "R 0          0",
+      "grid": [
+        201,
+        66
+      ]
+    },
+    {
+      "box": "Q5",
+      "leg": "X0",
+      "address": "0144",
+      "fields": [
+        "A AB17+0",
+        "A L→AB17,T",
+        "B -1+U",
+        "B →F       F→U"
+      ],
+      "exit": "10──QE",
+      "comments": [
+        "DP BEGIN PRE-",
+        "NORM AB REG.",
+        "F-1 TO F."
+      ],
+      "R_line": "R 1          0",
+      "grid": [
+        113,
+        77
+      ]
+    },
+    {
+      "box": "Q7",
+      "leg": "00",
+      "address": "0140",
+      "fields": [
+        "A A+0",
+        "A →T",
+        "L RF*E2→S"
+      ],
+      "exit": "XX──QG",
+      "comments": [
+        "NORMALIZATION",
+        "COMPLETE. LOW",
+        "ORDER OF",
+        "MULTIPLIER TO S."
+      ],
+      "grid": [
+        157,
+        77
+      ]
+    },
+    {
+      "box": "Q8",
+      "leg": "XX",
+      "address": "0141",
+      "fields": [
+        "A →AB",
+        "L WF*E2"
+      ],
+      "exit": "X*──QH",
+      "comments": [
+        "ZEROS TO AB",
+        "STORE HIGH ORDER",
+        "MULTIPLIER IN R1",
+        "BRANCH ON SP"
+      ],
+      "R_line": "R        E(03)",
+      "grid": [
+        179,
+        77
+      ]
+    },
+    {
+      "box": "Q9",
+      "leg": "X0",
+      "address": "0146",
+      "fields": [
+        "B ¬64+U",
+        "B →F       F→U",
+        "L R*24→T",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X0──QI",
+      "comments": [
+        "DP WORD REG TO T",
+        "SELECT DT",
+        "MULTIPLE FOR",
+        "FIRST ADD CYCLE.",
+        "F-64 TO F"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        201,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      1,
+      "QG011.GEE"
+    ],
+    [
+      2,
+      2,
+      "(111100)"
+    ],
+    [
+      2,
+      8,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      9,
+      "(101100)"
+    ],
+    [
+      2,
+      10,
+      "(111100)"
+    ],
+    [
+      2,
+      19,
+      "QG011.QHE"
+    ],
+    [
+      2,
+      20,
+      "(X1)"
+    ],
+    [
+      2,
+      36,
+      "QG011.CIE"
+    ],
+    [
+      2,
+      37,
+      "(01)"
+    ],
+    [
+      2,
+      42,
+      "QG011.GIE"
+    ],
+    [
+      2,
+      43,
+      "(X0)"
+    ],
+    [
+      2,
+      47,
+      "QG011.AFE"
+    ],
+    [
+      2,
+      48,
+      "(0X)"
+    ],
+    [
+      229,
+      25,
+      "QC051──EHE"
+    ],
+    [
+      229,
+      26,
+      "(00001)"
+    ],
+    [
+      229,
+      42,
+      "QC051──EDE"
+    ],
+    [
+      229,
+      43,
+      "(XX)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583808"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QC031"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "FLT. PT. MULTIPLY"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      259,
+      95
+    ]
+  ],
+  "scan_order_neighbors": {
+    "preceding": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC021 FLT PT ADD INSTS POST NORM AND FRACT COR.tif",
+    "following": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC041 FLT PT DIVIDE.tif"
+  },
+  "wire_paths": [
+    [
+      [
+        10,
+        1
+      ],
+      [
+        25,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        8
+      ],
+      [
+        21,
+        8
+      ]
+    ],
+    [
+      [
+        21,
+        3
+      ],
+      [
+        21,
+        69
+      ]
+    ],
+    [
+      [
+        21,
+        3
+      ],
+      [
+        25,
+        3
+      ]
+    ],
+    [
+      [
+        21,
+        69
+      ],
+      [
+        25,
+        69
+      ]
+    ],
+    [
+      [
+        40,
+        69
+      ],
+      [
+        44,
+        69
+      ],
+      [
+        44,
+        64
+      ],
+      [
+        23,
+        64
+      ],
+      [
+        23,
+        45
+      ],
+      [
+        25,
+        45
+      ]
+    ],
+    [
+      [
+        10,
+        47
+      ],
+      [
+        25,
+        47
+      ]
+    ],
+    [
+      [
+        10,
+        36
+      ],
+      [
+        44,
+        36
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        44,
+        25
+      ],
+      [
+        44,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        88,
+        25
+      ],
+      [
+        88,
+        35
+      ],
+      [
+        66,
+        35
+      ],
+      [
+        66,
+        23
+      ],
+      [
+        69,
+        23
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        88,
+        47
+      ],
+      [
+        88,
+        43
+      ],
+      [
+        66,
+        43
+      ],
+      [
+        66,
+        45
+      ],
+      [
+        69,
+        45
+      ]
+    ],
+    [
+      [
+        106,
+        25
+      ],
+      [
+        110,
+        25
+      ],
+      [
+        110,
+        42
+      ],
+      [
+        229,
+        42
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        110,
+        47
+      ],
+      [
+        110,
+        42
+      ]
+    ],
+    [
+      [
+        172,
+        69
+      ],
+      [
+        174,
+        69
+      ],
+      [
+        174,
+        42
+      ]
+    ],
+    [
+      [
+        62,
+        3
+      ],
+      [
+        66,
+        3
+      ],
+      [
+        66,
+        16
+      ],
+      [
+        176,
+        16
+      ],
+      [
+        176,
+        5
+      ],
+      [
+        179,
+        5
+      ]
+    ],
+    [
+      [
+        110,
+        16
+      ],
+      [
+        110,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        128,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        157,
+        3
+      ]
+    ],
+    [
+      [
+        154,
+        3
+      ],
+      [
+        154,
+        17
+      ],
+      [
+        132,
+        17
+      ],
+      [
+        132,
+        1
+      ],
+      [
+        135,
+        1
+      ]
+    ],
+    [
+      [
+        172,
+        3
+      ],
+      [
+        179,
+        3
+      ]
+    ],
+    [
+      [
+        194,
+        3
+      ],
+      [
+        201,
+        3
+      ]
+    ],
+    [
+      [
+        216,
+        3
+      ],
+      [
+        220,
+        3
+      ],
+      [
+        220,
+        17
+      ],
+      [
+        198,
+        17
+      ],
+      [
+        198,
+        1
+      ],
+      [
+        201,
+        1
+      ]
+    ],
+    [
+      [
+        220,
+        3
+      ],
+      [
+        222,
+        3
+      ],
+      [
+        222,
+        18
+      ],
+      [
+        110,
+        18
+      ],
+      [
+        110,
+        23
+      ],
+      [
+        113,
+        23
+      ]
+    ],
+    [
+      [
+        128,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        157,
+        25
+      ]
+    ],
+    [
+      [
+        154,
+        25
+      ],
+      [
+        154,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        172,
+        25
+      ],
+      [
+        179,
+        25
+      ]
+    ],
+    [
+      [
+        172,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        176,
+        47
+      ],
+      [
+        176,
+        23
+      ],
+      [
+        179,
+        23
+      ]
+    ],
+    [
+      [
+        194,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        220,
+        47
+      ],
+      [
+        220,
+        41
+      ],
+      [
+        177,
+        41
+      ],
+      [
+        177,
+        27
+      ],
+      [
+        179,
+        27
+      ]
+    ],
+    [
+      [
+        194,
+        25
+      ],
+      [
+        229,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        58
+      ],
+      [
+        110,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        110,
+        69
+      ]
+    ],
+    [
+      [
+        110,
+        58
+      ],
+      [
+        110,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        132,
+        58
+      ],
+      [
+        132,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        128,
+        80
+      ],
+      [
+        132,
+        80
+      ],
+      [
+        132,
+        69
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        157,
+        69
+      ]
+    ],
+    [
+      [
+        154,
+        69
+      ],
+      [
+        154,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ],
+    [
+      [
+        198,
+        80
+      ],
+      [
+        198,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        216,
+        69
+      ],
+      [
+        224,
+        69
+      ],
+      [
+        224,
+        20
+      ],
+      [
+        44,
+        20
+      ],
+      [
+        44,
+        3
+      ],
+      [
+        47,
+        3
+      ]
+    ],
+    [
+      [
+        216,
+        80
+      ],
+      [
+        226,
+        80
+      ],
+      [
+        226,
+        21
+      ],
+      [
+        108,
+        21
+      ],
+      [
+        108,
+        1
+      ],
+      [
+        113,
+        1
+      ]
+    ],
+    [
+      [
+        10,
+        42
+      ],
+      [
+        108,
+        42
+      ],
+      [
+        108,
+        1
+      ],
+      [
+        113,
+        1
+      ]
+    ],
+    [
+      [
+        40,
+        3
+      ],
+      [
+        42,
+        3
+      ],
+      [
+        42,
+        13
+      ],
+      [
+        23,
+        13
+      ],
+      [
+        23,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        10,
+        19
+      ],
+      [
+        177,
+        19
+      ],
+      [
+        177,
+        1
+      ],
+      [
+        179,
+        1
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      21,
+      8,
+      "O"
+    ],
+    [
+      44,
+      36,
+      "O"
+    ],
+    [
+      44,
+      47,
+      "O"
+    ],
+    [
+      88,
+      25,
+      "O"
+    ],
+    [
+      88,
+      47,
+      "O"
+    ],
+    [
+      110,
+      42,
+      "O"
+    ],
+    [
+      174,
+      42,
+      "O"
+    ],
+    [
+      110,
+      16,
+      "O"
+    ],
+    [
+      110,
+      3,
+      "O"
+    ],
+    [
+      154,
+      3,
+      "O"
+    ],
+    [
+      220,
+      3,
+      "O"
+    ],
+    [
+      154,
+      25,
+      "O"
+    ],
+    [
+      176,
+      47,
+      "O"
+    ],
+    [
+      110,
+      69,
+      "O"
+    ],
+    [
+      110,
+      58,
+      "O"
+    ],
+    [
+      132,
+      69,
+      "O"
+    ],
+    [
+      154,
+      69,
+      "O"
+    ],
+    [
+      198,
+      80,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": [
+    "All 28 ordinary ROS output routes corroborate QZ after separate return-loop and input rows. Functional A1/J5 and J1/J17 zero-fraction branches and normalization split are source-backed; all six left-margin inputs reach the source-backed destination groups. Right portal EDE recovered by full-resolution printed glyph crop QC031 portal audit.png."
+  ],
+  "review_notes": [
+    "A1/N1 B control commas corroborated with field table M31 and source crop; rendered 0,V+0,U.",
+    "Footer source has four vertical dividers. Removed synthetic enclosing top/bottom horizontal rules while retaining every vertical divider and printed value."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1363.33,
+    "first_header_y": 260.97,
+    "column_step": 657.32,
+    "row_step": 494.44
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QC031 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QC031",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "35c0c674cb3aeb5288bd0e3f45778c804b23aedd32d09837ade83164deb55925",
+    "text_sha256": "9f0d23d0b7a04c49059faf112dec904511bb756ab5145de37cd628a46999bf62",
+    "content_sha256": "f16345a86f115901aa3d96ae0c996c9ffa138089a1b0bec1614a4ad765edefcb",
+    "verification_sha256": "8645d941da7b02e92fe469dcf4dc5845ab44deaed9433c0e1c66ec1a789dc2d6",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC031 FLT PT MULTIPLY.tif",
+    "source_sha256": "a2404ad8ae6f79ab082e0f342dfdd249120931dd2551d4416fbdd39b25ef694a",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:37.939418+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

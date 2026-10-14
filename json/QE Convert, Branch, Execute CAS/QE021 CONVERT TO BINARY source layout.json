@@ -1,0 +1,1486 @@
+{
+  "nodes": [
+    {
+      "box": "A1",
+      "leg": "001111",
+      "address": "010F",
+      "fields": [
+        "C 0→STC"
+      ],
+      "exit": "0X──AA",
+      "comments": [
+        "000 TO STC"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        0
+      ]
+    },
+    {
+      "box": "A2",
+      "leg": "0X",
+      "address": "090C",
+      "fields": [
+        "A →A",
+        "D MS→ST",
+        "L W*24",
+        "S STOP1"
+      ],
+      "exit": "XX──AB",
+      "comments": [
+        "CLEAR A"
+      ],
+      "grid": [
+        47,
+        0
+      ]
+    },
+    {
+      "box": "A4",
+      "leg": "XX",
+      "address": "053D",
+      "fields": [
+        "A →DT",
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "XX──AD",
+      "comments": [
+        "LEFT HALF DIGIT",
+        "TO F4-7",
+        "CLEAR DT"
+      ],
+      "grid": [
+        91,
+        0
+      ]
+    },
+    {
+      "box": "A5",
+      "leg": "XX",
+      "address": "090F",
+      "fields": [
+        "A F1+DTL1",
+        "A →AB38,DT",
+        "B 0+6U",
+        "B          F→U"
+      ],
+      "exit": "XX──AE",
+      "comments": [
+        "F4-7 TO PB60-63",
+        "DT L1 TO PA",
+        "PAL TO B→DT",
+        "DECIMAL CORRECT"
+      ],
+      "grid": [
+        113,
+        0
+      ]
+    },
+    {
+      "box": "A6",
+      "leg": "XX",
+      "address": "04BD",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B V+0",
+        "B →F",
+        "C STC+1"
+      ],
+      "exit": "XX──AF",
+      "comments": [
+        "B L2 TO PB",
+        "DT TO PA",
+        "PAL TO DT",
+        "STC+1 TO STC",
+        "RH DIGIT TO F"
+      ],
+      "grid": [
+        135,
+        0
+      ]
+    },
+    {
+      "box": "A7",
+      "leg": "XX",
+      "address": "05C5",
+      "fields": [
+        "A F1+DTL1",
+        "A →B,DT",
+        "B V+6U0.0",
+        "B →F       F→U"
+      ],
+      "exit": "**──AG",
+      "comments": [
+        "F4-7 TO PB60-63",
+        "DT L1 TO PA",
+        "PAL TO B→DT",
+        "BR PER STC",
+        "AND STAD"
+      ],
+      "R_line": "R STAD   STC≠3",
+      "grid": [
+        157,
+        0
+      ]
+    },
+    {
+      "box": "E1",
+      "leg": "00",
+      "address": "05C0",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B V0,V0+0",
+        "B →F",
+        "C 1→STAD"
+      ],
+      "exit": "XX──EA",
+      "comments": [
+        "TN STAD",
+        "4B+DT TO DT",
+        "LH DIGIT TO F"
+      ],
+      "grid": [
+        25,
+        22
+      ]
+    },
+    {
+      "box": "E3",
+      "leg": "XX",
+      "address": "05C6",
+      "fields": [
+        "A F1+DTL1",
+        "A →B,DT",
+        "B 0+6U",
+        "B          F→U"
+      ],
+      "exit": "XX──EC",
+      "comments": [
+        "DTL1+F4-7 TO DT",
+        "AND B",
+        "DECIMAL CORRECT"
+      ],
+      "grid": [
+        69,
+        22
+      ]
+    },
+    {
+      "box": "E4",
+      "leg": "XX",
+      "address": "043D",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B V+0",
+        "B →F",
+        "L R*24→S",
+        "C 0→STC"
+      ],
+      "exit": "XX──ED",
+      "comments": [
+        "4B+DT TO DT",
+        "000 TO STC",
+        "SAL TO F",
+        "READ LOW ORDER",
+        "DECIMAL TO S"
+      ],
+      "grid": [
+        91,
+        22
+      ]
+    },
+    {
+      "box": "E6",
+      "leg": "XX",
+      "address": "03BD",
+      "fields": [
+        "A 0-T",
+        "A →T",
+        "L WG*E2"
+      ],
+      "exit": "XX──EF",
+      "comments": [
+        "NEG RESULT",
+        "COMPL LOW ORDER",
+        "32-BITS AND",
+        "WRITE R1"
+      ],
+      "grid": [
+        135,
+        22
+      ]
+    },
+    {
+      "box": "G2",
+      "leg": "01",
+      "address": "05C1",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "XX──GB",
+      "comments": [
+        "B L2 TO PB",
+        "DT TO PA",
+        "PAL TO DT",
+        "LH DIGIT TO F"
+      ],
+      "grid": [
+        47,
+        33
+      ]
+    },
+    {
+      "box": "G5",
+      "leg": "00",
+      "address": "05C8",
+      "fields": [
+        "A F1+DTL1",
+        "A →DT",
+        "B V+0",
+        "B →F"
+      ],
+      "exit": "XX──GE",
+      "comments": [
+        "VALID AND NEG",
+        "F4-7+2DT TO DT",
+        "WRITE R1"
+      ],
+      "grid": [
+        113,
+        33
+      ]
+    },
+    {
+      "box": "J1",
+      "leg": "11",
+      "address": "05C3",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "XX──JA",
+      "comments": [
+        "B L2 TO PB",
+        "DT TO PA",
+        "PAL TO DT",
+        "LH DIGIT TO F"
+      ],
+      "grid": [
+        25,
+        44
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "XX",
+      "address": "0511",
+      "fields": [
+        "A 0+DT",
+        "C 1→STAB,STAG"
+      ],
+      "exit": "X*──JD",
+      "comments": [
+        "POS RESULT",
+        "HIGH ORDER BITS",
+        "OR OVF BITS",
+        "TO PAL40-63",
+        "T32 TO STAG"
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "L2",
+      "leg": "XX",
+      "address": "033D",
+      "fields": [
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "**──LB",
+      "comments": [
+        "BRANCH ON STAE",
+        "AND SIGN IN F",
+        "4 TO7"
+      ],
+      "R_line": "R STAE.F1SGN*",
+      "grid": [
+        47,
+        55
+      ]
+    },
+    {
+      "box": "L3",
+      "leg": "01",
+      "address": "05C9",
+      "fields": [
+        "A F1+DTL1",
+        "A →DT",
+        "B V+0",
+        "B →F",
+        "L WG*E2"
+      ],
+      "exit": "XX──LC",
+      "comments": [
+        "VALID AND POS",
+        "F4-7+2DT TO DT"
+      ],
+      "grid": [
+        69,
+        55
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "X0",
+      "address": "0338",
+      "fields": [
+        "C 0→STAG EEOP"
+      ],
+      "exit": "X*──LE",
+      "comments": [
+        "WAIT FOR BR",
+        "TO DETECT OVF",
+        "BR ON STAG",
+        "AND PAL40-63",
+        "TF STAG"
+      ],
+      "R_line": "R 0 J47=0.OFLO1",
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "L6",
+      "leg": "X1",
+      "address": "0339",
+      "fields": [
+        "C 0→STAG EEOP"
+      ],
+      "exit": "X*──LF",
+      "comments": [
+        "ZERO RESULT"
+      ],
+      "R_line": "R       J47=0",
+      "grid": [
+        135,
+        55
+      ]
+    },
+    {
+      "box": "N1",
+      "leg": "10",
+      "address": "05C2",
+      "fields": [
+        "A ABL2+DT",
+        "A →DT",
+        "B 0+6U0.S",
+        "B          F→U"
+      ],
+      "exit": "XX──NA",
+      "comments": [
+        "TO STAD",
+        "4B+DT TO DT",
+        "LH DIGIT TO F"
+      ],
+      "grid": [
+        25,
+        66
+      ]
+    },
+    {
+      "box": "N4",
+      "leg": "10",
+      "address": "05CA",
+      "fields": [
+        "C 1→INTREQ-TGR",
+        "C EEOP"
+      ],
+      "exit": "X1──ND",
+      "comments": [
+        "INVALID→NEG",
+        "EARLY END OP"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        91,
+        66
+      ]
+    },
+    {
+      "box": "N7",
+      "leg": "X0",
+      "address": "05CC",
+      "fields": [
+        "C DVD-CHECK"
+      ],
+      "exit": "X1──NG",
+      "comments": [
+        "OVF DIV CK"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        157,
+        66
+      ]
+    },
+    {
+      "box": "Q3",
+      "leg": "11",
+      "address": "05CB",
+      "fields": [
+        "C 1→INTREQ-TGR",
+        "C EEOP"
+      ],
+      "exit": "X1──QC",
+      "comments": [
+        "INVALID PLUS",
+        "EARLY END OP"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        69,
+        77
+      ]
+    },
+    {
+      "box": "Q8",
+      "leg": "X1",
+      "address": "05CD",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──QH",
+      "comments": [
+        "END OP",
+        "GO TO I FETCH"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        179,
+        77
+      ]
+    },
+    {
+      "box": "Q9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──QI",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        201,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      3,
+      "QT011.SDE"
+    ],
+    [
+      2,
+      4,
+      "(001111)"
+    ],
+    [
+      2,
+      69,
+      "QK001.QCE"
+    ],
+    [
+      2,
+      70,
+      "(X1)"
+    ],
+    [
+      2,
+      71,
+      "QE011.QGE"
+    ],
+    [
+      2,
+      72,
+      "(X1)"
+    ],
+    [
+      2,
+      78,
+      "QE001.CEE"
+    ],
+    [
+      2,
+      79,
+      "(X1)"
+    ],
+    [
+      2,
+      82,
+      "QB041.AEE"
+    ],
+    [
+      2,
+      83,
+      "(X1)"
+    ],
+    [
+      2,
+      85,
+      "QB021.EIE"
+    ],
+    [
+      2,
+      86,
+      "(X1)"
+    ],
+    [
+      2,
+      88,
+      "QB011.LEE"
+    ],
+    [
+      2,
+      89,
+      "(X1)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583815"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QE021"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "CONVERT TO BINARY"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      105
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        12,
+        3
+      ],
+      [
+        25,
+        3
+      ]
+    ],
+    [
+      [
+        40,
+        3
+      ],
+      [
+        47,
+        3
+      ]
+    ],
+    [
+      [
+        62,
+        3
+      ],
+      [
+        91,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        128,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        157,
+        3
+      ]
+    ],
+    [
+      [
+        172,
+        3
+      ],
+      [
+        175,
+        3
+      ],
+      [
+        175,
+        19
+      ],
+      [
+        23,
+        19
+      ],
+      [
+        23,
+        69
+      ],
+      [
+        25,
+        69
+      ]
+    ],
+    [
+      [
+        23,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        23,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        23,
+        47
+      ],
+      [
+        25,
+        47
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        36
+      ],
+      [
+        67,
+        36
+      ],
+      [
+        67,
+        20
+      ],
+      [
+        111,
+        20
+      ],
+      [
+        111,
+        5
+      ],
+      [
+        113,
+        5
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        67,
+        47
+      ],
+      [
+        67,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        25
+      ],
+      [
+        109,
+        25
+      ],
+      [
+        109,
+        21
+      ],
+      [
+        155,
+        21
+      ],
+      [
+        155,
+        5
+      ],
+      [
+        157,
+        5
+      ]
+    ],
+    [
+      [
+        40,
+        69
+      ],
+      [
+        43,
+        69
+      ],
+      [
+        43,
+        58
+      ],
+      [
+        47,
+        58
+      ]
+    ],
+    [
+      [
+        62,
+        58
+      ],
+      [
+        65,
+        58
+      ],
+      [
+        65,
+        35
+      ],
+      [
+        111,
+        35
+      ],
+      [
+        111,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        65,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        65,
+        58
+      ],
+      [
+        65,
+        67
+      ],
+      [
+        91,
+        67
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        65,
+        67
+      ],
+      [
+        65,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        36
+      ],
+      [
+        131,
+        36
+      ],
+      [
+        131,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        153,
+        25
+      ],
+      [
+        153,
+        45
+      ],
+      [
+        109,
+        45
+      ],
+      [
+        109,
+        42
+      ],
+      [
+        87,
+        42
+      ],
+      [
+        87,
+        45
+      ],
+      [
+        91,
+        45
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        87,
+        58
+      ],
+      [
+        87,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        109,
+        47
+      ],
+      [
+        109,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        109,
+        47
+      ],
+      [
+        131,
+        47
+      ],
+      [
+        131,
+        56
+      ],
+      [
+        135,
+        56
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        131,
+        58
+      ],
+      [
+        131,
+        67
+      ],
+      [
+        177,
+        67
+      ],
+      [
+        177,
+        71
+      ],
+      [
+        157,
+        71
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        153,
+        58
+      ],
+      [
+        153,
+        67
+      ],
+      [
+        131,
+        67
+      ]
+    ],
+    [
+      [
+        131,
+        67
+      ],
+      [
+        131,
+        83
+      ],
+      [
+        179,
+        83
+      ]
+    ],
+    [
+      [
+        8,
+        69
+      ],
+      [
+        21,
+        69
+      ],
+      [
+        21,
+        88
+      ],
+      [
+        177,
+        88
+      ],
+      [
+        177,
+        81
+      ],
+      [
+        179,
+        81
+      ]
+    ],
+    [
+      [
+        8,
+        71
+      ],
+      [
+        21,
+        71
+      ]
+    ],
+    [
+      [
+        8,
+        78
+      ],
+      [
+        21,
+        78
+      ]
+    ],
+    [
+      [
+        8,
+        82
+      ],
+      [
+        21,
+        82
+      ]
+    ],
+    [
+      [
+        8,
+        85
+      ],
+      [
+        21,
+        85
+      ]
+    ],
+    [
+      [
+        8,
+        88
+      ],
+      [
+        21,
+        88
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        109,
+        69
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        84,
+        80
+      ]
+    ],
+    [
+      [
+        109,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        69
+      ],
+      [
+        175,
+        69
+      ],
+      [
+        175,
+        78
+      ],
+      [
+        179,
+        78
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      23,
+      25,
+      "O"
+    ],
+    [
+      23,
+      36,
+      "O"
+    ],
+    [
+      23,
+      47,
+      "O"
+    ],
+    [
+      67,
+      36,
+      "O"
+    ],
+    [
+      65,
+      58,
+      "O"
+    ],
+    [
+      65,
+      67,
+      "O"
+    ],
+    [
+      109,
+      49,
+      "O"
+    ],
+    [
+      131,
+      67,
+      "O"
+    ],
+    [
+      131,
+      71,
+      "O"
+    ],
+    [
+      109,
+      80,
+      "O"
+    ],
+    [
+      21,
+      71,
+      "O"
+    ],
+    [
+      21,
+      78,
+      "O"
+    ],
+    [
+      21,
+      82,
+      "O"
+    ],
+    [
+      21,
+      85,
+      "O"
+    ],
+    [
+      21,
+      88,
+      "O"
+    ],
+    [
+      24,
+      3,
+      "*"
+    ],
+    [
+      178,
+      81,
+      "*"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "review_notes": [
+    "Footer source audit: vertical title-block dividers retained; invented horizontal enclosing rules removed.",
+    "QZ numeric control bits are recorded alongside each box. Symbolic control fields were read from the scan; independent complete numeric encoding of those fields is not asserted.",
+    "Final scan/reference audit distinguishes signal-name hyphens, arithmetic decrements and comparison signs from genuine transfer arrows."
+  ],
+  "source_operator_audit": [
+    {
+      "page": "QE021",
+      "box": "N4",
+      "address": "05CA",
+      "property": "fields",
+      "index": 0,
+      "old": "C 1→INTREQ→TGR",
+      "new": "C 1→INTREQ-TGR",
+      "evidence": [
+        {
+          "old": "INTREQ→TGR",
+          "new": "INTREQ-TGR",
+          "evidence": "QE021 N4 source; PDF F20"
+        }
+      ]
+    },
+    {
+      "page": "QE021",
+      "box": "Q3",
+      "address": "05CB",
+      "property": "fields",
+      "index": 0,
+      "old": "C 1→INTREQ→TGR",
+      "new": "C 1→INTREQ-TGR",
+      "evidence": [
+        {
+          "old": "INTREQ→TGR",
+          "new": "INTREQ-TGR",
+          "evidence": "QE021 N4 source; PDF F20"
+        }
+      ]
+    }
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1388.3,
+    "first_header_y": 254.94,
+    "column_step": 661.0,
+    "row_step": 494.74
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QE021 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QE021",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "c8bac03d27f4f9a5ba7b5079719deba9d3a359e36ee9620f1331abe72e3e8e06",
+    "text_sha256": "23c272a05703843b8fa396c3e3e5b2db52b54f17f17f663fff0f0f28bb6c8376",
+    "content_sha256": "f5d130e9032fa269565df367be948e2b193955c530882e705112c1d933897292",
+    "verification_sha256": "acef052c0d011ef9b3b3806f2a59e008360f06685e1c3b549e45e500884b1c12",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QE Convert, Branch, Execute CAS\\QE021 CONVERT TO BINARY.tif",
+    "source_sha256": "cd063437fe291165eff714875805b06035e24cc8622af27e309fa13753bf5c1a",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:38.655481+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

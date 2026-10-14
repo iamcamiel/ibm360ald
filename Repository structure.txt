@@ -1,0 +1,39 @@
+IBM 360 ALD REPOSITORY STRUCTURE
+
+ALD/<original reference folder>/<page and title>.txt
+    Reviewed UTF-8 diagrams and printed listings, with their monospaced layout.
+
+notes/<original reference folder>/
+    Translation notes, scan provenance, original review receipts, inventories,
+    accepted corrections and source/validation findings. These may be TXT,
+    JSON, CSV or focused native PNG evidence.
+
+json/<original reference folder>/<page and title>.json
+    Available machine-readable page content, including ALD nodes, ports, wires
+    and CAS control fields. Reviewed CAS source-layout specifications have an
+    additional "source layout" suffix. Aggregate tables such as Socket reference
+    and ROS words also live in their corresponding reference folders.
+
+csv/<original reference folder>/<table name>.csv
+    Machine-readable content tables. ROS words.csv is currently the published
+    aggregate table. Empty mirrored folders are retained for future CSV exports.
+    Review and provenance CSV files stay in notes.
+
+tools/repository/
+    Repository imports and portable integrity verification.
+tools/cas/
+    Reusable CAS glyph helper.
+tools/legacy/
+    Preserved shared conversion/validation source snapshots and local imports.
+    These retain their original paths and workspace dependencies; see README.txt.
+
+ALD, notes, json and csv use the original reference directory names. Collection-
+wide conventions, manifests and combined review records are at the notes root.
+The working collection remains outside this repository while conversion continues.
+
+CAS GRID CHANGE
+The user supplied a 245-column, 102-line CAS grid for AA001 and Q* except QZ.
+The rule and source exceptions are in notes/CAS printer grid specification.json
+and notes/CAS source row exceptions.txt. Existing CAS content/specification bytes
+are preserved while the new layout is compared against the scans. No print is
+removed merely to fit a page, and source row identifiers are not renamed.

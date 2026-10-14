@@ -1,0 +1,64 @@
+FS531 SELECT REG RESET FM SCON - TRANSLATION NOTES
+
+Reference scan: FS Select Register\FS531 SELECT REG RESET FM SCON.tif
+Original scan: img20141208_15301831.tif
+Original scan timestamp: 2014-12-08 15:30:18.310000
+Preceding scan: FS521 SELECT REG RESET FROM SCON.tif
+Following scan: FX001 PAM OR RCU DISTRIBUTED SIMPLEX SIGNALS.tif
+Review record: tmp\ald-text\fs\FS root reviews.json
+
+PAGE NOTES
+
+FS531 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 28,
+  "A1_total_card_portions": 28,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 39,
+  "documented_native_A1_discrepancies": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "misplaced_border_wedges": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "separate timing and block rails",
+    "evidence": "Native right rail ownership crop proves timing c182 serves FB.D07, FC.B12, FD.D07 and FE.B03 only. BLOCK c183 serves all seven bottom inputs. Numeric 3 prefixes are literal source text. Their first wire cells cross BLOCK perpendicularly without diamonds; declared strict source crossings do not join those nets."
+  },
+  {
+    "location": "IOCE 1 complement",
+    "evidence": "Native IOCE1 jog and complement turns crops prove AL.B02 return rises at c91 from r73 to r43, then goes to c94 and rises to r40 before FL.B13. It crosses BF latch c92 without a diamond. This small printed jog is retained."
+  },
+  {
+    "location": "card and pin source review",
+    "evidence": "All 28 source blocks and 39 input terminals individually inspected. FC prints 3360C1 K-B1E6; FJ prints 3308C1 K-B1C4. All CE inputs are plain borders; IOCE latch input/output borders and N inputs have the actual printed wedges. All R TO inputs have plain borders. Native A1 matches corroborate card fields without supplying invented wiring."
+  },
+  {
+    "location": "native title",
+    "evidence": "Title exact crop clearly prints SELECT REG RESET FM SCON. Original TIFF filename says SELECT REG RESET FR SCON; the printed native title is retained as FM. Source scan is img20141208_15301831.tif, preceded by FS521 and followed by FX001; original paths retained in scan neighbor metadata."
+  },
+  {
+    "location": "printer grid calibration",
+    "evidence": "Six independently measured native border anchors fit the ordinary 245 by 103 printer lattice: x = 1410.501 + 35.9235*c - 0.0489*r; y = 886.495 + 0.02499*c + 54.1492*r. Maximum anchor residuals 6.95 pixels horizontally and 5.66 vertically are well below a character pitch. Native crops were derived from the fit; no block bank shift is proposed or applied."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS521 SELECT REG RESET FROM SCON.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX001 PAM OR RCU DISTRIBUTED SIMPLEX SIGNALS.tif
+
+Confirmed filename correction: original FR title was renamed to printed FM title. TIFF SHA256 unchanged; see FS rename ledger.json. Original scan order is preserved.

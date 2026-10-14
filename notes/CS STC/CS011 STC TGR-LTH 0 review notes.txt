@@ -1,0 +1,63 @@
+CS011 STC TGR-LTH 0 - TRANSLATION NOTES
+
+Reference scan: CS STC\CS011 STC TGR-LTH 0.tif
+Original scan: img20141208_09324170.tif
+Original scan timestamp: 2014-12-08 09:32:41.700000
+Preceding scan: CE961 INCREMENTER LATCH DECODING.tif
+Following scan: CS021 STC TGR-LTH 1 AND 2.tif
+Review record: tmp\ald-text\cs\CS root reviews.json
+
+PAGE NOTES
+
+CS011 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 29,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 43,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Source ownership corrections",
+    "evidence": "AW.B12 feeds AX.B13; AW.D10 crosses it without joining and feeds AF.B12. BE B10/D10 feeds AH.B08; BH B04 feeds AJ.B10. Clock BA4 feeds BD.2D12, BG.2B02, AK.2D06. The four AL inputs occupy offsets 1,2,4,5."
+  },
+  {
+    "location": "Native feedback ownership",
+    "evidence": "AV.B02 feeds AU.D02, AK.D05 and AN.D11. The TGR feedback turns up at column 114. AT.B10/D10 feeds AP.D12 through the separate column-115 latch feedback rail. Native diamonds and unjoined crossings were inspected at both rails."
+  },
+  {
+    "location": "Printer grid and source route review",
+    "evidence": "Rebuilt on the user-approved 245-column by 103-row printer grid. Native border fits are stored in tmp/ald-text/cs/triggers/CS011 native grid fit.json. Block width is eight cells inclusive. Receiver AR function labels have their native extra indent. A seventh printed card K replaces the right border cell. Every printed source route and pin was reviewed; no geometry channels widened and no source pin rows shifted to avoid crossings."
+  },
+  {
+    "location": "Native path sample comparison",
+    "evidence": {
+      "page": "CS011",
+      "method": "Native source comparison of declared orthogonal path samples at the measured affine printer grid. 24px native search tolerance accounts for stroke width and scan deformation. Printed letter overlays excluded and reviewed separately. This comparison supports, but does not replace, native visual route review.",
+      "sample_count": 1361,
+      "unmatched_samples": []
+    }
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\CE E Incrementer\CE961 INCREMENTER LATCH DECODING.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\CS STC\CS021 STC TGR-LTH 1 AND 2.tif
+
+Explicit user header/footer correction: uppercase lettering; P.N. label; machine and part values at columns233–239, blank240 and border241; header has two blank cells after000. Native footer/header evidence inspected; diagram wiring unchanged.

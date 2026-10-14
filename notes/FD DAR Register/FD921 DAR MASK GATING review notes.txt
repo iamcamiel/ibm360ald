@@ -1,0 +1,71 @@
+FD921 DAR MASK GATING - TRANSLATION NOTES
+
+Reference scan: FD DAR Register\FD921 DAR MASK GATING.tif
+Original scan: img20141208_14561172.tif
+Original scan timestamp: 2014-12-08 14:56:11.720000
+Preceding scan: FD821 DAR MASK PARITY BITS.tif
+Following scan: FD931 DAR INTERRUPTS.tif
+Review record: tmp\ald-text\fd\independent_review\FD921 root independent review.json
+
+PAGE NOTES
+
+FD921 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 23,
+  "A1_total_card_portions": 23,
+  "A1_mismatches": [],
+  "A1_source_DOT_exemptions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 28,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "geometry_passed": true,
+  "candidate_provisional": true,
+  "independent_review_complete": false
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "Native source review",
+    "evidence": "All23 native gate crops, left clock/write/reset inputs, upper/lower branch channels, AC/AF/AS detours, all18 external output lines, full overview/header/footer inspected directly. No neighboring-page inference."
+  },
+  {
+    "field": "First positive output",
+    "literal": "+GT T 32-39 TU DAR MASK 00-07",
+    "evidence": "TU_literal.png shows printed TU; source literal retained instead of standardizing to TO."
+  },
+  {
+    "field": "Parity separators",
+    "evidence": "Printed ◇ characters between P0/P1/P2/P3 in two output signal names retained as lettering. They are source text separators, not wire junctions."
+  },
+  {
+    "field": "Passive R gates",
+    "evidence": "AM U61AC3365F1 D11 has source input wedge; AP U61AC3365H1 B09 is plain. Source draws no output wire on either R T1 gate."
+  },
+  {
+    "field": "Scan calibration",
+    "evidence": "printer grid fit.json records23 native border anchors and output-row projection; user-approved245×103 lattice used. Glyph bearings/skew do not move aligned source features."
+  },
+  {
+    "field": "Footer literals",
+    "evidence": "footerright.png clearly prints LOG, MACH., P.No. and AZ. Open-bottom title frame93–102; four source revisions preserved."
+  }
+]
+
+Original scan order
+Before FD821 DAR MASK PARITY BITS.tif
+After FD931 DAR INTERRUPTS.tif
+
+Independent native source/preview review by root accepted. Human footer correction P.N. and one blank before right border applied; field/port/render checks refreshed.

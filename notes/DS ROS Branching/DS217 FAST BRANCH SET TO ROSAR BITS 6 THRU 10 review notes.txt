@@ -1,0 +1,77 @@
+DS217 FAST BRANCH SET TO ROSAR BITS 6 THRU 10 - TRANSLATION NOTES
+
+Reference scan: DS ROS Branching\DS217 FAST BRANCH SET TO ROSAR BITS 6 THRU 10.tif
+Original scan: img20141208_11245438.tif
+Original scan timestamp: 2014-12-08 11:24:54.380000
+Preceding scan: DS215 EFFECTIVE B FIELD FOR FUNCTIONAL BRANCHES J97 AND J121.tif
+Following scan: DS224 LSA TERMINATION FOR C-C3.tif
+Review record: tmp\ald-text\ds\root\DS native independent review ledger.json
+
+PAGE NOTES
+
+DS217 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 53,
+  "documented_native_A1_discrepancies": [],
+  "A1_total_card_portions": 53,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 91,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "type": "source inspection",
+    "detail": "Native overview, all twelve detailed source tiles, overlapping unscaled pin/route strips, connector table and footer inspected. All 91 physical input terminals traced; 53 ordinary portions matched against A1 socket evidence. Native pin-adjacent bends calibrated against full pixel crops: CB/CE/CC/CF left channels66/67/68/68, CT/CV/CU unit return bends153/154/155, CV function bend153, CM/CN output bends both107 on disjoint vertical spans. Two printed A DOT blocks BH5J and BJ5L retain blank card/socket rows and are excluded from ordinary A1 comparisons."
+  },
+  {
+    "type": "local jumpers",
+    "detail": "CA D03/D07; CD D04/D03; CP B10/D03; CQ B09/D03; CS D03/B13; CW D03/B03; AC D03/B08; DD D03/D06; DA D03/B09 are isolated local input jumpers. No external driver or adjacent output is invented."
+  },
+  {
+    "type": "passive terminals",
+    "detail": "AD D10 is on E04 control; BX D13 is on E05 control; DB D11 is on active AY D07 output. Passive R T1/R terminals remain inputs, never active output drivers."
+  },
+  {
+    "type": "native disjoint rails",
+    "detail": "J97 DS011BA4 goes via90 down79 to130 up66 and160 up59, driving BQ D11 and BR D09, with diamond160/66. It crosses BA D07 output at130/68 without a diamond; BA output bends at131 to BH lower. J103 lower160 segment begins at70, separate from J97 upper segment, and drives BR B10 and BS D12 with diamond160/75. J103 control rail114 has native diamonds63,77,82 and feeds AY/AZ/BB D05. BC D11 goes115 down80 to131 up77; another separate same-row80 segment from133 feeds BT upper. Row87 DF return ends156 while DA return begins159."
+  },
+  {
+    "type": "floating wire annotations",
+    "detail": "Literal 8 marks remain independent annotations before blank ports: CL upper, CN lower, CX lower, CZ upper, DC lower, BW upper, AY upper, BQ lower, BS upper. Numeric annotation is four columns left of the block, physical blank terminal retained. DOT output stars are separately printed at153; BJ caption literal BIT9 retained."
+  },
+  {
+    "type": "literal references",
+    "detail": "Native J97 inline reference DS011BA4 has clear A on unscaled J97-source-label.png; earlier provisional Q reading withdrawn. Native starred versus inline source references preserved: CC star DS011AV4 versus inline DS011AX4; CE star RR181BG4 versus inline RR181BC4; BK star CA221AU4 versus inline DS215AU4. AX output name is literal EFF RR FORMAT (two R characters); BP4 name is literal - J102 with no printed TERM. Native blanks after signs differ across labels and are retained. Do not normalize these to adjacent-page signals."
+  },
+  {
+    "type": "printer-grid",
+    "detail": "AP-confirmed canvas245×103; normal block bank50/73/96/119/142/165/188, 7-row ranks A–N skipping I. Pin labels abut border/wedge; source31 and output205/name211/designation242. Footer P.N.227/value233–239/blank240/border241. Native DATE05-28-70 LOG065 FRAME02 P.N.2584842 IBM DG and both revision rows preserved."
+  }
+]
+
+Original scan order
+Before DS215 EFFECTIVE B FIELD FOR FUNCTIONAL BRANCHES J97 AND J121.tif
+After DS224 LSA TERMINATION FOR C-C3.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T10:48:47.942686+00:00",
+  "evidence": "Root compared native overview and full final printer-grid preview, enlarged J97/J103 disjoint rails, bank6-7 lower wiring, middle output captions including EFF RR FORMAT, connector table and footer. Verified 53 ordinary plus two A DOT blocks, 91 printed input owners, isolated local jumpers, nine floating 8 wire marks with blank border ports, output stars and literal J97 DS011BA4. Agent audited all twelve source tiles and validation passes."
+}

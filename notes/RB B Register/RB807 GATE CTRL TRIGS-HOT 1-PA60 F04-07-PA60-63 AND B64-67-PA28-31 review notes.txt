@@ -1,0 +1,99 @@
+RB807 GATE CTRL TRIGS-HOT 1-PA60 F04-07-PA60-63 AND B64-67-PA28-31 - TRANSLATION NOTES
+
+Reference scan: RB B Register\RB807 GATE CTRL TRIGS-HOT 1-PA60 F04-07-PA60-63 AND B64-67-PA28-31.tif
+Original scan: img20141205_21175481.tif
+Original scan timestamp: 2014-12-05 21:17:54.810000
+Preceding scan: RB805 GT CTRL TRIGS A00-31-A32-63 A04-07-PB00-07-PFX 6-PB28-63.tif
+Following scan: RB811 GT CTRL TRIG 1C-PPAR 32-67-PB L2 B06-31-PB04-29 L2.tif
+Review record: tmp\ald-text\rb\recovery-v2\before\RB816\root reviews.json
+
+PAGE NOTES
+
+RB807 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 42,
+  "A1_documented_native_exceptions": [
+    "BU"
+  ],
+  "A1_total_card_portions": 43,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 67,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": [],
+    "canvas_errors": []
+  },
+  "title_footer_errors": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native title",
+    "evidence": "Native footer prints GATE CTRL TRIGS-HOT 1-PA60 / F04-07-PA60-63◇B64-67-PA28-31. AP independently confirmed HOT and PA and corrected the source filename; the normalized artifact stem spells out AND in place of the printed diamond."
+  },
+  {
+    "location": "0494K1 at 1N—BU",
+    "evidence": "The original scan clearly prints B-C1F4 (see 0494-BU-native-close.png); A1 Socket Listing gives 02B-C1 E4. An independent root review confirmed the native F4. Preserve native F4 as a documented exception."
+  },
+  {
+    "location": "Duplicate printed AX identifiers",
+    "evidence": "3J—AX is 8057AE; 6D—AX is 0500A1. JSON keys disambiguate the latter as 6D_AX while each printed block retains AX."
+  },
+  {
+    "location": "1K—BQ B03/D03",
+    "evidence": "The two native left terminals are tied directly by a short local return, with no visible external driver. JSON represents this printed connection as a local passive tie."
+  },
+  {
+    "location": "2J—AV B04/B",
+    "evidence": "The native AV B04 row has separate clock and +ROS 88 diamond stubs with a visible gap: B04 joins +ROS 88 at the right diamond. AV B instead returns left to the AW 2B12 clock-P1 branch."
+  },
+  {
+    "location": "2D—BL B03 source",
+    "evidence": "The down-running B03 strap crosses the BG D13✲ output row, but the original grayscale TIFF has a real roughly five-pixel gap after the BG output stroke. The segment beyond that gap joins the +ROS 89 vertical at about x2690 and returns to BL B03; BG output is separate."
+  },
+  {
+    "location": "+ROS 88 off-page reference",
+    "evidence": "The RB807 native left label visibly prints RB815AF4 (see at-source-left-rail.png). RB815 independently prints the +ROS 88 driver as AE4. This transcription preserves the RB807 glyph and records the reciprocal-page inconsistency."
+  },
+  {
+    "location": "2C—AS D05 source",
+    "evidence": "The 5B—AA D05 output descends near native x6538, crosses the upper eastbound line without joining, and joins the lower AS D05 return at a hollow diamond near y2345. See as-d05-aa-match.png and root-as-d05-far-vertical.png."
+  },
+  {
+    "location": "2F—AT upper input source",
+    "evidence": "The +ROS 89 horizontal ends at a hollow diamond near native x2938,y1256; that vertical continues to the upper AT input. See at-top-diamond-origin.png, at-origin-upper.png, and at-origin-lower.png."
+  },
+  {
+    "location": "Lower-left socket annotation",
+    "evidence": "The nine-row, two-column native annotation below the gates is transcribed from bottom-socket-list-2x.png and bottom-socket-left-3x.png. The third left card is AG4 and the lower 02R entries are printed with R."
+  },
+  {
+    "location": "Free-standing captions",
+    "evidence": "Native labels 0110, JPB8, 0100, F1J7, X111, B8J9, 1101 and the bottom-center 08-08-69 713380 line are preserved from group-*.png, group-mid-*.png, and bottom-center-annotation.png."
+  },
+  {
+    "location": "Transcription status",
+    "evidence": "Source-reviewed complete RB807 model. All 67 printed inputs have a single net owner; the one A1/native card discrepancy at 1N—BU is documented. Network, junction, 245×103 grid, glyph, and collision validation passes."
+  }
+]
+
+Original scan order
+Before RB805 GT CTRL TRIGS A00-31-A32-63 A04-07-PB00-07-PFX 6-PB28-63.tif
+After RB811 GT CTRL TRIG 1C-PPAR 32-67-PB L2 B06-31-PB04-29 L2.tif

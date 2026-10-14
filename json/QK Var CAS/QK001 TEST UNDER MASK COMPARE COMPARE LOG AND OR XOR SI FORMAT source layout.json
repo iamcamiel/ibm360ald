@@ -1,0 +1,913 @@
+{
+  "nodes": [
+    {
+      "box": "C1",
+      "leg": "010100",
+      "address": "094",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──CA",
+      "comments": [
+        "ALSO FROM SI",
+        "FORMAT ADDRESS",
+        "COMPARE SET ASC"
+      ],
+      "grid": [
+        25,
+        11
+      ]
+    },
+    {
+      "box": "C2",
+      "leg": "XX",
+      "address": "07B8",
+      "fields": [
+        "A E23+0",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "XX──CB",
+      "comments": [
+        "D21-23 TO STC",
+        "E8-15 TO B56-63"
+      ],
+      "grid": [
+        47,
+        11
+      ]
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "03B9",
+      "fields": [
+        "D MS→ST",
+        "S MS-REQ*D-3",
+        "C ABC-1"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "TO ABC",
+        "ABC 7",
+        "MDBO TO ST",
+        "REQ STORE"
+      ],
+      "grid": [
+        69,
+        11
+      ]
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "0239",
+      "fields": [
+        "B V?U*E1",
+        "B →ST     AB→U",
+        "S SET-MARK*STC",
+        "C 1→STAA*W≠0"
+      ],
+      "exit": "X0──CD",
+      "comments": [
+        "SERIAL FUNCTION",
+        "SAL TO ST",
+        "SET STAA FOR",
+        "RESULT NOT ZERO"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        11
+      ]
+    },
+    {
+      "box": "E1",
+      "leg": "010110",
+      "address": "096",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──EA",
+      "comments": [
+        "OR SI FORMAT",
+        "ADDRESS COMPARE",
+        "SET ASC"
+      ],
+      "grid": [
+        25,
+        22
+      ]
+    },
+    {
+      "box": "G1",
+      "leg": "010111",
+      "address": "097",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "XX──GA",
+      "comments": [
+        "XOR SI FORMAT",
+        "ADDRESS COMPARE",
+        "SET ASC"
+      ],
+      "grid": [
+        25,
+        33
+      ]
+    },
+    {
+      "box": "J1",
+      "leg": "010001",
+      "address": "091",
+      "fields": [
+        "A E23+0",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "XX──JA",
+      "comments": [
+        "TEST UNDER MASK",
+        "NO OPERATION"
+      ],
+      "grid": [
+        25,
+        44
+      ]
+    },
+    {
+      "box": "J3",
+      "leg": "XX",
+      "address": "04B9",
+      "fields": [
+        "D MS→ST",
+        "S STOP1",
+        "C ABC-1"
+      ],
+      "exit": "0*01──JC",
+      "comments": [
+        "ABC-1 TO ABC",
+        "MDBO TO ST",
+        "BR PER E4-7"
+      ],
+      "R_line": "R E(04-07)→ROA",
+      "grid": [
+        69,
+        44
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "0001",
+      "address": "08C1",
+      "fields": [
+        "B V.U",
+        "B →ST     AB→U",
+        "C 1→STAA*W≠0",
+        "C EEOP"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "TEST UNDER MASK",
+        "AND FUNCTION",
+        "OF ST AB BYTES",
+        "SET STAA FOR",
+        "RESULT NOT ZERO"
+      ],
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "J5",
+      "leg": "XX",
+      "address": "0938",
+      "fields": [
+        "B V-U,CRY",
+        "B →F      AB→U"
+      ],
+      "exit": "X0──JE",
+      "comments": [
+        "AB BYTE",
+        "COMPLEMENT",
+        "TO SAL",
+        "DETECT ALL",
+        "SEL BITS",
+        "EQ 1"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        44
+      ]
+    },
+    {
+      "box": "L1",
+      "leg": "010101",
+      "address": "095",
+      "fields": [
+        "A E23+0",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "XX──LA",
+      "comments": [
+        "COMPARE LOGICAL",
+        "NO OPERATION"
+      ],
+      "grid": [
+        25,
+        55
+      ]
+    },
+    {
+      "box": "N4",
+      "leg": "0101",
+      "address": "08C5",
+      "fields": [
+        "B V-U,CRY",
+        "B         AB→U",
+        "C 1→STAA*W≠0",
+        "C EEOP"
+      ],
+      "exit": "X0──ND",
+      "comments": [
+        "LOGICAL COMPARE",
+        "SUBTRACT B-BYTE",
+        "FROM ST-BYTE",
+        "STAA IF NOT ZERO"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        66
+      ]
+    },
+    {
+      "box": "Q1",
+      "leg": "010010",
+      "address": "092",
+      "fields": [
+        "A E23+0",
+        "A →B",
+        "D D→STC"
+      ],
+      "exit": "XX──QA",
+      "comments": [
+        "MOVE D21-63",
+        "TO STC",
+        "E8-15 TO B56-63"
+      ],
+      "grid": [
+        25,
+        77
+      ]
+    },
+    {
+      "box": "Q2",
+      "leg": "XX",
+      "address": "08B8",
+      "fields": [
+        "S MS-REQ*D-3",
+        "C ABC-1"
+      ],
+      "exit": "XX──QB",
+      "comments": [
+        "REQ STORAGE",
+        "ABC-1 TO ABC",
+        "ADDRESS COMPARE",
+        "SET ASC"
+      ],
+      "grid": [
+        47,
+        77
+      ]
+    },
+    {
+      "box": "Q3",
+      "leg": "XX",
+      "address": "0838",
+      "fields": [
+        "A IC-D+7",
+        "A R→",
+        "B 0+U",
+        "B →ST     AB→U",
+        "S SET-MARK*STC",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "X1──QC",
+      "comments": [
+        "MASK SBB TO SB",
+        "B-BYTE TO ST",
+        "SET MARK PER",
+        "STC"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        69,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      14,
+      "QT005.CAE"
+    ],
+    [
+      2,
+      15,
+      "(010001)"
+    ],
+    [
+      2,
+      16,
+      "(010010)"
+    ],
+    [
+      2,
+      17,
+      "(010100)"
+    ],
+    [
+      2,
+      18,
+      "(010101)"
+    ],
+    [
+      2,
+      19,
+      "(010110)"
+    ],
+    [
+      2,
+      20,
+      "(010111)"
+    ],
+    [
+      229,
+      14,
+      "QB011──CDE"
+    ],
+    [
+      229,
+      15,
+      "(X0)"
+    ],
+    [
+      229,
+      80,
+      "QE021──QCE"
+    ],
+    [
+      229,
+      81,
+      "(X1)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583828"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QK001"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "TEST UNDER MASK COMPARE COMP-"
+    ],
+    [
+      200,
+      101,
+      "ARE LOG AND OR XOR SI FORMAT"
+    ]
+  ],
+  "exclude_wiring_rectangles": [
+    [
+      7400,
+      350,
+      7650,
+      4490
+    ],
+    [
+      0,
+      0,
+      260,
+      4500
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      95
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        12,
+        14
+      ],
+      [
+        21,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        21,
+        14
+      ],
+      [
+        21,
+        80
+      ],
+      [
+        25,
+        80
+      ]
+    ],
+    [
+      [
+        21,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        21,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        21,
+        47
+      ],
+      [
+        25,
+        47
+      ]
+    ],
+    [
+      [
+        21,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        43,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        43,
+        25
+      ]
+    ],
+    [
+      [
+        40,
+        36
+      ],
+      [
+        43,
+        36
+      ],
+      [
+        43,
+        14
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        229,
+        14
+      ]
+    ],
+    [
+      [
+        40,
+        47
+      ],
+      [
+        43,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        43,
+        58
+      ],
+      [
+        43,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        87,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        87,
+        47
+      ],
+      [
+        87,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        128,
+        47
+      ],
+      [
+        133,
+        47
+      ],
+      [
+        133,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        133,
+        69
+      ],
+      [
+        133,
+        47
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        47,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        80
+      ],
+      [
+        229,
+        80
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      21,
+      14,
+      "O"
+    ],
+    [
+      21,
+      25,
+      "O"
+    ],
+    [
+      21,
+      36,
+      "O"
+    ],
+    [
+      21,
+      47,
+      "O"
+    ],
+    [
+      21,
+      58,
+      "O"
+    ],
+    [
+      43,
+      14,
+      "O"
+    ],
+    [
+      43,
+      25,
+      "O"
+    ],
+    [
+      43,
+      47,
+      "O"
+    ],
+    [
+      87,
+      47,
+      "O"
+    ],
+    [
+      133,
+      14,
+      "O"
+    ],
+    [
+      133,
+      47,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": {
+    "functional": "QT005.CAE input fans to C1/E1/G1/J1/L1/Q1, selected by printed six-bit masks 010100/010110/010111/010001/010101/010010. J3 E(04-07) ROA branch has printed 0001 to J4 08C1 and 0101 to N4 08C5. J4 V.U dot confirmed by source and QZ M18."
+  },
+  "review_notes": [
+    "Footer source audit: vertical title-block dividers retained; invented horizontal enclosing rules removed.",
+    "J3 enlarged-source audit confirms the printed abbreviation ROA, with no final R before the rule."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1391.58,
+    "first_header_y": 245.0,
+    "column_step": 655.88,
+    "row_step": 496.5
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QK001 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QK001",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "c2e5e729ad819f380c4024f0aedf9982d4945c89476749be5fbe02519667a38c",
+    "text_sha256": "82ca4b4aefa1a4b2d62477c718dd31e1a55cd4346fc329030b3038235bcef201",
+    "content_sha256": "1f34c445c3e335acc7f6fc31c4c8d91428f73f80f8c5a91b2ccc553ba15ba9d8",
+    "verification_sha256": "769c7776294599d62768b83103a7dc2762fefe58d72a376403587c10c3cb01b5",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QK Var CAS\\QK001 TEST UNDER MASK COMPARE COMPARE LOG AND OR XOR SI FORMAT.tif",
+    "source_sha256": "6b2320768fe1d817c3caffa011bb1bf191870cbb9711192e385c2977d94aecbb",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:40.015018+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

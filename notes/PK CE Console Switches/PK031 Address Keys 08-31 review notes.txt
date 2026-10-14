@@ -1,0 +1,156 @@
+PK031 Address Keys 08-31 - TRANSLATION NOTES
+
+Reference scan: PK CE Console Switches\PK031 Address Keys 08-31.tif
+Original scan: PK031 Address Keys 08-31.tif
+Original scan timestamp: 2014-12-05 12:39:43.110049
+Preceding scan: PK021 Data Keys 40-63.tif
+Following scan: PK041 CE Control Panel Pushbuttons and Switches.tif
+Review record: tmp\ald-text\pk\root\final visual review.json
+
+PAGE NOTES
+
+PK031 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 0,
+  "A1_total_card_portions": 0,
+  "A1_mismatches": [],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 69,
+  "geometry_passed": true,
+  "A1_connectors_matched": 11,
+  "A1_total_connector_records": 12,
+  "A1_connector_source_contradictions": [
+    {
+      "source": {
+        "reference": "PK031AP7",
+        "address": "C-A3M2D05",
+        "column": 35,
+        "row": 101,
+        "source_reviewed": true,
+        "board": "02C-A3",
+        "connector": "M2",
+        "pin": "D05"
+      },
+      "listing_matches": [
+        {
+          "kind": "connector pin",
+          "board": "02C-A3",
+          "sockets": [
+            "M2"
+          ],
+          "connector": "M2",
+          "pin": "D05",
+          "ALD_reference": "PK031BP7",
+          "source_listings": [
+            "A1313-01 SOCKET LISTING"
+          ],
+          "source_listing": "A1313-01 SOCKET LISTING"
+        }
+      ],
+      "source_literal_preserved": true
+    }
+  ],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "AU1B caption",
+    "literal": "ADDR KFY 08",
+    "candidate": "ADDR KEY 08",
+    "evidence": "Native full-resolution row0 field crop; F-shaped middle letter independently confirmed by root."
+  },
+  {
+    "location": "mechanical physical ports",
+    "evidence": "First contacts AU/AW/AY have no printed2C. Final contacts AB/AD/AF have no printed1NO or2NC; none inferred. Output3NO stars appear only keys08–19."
+  },
+  {
+    "location": "A1 connector discrepancy",
+    "literal": "AP7 C-A3M2D05",
+    "A1": "PK031BP7 C-A3M2D05",
+    "evidence": "Source AP7 clear, root independently corroborated. A1 is corroboration, not source restoration."
+  },
+  {
+    "location": "footer SDD",
+    "literal": "blank",
+    "evidence": "Native footer lacks SDD print; root independently confirmed."
+  },
+  {
+    "location": "secondary references",
+    "literal": "RX301/RX302/RX303 and RX901/RX911/RX921",
+    "evidence": "Every right-hand native output/secondary printed hook viewed separately; X is clear. Each physical hook/stub preserved."
+  },
+  {
+    "location": "passive contact pairs",
+    "evidence": "Each1NC/2NO and1NO/2NC retains both physical terminals on its source net. Pair rails cross without a diamond at2NO row. Three8-key groups retain separate feedback return paths."
+  },
+  {
+    "location": "AE key27 output name",
+    "literal": "-CE ADDRESS KFY 27",
+    "candidate": "-CE ADDRESS KEY 27",
+    "evidence": "PK031/key27 middle glyph.png; F-shaped middle letter independently confirmed by root."
+  },
+  {
+    "location": "AE→AZ final-group source topology",
+    "evidence": "Source AE1NC/2NO inner rail199, diamondrow68, return75→45→AZ2C; AE1NO/2NC outer200, diamond69, return76→44→AZ1C. This is the actual source swap, separately verified from the first two groups by owner and root. PK031/AE feedback joins.png and third carry lattice.png. No repeated-template substitution."
+  },
+  {
+    "location": "feedback-origin diamonds",
+    "evidence": "AA/AC/AE NC-pair diamond is at2NO row+3, not the1NC corner. Other NC-pair diamonds occur atrow+1 where the net continues horizontally."
+  },
+  {
+    "location": "AJ data18",
+    "literal": "-CE ADDRESS KEY 18",
+    "evidence": "PK031/AJ output digits.png confirms two closed8 loops. Reduced-view16 candidate withdrawn; independently confirmed by root."
+  },
+  {
+    "location": "complete native source coverage",
+    "evidence": "Every mechanical and service block, printed field, physical contact, wire route, junction, separate crossing, external reference, title, revision, footer and connector-table continuation was inspected in this scan. No handwritten annotation is transcribed. Mechanical identifiers are literal field lines, not inferred card portions."
+  },
+  {
+    "location": "native lattice calibration",
+    "affine_coefficients": [
+      [
+        60.06672887062691,
+        279.29511752707947
+      ],
+      [
+        40.74036790951703,
+        -0.01733862297339428
+      ],
+      [
+        0.047064434082226825,
+        60.77165112335735
+      ]
+    ],
+    "measured_block_count": 25,
+    "evidence": "All native two-side/roof anchor crops were visually reviewed. Default 245 × 103 lattice with eight-cell boxes and columns 50,73,96,119,142,165,188. Local border measurements corroborate the lattice; source scan deformation and glyph bearings are calibration effects. Critical source routes were inspected at native resolution rather than assigned from a global affine fit. See native calibration.json and per-page all native border anchors.png. No bank-shift exception."
+  },
+  {
+    "location": "footer and connector calibration",
+    "evidence": "All footer label/value glyph centres, connector identifiers and address continuations were independently measured against this page native pitch. See native text and rail measurements.json. Header and both vertical page identifiers were inspected; readable printed characters are preserved. PK031 SDD is source blank."
+  },
+  {
+    "location": "final JuliaMono preview review",
+    "evidence": "Final preview uses JuliaMono 20, 12-pixel cells and 18-pixel row pitch. Both complete previews, dense carry routes and lower reference/footer sections were inspected. Final independent parent package review remains separate."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\PK CE Console Switches\PK021 Data Keys 40-63.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\PK CE Console Switches\PK041 CE Control Panel Pushbuttons and Switches.tif

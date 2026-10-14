@@ -1,0 +1,55 @@
+{
+  "reviewer": "FX simplex owner",
+  "status": "Completed independent native wiring review; no wiring discrepancies found",
+  "pages": [
+    {
+      "page": "FX902",
+      "model_sha256": "96b34e2d44dcc077b1cb553715fb967351402a15d424bbfdbd5d949968b61b40",
+      "text_sha256": "137f0c2680b31c9555444ee382d8fa06b387e368cdb65c2dc0086cd3d7a48de6",
+      "strict_wire_cells_inside_block_borders": [],
+      "strict_wire_cells_on_pin_characters": [],
+      "wiring_findings": [],
+      "scope": "Independent visual comparison of native source crops/lattices against explicit models and rendered route geometry. Read root strict inclusive top/side/bottom and pin-character checks. No edits to gating owner files.",
+      "native_readings": [
+        "Control rails: CE1 c66 r40 → AA D07 r14, AE D07 r56, AP D07 r35; CE2 c69 r42 → AB B10 r21, AF B10 r63, AQ B10 r42; CE3 c67 r49 → AC B08 r28, AG B08 r70, AR B08 r49; CE4 c68 r47 → AD D06 r35, AH D06 r77, AS D06 r56. Four source diamonds at respective input rows; all other rail crossings separate.",
+        "Twelve data sources match bit00/bit01/bit02 groups and CE1..4 references. Bit01 upper/lower bends c137 and independent control bends c138 are source-supported.",
+        "AA..AD → AJ, AE..AH → AK, AP..AS → AT each have four separate OR inputs. Native bends c92/c84/c85/c84 and c161/c153/c154/c153 match models without inferred joins.",
+        "AK B05 → AM B04 and AN D09 uses source diamond c110,r61 and downward passive branch to r68. AJ D12 → AL D04 and AT D02 → AU B05 are separate straight wires.",
+        "All three FC001 outputs and source card literals 3308A1/C1/B1 at A-E2J6 match. The noted A1 omissions are corroborated, not transcription errors."
+      ],
+      "evidence": [
+        "FX902 upper lattice.png",
+        "FX902 lower lattice.png",
+        "FX902 controls lattice.png",
+        "FX902 upper routes.png",
+        "FX902 lower routes.png",
+        "FX902 middle.png",
+        "FX902 left.png",
+        "FX902 output labels.png"
+      ]
+    },
+    {
+      "page": "FX941",
+      "model_sha256": "08b97dfa726723aeebe01180b6c4b83b3401310890fb909e7df12651fa12100c",
+      "text_sha256": "2d4c357ee4b2f56f69bf6f092e3167b98ccbabc054ad7de69165313b654f7201",
+      "strict_wire_cells_inside_block_borders": [],
+      "strict_wire_cells_on_pin_characters": [],
+      "wiring_findings": [],
+      "scope": "Independent visual comparison of native source crops/lattices against explicit models and rendered route geometry. Read root strict inclusive top/side/bottom and pin-character checks. No edits to gating owner files.",
+      "native_readings": [
+        "Four independent input rails: CE1 c46 r5 → AA/AB/AC/AD/AE; CE2 c160 r37 → BE/BA/BB/BC/BD; CE3 c160 r44 → CA/CB/CC/CD/CE; CE4 c46 r54 → DE/DA/DB/DC/DD. Each has four printed branch diamonds; resistor endpoints do not receive extra diamonds.",
+        "CE1 AC rises via c61 from r19 to r2; AB rises via c62 from r12 to r7; AD drops via c61 r26 to r45. CE2 and CE3 output rows are straight independent rails.",
+        "CE4 DA rises via c61 r61 to r50, DB drops via c61 r68 to r86, DD drops via c62 r82 to r88. DC travels from r75 to c158, drops to r87, turns right to c175 and rises to r84. Native lower lattice confirms all crossings remain separate.",
+        "Sixteen output fans each have source diamond at c203, and three hanging references beginning c205/c215/c224 with source stubs at c203/c213/c222. Forty-eight destinations match their octets. Printed ◇P in sixteen signal names is a literal, separate from 32 physical wire diamonds.",
+        "Source branches and all twenty physical inputs remain distinct from all sixteen output rails; no missing joins or native route discrepancies found."
+      ],
+      "evidence": [
+        "FX941 upper.png",
+        "FX941 upper lattice.png",
+        "FX941 lower.png",
+        "FX941 lower lattice.png",
+        "FX941 output lattice.png"
+      ]
+    }
+  ]
+}

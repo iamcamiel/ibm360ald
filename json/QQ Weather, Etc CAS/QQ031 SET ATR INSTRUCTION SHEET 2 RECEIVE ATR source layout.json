@@ -1,0 +1,3257 @@
+{
+  "nodes": [
+    {
+      "box": "A6",
+      "leg": "1X",
+      "address": "0A92",
+      "fields": [
+        "C ◺0→CC"
+      ],
+      "exit": "X1──AF",
+      "comments": [
+        "SYSTEM OR SUB-",
+        "SYSTEM IPL"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        135,
+        0
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C1",
+      "leg": "X0",
+      "address": "0A8E",
+      "fields": [
+        "A A+0+1",
+        "A →A",
+        "S STOP2",
+        "C 1→TIME-GATE"
+      ],
+      "exit": "X*──CA",
+      "comments": [
+        "ISSUE SELECT. COUNT",
+        "DOWN 9+ MICROSECS."
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        25,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C2",
+      "leg": "X1",
+      "address": "0A8F",
+      "fields": [
+        "C 0→TIME-GATE"
+      ],
+      "exit": "XX──CB",
+      "comments": [
+        "DROP SELECT"
+      ],
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "0AC4",
+      "fields": [
+        "A 0+T"
+      ],
+      "exit": "*X──CC",
+      "comments": [
+        "SELECT TO PAL",
+        "FOR RESPONSE",
+        "TEST.",
+        "STAT D EQUALS",
+        "IPL OPERATION"
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "0X",
+      "address": "0A98",
+      "fields": [
+        "C ATRSEL◺RESET"
+      ],
+      "exit": "X*──CD",
+      "comments": [
+        "CHECK RESPONSE.",
+        "RESET SELECT."
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C5",
+      "leg": "X0",
+      "address": "0A9C",
+      "fields": [
+        "C ◺2→CC"
+      ],
+      "exit": "0X──CE",
+      "comments": [
+        "NOT ALL RESPOND.",
+        "CC TWO."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C6",
+      "leg": "0X",
+      "address": "0A90",
+      "fields": [
+        "B 0,V1+0",
+        "B →F",
+        "B         AB→U",
+        "C STC-1"
+      ],
+      "exit": "XX──CF",
+      "comments": [
+        "STC 7 TO 6",
+        "ALIGN IOCE RESP.",
+        "IN F REG."
+      ],
+      "grid": [
+        135,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C7",
+      "leg": "XX",
+      "address": "0A8D",
+      "fields": [
+        "A B+0",
+        "A →T",
+        "B 0,V1+U1,0",
+        "B →F",
+        "B          F→U"
+      ],
+      "exit": "XX──CG",
+      "comments": [
+        "STC AT 6",
+        "COMBINE CE.IOCE",
+        "RESPONSES IN F.",
+        "RESTORE ATR2",
+        "WORD IN T"
+      ],
+      "grid": [
+        157,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C8",
+      "leg": "XX",
+      "address": "0A91",
+      "fields": [
+        "A E3+0",
+        "A L→E",
+        "B 0+U1,U0",
+        "B →ST",
+        "B          F→U"
+      ],
+      "exit": "XX──CH",
+      "comments": [
+        "STC AT 6",
+        "PUT COMBINED",
+        "RESPONSES IN ST",
+        "BYTE(ATR2).",
+        "MOVE R2 VALUE",
+        "TO E2 FOR STORE."
+      ],
+      "grid": [
+        179,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C9",
+      "leg": "XX",
+      "address": "0A93",
+      "fields": [
+        "L WG*E2",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "0X──CI",
+      "comments": [
+        "STORE ATR2 WORD",
+        "WITH RESPONSES.",
+        "FORCE INSTRUCTION",
+        "REFETCH."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        201,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E1",
+      "leg": "XX",
+      "address": "0AC5",
+      "fields": [
+        "S STOP2"
+      ],
+      "exit": "XX──EA",
+      "comments": [
+        "DELAY FOR RESPONSE"
+      ],
+      "grid": [
+        25,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "E2",
+      "leg": "XX",
+      "address": "0AC6",
+      "fields": [
+        "L R◺SELREG→T",
+        "L ◺GEN-BUS-PAR",
+        "S STOP2"
+      ],
+      "exit": "XX──EB",
+      "comments": [
+        "READ IN RESPONSES"
+      ],
+      "grid": [
+        47,
+        22
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "X1",
+      "address": "0A9D",
+      "fields": [
+        "C ◺0→CC"
+      ],
+      "exit": "0X──GE",
+      "comments": [
+        "NORMAL END. CC ZERO"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J2",
+      "leg": "XX",
+      "address": "0A9F",
+      "fields": [
+        "B -64+0",
+        "B →F",
+        "C 1→ASC*J57=0"
+      ],
+      "exit": "01──JB",
+      "comments": [
+        "SET TIME FOR",
+        "FIRST SELECT DROP",
+        "25+ MICROSECS.",
+        "FORCE INSTRUCTION",
+        "REFETCH."
+      ],
+      "R_line": "R          0 1",
+      "grid": [
+        47,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J3",
+      "leg": "01",
+      "address": "0AA1",
+      "fields": [
+        "B 1+U",
+        "B →F",
+        "B          F→U",
+        "S STOP1"
+      ],
+      "exit": "**──JC",
+      "comments": [
+        "TIME OUT FOR",
+        "SELECT DROP"
+      ],
+      "R_line": "R WCRY ◺ATRSEL",
+      "grid": [
+        69,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J4",
+      "leg": "10",
+      "address": "0AA2",
+      "fields": [
+        "B ◺0010→V0",
+        "B V0,V0+0",
+        "B →F",
+        "S STOP1",
+        "C ◺0→INTR-GATE",
+        "C 0→TIME-STEP"
+      ],
+      "exit": "00──JD",
+      "comments": [
+        "SET TIME FOR",
+        "SECOND SELECT IN",
+        "2.0 MICROSECS."
+      ],
+      "grid": [
+        91,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J5",
+      "leg": "00",
+      "address": "0AA4",
+      "fields": [
+        "B 1+U",
+        "B →F",
+        "B          F→U"
+      ],
+      "exit": "**──JE",
+      "comments": [
+        "TIME OUT FOR",
+        "SECOND SELECT IN OR",
+        "FOURTH SELECT IN",
+        "WHICH SHOULD NOT",
+        "OCCUR. THEREFORE",
+        "NORMAL EXIT IS",
+        "VIA TIME OUT FROM",
+        "THIS BLOCK."
+      ],
+      "R_line": "R      ◺ATRSEL",
+      "extra": [
+        [
+          [
+            0,
+            5
+          ],
+          "R W1=15"
+        ]
+      ],
+      "grid": [
+        113,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J6",
+      "leg": "11",
+      "address": "0AA7",
+      "fields": [
+        "B ◺1111→V0",
+        "B V+0",
+        "B →F",
+        "L R◺EXTBUS→S"
+      ],
+      "exit": "01──JF",
+      "comments": [
+        "SET TIME FOR",
+        "2ND SELECT DROP",
+        "9.0 MICROSECS."
+      ],
+      "R_line": "R          0 1",
+      "grid": [
+        135,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J7",
+      "leg": "01",
+      "address": "0AA9",
+      "fields": [
+        "B 1+U",
+        "B →F",
+        "B          F→U",
+        "S STOP2"
+      ],
+      "exit": "**──JG",
+      "comments": [
+        "TIME OUT FOR",
+        "2ND SELECT DROP"
+      ],
+      "R_line": "R WCRY ◺ATRSEL",
+      "grid": [
+        157,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J8",
+      "leg": "10",
+      "address": "0AAA",
+      "fields": [
+        "B ◺0010→V0",
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "00──JH",
+      "comments": [
+        "SET TIME FOR",
+        "THIRD SELECT IN",
+        "2.0 MICROSECS."
+      ],
+      "R_line": "R          0 0",
+      "grid": [
+        179,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J9",
+      "leg": "00",
+      "address": "0AD4",
+      "fields": [
+        "B 1+U",
+        "B →F",
+        "B          F→U"
+      ],
+      "exit": "**──JI",
+      "comments": [
+        "TIME OUT FOR",
+        "THIRD SELECT IN"
+      ],
+      "R_line": "R      ◺ATRSEL",
+      "extra": [
+        [
+          [
+            0,
+            5
+          ],
+          "R W1=15"
+        ]
+      ],
+      "grid": [
+        201,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L3",
+      "leg": "XX",
+      "address": "0AC3",
+      "fields": [
+        "C ◺1→INTR-GATE"
+      ],
+      "exit": "01──LC",
+      "comments": [
+        "SEND RESPONSE."
+      ],
+      "grid": [
+        69,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L4",
+      "leg": "00",
+      "address": "0AA0",
+      "fields": [
+        "B ◺0010→V0",
+        "B V0,V0+0",
+        "B →F",
+        "S STOP1",
+        "C ◺0→INTR-GATE",
+        "C 0→TIME-STEP"
+      ],
+      "exit": "00──LD",
+      "comments": [
+        "DROP RESPONSE."
+      ],
+      "grid": [
+        91,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L6",
+      "leg": "01",
+      "address": "0AA5",
+      "fields": [
+        "B ◺1111→V0",
+        "B V+0",
+        "B →F",
+        "L R◺EXTBUS→S"
+      ],
+      "exit": "01──LF",
+      "comments": [
+        "READ IN ATR1 WORD."
+      ],
+      "R_line": "R          0 1",
+      "grid": [
+        135,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L8",
+      "leg": "00",
+      "address": "0AA8",
+      "fields": [
+        "B ◺0010→V0",
+        "B V0,V0+0",
+        "B →F"
+      ],
+      "exit": "00──LH",
+      "comments": [],
+      "R_line": "R          0 0",
+      "grid": [
+        179,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N1",
+      "leg": "11",
+      "address": "0AD7",
+      "fields": [
+        "L R◺EXTBUS→T"
+      ],
+      "exit": "XX──NA",
+      "comments": [
+        "READ IN ATR2 WORD"
+      ],
+      "grid": [
+        25,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N2",
+      "leg": "XX",
+      "address": "0A9E",
+      "fields": [
+        "B ◺1110→V0",
+        "B V+0",
+        "B →F",
+        "D ◺ST04→ATR"
+      ],
+      "exit": "XX──NB",
+      "comments": [
+        "SET TIME FOR 3RD SEL.",
+        "DROP. 12.0 MICROSECS."
+      ],
+      "grid": [
+        47,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N3",
+      "leg": "10",
+      "address": "0AD6",
+      "fields": [
+        "C ATRSEL◺RESET"
+      ],
+      "exit": "*X──NC",
+      "comments": [
+        "RESET SELECT"
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        69,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N4",
+      "leg": "11",
+      "address": "0AA3",
+      "fields": [
+        "C ATRSEL◺RESET",
+        "C ◺0→INTR-GATE",
+        "C 0→TIME-STEP"
+      ],
+      "exit": "*X──ND",
+      "comments": [
+        "RESET SELECT",
+        "AND TCS."
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N6",
+      "leg": "10",
+      "address": "0AA6",
+      "fields": [
+        "C ATRSEL◺RESET"
+      ],
+      "exit": "*X──NF",
+      "comments": [
+        "RESET SELECT"
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        135,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N8",
+      "leg": "11",
+      "address": "0AAB",
+      "fields": [
+        "C ATRSEL◺RESET"
+      ],
+      "exit": "*X──NH",
+      "comments": [
+        "RESET SELECT"
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        179,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N9",
+      "leg": "1X",
+      "address": "0A96",
+      "fields": [
+        "C 0→STAD"
+      ],
+      "exit": "11──NI",
+      "comments": [
+        "GO TO STOP-LOOP."
+      ],
+      "R_line": "R          1 1",
+      "grid": [
+        201,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q1",
+      "leg": "01",
+      "address": "0AD5",
+      "fields": [
+        "L R◺EXTBUS→T"
+      ],
+      "exit": "XX──QA",
+      "comments": [],
+      "grid": [
+        25,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q2",
+      "leg": "XX",
+      "address": "0AC1",
+      "fields": [],
+      "exit": "XX──QB",
+      "comments": [
+        "DELAY. ALLOW ERROR",
+        "RECOGNITION ON ATR2."
+      ],
+      "grid": [
+        47,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q5",
+      "leg": "0X",
+      "address": "0A94",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP"
+      ],
+      "exit": "******──QE",
+      "comments": [
+        "END OP."
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "source_input_rows": [
+        1,
+        3,
+        5
+      ],
+      "grid": [
+        113,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──QI",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        201,
+        77
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 2104.11,
+    "first_header_y": 671.39,
+    "column_step": 587.14,
+    "row_step": 446.45
+  },
+  "text": [
+    [
+      2,
+      3,
+      "QQ021.NIE"
+    ],
+    [
+      4,
+      4,
+      "(0X)"
+    ],
+    [
+      4,
+      5,
+      "(1X)"
+    ],
+    [
+      2,
+      14,
+      "QQ021.QIE"
+    ],
+    [
+      4,
+      15,
+      "(X0)"
+    ],
+    [
+      229,
+      3,
+      "QQ021"
+    ],
+    [
+      239,
+      3,
+      "AFE"
+    ],
+    [
+      229,
+      4,
+      "(X1)GO TO TRY"
+    ],
+    [
+      229,
+      5,
+      "SELECT AGAIN."
+    ],
+    [
+      229,
+      25,
+      "QY061"
+    ],
+    [
+      239,
+      25,
+      "CCE"
+    ],
+    [
+      229,
+      26,
+      "(1X)"
+    ],
+    [
+      2,
+      47,
+      "QT041.CBE"
+    ],
+    [
+      4,
+      48,
+      "(XX)"
+    ],
+    [
+      19,
+      50,
+      "FROM TIME CLOCK"
+    ],
+    [
+      19,
+      51,
+      "STEP FORCED ADDRESS"
+    ],
+    [
+      2,
+      58,
+      "QY041.NIE"
+    ],
+    [
+      4,
+      59,
+      "(XX)"
+    ],
+    [
+      19,
+      60,
+      "FROM STOP-LOOP-STAT D ON."
+    ],
+    [
+      2,
+      80,
+      "QQ001.GDE"
+    ],
+    [
+      4,
+      81,
+      "(0X)"
+    ],
+    [
+      2,
+      82,
+      "QQ021.GHE"
+    ],
+    [
+      4,
+      83,
+      "(0X)"
+    ],
+    [
+      2,
+      85,
+      "QQ041.CDE"
+    ],
+    [
+      4,
+      86,
+      "(0X)"
+    ],
+    [
+      2,
+      87,
+      "QQ071.LFF"
+    ],
+    [
+      4,
+      88,
+      "(0X)"
+    ],
+    [
+      2,
+      89,
+      "QQ031.EGE"
+    ],
+    [
+      4,
+      90,
+      "(0X)"
+    ],
+    [
+      2,
+      91,
+      "QQ091.GHE"
+    ],
+    [
+      4,
+      92,
+      "(0X)"
+    ],
+    [
+      2,
+      93,
+      "QU001.NHE"
+    ],
+    [
+      4,
+      94,
+      "(0X)"
+    ],
+    [
+      229,
+      69,
+      "QY041"
+    ],
+    [
+      239,
+      69,
+      "NIE"
+    ],
+    [
+      229,
+      70,
+      "(11)"
+    ],
+    [
+      23,
+      41,
+      "RECEIVE ATR"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "714952"
+    ],
+    [
+      164,
+      98,
+      "01/26/71"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  04/16/71"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ031"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     20C"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583840"
+    ],
+    [
+      200,
+      100,
+      "SET ATR INSTRUCTION  SHEET 2"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "RECEIVE ATR"
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        18,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        226,
+        3
+      ]
+    ],
+    [
+      [
+        133,
+        3
+      ],
+      [
+        133,
+        12
+      ],
+      [
+        135,
+        12
+      ]
+    ],
+    [
+      [
+        18,
+        14
+      ],
+      [
+        25,
+        14
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        45,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        43,
+        14
+      ],
+      [
+        43,
+        9
+      ],
+      [
+        23,
+        9
+      ],
+      [
+        23,
+        12
+      ],
+      [
+        25,
+        12
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        65,
+        14
+      ],
+      [
+        65,
+        21
+      ],
+      [
+        23,
+        21
+      ],
+      [
+        23,
+        24
+      ],
+      [
+        25,
+        24
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        67,
+        25
+      ],
+      [
+        67,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        84,
+        14
+      ],
+      [
+        87,
+        14
+      ],
+      [
+        87,
+        25
+      ],
+      [
+        226,
+        25
+      ]
+    ],
+    [
+      [
+        87,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        111,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        109,
+        14
+      ],
+      [
+        109,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        36
+      ],
+      [
+        133,
+        36
+      ],
+      [
+        133,
+        14
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        179,
+        14
+      ]
+    ],
+    [
+      [
+        194,
+        14
+      ],
+      [
+        201,
+        14
+      ]
+    ],
+    [
+      [
+        216,
+        14
+      ],
+      [
+        219,
+        14
+      ],
+      [
+        219,
+        31
+      ],
+      [
+        110,
+        31
+      ],
+      [
+        110,
+        79
+      ],
+      [
+        113,
+        79
+      ]
+    ],
+    [
+      [
+        18,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        18,
+        58
+      ],
+      [
+        43,
+        58
+      ],
+      [
+        43,
+        48
+      ],
+      [
+        47,
+        48
+      ]
+    ],
+    [
+      [
+        62,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        47
+      ],
+      [
+        89,
+        47
+      ],
+      [
+        89,
+        42
+      ],
+      [
+        67,
+        42
+      ],
+      [
+        67,
+        46
+      ],
+      [
+        69,
+        46
+      ]
+    ],
+    [
+      [
+        89,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        89,
+        47
+      ],
+      [
+        89,
+        57
+      ],
+      [
+        91,
+        57
+      ]
+    ],
+    [
+      [
+        89,
+        57
+      ],
+      [
+        89,
+        68
+      ],
+      [
+        91,
+        68
+      ]
+    ],
+    [
+      [
+        128,
+        47
+      ],
+      [
+        133,
+        47
+      ],
+      [
+        133,
+        42
+      ],
+      [
+        111,
+        42
+      ],
+      [
+        111,
+        46
+      ],
+      [
+        113,
+        46
+      ]
+    ],
+    [
+      [
+        133,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        133,
+        47
+      ],
+      [
+        133,
+        57
+      ],
+      [
+        135,
+        57
+      ]
+    ],
+    [
+      [
+        133,
+        57
+      ],
+      [
+        133,
+        68
+      ],
+      [
+        135,
+        68
+      ]
+    ],
+    [
+      [
+        172,
+        47
+      ],
+      [
+        177,
+        47
+      ],
+      [
+        177,
+        42
+      ],
+      [
+        155,
+        42
+      ],
+      [
+        155,
+        46
+      ],
+      [
+        157,
+        46
+      ]
+    ],
+    [
+      [
+        177,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        177,
+        47
+      ],
+      [
+        177,
+        57
+      ],
+      [
+        179,
+        57
+      ]
+    ],
+    [
+      [
+        177,
+        57
+      ],
+      [
+        177,
+        68
+      ],
+      [
+        179,
+        68
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        221,
+        47
+      ],
+      [
+        221,
+        42
+      ],
+      [
+        199,
+        42
+      ],
+      [
+        199,
+        46
+      ],
+      [
+        201,
+        46
+      ]
+    ],
+    [
+      [
+        84,
+        58
+      ],
+      [
+        87,
+        58
+      ],
+      [
+        87,
+        43
+      ],
+      [
+        67,
+        43
+      ],
+      [
+        67,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        111,
+        58
+      ],
+      [
+        111,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        58
+      ],
+      [
+        155,
+        58
+      ],
+      [
+        155,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        194,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        194,
+        58
+      ],
+      [
+        199,
+        58
+      ],
+      [
+        199,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        84,
+        69
+      ],
+      [
+        87,
+        69
+      ],
+      [
+        87,
+        76
+      ],
+      [
+        199,
+        76
+      ],
+      [
+        199,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        87,
+        76
+      ],
+      [
+        109,
+        76
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        109,
+        69
+      ],
+      [
+        109,
+        76
+      ],
+      [
+        199,
+        76
+      ],
+      [
+        199,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        109,
+        76
+      ],
+      [
+        109,
+        76
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        153,
+        69
+      ],
+      [
+        153,
+        76
+      ],
+      [
+        199,
+        76
+      ],
+      [
+        199,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        153,
+        76
+      ],
+      [
+        109,
+        76
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        197,
+        69
+      ],
+      [
+        197,
+        76
+      ],
+      [
+        199,
+        76
+      ],
+      [
+        199,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        197,
+        76
+      ],
+      [
+        109,
+        76
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        216,
+        69
+      ],
+      [
+        226,
+        69
+      ]
+    ],
+    [
+      [
+        216,
+        80
+      ],
+      [
+        229,
+        80
+      ]
+    ],
+    [
+      [
+        113,
+        80
+      ],
+      [
+        112,
+        80
+      ],
+      [
+        112,
+        81
+      ],
+      [
+        113,
+        81
+      ]
+    ],
+    [
+      [
+        128,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ],
+    [
+      [
+        13,
+        58
+      ],
+      [
+        18,
+        58
+      ]
+    ],
+    [
+      [
+        62,
+        69
+      ],
+      [
+        63,
+        69
+      ],
+      [
+        63,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        219,
+        47
+      ],
+      [
+        219,
+        65
+      ],
+      [
+        21,
+        65
+      ],
+      [
+        21,
+        78
+      ],
+      [
+        25,
+        78
+      ]
+    ],
+    [
+      [
+        65,
+        65
+      ],
+      [
+        65,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        21,
+        69
+      ],
+      [
+        25,
+        69
+      ]
+    ],
+    [
+      [
+        40,
+        69
+      ],
+      [
+        41,
+        69
+      ],
+      [
+        41,
+        80
+      ],
+      [
+        47,
+        80
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        41,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        80
+      ],
+      [
+        63,
+        80
+      ],
+      [
+        63,
+        76
+      ],
+      [
+        45,
+        76
+      ],
+      [
+        45,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        11,
+        80
+      ],
+      [
+        21,
+        80
+      ],
+      [
+        21,
+        93
+      ],
+      [
+        11,
+        93
+      ]
+    ],
+    [
+      [
+        21,
+        87
+      ],
+      [
+        109,
+        87
+      ],
+      [
+        109,
+        82
+      ],
+      [
+        113,
+        82
+      ]
+    ],
+    [
+      [
+        11,
+        82
+      ],
+      [
+        21,
+        82
+      ]
+    ],
+    [
+      [
+        11,
+        85
+      ],
+      [
+        21,
+        85
+      ]
+    ],
+    [
+      [
+        11,
+        87
+      ],
+      [
+        21,
+        87
+      ]
+    ],
+    [
+      [
+        11,
+        89
+      ],
+      [
+        21,
+        89
+      ]
+    ],
+    [
+      [
+        11,
+        91
+      ],
+      [
+        21,
+        91
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          140,
+          8
+        ],
+        [
+          141,
+          8
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          30,
+          17
+        ],
+        [
+          31,
+          17
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          30,
+          19
+        ],
+        [
+          31,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.857
+    },
+    {
+      "path": [
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.762
+    },
+    {
+      "path": [
+        [
+          73,
+          21
+        ],
+        [
+          75,
+          21
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.905
+    },
+    {
+      "path": [
+        [
+          118,
+          19
+        ],
+        [
+          119,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          17
+        ],
+        [
+          141,
+          17
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          19
+        ],
+        [
+          141,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          21
+        ],
+        [
+          141,
+          21
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          19
+        ],
+        [
+          163,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          19
+        ],
+        [
+          185,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          19
+        ],
+        [
+          207,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.905
+    },
+    {
+      "path": [
+        [
+          30,
+          30
+        ],
+        [
+          31,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.714
+    },
+    {
+      "path": [
+        [
+          52,
+          30
+        ],
+        [
+          53,
+          30
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          41
+        ],
+        [
+          119,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          52
+        ],
+        [
+          53,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          54
+        ],
+        [
+          53,
+          54
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.81
+    },
+    {
+      "path": [
+        [
+          74,
+          52
+        ],
+        [
+          75,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.952
+    },
+    {
+      "path": [
+        [
+          73,
+          54
+        ],
+        [
+          75,
+          54
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          96,
+          52
+        ],
+        [
+          97,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.952
+    },
+    {
+      "path": [
+        [
+          118,
+          52
+        ],
+        [
+          119,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          139,
+          52
+        ],
+        [
+          141,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          52
+        ],
+        [
+          163,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          52
+        ],
+        [
+          185,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          52
+        ],
+        [
+          207,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.762
+    },
+    {
+      "path": [
+        [
+          74,
+          63
+        ],
+        [
+          75,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.714
+    },
+    {
+      "path": [
+        [
+          96,
+          63
+        ],
+        [
+          97,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.905
+    },
+    {
+      "path": [
+        [
+          140,
+          63
+        ],
+        [
+          141,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          63
+        ],
+        [
+          185,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          30,
+          74
+        ],
+        [
+          31,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.81
+    },
+    {
+      "path": [
+        [
+          51,
+          74
+        ],
+        [
+          53,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.979
+    },
+    {
+      "path": [
+        [
+          74,
+          74
+        ],
+        [
+          75,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.857
+    },
+    {
+      "path": [
+        [
+          96,
+          74
+        ],
+        [
+          97,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          74
+        ],
+        [
+          141,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          74
+        ],
+        [
+          185,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.952
+    },
+    {
+      "path": [
+        [
+          206,
+          74
+        ],
+        [
+          207,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.81
+    },
+    {
+      "path": [
+        [
+          30,
+          83
+        ],
+        [
+          31,
+          83
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          85
+        ],
+        [
+          53,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          83
+        ],
+        [
+          119,
+          83
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          85
+        ],
+        [
+          119,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          87
+        ],
+        [
+          119,
+          87
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          85
+        ],
+        [
+          207,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.81
+    },
+    {
+      "path": [
+        [
+          90,
+          19
+        ],
+        [
+          93,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          211,
+          32
+        ],
+        [
+          213,
+          32
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.964
+    },
+    {
+      "path": [
+        [
+          134,
+          52
+        ],
+        [
+          136,
+          52
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.964
+    }
+  ],
+  "wire_erase": [
+    [
+      18,
+      -1,
+      236,
+      104
+    ]
+  ],
+  "cells": [
+    [
+      133,
+      3,
+      "O"
+    ],
+    [
+      43,
+      14,
+      "O"
+    ],
+    [
+      87,
+      14,
+      "O"
+    ],
+    [
+      109,
+      14,
+      "O"
+    ],
+    [
+      133,
+      14,
+      "O"
+    ],
+    [
+      89,
+      47,
+      "O"
+    ],
+    [
+      89,
+      57,
+      "O"
+    ],
+    [
+      133,
+      47,
+      "O"
+    ],
+    [
+      133,
+      57,
+      "O"
+    ],
+    [
+      177,
+      47,
+      "O"
+    ],
+    [
+      177,
+      57,
+      "O"
+    ],
+    [
+      111,
+      47,
+      "O"
+    ],
+    [
+      155,
+      47,
+      "O"
+    ],
+    [
+      199,
+      47,
+      "O"
+    ],
+    [
+      87,
+      76,
+      "O"
+    ],
+    [
+      109,
+      76,
+      "O"
+    ],
+    [
+      109,
+      76,
+      "O"
+    ],
+    [
+      109,
+      76,
+      "O"
+    ],
+    [
+      153,
+      76,
+      "O"
+    ],
+    [
+      109,
+      76,
+      "O"
+    ],
+    [
+      197,
+      76,
+      "O"
+    ],
+    [
+      109,
+      76,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": [
+    "The timer selector buses were traced manually. Incoming two-bit legs select self-loop, drop, select-reset and ATR input arms. Separate left stop-loop and bottom end-op inputs were kept apart."
+  ],
+  "revision_notes": [],
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "e414509881373742edfded1c11651c751dcacead9063a497b3552179468baed9",
+    "old_txt_sha256": "c76385f7f76f316e85b4c4a53ed4956e6c39a1a0b51f6f361e5e9059f5ac2497",
+    "new_txt_sha256": "16835e4a8780c904f8c5964279801e0f62f708366ba5dc3048d42cbb25193c5f",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "109,25": "┼",
+    "133,25": "┼",
+    "219,25": "┼",
+    "133,31": "┼",
+    "110,36": "┼",
+    "67,43": "├",
+    "67,46": "├",
+    "111,46": "├",
+    "155,46": "├",
+    "199,46": "├",
+    "67,47": "┴",
+    "87,47": "┼",
+    "110,47": "┼",
+    "110,58": "┼",
+    "110,76": "┼",
+    "112,80": "┬"
+  },
+  "label_row_basis": "node top relative",
+  "native_separate_return_evidence": [
+    "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031 J8 J9 L8 separate returns native.png",
+    "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031 lower entries native.png",
+    "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031 QZ separate return corroboration.json"
+  ],
+  "native_return_correction_summary": "J8/L8 go to J9 input, whose separate output rail219→65 drives N1/N3/Q1; old graphical false reachability removed. QZ NEXT base AD4 and native ATRSEL selector corroborate.",
+  "native_source_region_corrections": [
+    {
+      "moves": [],
+      "glyphs": [
+        [
+          24,
+          31,
+          " RECEIVE ATR",
+          "            "
+        ],
+        [
+          6,
+          6,
+          "│",
+          " "
+        ]
+      ],
+      "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QQ next11 evidence\\QQ031 left receive coordinate proof.png",
+      "snapshot": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\snapshots\\QQ031-70acc6a039a1-a8a0eaa9",
+      "status": "source correction; exact-hash peer rereview required",
+      "region_shifts": [],
+      "metadata_moves": [],
+      "wire_path_replacements": [],
+      "removed_annotations": [
+        [
+          24,
+          31,
+          "RECEIVE ATR"
+        ],
+        [
+          25,
+          31,
+          "RECEIVE ATR"
+        ]
+      ],
+      "removed_node_comments": [],
+      "added_annotations": [
+        [
+          23,
+          41,
+          "RECEIVE ATR",
+          "source caption recovery"
+        ]
+      ],
+      "removed_bare_selectors": []
+    }
+  ],
+  "root_grid_migration_review": {
+    "page": "QQ031",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "c76385f7f76f316e85b4c4a53ed4956e6c39a1a0b51f6f361e5e9059f5ac2497",
+    "text_sha256": "16835e4a8780c904f8c5964279801e0f62f708366ba5dc3048d42cbb25193c5f",
+    "content_sha256": "e85c60cdc1b52c46002226a9351b698df0e0328d6a2f0f330eebde7afff43413",
+    "verification_sha256": "f75110e4412ce5d1d0f362ed102d7a97e3ebd3fd7010509f5344b1b338e59167",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ031 SET ATR INSTRUCTION SHEET 2 RECEIVE ATR.tif",
+    "source_sha256": "e414509881373742edfded1c11651c751dcacead9063a497b3552179468baed9",
+    "source_review_scope": "Independent native overview, literal selector presence, measured captions/frames/box-bottom labels and targeted topology review; current-hash TXT/model/verification/validation binding. Not fresh recognition of every unchanged control field. Root independently checked exact frozen hashes, allowed character/grid dimensions, header/field/selector/label comparisons and QZ records. Exact baseline differences, where present, are retained below and source-supported; not a new reading of every unchanged field.",
+    "peer_review": {
+      "page": "QQ031",
+      "peer_review_pass": true,
+      "files": [
+        {
+          "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 SET ATR INSTRUCTION SHEET 2 RECEIVE ATR.txt",
+          "sha256": "16835e4a8780c904f8c5964279801e0f62f708366ba5dc3048d42cbb25193c5f",
+          "matches_frozen": true
+        },
+        {
+          "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 content.json",
+          "sha256": "e85c60cdc1b52c46002226a9351b698df0e0328d6a2f0f330eebde7afff43413",
+          "matches_frozen": true
+        },
+        {
+          "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 verification.json",
+          "sha256": "f75110e4412ce5d1d0f362ed102d7a97e3ebd3fd7010509f5344b1b338e59167",
+          "matches_frozen": true
+        },
+        {
+          "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 validation.json",
+          "sha256": "aeb38ec7e3f45b9ad2a0c061c7c62b475f749102a26319e4bf382caaabda4dda",
+          "matches_frozen": true
+        }
+      ],
+      "native_proofs": [
+        "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QQ next11 evidence\\QQ031 native overview.png"
+      ],
+      "finding": "Native full overview and enlarged J8/J9/L8/lower entry proofs reviewed. Separate J8/L8→J9 versus J9→N1/N3/Q1 networks agree with QZ NEXT0AD4/ATRSEL branching; three inherited false graph unions removed. Standalone RECEIVE ATR restored23,41, absent E1 second comment removed and upper ghost6,6 cleared. Footer and overview caption/control/portal positions match within scope.",
+      "scope": "Independent native overview, literal selector presence, measured captions/frames/box-bottom labels and targeted topology review; current-hash TXT/model/verification/validation binding. Not fresh recognition of every unchanged control field.",
+      "prior_scoped_review": {
+        "page": "QQ031",
+        "peer_review_pass": false,
+        "status": "Source-supported correction pending owner repair and current-hash rereview",
+        "files": [
+          {
+            "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 SET ATR INSTRUCTION SHEET 2 RECEIVE ATR.txt",
+            "sha256": "70acc6a039a1b452248a5231fd7fbbe38e75b652423a39d0f2969540ae4af0e6",
+            "observed_sha256": "70acc6a039a1b452248a5231fd7fbbe38e75b652423a39d0f2969540ae4af0e6",
+            "matches_frozen": true
+          },
+          {
+            "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 content.json",
+            "sha256": "a8a0eaa912d87cc536d67b9c06d512fd81feded3d7dec1a1e3abf6104743305f",
+            "observed_sha256": "a8a0eaa912d87cc536d67b9c06d512fd81feded3d7dec1a1e3abf6104743305f",
+            "matches_frozen": true
+          },
+          {
+            "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 verification.json",
+            "sha256": "36beefb8758d5bd6b2e2fc8ec43851a76711bfb51a1684937127d1d9fde9ec25",
+            "observed_sha256": "36beefb8758d5bd6b2e2fc8ec43851a76711bfb51a1684937127d1d9fde9ec25",
+            "matches_frozen": true
+          },
+          {
+            "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 validation.json",
+            "sha256": "436acf905edcc6ce71fa6fab401ff8e0d8a2df0f67e549be628e894ab1724b8c",
+            "observed_sha256": "436acf905edcc6ce71fa6fab401ff8e0d8a2df0f67e549be628e894ab1724b8c",
+            "matches_frozen": true
+          }
+        ],
+        "finding": "Held for misplaced RECEIVE ATR standalone caption (native23,41 rather than E1 comment31) and orphan upper-entry wire6,6. Separate J8/L8→J9 versus J9→N1/N3/Q1 source network reviewed; source/QZ corrections agree within route scope.",
+        "scope": "Independent source observation; no full-page acceptance."
+      }
+    },
+    "baseline_audit": {
+      "page": "QQ031",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 SET ATR INSTRUCTION SHEET 2 RECEIVE ATR.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ031\\QQ031 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ031 SET ATR INSTRUCTION SHEET 2 RECEIVE ATR.txt",
+      "old_sha256": "c76385f7f76f316e85b4c4a53ed4956e6c39a1a0b51f6f361e5e9059f5ac2497",
+      "new_sha256": "16835e4a8780c904f8c5964279801e0f62f708366ba5dc3048d42cbb25193c5f",
+      "content_sha256": "e85c60cdc1b52c46002226a9351b698df0e0328d6a2f0f330eebde7afff43413",
+      "nodes": 36,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {
+        "J8": {
+          "old": [
+            [
+              "QQ031",
+              "J9",
+              "0AD4"
+            ],
+            [
+              "QQ031",
+              "N1",
+              "0AD7"
+            ],
+            [
+              "QQ031",
+              "N3",
+              "0AD6"
+            ],
+            [
+              "QQ031",
+              "Q1",
+              "0AD5"
+            ]
+          ],
+          "new": [
+            [
+              "QQ031",
+              "J9",
+              "0AD4"
+            ]
+          ]
+        },
+        "J9": {
+          "old": [
+            [
+              "QQ031",
+              "J9",
+              "0AD4"
+            ],
+            [
+              "QQ031",
+              "N1",
+              "0AD7"
+            ],
+            [
+              "QQ031",
+              "N3",
+              "0AD6"
+            ],
+            [
+              "QQ031",
+              "Q1",
+              "0AD5"
+            ]
+          ],
+          "new": [
+            [
+              "QQ031",
+              "N1",
+              "0AD7"
+            ],
+            [
+              "QQ031",
+              "N3",
+              "0AD6"
+            ],
+            [
+              "QQ031",
+              "Q1",
+              "0AD5"
+            ]
+          ]
+        },
+        "L8": {
+          "old": [
+            [
+              "QQ031",
+              "J9",
+              "0AD4"
+            ],
+            [
+              "QQ031",
+              "N1",
+              "0AD7"
+            ],
+            [
+              "QQ031",
+              "N3",
+              "0AD6"
+            ],
+            [
+              "QQ031",
+              "Q1",
+              "0AD5"
+            ]
+          ],
+          "new": [
+            [
+              "QQ031",
+              "J9",
+              "0AD4"
+            ]
+          ]
+        }
+      },
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 3,
+          "label": "QQ021.NIE",
+          "wire_column": 11
+        },
+        {
+          "row": 14,
+          "label": "QQ021.QIE",
+          "wire_column": 11
+        },
+        {
+          "row": 47,
+          "label": "QT041.CBE",
+          "wire_column": 11
+        },
+        {
+          "row": 58,
+          "label": "QY041.NIE",
+          "wire_column": 11
+        },
+        {
+          "row": 80,
+          "label": "QQ001.GDE",
+          "wire_column": 11
+        },
+        {
+          "row": 82,
+          "label": "QQ021.GHE",
+          "wire_column": 11
+        },
+        {
+          "row": 85,
+          "label": "QQ041.CDE",
+          "wire_column": 11
+        },
+        {
+          "row": 87,
+          "label": "QQ071.LFF",
+          "wire_column": 11
+        },
+        {
+          "row": 89,
+          "label": "QQ031.EGE",
+          "wire_column": 11
+        },
+        {
+          "row": 91,
+          "label": "QQ091.GHE",
+          "wire_column": 11
+        },
+        {
+          "row": 93,
+          "label": "QU001.NHE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [
+      "Native full overview and enlarged J8/J9/L8/lower entry proofs reviewed. Separate J8/L8→J9 versus J9→N1/N3/Q1 networks agree with QZ NEXT0AD4/ATRSEL branching; three inherited false graph unions removed. Standalone RECEIVE ATR restored23,41, absent E1 second comment removed and upper ghost6,6 cleared. Footer and overview caption/control/portal positions match within scope."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T07:27:08.085036+00:00"
+  }
+}

@@ -1,0 +1,80 @@
+XM905 OLD AND NEW FORMAT DECODE - TRANSLATION NOTES
+
+Reference scan: XM Mixer\XM905 OLD AND NEW FORMAT DECODE.tif
+Original scan: img20141206_11490462.tif
+Original scan timestamp: 2014-12-06 11:49:04.620000
+Preceding scan: XM901 FORMAT DECODING.tif
+Following scan: XN011 N REGISTER BITS P0-7 0 1.tif
+Review record: tmp\ald-text\xm\audits\XM905.json
+
+PAGE NOTES
+
+XM905 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 36,
+  "A1_total_card_portions": 36,
+  "A1_direct_page_card_portions": 36,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 48,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native source",
+    "evidence": "XM905 OLD AND NEW FORMAT DECODE TIFF SHA-256 1f995ff19f3271f027e030d18d82ab8642b9f813a44d5f05d5827ae48707a303."
+  },
+  {
+    "location": "Printed card portions",
+    "evidence": "All 18 3586 portions at B-E4E4 and all 18 3586 portions at B-E4J2 represented; direct A1 listing expected 36 card portions."
+  },
+  {
+    "location": "Native source topology",
+    "evidence": "Twelve printed two-OR/one-A groups occupy three spatial banks exactly as the TIFF: left E4 B1/J2 AD/J2 AG/E4 AD, middle E4 A1/A4/A7/AA, right J2 A1/A4/A7/AA. Nine distinct source rails and their printed pin ownership were followed through native c00-c22 plus left/mid/right bus crops. Diamond taps are represented; plain crossings remain separate."
+  },
+  {
+    "location": "J2 middle pin",
+    "evidence": "Native TIFF crop x=1800..3400,y=2400..3950 (j2-middle-detail.png) prints 3586AE input B05; the close B09-like shape was rechecked at source resolution. 3586AD B07 and the adjacent J2 AD/AE/AF combiner path are visible in the same crop."
+  },
+  {
+    "location": "Native rail evidence",
+    "evidence": "Focused original-TIFF crops: left-bus-upper x1700..2450 y900..2800; left-bus-middle x1700..2450 y2700..4800; mid-bus-upper x4500..5150 y250..2500; mid-bus-lower x4500..5150 y2450..4800; right-bus-upper x6350..6950 y250..2600; right-bus-lower x6350..6950 y2450..5200. Manual three-bank rails preserve the visibly printed diamonds, plain crossings, and four-line middle pass-through bundle; independent root audit completed."
+  },
+  {
+    "location": "Native source ownership correction",
+    "evidence": "Native c00/c10 shows E4 A2 EQ000 above E4 A1 NEW; A2 feeds E4 A3 inlet A and A1 feeds inlet B. Five J2 upper B07 cards A1/A4/A7/AD/AG are on FORMAT OLD with paired lower ORs on associated EQ rails. The right lower AA/AB group is the exception: EQ100 enters J2 AA B07 on a short rail, while FORMAT OLD crosses it plainly and continues to J2 AB B02. Explicit portions retained because OR commutativity does not license swapping printed cards."
+  },
+  {
+    "location": "Native block symbols and footer",
+    "evidence": "All twelve U03CL combiners have a blank upper interior header, inlet A/B triangles, and right output labels without triangles. The 24 connector footer strings were copied from original TIFF crops, with root-confirmed AH4 B-E4M6D04 and BJ4 B-E4M6B10 / 02L-B2N2B10. Footer IBM CORP. BLK. BP has no SDD."
+  },
+  {
+    "location": "Fixed printer lattice and source inconsistency",
+    "evidence": "Cards occupy ordinary block columns 50/73/96/119/142/165/188 and rank tops 2+7n. J2 A1 is physically aligned with the bank-6 right OR cards at column 165, although its literal printed bottom code reads 5A; that source inconsistency is preserved. E4 A2 is physically above E4 A1 by codes 4B/4C; J2 AJ combiner is 2H alongside J2 AG 1H, and J2 AF native bottom code reads 2G. No unapproved bank or rank shifts remain. Source rails jog through open aisles while retaining printed pin ownership, diamonds, and plain crossings."
+  },
+  {
+    "location": "Independent root audit",
+    "evidence": "Root inspected all native sectors, focused card and source bus crops, continuation fields and footer; corrected J2 AA/AB source ownership, native staggered groups, first EQ000 hyphen and AH4/BJ4 connector literals. Final full preview independently inspected."
+  }
+]
+
+Original scan order
+Before XM901 FORMAT DECODING.tif
+After XN011 N REGISTER BITS P0-7 0 1.tif

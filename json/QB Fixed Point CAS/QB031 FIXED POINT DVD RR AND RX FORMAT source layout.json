@@ -1,0 +1,1004 @@
+{
+  "nodes": [
+    {
+      "box": "A1",
+      "leg": "011101",
+      "address": "011D",
+      "fields": [
+        "A 0-T",
+        "A →AB38",
+        "D CON→E3",
+        "L RG*E2Ω1→T",
+        "C SIGNS→STATS"
+      ],
+      "exit": "0X──AA",
+      "comments": [
+        "TC TO B",
+        "S00 TO STAC",
+        "000 TO E12-15",
+        "R1+1 TO T",
+        "CLEAR B64-67"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        0
+      ]
+    },
+    {
+      "box": "A2",
+      "leg": "0X",
+      "address": "0418",
+      "fields": [
+        "A 0-T+P",
+        "A →T",
+        "L W*24"
+      ],
+      "exit": "X*──AB",
+      "comments": [
+        "TC TO T",
+        "PROP SIGN",
+        "WRITE WR"
+      ],
+      "R_line": "R       ¬STAC",
+      "grid": [
+        47,
+        0
+      ]
+    },
+    {
+      "box": "A3",
+      "leg": "X0",
+      "address": "059C",
+      "fields": [
+        "A →A",
+        "D MS→T*D(21)",
+        "L R*24→S",
+        "C 1→STAD"
+      ],
+      "exit": "X*──AC",
+      "comments": [
+        "NEG DIVIDEND R2",
+        "STORAGE WD",
+        "WR TO S",
+        "CLEAR A",
+        "TON STAD"
+      ],
+      "R_line": "R      JCRY28",
+      "grid": [
+        69,
+        0
+      ]
+    },
+    {
+      "box": "A4",
+      "leg": "X1",
+      "address": "041B",
+      "fields": [
+        "A →A",
+        "C 1→STAB,STAG"
+      ],
+      "exit": "XX──AD",
+      "comments": [
+        "CARRY FROM LOW",
+        "ORDER COMP B",
+        "IS D*K.",
+        "T32 TO STAG",
+        "CLEAR A"
+      ],
+      "grid": [
+        91,
+        0
+      ]
+    },
+    {
+      "box": "E3",
+      "leg": "X1",
+      "address": "059D",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "D MS→T*D(21)",
+        "L RG*E2Ω1→S"
+      ],
+      "exit": "X1──EC",
+      "comments": [
+        "POS DIVIDEND R2",
+        "STORAGE WD",
+        "R1+1 TO S"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        69,
+        22
+      ]
+    },
+    {
+      "box": "E4",
+      "leg": "X0",
+      "address": "041A",
+      "fields": [
+        "A B+0-1",
+        "A →B",
+        "C 1→STAB,STAG"
+      ],
+      "exit": "XX──ED",
+      "comments": [
+        "NO CARRY FROM",
+        "LOW ORDER COMP",
+        "HENCE B -1 TO B",
+        "T32 TO STAG"
+      ],
+      "grid": [
+        91,
+        22
+      ]
+    },
+    {
+      "box": "L4",
+      "leg": "X1",
+      "address": "048D",
+      "fields": [
+        "A B+0",
+        "A →T",
+        "L R*24→S",
+        "C 1→STAD"
+      ],
+      "exit": "X*──LD",
+      "comments": [
+        "NEG DIVIDEND",
+        "B TO T",
+        "SET STAD",
+        "WR TO S"
+      ],
+      "R_line": "R      JCRY28",
+      "grid": [
+        91,
+        55
+      ]
+    },
+    {
+      "box": "L5",
+      "leg": "X0",
+      "address": "048E",
+      "fields": [
+        "A A-T",
+        "A →AB38",
+        "D CON→E3",
+        "L R*E3→T"
+      ],
+      "exit": "XX──LE",
+      "comments": [
+        "NO CARRY FROM",
+        "COMPL LOW ORDER",
+        "HENCE ADD -1 TO",
+        "PB SIDE OF ADDR",
+        "R2 TO T"
+      ],
+      "grid": [
+        113,
+        55
+      ]
+    },
+    {
+      "box": "L7",
+      "leg": "0X",
+      "address": "60C",
+      "fields": [
+        "A ABL2-TL1+P",
+        "A →AB38",
+        "C DVDL0"
+      ],
+      "exit": "XX──LG",
+      "comments": [
+        "POS DIVISOR",
+        "TC L1 TO AB",
+        "B-67 PROP SIGN",
+        "DVD MPL SEL LO"
+      ],
+      "grid": [
+        157,
+        55
+      ]
+    },
+    {
+      "box": "Q1",
+      "leg": "011101",
+      "address": "019D",
+      "fields": [],
+      "exit": "0X──QA",
+      "comments": [],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        77
+      ]
+    },
+    {
+      "box": "Q2",
+      "leg": "0X",
+      "address": "0400",
+      "fields": [
+        "A -1",
+        "A →A",
+        "L RG*E2Ω1→T",
+        "C 1→STAB,STAG",
+        "C 0→STC"
+      ],
+      "exit": "XX──QB",
+      "comments": [
+        "T32 TO STAG",
+        "B32 TO STAB"
+      ],
+      "grid": [
+        47,
+        77
+      ]
+    },
+    {
+      "box": "Q3",
+      "leg": "XX",
+      "address": "060D",
+      "fields": [
+        "A 0-T+P",
+        "A →B8,T",
+        "L W*24"
+      ],
+      "exit": "X*──QC",
+      "comments": [
+        "TC TO T AND",
+        "WRITE WR",
+        "PROP SIGN",
+        "CLR B(64-67)"
+      ],
+      "R_line": "R        STAB",
+      "grid": [
+        69,
+        77
+      ]
+    },
+    {
+      "box": "Q4",
+      "leg": "X0",
+      "address": "048C",
+      "fields": [
+        "A 0+S",
+        "A →T",
+        "D CON→E3",
+        "L RG*E2Ω1→S"
+      ],
+      "exit": "XX──QD",
+      "comments": [
+        "S TO T",
+        "POS DIVIDEND",
+        "R1+1 TO S"
+      ],
+      "grid": [
+        91,
+        77
+      ]
+    },
+    {
+      "box": "Q5",
+      "leg": "X1",
+      "address": "048F",
+      "fields": [
+        "A 0-T",
+        "A →AB38",
+        "D CON→E3",
+        "L R*E3→T"
+      ],
+      "exit": "XX──QE",
+      "comments": [
+        "CARRY FROM LOW",
+        "ORDER SIMPLY",
+        "COMPL HIGH",
+        "ORDER",
+        "R2 TO T"
+      ],
+      "grid": [
+        113,
+        77
+      ]
+    },
+    {
+      "box": "Q6",
+      "leg": "XX",
+      "address": "074B",
+      "fields": [
+        "A B+0",
+        "A →B38M",
+        "C E3+1"
+      ],
+      "exit": "*X──QF",
+      "comments": [
+        "MM2 TO B64-65",
+        "ADD 1 TO",
+        "E12-15"
+      ],
+      "R_line": "R        STAG",
+      "grid": [
+        135,
+        77
+      ]
+    },
+    {
+      "box": "Q7",
+      "leg": "1X",
+      "address": "60E",
+      "fields": [
+        "A ABL2+TL1+P",
+        "A →AB38",
+        "C DVDL0"
+      ],
+      "exit": "XX──QG",
+      "comments": [
+        "NEG DIVISOR",
+        "T L1 TO AB",
+        "B-67 PROP SIGN",
+        "DVD MPL SEL LO"
+      ],
+      "grid": [
+        157,
+        77
+      ]
+    },
+    {
+      "box": "Q8",
+      "leg": "XX",
+      "address": "603",
+      "fields": [
+        "A AB17+0+P",
+        "A →B38M",
+        "B →F",
+        "C DVDL1"
+      ],
+      "exit": "X*──QH",
+      "comments": [
+        "DVD MPL SEL L1",
+        "SAL TO F TO",
+        "CLEAR F AND",
+        "INSERT FIRST",
+        "BIT OF Q-BYTE"
+      ],
+      "R_line": "R       STC≠3",
+      "grid": [
+        179,
+        77
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      3,
+      "QT011.SDE"
+    ],
+    [
+      2,
+      4,
+      "(011101)"
+    ],
+    [
+      2,
+      80,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      81,
+      "(011101)"
+    ],
+    [
+      2,
+      92,
+      "QB041.QBE"
+    ],
+    [
+      2,
+      93,
+      "(XX)"
+    ],
+    [
+      229,
+      81,
+      "(X0)"
+    ],
+    [
+      229,
+      82,
+      "(X1)"
+    ],
+    [
+      229,
+      80,
+      "QB041"
+    ],
+    [
+      239,
+      80,
+      "QHE"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583804"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QB031"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "FIXED POINT DVD"
+    ],
+    [
+      200,
+      101,
+      "RR AND RX FORMAT"
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      105
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        12,
+        3
+      ],
+      [
+        25,
+        3
+      ]
+    ],
+    [
+      [
+        40,
+        3
+      ],
+      [
+        47,
+        3
+      ]
+    ],
+    [
+      [
+        62,
+        3
+      ],
+      [
+        69,
+        3
+      ]
+    ],
+    [
+      [
+        67,
+        3
+      ],
+      [
+        67,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        84,
+        3
+      ],
+      [
+        91,
+        3
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        87,
+        25
+      ],
+      [
+        87,
+        5
+      ],
+      [
+        91,
+        5
+      ]
+    ],
+    [
+      [
+        89,
+        3
+      ],
+      [
+        89,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        3
+      ],
+      [
+        109,
+        3
+      ],
+      [
+        109,
+        52
+      ],
+      [
+        133,
+        52
+      ],
+      [
+        133,
+        78
+      ],
+      [
+        135,
+        78
+      ]
+    ],
+    [
+      [
+        106,
+        25
+      ],
+      [
+        109,
+        25
+      ]
+    ],
+    [
+      [
+        12,
+        80
+      ],
+      [
+        25,
+        80
+      ]
+    ],
+    [
+      [
+        40,
+        80
+      ],
+      [
+        47,
+        80
+      ]
+    ],
+    [
+      [
+        62,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        84,
+        80
+      ],
+      [
+        91,
+        80
+      ]
+    ],
+    [
+      [
+        89,
+        80
+      ],
+      [
+        89,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        111,
+        58
+      ],
+      [
+        111,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        131,
+        58
+      ],
+      [
+        131,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        128,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        80
+      ],
+      [
+        109,
+        80
+      ],
+      [
+        109,
+        91
+      ],
+      [
+        131,
+        91
+      ],
+      [
+        131,
+        80
+      ]
+    ],
+    [
+      [
+        150,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        155,
+        80
+      ],
+      [
+        155,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        175,
+        58
+      ],
+      [
+        175,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        228,
+        80
+      ]
+    ],
+    [
+      [
+        12,
+        92
+      ],
+      [
+        41,
+        92
+      ],
+      [
+        41,
+        94
+      ],
+      [
+        175,
+        94
+      ],
+      [
+        175,
+        82
+      ],
+      [
+        179,
+        82
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      67,
+      3,
+      "O"
+    ],
+    [
+      89,
+      3,
+      "O"
+    ],
+    [
+      109,
+      25,
+      "O"
+    ],
+    [
+      89,
+      80,
+      "O"
+    ],
+    [
+      111,
+      58,
+      "O"
+    ],
+    [
+      131,
+      80,
+      "O"
+    ],
+    [
+      155,
+      80,
+      "O"
+    ],
+    [
+      175,
+      80,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "review_notes": [
+    "QZ numeric control bits are recorded alongside each box. Symbolic control fields were read from the scan; independent complete numeric encoding of those fields is not asserted."
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1315.68,
+    "first_header_y": 177.7,
+    "column_step": 667.56,
+    "row_step": 494.86
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QB031 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QB031",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "59d93ff073da95b0c8bd5a7695ebd29715a36ad1d384d13601c7d08846e7a580",
+    "text_sha256": "f0bc7d5f3b3c575b14ec50d22e5a76cb776b053842471308188baf763bc3a79c",
+    "content_sha256": "ed0e9725bb6823b5933da4ba4c5a373702c84f158fc05c3d4406894f5b70d183",
+    "verification_sha256": "c18bf1bf055c5e7340c4922a7d7518d98e756330dc4cd86c4319d47e4df6db54",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QB Fixed Point CAS\\QB031 FIXED POINT DVD RR AND RX FORMAT.tif",
+    "source_sha256": "71733e290544207c946820c185dbb877fa7ae3c377871eeaddc7e2baf3f8dfb1",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:37.572417+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

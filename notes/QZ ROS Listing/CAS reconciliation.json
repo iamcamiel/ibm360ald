@@ -1,0 +1,3615 @@
+{
+  "summary": {
+    "requested_words": 49,
+    "CAS_boxes_available": 46,
+    "QZ_words_complete_and_parity_valid": 49,
+    "remaining_parity_review": [],
+    "user_confirmed_corrections": [
+      {
+        "address": "03AA",
+        "field": "N",
+        "bits": "0000",
+        "date": "2026-10-10"
+      }
+    ],
+    "words_without_CAS_reference": [
+      "0300",
+      "0535"
+    ],
+    "word_absent_from_available_CAS_revision": [
+      "0E00"
+    ],
+    "next_address_revision_difference": [
+      "0EB2"
+    ],
+    "unused_word_inferences": [
+      "0300",
+      "0535"
+    ],
+    "parity_bit_inferences": [
+      {
+        "address": "0224",
+        "field": "P2",
+        "bits": "1"
+      },
+      {
+        "address": "0C24",
+        "field": "P2",
+        "bits": "0"
+      },
+      {
+        "address": "0F24",
+        "field": "P2",
+        "bits": "1"
+      },
+      {
+        "address": "0F25",
+        "field": "P4",
+        "bits": "1"
+      }
+    ],
+    "changed_bit_cells_in_requested_words": 82,
+    "additional_corrected_words": [
+      "0528"
+    ]
+  },
+  "method": "Visual inspection of CAS controls, enlargement of the original QZ bit glyphs, field-code tables, and connected-box branch paths. Parity is a separate consistency check and was not used to silently flip a readable value.",
+  "revision_policy": "QZ words preserve their source revision. Updated CAS sheets can move boxes or change next addresses; known differences are flagged. No ROS word was substituted from a different revision.",
+  "records": [
+    {
+      "address": "004C",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ001-03 ADDRESS LIST UNIT 0000.tif",
+      "source_row": 5,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QC071",
+      "original_cas_box": "A8",
+      "cas_page": "QC071",
+      "cas_box": "A8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A14 D7 K15 J22 M19 N11 P2 R1 T14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "004C",
+          "cas_page": "QC071",
+          "cas_box": "A8",
+          "field": "P",
+          "ros_bit_positions": [
+            78,
+            79,
+            80
+          ],
+          "bits": "010",
+          "previous_resolved_bits": "110",
+          "changed_positions": [
+            78
+          ],
+          "decode_order": "P2",
+          "micro_order": "R→AB18",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC071 FLT PT ADD TYPE OPERAND PRE-SHIFT.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 79
+        }
+      ],
+      "original_ros_bits": "000001110000000011110000000000000000000000000000000100110111100101101001110111100000111110000000000",
+      "reconciled_ros_bits": "000001110000000011110000000000000000000000000000000100110111100101101001110110100000111110000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "004B",
+          "cas_page": "QC071",
+          "cas_box": "N4"
+        },
+        {
+          "address": "004D",
+          "cas_page": "QC071",
+          "cas_box": "E8"
+        }
+      ]
+    },
+    {
+      "address": "008A",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ001-03 ADDRESS LIST UNIT 0000.tif",
+      "source_row": 27,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QJ001",
+      "original_cas_box": "N1",
+      "cas_page": "QJ001",
+      "cas_box": "N1",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A6 E9 F3 J122 Q1 U14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "008A",
+          "cas_page": "QJ001",
+          "cas_box": "N1",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "0011010000",
+          "previous_resolved_bits": "0011110000",
+          "changed_positions": [
+            51
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "J(58–63) functional branch reaches the QJ001 0340-series boxes.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QJ Shift, Etc CAS\\QJ001 SHIFT OPERAND FETCH AND SINGLE RIGHT SHIFTS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000110000000000011001000011000000000000000000111100000000011110100000000000000001100000111100000",
+      "reconciled_ros_bits": "000000110000000000011001000011000000000000000000110100000000011110100000000000000001100000111100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0089",
+          "cas_page": "QJ504",
+          "cas_box": "E1"
+        },
+        {
+          "address": "008B",
+          "cas_page": "QJ504",
+          "cas_box": "J1"
+        }
+      ]
+    },
+    {
+      "address": "00BA",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ001-05 ADDRESS LIST UNIT 0000.tif",
+      "source_row": 3,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QT061",
+      "original_cas_box": "A9",
+      "cas_page": "QT061",
+      "cas_box": "A9",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "F19",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "00BA",
+          "cas_page": "QT061",
+          "cas_box": "A9",
+          "field": "V",
+          "ros_bit_positions": [
+            97,
+            98,
+            99
+          ],
+          "bits": "000",
+          "previous_resolved_bits": "010",
+          "changed_positions": [
+            98
+          ],
+          "decode_order": "V0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT061 INVALID OP CODES RS AND SI FORMATS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 86
+        }
+      ],
+      "original_ros_bits": "000000000000000000000000010011000000000000000000000001000000000000000000000000000000000000100000010",
+      "reconciled_ros_bits": "000000000000000000000000010011000000000000000000000001000000000000000000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "00B9",
+          "cas_page": "QT061",
+          "cas_box": "Q8"
+        },
+        {
+          "address": "00BB",
+          "cas_page": "QT061",
+          "cas_box": "C9"
+        }
+      ]
+    },
+    {
+      "address": "00BD",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ001-05 ADDRESS LIST UNIT 0000.tif",
+      "source_row": 6,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QT061",
+      "original_cas_box": "G9",
+      "cas_page": "QT061",
+      "cas_box": "G9",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "F19",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "00BD",
+          "cas_page": "QT061",
+          "cas_box": "G9",
+          "field": "N",
+          "ros_bit_positions": [
+            74,
+            75,
+            76,
+            77
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0001",
+          "changed_positions": [
+            77
+          ],
+          "decode_order": "N0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT061 INVALID OP CODES RS AND SI FORMATS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 78
+        }
+      ],
+      "original_ros_bits": "000000000000000000000000010011000000000000000000000001000000000000000000000010000000000000100000000",
+      "reconciled_ros_bits": "000000000000000000000000010011000000000000000000000001000000000000000000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "00BC",
+          "cas_page": "QT061",
+          "cas_box": "E9"
+        },
+        {
+          "address": "00BE",
+          "cas_page": "QT061",
+          "cas_box": "J9"
+        }
+      ]
+    },
+    {
+      "address": "0224",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ021-02 ADDRESS LIST UNIT 0002.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QT005",
+      "original_cas_box": "C6",
+      "cas_page": "QT005",
+      "cas_box": "C6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A3 B3 C15 D7 E14 F1 G18 H14 L10 K25 J103 N15 V6",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0224",
+          "cas_page": "QT005",
+          "cas_box": "C6",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "10010",
+          "previous_resolved_bits": "00010",
+          "changed_positions": [
+            31
+          ],
+          "decode_order": "G18",
+          "micro_order": "2→IC(21–22)",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT005 RS SI FORMAT I FETCH.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 56
+        },
+        {
+          "address": "0224",
+          "cas_page": "QT005",
+          "cas_box": "C6",
+          "field": "P2",
+          "ros_bit_positions": [
+            20
+          ],
+          "bits": "1",
+          "previous_resolved_bits": " ",
+          "changed_positions": [
+            20
+          ],
+          "decode_order": "odd parity",
+          "micro_order": "",
+          "basis": "Derived after the control fields of this parity group were checked against the CAS box and the source scan. This is a parity inference, not a printed CAS micro-order.",
+          "verification": "Parity inference after CAS/scan verification",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT005 RS SI FORMAT I FETCH.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "0000000111101111111 1110000001000100001110101000001000001100111001110000011110000000000000100000110",
+      "reconciled_ros_bits": "000000011110111111111110000001100100001110101000001000001100111001110000011110000000000000100000110",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0223",
+          "cas_page": "QT005",
+          "cas_box": "N3"
+        },
+        {
+          "address": "0225",
+          "cas_page": "QT005",
+          "cas_box": "G6"
+        }
+      ]
+    },
+    {
+      "address": "02B0",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ021-04 ADDRESS LIST UNIT 0002.tif",
+      "source_row": 29,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QT071",
+      "original_cas_box": "C2",
+      "cas_page": "QT071",
+      "cas_box": "C2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "B2 F19 H26 J1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "02B0",
+          "cas_page": "QT071",
+          "cas_box": "C2",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "0011100110",
+          "previous_resolved_bits": "00011001  ",
+          "changed_positions": [
+            49,
+            55,
+            56
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QT071 C2 exits to S9, ROS 0399. K0/J1 supply the low 01.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QT Instruction Fetch CAS\\QT071 INVALID OP CODES AND ADDRESSES SS FORMAT.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000100000000000000010011000000011010000000011001  0000000000010000000000000000100000100000000",
+      "reconciled_ros_bits": "000000000100000000000000010011000000011010000000111001100000000000010000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "02AF",
+          "cas_page": "QT071",
+          "cas_box": "Q5"
+        },
+        {
+          "address": "02B1",
+          "cas_page": "QT031",
+          "cas_box": "G3"
+        }
+      ]
+    },
+    {
+      "address": "02B8",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ021-05 ADDRESS LIST UNIT 0002.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QS031",
+      "original_cas_box": "Q3",
+      "cas_page": "QS031",
+      "cas_box": "Q3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 C9 D7 F47 L8 K1 J1 U14 V1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "02B8",
+          "cas_page": "QS031",
+          "cas_box": "Q3",
+          "field": "V",
+          "ros_bit_positions": [
+            97,
+            98,
+            99
+          ],
+          "bits": "001",
+          "previous_resolved_bits": "000",
+          "changed_positions": [
+            99
+          ],
+          "decode_order": "V1",
+          "micro_order": "E3+T",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS031 DEC ZERO AND ADD.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 86
+        }
+      ],
+      "original_ros_bits": "000001010000100111110000101111000000000000100000111001100000100000010000000000000000100000111100000",
+      "reconciled_ros_bits": "000001010000100111110000101111000000000000100000111001100000100000010000000000000000100000111100001",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "02B7",
+          "cas_page": "QT071",
+          "cas_box": "Q2"
+        },
+        {
+          "address": "02B9",
+          "cas_page": "QT031",
+          "cas_box": "Q2"
+        }
+      ]
+    },
+    {
+      "address": "0300",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ031-01 ADDRESS LIST UNIT 0003.tif",
+      "source_row": 1,
+      "qz_ec_level": "713381",
+      "original_cas_page": "",
+      "original_cas_box": "",
+      "cas_page": "",
+      "cas_box": "",
+      "result": "No CAS reference; unused-word template inferred",
+      "cas_control_decode_orders": null,
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0300",
+          "cas_page": "",
+          "cas_box": "",
+          "field": "unused-word template",
+          "ros_bit_positions": [
+            21,
+            98,
+            99
+          ],
+          "bits": "000",
+          "previous_resolved_bits": "   ",
+          "changed_positions": [
+            21,
+            98,
+            99
+          ],
+          "decode_order": "P1=1; all other ROS bits=0",
+          "micro_order": "",
+          "basis": "No CAS reference; EC 713381 and every readable ROS bit match the unused-word template. Missing cells reconstructed as zero, not read from a CAS box.",
+          "verification": "Unused-word pattern inference",
+          "cas_source": null,
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "10000000000000000000 0000000000000000000000000000000000000000000000000000000000000000000000000000  ",
+      "reconciled_ros_bits": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "Unreadable cells are inferred zero, not observed or CAS-decoded."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "02D7",
+          "cas_page": "QS081",
+          "cas_box": "A4"
+        },
+        {
+          "address": "0301",
+          "cas_page": "",
+          "cas_box": ""
+        }
+      ]
+    },
+    {
+      "address": "031C",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ031-01 ADDRESS LIST UNIT 0003.tif",
+      "source_row": 29,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QS051",
+      "original_cas_box": "A8",
+      "cas_page": "QS051",
+      "cas_box": "A8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A1 B1 F56 G13 H26 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "031C",
+          "cas_page": "QS051",
+          "cas_box": "A8",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "0100101010",
+          "previous_resolved_bits": "0000101010",
+          "changed_positions": [
+            48
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QS051 A8 exits to C5/C6, ROS 04AA/04AB, on the J=0 arm.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS051 DEC DIVIDE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000001010000000000000111000011010011010000000001010100000000000000000000000000000100000001000000",
+      "reconciled_ros_bits": "000000001010000000000000111000011010011010000001001010100000000000000000000000000000100000001000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "031B",
+          "cas_page": "QK011",
+          "cas_box": "Q7"
+        },
+        {
+          "address": "031D",
+          "cas_page": "QP051",
+          "cas_box": "J4"
+        }
+      ]
+    },
+    {
+      "address": "03AA",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ031-04 ADDRESS LIST UNIT 0003.tif",
+      "source_row": 23,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QT031",
+      "original_cas_box": "E5",
+      "cas_page": "QT031",
+      "cas_box": "E5",
+      "result": "N field corrected to 0000 by user confirmation; parity valid",
+      "cas_control_decode_orders": "K1 J26 N0",
+      "field_decode_notes": "N0 in 03AA is user-confirmed, not printed by CAS. Branch-selector constants in XX exits are also confirmed from the QZ listing.",
+      "applied_changes": [
+        {
+          "address": "03AA",
+          "cas_page": "QT031",
+          "cas_box": "E5",
+          "field": "N",
+          "ros_bit_positions": [
+            74,
+            75,
+            76,
+            77
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0100",
+          "changed_positions": [
+            75
+          ],
+          "decode_order": "N0",
+          "micro_order": "",
+          "basis": "User confirmed that 03AA N is all zeros on 10 October 2026. This resolves the former parity exception; P4 remains 1.",
+          "verification": "User-confirmed correction",
+          "cas_source": null,
+          "reference": null,
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000000000000010000000000000000000000000000111010110000100110100000001000000000100000100000000",
+      "reconciled_ros_bits": "000000000000000000010000000000000000000000000000111010110000100110100000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "User confirmed N=0000 on 10 October 2026. P4 remains 1. All four parity checks now pass; this is a user-confirmed correction rather than an independent CAS decode of N."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "03A9",
+          "cas_page": "QT031",
+          "cas_box": "A5"
+        },
+        {
+          "address": "03AB",
+          "cas_page": "QT031",
+          "cas_box": "C5"
+        }
+      ]
+    },
+    {
+      "address": "04BD",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ041-05 ADDRESS LIST UNIT 0004.tif",
+      "source_row": 6,
+      "qz_ec_level": "713381",
+      "original_cas_page": "QE021",
+      "original_cas_box": "A6",
+      "cas_page": "QE021",
+      "cas_box": "A6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C5 D7 F54 J1 N2 T5 U15",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "04BD",
+          "cas_page": "QE021",
+          "cas_box": "A6",
+          "field": "P",
+          "ros_bit_positions": [
+            78,
+            79,
+            80
+          ],
+          "bits": "000",
+          "previous_resolved_bits": "   ",
+          "changed_positions": [
+            78,
+            79,
+            80
+          ],
+          "decode_order": "P0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QE Convert, Branch, Execute CAS\\QE021 CONVERT TO BINARY.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 79
+        }
+      ],
+      "original_ros_bits": "00000000000001011110000011011000000000000000000101110001000000000001000000010   0000100101011110000",
+      "reconciled_ros_bits": "000000000000010111100000110110000000000000000001011100010000000000010000000100000000100101011110000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "04BC",
+          "cas_page": "QJ011",
+          "cas_box": "A4"
+        },
+        {
+          "address": "04BE",
+          "cas_page": "QE001",
+          "cas_box": "G3"
+        }
+      ]
+    },
+    {
+      "address": "0535",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ051-02 ADDRESS LIST UNIT 0005.tif",
+      "source_row": 18,
+      "qz_ec_level": "713381",
+      "original_cas_page": "",
+      "original_cas_box": "",
+      "cas_page": "",
+      "cas_box": "",
+      "result": "No CAS reference; unused-word template inferred",
+      "cas_control_decode_orders": null,
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0535",
+          "cas_page": "",
+          "cas_box": "",
+          "field": "unused-word template",
+          "ros_bit_positions": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "    ",
+          "changed_positions": [
+            23,
+            24,
+            25,
+            26
+          ],
+          "decode_order": "P1=1; all other ROS bits=0",
+          "micro_order": "",
+          "basis": "No CAS reference; EC 713381 and every readable ROS bit match the unused-word template. Missing cells reconstructed as zero, not read from a CAS box.",
+          "verification": "Unused-word pattern inference",
+          "cas_source": null,
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "1000000000000000000000    0000000000000000000000000000000000000000000000000000000000000000000000000",
+      "reconciled_ros_bits": "100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "Unreadable cells are inferred zero, not observed or CAS-decoded."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "0534",
+          "cas_page": "QJ031",
+          "cas_box": "G4"
+        },
+        {
+          "address": "0536",
+          "cas_page": "QJ031",
+          "cas_box": "G9"
+        }
+      ]
+    },
+    {
+      "address": "0704",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-01 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 5,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QG011",
+      "original_cas_box": "L3",
+      "cas_page": "QG011",
+      "cas_box": "L3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C9 D2 H9 K1 J1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0704",
+          "cas_page": "QG011",
+          "cas_box": "L3",
+          "field": "E",
+          "ros_bit_positions": [
+            81,
+            21,
+            22,
+            23,
+            24
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": " 0000",
+          "changed_positions": [
+            81
+          ],
+          "decode_order": "E0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QG Floating Point CAS\\QG011 FLT PT RX LOADS AND MULTIPLY INITIALIZATION.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 45
+        }
+      ],
+      "original_ros_bits": "00000000000010010100000000000000000000100100000011101111000010000001000000000000 000000000100000000",
+      "reconciled_ros_bits": "000000000000100101000000000000000000001001000000111011110000100000010000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0703",
+          "cas_page": "QY021",
+          "cas_box": "J4"
+        },
+        {
+          "address": "0705",
+          "cas_page": "QG011",
+          "cas_box": "N3"
+        }
+      ]
+    },
+    {
+      "address": "071B",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-01 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 28,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QS011",
+      "original_cas_box": "G8",
+      "cas_page": "QS011",
+      "cas_box": "G8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 F20 G23 L2 U14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "071B",
+          "cas_page": "QS011",
+          "cas_box": "G8",
+          "field": "H",
+          "ros_bit_positions": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "bits": "0000000",
+          "previous_resolved_bits": "0000 00",
+          "changed_positions": [
+            40
+          ],
+          "decode_order": "H0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS011 DECIMAL ADD SUB COMPARE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 58
+        },
+        {
+          "address": "071B",
+          "cas_page": "QS011",
+          "cas_box": "G8",
+          "field": "L",
+          "ros_bit_positions": [
+            43,
+            44,
+            45,
+            46
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0010",
+          "changed_positions": [
+            45
+          ],
+          "decode_order": "L0",
+          "micro_order": "No L micro-order",
+          "basis": "The enlarged QZ L group contains damaged zeros; the CAS box has no STOP2 or other S-edge micro-order. The apparent 1 at bit 45 was the surviving side of a zero.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS011 DECIMAL ADD SUB COMPARE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 74
+        }
+      ],
+      "original_ros_bits": "000001010000000000010000010100101110000 00001001001001000000000000000000000000000000000000011100000",
+      "reconciled_ros_bits": "000001010000000000010000010100101110000000000001001001000000000000000000000000000000000000011100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "071A",
+          "cas_page": "QS011",
+          "cas_box": "E8"
+        },
+        {
+          "address": "071C",
+          "cas_page": "QS001",
+          "cas_box": "E6"
+        }
+      ]
+    },
+    {
+      "address": "072D",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-02 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 10,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QS061",
+      "original_cas_box": "A2",
+      "cas_page": "QS061",
+      "cas_box": "A2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "B2 F56 G5 H26 P4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "072D",
+          "cas_page": "QS061",
+          "cas_box": "A2",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00101",
+          "previous_resolved_bits": "00100",
+          "changed_positions": [
+            35
+          ],
+          "decode_order": "G5",
+          "micro_order": "0→STAH",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS061 DEC DIVIDE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "000000000100000000000000111000001000011010000001101010110000000000000000000001000000100000000000000",
+      "reconciled_ros_bits": "000000000100000000000000111000001010011010000001101010110000000000000000000001000000100000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "072C",
+          "cas_page": "QS061",
+          "cas_box": "A5"
+        },
+        {
+          "address": "072E",
+          "cas_page": "QG011",
+          "cas_box": "L5"
+        }
+      ]
+    },
+    {
+      "address": "073E",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-02 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 27,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QC041",
+      "original_cas_box": "N9",
+      "cas_page": "QC041",
+      "cas_box": "N9",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A5 D7 F53 G21 J1 T12 U12",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "073E",
+          "cas_page": "QC041",
+          "cas_box": "N9",
+          "field": "L",
+          "ros_bit_positions": [
+            43,
+            44,
+            45,
+            46
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "00 0",
+          "changed_positions": [
+            45
+          ],
+          "decode_order": "L0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QC Floating Point CAS\\QC041 FLT PT DIVIDE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 74
+        }
+      ],
+      "original_ros_bits": "00000010100000001111000011010110101000000000 010011100100000000000010000000000000000101100111000000",
+      "reconciled_ros_bits": "000000101000000011110000110101101010000000000010011100100000000000010000000000000000101100111000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "073D",
+          "cas_page": "QE011",
+          "cas_box": "Q7"
+        },
+        {
+          "address": "073F",
+          "cas_page": "QB021",
+          "cas_box": "E3"
+        }
+      ]
+    },
+    {
+      "address": "0756",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-03 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 15,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QS051",
+      "original_cas_box": "N6",
+      "cas_page": "QS051",
+      "cas_box": "N6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "F50 L11 K11",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0756",
+          "cas_page": "QS051",
+          "cas_box": "N6",
+          "field": "K",
+          "ros_bit_positions": [
+            57,
+            58,
+            59,
+            60,
+            61
+          ],
+          "bits": "01011",
+          "previous_resolved_bits": "11011",
+          "changed_positions": [
+            57
+          ],
+          "decode_order": "K11",
+          "micro_order": "STAE",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QS Decimal CAS\\QS051 DEC DIVIDE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 72
+        }
+      ],
+      "original_ros_bits": "000000000000000000000000110010000000000000101110000010111101100000000000000000000000100000100000000",
+      "reconciled_ros_bits": "000000000000000000000000110010000000000000101110000010110101100000000000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0755",
+          "cas_page": "QS051",
+          "cas_box": "J6"
+        },
+        {
+          "address": "0757",
+          "cas_page": "QS051",
+          "cas_box": "Q6"
+        }
+      ]
+    },
+    {
+      "address": "07BA",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-05 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 3,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QJ031",
+      "original_cas_box": "C3",
+      "cas_page": "QJ031",
+      "cas_box": "C3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C4 F59 K31 T11",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "07BA",
+          "cas_page": "QJ031",
+          "cas_box": "C3",
+          "field": "E",
+          "ros_bit_positions": [
+            81,
+            21,
+            22,
+            23,
+            24
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "00100",
+          "changed_positions": [
+            22
+          ],
+          "decode_order": "E0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QJ Shift, Etc CAS\\QJ031 SET-INSERT KEY SET PROG-SYST MASK DIAG SUP CALL LOAD PSW.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 45
+        }
+      ],
+      "original_ros_bits": "000000000000010000010100111011000000000000000001001011101111100000000000000000000000101011000000000",
+      "reconciled_ros_bits": "000000000000010000010000111011000000000000000001001011101111100000000000000000000000101011000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "07B9",
+          "cas_page": "QJ031",
+          "cas_box": "N6"
+        },
+        {
+          "address": "07BB",
+          "cas_page": "QJ011",
+          "cas_box": "L6"
+        }
+      ]
+    },
+    {
+      "address": "07C3",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-05 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 12,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QB011",
+      "original_cas_box": "L4",
+      "cas_page": "QB011",
+      "cas_box": "L4",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A11 C26 D2 J38 P5 T8",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "07C3",
+          "cas_page": "QB011",
+          "cas_box": "L4",
+          "field": "J",
+          "ros_bit_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "bits": "0100110",
+          "previous_resolved_bits": "0000110",
+          "changed_positions": [
+            63
+          ],
+          "decode_order": "J38",
+          "micro_order": "D22=1",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QB Fixed Point CAS\\QB011 RX OPERAND FETCH LOAD FULL AND HALF.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 65
+        }
+      ],
+      "original_ros_bits": "000001011001101001000000000000000000000000000001111100010000000001100000000001010000001000000000000",
+      "reconciled_ros_bits": "000001011001101001000000000000000000000000000001111100010000001001100000000001010000001000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "07C2",
+          "cas_page": "QY061",
+          "cas_box": "N2"
+        },
+        {
+          "address": "07C4",
+          "cas_page": "QE011",
+          "cas_box": "L5"
+        }
+      ]
+    },
+    {
+      "address": "07CB",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ071-05 ADDRESS LIST UNIT 0007.tif",
+      "source_row": 20,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QE001",
+      "original_cas_box": "C5",
+      "cas_page": "QE001",
+      "cas_box": "C5",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C14 F26 L6 J1 M19 P2 R0 T2 U10",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "07CB",
+          "cas_page": "QE001",
+          "cas_box": "C5",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "011010",
+          "previous_resolved_bits": "01 010",
+          "changed_positions": [
+            27
+          ],
+          "decode_order": "F26",
+          "micro_order": "1→ASC*J57=0",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QE Convert, Branch, Execute CAS\\QE001 INSERT CHAR LOAD ADDRESS HALF FULL CHAR STORE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 49
+        }
+      ],
+      "original_ros_bits": "00000000000011100001000001 010000000000000011001011100110000000000011001100000100000000010010100000",
+      "reconciled_ros_bits": "000000000000111000010000011010000000000000011001011100110000000000011001100000100000000010010100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "07CA",
+          "cas_page": "QP051",
+          "cas_box": "C9"
+        },
+        {
+          "address": "07CC",
+          "cas_page": "QY051",
+          "cas_box": "Q5"
+        }
+      ]
+    },
+    {
+      "address": "0A00",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ101-01 ADDRESS LIST UNIT 0010.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QY001",
+      "original_cas_box": "A2",
+      "cas_page": "QY001",
+      "cas_box": "A2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C4 G4 L2 J1 P1 H27",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0A00",
+          "cas_page": "QY001",
+          "cas_box": "A2",
+          "field": "U",
+          "ros_bit_positions": [
+            96,
+            92,
+            93,
+            94,
+            95
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "01000",
+          "changed_positions": [
+            92
+          ],
+          "decode_order": "U0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY001 ROS CONTROLLED LOG OUT STORE CONSOLE DATA KEYS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 84
+        },
+        {
+          "address": "0A00",
+          "cas_page": "QY001",
+          "cas_box": "A2",
+          "field": "V",
+          "ros_bit_positions": [
+            97,
+            98,
+            99
+          ],
+          "bits": "000",
+          "previous_resolved_bits": "100",
+          "changed_positions": [
+            97
+          ],
+          "decode_order": "V0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY001 ROS CONTROLLED LOG OUT STORE CONSOLE DATA KEYS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 86
+        },
+        {
+          "address": "0A00",
+          "cas_page": "QY001",
+          "cas_box": "A2",
+          "field": "P4",
+          "ros_bit_positions": [
+            91
+          ],
+          "bits": "0",
+          "previous_resolved_bits": "1",
+          "changed_positions": [
+            91
+          ],
+          "decode_order": "scan",
+          "micro_order": "",
+          "basis": "The enlarged source glyph is a damaged round zero. This is a visual correction, not a parity-derived value.",
+          "verification": "Enlarged QZ scan; verified after CAS control comparison",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QY Console Functions CAS\\QY001 ROS CONTROLLED LOG OUT STORE CONSOLE DATA KEYS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000000010000010000000000001000011011001010100000000000000000010000000000010000100000110000100",
+      "reconciled_ros_bits": "000000000000010000010000000000001000011011001010100000000000000000010000000000010000100000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "09D7",
+          "cas_page": "QE031",
+          "cas_box": "L5"
+        },
+        {
+          "address": "0A01",
+          "cas_page": "QY001",
+          "cas_box": "A3"
+        }
+      ]
+    },
+    {
+      "address": "0AAF",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ101-04 ADDRESS LIST UNIT 0010.tif",
+      "source_row": 28,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ041",
+      "original_cas_box": "E9",
+      "cas_page": "QQ041",
+      "cas_box": "E5",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "F45",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0AAF",
+          "cas_page": "QQ041",
+          "cas_box": "E5",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "1010100101",
+          "previous_resolved_bits": "1010 00101",
+          "changed_positions": [
+            51
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QQ041 E5 joins the end-op path at ROS 0A94 on QQ031. The later QQ031 revision relocates that box; the ROS address remains 0A94.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ041 LOAD STORE PREF STOR BASE ADDR AND DIAGNOSE KERNEL AD1.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "00000000000000000001000010110100000000000000001010 001010000000000000000000000000000000000100000000",
+      "reconciled_ros_bits": "000000000000000000010000101101000000000000000010101001010000000000000000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "CAS box reference corrected from E9 to E5 by inspecting QQ041. The later QQ031 sheet moves the end-op box; its ROS address is still 0A94."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "0AAE",
+          "cas_page": "QQ041",
+          "cas_box": "G7"
+        },
+        {
+          "address": "0AB0",
+          "cas_page": "QQ071",
+          "cas_box": "L3"
+        }
+      ]
+    },
+    {
+      "address": "0B85",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ111-03 ADDRESS LIST UNIT 0011.tif",
+      "source_row": 22,
+      "qz_ec_level": "714949",
+      "original_cas_page": "QU001",
+      "original_cas_box": "J5",
+      "cas_page": "QU001",
+      "cas_box": "J5",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C14 G10 K1 J1 M19 N15 R1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0B85",
+          "cas_page": "QU001",
+          "cas_box": "J5",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "01010",
+          "previous_resolved_bits": "11010",
+          "changed_positions": [
+            31
+          ],
+          "decode_order": "G10",
+          "micro_order": "◺1→INTR-GATE",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QU Interrupt PSW CAS\\QU001 STORE OLD PSW FOR INTERRUPTION.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "000000000000111000000000000000110100000000000010110101010000100000011001111110000000110000100000000",
+      "reconciled_ros_bits": "000000000000111000000000000000010100000000000010110101010000100000011001111110000000110000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0B84",
+          "cas_page": "QU001",
+          "cas_box": "L5"
+        },
+        {
+          "address": "0B86",
+          "cas_page": "QU001",
+          "cas_box": "E6"
+        }
+      ]
+    },
+    {
+      "address": "0C24",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ121-02 ADDRESS LIST UNIT 0012.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ201",
+      "original_cas_box": "G7",
+      "cas_page": "QQ201",
+      "cas_box": "G7",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "B1 C15 F37 H42 L10 T6 U14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0C24",
+          "cas_page": "QQ201",
+          "cas_box": "G7",
+          "field": "T",
+          "ros_bit_positions": [
+            87,
+            88,
+            89,
+            90
+          ],
+          "bits": "0110",
+          "previous_resolved_bits": "1111",
+          "changed_positions": [
+            87,
+            90
+          ],
+          "decode_order": "T6",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 82
+        },
+        {
+          "address": "0C24",
+          "cas_page": "QQ201",
+          "cas_box": "G7",
+          "field": "P2",
+          "ros_bit_positions": [
+            20
+          ],
+          "bits": "0",
+          "previous_resolved_bits": " ",
+          "changed_positions": [
+            20
+          ],
+          "decode_order": "odd parity",
+          "micro_order": "",
+          "basis": "Derived after the control fields of this parity group were checked against the CAS box and the source scan. This is a parity inference, not a printed CAS micro-order.",
+          "verification": "Parity inference after CAS/scan verification",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "0000000000101111000 0000100101000000101010101011000001010000000000000000000000000000101111011100000",
+      "reconciled_ros_bits": "000000000010111100000000100101000000101010101011000001010000000000000000000000000000100110011100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0C23",
+          "cas_page": "QQ221",
+          "cas_box": "G3"
+        },
+        {
+          "address": "0C25",
+          "cas_page": "QQ221",
+          "cas_box": "G2"
+        }
+      ]
+    },
+    {
+      "address": "0C34",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ121-02 ADDRESS LIST UNIT 0012.tif",
+      "source_row": 17,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ221",
+      "original_cas_box": "C2",
+      "cas_page": "QQ221",
+      "cas_box": "C2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "W2 A1 B2 D6 E2 G8 H17 K1 M29 N11 R1 T8 U13",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0C34",
+          "cas_page": "QQ221",
+          "cas_box": "C2",
+          "field": "W",
+          "ros_bit_positions": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "bits": "0010",
+          "previous_resolved_bits": "0110",
+          "changed_positions": [
+            3
+          ],
+          "decode_order": "W2",
+          "micro_order": "◺LMT1",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ221 CSS GEOGRAPHIC AND STERILE AREA FILTERING.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 87
+        }
+      ],
+      "original_ros_bits": "001100001100000011000010000000010000010001000011000010000000100000001110110110000000111000111010000",
+      "reconciled_ros_bits": "000100001100000011000010000000010000010001000011000010000000100000001110110110000000111000111010000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0C33",
+          "cas_page": "QQ221",
+          "cas_box": "L5"
+        },
+        {
+          "address": "0C35",
+          "cas_page": "QQ221",
+          "cas_box": "L8"
+        }
+      ]
+    },
+    {
+      "address": "0C37",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ121-02 ADDRESS LIST UNIT 0012.tif",
+      "source_row": 20,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ221",
+      "original_cas_box": "L7",
+      "cas_page": "QQ221",
+      "cas_box": "L7",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A11 B2 D5 E2 F55 H17 J10 N8 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0C37",
+          "cas_page": "QQ221",
+          "cas_box": "L7",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "110111",
+          "previous_resolved_bits": "111111",
+          "changed_positions": [
+            27
+          ],
+          "decode_order": "F55",
+          "micro_order": "3→STC",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ221 CSS GEOGRAPHIC AND STERILE AREA FILTERING.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 51
+        }
+      ],
+      "original_ros_bits": "000001011100000010110010111111000000010001000011000011010000000010100000010000000000000000101000000",
+      "reconciled_ros_bits": "000001011100000010110010110111000000010001000011000011010000000010100000010000000000000000101000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0C36",
+          "cas_page": "QQ201",
+          "cas_box": "N9"
+        },
+        {
+          "address": "0C38",
+          "cas_page": "QQ211",
+          "cas_box": "Q9"
+        }
+      ]
+    },
+    {
+      "address": "0CBC",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ121-05 ADDRESS LIST UNIT 0012.tif",
+      "source_row": 5,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ231",
+      "original_cas_box": "J9",
+      "cas_page": "QQ231",
+      "cas_box": "J9",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A11 C4 E19 F53 H109 J68 M20 N14 R1 U25",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0CBC",
+          "cas_page": "QQ231",
+          "cas_box": "J9",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "110101",
+          "previous_resolved_bits": "110100",
+          "changed_positions": [
+            30
+          ],
+          "decode_order": "F53",
+          "micro_order": "ABC+1",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ231 CSS AND CVWL MULTIPLY ROUTINE FOR DATA CONVERSION.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 51
+        }
+      ],
+      "original_ros_bits": "000001011000010000000011110100000001101101000011001011000000010001001010011100001000010000110011000",
+      "reconciled_ros_bits": "000001011000010000000011110101000001101101000011001011000000010001001010011100001000010000110011000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0CBB",
+          "cas_page": "",
+          "cas_box": ""
+        },
+        {
+          "address": "0CBD",
+          "cas_page": "QQ511",
+          "cas_box": "E2"
+        }
+      ]
+    },
+    {
+      "address": "0D00",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ131-01 ADDRESS LIST UNIT 0013.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ291",
+      "original_cas_box": "C2",
+      "cas_page": "QQ291",
+      "cas_box": "C2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C4 F51 H27 L1 T2",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0D00",
+          "cas_page": "QQ291",
+          "cas_box": "C2",
+          "field": "T",
+          "ros_bit_positions": [
+            87,
+            88,
+            89,
+            90
+          ],
+          "bits": "0010",
+          "previous_resolved_bits": "0110",
+          "changed_positions": [
+            88
+          ],
+          "decode_order": "T2",
+          "micro_order": "IC+0",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ291 WEATHER INITIALIZATION AND HEADER PROCESSING.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 82
+        }
+      ],
+      "original_ros_bits": "000000000000010000000000110011000000011011000111010001110000000000000000000000000000000110000000000",
+      "reconciled_ros_bits": "000000000000010000000000110011000000011011000111010001110000000000000000000000000000000010000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0CD7",
+          "cas_page": "",
+          "cas_box": ""
+        },
+        {
+          "address": "0D01",
+          "cas_page": "QQ291",
+          "cas_box": "A8"
+        }
+      ]
+    },
+    {
+      "address": "0D49",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ131-03 ADDRESS LIST UNIT 0013.tif",
+      "source_row": 2,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ271",
+      "original_cas_box": "C8",
+      "cas_page": "QQ271",
+      "cas_box": "C8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A11 B2 H48 J1 U14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0D49",
+          "cas_page": "QQ271",
+          "cas_box": "C8",
+          "field": "P4",
+          "ros_bit_positions": [
+            91
+          ],
+          "bits": "0",
+          "previous_resolved_bits": "1",
+          "changed_positions": [
+            91
+          ],
+          "decode_order": "scan",
+          "micro_order": "",
+          "basis": "The enlarged source glyph is a damaged round zero. This is a visual correction, not a parity-derived value.",
+          "verification": "Enlarged QZ scan; verified after CAS control comparison",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ271 WEATHER TRUNCATION.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000001011100000000010000000000000000110000000011011001000000000000010000000000000000100000111100000",
+      "reconciled_ros_bits": "000001011100000000010000000000000000110000000011011001000000000000010000000000000000100000011100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0D48",
+          "cas_page": "QQ271",
+          "cas_box": "C2"
+        },
+        {
+          "address": "0D4A",
+          "cas_page": "",
+          "cas_box": ""
+        }
+      ]
+    },
+    {
+      "address": "0D98",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ131-04 ADDRESS LIST UNIT 0013.tif",
+      "source_row": 5,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ461",
+      "original_cas_box": "L3",
+      "cas_page": "QQ461",
+      "cas_box": "L3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "W5 C23 D7 F43 K1 N2 U20",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0D98",
+          "cas_page": "QQ461",
+          "cas_box": "L3",
+          "field": "M",
+          "ros_bit_positions": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": " 0000",
+          "changed_positions": [
+            69
+          ],
+          "decode_order": "M0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ461 REPACK SYMBOLS INSERT.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 75
+        }
+      ],
+      "original_ros_bits": "00101000000101111110000010101100000000000000001101100110000010000000 000000100000000000000001001000",
+      "reconciled_ros_bits": "001010000001011111100000101011000000000000000011011001100000100000000000000100000000000000001001000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0D97",
+          "cas_page": "QQ261",
+          "cas_box": "N1"
+        },
+        {
+          "address": "0D99",
+          "cas_page": "",
+          "cas_box": ""
+        }
+      ]
+    },
+    {
+      "address": "0DCE",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ131-05 ADDRESS LIST UNIT 0013.tif",
+      "source_row": 23,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ531",
+      "original_cas_box": "N3",
+      "cas_page": "QQ531",
+      "cas_box": "N3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 B1 D6 E25 F52 H36 K1 J69 N14 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0DCE",
+          "cas_page": "QQ531",
+          "cas_box": "N3",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "10000",
+          "changed_positions": [
+            31
+          ],
+          "decode_order": "G0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ531 REPACK SYMBOLS END OF CLASS TYPE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "000001010010000011011001110100100000100100000011011101000000110001010000011100001000100000001000000",
+      "reconciled_ros_bits": "000001010010000011011001110100000000100100000011011101000000110001010000011100001000100000001000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0DCD",
+          "cas_page": "QQ531",
+          "cas_box": "E8"
+        },
+        {
+          "address": "0DCF",
+          "cas_page": "QQ531",
+          "cas_box": "J1"
+        }
+      ]
+    },
+    {
+      "address": "0E00",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-01 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ451",
+      "original_cas_box": "C9",
+      "cas_page": "QQ451",
+      "cas_box": "C9",
+      "result": "QZ scan corrected; corresponding CAS box unavailable",
+      "cas_control_decode_orders": null,
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0E00",
+          "cas_page": "QQ451",
+          "cas_box": "C9",
+          "field": "D",
+          "ros_bit_positions": [
+            17
+          ],
+          "bits": "0",
+          "previous_resolved_bits": "1",
+          "changed_positions": [
+            17
+          ],
+          "decode_order": "scan",
+          "micro_order": "",
+          "basis": "The faded source D glyph retains the right-hand curve of 0. No corresponding 0E00 CAS box remains on the later QQ451 sheet.",
+          "verification": "Enlarged QZ scan only",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ451 RPSB INSERT NEW SYMBOLS ROUTINE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        },
+        {
+          "address": "0E00",
+          "cas_page": "QQ451",
+          "cas_box": "C9",
+          "field": "P",
+          "ros_bit_positions": [
+            80
+          ],
+          "bits": "0",
+          "previous_resolved_bits": "1",
+          "changed_positions": [
+            80
+          ],
+          "decode_order": "scan",
+          "micro_order": "",
+          "basis": "The last source P glyph is a clipped round zero; preserve the QZ word rather than borrowing a later CAS word.",
+          "verification": "Enlarged QZ scan only",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ451 RPSB INSERT NEW SYMBOLS ROUTINE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000110000010010011111011000000110100100111100000000000110001000000000000010000100000100000000",
+      "reconciled_ros_bits": "000000000110000000010011111011000000110100100111100000000000110001000000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "May 1970 listing identifies QQ451 C9, but the June 1970 QQ451 revision no longer contains ROS 0E00. Do not compare this old word with another address on the newer sheet."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "0DD7",
+          "cas_page": "QQ291",
+          "cas_box": "C3"
+        },
+        {
+          "address": "0E01",
+          "cas_page": "QQ451",
+          "cas_box": "J4"
+        }
+      ]
+    },
+    {
+      "address": "0E48",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-03 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ481",
+      "original_cas_box": "L8",
+      "cas_page": "QQ481",
+      "cas_box": "L8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C15 E3 F8 L14 J69 T6 U3",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0E48",
+          "cas_page": "QQ481",
+          "cas_box": "L8",
+          "field": "J",
+          "ros_bit_positions": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "bits": "1000101",
+          "previous_resolved_bits": "1 00101",
+          "changed_positions": [
+            63
+          ],
+          "decode_order": "J69",
+          "micro_order": "TCS/ST",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ481 REPACK SYMBOLS INITIALIZE OLD REFR TO NEW REFR MOVE.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 66
+        }
+      ],
+      "original_ros_bits": "00000000000011110000001100100000000000000011101110010011000001 001010000000000000000100110100110000",
+      "reconciled_ros_bits": "000000000000111100000011001000000000000000111011100100110000010001010000000000000000100110100110000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0E47",
+          "cas_page": "QQ491",
+          "cas_box": "C3"
+        },
+        {
+          "address": "0E49",
+          "cas_page": "QQ491",
+          "cas_box": "A1"
+        }
+      ]
+    },
+    {
+      "address": "0EAA",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-04 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 23,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ491",
+      "original_cas_box": "L6",
+      "cas_page": "QQ491",
+      "cas_box": "L6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 C4 H100 J125 Q2 T2",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0EAA",
+          "cas_page": "QQ491",
+          "cas_box": "L6",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "0 000",
+          "changed_positions": [
+            32
+          ],
+          "decode_order": "G0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ491 REPACK SYMBOLS MOVE OLD.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "0000010100000100000100000000000 0001100100000011100011110000011111010000000000000010000010100000000",
+      "reconciled_ros_bits": "000001010000010000010000000000000001100100000011100011110000011111010000000000000010000010100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0EA9",
+          "cas_page": "QQ511",
+          "cas_box": "L3"
+        },
+        {
+          "address": "0EAB",
+          "cas_page": "QQ511",
+          "cas_box": "L5"
+        }
+      ]
+    },
+    {
+      "address": "0EB2",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-04 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 31,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "Q8",
+      "cas_page": "QQ431",
+      "cas_box": "Q8",
+      "result": "Control fields reconciled; next-address revision difference",
+      "cas_control_decode_orders": "B2 C23 H43 L7 J68",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0EB2",
+          "cas_page": "QQ431",
+          "cas_box": "Q8",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            50
+          ],
+          "bits": "0",
+          "previous_resolved_bits": "1",
+          "changed_positions": [
+            50
+          ],
+          "decode_order": "QZ scan",
+          "micro_order": "",
+          "basis": "The enlarged source glyph is the right-hand curve of a zero, not a one. The May listing points to 0F38/0F39; the June QQ431 sheet now draws 0FB9. Do not replace the old word with the newer branch destination.",
+          "verification": "Enlarged QZ glyph; CAS revision difference recorded",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000101011100000000000000000000101011011111111011100000010001000000000000000000100000100000000",
+      "reconciled_ros_bits": "000000000101011100000000000000000000101011011111101011100000010001000000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [
+        "May QZ next-address base is 0F38; June QQ431 draws a destination at 0FB9. The old listing is retained. A later CAS destination must not be judged against this old next-address field."
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "0EB1",
+          "cas_page": "QQ431",
+          "cas_box": "Q7"
+        },
+        {
+          "address": "0EB3",
+          "cas_page": "QQ431",
+          "cas_box": "N4"
+        }
+      ]
+    },
+    {
+      "address": "0ECD",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-05 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 22,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "Q6",
+      "cas_page": "QQ431",
+      "cas_box": "Q6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "W5 C20 L6 K1 J1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0ECD",
+          "cas_page": "QQ431",
+          "cas_box": "Q6",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "00100",
+          "changed_positions": [
+            33
+          ],
+          "decode_order": "G0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "001010000001010000010000000000001000000000011011101100010000100000010000000000000000100000100000000",
+      "reconciled_ros_bits": "001010000001010000010000000000000000000000011011101100010000100000010000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0ECC",
+          "cas_page": "QQ431",
+          "cas_box": "Q5"
+        },
+        {
+          "address": "0ECE",
+          "cas_page": "QQ431",
+          "cas_box": "L7"
+        }
+      ]
+    },
+    {
+      "address": "0ED1",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ141-05 ADDRESS LIST UNIT 0014.tif",
+      "source_row": 26,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "G4",
+      "cas_page": "QQ431",
+      "cas_box": "G4",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A9 K1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0ED1",
+          "cas_page": "QQ431",
+          "cas_box": "G4",
+          "field": "H",
+          "ros_bit_positions": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "bits": "0000000",
+          "previous_resolved_bits": "0001000",
+          "changed_positions": [
+            39
+          ],
+          "decode_order": "H0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 58
+        }
+      ],
+      "original_ros_bits": "000001001000000000010000000000000000001000000011101101000000100000000000000000000000000000100000000",
+      "reconciled_ros_bits": "000001001000000000010000000000000000000000000011101101000000100000000000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0ED0",
+          "cas_page": "QQ431",
+          "cas_box": "C6"
+        },
+        {
+          "address": "0ED2",
+          "cas_page": "QQ431",
+          "cas_box": "G5"
+        }
+      ]
+    },
+    {
+      "address": "0F15",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-01 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 22,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ441",
+      "original_cas_box": "Q8",
+      "cas_page": "QQ441",
+      "cas_box": "Q8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "D6 E3 J1 N11 Q3 V3",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F15",
+          "cas_page": "QQ441",
+          "cas_box": "Q8",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "0000 ",
+          "changed_positions": [
+            35
+          ],
+          "decode_order": "G0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ441 RPSB INST MOVE HISTORY OR CURRENT DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "0000000000000000110100110000000000 0000000000011101011000000000000010000010110000011000000000000011",
+      "reconciled_ros_bits": "000000000000000011010011000000000000000000000011101011000000000000010000010110000011000000000000011",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F14",
+          "cas_page": "QQ441",
+          "cas_box": "L6"
+        },
+        {
+          "address": "0F16",
+          "cas_page": "QQ441",
+          "cas_box": "L7"
+        }
+      ]
+    },
+    {
+      "address": "0F1C",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-01 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 29,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ441",
+      "original_cas_box": "C5",
+      "cas_page": "QQ441",
+      "cas_box": "C5",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "W10 C30 E16 F54 K1 J23 N2",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F1C",
+          "cas_page": "QQ441",
+          "cas_box": "C5",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "1111000111",
+          "previous_resolved_bits": "111 000111",
+          "changed_positions": [
+            50
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QQ441 C5 branches by STC=7 to the 0F1C–0F1F group; C6 is 0F1F.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ441 RPSB INST MOVE HISTORY OR CURRENT DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "0101000000011110000100001101100000000000000000111 0001110000100101110000000100001000100000100000000",
+      "reconciled_ros_bits": "010100000001111000010000110110000000000000000011110001110000100101110000000100001000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F1B",
+          "cas_page": "QQ441",
+          "cas_box": "C4"
+        },
+        {
+          "address": "0F1D",
+          "cas_page": "QQ511",
+          "cas_box": "L2"
+        }
+      ]
+    },
+    {
+      "address": "0F24",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 1,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ541",
+      "original_cas_box": "N4",
+      "cas_page": "QQ541",
+      "cas_box": "N4",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 B2 H52 J50 T11 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F24",
+          "cas_page": "QQ541",
+          "cas_box": "N4",
+          "field": "C",
+          "ros_bit_positions": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "00   ",
+          "changed_positions": [
+            14,
+            15,
+            16
+          ],
+          "decode_order": "C0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ541 RPSB INST DE TO DE AND SE TO DE INTERRUPT TERMINATION ROUTINES.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 41
+        },
+        {
+          "address": "0F24",
+          "cas_page": "QQ541",
+          "cas_box": "N4",
+          "field": "T",
+          "ros_bit_positions": [
+            87,
+            88,
+            89,
+            90
+          ],
+          "bits": "1011",
+          "previous_resolved_bits": "1   ",
+          "changed_positions": [
+            88,
+            89,
+            90
+          ],
+          "decode_order": "T11",
+          "micro_order": "B+S",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ541 RPSB INST DE TO DE AND SE TO DE INTERRUPT TERMINATION ROUTINES.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 82
+        },
+        {
+          "address": "0F24",
+          "cas_page": "QQ541",
+          "cas_box": "N4",
+          "field": "U",
+          "ros_bit_positions": [
+            96,
+            92,
+            93,
+            94,
+            95
+          ],
+          "bits": "00100",
+          "previous_resolved_bits": "0 100",
+          "changed_positions": [
+            92
+          ],
+          "decode_order": "U4",
+          "micro_order": "B+S",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ541 RPSB INST DE TO DE AND SE TO DE INTERRUPT TERMINATION ROUTINES.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 84
+        },
+        {
+          "address": "0F24",
+          "cas_page": "QQ541",
+          "cas_box": "N4",
+          "field": "P2",
+          "ros_bit_positions": [
+            20
+          ],
+          "bits": "1",
+          "previous_resolved_bits": " ",
+          "changed_positions": [
+            20
+          ],
+          "decode_order": "odd parity",
+          "micro_order": "",
+          "basis": "Derived after the control fields of this parity group were checked against the CAS box and the source scan. This is a parity inference, not a printed CAS micro-order.",
+          "verification": "Parity inference after CAS/scan verification",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ541 RPSB INST DE TO DE AND SE TO DE INTERRUPT TERMINATION ROUTINES.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "0000010101000   000 0000000000000000110100000011111100100000001100100000000000000000101   1 1000000",
+      "reconciled_ros_bits": "000001010100000000010000000000000000110100000011111100100000001100100000000000000000101011101000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F23",
+          "cas_page": "QQ441",
+          "cas_box": "G7"
+        },
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3"
+        }
+      ]
+    },
+    {
+      "address": "0F25",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 2,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "G3",
+      "cas_page": "QQ431",
+      "cas_box": "G3",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "F53 L9 J1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "110101",
+          "previous_resolved_bits": "100101",
+          "changed_positions": [
+            26
+          ],
+          "decode_order": "F53",
+          "micro_order": "ABC+1",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 51
+        },
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3",
+          "field": "T",
+          "ros_bit_positions": [
+            87,
+            88,
+            89,
+            90
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0 0 ",
+          "changed_positions": [
+            88,
+            90
+          ],
+          "decode_order": "T0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 82
+        },
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3",
+          "field": "U",
+          "ros_bit_positions": [
+            96,
+            92,
+            93,
+            94,
+            95
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "0 000",
+          "changed_positions": [
+            92
+          ],
+          "decode_order": "U0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 84
+        },
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "1110110100",
+          "previous_resolved_bits": "1010110100",
+          "changed_positions": [
+            48
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QQ431 G3 exits directly to G4, ROS 0ED1; K0/J1 supply low 01.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        },
+        {
+          "address": "0F25",
+          "cas_page": "QQ431",
+          "cas_box": "G3",
+          "field": "P4",
+          "ros_bit_positions": [
+            91
+          ],
+          "bits": "1",
+          "previous_resolved_bits": " ",
+          "changed_positions": [
+            91
+          ],
+          "decode_order": "odd parity",
+          "micro_order": "",
+          "basis": "Derived after the control fields of this parity group were checked against the CAS box and the source scan. This is a parity inference, not a printed CAS micro-order.",
+          "verification": "Parity inference after CAS/scan verification",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000000000000010000100101000000000000100110101101000000000000010000000000000000000 0   0000000",
+      "reconciled_ros_bits": "000000000000000000010000110101000000000000100111101101000000000000010000000000000000000000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F24",
+          "cas_page": "QQ541",
+          "cas_box": "N4"
+        },
+        {
+          "address": "0F26",
+          "cas_page": "QQ431",
+          "cas_box": "C3"
+        }
+      ]
+    },
+    {
+      "address": "0F27",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 4,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ511",
+      "original_cas_box": "G2",
+      "cas_page": "QQ511",
+      "cas_box": "G2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C4 D5 E18 F51 H96 L1 K1 J1 N2 U16",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F27",
+          "cas_page": "QQ511",
+          "cas_box": "G2",
+          "field": "C",
+          "ros_bit_positions": [
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "bits": "00100",
+          "previous_resolved_bits": "00000",
+          "changed_positions": [
+            14
+          ],
+          "decode_order": "C4",
+          "micro_order": "→T",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ511 RPSB INST INTERRUPT TERMINATION FOR DESCRIPTOR ROUTINES.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 41
+        }
+      ],
+      "original_ros_bits": "000000000000000010110010110011000001100000000111100011110000100000010000000100001000100000000001000",
+      "reconciled_ros_bits": "000000000000010010110010110011000001100000000111100011110000100000010000000100001000100000000001000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F26",
+          "cas_page": "QQ431",
+          "cas_box": "C3"
+        },
+        {
+          "address": "0F28",
+          "cas_page": "QQ431",
+          "cas_box": "A4"
+        }
+      ]
+    },
+    {
+      "address": "0F28",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 5,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "A4",
+      "cas_page": "QQ431",
+      "cas_box": "A4",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A1 D5 E17 M20 N2 R1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F28",
+          "cas_page": "QQ431",
+          "cas_box": "A4",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "000000",
+          "previous_resolved_bits": "010000",
+          "changed_positions": [
+            26
+          ],
+          "decode_order": "F0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 47
+        },
+        {
+          "address": "0F28",
+          "cas_page": "QQ431",
+          "cas_box": "A4",
+          "field": "H",
+          "ros_bit_positions": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "bits": "0000000",
+          "previous_resolved_bits": "1000000",
+          "changed_positions": [
+            36
+          ],
+          "decode_order": "H0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 58
+        },
+        {
+          "address": "0F28",
+          "cas_page": "QQ431",
+          "cas_box": "A4",
+          "field": "M",
+          "ros_bit_positions": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "bits": "10100",
+          "previous_resolved_bits": "  100",
+          "changed_positions": [
+            69,
+            70
+          ],
+          "decode_order": "M20",
+          "micro_order": "V∀U",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 75
+        }
+      ],
+      "original_ros_bits": "00000000100000001011000101000000000100000000001111001011000000000000  10000100001000010000000000000",
+      "reconciled_ros_bits": "000000001000000010110001000000000000000000000011110010110000000000001010000100001000010000000000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F27",
+          "cas_page": "QQ511",
+          "cas_box": "G2"
+        },
+        {
+          "address": "0F29",
+          "cas_page": "QQ431",
+          "cas_box": "C4"
+        }
+      ]
+    },
+    {
+      "address": "0F29",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 6,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "C4",
+      "cas_page": "QQ431",
+      "cas_box": "C4",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C15 F46 H99 L10 K1 J13 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F29",
+          "cas_page": "QQ431",
+          "cas_box": "C4",
+          "field": "H",
+          "ros_bit_positions": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "bits": "1100011",
+          "previous_resolved_bits": "1110011",
+          "changed_positions": [
+            38
+          ],
+          "decode_order": "H99",
+          "micro_order": "W◺GP3",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 61
+        },
+        {
+          "address": "0F29",
+          "cas_page": "QQ431",
+          "cas_box": "C4",
+          "field": "T",
+          "ros_bit_positions": [
+            87,
+            88,
+            89,
+            90
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0010",
+          "changed_positions": [
+            89
+          ],
+          "decode_order": "T0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 82
+        }
+      ],
+      "original_ros_bits": "000000000000111100010000101110000001110011101011110010100000100011010000000000000000100010001000000",
+      "reconciled_ros_bits": "000000000000111100010000101110000001100011101011110010100000100011010000000000000000100000001000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F28",
+          "cas_page": "QQ431",
+          "cas_box": "A4"
+        },
+        {
+          "address": "0F2A",
+          "cas_page": "QQ431",
+          "cas_box": "C5"
+        }
+      ]
+    },
+    {
+      "address": "0F2A",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 7,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "C5",
+      "cas_page": "QQ431",
+      "cas_box": "C5",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 F53 L1 T2 U20",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F2A",
+          "cas_page": "QQ431",
+          "cas_box": "C5",
+          "field": "H",
+          "ros_bit_positions": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "bits": "0000000",
+          "previous_resolved_bits": "0010000",
+          "changed_positions": [
+            38
+          ],
+          "decode_order": "H0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 58
+        }
+      ],
+      "original_ros_bits": "000001010000000000010000110101000000010000000111101101000000000000000000000000000000000010001001000",
+      "reconciled_ros_bits": "000001010000000000010000110101000000000000000111101101000000000000000000000000000000000010001001000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F29",
+          "cas_page": "QQ431",
+          "cas_box": "C4"
+        },
+        {
+          "address": "0F2B",
+          "cas_page": "QQ431",
+          "cas_box": "G2"
+        }
+      ]
+    },
+    {
+      "address": "0F2B",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 8,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "G2",
+      "cas_page": "QQ431",
+      "cas_box": "G2",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 F23 J1 T2 U20",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F2B",
+          "cas_page": "QQ431",
+          "cas_box": "G2",
+          "field": "G",
+          "ros_bit_positions": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "bits": "00000",
+          "previous_resolved_bits": "01000",
+          "changed_positions": [
+            32
+          ],
+          "decode_order": "G0",
+          "micro_order": "No corresponding micro-order printed; the enlarged QZ glyphs support zero bits.",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 55
+        }
+      ],
+      "original_ros_bits": "000001010000000000010000010111010000000000000011110010010000000000010000000000000000000010001001000",
+      "reconciled_ros_bits": "000001010000000000010000010111000000000000000011110010010000000000010000000000000000000010001001000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F2A",
+          "cas_page": "QQ431",
+          "cas_box": "C5"
+        },
+        {
+          "address": "0F2C",
+          "cas_page": "QQ431",
+          "cas_box": "A6"
+        }
+      ]
+    },
+    {
+      "address": "0F2C",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 9,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ431",
+      "original_cas_box": "A6",
+      "cas_page": "QQ431",
+      "cas_box": "A6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "D6 F51 K1",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F2C",
+          "cas_page": "QQ431",
+          "cas_box": "A6",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "110011",
+          "previous_resolved_bits": "100011",
+          "changed_positions": [
+            26
+          ],
+          "decode_order": "F51",
+          "micro_order": "0→STC",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ431 REPACK SYMBOLS INST MODIFY CURRENT RADAR DESCRIPTORS.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 51
+        }
+      ],
+      "original_ros_bits": "000000000000000011010000100011000000000000000011110011100000100000000000000000000000100000100000000",
+      "reconciled_ros_bits": "000000000000000011010000110011000000000000000011110011100000100000000000000000000000100000100000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F2B",
+          "cas_page": "QQ431",
+          "cas_box": "G2"
+        },
+        {
+          "address": "0F2D",
+          "cas_page": "QQ461",
+          "cas_box": "E7"
+        }
+      ]
+    },
+    {
+      "address": "0F3F",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-02 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 28,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ461",
+      "original_cas_box": "E6",
+      "cas_page": "QQ461",
+      "cas_box": "E6",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "A10 B1 F52 H40 J1 U4",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F3F",
+          "cas_page": "QQ461",
+          "cas_box": "E6",
+          "field": "F",
+          "ros_bit_positions": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "bits": "110100",
+          "previous_resolved_bits": "11  00",
+          "changed_positions": [
+            27,
+            28
+          ],
+          "decode_order": "F52",
+          "micro_order": "ABC,STC+1",
+          "basis": "Visually inspected CAS controls and enlarged QZ scan. The control-field decode corroborates the corrected or recovered glyphs.",
+          "verification": "CAS and scan cross-check",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ461 REPACK SYMBOLS INSERT.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": 51
+        }
+      ],
+      "original_ros_bits": "00000101001000000001000011  00000000101000000011110010110000000000010000000000000000100000001000000",
+      "reconciled_ros_bits": "000001010010000000010000110100000000101000000011110010110000000000010000000000000000100000001000000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F3E",
+          "cas_page": "QQ461",
+          "cas_box": "C6"
+        },
+        {
+          "address": "0F40",
+          "cas_page": "QQ411",
+          "cas_box": "J4"
+        }
+      ]
+    },
+    {
+      "address": "0F8A",
+      "source_file": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QZ ROS Listing\\QZ151-03 ADDRESS LIST UNIT 0015.tif",
+      "source_row": 27,
+      "qz_ec_level": "713671",
+      "original_cas_page": "QQ401",
+      "original_cas_box": "G8",
+      "cas_page": "QQ401",
+      "cas_box": "G8",
+      "result": "CAS controls and QZ scan reconciled",
+      "cas_control_decode_orders": "C4 D7 F50 H102 L10 K1 J1 T11 U14",
+      "field_decode_notes": "Active CAS micro-orders compared with QZ fields; absence of a micro-order was used only with enlarged scan evidence. J/K constants in XX exits are taken from the readable listing.",
+      "applied_changes": [
+        {
+          "address": "0F8A",
+          "cas_page": "QQ401",
+          "cas_box": "G8",
+          "field": "NEXT",
+          "ros_bit_positions": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "bits": "1111100011",
+          "previous_resolved_bits": "11111 0011",
+          "changed_positions": [
+            52
+          ],
+          "decode_order": "ROSAR 00–09",
+          "micro_order": "",
+          "basis": "QQ401 G8 exits to G9, ROS 0F8F, whose low 11 is supplied by K1/J1.",
+          "verification": "CAS branch path and enlarged QZ scan",
+          "cas_source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ401 REPACK SYMBOLS INSTRUCTION INITIALIZATION.tif",
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "original_ros_bits": "000000000000010011100000110010000001100110101011111 00110000100000010000000000000000001011111100000",
+      "reconciled_ros_bits": "000000000000010011100000110010000001100110101011111000110000100000010000000000000000001011111100000",
+      "unknown_bit_positions": [],
+      "parity_checks": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "qz_cross_check_ready": true,
+      "warnings": [],
+      "physical_copy_neighbours": [
+        {
+          "address": "0F89",
+          "cas_page": "QQ521",
+          "cas_box": "N2"
+        },
+        {
+          "address": "0F8B",
+          "cas_page": "QQ401",
+          "cas_box": "G4"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    {
+      "address": "0528",
+      "result": "Additional unused-word correction found during validation",
+      "applied_changes": [
+        {
+          "address": "0528",
+          "cas_page": "",
+          "cas_box": "",
+          "field": "N",
+          "ros_bit_positions": [
+            74,
+            75,
+            76,
+            77
+          ],
+          "bits": "0000",
+          "previous_resolved_bits": "0000",
+          "changed_positions": [],
+          "decode_order": "N0",
+          "micro_order": "",
+          "basis": "Additional unreferenced EC 713381 row. The enlarged N glyphs are faded zeros, completing the unused-word template; the old classifier had introduced two false ones.",
+          "verification": "Enlarged QZ scan and unused-word pattern",
+          "cas_source": null,
+          "reference": "D:\\Reference Materials\\IBM 360\\7201-02 Control Field Listings.pdf",
+          "reference_pdf_page": null
+        }
+      ],
+      "physical_copy_neighbours": [
+        {
+          "address": "0527",
+          "cas_page": "QP001",
+          "cas_box": "N4"
+        },
+        {
+          "address": "0529",
+          "cas_page": "",
+          "cas_box": ""
+        }
+      ]
+    }
+  ]
+}

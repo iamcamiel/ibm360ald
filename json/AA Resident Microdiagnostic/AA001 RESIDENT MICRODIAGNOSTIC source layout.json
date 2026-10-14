@@ -1,0 +1,779 @@
+{
+  "page": "AA001",
+  "nodes": [
+    {
+      "box": "A1",
+      "address": "0FAA",
+      "grid": [
+        25,
+        0
+      ],
+      "fields": [
+        "A 0+0-1       │",
+        "A →IC,T,D     │",
+        "L W✲24        │"
+      ],
+      "leg": "XX",
+      "exit": "X1──AA",
+      "comments": [
+        "ONES TO REGS."
+      ],
+      "label_row": 7,
+      "R_line": "R            1│"
+    },
+    {
+      "box": "C1",
+      "address": "0FBD",
+      "grid": [
+        25,
+        11
+      ],
+      "fields": [
+        "B 1+0         │",
+        "D ADR-KEYS→D  │",
+        "L R✲24→S,T    │"
+      ],
+      "leg": "X1",
+      "exit": "X✲──CA",
+      "comments": [
+        "ONES TO S,T REGS.",
+        "ADDR KEYS TO D."
+      ],
+      "label_row": 7,
+      "R_line": "R          W=0│"
+    },
+    {
+      "box": "C2",
+      "address": "0FBC",
+      "grid": [
+        47,
+        11
+      ],
+      "fields": [],
+      "leg": "X0",
+      "exit": "X✲──CB",
+      "comments": [
+        "BRANCH IF",
+        "ADDR KEY 30."
+      ],
+      "label_row": 7,
+      "R_line": "R        D22=1│"
+    },
+    {
+      "box": "C3",
+      "address": "0FBA",
+      "grid": [
+        69,
+        11
+      ],
+      "fields": [],
+      "leg": "X0",
+      "exit": "✲X──CC",
+      "comments": [
+        "BRANCH TO DATA",
+        "PATTERN IN KEYS",
+        "IF ADDR KEY 29."
+      ],
+      "label_row": 7,
+      "R_line": "R D(21)       │"
+    },
+    {
+      "box": "C6",
+      "address": "0FA6",
+      "grid": [
+        135,
+        11
+      ],
+      "fields": [
+        "D DATA-KEYS→ST│"
+      ],
+      "leg": "1X",
+      "exit": "1X──CF",
+      "comments": [
+        "DATA PATTERN",
+        "TO S AND T."
+      ],
+      "label_row": 7,
+      "R_line": "R 1           │"
+    },
+    {
+      "box": "C7",
+      "address": "0FAE",
+      "grid": [
+        157,
+        11
+      ],
+      "fields": [
+        "D ◺T→SELREG   │",
+        "D ◺T→M        │"
+      ],
+      "leg": "1X",
+      "exit": "XX──CG",
+      "comments": [
+        "LOAD SELREG.",
+        "LOAD M REG."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E2",
+      "address": "0FBB",
+      "grid": [
+        47,
+        22
+      ],
+      "fields": [
+        "S MS-REQ✲IC=4 │"
+      ],
+      "leg": "X1",
+      "exit": "XX──EB",
+      "comments": [
+        "FETCH FROM INVALID",
+        "ADDRESS TO CORRECT",
+        "Q AND LM PARITY."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E3",
+      "address": "0FAD",
+      "grid": [
+        69,
+        22
+      ],
+      "fields": [
+        "S STOP2       │"
+      ],
+      "leg": "XX",
+      "exit": "XX──EC",
+      "comments": [],
+      "label_row": 7
+    },
+    {
+      "box": "E4",
+      "address": "0FA5",
+      "grid": [
+        91,
+        22
+      ],
+      "fields": [
+        "D MS→Q        │",
+        "D ◺MS→LM      │"
+      ],
+      "leg": "XX",
+      "exit": "✲X──ED",
+      "comments": [
+        "BRANCH TO DATA",
+        "PATTERN IN KEYS",
+        "IF ADDR KEY 29.",
+        "GOOD PARITY WORDS",
+        "TO Q AND LM REGS",
+        "IF ADDR KEY 30.",
+        "(REQUIRES STORAGE)"
+      ],
+      "label_row": 7,
+      "R_line": "R D(21)       │"
+    },
+    {
+      "box": "E5",
+      "address": "0FA4",
+      "grid": [
+        113,
+        22
+      ],
+      "fields": [
+        "A →T          │",
+        "L W◺FP7       │",
+        "C 1→STAA✲J47=0│"
+      ],
+      "leg": "0X",
+      "exit": "X✲──EE",
+      "comments": [
+        "ZEROES TO FPR7.",
+        "BRANCH FOR ONES",
+        "DATA PASS.",
+        "TURN ON STAT A."
+      ],
+      "label_row": 7,
+      "R_line": "R         STAA│"
+    },
+    {
+      "box": "E6",
+      "address": "0FCE",
+      "grid": [
+        135,
+        22
+      ],
+      "fields": [
+        "A 0+0-1       │",
+        "A →E          │",
+        "L R◺FP7→S,T   │"
+      ],
+      "leg": "X0",
+      "exit": "0X──EF",
+      "comments": [
+        "ONES TO E FOR",
+        "MULTIPLE SELECTION.",
+        "ZEROES TO S,T."
+      ],
+      "label_row": 7,
+      "R_line": "R 0           │"
+    },
+    {
+      "box": "E7",
+      "address": "0FAC",
+      "grid": [
+        157,
+        22
+      ],
+      "fields": [
+        "C SEL-MPL✲E3  │",
+        "C E3-1        │"
+      ],
+      "leg": "0X",
+      "exit": "✲X──EG",
+      "comments": [
+        "CHECK MULTIPLY",
+        "DECODE."
+      ],
+      "label_row": 7,
+      "R_line": "R E3=0        │"
+    },
+    {
+      "box": "E8",
+      "address": "0FA7",
+      "grid": [
+        179,
+        22
+      ],
+      "fields": [
+        "A 0+T         │",
+        "A →A,B,E,D    │",
+        "D ◺T→EXTREG   │",
+        "C 0→ABC       │"
+      ],
+      "leg": "XX",
+      "exit": "XX──EH",
+      "comments": [
+        "CHECK T TO PAL.",
+        "LOAD EXTREG.",
+        "A,B,E,D REGS."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "E9",
+      "address": "0FA8",
+      "grid": [
+        201,
+        22
+      ],
+      "fields": [
+        "A 0+S         │",
+        "A →IC,◺K      │"
+      ],
+      "leg": "XX",
+      "exit": "X0──EI",
+      "comments": [
+        "CHECK S TO PAL.",
+        "LOAD IC,K REGS."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "G6",
+      "address": "0FCF",
+      "grid": [
+        135,
+        33
+      ],
+      "fields": [
+        "A 0+0-1       │",
+        "A →E          │",
+        "L R✲24→S,T    │",
+        "C 1→STAA✲J47=0│"
+      ],
+      "leg": "X1",
+      "exit": "0X──GF",
+      "comments": [
+        "TURN OFF STAT A.",
+        "ONES TO S,T."
+      ],
+      "label_row": 7,
+      "R_line": "R 0           │"
+    },
+    {
+      "box": "J2",
+      "address": "0FB0",
+      "grid": [
+        47,
+        44
+      ],
+      "fields": [
+        "A A+DTL1      │",
+        "B 0+U    AB→U │",
+        "B →G          │",
+        "D ◺T→DARMSK   │",
+        "C ABC+1 E2,3-1│"
+      ],
+      "leg": "X0",
+      "exit": "X✲──JB",
+      "comments": [
+        "CHECK AB BYTES",
+        "TO SAL. LOAD G REG.",
+        "CHECK A TO PAL.",
+        "LOAD DAR MASK.",
+        "CHECK DT L1 TO PAL.",
+        "INCREMENT E REG."
+      ],
+      "label_row": 7,
+      "R_line": "R        ABC=7│"
+    },
+    {
+      "box": "J3",
+      "address": "0FB1",
+      "grid": [
+        69,
+        44
+      ],
+      "fields": [
+        "A B+0         │",
+        "A R→B8        │",
+        "L W◺FP6       │",
+        "C 0→STC       │"
+      ],
+      "leg": "X1",
+      "exit": "X0──JC",
+      "comments": [
+        "CHECK B TO PAL.",
+        "PAL R4 TO B64─67.",
+        "SAVE KEY DATA IN",
+        "FP REG 6."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J4",
+      "address": "0FB2",
+      "grid": [
+        91,
+        44
+      ],
+      "fields": [
+        "A BL2-DTL1    │",
+        "B V+0         │",
+        "B →F          │",
+        "C STC+1       │",
+        "C E2,3-1      │"
+      ],
+      "leg": "X0",
+      "exit": "X✲──JD",
+      "comments": [
+        "CHECK ST BYTES",
+        "TO SAL. LOAD F REG.",
+        "CHECK B L2 TO PAL.",
+        "CHECK DT L1 COMP.",
+        "INCREMENT E REG."
+      ],
+      "label_row": 7,
+      "R_line": "R        STC=7│"
+    },
+    {
+      "box": "J5",
+      "address": "0FB3",
+      "grid": [
+        113,
+        44
+      ],
+      "fields": [
+        "A F1+◺T45R    │",
+        "B 0+U         │",
+        "B         F→U │",
+        "L R◺SELREG→S  │"
+      ],
+      "leg": "X1",
+      "exit": "X1──JE",
+      "comments": [
+        "CHECK F TO SAL.",
+        "CHECK SEL REG.",
+        "CHECK F1,T32─47",
+        "RIGHT TO PAL 48─63."
+      ],
+      "label_row": 7,
+      "R_line": "R            1│"
+    },
+    {
+      "box": "J6",
+      "address": "0FB5",
+      "grid": [
+        135,
+        44
+      ],
+      "fields": [
+        "A IC+◺2       │",
+        "A →IC         │",
+        "B ◺1111→V0    │",
+        "B V0,V0+0     │",
+        "L R◺EXTREG→S  │"
+      ],
+      "leg": "X1",
+      "exit": "XX──JF",
+      "comments": [
+        "CHECK IC TO PAL.",
+        "INCR IC BY TWO.",
+        "CHECK EMIT ONES",
+        "TO SAL.AND EXT REG",
+        "TO LS BUSS.",
+        "",
+        "*SEE NOTE*"
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J7",
+      "address": "0FAF",
+      "grid": [
+        157,
+        44
+      ],
+      "fields": [
+        "A 0+◺K        │",
+        "A ◺R1→        │",
+        "D ◺LM→N,Q→R✲IC│",
+        "L R◺DARMSK→S  │"
+      ],
+      "leg": "XX",
+      "exit": "XX──JG",
+      "comments": [
+        "CHECK K R1 TO PAL.",
+        "CHECK DAR MASK.",
+        "LOAD N AND R REGS.",
+        "FROM LM AND Q."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "J8",
+      "address": "0FB6",
+      "grid": [
+        179,
+        44
+      ],
+      "fields": [
+        "A AB18-DT     │",
+        "B ◺N0→V       │",
+        "B V+0         │",
+        "C STC+1       │"
+      ],
+      "leg": "XX",
+      "exit": "XX──JH",
+      "comments": [
+        "CHECK N BYTE 0",
+        "TO SAL. AND AB",
+        "AND DT COMP TO PAL."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N2",
+      "address": "0FB7",
+      "grid": [
+        47,
+        66
+      ],
+      "fields": [
+        "B ◺N1→V       │",
+        "B V+0         │",
+        "B →◺N1        │"
+      ],
+      "leg": "XX",
+      "exit": "XX──NB",
+      "comments": [
+        "CHECK N BYTE 1 TO",
+        "SAL. LOAD N1 FROM",
+        "SERIAL ADDER."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N3",
+      "address": "0FB8",
+      "grid": [
+        69,
+        66
+      ],
+      "fields": [
+        "A B8+D        │",
+        "A L→          │",
+        "B →F          │",
+        "D R→E         │",
+        "L R◺GREG→T    │"
+      ],
+      "leg": "XX",
+      "exit": "X✲──NC",
+      "comments": [
+        "CHECK G TO LS.",
+        "CLEAR F REG.",
+        "CHECK R TO E",
+        "TRANSFER. CHECK",
+        "B64─67 TO PAL L4."
+      ],
+      "label_row": 7,
+      "R_line": "R        STC≠3│"
+    },
+    {
+      "box": "N4",
+      "address": "0FB4",
+      "grid": [
+        91,
+        66
+      ],
+      "fields": [
+        "A 0+◺32       │",
+        "A →E          │",
+        "L R◺FP6→T     │"
+      ],
+      "leg": "X0",
+      "exit": "X0──ND",
+      "comments": [
+        "ORIGINAL KEY DATA",
+        "TO T REG. 32 TO",
+        "E08─15 FOR LS TEST."
+      ],
+      "label_row": 7,
+      "R_line": "R            0│"
+    },
+    {
+      "box": "N5",
+      "address": "0FC0",
+      "grid": [
+        113,
+        66
+      ],
+      "fields": [
+        "B ◺0010→V0    │",
+        "B V0,0∀U  F→U │",
+        "L W✲E11-15    │"
+      ],
+      "leg": "X0",
+      "exit": "XX──NE",
+      "comments": [
+        "WRITE LS PER E.",
+        "COMPARE UPDATED",
+        "F COUNT WITH 32."
+      ],
+      "label_row": 7
+    },
+    {
+      "box": "N6",
+      "address": "0FBF",
+      "grid": [
+        135,
+        66
+      ],
+      "fields": [
+        "B 1+U         │",
+        "B →F      F→U │",
+        "L R✲E11-15→S  │",
+        "C E23-1       │"
+      ],
+      "leg": "XX",
+      "exit": "X✲──NF",
+      "comments": [
+        "READ LS PER E.",
+        "MAINTAIN COUNT",
+        "IN F REG.",
+        "DECR. LS ADDR."
+      ],
+      "label_row": 7,
+      "R_line": "R          W=0│"
+    },
+    {
+      "box": "N7",
+      "address": "0FC1",
+      "grid": [
+        157,
+        66
+      ],
+      "fields": [
+        "A E23-8       │",
+        "B ◺N1→V       │",
+        "B V+0         │"
+      ],
+      "leg": "X1",
+      "exit": "XX──NG",
+      "comments": [
+        "CHECK N1 TO SAL",
+        "AFTER SAL TO N1",
+        "TRANSFER.",
+        "CHECK E23─8 TO PAL."
+      ],
+      "label_row": 7
+    }
+  ],
+  "text": [],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      152,
+      98,
+      "717117"
+    ],
+    [
+      164,
+      98,
+      "01/10/72"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583947"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      192,
+      101,
+      "-"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/22/72"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "897"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "AA001"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "RESIDENT. MICRODIAGNOSTIC"
+    ]
+  ],
+  "bespoke_source": "D:\\Github\\IBM360\\tmp\\ald-text\\aa001_reconstruction.py",
+  "layout": "Bespoke AA001 content preserved; inserted phase gap removed without joining opposing corners.",
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "root_grid_migration_review": {
+    "page": "AA001",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "6b1c8a7ade42b2b678a4a2e3072a25144f041c19b43d0ca3e330598f12ab0269",
+    "text_sha256": "1e1b6d121375682bd2b836a7895746c85adbf30d34c51cd03e439049addd33e9",
+    "content_sha256": "124caab7dd912d944507cc82d89637b35e749b74674a2d90d613d3c205190002",
+    "verification_sha256": "4eb361d6ee5ba1e94e4f23a4a9a9b6ecd5ebd769e478166570690446d4fc275f",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AA Resident Microdiagnostic\\AA001 RESIDENT MICRODIAGNOSTIC.tif",
+    "source_sha256": "5e10e01e70b91d4b0ea68d64e1bcc2697211a2e00ad2c5e22ca36f988f2e10bc",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:37.146357+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

@@ -1,0 +1,1559 @@
+{
+  "nodes": [
+    {
+      "box": "A7",
+      "leg": "XX",
+      "address": "0A21",
+      "fields": [
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "0X──AG",
+      "comments": [
+        "SCON MASK ALL",
+        "ZEROS",
+        "SPEC ERROR"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        157,
+        0
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C2",
+      "leg": "000001",
+      "address": "0D81",
+      "fields": [
+        "A A+0",
+        "A →T",
+        "B -1+0",
+        "B →F",
+        "D ◺T→SELREG",
+        "C STC-1",
+        "C SAMPLE◺VALUE"
+      ],
+      "exit": "XX──CB",
+      "comments": [
+        "STC=4,ABC=0",
+        "SEL MASK TO SEL",
+        "REG.",
+        "CONF MASK IN A"
+      ],
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "0AC0",
+      "fields": [
+        "A F1+0",
+        "A →B",
+        "B V+0",
+        "B →F",
+        "D ◺T→EXTREG",
+        "C 0→STC"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "STC=3",
+        "IOCE SEL MASK",
+        "TO F REG, CONF",
+        "MASK TO EXT REG"
+      ],
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "0ABD",
+      "fields": [
+        "A BL2+0",
+        "A →T",
+        "C STC-1"
+      ],
+      "exit": "0X──CD",
+      "comments": [
+        "0F HEX IN AB7"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C5",
+      "leg": "0X",
+      "address": "0ABC",
+      "fields": [
+        "A B+0-1",
+        "A →T",
+        "B V.U",
+        "B         AB→U",
+        "C ABC+1"
+      ],
+      "exit": "XX──CE",
+      "comments": [
+        "STC=7,ABC=0",
+        "3C HEX IN ST7"
+      ],
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C6",
+      "leg": "XX",
+      "address": "0ABF",
+      "fields": [
+        "A 0+1",
+        "A →T",
+        "B V.U",
+        "B          F→U",
+        "L RG*E2Ω1→S",
+        "C ABC+1"
+      ],
+      "exit": "X*──CF",
+      "comments": [
+        "STC=7,ABC=1",
+        "BRANCH ON ZERO",
+        "SCON MASK, 2ND",
+        "HALF OF CONF MASK",
+        "TO S REG",
+        "07 HEX IN ST7"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        135,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C7",
+      "leg": "X0",
+      "address": "0A20",
+      "fields": [
+        "A 0+TL1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──CG",
+      "comments": [
+        "STC=7,ABC=2",
+        "BRANCH ON ANY",
+        "IOCE IN SEL MASK",
+        "01 HEX IN ST7"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        157,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C8",
+      "leg": "X1",
+      "address": "0A23",
+      "fields": [
+        "A B+T+1",
+        "A →B",
+        "L RG*E2→T",
+        "C STC-1"
+      ],
+      "exit": "XX──CH",
+      "comments": [
+        "NO IOCE SELECTED",
+        "COUNT OF 0B HEX",
+        "TO B REG",
+        "CONF MASK TO",
+        "T REG"
+      ],
+      "grid": [
+        179,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G1",
+      "leg": "X0",
+      "address": "0A22",
+      "fields": [
+        "A 0+TL1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──GA",
+      "comments": [
+        "STC=7,ABC=2",
+        "IOCE SELECTED",
+        "02 HEX IN ST7",
+        "START CHECK TO",
+        "SEE THAT THERE IS",
+        "ONLY ONE CE CONF",
+        "BIT ON IN MASK",
+        "BRANCH ON CE-4"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        25,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G2",
+      "leg": "X0",
+      "address": "0A24",
+      "fields": [
+        "A 0+TL1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──GB",
+      "comments": [
+        "CE-4 ON",
+        "04 HEX IN ST7",
+        "BRANCH ON CE-3"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        47,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G3",
+      "leg": "X1",
+      "address": "0A29",
+      "fields": [
+        "A 0+1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──GC",
+      "comments": [
+        "CE-4 ON,CE-3 OFF",
+        "08 HEX IN ST7",
+        "BRANCH ON CE-2"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        69,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G4",
+      "leg": "X0",
+      "address": "0A2A",
+      "fields": [
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "0X──GD",
+      "comments": [
+        "CE-2 AND 3 OR 4 ON",
+        "SPEC ERROR"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G7",
+      "leg": "X0",
+      "address": "0A28",
+      "fields": [
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "0X──GG",
+      "comments": [
+        "CE-3 AND 4 ON",
+        "SPEC ERROR"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        157,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J2",
+      "leg": "X1",
+      "address": "0A25",
+      "fields": [
+        "A 0+TL1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──JB",
+      "comments": [
+        "CE-4 OFF",
+        "04 HEX IN ST7",
+        "BRANCH ON CE-3"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        47,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J3",
+      "leg": "X0",
+      "address": "0A26",
+      "fields": [
+        "A 0+1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──JC",
+      "comments": [
+        "CE-4 OFF,CE-3 ON",
+        "08 HEX IN ST7",
+        "BRANCH ON CE-2"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        69,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J4",
+      "leg": "X1",
+      "address": "0A2B",
+      "fields": [
+        "A 0+TL1",
+        "A →T"
+      ],
+      "exit": "X*──JD",
+      "comments": [
+        "CE-3 OR 4 ON 2 OFF",
+        "01 HEX IN ST7",
+        "BRANCH ON CE-1"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J5",
+      "leg": "X0",
+      "address": "0A2E",
+      "fields": [
+        "C ◺1→IVSPEC"
+      ],
+      "exit": "0X──JE",
+      "comments": [
+        "MORE THEN ONE CE",
+        "CONFIGURED",
+        "SPEC ERROR"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L3",
+      "leg": "X1",
+      "address": "0A27",
+      "fields": [
+        "A 0+1",
+        "A →T",
+        "B V.U",
+        "B         AB→U"
+      ],
+      "exit": "X*──LC",
+      "comments": [
+        "CE-3,4 OFF",
+        "08 HEX IN ST7",
+        "BRANCH ON CE-2"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        69,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L4",
+      "leg": "X0",
+      "address": "0A2C",
+      "fields": [
+        "A 0+TL1",
+        "A →T"
+      ],
+      "exit": "X*──LD",
+      "comments": [
+        "CE-2 ON 3 AND 4 OFF",
+        "01 HEX IN ST7",
+        "BRANCH ON CE-1"
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L5",
+      "leg": "X1",
+      "address": "0A2F",
+      "fields": [
+        "A B+T+1",
+        "A →B",
+        "L RG*E2→T",
+        "C STC-1"
+      ],
+      "exit": "XX──LE",
+      "comments": [
+        "ONLY ONE CE IN",
+        "CONF MASK",
+        "COUNT OF 0B HEX",
+        "TO B REG",
+        "CONF MASK TO",
+        "T REG"
+      ],
+      "grid": [
+        113,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L6",
+      "leg": "XX",
+      "address": "0A30",
+      "fields": [
+        "A B+0+1",
+        "A →B,D",
+        "B 0,V1+0",
+        "B →F",
+        "C STC+1"
+      ],
+      "exit": "XX──LF",
+      "comments": [
+        "STC=6",
+        "PUT CE CONF MASK",
+        "IN F REG",
+        "COUNT OF 0C HEX",
+        "TO B AND D REG"
+      ],
+      "grid": [
+        135,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L7",
+      "leg": "XX",
+      "address": "0A31",
+      "fields": [
+        "A B+D+1",
+        "A →B,DWS",
+        "B 0,V1+U1,0",
+        "B          F→U"
+      ],
+      "exit": "XX──LG",
+      "comments": [
+        "STC = 7",
+        "PUT CE CONF MASK",
+        "IN LEFT HALF OF ST7.",
+        "COUNT OF 19 HEX",
+        "TO B AND D REG"
+      ],
+      "grid": [
+        157,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L8",
+      "leg": "XX",
+      "address": "0A32",
+      "fields": [
+        "A 0+0+1",
+        "S STOP1",
+        "C 1→STAG"
+      ],
+      "exit": "X0──LH",
+      "comments": [
+        "WAIT FOR SDBI",
+        "TO SETTLE DOWN"
+      ],
+      "R_line": "R            0",
+      "grid": [
+        179,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N4",
+      "leg": "X1",
+      "address": "0A2D",
+      "fields": [
+        "A 0+TL1",
+        "A →T"
+      ],
+      "exit": "X1──ND",
+      "comments": [
+        "CE-2,3 AND 4 OFF",
+        "01 HEX IN ST7"
+      ],
+      "R_line": "R            1",
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N8",
+      "leg": "X1",
+      "address": "0A3B",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP",
+        "C ◺0→CC"
+      ],
+      "exit": "******──NH",
+      "comments": [
+        "ALL UNITS",
+        "RESPONDED"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        179,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q2",
+      "leg": "X0",
+      "address": "0A34",
+      "fields": [
+        "A B-1",
+        "A →B",
+        "C 1→TIME-GATE"
+      ],
+      "exit": "X*──QB",
+      "comments": [
+        "SELECT TIMEOUT",
+        "5.0 MICROSECONDS.",
+        "TON SELECT"
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        47,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q3",
+      "leg": "X1",
+      "address": "0A35",
+      "fields": [
+        "A 0+D",
+        "A →B",
+        "C 0→TIME-GATE"
+      ],
+      "exit": "X0──QC",
+      "comments": [
+        "TOF SELECT",
+        "COUNT OF 19 HEX",
+        "TO B REG."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        69,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q4",
+      "leg": "X0",
+      "address": "0A36",
+      "fields": [
+        "A B-1",
+        "A →B"
+      ],
+      "exit": "X*──QD",
+      "comments": [
+        "RESPONSE TIMEOUT",
+        "5.0 MICROSECONDS."
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        91,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q5",
+      "leg": "X1",
+      "address": "0A37",
+      "fields": [
+        "L R◺SELREG→T",
+        "L ◺GEN-BUS-PAR"
+      ],
+      "exit": "XX──QE",
+      "comments": [
+        "RESPONSES TO T",
+        "REG"
+      ],
+      "grid": [
+        113,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q6",
+      "leg": "XX",
+      "address": "0A33",
+      "fields": [
+        "A 0+T",
+        "C 0→STAG"
+      ],
+      "exit": "XX──QF",
+      "comments": [
+        "CHECK RESPONSE",
+        "VALIDITY"
+      ],
+      "grid": [
+        135,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q7",
+      "leg": "XX",
+      "address": "0A38",
+      "fields": [
+        "L WG*E2"
+      ],
+      "exit": "X*──QG",
+      "comments": [
+        "STORE RESPONSES",
+        "IN R1",
+        "BRANCH ON ALL",
+        "RESPONSES"
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        157,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q8",
+      "leg": "X0",
+      "address": "0A3A",
+      "fields": [
+        "D R→E",
+        "L →T",
+        "C NEOP",
+        "C ◺2→CC"
+      ],
+      "exit": "******──QH",
+      "comments": [
+        "SOME UNIT DID",
+        "NOT RESPOND"
+      ],
+      "R_line": "R NEXT-INST*IC",
+      "grid": [
+        179,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q9",
+      "leg": "******",
+      "address": "XXX",
+      "fields": [
+        "GO TO",
+        "QT001.CCB"
+      ],
+      "exit": "******──QI",
+      "comments": [],
+      "output_star": false,
+      "grid": [
+        201,
+        77
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 1246.19,
+    "first_header_y": 205.36,
+    "column_step": 663.9,
+    "row_step": 496.29
+  },
+  "text": [
+    [
+      2,
+      1,
+      "QQ171.EGE"
+    ],
+    [
+      2,
+      2,
+      "(1)"
+    ],
+    [
+      2,
+      11,
+      "SET CONFIGURATION"
+    ],
+    [
+      2,
+      12,
+      "REGISTER"
+    ],
+    [
+      2,
+      13,
+      "SCON"
+    ],
+    [
+      2,
+      14,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      15,
+      "(000001)"
+    ],
+    [
+      229,
+      47,
+      "QQ031"
+    ],
+    [
+      239,
+      47,
+      "GDE"
+    ],
+    [
+      229,
+      48,
+      "(0X)"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  05/21/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ001"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     048"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583838"
+    ],
+    [
+      200,
+      100,
+      "SET CONFIGURATION CONTROL"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "REGISTER (SCON)"
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        155,
+        3
+      ],
+      [
+        157,
+        3
+      ]
+    ],
+    [
+      [
+        46,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        68,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        112,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        134,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        155,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        178,
+        14
+      ],
+      [
+        179,
+        14
+      ]
+    ],
+    [
+      [
+        23,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        45,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        67,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        89,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        156,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        45,
+        47
+      ],
+      [
+        47,
+        47
+      ]
+    ],
+    [
+      [
+        67,
+        47
+      ],
+      [
+        69,
+        47
+      ]
+    ],
+    [
+      [
+        89,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        111,
+        47
+      ],
+      [
+        113,
+        47
+      ]
+    ],
+    [
+      [
+        67,
+        58
+      ],
+      [
+        69,
+        58
+      ]
+    ],
+    [
+      [
+        89,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        111,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        112,
+        60
+      ],
+      [
+        113,
+        60
+      ]
+    ],
+    [
+      [
+        133,
+        56
+      ],
+      [
+        135,
+        56
+      ]
+    ],
+    [
+      [
+        134,
+        58
+      ],
+      [
+        135,
+        58
+      ]
+    ],
+    [
+      [
+        156,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        178,
+        58
+      ],
+      [
+        179,
+        58
+      ]
+    ],
+    [
+      [
+        89,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        177,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        68,
+        80
+      ],
+      [
+        69,
+        80
+      ]
+    ],
+    [
+      [
+        90,
+        80
+      ],
+      [
+        91,
+        80
+      ]
+    ],
+    [
+      [
+        89,
+        82
+      ],
+      [
+        91,
+        82
+      ]
+    ],
+    [
+      [
+        111,
+        80
+      ],
+      [
+        113,
+        80
+      ]
+    ],
+    [
+      [
+        134,
+        80
+      ],
+      [
+        135,
+        80
+      ]
+    ],
+    [
+      [
+        156,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        177,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        199,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        175,
+        14
+      ]
+    ],
+    [
+      [
+        133,
+        52
+      ],
+      [
+        135,
+        52
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        131,
+        58
+      ]
+    ],
+    [
+      [
+        89,
+        36
+      ],
+      [
+        89,
+        47
+      ]
+    ],
+    [
+      [
+        111,
+        47
+      ],
+      [
+        111,
+        58
+      ]
+    ],
+    [
+      [
+        177,
+        69
+      ],
+      [
+        177,
+        80
+      ]
+    ],
+    [
+      [
+        177,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        67,
+        80
+      ],
+      [
+        67,
+        76
+      ],
+      [
+        45,
+        76
+      ],
+      [
+        45,
+        78
+      ],
+      [
+        47,
+        78
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        199,
+        69
+      ],
+      [
+        199,
+        80
+      ],
+      [
+        201,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        131,
+        36
+      ],
+      [
+        131,
+        47
+      ]
+    ],
+    [
+      [
+        8,
+        1
+      ],
+      [
+        157,
+        1
+      ]
+    ]
+  ],
+  "cells": [
+    [
+      155,
+      14,
+      "O"
+    ],
+    [
+      175,
+      14,
+      "O"
+    ],
+    [
+      45,
+      36,
+      "O"
+    ],
+    [
+      67,
+      36,
+      "O"
+    ],
+    [
+      89,
+      36,
+      "O"
+    ],
+    [
+      89,
+      47,
+      "O"
+    ],
+    [
+      67,
+      47,
+      "O"
+    ],
+    [
+      111,
+      47,
+      "O"
+    ],
+    [
+      111,
+      58,
+      "O"
+    ],
+    [
+      89,
+      58,
+      "O"
+    ],
+    [
+      67,
+      80,
+      "O"
+    ],
+    [
+      89,
+      80,
+      "O"
+    ],
+    [
+      177,
+      80,
+      "O"
+    ],
+    [
+      195,
+      36,
+      "O"
+    ],
+    [
+      131,
+      47,
+      "O"
+    ],
+    [
+      195,
+      47,
+      "O"
+    ],
+    [
+      199,
+      80,
+      "O"
+    ]
+  ],
+  "wiring_evidence": [
+    "Full-page scan inspected against projected rules. Restored printed O junctions, branch stubs and Q2/Q4 self loops. A7/G4/G7/J5 share the specification-error return bus; C8-to-L6 passes across it without joining. Q7 joins Q8 and N8; their functional exits join the QT001 dummy."
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "3ff8d14b154d454ebb33b12536a9b7959e525a9261ac6241132c4488d3686447",
+    "old_txt_sha256": "c79c7597780095fe834962c676f24ab819471b00927f5d8ec48e57afaa86de68",
+    "new_txt_sha256": "ff4e9bfe0dee465242a0fb9720ce2344fba3e84ddc6f960627191f2fd82e3ce9",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "195,14": "┼",
+    "199,47": "┼",
+    "197,69": "┼",
+    "65,76": "┬",
+    "111,80": "┬",
+    "197,80": "┼"
+  },
+  "wire_erase": [],
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ001",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "c79c7597780095fe834962c676f24ab819471b00927f5d8ec48e57afaa86de68",
+    "text_sha256": "ff4e9bfe0dee465242a0fb9720ce2344fba3e84ddc6f960627191f2fd82e3ce9",
+    "content_sha256": "eded75fe2ac9ee4d90f6deb9b61b5e6cacd2ee04683a934633f684951093b680",
+    "verification_sha256": "4906c5c3b8fcb1b6101fb01c577ddd9ddc0aaaa59eff0f295a81be808e4929b2",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ001 SET CONFIGURATION CONTROL REGISTER SCON.tif",
+    "source_sha256": "3ff8d14b154d454ebb33b12536a9b7959e525a9261ac6241132c4488d3686447",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ001",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 SET CONFIGURATION CONTROL REGISTER SCON.txt",
+      "reviewed_txt_sha256": "ff4e9bfe0dee465242a0fb9720ce2344fba3e84ddc6f960627191f2fd82e3ce9",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ001 SET CONFIGURATION CONTROL REGISTER SCON.tif",
+      "source_sha256": "3ff8d14b154d454ebb33b12536a9b7959e525a9261ac6241132c4488d3686447",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Source review and revised targeted regions pass within stated review scope; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "ff4e9bfe0dee465242a0fb9720ce2344fba3e84ddc6f960627191f2fd82e3ce9",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 content.json",
+      "reviewed_content_sha256": "eded75fe2ac9ee4d90f6deb9b61b5e6cacd2ee04683a934633f684951093b680",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 verification.json",
+      "reviewed_verification_sha256": "4906c5c3b8fcb1b6101fb01c577ddd9ddc0aaaa59eff0f295a81be808e4929b2",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 staged preview.png",
+      "dimensions_pass": true,
+      "hash_matches_owner_manifest": true
+    },
+    "baseline_audit": {
+      "page": "QQ001",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 SET CONFIGURATION CONTROL REGISTER SCON.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ001\\QQ001 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ001 SET CONFIGURATION CONTROL REGISTER SCON.txt",
+      "old_sha256": "c79c7597780095fe834962c676f24ab819471b00927f5d8ec48e57afaa86de68",
+      "new_sha256": "ff4e9bfe0dee465242a0fb9720ce2344fba3e84ddc6f960627191f2fd82e3ce9",
+      "content_sha256": "eded75fe2ac9ee4d90f6deb9b61b5e6cacd2ee04683a934633f684951093b680",
+      "nodes": 33,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 1,
+          "label": "QQ171.EGE",
+          "wire_column": 11
+        },
+        {
+          "row": 14,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:54.205331+00:00"
+  }
+}

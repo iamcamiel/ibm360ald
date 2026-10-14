@@ -1,0 +1,137 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                                        000 A6211 01
+
+
+
+          F FIELD     MISC. CONTROL LINES                                                                                                                                     C    1→STAB✲J31=1     100111  F39    SET STAB IF PAL 31 = 1                                                                                    DR121
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 25-30                                                                                                                 C    RSLT-SIGN→LS     101000  F40    GATE RESULT SIGN ONTO LOCAL STORE BUS (T32 = 1 IF RE-                                                     DR121
+                                                                                                                                                                                                                   SULT SIGN MINUS = 0 IF RESULT SIGN PLUS)
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     C    1→SCAN-MODE      101001  F41    SET SCAN MODE TGR                                                                                         DR091
+          CHAR                      ORDER                                                                                                                                     C    1→XEC-TGR        101010  F42    SET EXECUTE TGR AND MAKE STORE REQ. (4 CYC) PER D IF                                                      DR091
+                                                                                                                                                                                                                   SS FORMAT AND D21-22 = 10
+                                                                                                                                                                              D    J7→STC           101011  F43    PAL61-63 TO STC                                                                                           DR091
+                                000000  F0     NO OPERATION                                                                                                                   C    0→STP.STPLP      101100  F44    RESET STOP. STOP LOOP (MANUAL). AND PULSE MODE AD-                                                        DR091
+          C    RESET            000001  F1     ✲✲✲ I FETCH RESET ✲✲✲                                                                                     DR101                                                     JUST TGRS. BLOCK INTERRUPTS ON START IF NOT WAIT STATE
+                                               RESET STAA THRU STAH.                                                                                                          C    0→STAG           101101  F45    RESET STAG                                                                                                DR091
+                                               SET LAR0 FOR FLOATING POINT OPS.                                                                                               D    J7→ABC           101110  F46    PAL61-63 TO ABC                                                                                           DR091
+                                               E8-11 TO LAR ON RR BRANCH                                                                                                      D    D→STC            101111  F47    D21-23 TO STC INCR. LATCHES                                                                               DR091
+                                               RESET STC AND ABC TO.000 (STC TO 100 ON RR FORMAT).                                                                            C    ABC.STC-1        110000  F48    ABC-1 TO ABC INCR. LATCHES AND STC-1 TO STC INCR. LATCHES                                                 DR101
+                                               RESET 3 CYCLE REQ TGR IF RS BRANCH.                                                                                            C    ABC-1            110001  F49    ABC-1 TO ABC INCR. LATCHES                                                                                DR101
+                                               GATE FOR Q-BUFFER REFILL ON BRANCH INSTRUCTIONS.                                                                               C    STC-1            110010  F50    STC-1 TO STC INCR. LATCHES                                                                                DR101
+          C    SIGNS→STATS      000010  F2     SET STAT C                                                                                                DR101                C    0→STC            110011  F51    SET STC INCR. LATCHES TO 000                                                                              DR101
+          C                                     IF NOT VFL DEC AND ST0=1  -OR-                                                                                                C    ABC.STC+1        110100  F52    ABC PLUS 1 TO ABC INCR. LATCHES AND STC PLUS 1 TO STC                                                     DR101
+                                                 VFL DEC AND SBA4-7 IS POSITIVE AND (COMP OR SUB) -OR-                                                                                                             INCR. LATCHES
+                                                 VFL DEC AND SBA4-7 IS NEGATIVE AND NOT (COMP OR SUB).                                                                        C    ABC+1            110101  F53    ABC PLUS 1 TO ABC INCR. LATCHES                                                                           DR101
+                                               SET STAT E                                                                                                                     C    STC+1            110110  F54    STC PLUS 1 TO STC INCR. LATCHES                                                                           DR101
+                                                IF VFL DEC AND INVALID SIGN.                                                                                                  C    3→STC            110111  F55    011 TO STC INCR. LATCHES                                                                                  DR101
+                                               SET STAT F                                                                                                                     D    E3→ABC.STC       111000  F56    E13-15 TO ABC INCR. LATCHES AND STC INCR. LATCHES                                                         DR111
+                                                IF VFL DEC AND SBB SIGN IS NEGATIVE.                                                                                          D    E3→ABC           111001  F57    E13-15 TO ABC INCR. LATCHES                                                                               DR111
+          C    1→STAA✲J47=0     000011  F3     SET STAA IF PAL32-63=0.                                                                                                        D    E3→STC           111010  F58    E13-15 TO STC INCR. LATCHES                                                                               DR111
+          C    0→STAA✲J47≠0     000100  F4     RESET STAA IF PAL32-63≠0 OR STAA LATCH=0.                                                                                      C    1→STC(00)        111011  F59    FORCE 1 TO STC INCR. LATCH 0                                                                              DR111
+          C    1→STAB✲W=0       000101  F5     SET STAB IF SAL00-07=0.                                                                                                        C    EDIT-CTL         111100  F60    IF STAG = 1. CONDITION EDIT HARDWARE CONTROLS                                                             DR111
+          C    SAVE-SIGNS       000110  F6     SET STAT C                                                                                                DR101                C    ◺ABC-1.STC+1     111101  F61    ABC-1 TO ABC INCR. LATCHES AND STC+1 TO STC INCR. LATCHES.                                                DR125
+                                                IF FLPT AND (SUB OR COMP) AND SBBO=0 -OR-                                                                                     C    SET-CR           111111  F63    ■SET CONDITION CODE 01 IF                                                                                 DR121
+                                                 FLPT AND NOT (SUB OR COMP) AND SBBO=1.                                                                                                                             1) TM AND STAA ✲MIXED✲
+                                               SET STAT D                                                                                                                                                           2) NOT STAA AND RESULT NEGATIVE AND (NOT LOGICAL INSTR AND
+                                                IF FLPT (MULT OR DIV) AND SAL0=1.                                                                                                                                      NOT FXPT COMPARE AND. FXPT OR SHIFT ARITH)
+                                               SET STAT E                                                                                                                                                              ✲LESS THAN ZERO✲
+                                                IF NOT FLPT AND SBB4-7=INVALID SIGN.                                                                                                                                3) (TRANSLATE OR EDIT) AND STAA AND (E06 AND S TGR OR NOT
+                                               SET STAT F                                                                                                                                                              E06 AND NOT STAG) ✲TRT INCOMPLETE✲ ✲EDIT LESS THAN 0✲
+                                                IF FLPT AND ABC0=1 OR NOT FLPT AND SBB IS NEGATIVE.                                                                                                                 4) FLPT AND NOT STAA AND RESULT SIGN MINUS ✲LESS THAN 0✲
+          C    1→STOP-LOOP      000111  F7     SET STOP LOOP (MANUAL). TRIGGER                                                                           DR101                                                      5) DEC COMPARE AND(STAA AND F AND H). OR STA(C AND F AND H)
+          C    0→STAD           001000  F8     RESET STAD AND RESET BLOCK I FETCH TGR                                                                    DR111                                                         OR STA(A AND C AND NOT H). ✲FIRST OP IS LOW✲
+          C    1→STAD           001001  F9     SET STAD                                                                                                  DR111                                                      6) (DEC ADD OR DEC SUB OR ZERO AND ADD) AND STA(A AND H)
+          C    A(07)=0→INH      001010  F10    INHIBIT INGATING FOR 1 CYCLE TO F.D.AB.ST.ROSAR IF A07 = 0                                                DR111                                                         ✲LESS THAN ZERO✲
+          C    A1≠0→INH         001011  F11    INHIBIT INGATING FOR 1 CYCLE TO F.D.AB.ST.ROSAR IF A08-11                                                 DR111                                                      7) ((AND) OR (OR) OR (EXCLUSIVE OR)) AND STAA ✲NOT 0✲
+                                               DOES NOT = 0000                                                                                                                                                      8) LOGICAL COMPARE(SI OR SS) AND STA(A AND NOT H) ✲1ST LOW✲
+          C    MPLY-END         001100  F12    SELECTS MULTIPLIER BITS FROM S PER E12-15 AND TX TGR DUR-                                                 DR111                                                      9) TEST AND SET AND ST32 ✲LEFT BIT IS ONE✲
+                                               ING TERMINAL CYCLE OF FIXED AND FLTG PT. MULTIPLY                                                                                                                    10) ADD OR SUB LOG AND NOT STAA AND NOT AB31 ✲✲0. NO CARRY✲
+          C    ◺RDD-T-O-CHK     001101  F13    READ DIRECT TIME OUT INTERRUPT. TURN ON MACHINE CHECK                                                     DR123                                                      11) FXPT COMP AND NOT STA(A AND B) AND ST32 OR FXPT COMP
+                                               AND PSW BIT 29                                                                                                                                                           AND STA(NOT A AND B) AND NOT ST32 ✲1ST LOW✲
+          D    IC→ABC           001110  F14    IC21-23 TO ABC INCR. LATCHES                                                                              DR111                                                      12) SIO OR TIO ✲CSW STORED✲
+          C    0→ABC            001111  F15    000 TO ABC INCR. LATCHES                                                                                  DR111                                                      13) HIO ✲HALTED✲
+          C    ◺1→IVSPEC        010000  F16    SETS SPECIFICATION INTERRUPT. PSW BITS 29. 30                                                             DR091                                                      14) TCH ✲CSW READY✲
+                                               UNCONDITIONAL IF 9020 OP                                                                                                                                            ■SET CONDITION CODE 10 IF
+          C    1→TCL-TGR        010001  F17    SET TIME CLOCK AT LIMIT TGR                                                                               DR091                                                      1) TM AND STA(A AND H) ✲BITS ALL ONES✲
+          C    DVD-CHECK        010010  F18    SET PROGRAM INTERRUPT TGRS PER SIGNIFICANCE OR DIVIDE                                                     DR091                                                      2) NOT STAA AND RESULT POS AND (NOT LOG INSTR AND NOT FXPT
+                                               CHK. CONDITIONS                                                                                                                                                         COMP AND FXPT OR SHIFT ARITH) ✲GREATER THAN ZERO✲
+          C    1→INV-OP-TGR     010011  F19    SET PROGRAM INTERRUPT TGR 1 (INVALID OP)                                                                  DR091
+          C    1→INTREQ-TGR     010100  F20    SET SUPERVISOR CALL TGR AND PROG. INTERRUPT TGRS IF                                                       DR091                                                      3) (TRANSLATE OR EDIT) AND STAA AND ((NOT S TGR AND E06) OR
+                                               SUPERVISOR CALL                                                                                                                                                         (STAG AND NOT E06)) ✲TRT COMPLT✲ ✲EDIT GREATER THAN 0✲
+          C    1→OFLO/UFLO      010101  F21    SET PROGRAM INTERRUPT TGRS PER FLTG.PT. OR DECIMAL                                                        DR091                                                      4) FLPT AND NOT STAA AND RESULT POS ✲GREATER THAN 0✲
+                                               OVERFLOW OR UNDERFLOW CONDITIONS                                                                                                                                     5) DEC COMP AND (STAA AND NOT F AND H) OR STA(A AND
+          C    SAJ05            010110  F22    SET STAA IF E06 = 1 AND PAL 32-63 = 0. GATE RESULT SIGN ONTO                                              DR091                                                         NOT C AND NOT H)
+                                               LOCAL STORE BUS (T32 = 1 IF RESULT SIGN MINUS = 0 IF RESULT                                                                                                          6) (DEC ADD OR DEC SUB OR ZERO AND ADD) AND STA(A AND
+                                               SIGN PLUS).                                                                                                                                                             NOT F) ✲GREATER THAN 0✲
+          C    ◺512CRY→ICLT     010111  F23    SET IC CARRY LATCH IF PADDER 512 CARRY                                                                    DR125                                                      7) LOG COMP (SI OR SS) AND STA(A AND H) ✲FIRST HIGH✲
+          C    SASCR            011000  F24    SET ADDR. STORE COMP TGR PAL 32 CARRY                                                                     DR121                                                      8) LOG COMP (RR OR RX) AND NOT STAA AND AB31 ✲FIRST HIGH✲
+          C    0→INT-TGR        011001  F25    RESET MACH. CHK SUPV. CALL INTERRUPT TGRS INTERRUPT                                                       DR121                                                      9) (ADD OR SUB) LOG AND STAA AND AB31 ✲EQUAL 0. CARRY✲
+                                               PRIORITY TGRS. SET STOP TGR IF INSTR. STEP.                                                                                                                          10) FXPT COMP AND NOT STAA AND ((STAB AND ST32) OR (NOT STAB
+          C    1→ASC✲J57=0      011010  F26    SET ADDRESS STORE COMPARE TGR IF PAL 40-63 = 0                                                            DR121                                                          AND NOT ST32)) ✲FIRST HIGH✲
+                                               OR IC21. 22 = 11 AND PAL 40-62 = 0                                                                                                                                   11) SIO ✲BUSY✲
+          C    0→ASC.XEC        011011  F27    RESET ADDR. STORE COMPARE AND EXECUTE TGRS                                                                DR121                                                      12) HIO ✲STOPPED✲
+          C    0→TIME-STEP      011100  F28    RESET TIME CLOCK STEP TGR. CONDITION SET OF PULSE                                                         DR121                                                      13) TIO OR TCH ✲WORKING✲
+                                               MODE ADJUST TGR                                                                                                                                                     ■SET CONDITION CODE 01 AND 10 IF
+          C    1→TIME-GATE      011101  F29    SET TIMING GATE TGR                                                                                       DR121                                                      1) (FXPT AND NOT FXPT COMP OR ARITH SHIFT) AND STAB
+          C    0→TIME-GATE      011110  F30    RESET TIMING GATE TGR                                                                                     DR121                                                         ✲OVERFLOW✲
+          C    INH-W-PAR-CK     011111  F31    INHIBIT SERIAL ADDER PARITY CHECK                                                                         DR121                                                      2) DEC (ADD OR SUB) OR ZERO AND ADD AND STAA ✲OVERFLOW✲
+          C    ◺0→CC            100000  F32    SET CONDITION CODE TO ZERO                                                                                DR125                                                      3) (ADD OR SUB) LOG AND AB31 AND NOT STAA ✲✲0. CARRY✲
+          C    ◺1→CC            100001  F33    SET CONDITION CODE TO ONE                                                                                 DR125                                                      4) FLOATING POINT OVERFLOW
+          C    ◺2→CC            100010  F34    SET CONDITION CODE TO TWO                                                                                 DR125
+          C    ◺3→CC            100011  F35    SET CONDITION CODE TO THREE                                                                               DR125
+          C    STAC→STAE        100100  F36    SET STAE TO STATE OF STAC                                                                                 DR121
+          C    ◺512CRY→DLT      100101  F37    SET D CARRY LATCH IF PADDER 512 CARRY                                                                     DR125
+          C    IF-INV→TGR       100110  F38    IF NOT 1→INST-MSREQ (G22 MICROORDER) OR UNSUCCESSFUL                                                      DR121
+                                               BRANCH ON CONDITION AND IC21-22≠0 THEN SET GATE I FETCH
+                                               ADDR TGR AND RESET I FETCH INVALID ADDR TGR AND INVALID
+                                               INSTRUCTION ADDR TGR.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                         15 MAY 70  713666
+                                                                                                                                                                                                                                                         1 SEP 70   714945                                ┌────────────────────────────────────────────────┐
+                                                                                                                                                                                                                                                                                                          │ F CONTROL FIELD LISTING                        │
+                                                                                                                                                                                                                                                                                                          │                                                │ A
+                                                                                                                                                                                                                                                                                                          │ DATE 21 AUG 70 MACH. 7201-02                   │ 6
+                                                                                                                                                                                                                                                                                                          │                                                │ 2
+                                                                                                                                                                                                                                                                                                          │                          FRAME      02         │ 1
+                                                                                                                                                                                                                                                                                                          │                                                │ 1
+                                                                                                                                                                                                                                                                                                          │                          P.N.          2586557 │
+                                                                                                                                                                                                                                                                                                          │                                                │ 000
+                                                                                                                                                                                                                                                                                                          │ IBM CORP. SDD            PAGE                1 │

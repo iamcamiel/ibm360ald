@@ -1,0 +1,1026 @@
+{
+  "nodes": [
+    {
+      "box": "A1",
+      "leg": "011100",
+      "address": "019C",
+      "fields": [
+        "D CON→E3",
+        "L RG*E2Ω1→T",
+        "C 3→STC"
+      ],
+      "exit": "0X──AA",
+      "comments": [
+        "3 TO STC",
+        "15 TO E12-15",
+        "READ R1+1 TO T"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        0
+      ]
+    },
+    {
+      "box": "A3",
+      "leg": "0X",
+      "address": "0484",
+      "fields": [
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──AC",
+      "comments": [
+        "SUB 1 FROM E",
+        "12-15",
+        "SELECT MULTIPLE"
+      ],
+      "grid": [
+        69,
+        0
+      ]
+    },
+    {
+      "box": "A5",
+      "leg": "XX",
+      "address": "0485",
+      "fields": [
+        "A +P",
+        "A R→AB38",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──AE",
+      "comments": [
+        "SUB 1 FROM E",
+        "12-15 SEL MULT",
+        "PAD R4 PAL TO",
+        "AB24-67"
+      ],
+      "grid": [
+        113,
+        0
+      ]
+    },
+    {
+      "box": "A6",
+      "leg": "XX",
+      "address": "0486",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+0",
+        "B →F",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "X*──AF",
+      "comments": [
+        "AB L2 TO PB",
+        "SAL TO F",
+        "B66-67 TO SA"
+      ],
+      "R_line": "R        4<E3",
+      "grid": [
+        135,
+        0
+      ]
+    },
+    {
+      "box": "A7",
+      "leg": "X1",
+      "address": "0483",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+U",
+        "B →F       F→U",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──AG",
+      "comments": [
+        "F TO SA",
+        "LAST CYCLE SEL"
+      ],
+      "grid": [
+        157,
+        0
+      ]
+    },
+    {
+      "box": "A8",
+      "leg": "XX",
+      "address": "0481",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+U",
+        "B →F       F→U",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──AH",
+      "comments": [
+        "F TO SA"
+      ],
+      "grid": [
+        179,
+        0
+      ]
+    },
+    {
+      "box": "A9",
+      "leg": "XX",
+      "address": "488",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+U",
+        "B →ST,F    F→U",
+        "C SEL-MPL*E3",
+        "C STC-1  E3-1"
+      ],
+      "exit": "XX──AI",
+      "comments": [
+        "AND ALSO DO",
+        "STC 1 TO STC",
+        "SAL01-07 TO S"
+      ],
+      "grid": [
+        201,
+        0
+      ]
+    },
+    {
+      "box": "E1",
+      "leg": "001100",
+      "address": "010C",
+      "fields": [
+        "A -16",
+        "A L→A",
+        "D CON→E3",
+        "C 3→STC"
+      ],
+      "exit": "0X──EA",
+      "comments": [
+        "MULTIPLY HALF",
+        "3 TO STC",
+        "15 TO E12-15",
+        "ADDRESS SPEC CK"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        22
+      ]
+    },
+    {
+      "box": "E2",
+      "leg": "0X",
+      "address": "068C",
+      "fields": [
+        "A A+0",
+        "A L→A"
+      ],
+      "exit": "XX──EB",
+      "comments": [
+        "HOT ONES TO",
+        "A 36 TO 55"
+      ],
+      "grid": [
+        47,
+        22
+      ]
+    },
+    {
+      "box": "E3",
+      "leg": "XX",
+      "address": "073F",
+      "fields": [
+        "A A+0",
+        "A L→A",
+        "D MS→T*D(21)"
+      ],
+      "exit": "X*──EC",
+      "comments": [
+        "A L4 TO A",
+        "STORAGE WORD",
+        "TO T PER D21"
+      ],
+      "R_line": "R       D22=1",
+      "grid": [
+        69,
+        22
+      ]
+    },
+    {
+      "box": "E4",
+      "leg": "X0",
+      "address": "0686",
+      "fields": [
+        "A A+T45R",
+        "A →T",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──ED",
+      "comments": [
+        "FILL HIGH ORDER",
+        "BITS OF OPERAND",
+        "WITH SIGN BIT",
+        "SELECT MULTIPLE"
+      ],
+      "grid": [
+        91,
+        22
+      ]
+    },
+    {
+      "box": "J4",
+      "leg": "X1",
+      "address": "0687",
+      "fields": [
+        "A A+T67",
+        "A →T",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──JD",
+      "comments": [
+        "FILL HIGH ORDER",
+        "BITS OF OPERAND",
+        "WITH SIGN BIT",
+        "SELECT MULTIPLE"
+      ],
+      "grid": [
+        91,
+        44
+      ]
+    },
+    {
+      "box": "E6",
+      "leg": "X0",
+      "address": "0482",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+U",
+        "B →F       F→U",
+        "C MPLY-END",
+        "C E3-1"
+      ],
+      "exit": "XX──EF",
+      "comments": [
+        "F TO SA"
+      ],
+      "grid": [
+        135,
+        22
+      ]
+    },
+    {
+      "box": "E7",
+      "leg": "XX",
+      "address": "083F",
+      "fields": [
+        "A BL2+0+P",
+        "A R→AB38",
+        "B QU0T+U",
+        "B →F       F→U",
+        "C E3-1"
+      ],
+      "exit": "XX──EG",
+      "comments": [
+        "LAST ADDITION",
+        "PAL TO AB24-67",
+        "SAL TO F",
+        "PAD R4 TO PAL"
+      ],
+      "grid": [
+        157,
+        22
+      ]
+    },
+    {
+      "box": "E8",
+      "leg": "XX",
+      "address": "07BF",
+      "fields": [
+        "A BL2+0",
+        "A →DTS",
+        "B QU0T+U   F→U",
+        "L WG*E2",
+        "C EEOP"
+      ],
+      "exit": "X*──EH",
+      "comments": [
+        "B66-67 TO SA",
+        "AB-L2 TO T",
+        "F TO SA",
+        "SAL TO S",
+        "WRITE R1",
+        "EARLY END OP"
+      ],
+      "R_line": "R       F(03)",
+      "grid": [
+        179,
+        22
+      ]
+    },
+    {
+      "box": "E9",
+      "leg": "X0",
+      "address": "048A",
+      "fields": [
+        "A 0+S",
+        "A →T",
+        "L WG*E2"
+      ],
+      "exit": "X1──EI",
+      "comments": [
+        "HALF WORD MULT",
+        "WRITE LOW",
+        "ORDER HALF OF",
+        "PRODUCT TO R1",
+        "GO TO END OP"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        201,
+        22
+      ]
+    },
+    {
+      "box": "J9",
+      "leg": "X1",
+      "address": "048B",
+      "fields": [
+        "A 0+S",
+        "A →T",
+        "L WG*E2Ω1"
+      ],
+      "exit": "X1──JI",
+      "comments": [
+        "FULL WORD MULT",
+        "WRITE LOW",
+        "ORDER HALF OF",
+        "PRODUCT TO R1+1",
+        "GO TO END OP"
+      ],
+      "R_line": "R           1",
+      "grid": [
+        201,
+        44
+      ]
+    },
+    {
+      "box": "N1",
+      "leg": "011100",
+      "address": "011C",
+      "fields": [
+        "D CON→E3",
+        "L RG*E2Ω1→S",
+        "C 3→STC"
+      ],
+      "exit": "0X──NA",
+      "comments": [
+        "MULTIPLY FULL",
+        "3 TO STC",
+        "15 TO E12-15",
+        "ADDRESS SPEC CK"
+      ],
+      "R_line": "R SPEC",
+      "grid": [
+        25,
+        66
+      ]
+    },
+    {
+      "box": "N3",
+      "leg": "0X",
+      "address": "0594",
+      "fields": [
+        "D MS→T*D(21)",
+        "S STCP1",
+        "C SEL-MPL*E3",
+        "C E3-1"
+      ],
+      "exit": "XX──NC",
+      "comments": [
+        "WAIT FOR WORD",
+        "FROM STORAGE",
+        "STORAGE WD TO T",
+        "SELECT MULTIPLE"
+      ],
+      "grid": [
+        69,
+        66
+      ]
+    }
+  ],
+  "unresolved": [],
+  "text": [
+    [
+      2,
+      3,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      4,
+      "(011100)"
+    ],
+    [
+      2,
+      25,
+      "QT011.SDE"
+    ],
+    [
+      2,
+      26,
+      "(001100)"
+    ],
+    [
+      2,
+      27,
+      "(011100)"
+    ],
+    [
+      227,
+      26,
+      "(X1)"
+    ],
+    [
+      229,
+      25,
+      "QE021"
+    ],
+    [
+      239,
+      25,
+      "EIE"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      186,
+      100,
+      "2583803"
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      197,
+      97,
+      "DATE"
+    ],
+    [
+      203,
+      97,
+      "05/21/70"
+    ],
+    [
+      197,
+      98,
+      "LOG"
+    ],
+    [
+      205,
+      98,
+      "048"
+    ],
+    [
+      218,
+      97,
+      "SHEET"
+    ],
+    [
+      228,
+      97,
+      "1"
+    ],
+    [
+      231,
+      97,
+      "QB021"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      200,
+      100,
+      "FIXED POINT MULTIPLY"
+    ],
+    [
+      200,
+      101,
+      "RR AND RX FORMAT"
+    ]
+  ],
+  "cells": [
+    [
+      23,
+      25,
+      "O"
+    ],
+    [
+      109,
+      3,
+      "O"
+    ],
+    [
+      133,
+      3,
+      "O"
+    ],
+    [
+      155,
+      3,
+      "O"
+    ],
+    [
+      89,
+      25,
+      "O"
+    ],
+    [
+      109,
+      25,
+      "O"
+    ],
+    [
+      109,
+      47,
+      "O"
+    ],
+    [
+      197,
+      25,
+      "O"
+    ],
+    [
+      221,
+      25,
+      "O"
+    ]
+  ],
+  "wire_erase": [
+    [
+      -6,
+      -5,
+      249,
+      105
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        12,
+        3
+      ],
+      [
+        25,
+        3
+      ]
+    ],
+    [
+      [
+        40,
+        3
+      ],
+      [
+        69,
+        3
+      ]
+    ],
+    [
+      [
+        84,
+        3
+      ],
+      [
+        113,
+        3
+      ]
+    ],
+    [
+      [
+        109,
+        3
+      ],
+      [
+        109,
+        69
+      ],
+      [
+        84,
+        69
+      ]
+    ],
+    [
+      [
+        128,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        133,
+        3
+      ],
+      [
+        133,
+        12
+      ],
+      [
+        221,
+        12
+      ],
+      [
+        221,
+        3
+      ],
+      [
+        216,
+        3
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        157,
+        3
+      ]
+    ],
+    [
+      [
+        155,
+        3
+      ],
+      [
+        155,
+        18
+      ],
+      [
+        133,
+        18
+      ],
+      [
+        133,
+        25
+      ],
+      [
+        135,
+        25
+      ]
+    ],
+    [
+      [
+        172,
+        3
+      ],
+      [
+        179,
+        3
+      ]
+    ],
+    [
+      [
+        194,
+        3
+      ],
+      [
+        201,
+        3
+      ]
+    ],
+    [
+      [
+        12,
+        25
+      ],
+      [
+        25,
+        25
+      ]
+    ],
+    [
+      [
+        23,
+        25
+      ],
+      [
+        23,
+        69
+      ],
+      [
+        25,
+        69
+      ]
+    ],
+    [
+      [
+        40,
+        25
+      ],
+      [
+        47,
+        25
+      ]
+    ],
+    [
+      [
+        62,
+        25
+      ],
+      [
+        69,
+        25
+      ]
+    ],
+    [
+      [
+        84,
+        25
+      ],
+      [
+        91,
+        25
+      ]
+    ],
+    [
+      [
+        89,
+        25
+      ],
+      [
+        89,
+        47
+      ],
+      [
+        91,
+        47
+      ]
+    ],
+    [
+      [
+        106,
+        25
+      ],
+      [
+        109,
+        25
+      ]
+    ],
+    [
+      [
+        106,
+        47
+      ],
+      [
+        109,
+        47
+      ]
+    ],
+    [
+      [
+        150,
+        25
+      ],
+      [
+        157,
+        25
+      ]
+    ],
+    [
+      [
+        172,
+        25
+      ],
+      [
+        179,
+        25
+      ]
+    ],
+    [
+      [
+        194,
+        25
+      ],
+      [
+        201,
+        25
+      ]
+    ],
+    [
+      [
+        197,
+        25
+      ],
+      [
+        197,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        216,
+        25
+      ],
+      [
+        226,
+        25
+      ]
+    ],
+    [
+      [
+        221,
+        25
+      ],
+      [
+        221,
+        47
+      ],
+      [
+        216,
+        47
+      ]
+    ],
+    [
+      [
+        40,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "review_notes": [
+    "Source audit: printed signal names use SEL-MPL; these hyphens are not transfer arrows.",
+    "QZ numeric control bits are recorded alongside each box. Symbolic control fields were read from the scan; independent complete numeric encoding of those fields is not asserted.",
+    "Final scan/reference audit distinguishes signal-name hyphens, arithmetic decrements and comparison signs from genuine transfer arrows."
+  ],
+  "source_operator_audit": [
+    {
+      "page": "QB021",
+      "box": "E6",
+      "address": "0482",
+      "property": "fields",
+      "index": 4,
+      "old": "C MPL→END",
+      "new": "C MPLY-END",
+      "evidence": [
+        {
+          "old": "MPL→END",
+          "new": "MPLY-END",
+          "evidence": "QB021 E6 source; PDF F12"
+        }
+      ]
+    }
+  ],
+  "source_grid_migration": {
+    "from": [
+      31,
+      5
+    ],
+    "to": [
+      25,
+      0
+    ],
+    "width": 245,
+    "height": 102,
+    "entry_no_gap": true
+  },
+  "original_source_grid": {
+    "first_right": 1329.19,
+    "first_header_y": 211.36,
+    "column_step": 657.93,
+    "row_step": 495.93
+  },
+  "footer_native_review": {
+    "evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\QB021 native footer.png",
+    "separators": [
+      150,
+      173,
+      195,
+      237
+    ],
+    "rows": [
+      97,
+      98,
+      99,
+      100,
+      101
+    ]
+  },
+  "grid_dimensions": [
+    245,
+    102
+  ],
+  "root_grid_migration_review": {
+    "page": "QB021",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "4108756a4684aca3e5599d790e6c0144ea5dcf6beedc80dffc1f13a7d49394b0",
+    "text_sha256": "5347d8b7edbd2bd3796cf03ed03761f230c2e97f4b9dc84dc35ea65cb438ed57",
+    "content_sha256": "c1d41f873d6c01678203a5c989dbd429b27153984c61aab53237972d4a226e78",
+    "verification_sha256": "6d21f7b757d19642168ec71c65fe599ff78d77ecc4cee9a3a1e6138ea58e0c3c",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QB Fixed Point CAS\\QB021 FIXED POINT MULTIPLY RR AND RX FORMAT.tif",
+    "source_sha256": "f888a4233d65c88c7ed3dc5e48925fada1cf22b2c2037be5ce3442621d828b1c",
+    "source_review_scope": "Previously accepted38-page layout/body review retained; root independently checked footer-only replacement with byte-identical rows0–96, identical nodes and exact specified anchors. Native QB001/QQ001 pixel calibration establishes date203,log205,sheet number228,page231; original footer text values unchanged.",
+    "retained_notes": [
+      "Footer alignment refined from native glyph centres: DATEvalue203, LOGvalue205, sheet number228, page231.",
+      "Main body and control fields are byte-identical to the prior accepted version."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T00:31:37.468352+00:00"
+  },
+  "footer_before_v2": [],
+  "footer_column_calibration": {
+    "revision_number": 152,
+    "revision_date": 164,
+    "machine_label": 175,
+    "machine_value": 186,
+    "mode_value": 186,
+    "part_number": 186,
+    "IBM_SDD": 186,
+    "DATE_label": 197,
+    "DATE_value": 203,
+    "LOG_label": 197,
+    "LOG_value": 205,
+    "title": 200,
+    "SHEET_label": 218,
+    "sheet_number": 228,
+    "page": 231
+  },
+  "footer_v2_source": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-main\\Native footer calibration.json"
+}

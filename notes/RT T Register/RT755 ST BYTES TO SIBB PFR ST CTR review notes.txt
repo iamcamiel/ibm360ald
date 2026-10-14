@@ -1,0 +1,324 @@
+RT755 ST BYTES TO SIBB PFR ST CTR - TRANSLATION NOTES
+
+Reference scan: RT T Register\RT755 ST BYTES TO SIBB PFR ST CTR.tif
+Original scan: img20141206_08563000.tif
+Original scan timestamp: 2014-12-06 08:56:30
+Preceding scan: RT753 ST BYTES TO SIBB PER ST CTR.tif
+Following scan: RT757 ST BYTES TO SIBB PER ST CTR.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Next source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+Original source review notes — historical physical-print snapshot
+
+RT755 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 20,
+  "A1_total_card_portions": 21,
+  "A1_mismatches": [
+    "AX"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_inside_pin_labels": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 49,
+  "geometry_passed": true,
+  "A1_connectors_matched": 4,
+  "A1_total_connector_records": 8,
+  "A1_connector_source_contradictions": [
+    {
+      "source": {
+        "board": "02R-B2",
+        "connector": "KB",
+        "pin": "E06",
+        "reference": "RT755AA4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    },
+    {
+      "source": {
+        "board": "02R-B2",
+        "connector": "LB",
+        "pin": "A06",
+        "reference": "RT755AB4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    },
+    {
+      "source": {
+        "board": "02R-B2",
+        "connector": "LB",
+        "pin": "B06",
+        "reference": "RT755AC4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    },
+    {
+      "source": {
+        "board": "02R-B2",
+        "connector": "LB",
+        "pin": "C06",
+        "reference": "RT755AD4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    }
+  ],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "column": 12,
+    "row": 47,
+    "location": "BYTE first digit",
+    "candidates": [
+      "4",
+      "1"
+    ],
+    "evidence": "Native control label has damaged first digit before 8-55. Context suggests 48 but does not restore missing source strokes."
+  },
+  {
+    "location": "Literal native AX location and connector prefixes",
+    "evidence": "AX clearly prints E-E3M6; root independent native review agrees. Native continuation connector rows print 02R-B2 prefixes; all are retained despite A1 disagreements. AC unit is literally U03AC and its sole physical output B05 feeds the native R termination through a printed diamond."
+  },
+  {
+    "location": "Literal printed title",
+    "evidence": "The title prints PFR. Comparison with native FRAME F and independent root source review confirms F, with upper/central bars and no lower foot. Coordinator corrected the meaningful TIFF filename from PER to literal PFR, with unchanged scan SHA256 and original scan order; the exact filename correction audit is recorded."
+  },
+  {
+    "location": "native source review",
+    "evidence": "All 21 native blocks, every field and every physical pin, all input data names/ref rows and four complete upper/lower fanout control rails, eight control diamonds and AC physical-output diamond, sixteen internal AND/OR paths, two unusually long input loop routes to AJ and AN that cross separate output rails, all four outputs, R termination, table/revision/title/footer inspected. Printed R-board prefixes and E-E3M6 are preserved as source literals; one unreadable cell has exact notes and original scan neighbors."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT753 ST BYTES TO SIBB PER ST CTR.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT757 ST BYTES TO SIBB PER ST CTR.tif
+
+
+Source-derived recovery v2 — reviewed staging
+[
+  {
+    "stable_id": "RT755-b547d56535",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "+GT ST BYTE �8-55 TO SIBB",
+    "recovered_reading": "+GT ST BYTE 48-55 TO SIBB",
+    "row": 47,
+    "column": 0,
+    "covered_cells": [
+      [
+        47,
+        12
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "left input signal name, text row 47",
+    "question": "What is the complete signal name printed at this position? Current fragment: “+GT ST BYTE �8-55 TO SIBB”.",
+    "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+    "decision": {
+      "id": "RT755-b547d56535",
+      "page": "RT755",
+      "candidate": "+GT ST BYTE 48-55 TO SIBB",
+      "confidence": "High",
+      "rule": "Known source reference + printed signed source output",
+      "basis": "The known source reference points to an independently readable printed output signal compatible with all surviving characters.",
+      "evidence": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+          "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+          "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+          "model_hash_status": "Frozen accepted model hash",
+          "row": 69,
+          "column": 211,
+          "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+          "field": "printed output signal and designation"
+        }
+      ],
+      "conflicts": [],
+      "decision_trace": [
+        {
+          "category": "input_signal",
+          "current_reading": "+GT ST BYTE �8-55 TO SIBB"
+        },
+        {
+          "rule": "Known source reference + printed signed source output",
+          "matches": 1,
+          "unique_candidates": [
+            "+GT ST BYTE 48-55 TO SIBB"
+          ]
+        },
+        {
+          "independent_printed_field_audit": {
+            "id": "RT755-b547d56535",
+            "page": "RT755",
+            "proposed_candidate": "+GT ST BYTE 48-55 TO SIBB",
+            "rule": "Known source reference + printed signed source output",
+            "verdict": "Approved High",
+            "subject_row": 47,
+            "subject_column": 0,
+            "subject_line": "+GT ST BYTE �8-55 TO SIBB──────RT836AR4───────────────────────────◇┼┼┼─────────────────────────────────────────────────────────────────◇│││",
+            "target_printed_field": {
+              "row": 47,
+              "signal": "+GT ST BYTE �8-55 TO SIBB",
+              "reference": "RT836AR4",
+              "source_line": "+GT ST BYTE �8-55 TO SIBB──────RT836AR4───────────────────────────◇┼┼┼─────────────────────────────────────────────────────────────────◇│││                                                                                                          "
+            },
+            "actual_compatible_values": [
+              "+GT ST BYTE 48-55 TO SIBB"
+            ],
+            "actual_source_mates": [
+              "RT836AR4"
+            ],
+            "independently_checked_matches": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 69,
+                "signal": "+GT ST BYTE 48-55 TO SIBB",
+                "reference": "RT836AR4",
+                "designation": "AR4",
+                "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+                "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+                "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+              }
+            ],
+            "evidence_checks": [
+              {
+                "page": "RT836",
+                "scan_id": "2005",
+                "row": 69,
+                "column": 211,
+                "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+                "literal_verified": true,
+                "text_hash_verified": true,
+                "model_hash_verified": true
+              }
+            ],
+            "problems": []
+          }
+        }
+      ]
+    },
+    "independent_handoff_check": {
+      "id": "RT755-b547d56535",
+      "page": "RT755",
+      "candidate": "+GT ST BYTE 48-55 TO SIBB",
+      "verdict": "Approved High",
+      "reason": "Actual readable independent printed fields establish one compatible signed complete-field value without retained conflicts. Every cited literal and current text/model hash passed the individual field audit.",
+      "rule": "Known source reference + printed signed source output",
+      "evidence_checks": [
+        {
+          "page": "RT836",
+          "scan_id": "2005",
+          "row": 69,
+          "column": 211,
+          "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+          "literal_verified": true,
+          "text_hash_verified": true,
+          "model_hash_verified": true,
+          "literal_and_snapshot_hash_verified": true,
+          "current_text_hash_matches": true,
+          "current_model_hash_matches": true
+        }
+      ],
+      "independent_field_checks": {
+        "subject_row": 47,
+        "subject_column": 0,
+        "subject_line": "+GT ST BYTE �8-55 TO SIBB──────RT836AR4───────────────────────────◇┼┼┼─────────────────────────────────────────────────────────────────◇│││",
+        "target_printed_field": {
+          "row": 47,
+          "signal": "+GT ST BYTE �8-55 TO SIBB",
+          "reference": "RT836AR4",
+          "source_line": "+GT ST BYTE �8-55 TO SIBB──────RT836AR4───────────────────────────◇┼┼┼─────────────────────────────────────────────────────────────────◇│││                                                                                                          "
+        },
+        "actual_compatible_values": [
+          "+GT ST BYTE 48-55 TO SIBB"
+        ],
+        "actual_source_mates": [
+          "RT836AR4"
+        ],
+        "actual_readable_matches": [
+          {
+            "page": "RT836",
+            "scan_id": "2005",
+            "row": 69,
+            "signal": "+GT ST BYTE 48-55 TO SIBB",
+            "reference": "RT836AR4",
+            "designation": "AR4",
+            "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+            "text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+            "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f"
+          }
+        ]
+      },
+      "subject_current_text_hash_matches": true
+    },
+    "evidence_bindings": [
+      {
+        "page": "RT836",
+        "row": 69,
+        "column": 211,
+        "excerpt": "                                                                                                                       │0494D1│          ┌─────────────────────┼┼────────────────────────┼─────────────◇────────── +GT ST BYTE 48-55 TO SIBB──────AR4",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.txt",
+        "frozen_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "current_text_sha256": "0fc06fbe825822631ef86ce62d5b7f0e545c432d9e9adf824ccbb2a524588177",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT836 GATE CONTROL TRIGGERS ST BYTES 2 3 6 7 TO SIBB.json",
+        "model_sha256": "243da511566e37dea93db4c8780c36403e7f5e0122aaf979fa75e50bbeee7c4f",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT755 ST BYTES TO SIBB PFR ST CTR.tif",
+    "source_sha256": "a45c104fd1675a19e7e267f2342ef6db98973553ab996fa56d9184101c4362cb",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT753 ST BYTES TO SIBB PER ST CTR.tif",
+    "after_scan": "RT757 ST BYTES TO SIBB PER ST CTR.tif"
+  }
+]
+
+Current recovery status
+Source-derived reviewed staging; publication requires companion current root/peer acceptance receipt.
+Current unresolved � cells: 0
+Original physical marker cells before source-derived recovery: 1
+Original damage records remain physical evidence; the logical recoveries do not make damaged glyphs newly legible.
+
+SOURCE UNREADABLE CELLS
+
+[
+  {
+    "column": 12,
+    "row": 47,
+    "location": "BYTE first digit",
+    "candidates": [
+      "4",
+      "1"
+    ],
+    "evidence": "Native control label has damaged first digit before 8-55. Context suggests 48 but does not restore missing source strokes."
+  }
+]

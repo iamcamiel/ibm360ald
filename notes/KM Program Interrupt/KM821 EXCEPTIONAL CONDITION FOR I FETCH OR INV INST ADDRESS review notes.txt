@@ -1,0 +1,66 @@
+KM821 EXCEPTIONAL CONDITION FOR I FETCH OR INV INST ADDRESS - TRANSLATION NOTES
+
+Reference scan: KM Program Interrupt\KM821 EXCEPTIONAL CONDITION FOR I FETCH OR INV INST ADDRESS.tif
+Original scan: KM821.tif
+Original scan timestamp: 2014-12-09 12:18:33.937395
+Preceding scan: KM831 EXCEPTIONAL CONDITION FOR MANUAL CNTLS OR PROG STG COMP.tif
+Following scan: KM841 CPU STORE CYCLE AT END OP TO EXCEPTIONAL CONDITION.tif
+Review record: tmp\ald-text\km\KM root reviews.json
+
+PAGE NOTES
+
+KM821 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 28,
+  "A1_total_card_portions": 30,
+  "A1_mismatches": [
+    "AU",
+    "BA"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 49,
+  "A1_documented_source_discrepancies": [
+    "AU",
+    "BA"
+  ],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  "Native AB.B09 drives AD.D12 on the left c91 rail; external invalid instruction address owns the adjacent c92 rail, AG.B09 diamond and AH.B07.",
+  "BG.D02 drives AH.B05 and the upper KM191 IC23 export. AQ.D02 drives AN.B08: native c200/r47 diamond branches left to c183/r47, then rises to AN.B08 at row21. The c183 rail crosses KM191 row23, AP priority row28 and AM input rows37/38 unjoined; native detail31 and AN bridge crops confirm the full route. AP.B02 has its printed row28 priority export.",
+  "The left IC23 source has its BF branch diamond at c45/r29 and an immediate c45/r33 corner before printed prefix8 in 8D12. BF input text starts at c46 and its wire point is c45; the native BF incoming crop confirms no extra horizontal lead before the prefix.",
+  "AZ native input offsets 1,2,4,5; BA and BB offsets1,3,5. AX wedged B03 output owns c115 rail, AS.D12 and AZ.B05/BA.B09/BB.B12 diamonds. External R REG BIT00 uses separate c112 rail to BB.B13; RX-format uses c113 to AZ.B04; forced-AM uses c114 and also AS.D11. Preserve every native unjoined crossing.",
+  "AM second unnamed input has a border wedge; literal function ✲A is inside the block, not an input label. AU and BA printed location F-C3E3 differs from A1 E-C3E3. All source literals preserved.",
+  "AN B13 aligns card row3294C1 (row20), B08 aligns locationE-C3G4 (row21). Native immediate corners and same-bank row/column alignment verified, including AA turn after D13✲, separate AK/AL routes and adjacent AM/AQ rails."
+]
+
+Original scan order
+Before KM831 EXCEPTIONAL CONDITION FOR MANUAL CNTLS OR PROG STG COMP.tif
+After KM841 CPU STORE CYCLE AT END OP TO EXCEPTIONAL CONDITION.tif
+
+
+Detailed native source and preview comparison
+KM821 native source and final preview review
+
+Reviewed original native source, header000 KM821, vertical KM821 footer, all30 blocks, all49 input terminals, every printed output, literal function/unit/card/location/grid field, border wedge, input prefix, caption, route, diamond, unjoined crossing and footer field. Final complete JuliaMono preview compared to original overview and native enlarged channel/gate/footer crops; AN final pin crop reviewed after its row correction. No unreadable printed glyphs remain.
+
+Native corrections retained:
+AB.B09 drives AD.D12 via c91; external invalid-instruction source owns c92, AG.B09 diamond and AH.B07. BG.D02 owns AH.B05 and upper KM191/AN.B08 bridge. AP export is the native row28 invalid-address-priority signal. AN B13/B08 are rows20/21, aligned with card/location fields.
+Lower distinct rails: RR00 c112 to BB.B13; RX-format c113 to AZ.B04; AM forced c114 to AS.D11 and AZ.B03/BA.B07/BB.B10; AX c115 to AS.D12 and AZ.B05/BA.B09/BB.B12. Source-native wedged AX.B03 preserved; no commoning or inferred joins.
+AM source literal function ✲A is inside the box and its second input is an unnamed wedge. BF printed prefix8 and physical pinD12 are separately recorded. AU and BA source literal F-C3E3 differs from A1 E-C3E3; native fields retained with documented index discrepancies.
+Three below-row source references and c41 upward stubs retained. Native ordinary bends recalibrated to block borders and printed pin adjacency; no bank departure. All four printed captions, header, continuation rows, 11-06-69 date, LOG018A, 2585092 part number, SDD BLK. BK, and revisions08-08-69 713380/10-16-69 713383 independently reviewed. P.N. label follows the explicit human footer convention.

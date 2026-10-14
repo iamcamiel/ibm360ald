@@ -1,0 +1,119 @@
+
+
+
+
+
+
+                                                                                                                                                                                                                                                000 A6521 01
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                      LOG-OUT WORD 0 (STORAGE LOCATION 80)     LOG-OUT WORD 1 (STORAGE LOCATION 88)     LOG-OUT WORD 2 (STORAGE LOCATION 90)     LOG-OUT WORD 3 (STORAGE LOCATION 98)     LOG-OUT WORD 4 (STORAGE LOCATION A0)
+                                      ────────────────────────────────────     ────────────────────────────────────     ────────────────────────────────────     ────────────────────────────────────     ────────────────────────────────────
+                                      BIT                                      BIT                                      BIT                                      BIT                                      BIT
+                                      00   F REGISTER PARITY 00-07             00   CE SEL 1                            00   CE SEL ATR 2                        00   ATR BIT 00                          00   CHANNEL 0A MASK
+                                      01   D REGISTER PARITY 08-15             01   UNUSED                              01   CE SEL ATR 3                        01   ATR BIT 01                          01   CHANNEL 1A MASK
+                                      02   D REGISTER PARITY 16-23             02   G REGISTER PARITY 00-07             02   CE SEL ATR 4                        02   ATR BIT 02                          02   CHANNEL 2A MASK
+                                      03   F REGISTER PARITY 24-31             03   ATR PARITY 32-39                    03   TIME CLOCK STEP                     03   ATR BIT 03                          03   CHANNEL 3A MASK
+                                      04   UNUSED                              04   ATR PARITY 00-07                    04   BCU OSC INH                         04   ATR BIT 04                          04   CHANNEL 0B MASK
+                                      05   UNUSED                              05   ATR PARITY 08-15                    05   SELECT IOCE 1                       05   ATR BIT 05                          05   CHANNEL 1B MASK
+                                      06   UNUSED                              06   ATR PARITY 16-23                    06   SELECT IOCE 2                       06   ATR BIT 06                          06   CHANNEL 2B MASK
+                                      07   UNUSED                              07   ATR PARITY 24-31                    07   SELECT IOCE 3                       07   ATR BIT 07                          07   EXTERNAL MASK
+
+                                      08   Q REGISTER PARITY 00-07             08   IC REQUEST                          08   IOCE MACHINE CHECK                  08   ATR BIT 08                          08   STORAGE PROTECT KEY 0
+                                      09   Q REGISTER PARITY 08-15             09   REPEAT INSTRUCTION ADJUST           09   INTERRUPT GATE TRIGGER              09   ATR BIT 09                          09   STORAGE PROTECT KEY 1
+                                      10   Q REGISTER PARITY 16-23             10   INSTRUCTION STEP TRIGGER            10   UNUSED                              10   ATR BIT 10                          10   STORAGE PROTECT KEY 2
+                                      11   Q REGISTER PARITY 24-31             11   DISABLE INTERLEAVING                11   UNUSED                              11   ATR BIT 11                          11   STORAGE PROTECT KEY 3
+                                      12   Q REGISTER PARITY 32-39             12   STATUS TRIGGER A                    12   EXTERNAL REG PARITY 00-07           12   ATR BIT 12                          12   ASCII MODE
+                                      13   Q REGISTER PARITY 40-47             13   I FETCH 1 TRIGGER                   13   EXTERNAL REG PARITY 08-15           13   ATR BIT 13                          13   CHECK MASK
+                                      14   Q REGISTER PARITY 48-55             14   INSTRUCTION LENGTH NOT AVAILABLE    14   EXTERNAL REG PARITY 16-23           14   ATR BIT 14                          14   WAIT STATE
+                                      15   Q REGISTER PARITY 56-63             15   CE 4 WRITE DIRECT                   15   EXTERNAL REG PARITY 24-31           15   ATR BIT 15                          15   PROBLEM PROGRAM
+
+                                      16   DAR MASK PARITY 00-07               16   MCW BIT 00                          16   G REGISTER BIT 0                    16   ATR BIT 16                          16   IC IN LS WORKING REGISTER
+                                      17   DAR MASK PARITY 08-15               17   ADDRESS SEQUENCE 0                  17   G REGISTER BIT 1                    17   ATR BIT 17                          17   CONDITION CODE 2
+                                      18   DAR MASK PARITY 16-23               18   FLT CLOCK 0                         18   G REGISTER BIT 2                    18   ATR BIT 18                          18   CONDITION CODE 1
+                                      19   DAR MASK PARITY 24-31               19   UNUSED                              19   G REGISTER BIT 3                    19   ATR BIT 19                          19   FIX POINT OVERFLOW MASK
+                                      20   UNUSED                              20   MARK PARITY 00-07                   20   G REGISTER BIT 4                    20   ATR BIT 20                          20   DECIMAL OVERFLOW MASK
+                                      21   UNUSED                              21   ST REGISTER PARITY 32-39            21   G REGISTER BIT 5                    21   ATR BIT 21                          21   EXPONENT UNDERFLOW MASK
+                                      22   UNUSED                              22   AB REGISTER PARITY 64-67            22   G REGISTER BIT 6                    22   ATR BIT 22                          22   LOST SIGNIFICANCE MASK
+                                      23   UNUSED                              23   PARALLEL ADDER LATCH PARITY 64-67   23   G REGISTER BIT 7                    23   ATR BIT 23                          23   MACHINE CHECK INTERRUPT
+
+                                      24   UNUSED                              24   UNUSED                              24   ATR BIT 32                          24   ATR BIT 24                          24   UNUSED
+                                      25   UNUSED                              25   UNUSED                              25   ATR BIT 33                          25   ATR BIT 25                          25   UNUSED
+                                      26   UNUSED                              26   UNUSED                              26   ATR BIT 34                          26   ATR BIT 26                          26   PROGRAM INTERRUPT CODE 8
+                                      27   UNUSED                              27   UNUSED                              27   ATR BIT 35                          27   ATR BIT 27                          27   PROGRAM INTERRUPT CODE 4
+                                      28   UNUSED                              28   UNUSED                              28   ATR BIT 36                          28   ATR BIT 28                          28   PROGRAM INTERRUPT CODE 2
+                                      29   UNUSED                              29   UNUSED                              29   ATR BIT 37                          29   ATR BIT 29                          29   PROGRAM INTERRUPT CODE 1
+                                      30   UNUSED                              30   UNUSED                              30   ATR BIT 38                          30   ATR BIT 30                          30   INTERRUPT PRIORITY 1
+                                      31   UNUSED                              31   UNUSED                              31   ATR BIT 39                          31   ATR BIT 31                          31   INTERRUPT PRIORITY 2
+
+                                      32   SELECT REGISTER PARITY 00-07        32   PERMIT IOCE 2                       32   SELECT REGISTER BIT 00              32   STAT TRIGGER B                      32   D REQUEST
+                                      33   SELECT REGISTER PARITY 08-15        33   PERMIT IOCE 3                       33   SELECT REGISTER BIT 01              33   STAT TRIGGER C                      33   SCAN REQUEST
+                                      34   SELECT REGISTER PARITY 16-23        34   LOGOUT IOCE 1                       34   SELECT REGISTER BIT 02              34   STAT TRIGGER D                      34   SET KEY
+                                      35   SELECT REGISTER PARITY 24-31        35   LOGOUT IOCE 2                       35   SELECT REGISTER BIT 03              35   STAT TRIGGER E                      35   INSERT KEY
+                                      36   UNUSED                              36   LOGOUT IOCE 3                       36   SELECT REGISTER BIT 04              36   STAT TRIGGER F                      36   3 CYCLE REQUEST
+                                      37   UNUSED                              37   UNUSED                              37   SELECT REGISTER BIT 05              37   STAT TRIGGER G                      37   PAGE 1 LTH
+                                      38   UNUSED                              38   UNUSED                              38   SELECT REGISTER BIT 06              38   STAT TRIGGER H                      38   UNUSED
+                                      39   UNUSED                              39   UNUSED                              39   SELECT REGISTER BIT 07              39   BLOCK I FETCH                       39   UNUSED
+
+                                      40   ST REGISTER PARITY 00-07            40   AB REGISTER PARITY 00-07            40   SELECT REGISTER BIT 08              40   I FETCH 2 TRIGGER                   40   REPEAT INSTRUCTION INITIALIZATION
+                                      41   ST REGISTER PARITY 08-15            41   AB REGISTER PARITY 08-15            41   SELECT REGISTER BIT 09              41   I FETCH 3 TRIGGER                   41   PULSE MODE ADJUST
+                                      42   ST REGISTER PARITY 16-23            42   AB REGISTER PARITY 16-23            42   SELECT REGISTER BIT 10              42   EXECUTE IN PROGRESS TRIGGER         42   PULSE MODE INITIALIZATION
+                                      43   ST REGISTER PARITY 24-31            43   AB REGISTER PARITY 24-31            43   SELECT REGISTER BIT 11              43   UNUSED                              43   STOP TRIGGER
+                                      44   ST REGISTER PARITY 32-39            44   AB REGISTER PARITY 32-39            44   SELECT REGISTER BIT 12              44   PROGRAM STORE COMPARE               44   BLOCK
+                                      45   ST REGISTER PARITY 40-47            45   AB REGISTER PARITY 40-47            45   SELECT REGISTER BIT 13              45   I FETCH REQUEST TRIGGER             45   PASS PULSE TRIGGER
+                                      46   ST REGISTER PARITY 48-55            46   AB REGISTER PARITY 48-55            46   SELECT REGISTER BIT 14              46   BRANCH INVALID ADDRESS TRIGGER      46   BLOCK INTERRUPTS
+                                      47   ST REGISTER PARITY 56-63            47   AB REGISTER PARITY 56-63            47   SELECT REGISTER BIT 15              47   I FETCH INVALID ADDRESS TRIGGER     47   FORCE ADDRESS TRIGGER
+
+                                      48   CCR PARITY 00-07                    48   R REGISTER PARITY 00-07             48   SELECT REGISTER BIT 16              48   CE 1 WRITE DIRECT                   48   SINGLE CYCLE TRIGGER
+                                      49   CCR PARITY 08-15                    49   R REGISTER PARITY 08-15             49   SELECT REGISTER BIT 17              49   CE 1 READ DIRECT                    49   CHECK SUM
+                                      50   CCR PARITY 16-23                    50   E REGISTER PARITY 00-07             50   SELECT REGISTER BIT 18              50   CE 2 WRITE DIRECT                   50   CLOCK INHIBIT
+                                      51   CCR PARITY 24-31                    51   E REGISTER PARITY 08-15             51   SELECT REGISTER BIT 19              51   CE 2 READ DIRECT                    51   REPEAT TEST
+                                      52   UNUSED                              52   UNUSED                              52   SELECT REGISTER BIT 20              52   TIME CLOCK AT LIMIT                 52   FLT TEST
+                                      53   UNUSED                              53   UNUSED                              53   SELECT REGISTER BIT 21              53   CONSOLE SIGNAL                      53   ROS TEST TRIGGER
+                                      54   UNUSED                              54   UNUSED                              54   SELECT REGISTER BIT 22              54   CE 3 WRITE DIRECT                   54   SCC TRIGGER
+                                      55   UNUSED                              55   UNUSED                              55   SELECT REGISTER BIT 23              55   CE 3 READ DIRECT                    55   SYNC TRIGGER
+
+                                      56   UNUSED                              56   UNUSED                              56   SELECT REGISTER BIT 24              56   CE 4 READ DIRECT                    56   DISABLE INTERLEAVING AND REV STOR ADDR
+                                      57   UNUSED                              57   UNUSED                              57   SELECT REGISTER BIT 25              57   PIR                                 57   FLT BACKSPACE
+                                      58   UNUSED                              58   UNUSED                              58   SELECT REGISTER BIT 26              58   DAR                                 58   CONSOLE LOG OUT
+                                      59   UNUSED                              59   UNUSED                              59   SELECT REGISTER BIT 27              59   PIR BIT 01                          59   SOROS
+                                      60   UNUSED                              60   UNUSED                              60   SELECT REGISTER BIT 28              60   DIR BIT 02                          60   DIAGNOSE TRIGGER
+                                      61   UNUSED                              61   UNUSED                              61   SELECT REGISTER BIT 29              61   PIR BIT 03                          61   FLT RELEASE
+                                      62   UNUSED                              62   UNUSED                              62   SELECT REGISTER BIT 30              62   UNUSED                              62   TIC
+                                      63   UNUSED                              63   UNUSED                              63   SELECT REGISTER BIT 31              63   TIME GATE TRIGGER                   63   GAP
+
+
+
+
+
+
+
+                                        UNUSED BITS MAY BE A ONE OR ZERO
+                                        ALL ADDRESSES ARE IN HEXADECIMAL
+
+
+
+
+
+                                                                                                                                                                                                                              ─────────────────────────────────
+                                                                                                                                                                                         15 MAY 70 713666                     │ LOG-OUT STORAGE ASSIGNMENT     │
+                                                                                                                                                                                         1 SEP 70 714945                      │         WORDS 0-4              │ A
+                                                                                                                                                                                                                              DATE 21 AUG 70 MACH. 7201-02     │ 6
+                                                                                                                                                                                                                              │                                │ 5
+                                                                                                                                                                                                                              │                FRAME       02  │ 2
+                                                                                                                                                                                                                              │                                │ 1
+                                                                                                                                                                                                                              │                P.N.   2586571  │
+                                                                                                                                                                                                                              │                                │
+                                                                                                                                                                                                                              │                                │000
+                                                                                                                                                                                                                              IBM CORP. SDD PAGE      1        │

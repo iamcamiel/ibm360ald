@@ -1,0 +1,906 @@
+RT601 T REGISTER BITS 60 AND 61 - TRANSLATION NOTES
+
+Reference scan: RT T Register\RT601 T REGISTER BITS 60 AND 61.tif
+Original scan: img20141205_23130411.tif
+Original scan timestamp: 2014-12-05 23:13:04.110000
+Preceding scan: RT581 T REGISTER BITS 58 AND 59.tif
+Following scan: RT621 T REGISTER BITS 62 AND 63.tif
+Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Next source-derived acceptance adapter audit.json
+
+PAGE NOTES
+
+Original source review notes — historical physical-print snapshot
+
+RT601 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 35,
+  "A1_total_card_portions": 36,
+  "A1_mismatches": [
+    "AL"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 72,
+  "geometry_passed": true,
+  "source_literal_A1_exceptions": {
+    "AL": "Source prefix first cell unreadable; A1 lists a matching 419324 card portion at 02B-C3/D4 and suggests B, but the source text intentionally retains �."
+  },
+  "unresolved_A1_mismatches": [],
+  "passed": true,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 16
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_body_pin_review",
+    "detail": "All 36 card functions and A1 portions, and 72 printed input terminals were compared against enlarged native TIFF bank crops. The literal BQ terminal is B05; BR is B09."
+  },
+  {
+    "kind": "native_footer_review",
+    "detail": "Native footer title, revision, P.N. 2585944, BLK BZ, and every connector-table row in its three columns were checked in enlarged native crops."
+  },
+  {
+    "kind": "torn_header",
+    "detail": "Native top-right paper-feed tear preserves 000 and final 01; the three preceding page-identifier cells are too damaged to read confidently and are �. Clear title/footer identifiers and scan neighbors RT581 and RT621 establish the page as RT601."
+  },
+  {
+    "kind": "unreadable_location_prefix",
+    "grid": "3B",
+    "card": "AL",
+    "reading": "�-C3D4",
+    "candidates": [
+      "B-C3D4",
+      "E-C3D4"
+    ],
+    "detail": "Independent direct inspection of the original gray TIFF found the first location glyph too worn for a secure B/E reading. AR1B B-C3D4 remains source-legible. Proof: tmp/ald-text/rt/high/prefix_RT601/independent original gray prefix findings.json."
+  },
+  {
+    "kind": "native_grid_review",
+    "detail": "RT601 native paired body borders and roofs confirm seven standard banks at character columns 50, 73, 96, 119, 142, 165, 188. Source raster has local skew and uneven physical bank spacing, so a single global affine pixel map is inadequate for wire verification."
+  },
+  {
+    "kind": "native_special_gate",
+    "detail": "AS5E has a seven-row body; BS5M has an eight-row body. Native crops show AJ/BJ feeding upper inputs and AP/BP lower inputs on separate stems."
+  },
+  {
+    "kind": "native_T06_review",
+    "detail": "Native bank-one crops print AQ B13, AR G05, BQ B05, BR B09. The crossing rails are visually separate where no diamond is printed. AQ B13 continues to the +PADDL 60 output and BR B09 to +SADDL 05."
+  },
+  {
+    "kind": "native_wire_review",
+    "detail": "Full native overview and enlarged bank crops were compared against the JuliaMono preview. The four paired 3-bank rails, six 4-bank control rails, register feedback, reset paths, and right outputs follow the source diamonds and distinct crossings. Horizontal scan-to-grid occupancy check found no missing five-cell source wire runs; local raster warp prevents using a single affine vertical comparison."
+  },
+  {
+    "kind": "torn_top_edge",
+    "detail": "Row 1 is torn through the paper-feed band. Native enlarged crop retains TA KE, 0 TO, and trailing 1AE4; unreadable print is represented by � rather than silently completed. The likely intended signal is - DATA KEY 60 TO ST, probably PX201AE4, by paired 61-bit row and neighboring T-register sheets; this completion is an inference, not transcribed literal print. The surviving horizontal traces and right bend into AG D10 support a continuous wire across row 1. Proof: low_52_62/RT601/top-text-enhanced.png and top-right.png. Scan neighbors are recorded in semantic JSON and review notes."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT581 T REGISTER BITS 58 AND 59.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT621 T REGISTER BITS 62 AND 63.tif
+
+Source SHA-256: 9ee3d109b95f9cb404a4c0d76bc591b67e51b9bbb1f1372cfdf9777a5744d14a
+
+
+Source-derived recovery v2 — reviewed staging
+[
+  {
+    "stable_id": "RT601-58914e90d3",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "���01",
+    "recovered_reading": "RT601",
+    "row": 0,
+    "column": 240,
+    "covered_cells": [
+      [
+        0,
+        240
+      ],
+      [
+        0,
+        241
+      ],
+      [
+        0,
+        242
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "upper-right header — printed page identifier",
+    "question": "What is the complete printed page identifier printed at the upper right? Current fragment: “���01”.",
+    "basis": "The same physical sheet separately prints this readable identity. Recovery uses actual glyphs of the repeated field, not filename or normalized page metadata.",
+    "decision": {
+      "id": "RT601-58914e90d3",
+      "page": "RT601",
+      "candidate": "RT601",
+      "confidence": "High",
+      "rule": "repeated-actual-page-identity",
+      "basis": "The same physical sheet separately prints this readable identity. Recovery uses actual glyphs of the repeated field, not filename or normalized page metadata.",
+      "evidence": [
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 95,
+          "column": 1,
+          "excerpt": " R ",
+          "field": "independent repeated vertical identity position 0"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 96,
+          "column": 1,
+          "excerpt": " T ",
+          "field": "independent repeated vertical identity position 1"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 97,
+          "column": 1,
+          "excerpt": " 6 ",
+          "field": "independent repeated vertical identity position 2"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 98,
+          "column": 1,
+          "excerpt": " 0 ",
+          "field": "independent repeated vertical identity position 3"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 99,
+          "column": 1,
+          "excerpt": " 1 ",
+          "field": "independent repeated vertical identity position 4"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 95,
+          "column": 243,
+          "excerpt": " R ",
+          "field": "independent repeated vertical identity position 0"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 96,
+          "column": 243,
+          "excerpt": " T ",
+          "field": "independent repeated vertical identity position 1"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 97,
+          "column": 243,
+          "excerpt": " 6 ",
+          "field": "independent repeated vertical identity position 2"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 98,
+          "column": 243,
+          "excerpt": " 0 ",
+          "field": "independent repeated vertical identity position 3"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 99,
+          "column": 243,
+          "excerpt": " 1 ",
+          "field": "independent repeated vertical identity position 4"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT601-58914e90d3",
+      "page": "RT601",
+      "candidate": "RT601",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is uniquely recovered from separately printed, actually readable identity/index glyphs on this accepted sheet. Filename and normalized page metadata were not treated as source print.",
+      "kind": "repeated actual identity",
+      "mask": "���01",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "RT601",
+          "field": "separately printed vertical identity",
+          "literal_identity": "RT601",
+          "column": 1
+        },
+        {
+          "value": "RT601",
+          "field": "separately printed vertical identity",
+          "literal_identity": "RT601",
+          "column": 243
+        }
+      ],
+      "compatible_exact_values": [
+        "RT601"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 0,
+          "column": 240,
+          "excerpt": "                                                                                                                                                                                                                                           000  ���01",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 95,
+          "column": 1,
+          "excerpt": " R ",
+          "field": "independent repeated vertical identity position 0",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 96,
+          "column": 1,
+          "excerpt": " T ",
+          "field": "independent repeated vertical identity position 1",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 97,
+          "column": 1,
+          "excerpt": " 6 ",
+          "field": "independent repeated vertical identity position 2",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 98,
+          "column": 1,
+          "excerpt": " 0 ",
+          "field": "independent repeated vertical identity position 3",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 99,
+          "column": 1,
+          "excerpt": " 1 ",
+          "field": "independent repeated vertical identity position 4",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 95,
+          "column": 243,
+          "excerpt": " R ",
+          "field": "independent repeated vertical identity position 0",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 96,
+          "column": 243,
+          "excerpt": " T ",
+          "field": "independent repeated vertical identity position 1",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 97,
+          "column": 243,
+          "excerpt": " 6 ",
+          "field": "independent repeated vertical identity position 2",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 98,
+          "column": 243,
+          "excerpt": " 0 ",
+          "field": "independent repeated vertical identity position 3",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 99,
+          "column": 243,
+          "excerpt": " 1 ",
+          "field": "independent repeated vertical identity position 4",
+          "independently_checked": true
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "RT601",
+        "row": 95,
+        "column": 1,
+        "excerpt": " R ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 96,
+        "column": 1,
+        "excerpt": " T ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 97,
+        "column": 1,
+        "excerpt": " 6 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 98,
+        "column": 1,
+        "excerpt": " 0 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 99,
+        "column": 1,
+        "excerpt": " 1 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 95,
+        "column": 243,
+        "excerpt": " R ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 96,
+        "column": 243,
+        "excerpt": " T ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 97,
+        "column": 243,
+        "excerpt": " 6 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 98,
+        "column": 243,
+        "excerpt": " 0 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "RT601",
+        "row": 99,
+        "column": 243,
+        "excerpt": " 1 ",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+        "frozen_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "current_text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+        "supporting_printed_row_unchanged": true,
+        "model_path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.json",
+        "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+        "model_hash_absence_preserved": false,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.tif",
+    "source_sha256": "9ee3d109b95f9cb404a4c0d76bc591b67e51b9bbb1f1372cfdf9777a5744d14a",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT581 T REGISTER BITS 58 AND 59.tif",
+    "after_scan": "RT621 T REGISTER BITS 62 AND 63.tif"
+  },
+  {
+    "stable_id": "RT601-dc712abb2e",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "�-C3D4",
+    "recovered_reading": "B-C3D4",
+    "row": 14,
+    "column": 97,
+    "covered_cells": [
+      [
+        14,
+        97
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block AL (grid 3B) — board/socket location",
+    "question": "What is the complete board/socket location printed in block AL (grid 3B)? Current fragment: “�-C3D4”.",
+    "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+    "decision": {
+      "id": "RT601-dc712abb2e",
+      "page": "RT601",
+      "candidate": "B-C3D4",
+      "confidence": "High",
+      "rule": "A1-exact-page-card-portion-location",
+      "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+      "evidence": [
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 41,
+          "column": 155,
+          "excerpt": "RT601 24 25 26 27 28 29",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 27,
+          "column": 163,
+          "excerpt": "D5          5804193 4193",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 26,
+          "column": 143,
+          "excerpt": "D4          DOUBLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 37,
+          "column": 149,
+          "excerpt": "RT601 20",
+          "field": "A1 ALD page reference"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT601-dc712abb2e",
+      "page": "RT601",
+      "candidate": "B-C3D4",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.",
+      "kind": "location",
+      "mask": "�-C3D4",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-C3D4",
+          "board": "02B-C3",
+          "socket": "D4",
+          "card": "419324",
+          "portion": "24",
+          "ALD_page": "RT601",
+          "source_listing": "A1233-01 SOCKET LISTING",
+          "subject_card_mask": "419324",
+          "joint_mask_recovery": false
+        }
+      ],
+      "compatible_exact_values": [
+        "B-C3D4"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 14,
+          "column": 97,
+          "excerpt": "                                                  │B-C3D4│   │                         ││┌───J05│�-C3D4│   ┌┼──────────│B-C3D4│           │                    ┌──J13│B-C3D4│   ┌───────┼───◺B-C3D4│       │                                         ",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 41,
+          "column": 155,
+          "excerpt": "RT601 24 25 26 27 28 29",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 27,
+          "column": 163,
+          "excerpt": "D5          5804193 4193",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 26,
+          "column": 143,
+          "excerpt": "D4          DOUBLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 97,
+          "column": 229,
+          "excerpt": "G 501       BOARD 02B-C3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1233-01",
+          "scan_id": "121",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+          "text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+          "model_sha256": null,
+          "row": 37,
+          "column": 149,
+          "excerpt": "RT601 20",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "RT601",
+          "scan_id": "1955",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.txt",
+          "text_sha256": "4c00103085203a81e1c883519a300546117bc9f3d3223a226aaf0e00c5ed5827",
+          "model_sha256": "cf1b84e09120b430bec293582ed87d9235ec95a65530fc2251ad7f75dd708a2b",
+          "row": 13,
+          "column": 97,
+          "excerpt": "✲AS041AH4                      RS041AR4───┘       │419320│   │                         ││       │419324│    ┌──────────│419328│           │                          │419334│           │   │419336│       │                                         ",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1233-01",
+        "row": 41,
+        "column": 155,
+        "excerpt": "RT601 24 25 26 27 28 29",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 27,
+        "column": 163,
+        "excerpt": "D5          5804193 4193",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 26,
+        "column": 143,
+        "excerpt": "D4          DOUBLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 97,
+        "column": 229,
+        "excerpt": "G 501       BOARD 02B-C3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1233-01",
+        "row": 37,
+        "column": 149,
+        "excerpt": "RT601 20",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1233-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "current_text_sha256": "e23dc812282526659e08b77df0bec7d2f19e81d601b2da9c4c8a83676a15303f",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT601 T REGISTER BITS 60 AND 61.tif",
+    "source_sha256": "9ee3d109b95f9cb404a4c0d76bc591b67e51b9bbb1f1372cfdf9777a5744d14a",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT581 T REGISTER BITS 58 AND 59.tif",
+    "after_scan": "RT621 T REGISTER BITS 62 AND 63.tif"
+  }
+]
+
+Current recovery status
+Source-derived reviewed staging; publication requires companion current root/peer acceptance receipt.
+Current unresolved � cells: 12
+Original physical marker cells before source-derived recovery: 16
+Original damage records remain physical evidence; the logical recoveries do not make damaged glyphs newly legible.
+
+Current source-derived A1 compatibility (separate from historical native flags)
+[
+  {
+    "page": "RT601",
+    "block": "AL",
+    "node_index": 3,
+    "classification": "Unique current source-derived card/portion/board/socket compatibility",
+    "unique_compatible_match": true,
+    "still_partial": false,
+    "before_values": {
+      "card_type": "4193",
+      "portion": "24",
+      "printed_card_portion": "419324",
+      "location": "�-C3D4"
+    },
+    "current_values": {
+      "card_type": "4193",
+      "portion": "24",
+      "printed_card_portion": "419324",
+      "location": "B-C3D4"
+    },
+    "A1_evidence": [
+      {
+        "kind": "card portion",
+        "board": "02B-C3",
+        "sockets": [
+          "D4",
+          "D5"
+        ],
+        "part_number": "5804193",
+        "card_type": "4193",
+        "portion": "24",
+        "source_listings": [
+          "A1233-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1233-01 SOCKET LISTING"
+      }
+    ],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT601-dc712abb2e"
+    ]
+  }
+]
+
+Unreadable printed characters retained as �: 12.

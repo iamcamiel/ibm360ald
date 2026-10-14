@@ -1,0 +1,119 @@
+
+
+
+
+
+
+                                                                                                                                                                                                                                                000 A6541 01
+
+
+
+
+
+
+
+                  LOG-OUT WORD 10 (STORAGE LOCATION D0)        LOG-OUT WORD 11 (STORAGE LOCATION D8)        LOG-OUT WORD 12 (STORAGE LOCATION E0)        LOG-OUT WORD 13 (STORAGE LOCATION E8)        LOG-OUT WORD 14 (STORAGE LOCATION F0)
+                  ─────────────────────────────────────        ─────────────────────────────────────        ─────────────────────────────────────        ─────────────────────────────────────        ─────────────────────────────────────
+                  BIT                                          BIT                                          BIT                                          BIT                                          BIT
+                  00   R REGISTER BIT 00                       00   Q REGISTER BIT 00                       00   DAR BIT 00                              00   LS WORKING REGISTER PARITY 00-07        00   UNUSED
+                  01   R REGISTER BIT 01                       01   Q REGISTER BIT 01                       01   DAR BIT 01                              01   LS WORKING REGISTER PARITY 08-15        01   UNUSED
+                  02   R REGISTER BIT 02                       02   Q REGISTER BIT 02                       02   DAR BIT 02                              02   LS WORKING REGISTER PARITY 16-23        02   UNUSED
+                  03   R REGISTER BIT 03                       03   Q REGISTER BIT 03                       03   DAR BIT 03                              03   LS WORKING REGISTER PARITY 24-31        03   UNUSED
+                  04   R REGISTER BIT 04                       04   Q REGISTER BIT 04                       04   DAR BIT 04                              04   E REGISTER PARITY CHECK                 04   UNUSED
+                  05   R REGISTER BIT 05                       05   Q REGISTER BIT 05                       05   DAR BIT 05                              05   PADD FULL-SUM CHECK 64-67               05   UNUSED
+                  06   R REGISTER BIT 06                       06   Q REGISTER BIT 06                       06   DAR BIT 06                              06   MFR DECODE PARITY CHECK                 06   UNUSED
+                  07   R REGISTER BIT 07                       07   Q REGISTER BIT 07                       07   DAR BIT 07                              07   PADD HALF-SUM CHECK                     07   UNUSED
+
+                  08   R REGISTER BIT 08                       08   Q REGISTER BIT 08                       08   DAR BIT 08                              08   PERMIT IOCE 1                           08   UNUSED
+                  09   R REGISTER BIT 09                       09   Q REGISTER BIT 09                       09   DAR BIT 09                              09   IOCE INTERRUPT REQUEST                  09   UNUSED
+                  10   R REGISTER BIT 10                       10   Q REGISTER BIT 10                       10   DAR BIT 10                              10   N REGISTER PARITY 00-07                 10   UNUSED
+                  11   R REGISTER BIT 11                       11   Q REGISTER BIT 11                       11   DAR BIT 11                              11   N REGISTER PARITY 08-15                 11   UNUSED
+                  12   R REGISTER BIT 12                       12   Q REGISTER BIT 12                       12   DAR BIT 12                              12   PSW REGISTER PARITY 00-07               12   UNUSED
+                  13   R REGISTER BIT 13                       13   Q REGISTER BIT 13                       13   DAR BIT 13                              13   PSW REGISTER PARITY 08-15               13   UNUSED
+                  14   R REGISTER BIT 14                       14   Q REGISTER BIT 14                       14   DAR BIT 14                              14   NO RETRY                                14   UNUSED
+                  15   R REGISTER BIT 15                       15   Q REGISTER BIT 15                       15   DAR BIT 15                              15   SVC INTERRUPT                           15   UNUSED
+
+                  16   E REGISTER BIT 00                       16   Q REGISTER BIT 16                       16   DAR BIT 16                              16   PHYSICAL PSBAR PARITY                   16   UNUSED
+                  17   E REGISTER BIT 01                       17   Q REGISTER BIT 17                       17   DAR BIT 17                              17   PSBAR COUNTER BIT 12                    17   UNUSED
+                  18   E REGISTER BIT 02                       18   Q REGISTER BIT 18                       18   DAR BIT 18                              18   LOGICAL PSBAR PARITY 16-19              18   UNUSED
+                  19   E REGISTER BIT 03                       19   Q REGISTER BIT 19                       19   DAR BIT 19                              19   UNUSED                                  19   UNUSED
+                  20   E REGISTER BIT 04                       20   Q REGISTER BIT 20                       20   DAR BIT 20                              20   SADDL PARITY                            20   UNUSED
+                  21   E REGISTER BIT 05                       21   Q REGISTER BIT 21                       21   DAR BIT 21                              21   IC REGISTER PARITY 08-15                21   UNUSED
+                  22   E REGISTER BIT 06                       22   Q REGISTER BIT 22                       22   DAR BIT 22                              22   IC REGISTER PARITY 16-23                22   UNUSED
+                  23   E REGISTER BIT 07                       23   Q REGISTER BIT 23                       23   DAR BIT 23                              23   IC REGISTER PARITY 24-31                23   UNUSED
+
+                  24   E REGISTER BIT 08                       24   Q REGISTER BIT 24                       24   DAR BIT 24                              24   UNUSED                                  24   UNUSED
+                  25   E REGISTER BIT 09                       25   Q REGISTER BIT 25                       25   DAR BIT 25                              25   UNUSED                                  25   UNUSED
+                  26   E REGISTER BIT 10                       26   Q REGISTER BIT 26                       26   DAR BIT 26                              26   UNUSED                                  26   UNUSED
+                  27   E REGISTER BIT 11                       27   Q REGISTER BIT 27                       27   DAR BIT 27                              27   UNUSED                                  27   UNUSED
+                  28   E REGISTER BIT 12                       28   Q REGISTER BIT 28                       28   DAR BIT 28                              28   UNUSED                                  28   UNUSED
+                  29   E REGISTER BIT 13                       29   Q REGISTER BIT 29                       29   DAR BIT 29                              29   UNUSED                                  29   UNUSED
+                  30   E REGISTER BIT 14                       30   Q REGISTER BIT 30                       30   DAR BIT 30                              30   UNUSED                                  30   UNUSED
+                  31   E REGISTER BIT 15                       31   Q REGISTER BIT 31                       31   DAR BIT 31                              31   UNUSED                                  31   UNUSED
+
+                  32   F REGISTER BIT 00                       32   Q REGISTER BIT 32                       32   PADD FULL-SUM CHECK 04-07               32   LS WORKING REGISTER BIT 00              32   T32-63 TO PADDA 32-63
+                  33   F REGISTER BIT 01                       33   Q REGISTER BIT 33                       33   PADD FULL-SUM CHECK 08-15               33   LS WORKING REGISTER BIT 01              33   T32-63 TO PADDA 32-63 COMP
+                  34   F REGISTER BIT 02                       34   Q REGISTER BIT 34                       34   PADD FULL-SUM CHECK 16-23               34   LS WORKING REGISTER BIT 02              34   T32-63 TO PADDA 31-62 LEFT 1
+                  35   F REGISTER BIT 03                       35   Q REGISTER BIT 35                       35   PADD FULL-SUM CHECK 24-31               35   LS WORKING REGISTER BIT 03              35   T32-63 TO PADDA 31-62 COMP-LEFT 1
+                  36   F REGISTER BIT 04                       36   Q REGISTER BIT 36                       36   PADD FULL-SUM CHECK 32-39               36   LS WORKING REGISTER BIT 04              36   T32-47 TO PADDA 48-63
+                  37   F REGISTER BIT 05                       37   Q REGISTER BIT 37                       37   PADD FULL-SUM CHECK 40-47               37   LS WORKING REGISTER BIT 05              37   T48-63 TO PADDA 48-63
+                  38   F REGISTER BIT 06                       38   Q REGISTER BIT 38                       38   PADD FULL-SUM CHECK 48-55               38   LS WORKING REGISTER BIT 06              38   K00-31 TO PADDA 32-63
+                  39   F REGISTER BIT 07                       39   Q REGISTER BIT 39                       39   PADD FULL-SUM CHECK 56-63               39   LS WORKING REGISTER BIT 07              39   D08-31 TO PADDA 08-31
+
+                  40   D REGISTER BIT 08                       40   Q REGISTER BIT 40                       40   UNUSED                                  40   LS WORKING REGISTER BIT 08              40   D08-31 TO PADDA 07-30 LEFT 1
+                  41   D REGISTER BIT 09                       41   Q REGISTER BIT 41                       41   UNUSED                                  41   LS WORKING REGISTER BIT 09              41   D08-31 TO PADDA 07-30 COMP-LEFT 1
+                  42   D REGISTER BIT 10                       42   Q REGISTER BIT 42                       42   UNUSED                                  42   LS WORKING REGISTER BIT 10              42   D08-31 TO PADDA 40-63
+                  43   D REGISTER BIT 11                       43   Q REGISTER BIT 43                       43   UNUSED                                  43   LS WORKING REGISTER BIT 11              43   D08-31 TO PADDA 40-63 COMP
+                  44   D REGISTER BIT 12                       44   Q REGISTER BIT 44                       44   UNUSED                                  44   LS WORKING REGISTER BIT 12              44   FORMAT OLD
+                  45   D REGISTER BIT 13                       45   Q REGISTER BIT 45                       45   UNUSED                                  45   LS WORKING REGISTER BIT 13              45   FORMAT NEW
+                  46   D REGISTER BIT 14                       46   Q REGISTER BIT 46                       46   UNUSED                                  46   LS WORKING REGISTER BIT 14              46   FORMAT WEATHER
+                  47   D REGISTER BIT 15                       47   Q REGISTER BIT 47                       47   UNUSED                                  47   LS WORKING REGISTER BIT 15              47   IC08-31 TO PADDB 40-63
+
+                  48   D REGISTER BIT 16                       48   Q REGISTER BIT 48                       48   PADD HALF-SUM CHECK 04-07               48   LS WORKING REGISTER BIT 16              48   AB04-07 TO PADDB 04-07
+                  49   D REGISTER BIT 17                       49   Q REGISTER BIT 49                       49   PADD HALF-SUM CHECK 08-15               49   LS WORKING REGISTER BIT 17              49   AB08-31 TO PADDB 08-31
+                  50   D REGISTER BIT 18                       50   Q REGISTER BIT 50                       50   PADD HALF-SUM CHECK 16-23               50   LS WORKING REGISTER BIT 18              50   AB32-63 TO PADDB 32-63
+                  51   D REGISTER BIT 19                       51   Q REGISTER BIT 51                       51   PADD HALF-SUM CHECK 24-31               51   LS WORKING REGISTER BIT 19              51   AB64-67 TO PADDB 64-67
+                  52   D REGISTER BIT 20                       52   Q REGISTER BIT 52                       52   PADD HALF-SUM CHECK 32-39               52   LS WORKING REGISTER BIT 20              52   AB06-31 TO PADDB 04-29 LEFT 2
+                  53   D REGISTER BIT 21                       53   Q REGISTER BIT 53                       53   PADD HALF-SUM CHECK 40-49               53   LS WORKING REGISTER BIT 21              53   AB32-67 TO PADDB 30-65 LEFT 2
+                  54   D REGISTER BIT 22                       54   Q REGISTER BIT 54                       54   PADD HALF-SUM CHECK 48-55               54   LS WORKING REGISTER BIT 22              54   AB64-67 TO PADDB 28-31
+                  55   D REGISTER BIT 23                       55   Q REGISTER BIT 55                       55   PADD HALF-SUM CHECK 56-67               55   LS WORKING REGISTER BIT 23              55   EXCESS 6 TO PADDB 28-63
+
+                  56   D REGISTER BIT 24                       56   Q REGISTER BIT 56                       56   UNUSED                                  56   LS WORKING REGISTER BIT 24              56   HOT ONE TO PADDB 60
+                  57   D REGISTER BIT 25                       57   Q REGISTER BIT 57                       57   UNUSED                                  57   LS WORKING REGISTER BIT 25              57   E08-11 TO PADDB 56-59
+                  58   D REGISTER BIT 26                       58   Q REGISTER BIT 58                       58   UNUSED                                  58   LS WORKING REGISTER BIT 26              58   E12-15 TO PADDB 60-63
+                  59   D REGISTER BIT 27                       59   Q REGISTER BIT 59                       59   ROS PARITY CHECK 02-42                  59   LS WORKING REGISTER BIT 27              59   E08-11 TO PADDB 60-63
+                  60   D REGISTER BIT 28                       60   Q REGISTER BIT 60                       60   ROS PARITY CHECK 43-68                  60   LS WORKING REGISTER BIT 28              60   Q04-15 TO PADDB 52-63
+                  61   D REGISTER BIT 29                       61   Q REGISTER BIT 61                       61   ROS PARITY CHECK 69-99                  61   LS WORKING REGISTER BIT 29              61   Q20-31 TO PADDB 52-63
+                  62   D REGISTER BIT 30                       62   Q REGISTER BIT 62                       62   SADD HALF-SUM CHECK                     62   LS WORKING REGISTER BIT 30              62   Q36-47 TO PADDB 52-63
+                  63   D REGISTER BIT 31                       63   Q REGISTER BIT 63                       63   SADD FULL-SUM CHECK                     63   LS WORKING REGISTER BIT 31              63   Q52-63 TO PADDB 52-63
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    UNUSED BITS MAY BE A ONE OR ZERO
+                    ALL ADDRESSES ARE IN HEXADECIMAL
+
+
+
+
+
+                                                                                                                                                                                                                              ─────────────────────────────────
+                                                                                                                                                                                         15 MAY 70 713666                     │ LOG-OUT STORAGE ASSIGNMENTS    │
+                                                                                                                                                                                                                              │         WORDS 10-14            │ A
+                                                                                                                                                                                                                              DATE 8 MAY 70 MACH. 7201-02      │ 6
+                                                                                                                                                                                                                              │                                │ 5
+                                                                                                                                                                                                                              │                FRAME       02  │ 4
+                                                                                                                                                                                                                              │                                │ 1
+                                                                                                                                                                                                                              │                P.N.   2586573  │
+                                                                                                                                                                                                                              │                                │
+                                                                                                                                                                                                                              │                                │000
+                                                                                                                                                                                                                              IBM CORP. SDD PAGE      1        │

@@ -1,0 +1,135 @@
+
+
+
+                                                                                                                                                                                                                                                                                                                                     000 A6251 01
+
+
+
+          P FIELD     PARALLEL ADDER LATCH CONTROL                                                                                                                            T FIELD     OUTGATES TO PADDER B SIDE FROM A.B.IC
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 78-80                                                                                                                 THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 87-90
+
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER                                                                                                                                     CHAR                      ORDER
+
+
+               →                000     P0     PADDER 04-67 TO PAL04-67 (NO SHIFT)                                                                       AP821                A    0                0000    T0     ZERO GATED WITH PARITY                                                                                    RB755
+          A    SCAN-BYPASS      001     P1     PADDER 04-31. 64-67 TO PAL 04-31. 64-67 (NO SHIFT)                                                        AP821                                                                                                                                                               RB757
+                                               SCAN OUT BUS32-63 TO PAL32-63 (ENABLE SCAN BYPASS)                                                                                                                                                                                                                            RB761
+          A    R→               010     P2     PADDER 04-63 R4 TO PAL 08-67 (PADDER 04                                                                   AP821                A    BL2              0001    T1     B32-67 L2 TO PB30-65 (PB66.67 = 00) IF FXP MPY.                                                           RB811
+                                               PROPAGATES INTO PAL04-08)                                                                                                                                           PROPAGATE SIGN (B32) TO PB28.29
+          A    →HOLD            100     P4     HOLD VALUE IN PAL 04-67 FOR 1 CYCLE                                                                       AP821                A    IC               0010    T2     IC00-23 TO PB30-63                                                                                        RB611
+          A    L→               101     P5     PADDER 08-67 L4 TO PAL 04-63 (0000 TO PAL 64-67)                                                          AP821                A    DEC              0011    T3     GENERATES EXCESS 6 DECIMAL CORRECTION FACTOR TO                                                           RB805
+          A    .C8              110     P6     PB64-67 2'S COMPLIMENT TO PADDER 64-67. PADDER 64-67 TO                                                   AP821                                                     PB28-63 FOR CONVERT TO DECIMAL (WITH FIELD U6)
+                                               PAL64-67 (NO SHIFT). IF PB64-67 ≠ 0 BLOCK HOT CARRY TO PA63                                                                    A    F1               0100    T4     F04-07 TO PB60-63                                                                                         RB807
+          A    ◺R1→             111     P7     PADDER 32-63 R1 TO PAL 33-64. ZEROES TO PAL 32 AND 48                                                     AP821                A    ABL2             0101    T5     AB06-67 L2 TO PB04-65 (PB66.67 = 00) (A05                                                                 RB811
+                                                                                                                                                                                                                   MUST BE EVEN PARITY)
+                                                                                                                                                                              A    8                0110    T6     HOT ONE TO PB60 (EFFECTIVELY ADDS +8)                                                                     RB807
+                                                                                                                                                                              A    B8J9             0111    T7     B64-67 TO PB28-31                                                                                         RB807
+                                                                                                                                                                              A    A                1000    T8     A00-31 TO PB32-63                                                                                         RB805
+                                                                                                                                                                              A    B8               1001    T9     B64-67 TO PB64-67                                                                                         RB813
+                                                                                                                                                                              A    A13              1010    T10    A08-31 TO PB08-31                                                                                         RB813
+                                                                                                                                                                              A    B                1011    T11    B32-63 TO PB32-63                                                                                         RB813
+                                                                                                                                                                              A    AB               1100    T12    AB04-67 TO PB04-67 (A00-03 MUST BE ZERO)                                                                  RB805
+                                                                                                                                                                              A    ◺2               1101    T13    HOT ONE TO PB62 (EFFECTIVELY ADDS +2)                                                                     RB807
+                                                                                                                                                                              A    AB17             1110    T14    AB08-63 TO PB08-63                                                                                        RB813
+                                                                                                                                                                              A    B489             1111    T15    B32-63 TO PB32-63.B64-67 TO PB28-31                                                                       RB807
+          Q FIELD     HOT ONES TO PARALLEL ADDER A SIDE                                                                                                                                                                                                                                                                      RB813
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 82-84
+                                                                                                                                                                              A    AB18             1110    T14    AB08-67 TO PB08-67 (FL PT ADD. SUB OR COMP)                                                               RB813
+
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+          CHAR                      ORDER
+
+
+               →                000     Q0     NO OPERATION
+          A    +P               001     Q1     HOT ONES TO PA26-31 (FOR FIXED-PT NON-LOGICAL OPS                                                         AP731
+                                               PROPAGATES SIGN (T32) PER TRUE OR COMP OPERATION)
+          A    +8               010     Q2     HOT ONE TO PA60 (EFFECTIVELY ADDS +8)                                                                     AP811
+          A    +1               011     Q3     HOT CARRY TO PA63 (BLOCKED IN CONVERT TO DECIMAL                                                          AP737
+                                               IF SAL 00=0)
+          A    -16              100     Q4     HOT ONES TO PA32-59 (EFFECTIVELY ADDS -16)                                                                AP811
+          A    +TIME            101     Q5     HOT ONES TO PA32-52. 54. 55 (FOR TIME CLOCK UPDATE)                                                       AP811                U FIELD     OUTGATES TO PADDER A SIDE FROM S. T. AND D
+          A    -8               110     Q6     HOT ONES TO PA32-60 (EFFECTIVELY ADDS -8)                                                                 AP811                THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 96.92-95
+          A    -1               111     Q7     HOT ONES TO PA32-63 (EFFECTIVELY ADDS -1)                                                                 AP811
+
+                                                                                                                                                                              EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD
+                                                                                                                                                                              CHAR                      ORDER
+
+
+                                                                                                                                                                              A    +0               00000   U0     ZERO GATED WITH PARITY
+                                                                                                                                                                              A    -TL1             00001   U1     T32-63 COMP L1 TO PA31-62 (1 + HOT CARRY TO PA63)                                                         RT811
+                                                                                                                                                                              A    -D               00010   U2     D00-23 COMP TO PA40-63 (HOT CARRY TO PA63)                                                                RT801
+                                                                                                                                                                              A    +D               00011   U3     D00-23 TO PA40-63                                                                                         RT801
+          R FIELD     OUTGATES TO SERIAL ADDER INPUTS A SIDE                                                                                                                  A    +S               00100   U4     S00-31 TO PA32-63                                                                                         RT815
+          THE FOLLOWING MICROORDERS ARE LOCATED IN BITS 86                                                                                                                    A    -DTL1            00101   U5     ONES TO PA04-06. D00-23 COMP L1 TO PA07-30. T32-63                                                        RT805
+                                                                                                                                                                                                                   COMP L1 TO PA31-62 (1 + HOT CARRY TO PA63)                                                                RT811
+                                                                                                                                                                              A    +TL1             00110   U6     T32-63 L1 TO PA31-62 (PA63=0)                                                                             RT811
+          EDGE MICRO ORDER BITS      DEC    FUNCTION                                                                                                  ALD                     A    +DTL1            00111   U7     D00-23 L1 TO PA07-30. T32-63 L1 TO PA31-62 (PA63=0)                                                       RT805
+          CHAR                      ORDER                                                                                                                                                                                                                                                                                    RT811
+
+                                                                                                                                                                              A    +T45R            01000   U8     T32-47 TO PA48-63. 1 TO PA47 IF T32=0                                                                     RT813
+          B    AB→U             0       R0     AB BYTE (SELECTED BY ABC) TO SBA00-07                                                                     RB801                A    +T67             01001   U9     T48-63 TO PA48-63. 1 TO PA47 IF T48=0                                                                     RT815
+          B    F→U              1       R1     F00-07 TO SBA00-07                                                                                        RF801                A    -D+7             01010   U10    D00-23 COMP TO PA40-63 (HOT CARRY TO PA63).                                                               RT801
+                                                                                                                                                                                                                   ONES TO PA61-63                                                                                           RT813
+                                                                                                                                                                              A    +DJ13            01011   U11    D00-23 TO PA08-31                                                                                         RT803
+                                                                                                                                                                              A    -DT              01100   U12    ONES TO PA04-07. D00-23 TO PA08-31 COMP. T32-63                                                           RT803
+                                                                                                                                                                                                                   COMP TO PA32-63 (HOT CARRY TO PA63)                                                                       RT807
+                                                                                                                                                                              A    -T               01101   U13    T32-63 COMP TO PA32-63 (HOT CARRY TO PA63).                                                               RT807
+                                                                                                                                                                              A    +T               01110   U14    T32-63 TO PA32-63                                                                                         RT807
+                                                                                                                                                                              A    +DT              01111   U15    D00-23 TO PA08-31. T32-63 TO PA32-63                                                                      RT803.RT807
+                                                                                                                                                                              A    +◺K              10000   U16    K00-31 TO PA32-63                                                                                         RT817
+                                                                                                                                                                              D    ◺FMTD✲E13-15     10001   U17    FORMAT LM REG TO XY REG (HISTORY) PER E13-15                                                              RT843
+                                                                                                                                                                              D    ◺FMTN✲E13-15     10010   U18    FORMAT LM REG TO XY REG (CS-NEW) PER E13-15                                                               RT843
+                                                                                                                                                                              D    ◺FMTW✲E14-15     10011   U19    FORMAT LM REG TO XY REG (WEATHER) PER E14-15                                                              RT843
+                                                                                                                                                                              A    +◺2              10100   U20    HOT ONE TO PA62 (EFFECTIVELY ADDS +2)                                                                     RT841
+                                                                                                                                                                              A    +◺32             10101   U21    HOT ONE TO PA58 (EFFECTIVELY ADDS +32)                                                                    RT841
+                                                                                                                                                                              A    +◺T45R           11000   U24    T32-47 TO PA48-63                                                                                         RT813
+                                                                                                                                                                              A    +◺T67            11001   U25    T48-63 TO PA48-63                                                                                         RT815
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                         15 MAY 70 713666                                 ┌──────────────────────────────────────────────────┐ A
+                                                                                                                                                                                                                                                                                                          │ P TO U CONTROL FIELD LISTING                     │ 6
+                                                                                                                                                                                                                                                                                                          │ DATE 8 MAY 70 MACH. 7201-02                      │ 2
+                                                                                                                                                                                                                                                                                                          │                     FRAME      02                │ 5
+                                                                                                                                                                                                                                                                                                          │                     P.No.      2586561           │ 1
+                                                                                                                                                                                                                                                                                                          │                                                  │ 000
+                                                                                                                                                                                                                                                                                                          │ IBM CORP. SDD  PAGE        1                     │

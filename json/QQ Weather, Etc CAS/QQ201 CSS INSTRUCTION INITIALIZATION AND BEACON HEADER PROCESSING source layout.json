@@ -1,0 +1,3297 @@
+{
+  "nodes": [
+    {
+      "box": "A6",
+      "leg": "1X",
+      "address": "0C1A",
+      "fields": [
+        "A 8+D",
+        "A →DWS",
+        "B ◺1000→V0",
+        "B V0,0+0,U0",
+        "B →F",
+        "S MS-REQ*D-3",
+        "C STC+1"
+      ],
+      "exit": "X*──AF",
+      "comments": [],
+      "R_line": "R        J57=0",
+      "output_port_row": 5,
+      "grid": [
+        135,
+        0
+      ],
+      "actual_height": 10
+    },
+    {
+      "box": "C2",
+      "leg": "000010",
+      "address": "0DE2",
+      "fields": [
+        "A 0+T",
+        "A →D",
+        "B -64+0",
+        "B →F",
+        "L R◺GP8→T",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──CB",
+      "comments": [
+        "FETCH PRIME DATA.",
+        "SORT BIN BASE",
+        "ADDRESS TO T.",
+        "ABC=0.STC=4."
+      ],
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C3",
+      "leg": "XX",
+      "address": "0C0C",
+      "fields": [
+        "A 0+D",
+        "A →◺K",
+        "L R◺GP10→S",
+        "C ◺0→CC"
+      ],
+      "exit": "XX──CC",
+      "comments": [
+        "PRIME DATA ADDRESS",
+        "TO K REG.WORD",
+        "COUNT TO S.CC SET",
+        "TO ZERO IN CASE NO",
+        "OUTPUT DURING",
+        "THIS EXECUTION."
+      ],
+      "grid": [
+        69,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "XX",
+      "address": "0C0D",
+      "fields": [
+        "A 0+T",
+        "A →D",
+        "B V0,0∀U",
+        "B          F→U",
+        "L R◺GP13→T",
+        "S MS-REQ*D-3",
+        "C 1→STAA*W=0"
+      ],
+      "exit": "XX──CD",
+      "comments": [
+        "SORT BIN BASE ADDRESS",
+        "TO D.STORE GPRS 12.13.",
+        "SET STAT A IF RW(H)",
+        "WORD INDICATOR OFF."
+      ],
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C5",
+      "leg": "XX",
+      "address": "0C0E",
+      "fields": [
+        "A 0+S",
+        "D MS→AB",
+        "L R◺GP12→S",
+        "S SET-MARK-0-7",
+        "C 0→STC",
+        "D CON→E3"
+      ],
+      "exit": "*X──CE",
+      "comments": [
+        "PRIME DATA TO AB",
+        "CHECK FOR WORD",
+        "COUNT=0.0 TO F3.",
+        "BRANCH IF RADAR",
+        "DATA."
+      ],
+      "R_line": "R E2=0/",
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C6",
+      "leg": "0X",
+      "address": "0C18",
+      "fields": [
+        "A 0+◺K",
+        "A →DWS",
+        "B ◺1000→V0",
+        "B V0,0+0,U0",
+        "B →F",
+        "C STC+1"
+      ],
+      "exit": "X*──CF",
+      "comments": [
+        "BEACON DATA.PRIME",
+        "ADDRESS TO D.0 TO",
+        "F.STC.0 TO 1.",
+        "BRANCH IF WORD",
+        "COUNT=0."
+      ],
+      "R_line": "R        J57=0",
+      "grid": [
+        135,
+        11
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "C7",
+      "leg": "X0",
+      "address": "0C1C",
+      "fields": [
+        "B ◺1001→V0",
+        "B V0,V0+0",
+        "B →F1",
+        "L R◺GP11→S",
+        "C SIGNS→STATS"
+      ],
+      "exit": "X0──CG",
+      "comments": [
+        "NINE TO F1 FOR",
+        "CONTROL BRANCH",
+        "LATE-MASK CONSTANTS",
+        "TO S.STAT C ON",
+        "FOR ID IN PAGING",
+        "ADDRESS EXCEPTION",
+        "INTERRUPT ROUTINE."
+      ],
+      "grid": [
+        157,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C9",
+      "leg": "X0",
+      "address": "0C0A",
+      "fields": [
+        "A 0+1",
+        "B →F0",
+        "D J7→ABC"
+      ],
+      "exit": "***──CI",
+      "comments": [
+        "ABC.0 TO 1.NEXT",
+        "CYCLE.BRANCH IF",
+        "RADAR DATA.",
+        "BRANCH IF RW INDI-",
+        "CATOR OFF(STAT A)."
+      ],
+      "R_line": "R E2=0/   STAA",
+      "grid": [
+        201,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G1",
+      "leg": "00",
+      "address": "0C10",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "B ◺1000→V0",
+        "B V.U",
+        "B         AB→U",
+        "L R◺GP11→S",
+        "C ABC+1",
+        "C 1→STAA*W=0"
+      ],
+      "exit": "XX──GA",
+      "comments": [
+        "BEACON DATA.IGNORE RW",
+        "IND.COMPARE HEADER",
+        "BIT.MASK CONSTANT",
+        "TO S.PRIME ADDRESS",
+        "+8.ABC.1 TO 2.STAT",
+        "A ON FOR BEACON."
+      ],
+      "grid": [
+        25,
+        33
+      ],
+      "actual_height": 10
+    },
+    {
+      "box": "G2",
+      "leg": "01",
+      "address": "0C11",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "B ◺1000→V0",
+        "B V.U",
+        "B         AB→U",
+        "L R◺GP11→S",
+        "C ABC+1"
+      ],
+      "exit": "XX──GB",
+      "comments": [
+        "BEACON DATA.COMPARE",
+        "HEADER BIT.PRIME",
+        "ADDRESS+8 TO D.",
+        "MASK CONSTANTS TO S.",
+        "ABC.1 TO 2."
+      ],
+      "grid": [
+        47,
+        33
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "G3",
+      "leg": "XX",
+      "address": "0C0F",
+      "fields": [
+        "A A+0",
+        "A →T",
+        "B V.U",
+        "L W*24",
+        "C ◺ABC-1,STC+1",
+        "L W*24"
+      ],
+      "exit": "X*──GC",
+      "comments": [
+        "COMPARE ALTITUDE",
+        "MASK.HEADER WORD",
+        "TO T.ABC.2 TO 1.",
+        "STC.1 TO 2.BRANCH",
+        "IF NOT HEADER."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        69,
+        33
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "G4",
+      "leg": "X0",
+      "address": "0C1E",
+      "fields": [
+        "B V0,0.U",
+        "B →F0",
+        "B         AB→U",
+        "C 0→STC",
+        "D CON→E3"
+      ],
+      "exit": "X*──GD",
+      "comments": [
+        "BEACON HEADER VALID.",
+        "COMPARE TYPE MASK",
+        "AND SB BIT.MATCHING",
+        "TYPE BITS AND SB",
+        "BIT TO F0."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "X1",
+      "address": "0C07",
+      "fields": [
+        "A 0-1",
+        "B 0+◺U0",
+        "B          F→U",
+        "S MS-REQ*D-3",
+        "D J7→STC"
+      ],
+      "exit": "X*──GE",
+      "comments": [
+        "NO ALTITUDE MASK",
+        "MATCH.F0 TO W1.",
+        "7 TO STC.FETCH",
+        "SECOND DOUBLE WORD",
+        "OF DATA BLOCK."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G6",
+      "leg": "X1",
+      "address": "0C2D",
+      "fields": [
+        "A B+D",
+        "A →T",
+        "C 0→STC"
+      ],
+      "exit": "XX──GF",
+      "comments": [
+        "SB BIT OFF.NO",
+        "MASK BIT MATCH.",
+        "DATA REJECTED."
+      ],
+      "grid": [
+        135,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G7",
+      "leg": "XX",
+      "address": "0C24",
+      "fields": [
+        "A 8+T",
+        "A →D",
+        "L R◺GP10→S",
+        "S MS-REQ*D-3",
+        "C ◺S12CRY→DLT"
+      ],
+      "exit": "XX──GG",
+      "comments": [
+        "FETCH NEXT HEADER.",
+        "DATA COUNT TO T.",
+        "CHECK PAGE OFLOW."
+      ],
+      "grid": [
+        157,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J6",
+      "leg": "X0",
+      "address": "0C06",
+      "fields": [
+        "B V+0",
+        "B →F"
+      ],
+      "exit": "0X──JF",
+      "comments": [
+        "ALT MASK BIT MATCH",
+        "BR CTRL BIT TO F0."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        135,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J7",
+      "leg": "0X",
+      "address": "0C15",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "B ◺1000→V0",
+        "B V0,0.U",
+        "B →F",
+        "B          F→U",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──JG",
+      "comments": [
+        "TYPE MASK BIT",
+        "MATCH.FETCH 3RD",
+        "DOUBLE WORD OF",
+        "DATA BLOCK."
+      ],
+      "grid": [
+        157,
+        44
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "J8",
+      "leg": "XX",
+      "address": "0C19",
+      "fields": [
+        "B ◺0100→V0",
+        "B V0,0-U.WCRY",
+        "B          F→U",
+        "S STOP1"
+      ],
+      "exit": "XX──JH",
+      "comments": [
+        "TURN ON STAT H",
+        "IF BR.CTRL",
+        "BIT OFF."
+      ],
+      "grid": [
+        179,
+        44
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "J9",
+      "leg": "XX",
+      "address": "0C1B",
+      "fields": [
+        "B -64+0",
+        "B →F0",
+        "D MS→AB",
+        "L RF*E3→T",
+        "C 3→STC",
+        "C E3+1"
+      ],
+      "exit": "X0──JI",
+      "comments": [
+        "FIRST GEOG FILTER",
+        "TO T.DATA WORD",
+        "TO A."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        201,
+        44
+      ],
+      "actual_height": 9
+    },
+    {
+      "box": "L1",
+      "leg": "X0",
+      "address": "0C2C",
+      "fields": [
+        "A 8+D",
+        "A →◺K",
+        "B V+0",
+        "B →F"
+      ],
+      "exit": "*X──LA",
+      "comments": [
+        "ANY TYPE MASK BIT",
+        "MATCH.OR SB BIT ON.",
+        "OR BOTH.MOVE PVD",
+        "ADDRESS TO F.PRIME",
+        "ADDRESS+8 TO",
+        "K REG."
+      ],
+      "R_line": "R W1=1",
+      "grid": [
+        25,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L4",
+      "leg": "00",
+      "address": "0C00",
+      "fields": [
+        "A B+0",
+        "A →A",
+        "C STC+1"
+      ],
+      "exit": "X*──LD",
+      "comments": [
+        "PVD ADDRESS BITS",
+        "1-31 TO A REG.BR",
+        "IF BR.CTRL BIT OFF."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L5",
+      "leg": "X0",
+      "address": "0C04",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "B 0+◺DECAB",
+        "B A3→U",
+        "D MS→AB",
+        "L R◺GP10→S",
+        "S MS-REQ*D-3",
+        "C ◺S12CRY→DLT"
+      ],
+      "exit": "XX──LE",
+      "comments": [
+        "SEE NOTE AT NE."
+      ],
+      "grid": [
+        113,
+        55
+      ],
+      "actual_height": 10
+    },
+    {
+      "box": "N2",
+      "leg": "1X",
+      "address": "0C17",
+      "fields": [
+        "A 8+D",
+        "A →DWS",
+        "B 0+U",
+        "B          F→U",
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──NB",
+      "comments": [
+        "SB BIT ON AND",
+        "NO TYPE MASK BIT",
+        "MATCH.PVD ADDRESS",
+        "TO T.FETCH THIRD",
+        "DOUBLE WORD OF DATA",
+        "BLOCK."
+      ],
+      "grid": [
+        47,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N3",
+      "leg": "XX",
+      "address": "0C16",
+      "fields": [
+        "A 0+TL",
+        "A R→",
+        "B ◺1000→V0",
+        "B V.U",
+        "B          F→U",
+        "D MS→ST",
+        "D J7→ABC"
+      ],
+      "exit": "**──NC",
+      "comments": [
+        "BITS 2.3.4 OF PVD",
+        "ADDRESS TO ABC",
+        "BRANCH ON BITS 1.2",
+        "OF PVD ADDRESS.",
+        "SECOND DOUBLE WORD",
+        "OF DATA BLOCK TO ST.",
+        "CHECK FOR BRIGHTNESS",
+        "CONTROL BIT."
+      ],
+      "R_line": "R    ◺W(00-02)",
+      "grid": [
+        69,
+        66
+      ],
+      "actual_height": 10
+    },
+    {
+      "box": "N4",
+      "leg": "01",
+      "address": "0C01",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "C STC+1"
+      ],
+      "exit": "X*──ND",
+      "comments": [
+        "PVD ADDRESS BITS",
+        "33-63 TO B REG.BR",
+        "IF BR.CTRL BIT OFF."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N5",
+      "leg": "X1",
+      "address": "0C05",
+      "fields": [
+        "A 8+D",
+        "A →D",
+        "B 0+◺DECAB",
+        "B         AB→U",
+        "D MS→AB",
+        "L R◺GP10→S",
+        "S MS-REQ*D-3",
+        "C ◺S12CRY→DLT",
+        "C 1→STAH"
+      ],
+      "exit": "XX──NE",
+      "comments": [
+        "SELECTED PVD AD-",
+        "DRESS BIT TO AB",
+        "BUS BIT 6 PER F",
+        "REG BITS 5.6.7.3RD",
+        "DBLE WD OF DATA",
+        "BLOCK TO AB.BLOCK",
+        "COUNT TO S.FETCH",
+        "NEXT HEADER.CHECK",
+        "FOR PAGE OFLOW.",
+        "STAT H OFF IF BR.",
+        "CTRL BIT ON."
+      ],
+      "grid": [
+        113,
+        66
+      ],
+      "actual_height": 11
+    },
+    {
+      "box": "N6",
+      "leg": "XX",
+      "address": "0C14",
+      "fields": [
+        "A 0+S",
+        "A →B",
+        "C STC+1",
+        "D CON→E3"
+      ],
+      "exit": "X*──NF",
+      "comments": [
+        "INPUT DATA COUNT",
+        "TO B.0 TO E3.",
+        "STC.0 TO 1.",
+        "BRANCH IF SELECT-",
+        "ED PVD BIT OFF."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        135,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N8",
+      "leg": "X0",
+      "address": "0C08",
+      "fields": [
+        "B -64+0",
+        "B →F0",
+        "L RF*E3→T",
+        "C E3+1"
+      ],
+      "exit": "XX──NH",
+      "comments": [
+        "SEL PVD BIT ON OR",
+        "TYPE MASK MATCH.",
+        "GEOG FILTER TO T."
+      ],
+      "grid": [
+        179,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "N9",
+      "leg": "XX",
+      "address": "0C36",
+      "fields": [
+        "A 0+◺K",
+        "A →D",
+        "C 3→STC"
+      ],
+      "exit": "X0──NI",
+      "comments": [
+        "RESTORE PREVIOUS",
+        "PRIME ADDRESS",
+        "TO D REG."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        201,
+        66
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q4",
+      "leg": "10",
+      "address": "0C02",
+      "fields": [
+        "A 0+T",
+        "A →A",
+        "C STC+1"
+      ],
+      "exit": "X*──QD",
+      "comments": [
+        "PVD ADDRESS BITS",
+        "65-95 TO A REG.CK",
+        "FOR BR.CTRL BIT."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        91,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q7",
+      "leg": "X1",
+      "address": "0C09",
+      "fields": [
+        "A B+D-1",
+        "A →T",
+        "B -64+0",
+        "B →F",
+        "L W◺GP10"
+      ],
+      "exit": "X*──QG",
+      "comments": [
+        "(BEACON DATA BLOCK",
+        "REJECTED)OR(RADAR",
+        "HEADER PROCESSED).",
+        "DATA COUNT-1 TO",
+        "GPR10."
+      ],
+      "R_line": "R       TCS/ST",
+      "grid": [
+        157,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q8",
+      "leg": "X0",
+      "address": "0C2A",
+      "fields": [
+        "B 0+0,U0",
+        "B →F",
+        "B          F→U",
+        "D MS→AB",
+        "C 0→ABC"
+      ],
+      "exit": "X*──QH",
+      "comments": [
+        "NO INTERRUPT PENDING.",
+        "PRIME DATA TO AB.",
+        "0C TO F.BRANCH IF",
+        "INPUT COUNT=0."
+      ],
+      "R_line": "R        J47=0",
+      "grid": [
+        179,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "S4",
+      "leg": "11",
+      "address": "0C03",
+      "fields": [
+        "A →A.B",
+        "C STC+1"
+      ],
+      "exit": "X0──SD",
+      "comments": [
+        "INVALID PVD ADDRESS.",
+        "FORCE DECODE OF PVD",
+        "ADDRESS BIT OFF.",
+        "STC.7 TO 0."
+      ],
+      "R_line": "R            1",
+      "grid": [
+        91,
+        88
+      ],
+      "actual_height": 8
+    }
+  ],
+  "unresolved": [],
+  "source_grid": {
+    "first_right": 1290.79,
+    "first_header_y": 194.04,
+    "column_step": 662.1,
+    "row_step": 496.14
+  },
+  "text": [
+    [
+      47,
+      2,
+      "RADAR AND BEACON"
+    ],
+    [
+      47,
+      3,
+      "INITIALIZATION.BEACON"
+    ],
+    [
+      47,
+      4,
+      "HEADER ANALYSIS."
+    ],
+    [
+      88,
+      2,
+      "GPRS 12.13 UNLOADED INTO STORAGE"
+    ],
+    [
+      88,
+      3,
+      "WORK AREA STARTING AT SORT"
+    ],
+    [
+      88,
+      4,
+      "BIN BASE ADDRESS."
+    ],
+    [
+      88,
+      5,
+      "GPRS WILL BE USED AS WORK REGISTERS"
+    ],
+    [
+      88,
+      6,
+      "AND WILL BE RESTORED"
+    ],
+    [
+      88,
+      7,
+      "AT END OF INSTRUCTION."
+    ],
+    [
+      2,
+      11,
+      "CONVERT AND"
+    ],
+    [
+      2,
+      12,
+      "SORT SYMBOLS"
+    ],
+    [
+      2,
+      13,
+      "(CSS)"
+    ],
+    [
+      2,
+      14,
+      "QT051.AAE"
+    ],
+    [
+      2,
+      15,
+      "(000010)"
+    ],
+    [
+      2,
+      16,
+      "R1=2 FOR"
+    ],
+    [
+      2,
+      17,
+      "BEACON DATA."
+    ],
+    [
+      2,
+      18,
+      "R1=0 FOR"
+    ],
+    [
+      2,
+      19,
+      "RADAR OR SS"
+    ],
+    [
+      2,
+      20,
+      "DATA."
+    ],
+    [
+      2,
+      21,
+      "QQ011.CIE"
+    ],
+    [
+      2,
+      22,
+      "(000010)"
+    ],
+    [
+      2,
+      23,
+      "RE-ENTER CSS"
+    ],
+    [
+      2,
+      24,
+      "FROM INTERRUPT"
+    ],
+    [
+      2,
+      25,
+      "ROUTINE."
+    ],
+    [
+      2,
+      27,
+      "QQ251.CFE"
+    ],
+    [
+      2,
+      28,
+      "(X1)RADAR"
+    ],
+    [
+      2,
+      29,
+      "HEADER PROC-"
+    ],
+    [
+      2,
+      30,
+      "ESSED.ABC=0."
+    ],
+    [
+      2,
+      31,
+      "STC=4."
+    ],
+    [
+      2,
+      49,
+      "QQ221.EFE"
+    ],
+    [
+      2,
+      50,
+      "(1X)DATA RE-"
+    ],
+    [
+      2,
+      51,
+      "JECTED BY GEOG"
+    ],
+    [
+      2,
+      52,
+      "OR STERILE"
+    ],
+    [
+      2,
+      53,
+      "AREA FILTER."
+    ],
+    [
+      2,
+      54,
+      "ABC=?.STC=0."
+    ],
+    [
+      50,
+      65,
+      "TYPE MASK BIT MATCH."
+    ],
+    [
+      229,
+      5,
+      "QQ211"
+    ],
+    [
+      239,
+      5,
+      "AFF"
+    ],
+    [
+      229,
+      6,
+      "(X1)INPUT WORD"
+    ],
+    [
+      229,
+      7,
+      "COUNT=0.ABC=0."
+    ],
+    [
+      229,
+      8,
+      "STC=1.F=1C."
+    ],
+    [
+      229,
+      14,
+      "QQ251"
+    ],
+    [
+      239,
+      14,
+      "CIE"
+    ],
+    [
+      229,
+      15,
+      "(11)RADAR DATA"
+    ],
+    [
+      229,
+      16,
+      "RW IND OFF."
+    ],
+    [
+      229,
+      17,
+      "ABC=0,1.STC=1."
+    ],
+    [
+      229,
+      18,
+      "(10)RADAR DATA"
+    ],
+    [
+      229,
+      19,
+      "INSTRUCTION"
+    ],
+    [
+      229,
+      20,
+      "RE-ENTRY."
+    ],
+    [
+      229,
+      21,
+      "PROCESS ODD"
+    ],
+    [
+      229,
+      22,
+      "WORD.F=0C."
+    ],
+    [
+      229,
+      23,
+      "ABC=0,1.STC=1."
+    ],
+    [
+      229,
+      32,
+      "QQ211"
+    ],
+    [
+      239,
+      32,
+      "GCE"
+    ],
+    [
+      229,
+      33,
+      "(X1)BEACON"
+    ],
+    [
+      229,
+      34,
+      "DATA.INVALID"
+    ],
+    [
+      229,
+      35,
+      "HEADER FORMAT."
+    ],
+    [
+      229,
+      36,
+      "ABC=1.STC=2."
+    ],
+    [
+      229,
+      47,
+      "QQ221"
+    ],
+    [
+      239,
+      47,
+      "JIE"
+    ],
+    [
+      229,
+      48,
+      "(X0)BEACON"
+    ],
+    [
+      229,
+      49,
+      "OR RADAR"
+    ],
+    [
+      229,
+      50,
+      "DATA.TO GEO-"
+    ],
+    [
+      229,
+      51,
+      "GRAPHIC FILTER"
+    ],
+    [
+      229,
+      52,
+      "ABC=?.STC=3."
+    ],
+    [
+      229,
+      53,
+      "ABCX."
+    ],
+    [
+      229,
+      80,
+      "QQ211"
+    ],
+    [
+      239,
+      80,
+      "QHE"
+    ],
+    [
+      229,
+      81,
+      "(X1)LAST"
+    ],
+    [
+      229,
+      82,
+      "DATA BLOCK"
+    ],
+    [
+      229,
+      83,
+      "PROCESSED."
+    ],
+    [
+      229,
+      91,
+      "QQ211"
+    ],
+    [
+      239,
+      91,
+      "QGE"
+    ],
+    [
+      229,
+      92,
+      "(X1)INTERRUPT"
+    ],
+    [
+      229,
+      93,
+      "PENDING."
+    ],
+    [
+      3,
+      71,
+      "CSS LOCAL STORAGE ASSIGNMENTS"
+    ],
+    [
+      3,
+      73,
+      "GPR 0. BIN 0 DISP.BIN 1 DISP."
+    ],
+    [
+      3,
+      74,
+      "GPR 1. BIN 2 DISP.BIN 3 DISP."
+    ],
+    [
+      3,
+      75,
+      "GPR 2. BIN 4 DISP.BIN 5 DISP."
+    ],
+    [
+      3,
+      76,
+      "GPR 3. BIN 6 DISP.BIN 7 DISP."
+    ],
+    [
+      3,
+      77,
+      "GPR 4. BIN 8 DISP.BIN 9 DISP."
+    ],
+    [
+      3,
+      78,
+      "GPR 5. BIN 10 DISP.BIN 11 DISP."
+    ],
+    [
+      3,
+      79,
+      "GPR 6. BIN 12 DISP.BIN 13 DISP."
+    ],
+    [
+      3,
+      80,
+      "GPR 7. BIN 14 DISP.BIN 15 DISP."
+    ],
+    [
+      3,
+      81,
+      "GPR 8.(RADAR)RW.DS IND.SORT BIN BASE"
+    ],
+    [
+      3,
+      82,
+      "GPR 8.(BEACON)DS IND.SORT BIN BASE"
+    ],
+    [
+      3,
+      83,
+      "GPR 9. BIN OFLOW NO.PRIME ADDRESS."
+    ],
+    [
+      3,
+      84,
+      "GPR 10. DATA COUNT."
+    ],
+    [
+      3,
+      85,
+      "GPR 11.(RADAR) CONVERSION CONSTANT"
+    ],
+    [
+      3,
+      86,
+      "GPR 12.(BEACON)PVD INDEX.ALT MASK.TYPE"
+    ],
+    [
+      3,
+      87,
+      "       MASK.CONVERSION CONSTANT"
+    ],
+    [
+      3,
+      88,
+      "GPR 12.┐ USED FOR WORK REGS.RESTORED"
+    ],
+    [
+      3,
+      89,
+      "GPR 13.┘ BEFORE END OP."
+    ],
+    [
+      3,
+      90,
+      "GPR 14.┐ NOT USED BY"
+    ],
+    [
+      3,
+      91,
+      "GPR 15.┘ THIS INSTRUCTION."
+    ],
+    [
+      3,
+      92,
+      "FPR 0. GEOGRAPHIC FILTER(Y0G.X0G)"
+    ],
+    [
+      3,
+      93,
+      "FPR 1. GEOGRAPHIC FILTER(Y1G.X1G)"
+    ],
+    [
+      3,
+      94,
+      "FPR 2. STERILE AREA 1 FILTER(Y0S1.X0S1)"
+    ],
+    [
+      3,
+      95,
+      "FPR 3. STERILE AREA 1 FILTER(Y1S1.X1S1)"
+    ],
+    [
+      3,
+      96,
+      "FPR 4. STERILE AREA 2 FILTER(Y0S2.X0S2)"
+    ],
+    [
+      3,
+      97,
+      "FPR 5. STERILE AREA 2 FILTER(Y1S2.X1S2)"
+    ],
+    [
+      3,
+      98,
+      "FPR 6. STERILE AREA 3 FILTER(Y0S3.X0S3)"
+    ],
+    [
+      3,
+      99,
+      "FPR 7. STERILE AREA 3 FILTER(Y1S3.X1S3)"
+    ],
+    [
+      151,
+      1,
+      "RADAR DATA.FETCH SECOND DOUBLE"
+    ],
+    [
+      151,
+      2,
+      "WORD OF SORT BIN BASE TO RESTORE"
+    ],
+    [
+      151,
+      3,
+      "OLD HEADER.0C TO F.STC.0 TO 1."
+    ],
+    [
+      151,
+      4,
+      "BRANCH IF WORD COUNT=0."
+    ],
+    [
+      45,
+      85,
+      "PVD INDEX"
+    ],
+    [
+      45,
+      86,
+      "ANALYSIS."
+    ],
+    [
+      48,
+      87,
+      "BYTE"
+    ],
+    [
+      48,
+      88,
+      "┌─┐"
+    ],
+    [
+      45,
+      89,
+      "01234567"
+    ],
+    [
+      46,
+      90,
+      "└┘"
+    ],
+    [
+      50,
+      90,
+      "└─┘"
+    ],
+    [
+      45,
+      91,
+      "WORD.BIT"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  05/21/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ201"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     048"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583848"
+    ],
+    [
+      200,
+      100,
+      "CSS INSTRUCTION INITIALIZATION"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ],
+    [
+      200,
+      101,
+      "AND BEACON HEADER PROCESSING."
+    ]
+  ],
+  "wire_erase": [
+    [
+      -3,
+      71,
+      38,
+      99
+    ],
+    [
+      41,
+      29,
+      44,
+      31
+    ],
+    [
+      105,
+      57,
+      110,
+      90
+    ],
+    [
+      151,
+      5,
+      154,
+      15
+    ],
+    [
+      151,
+      26,
+      156,
+      78
+    ],
+    [
+      192,
+      15,
+      198,
+      80
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        134,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        46,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        68,
+        14
+      ],
+      [
+        69,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        112,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        134,
+        14
+      ],
+      [
+        135,
+        14
+      ]
+    ],
+    [
+      [
+        156,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        198,
+        14
+      ],
+      [
+        201,
+        14
+      ]
+    ],
+    [
+      [
+        200,
+        16
+      ],
+      [
+        201,
+        16
+      ]
+    ],
+    [
+      [
+        23,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        45,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        68,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        89,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        111,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        133,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        156,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        134,
+        47
+      ],
+      [
+        135,
+        47
+      ]
+    ],
+    [
+      [
+        156,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        155,
+        49
+      ],
+      [
+        157,
+        49
+      ]
+    ],
+    [
+      [
+        178,
+        47
+      ],
+      [
+        179,
+        47
+      ]
+    ],
+    [
+      [
+        200,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        23,
+        58
+      ],
+      [
+        25,
+        58
+      ]
+    ],
+    [
+      [
+        89,
+        58
+      ],
+      [
+        91,
+        58
+      ]
+    ],
+    [
+      [
+        112,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        46,
+        69
+      ],
+      [
+        47,
+        69
+      ]
+    ],
+    [
+      [
+        68,
+        69
+      ],
+      [
+        69,
+        69
+      ]
+    ],
+    [
+      [
+        89,
+        69
+      ],
+      [
+        91,
+        69
+      ]
+    ],
+    [
+      [
+        112,
+        69
+      ],
+      [
+        113,
+        69
+      ]
+    ],
+    [
+      [
+        111,
+        71
+      ],
+      [
+        113,
+        71
+      ]
+    ],
+    [
+      [
+        134,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        133,
+        71
+      ],
+      [
+        135,
+        71
+      ]
+    ],
+    [
+      [
+        178,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        200,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        156,
+        78
+      ],
+      [
+        157,
+        78
+      ]
+    ],
+    [
+      [
+        156,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        177,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        89,
+        91
+      ],
+      [
+        91,
+        91
+      ]
+    ],
+    [
+      [
+        40,
+        14
+      ],
+      [
+        43,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        14
+      ],
+      [
+        175,
+        14
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        175,
+        36
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        219,
+        47
+      ]
+    ],
+    [
+      [
+        153,
+        54
+      ],
+      [
+        155,
+        54
+      ]
+    ],
+    [
+      [
+        89,
+        79
+      ],
+      [
+        89,
+        81
+      ]
+    ],
+    [
+      [
+        150,
+        5
+      ],
+      [
+        229,
+        5
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        153,
+        14
+      ],
+      [
+        153,
+        5
+      ]
+    ],
+    [
+      [
+        150,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ],
+      [
+        131,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        216,
+        14
+      ],
+      [
+        221,
+        14
+      ],
+      [
+        229,
+        14
+      ]
+    ],
+    [
+      [
+        221,
+        14
+      ],
+      [
+        221,
+        30
+      ],
+      [
+        23,
+        30
+      ],
+      [
+        23,
+        36
+      ],
+      [
+        25,
+        36
+      ]
+    ],
+    [
+      [
+        45,
+        30
+      ],
+      [
+        45,
+        36
+      ],
+      [
+        47,
+        36
+      ]
+    ],
+    [
+      [
+        40,
+        36
+      ],
+      [
+        43,
+        36
+      ],
+      [
+        43,
+        32
+      ],
+      [
+        67,
+        32
+      ],
+      [
+        67,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        36
+      ],
+      [
+        87,
+        36
+      ],
+      [
+        87,
+        32
+      ],
+      [
+        229,
+        32
+      ]
+    ],
+    [
+      [
+        172,
+        36
+      ],
+      [
+        175,
+        36
+      ],
+      [
+        175,
+        58
+      ],
+      [
+        131,
+        58
+      ],
+      [
+        131,
+        71
+      ],
+      [
+        135,
+        71
+      ]
+    ],
+    [
+      [
+        128,
+        58
+      ],
+      [
+        131,
+        58
+      ]
+    ],
+    [
+      [
+        128,
+        69
+      ],
+      [
+        131,
+        69
+      ]
+    ],
+    [
+      [
+        172,
+        80
+      ],
+      [
+        175,
+        80
+      ],
+      [
+        175,
+        91
+      ],
+      [
+        229,
+        91
+      ]
+    ],
+    [
+      [
+        216,
+        47
+      ],
+      [
+        221,
+        47
+      ],
+      [
+        221,
+        69
+      ],
+      [
+        216,
+        69
+      ]
+    ],
+    [
+      [
+        221,
+        47
+      ],
+      [
+        229,
+        47
+      ]
+    ],
+    [
+      [
+        5,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        5,
+        21
+      ],
+      [
+        45,
+        21
+      ],
+      [
+        45,
+        16
+      ],
+      [
+        47,
+        16
+      ]
+    ],
+    [
+      [
+        5,
+        49
+      ],
+      [
+        129,
+        49
+      ],
+      [
+        129,
+        69
+      ],
+      [
+        135,
+        69
+      ]
+    ],
+    [
+      [
+        150,
+        5
+      ],
+      [
+        153,
+        5
+      ],
+      [
+        153,
+        14
+      ],
+      [
+        157,
+        14
+      ]
+    ],
+    [
+      [
+        106,
+        58
+      ],
+      [
+        109,
+        58
+      ],
+      [
+        109,
+        80
+      ]
+    ],
+    [
+      [
+        106,
+        69
+      ],
+      [
+        113,
+        69
+      ]
+    ],
+    [
+      [
+        106,
+        80
+      ],
+      [
+        109,
+        80
+      ]
+    ],
+    [
+      [
+        109,
+        58
+      ],
+      [
+        113,
+        58
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        229,
+        80
+      ]
+    ],
+    [
+      [
+        195,
+        80
+      ],
+      [
+        195,
+        16
+      ],
+      [
+        201,
+        16
+      ]
+    ],
+    [
+      [
+        150,
+        69
+      ],
+      [
+        151,
+        69
+      ],
+      [
+        179,
+        69
+      ]
+    ],
+    [
+      [
+        151,
+        69
+      ],
+      [
+        151,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        5,
+        27
+      ],
+      [
+        153,
+        27
+      ],
+      [
+        153,
+        78
+      ],
+      [
+        157,
+        78
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        157,
+        36
+      ]
+    ],
+    [
+      [
+        150,
+        47
+      ],
+      [
+        157,
+        47
+      ]
+    ],
+    [
+      [
+        194,
+        47
+      ],
+      [
+        201,
+        47
+      ]
+    ],
+    [
+      [
+        194,
+        69
+      ],
+      [
+        201,
+        69
+      ]
+    ],
+    [
+      [
+        40,
+        58
+      ],
+      [
+        43,
+        58
+      ],
+      [
+        43,
+        54
+      ],
+      [
+        155,
+        54
+      ],
+      [
+        155,
+        49
+      ],
+      [
+        157,
+        49
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          140,
+          8
+        ],
+        [
+          141,
+          8
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          74,
+          19
+        ],
+        [
+          75,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          19
+        ],
+        [
+          119,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          19
+        ],
+        [
+          141,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          19
+        ],
+        [
+          163,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          204,
+          19
+        ],
+        [
+          207,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.988
+    },
+    {
+      "path": [
+        [
+          206,
+          21
+        ],
+        [
+          207,
+          21
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.75
+    },
+    {
+      "path": [
+        [
+          29,
+          41
+        ],
+        [
+          31,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.944
+    },
+    {
+      "path": [
+        [
+          51,
+          41
+        ],
+        [
+          53,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          41
+        ],
+        [
+          75,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.87
+    },
+    {
+      "path": [
+        [
+          95,
+          41
+        ],
+        [
+          97,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.943
+    },
+    {
+      "path": [
+        [
+          117,
+          41
+        ],
+        [
+          119,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.962
+    },
+    {
+      "path": [
+        [
+          139,
+          41
+        ],
+        [
+          141,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.981
+    },
+    {
+      "path": [
+        [
+          162,
+          41
+        ],
+        [
+          163,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          52
+        ],
+        [
+          141,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          162,
+          52
+        ],
+        [
+          163,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.958
+    },
+    {
+      "path": [
+        [
+          161,
+          54
+        ],
+        [
+          163,
+          54
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.944
+    },
+    {
+      "path": [
+        [
+          184,
+          52
+        ],
+        [
+          185,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          52
+        ],
+        [
+          207,
+          52
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.917
+    },
+    {
+      "path": [
+        [
+          29,
+          63
+        ],
+        [
+          31,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.963
+    },
+    {
+      "path": [
+        [
+          95,
+          63
+        ],
+        [
+          97,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          63
+        ],
+        [
+          119,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.87
+    },
+    {
+      "path": [
+        [
+          52,
+          74
+        ],
+        [
+          53,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          74,
+          74
+        ],
+        [
+          75,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          95,
+          74
+        ],
+        [
+          97,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          74
+        ],
+        [
+          119,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          117,
+          76
+        ],
+        [
+          119,
+          76
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.943
+    },
+    {
+      "path": [
+        [
+          140,
+          74
+        ],
+        [
+          141,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          139,
+          76
+        ],
+        [
+          141,
+          76
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          184,
+          74
+        ],
+        [
+          185,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          206,
+          74
+        ],
+        [
+          207,
+          74
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.958
+    },
+    {
+      "path": [
+        [
+          162,
+          83
+        ],
+        [
+          163,
+          83
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.833
+    },
+    {
+      "path": [
+        [
+          162,
+          85
+        ],
+        [
+          163,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.875
+    },
+    {
+      "path": [
+        [
+          183,
+          85
+        ],
+        [
+          185,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          95,
+          96
+        ],
+        [
+          97,
+          96
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.849
+    },
+    {
+      "path": [
+        [
+          46,
+          19
+        ],
+        [
+          49,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.989
+    },
+    {
+      "path": [
+        [
+          134,
+          19
+        ],
+        [
+          137,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.978
+    },
+    {
+      "path": [
+        [
+          178,
+          19
+        ],
+        [
+          181,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          178,
+          41
+        ],
+        [
+          181,
+          41
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.989
+    },
+    {
+      "path": [
+        [
+          222,
+          52
+        ],
+        [
+          225,
+          52
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.967
+    },
+    {
+      "path": [
+        [
+          159,
+          59
+        ],
+        [
+          161,
+          59
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.967
+    },
+    {
+      "path": [
+        [
+          95,
+          84
+        ],
+        [
+          95,
+          86
+        ]
+      ],
+      "kind": "printed vertical rule gap",
+      "source_ink_coverage": 0.846
+    }
+  ],
+  "cells": [
+    [
+      153,
+      5,
+      "O"
+    ],
+    [
+      221,
+      14,
+      "O"
+    ],
+    [
+      45,
+      30,
+      "O"
+    ],
+    [
+      131,
+      58,
+      "O"
+    ],
+    [
+      131,
+      69,
+      "O"
+    ],
+    [
+      175,
+      80,
+      "O"
+    ],
+    [
+      195,
+      80,
+      "O"
+    ],
+    [
+      221,
+      47,
+      "O"
+    ],
+    [
+      153,
+      5,
+      "O"
+    ],
+    [
+      153,
+      14,
+      "O"
+    ],
+    [
+      109,
+      58,
+      "O"
+    ],
+    [
+      109,
+      69,
+      "O"
+    ],
+    [
+      195,
+      80,
+      "O"
+    ],
+    [
+      131,
+      14,
+      "O"
+    ],
+    [
+      151,
+      69,
+      "O"
+    ],
+    [
+      43,
+      58,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "7c4a5145324323f727dea2c91343e5d6559d2f90321932cd0d5059b2443f73a0",
+    "old_txt_sha256": "b9dff052340edbe4a292cb1794b915d9202d25ac4c7a9f684072f5c1094d073b",
+    "new_txt_sha256": "206a7e43ff70d4992a4aee369e7ecdecfec140f68e0e7144d3e67260dec8b6d7",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "43,21": "┴",
+    "153,30": "┼",
+    "195,30": "┼",
+    "43,32": "┬",
+    "45,32": "┼",
+    "89,32": "┬",
+    "153,32": "┼",
+    "195,32": "┼",
+    "41,36": "┴",
+    "67,36": "┴",
+    "87,36": "┴",
+    "111,36": "┬",
+    "133,36": "┬",
+    "153,36": "┼",
+    "133,47": "┼",
+    "153,47": "┼",
+    "175,47": "┼",
+    "195,47": "┼",
+    "219,47": "┬",
+    "129,52": "┼",
+    "129,54": "┼",
+    "153,54": "┼",
+    "129,58": "┼",
+    "133,58": "┬",
+    "153,58": "┼",
+    "89,69": "┼",
+    "129,69": "┴",
+    "133,69": "┼",
+    "153,69": "┼",
+    "195,69": "┼",
+    "219,69": "┴",
+    "131,71": "┴",
+    "177,80": "┬",
+    "177,91": "┴"
+  },
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ201",
+    "accepted": true,
+    "mechanical_pass": true,
+    "mechanical_pass_basis": "Grid/character checks pass; exact baseline differences explicitly source-reviewed, not suppressed.",
+    "old_sha256": "b9dff052340edbe4a292cb1794b915d9202d25ac4c7a9f684072f5c1094d073b",
+    "text_sha256": "206a7e43ff70d4992a4aee369e7ecdecfec140f68e0e7144d3e67260dec8b6d7",
+    "content_sha256": "08951c448e99918b38a39dd8b6fd3cb55a969e1f99d166a7033d47420a8caa23",
+    "verification_sha256": "6580e5fa0664004b0eaad3d62a79f237641aa260bb4bd9ecc2ba8de6ad00cc2c",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.tif",
+    "source_sha256": "7c4a5145324323f727dea2c91343e5d6559d2f90321932cd0d5059b2443f73a0",
+    "source_review_scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field. Root independently checked current hashes, dimensions, allowed characters, node placement, printed fields/selectors/labels and QZ-record differences; every reported difference is recorded below. Native-specific corrections are supported by the peer proofs and QZ checks; root directly inspected QS101 A2/J2, QU001 N6 and its conflicting QZ N5, QT031 fork, and QY041 address reconstruction. Unchanged control text retains its prior review scope.",
+    "peer_review_record": {
+      "page": "QQ201",
+      "reviewed_txt_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.txt",
+      "reviewed_txt_sha256": "206a7e43ff70d4992a4aee369e7ecdecfec140f68e0e7144d3e67260dec8b6d7",
+      "source_path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.tif",
+      "source_sha256": "7c4a5145324323f727dea2c91343e5d6559d2f90321932cd0d5059b2443f73a0",
+      "scope": "Independent native overview versus staged-preview routing/caption review; all native footer fields checked with enlargements. Not a fresh recognition of every control field.",
+      "footer_print_content": "Matches native within documented damaged/clipped footer glyphs.",
+      "findings": [],
+      "accepted": true,
+      "reason": "Revised standalone caption frames and source illustrations independently rechecked against native fulloverview/local proof; root owns final acceptance.",
+      "prior_reviewed_txt_sha256": "4208ccfca20421c5599e25cbe8491ede24c8fca66504f59208580224b0431588",
+      "reviewed_content_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 content.json",
+      "reviewed_content_sha256": "08951c448e99918b38a39dd8b6fd3cb55a969e1f99d166a7033d47420a8caa23",
+      "reviewed_verification_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 verification.json",
+      "reviewed_verification_sha256": "6580e5fa0664004b0eaad3d62a79f237641aa260bb4bd9ecc2ba8de6ad00cc2c",
+      "reviewed_preview_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 staged preview.png",
+      "dimensions_pass": true,
+      "prior_recheck_txt_sha256": "f393c53a3f4773dbba1ff7fa4574748934f1eba15188ba5455d57bcafb3ecf64",
+      "repair_scope": "QQ201 top RADAR rectangle and PVD grouping illustration; QQ281 three standalone captionframes/text complete source-positioned units.",
+      "local_calibration_note": "Owner source-measured anchors supersede reviewer early approximate overview estimates; adjacent native bank borders used.",
+      "hash_matches_owner_manifest": true,
+      "previous_reviewed_content_sha256": "9163c6f2bfdf54cd36374bff165a0b1459f5893ea41b754d16b8f50181d2820a",
+      "post_review_metadata_note": "PVD text metadata rows85–91 independently verified against unchanged reviewed TXT; content hash refreshed only."
+    },
+    "baseline_audit": {
+      "page": "QQ201",
+      "text": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.txt",
+      "content": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 content.json",
+      "verification": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\cas-grid-qq\\QQ201\\QQ201 verification.json",
+      "original_text": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\CAS Diagrams\\QQ201 CSS INSTRUCTION INITIALIZATION AND BEACON HEADER PROCESSING.txt",
+      "old_sha256": "b9dff052340edbe4a292cb1794b915d9202d25ac4c7a9f684072f5c1094d073b",
+      "new_sha256": "206a7e43ff70d4992a4aee369e7ecdecfec140f68e0e7144d3e67260dec8b6d7",
+      "content_sha256": "08951c448e99918b38a39dd8b6fd3cb55a969e1f99d166a7033d47420a8caa23",
+      "nodes": 33,
+      "errors": [],
+      "printed_node_differences": [],
+      "reachability_changes": {},
+      "inherited_header_discrepancies": [],
+      "entry_references": [
+        {
+          "row": 14,
+          "label": "QT051.AAE",
+          "wire_column": 11
+        },
+        {
+          "row": 21,
+          "label": "QQ011.CIE",
+          "wire_column": 11
+        },
+        {
+          "row": 27,
+          "label": "QQ251.CFE",
+          "wire_column": 11
+        },
+        {
+          "row": 49,
+          "label": "QQ221.EFE",
+          "wire_column": 11
+        }
+      ],
+      "F_row_manual_check_pending": false,
+      "mechanical_pass": true,
+      "source_review_required": true,
+      "accepted": false
+    },
+    "retained_notes": [],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T03:06:54.732208+00:00"
+  }
+}

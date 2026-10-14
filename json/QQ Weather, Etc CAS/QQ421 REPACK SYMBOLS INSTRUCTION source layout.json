@@ -1,0 +1,1417 @@
+{
+  "nodes": [
+    {
+      "box": "A6",
+      "leg": "X0",
+      "address": "0F34",
+      "fields": [
+        "A ◺2+D",
+        "A →D",
+        "C ABC+1"
+      ],
+      "exit": "X*──AF",
+      "comments": [
+        "UPDATE WCT ADDR.",
+        "TO NEXT ORDER.",
+        "STEP ABC TO",
+        "ORDER.BRANCH",
+        "TO GET NEW WCT",
+        "WORDS IF NEEDED."
+      ],
+      "R_line": "R         D2=3",
+      "grid": [
+        135,
+        0
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C2",
+      "leg": "X1",
+      "address": "0F51",
+      "fields": [
+        "C 1→STAD"
+      ],
+      "exit": "X*──CB",
+      "comments": [
+        "TURN ON STAD",
+        "FOR DELETE.",
+        "BRANCH IF BATCH",
+        "COMPARE."
+      ],
+      "R_line": "R          W=0",
+      "grid": [
+        47,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C4",
+      "leg": "X1",
+      "address": "0F35",
+      "fields": [
+        "A IC+◺2",
+        "A →IC",
+        "C ◺S12CRY→ICLT"
+      ],
+      "exit": "X*──CD",
+      "comments": [
+        "UPDATE ODTA",
+        "TO NEXT DESCR.",
+        "FETCH NEW ODT",
+        "WORDS IF NEEDED."
+      ],
+      "R_line": "R        IC3=3",
+      "grid": [
+        91,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "C5",
+      "leg": "X0",
+      "address": "0F30",
+      "fields": [
+        "A E23+◺K",
+        "A →◺K"
+      ],
+      "exit": "X0──CE",
+      "comments": [
+        "UPDATE DELETE",
+        "SYMBOL COUNT."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        11
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G3",
+      "leg": "X1",
+      "address": "0F31",
+      "fields": [
+        "A E23+◺K",
+        "A →◺K",
+        "S MS-REQ*IC-4"
+      ],
+      "exit": "XX──GC",
+      "comments": [
+        "UPDATE DELETE",
+        "SYMBOL COUNT.",
+        "REQUEST NEW ODT",
+        "WORDS."
+      ],
+      "grid": [
+        69,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G4",
+      "leg": "XX",
+      "address": "0F32",
+      "fields": [
+        "S STOP2"
+      ],
+      "exit": "0X──GD",
+      "comments": [],
+      "R_line": "R            0",
+      "grid": [
+        91,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G5",
+      "leg": "0X",
+      "address": "0F48",
+      "fields": [
+        "D MS→Q",
+        "D ◺MS→LM"
+      ],
+      "exit": "X0──GE",
+      "comments": [
+        "NEW ODT WORDS",
+        "TO Q AND LM."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        113,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "G6",
+      "leg": "X0",
+      "address": "0F44",
+      "fields": [
+        "D ◺LM→N,Q→R*IC"
+      ],
+      "exit": "X0──GF",
+      "comments": [
+        "ODT DESCRIPTOR",
+        "TO N AND R REGS."
+      ],
+      "R_line": "R            0",
+      "grid": [
+        135,
+        33
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "L7",
+      "leg": "X0",
+      "address": "0F36",
+      "fields": [
+        "B 1+0",
+        "D R→E",
+        "C 0→STAD"
+      ],
+      "exit": "*X──LG",
+      "comments": [
+        "DESCRIPTOR TO E",
+        "(SYMBOL COUNT)",
+        "STAT D ON IF",
+        "LAST ORDER WAS",
+        "DELETE OR DELN1."
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        157,
+        55
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q7",
+      "leg": "X1",
+      "address": "0F37",
+      "fields": [
+        "S MS-REQ*D-3"
+      ],
+      "exit": "XX──QG",
+      "comments": [
+        "REQUEST NEW",
+        "WCT WORDS."
+      ],
+      "grid": [
+        157,
+        77
+      ],
+      "actual_height": 8
+    },
+    {
+      "box": "Q8",
+      "leg": "XX",
+      "address": "0F38",
+      "fields": [
+        "B 1+0",
+        "D R→E",
+        "D MS→AB",
+        "S STOP2",
+        "C 0→STAD"
+      ],
+      "exit": "*X──QH",
+      "comments": [
+        "DESCRIPTOR TO E",
+        "(SYMBOL COUNT)",
+        "NEW WCT WORDS",
+        "TO AB REGS.",
+        "STAT D ON IF",
+        "LAST ORDER WAS",
+        "DELETE OR DELN1."
+      ],
+      "R_line": "R STAD",
+      "grid": [
+        179,
+        77
+      ],
+      "actual_height": 8
+    }
+  ],
+  "source_grid": {
+    "first_right": 1511.09,
+    "first_header_y": 326.15,
+    "column_step": 643.0,
+    "row_step": 495.42
+  },
+  "text": [
+    [
+      2,
+      14,
+      "QQ401.NFE"
+    ],
+    [
+      2,
+      15,
+      "(X1)"
+    ],
+    [
+      46,
+      10,
+      "DELETE"
+    ],
+    [
+      90,
+      10,
+      "BATCH COMPARE"
+    ],
+    [
+      90,
+      1,
+      "NO BATCH COMPARE."
+    ],
+    [
+      2,
+      47,
+      "QQ411.JFE"
+    ],
+    [
+      2,
+      48,
+      "(0X)END OF"
+    ],
+    [
+      2,
+      49,
+      "DELETEN2."
+    ],
+    [
+      2,
+      50,
+      "NEW ODT WORDS"
+    ],
+    [
+      2,
+      51,
+      "REQUESTED."
+    ],
+    [
+      2,
+      52,
+      "QQ411.LDE"
+    ],
+    [
+      2,
+      53,
+      "(X0)END OF"
+    ],
+    [
+      2,
+      54,
+      "DELETEN2."
+    ],
+    [
+      2,
+      60,
+      "QQ411.NDE"
+    ],
+    [
+      2,
+      61,
+      "(X0.X1)END OF"
+    ],
+    [
+      2,
+      62,
+      "DELETEN1."
+    ],
+    [
+      2,
+      63,
+      "STAT D ON."
+    ],
+    [
+      2,
+      64,
+      "BRANCH TO GET"
+    ],
+    [
+      2,
+      65,
+      "NEW WCT WORDS"
+    ],
+    [
+      2,
+      66,
+      "IF NEEDED."
+    ],
+    [
+      229,
+      80,
+      "QQ401"
+    ],
+    [
+      239,
+      80,
+      "LGE"
+    ],
+    [
+      229,
+      81,
+      "(0X.1X)GO"
+    ],
+    [
+      229,
+      82,
+      "TO TEST FOR"
+    ],
+    [
+      229,
+      83,
+      "NEXT ORDER."
+    ],
+    [
+      5,
+      77,
+      "RPSB.LOCAL STORAGE REGISTER ASSIGNMENTS."
+    ],
+    [
+      5,
+      79,
+      "GPR0 HISTORY SYMBOL COUNT"
+    ],
+    [
+      5,
+      80,
+      "GPR1 CURRENT SYMBOL COUNT"
+    ],
+    [
+      5,
+      81,
+      "GPR2 OLD DESCRIPTOR TABLE ADDRESS"
+    ],
+    [
+      5,
+      82,
+      "GPR3 NEW DESCRIPTOR TABLE ADDRESS"
+    ],
+    [
+      5,
+      83,
+      "GPR4 OLD REFRESH MEMORY ADDRESS"
+    ],
+    [
+      5,
+      84,
+      "GPR5 NEW REFRESH MEMORY ADDRESS"
+    ],
+    [
+      5,
+      85,
+      "GPR6 NEXT SORT BIN ADDRESS"
+    ],
+    [
+      5,
+      86,
+      "GPR7 WORK CONTROL TABLE ADDRESS"
+    ],
+    [
+      5,
+      87,
+      "GPR8 STATUS CODE(BITS 0-3)IRXT CODE"
+    ],
+    [
+      5,
+      88,
+      "     (BITS 4-7).2XBIN NO.(27-31)"
+    ],
+    [
+      5,
+      89,
+      "GPR9 SORT BIN START DISP.ADDRESS"
+    ],
+    [
+      5,
+      90,
+      "GPR10 SORT BIN BASE ADDRESS"
+    ],
+    [
+      5,
+      91,
+      "GPR11 NEW DSCRPTR TABLE PAGE ADDRESS"
+    ],
+    [
+      5,
+      92,
+      "FPR0 ORMA FOR INTERRUPT ROUTINES"
+    ],
+    [
+      5,
+      93,
+      "FPR1 DELETE ROUTINES WORK REG"
+    ],
+    [
+      5,
+      94,
+      "FPR2 INSERT SYMBOL COUNT (BYTES)"
+    ],
+    [
+      5,
+      95,
+      "FPR3 NRMA FOR INTERRUPT ROUTINES."
+    ],
+    [
+      5,
+      96,
+      "FPR4 CONSTANT (00000004)"
+    ],
+    [
+      5,
+      97,
+      "FPR5 ORIGINAL HISTORY BYTE COUNT"
+    ],
+    [
+      5,
+      98,
+      "FPR6 MULT INT IND.ORIG C/C BYTE CNT"
+    ],
+    [
+      5,
+      99,
+      "FPR7 NOT USED"
+    ]
+  ],
+  "footer": [
+    [
+      152,
+      97,
+      "713671"
+    ],
+    [
+      164,
+      97,
+      "04/28/70"
+    ],
+    [
+      175,
+      97,
+      "MACH"
+    ],
+    [
+      186,
+      97,
+      "C7201-02"
+    ],
+    [
+      197,
+      97,
+      "DATE  05/21/70"
+    ],
+    [
+      218,
+      97,
+      "SHEET     1  QQ421"
+    ],
+    [
+      175,
+      98,
+      "NAME"
+    ],
+    [
+      197,
+      98,
+      "LOG     048"
+    ],
+    [
+      218,
+      98,
+      "VERSION"
+    ],
+    [
+      175,
+      99,
+      "MODE"
+    ],
+    [
+      186,
+      99,
+      "MANUAL"
+    ],
+    [
+      175,
+      100,
+      "P.N."
+    ],
+    [
+      186,
+      100,
+      "2583860"
+    ],
+    [
+      200,
+      100,
+      "REPACK SYMBOLS INSTRUCTION"
+    ],
+    [
+      200,
+      101,
+      "DELETE"
+    ],
+    [
+      175,
+      101,
+      "IBM CORP."
+    ],
+    [
+      186,
+      101,
+      "SDD"
+    ]
+  ],
+  "wire_erase": [
+    [
+      3,
+      78,
+      41,
+      100
+    ],
+    [
+      46,
+      13,
+      90,
+      15
+    ],
+    [
+      88,
+      3,
+      155,
+      7
+    ],
+    [
+      66,
+      30,
+      152,
+      38
+    ],
+    [
+      152,
+      58,
+      156,
+      82
+    ],
+    [
+      171,
+      58,
+      198,
+      81
+    ]
+  ],
+  "wire_paths": [
+    [
+      [
+        133,
+        5
+      ],
+      [
+        135,
+        5
+      ]
+    ],
+    [
+      [
+        90,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        90,
+        17
+      ],
+      [
+        91,
+        17
+      ]
+    ],
+    [
+      [
+        112,
+        14
+      ],
+      [
+        113,
+        14
+      ]
+    ],
+    [
+      [
+        112,
+        34
+      ],
+      [
+        113,
+        34
+      ]
+    ],
+    [
+      [
+        112,
+        35
+      ],
+      [
+        113,
+        35
+      ]
+    ],
+    [
+      [
+        112,
+        39
+      ],
+      [
+        113,
+        39
+      ]
+    ],
+    [
+      [
+        134,
+        34
+      ],
+      [
+        135,
+        34
+      ]
+    ],
+    [
+      [
+        134,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        155,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        155,
+        60
+      ],
+      [
+        157,
+        60
+      ]
+    ],
+    [
+      [
+        155,
+        80
+      ],
+      [
+        157,
+        80
+      ]
+    ],
+    [
+      [
+        156,
+        82
+      ],
+      [
+        157,
+        82
+      ]
+    ],
+    [
+      [
+        178,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        92,
+        3
+      ],
+      [
+        95,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        108,
+        14
+      ]
+    ],
+    [
+      [
+        11,
+        14
+      ],
+      [
+        47,
+        14
+      ]
+    ],
+    [
+      [
+        62,
+        14
+      ],
+      [
+        89,
+        14
+      ],
+      [
+        91,
+        14
+      ]
+    ],
+    [
+      [
+        89,
+        14
+      ],
+      [
+        89,
+        3
+      ],
+      [
+        135,
+        3
+      ]
+    ],
+    [
+      [
+        106,
+        14
+      ],
+      [
+        109,
+        14
+      ],
+      [
+        109,
+        32
+      ],
+      [
+        67,
+        32
+      ],
+      [
+        67,
+        36
+      ],
+      [
+        69,
+        36
+      ]
+    ],
+    [
+      [
+        84,
+        36
+      ],
+      [
+        91,
+        36
+      ]
+    ],
+    [
+      [
+        106,
+        36
+      ],
+      [
+        113,
+        36
+      ]
+    ],
+    [
+      [
+        128,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ],
+    [
+      [
+        150,
+        36
+      ],
+      [
+        151,
+        36
+      ],
+      [
+        151,
+        30
+      ],
+      [
+        133,
+        30
+      ],
+      [
+        133,
+        5
+      ],
+      [
+        135,
+        5
+      ]
+    ],
+    [
+      [
+        150,
+        3
+      ],
+      [
+        155,
+        3
+      ],
+      [
+        155,
+        58
+      ],
+      [
+        157,
+        58
+      ]
+    ],
+    [
+      [
+        172,
+        58
+      ],
+      [
+        197,
+        58
+      ],
+      [
+        197,
+        80
+      ],
+      [
+        224,
+        80
+      ]
+    ],
+    [
+      [
+        172,
+        80
+      ],
+      [
+        179,
+        80
+      ]
+    ],
+    [
+      [
+        194,
+        80
+      ],
+      [
+        197,
+        80
+      ]
+    ],
+    [
+      [
+        11,
+        47
+      ],
+      [
+        109,
+        47
+      ],
+      [
+        109,
+        39
+      ],
+      [
+        113,
+        39
+      ]
+    ],
+    [
+      [
+        11,
+        52
+      ],
+      [
+        131,
+        52
+      ],
+      [
+        131,
+        38
+      ],
+      [
+        135,
+        38
+      ]
+    ],
+    [
+      [
+        11,
+        60
+      ],
+      [
+        153,
+        60
+      ],
+      [
+        157,
+        60
+      ]
+    ],
+    [
+      [
+        153,
+        60
+      ],
+      [
+        153,
+        82
+      ],
+      [
+        157,
+        82
+      ]
+    ],
+    [
+      [
+        155,
+        58
+      ],
+      [
+        155,
+        78
+      ],
+      [
+        157,
+        78
+      ]
+    ],
+    [
+      [
+        128,
+        14
+      ],
+      [
+        131,
+        14
+      ],
+      [
+        131,
+        36
+      ],
+      [
+        135,
+        36
+      ]
+    ]
+  ],
+  "projection_gap_evidence": [
+    {
+      "path": [
+        [
+          139,
+          10
+        ],
+        [
+          141,
+          10
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.925
+    },
+    {
+      "path": [
+        [
+          96,
+          19
+        ],
+        [
+          97,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.652
+    },
+    {
+      "path": [
+        [
+          96,
+          22
+        ],
+        [
+          97,
+          22
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.696
+    },
+    {
+      "path": [
+        [
+          118,
+          19
+        ],
+        [
+          119,
+          19
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.696
+    },
+    {
+      "path": [
+        [
+          118,
+          39
+        ],
+        [
+          119,
+          39
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.957
+    },
+    {
+      "path": [
+        [
+          118,
+          40
+        ],
+        [
+          119,
+          40
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          118,
+          44
+        ],
+        [
+          119,
+          44
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          140,
+          39
+        ],
+        [
+          141,
+          39
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.913
+    },
+    {
+      "path": [
+        [
+          140,
+          41
+        ],
+        [
+          141,
+          41
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.739
+    },
+    {
+      "path": [
+        [
+          161,
+          63
+        ],
+        [
+          163,
+          63
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.962
+    },
+    {
+      "path": [
+        [
+          161,
+          65
+        ],
+        [
+          163,
+          65
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.868
+    },
+    {
+      "path": [
+        [
+          161,
+          85
+        ],
+        [
+          163,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.849
+    },
+    {
+      "path": [
+        [
+          162,
+          87
+        ],
+        [
+          163,
+          87
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 0.652
+    },
+    {
+      "path": [
+        [
+          184,
+          85
+        ],
+        [
+          185,
+          85
+        ]
+      ],
+      "kind": "printed input stub",
+      "source_ink_coverage": 1.0
+    },
+    {
+      "path": [
+        [
+          98,
+          8
+        ],
+        [
+          101,
+          8
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 0.955
+    },
+    {
+      "path": [
+        [
+          112,
+          19
+        ],
+        [
+          114,
+          19
+        ]
+      ],
+      "kind": "printed horizontal rule gap",
+      "source_ink_coverage": 1.0
+    }
+  ],
+  "cells": [
+    [
+      89,
+      14,
+      "O"
+    ],
+    [
+      153,
+      60,
+      "O"
+    ],
+    [
+      197,
+      80,
+      "O"
+    ],
+    [
+      155,
+      58,
+      "O"
+    ],
+    [
+      131,
+      36,
+      "O"
+    ]
+  ],
+  "status": "Visually reviewed reconstruction; printer grid migration reviewed",
+  "wiring_evidence": [
+    "All11 outgoing routes traced; incoming ODT/WCT request return rules preserved at distinct input fields. L7/Q8 merge at outgoing test-next-order portal, separate from Q7 requested-WCT input.",
+    "A6 D2=3 chooses L7/Q7; both arms preserved on request bus. C5 joins G5-to-G6 descriptor input."
+  ],
+  "scan_order_neighbors": {
+    "before": {
+      "page": "QQ411",
+      "id": 1630,
+      "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\img20141205_17025764.tif",
+      "scan_timestamp": "2014-12-05 17:02:57.640000"
+    },
+    "after": {
+      "page": "QQ431",
+      "id": 1632,
+      "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\img20141205_17040984.tif",
+      "scan_timestamp": "2014-12-05 17:04:09.840000"
+    },
+    "evidence": "Preserved original scan modification timestamps"
+  },
+  "review_notes": [
+    "Human physical-copy confirmation resolved clipped footer: IBM CORP.; SDD; DELETE."
+  ],
+  "canvas_columns": 245,
+  "canvas_rows": 102,
+  "grid_migration": {
+    "status": "private draft pending independent source/placement review",
+    "source_sha256": "20fe05b87d6462b598aaf6073f59f389b9f95f9da6c22521d0aa29727e7b04a4",
+    "old_txt_sha256": "01ebd453bd017a3067c86df5c8401cbbb02de518f3e89b386182c29635ff6408",
+    "new_txt_sha256": "19fea778029c6d4860bc9237a8813a6cd3d8bb9bda020f456c247ae4a1e1c485",
+    "F_row_manual_check_pending": false,
+    "node_addresses_and_controls_preserved": true
+  },
+  "caption_reference_positions": [],
+  "wire_shapes": {
+    "45,14": "┼",
+    "108,14": "┬",
+    "109,14": "┬",
+    "108,47": "┴",
+    "151,60": "┬",
+    "155,60": "┼"
+  },
+  "label_row_basis": "node top relative",
+  "root_grid_migration_review": {
+    "page": "QQ421",
+    "accepted": true,
+    "mechanical_pass": true,
+    "old_sha256": "434c1ea0fd1e11a79241e0fe2a42e9e4a7d1d68d26d27c6bcaaba75476c60501",
+    "text_sha256": "434c1ea0fd1e11a79241e0fe2a42e9e4a7d1d68d26d27c6bcaaba75476c60501",
+    "content_sha256": "d570af811bd60c13fa58cbeb9b512061539d0ebc2fadbd79fd5f20eeffb3f2d0",
+    "verification_sha256": "423648e4b2a567c731b2bfcad7ca6ee06f871de91e9722a1ffee2c314fad61ad",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\QQ Weather, Etc CAS\\QQ421 REPACK SYMBOLS INSTRUCTION.tif",
+    "source_sha256": "20fe05b87d6462b598aaf6073f59f389b9f95f9da6c22521d0aa29727e7b04a4",
+    "source_review_scope": "Page TXT is byte-identical to the previously human-confirmed accepted version. Exact non-space runs of the current accepted UTF-8 printer grid. Rich control and routing semantics remain in nodes/source-layout fields; the earlier annotation array is retained explicitly as historical evidence. Exact full-page round-trip reconstruction checked; unrelated node controls, addresses, geometry and wiring retain prior acceptance.",
+    "retained_notes": [
+      "Physical-copy confirmation retained. Current verification annotations reproduce every accepted grid cell, including previously omitted lower FPR prose. Earlier rich annotations retained as historical evidence."
+    ],
+    "grid": {
+      "columns": 245,
+      "rows": 102
+    },
+    "reviewed_utc": "2026-10-13T13:05:35.083127+00:00",
+    "backup_directory": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\manual-verification\\annotation-alignment\\QQ421\\before exact annotation alignment",
+    "human_confirmation": {
+      "page": "QQ421",
+      "field": "Clipped lowest footer row",
+      "confirmed_printed_value": "IBM CORP.  SDD",
+      "confirmed_title_continuation": "DELETE",
+      "confirmation": "Direct human physical-copy confirmation in coordinator chat: IBM CORP.   SDD; DELETE is correct",
+      "confirmed_utc": "2026-10-13T12:36:49.790077+00:00",
+      "text_regions": [
+        {
+          "row": 101,
+          "column": 175,
+          "text": "IBM CORP."
+        },
+        {
+          "row": 101,
+          "column": 186,
+          "text": "SDD"
+        },
+        {
+          "row": 101,
+          "column": 200,
+          "text": "DELETE",
+          "already_correct": true
+        }
+      ],
+      "scope": "Restore only the clipped company label and SDD value using the accepted footer columns. DELETE is confirmed unchanged. Existing body, layout, controls, addresses and wiring acceptance retained; footer metadata is aligned with the accepted text."
+    }
+  },
+  "resolved_by_physical_copy": [
+    "Footer lowest IBM identification row is clipped off the scan; unknown row is represented as � rather than inferred standard footer wording."
+  ],
+  "unresolved": [],
+  "human_manual_verification": {
+    "page": "QQ421",
+    "field": "Clipped lowest footer row",
+    "confirmed_printed_value": "IBM CORP.  SDD",
+    "confirmed_title_continuation": "DELETE",
+    "confirmation": "Direct human physical-copy confirmation in coordinator chat: IBM CORP.   SDD; DELETE is correct",
+    "confirmed_utc": "2026-10-13T12:36:49.790077+00:00",
+    "text_regions": [
+      {
+        "row": 101,
+        "column": 175,
+        "text": "IBM CORP."
+      },
+      {
+        "row": 101,
+        "column": 186,
+        "text": "SDD"
+      },
+      {
+        "row": 101,
+        "column": 200,
+        "text": "DELETE",
+        "already_correct": true
+      }
+    ],
+    "scope": "Restore only the clipped company label and SDD value using the accepted footer columns. DELETE is confirmed unchanged. Existing body, layout, controls, addresses and wiring acceptance retained; footer metadata is aligned with the accepted text."
+  }
+}
