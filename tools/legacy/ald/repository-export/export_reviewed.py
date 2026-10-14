@@ -295,7 +295,8 @@ def receipts():
                     'C2A human correction current audit.json',
                     'AP001 human socket correction current audit.json',
                     'Recorded and recovered UTF8 application current audit.json',
-                    'OR function human correction current audit.json']:
+                    'OR function human correction current audit.json',
+                    'CA211 human primary function correction current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit.get('passed') is not True:continue
@@ -303,7 +304,8 @@ def receipts():
    page=item.get('page')
    if not page or not PAGE.fullmatch(page):continue
    application_schema=(audit_name in {'Recorded and recovered UTF8 application current audit.json',
-                                     'OR function human correction current audit.json'})
+                                     'OR function human correction current audit.json',
+                                     'CA211 human primary function correction current audit.json'})
    records[page]=[{'blocked':True}] if application_schema else []
    checks=item.get('checks',{})
    if item.get('eligible') is not True or not checks or not all(value is True for value in checks.values()):continue
