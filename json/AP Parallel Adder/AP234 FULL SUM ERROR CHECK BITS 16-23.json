@@ -3,7 +3,7 @@
   "title": "FULL SUM ERROR CHECK BITS 16-23",
   "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AP Parallel Adder\\AP234 FULL SUM ERROR CHECK BITS 16-23.tif",
   "source_reviewed": true,
-  "review_status": "draft; native AP234 source and exact grid reviewed, independent coordinator acceptance pending",
+  "review_status": "Source and final preview independently accepted by AP3",
   "nodes": [
     {
       "id": "AA",
@@ -605,7 +605,7 @@
       "id": "AM",
       "column": 96,
       "row": 23,
-      "function": "UR",
+      "function": "OR",
       "unit": "U03AL",
       "card_type": "4055",
       "portion": "AA",
@@ -1418,7 +1418,7 @@
       "id": "BD",
       "column": 142,
       "row": 58,
-      "function": "UR",
+      "function": "OR",
       "unit": "U03AL",
       "card_type": "4055",
       "portion": "BB",
@@ -1483,7 +1483,7 @@
       "id": "BE",
       "column": 142,
       "row": 72,
-      "function": "UR",
+      "function": "OR",
       "unit": "U03AL",
       "card_type": "4055",
       "portion": "BC",
@@ -2279,7 +2279,7 @@
       "id": "BU",
       "column": 188,
       "row": 44,
-      "function": "UR",
+      "function": "OR",
       "unit": "U03AL",
       "card_type": "4055",
       "portion": "CB",
@@ -9195,6 +9195,10 @@
     {
       "location": "Native AP234 fields and routing",
       "evidence": "All44 portions, three input matrices and final four-term comparison reviewed from AP234 native scan. Standard banks. AM UR, AN OR, BD/BE UR, BT OR, BU UR, BV OR. AL bottom input U04 differs from AH D04; AU U12; BU J06 source-specific. First rails AA63/AC64/AB65/SUM19 66/SUM20 67/SUM21 68. Middle AR109/AQ111/AP112/SUM22 113/PARITY114/SUM23 115; AS rail109 and AN return108 stay separate. Right group BC153/BB155/BA157/SUM16 159/SUM18 160/SUM17 161. Every diamond and unjoined crossing inspected. Upper convergence BF183/BG184/BH183/BJ176; middle BK184/BL183/BM184/BN176; final BP183/BQ184/BR183/BS176, counted against local box widths. Final disjoint AN/BE spans reuse159 without joining. Literal inputs AP201BE4 and AP235AU4 preserved. Footer BW, no connector table. A1 cross-check covers card identity, not wire ownership. Independent coordinator review pending."
+    },
+    {
+      "location": "Direct human OR function tokens",
+      "evidence": "Direct human OR token normalization: AM UR -> OR, BD UR -> OR, BE UR -> OR, BU UR -> OR. Exact typed function labels only; source literal observations retained historically. IDs, units, pins, signals, widths, wire geometry and other uncertainties unchanged. Instruction: D:\\Github\\IBM360\\tmp\\ald-text\\ald\\ap3\\root\\or-function-human-followup-v1\\Exact direct human OR token instruction.json"
     }
   ],
   "validation": {
@@ -10584,7 +10588,8 @@
     "canvas_dimensions_passed": true,
     "uppercase_diagram_passed": true,
     "footer_one_cell_gap_passed": true,
-    "unreadable_characters": 3
+    "unreadable_characters": 3,
+    "printer_grid_verified": true
   },
   "scan_order_evidence": {
     "page": "AP234",
@@ -10599,5 +10604,93 @@
       "before": "AP233 PADDER 4 BIT PARITY PREDICT 20-23.tif",
       "after": "AP235 PARITY LATCH SHIFTER AND FULL SUM ERROR TRIGGER 16-23.tif"
     }
+  },
+  "or_function_human_corrections": [
+    {
+      "exact_human_instruction": {
+        "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\ap3\\root\\or-function-human-followup-v1\\Exact direct human OR token instruction.json",
+        "sha256": "9f84eab52599d4added07d98a3a8b920f706b2eba46cad15e061ed9b214e5334"
+      },
+      "function_fields": [
+        {
+          "node_index": 11,
+          "node_id": "AM",
+          "printed_id": null,
+          "grid": "3D",
+          "row": 24,
+          "column": 97,
+          "before": "UR",
+          "after": "OR",
+          "tokens": [
+            {
+              "offset": 0,
+              "before": "UR",
+              "after": "OR"
+            }
+          ]
+        },
+        {
+          "node_index": 27,
+          "node_id": "BD",
+          "printed_id": null,
+          "grid": "5J",
+          "row": 59,
+          "column": 143,
+          "before": "UR",
+          "after": "OR",
+          "tokens": [
+            {
+              "offset": 0,
+              "before": "UR",
+              "after": "OR"
+            }
+          ]
+        },
+        {
+          "node_index": 28,
+          "node_id": "BE",
+          "printed_id": null,
+          "grid": "5L",
+          "row": 73,
+          "column": 143,
+          "before": "UR",
+          "after": "OR",
+          "tokens": [
+            {
+              "offset": 0,
+              "before": "UR",
+              "after": "OR"
+            }
+          ]
+        },
+        {
+          "node_index": 42,
+          "node_id": "BU",
+          "printed_id": null,
+          "grid": "7G",
+          "row": 45,
+          "column": 189,
+          "before": "UR",
+          "after": "OR",
+          "tokens": [
+            {
+              "offset": 0,
+              "before": "UR",
+              "after": "OR"
+            }
+          ]
+        }
+      ],
+      "source_literal_and_complete_predecessor_review_preserved": true,
+      "human_authorized_literal_override_not_new_native_legibility_claim": true,
+      "units_ids_signal_names_prose_and_routes_unchanged": true
+    }
+  ],
+  "source_sha256": "3f6b030d5cea663761624f24e56624115010c24b72ea8d676828ace8cc9d47b3",
+  "source_crops_directory": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\ap3\\independent-main\\or-function-human-followup-v1\\AP234",
+  "independent_review": {
+    "reviewer": "AP3 ap_main independent reviewer",
+    "reviewed_utc": "2026-10-14T12:02:52.512060+00:00",
+    "evidence": "Independent minimal human OR-function normalization acceptance for AP234: 4 active functionfields/4 exact tokens/4 glyphcells. Exact directhumanquote and immutable instruction SHA9f84eab52599d4added07d98a3a8b920f706b2eba46cad15e061ed9b214e5334 verified. User UR/UH→OR and✲UR/✲UH→✲OR applies only standalone exact tokens in active functionlabels, including compoundlabels. Current accepted predecessor/sourceSHA/model/TXT/notes/preview and prior complete native/source/grid review evidence retained. No fresh whole-page native review, no newfull15 or retranscription performed or claimed. Actual relevant human before/candidate functionmontage(s) read in this turn, hash-bound to exact page functionstrip pixels and current approved before/candidate render crops; sevenmontages collectively cover161fields/165tokens/165glyphcells in main50pages. Full predecessor and candidate previews independently pixel-verified against JuliaMono20/12x18 TXT rendering, not claimed manually viewed as wholepages. Exact raw candidatebytes equal immutable predecessor with only declared functionglyph replacements, retaining every rawlineending/trailingnewline/245x103 position. Nodes.function changes independently recomputed from exact token rule; only declared active printedlabel aliases at identical row/column/span may change. Allother units/IDs/signals/prose/pins/nets/routes/portgeometry/wedges/banks/sourcegap/unknownmarkers and previoushuman/source/native/socket/header/card histories unchanged. Original literal observations preserved historically; human override is not a new nativelegibility assertion. New or_function_human_corrections record exact instructions and fields separately. Validation unchanged except explicit legacyprinter_grid_verified annotation from prior acceptedrootgrid where needed; stored and actualunknowncounts retained. AP211 existing BC✲OR and earlier confirmed AW D04/D08 preserved. Private acceptance only; canonicalhold respected, no canonical/export/workbook/originalscan writes."
   }
 }
