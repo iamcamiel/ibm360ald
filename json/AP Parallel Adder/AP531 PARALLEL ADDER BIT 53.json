@@ -1222,7 +1222,7 @@
       "column": 119,
       "row": 65,
       "function": "A",
-      "unit": "U03AQ",
+      "unit": "U03AA",
       "card_type": "4191",
       "portion": "15",
       "printed_card_portion": "419115",
@@ -1250,8 +1250,8 @@
           "column": 115
         },
         {
-          "pin": "J12",
-          "printed_label": "J12",
+          "pin": "B12",
+          "printed_label": "B12",
           "row": 68,
           "side": "input",
           "triangle": false,
@@ -1289,7 +1289,7 @@
       "column": 119,
       "row": 72,
       "function": "A",
-      "unit": "U03AQ",
+      "unit": "U03AA",
       "card_type": "4191",
       "portion": "16",
       "printed_card_portion": "419116",
@@ -1356,7 +1356,7 @@
       "column": 119,
       "row": 79,
       "function": "A",
-      "unit": "U03AQ",
+      "unit": "U03AA",
       "card_type": "4191",
       "portion": "17",
       "printed_card_portion": "419117",
@@ -1384,8 +1384,8 @@
           "column": 127
         },
         {
-          "pin": "G07",
-          "printed_label": "G07",
+          "pin": "B07",
+          "printed_label": "B07",
           "row": 84,
           "side": "input",
           "triangle": false,
@@ -2071,7 +2071,7 @@
       "id": "E13",
       "driver": "AP701AU4",
       "targets": [
-        "AY.J12"
+        "AY.B12"
       ],
       "external": null,
       "source_reviewed": true
@@ -2331,24 +2331,6 @@
       "source_reviewed": true
     },
     {
-      "id": "BJstub",
-      "driver": null,
-      "targets": [
-        "BJ.input73"
-      ],
-      "external": null,
-      "source_reviewed": true
-    },
-    {
-      "id": "AZBA",
-      "driver": "AZ.output / BA.output",
-      "targets": [
-        "BJ.input74"
-      ],
-      "external": null,
-      "source_reviewed": true
-    },
-    {
       "id": "BMout",
       "driver": "BM.B04",
       "targets": [
@@ -2411,7 +2393,7 @@
       "id": "BEout",
       "driver": "BE.B07",
       "targets": [
-        "BA.G07",
+        "BA.B07",
         "BG.D11"
       ],
       "external": [
@@ -2427,6 +2409,26 @@
         "KT541"
       ],
       "source_reviewed": true
+    },
+    {
+      "id": "AZ",
+      "driver": "AZ.output",
+      "targets": [
+        "BJ.input74"
+      ],
+      "external": null,
+      "source_reviewed": true,
+      "source_review_basis": "Human-confirmed distinct AZ driver into BJ.input74"
+    },
+    {
+      "id": "BA",
+      "driver": "BA.output",
+      "targets": [
+        "BJ.input73"
+      ],
+      "external": null,
+      "source_reviewed": true,
+      "source_review_basis": "Human-confirmed distinct BA driver into BJ.input73"
     }
   ],
   "wire_paths": [
@@ -3659,10 +3661,18 @@
       ]
     },
     {
-      "net": "BJstub",
+      "net": "BA",
       "points": [
         [
-          134,
+          127,
+          82
+        ],
+        [
+          131,
+          82
+        ],
+        [
+          131,
           73
         ],
         [
@@ -3672,7 +3682,7 @@
       ]
     },
     {
-      "net": "AZBA",
+      "net": "AZ",
       "points": [
         [
           127,
@@ -3689,23 +3699,6 @@
         [
           141,
           74
-        ]
-      ]
-    },
-    {
-      "net": "AZBA",
-      "points": [
-        [
-          127,
-          82
-        ],
-        [
-          134,
-          82
-        ],
-        [
-          134,
-          75
         ]
       ]
     },
@@ -4106,11 +4099,6 @@
       "row": 47
     },
     {
-      "net": "AZBA",
-      "column": 134,
-      "row": 75
-    },
-    {
       "net": "BCout",
       "column": 184,
       "row": 68
@@ -4476,6 +4464,15 @@
       "nets": [
         "BEout",
         "BGout"
+      ],
+      "joined": false
+    },
+    {
+      "column": 131,
+      "row": 75,
+      "nets": [
+        "AZ",
+        "BA"
       ],
       "joined": false
     }
@@ -6078,8 +6075,8 @@
     "paths": 85,
     "unreadable_characters": 0,
     "printed_input_terminals": 66,
-    "driven_input_terminals": 65,
-    "undriven_or_isolated_input_terminals": 1,
+    "driven_input_terminals": 66,
+    "undriven_or_isolated_input_terminals": 0,
     "printer_grid_verified": true,
     "exact_canvas": true,
     "block_lattice_errors": [],
@@ -6242,5 +6239,15 @@
       "n65c3bc916ebd76c7"
     ],
     "scope": "Printed circuit or card portion labels only; all wiring, pins and geometry preserved"
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "ba29ce319547df0c7e6ad4db1ab5915c920daff67a668cdd6d34e78d8375e9d3",
+    "before_text_sha256": "fef2e68e5f90b6f51557aa04c7787341771a5bf224fa0f04ac9f27644a9e8501",
+    "before_json_sha256": "6d5e88a250b55a450934e150f7e358d0fddc2e6b2a2886cfa65026acad586ec1",
+    "private_candidate_text_sha256": "c757b2d5cfd4e84a3c97bab1b3ed6a3d528d681cfc545a2b60a8024456b15459",
+    "private_candidate_json_sha256": "fff9cdc82ed8f7dde03737985cf5d197dca19fb35511edf5d987eb88eaebd4a2",
+    "field_edits": 5,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }

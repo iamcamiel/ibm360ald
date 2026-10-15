@@ -800,8 +800,8 @@
       "source_reviewed": true,
       "pins": [
         {
-          "pin": "U12",
-          "printed_label": "U12",
+          "pin": "D12",
+          "printed_label": "D12",
           "row": 54,
           "side": "input",
           "triangle": false,
@@ -2270,7 +2270,7 @@
       "id": "SCAN",
       "driver": "KT841BK4",
       "targets": [
-        "BF.U12",
+        "BF.D12",
         "AX.B10"
       ],
       "external": null,
@@ -2363,21 +2363,6 @@
       ],
       "external": null,
       "source_reviewed": true
-    },
-    {
-      "id": "AWAX",
-      "driver": "AW.output/AX.output",
-      "targets": [
-        "BJ.input67",
-        "BJ.input68"
-      ],
-      "external": null,
-      "source_reviewed": true,
-      "physical_driver_ports": [
-        "AW.output@54",
-        "AX.output@61"
-      ],
-      "driver_relationship": "Source external commoning of U03AP portions419107/419108; no inferred internal commoning"
     },
     {
       "id": "AY",
@@ -2503,6 +2488,26 @@
         "KT521"
       ],
       "source_reviewed": true
+    },
+    {
+      "id": "AW",
+      "driver": "AW.output",
+      "targets": [
+        "BJ.input67"
+      ],
+      "external": null,
+      "source_reviewed": true,
+      "source_review_basis": "Native scan crossing has no junction; human confirmed separate driver wires"
+    },
+    {
+      "id": "AX",
+      "driver": "AX.output",
+      "targets": [
+        "BJ.input68"
+      ],
+      "external": null,
+      "source_reviewed": true,
+      "source_review_basis": "Native scan crossing has no junction; human confirmed separate driver wires"
     }
   ],
   "wire_paths": [
@@ -3656,7 +3661,7 @@
       ]
     },
     {
-      "net": "AWAX",
+      "net": "AW",
       "points": [
         [
           127,
@@ -3677,7 +3682,7 @@
       ]
     },
     {
-      "net": "AWAX",
+      "net": "AX",
       "points": [
         [
           127,
@@ -4189,11 +4194,6 @@
       "net": "P3",
       "column": 114,
       "row": 72
-    },
-    {
-      "net": "AWAX",
-      "column": 137,
-      "row": 67
     },
     {
       "net": "BC",
@@ -4732,6 +4732,15 @@
       "nets": [
         "BE",
         "BG"
+      ],
+      "joined": false
+    },
+    {
+      "column": 137,
+      "row": 67,
+      "nets": [
+        "AW",
+        "AX"
       ],
       "joined": false
     }
@@ -6589,5 +6598,15 @@
       6
     ],
     "scope": "Only circuit identifier printed cells; all wiring, pins and geometry preserved"
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "a16a1114136405adb87b91eec4af5f0a6d2c8a623fabeb3a1e1df82d50e81af0",
+    "before_text_sha256": "a36f1c860df9316d5b7247298e451fa6edf1dbf788ecd45e42c66c0dc450f8ed",
+    "before_json_sha256": "7739f3bc0b91b4ea7faeacbb7547bfd6b894b360577ae968272fa8dbf4d3b553",
+    "private_candidate_text_sha256": "ddb8e51f67e4c3a3d6077d7a9a8b1fefe81795bb897e27227b33b35d74d94bed",
+    "private_candidate_json_sha256": "70761eacdf88eb18471b16da1f5a1d5a5193a831d63b8e8cc54e57364c92db8a",
+    "field_edits": 1,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }

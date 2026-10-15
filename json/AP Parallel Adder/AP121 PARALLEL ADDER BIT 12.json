@@ -1054,21 +1054,14 @@
       "grid": "5H",
       "pins": [
         {
-          "pin": "B10",
-          "row": 52,
-          "side": "input",
-          "triangle": false,
-          "source_reviewed": true
-        },
-        {
-          "pin": "U12",
+          "pin": "D12",
           "row": 54,
           "side": "input",
           "triangle": false,
           "source_reviewed": true
         },
         {
-          "pin": "U08",
+          "pin": "D08",
           "row": 55,
           "side": "input",
           "triangle": false,
@@ -1111,6 +1104,13 @@
       "location": "B-D2D2",
       "grid": "5J",
       "pins": [
+        {
+          "pin": "B10",
+          "row": 59,
+          "side": "input",
+          "triangle": false,
+          "source_reviewed": false
+        },
         {
           "pin": "2",
           "row": 63,
@@ -1690,12 +1690,13 @@
       "id": "AV4",
       "driver": "AV.J04",
       "targets": [
-        "AW.B10"
+        "AX.B10"
       ],
       "external": [
         "AP081"
       ],
-      "source_reviewed": true
+      "source_reviewed": true,
+      "source_review_basis": "Native AP121 scan places B10 on portion 08, below two nonjoining crossings"
     },
     {
       "id": "GROUP13",
@@ -1832,8 +1833,8 @@
       "id": "AW-jumper",
       "driver": null,
       "targets": [
-        "AW.U12",
-        "AW.U08"
+        "AW.D12",
+        "AW.D08"
       ],
       "external": null,
       "source_reviewed": true
@@ -2515,11 +2516,11 @@
         ],
         [
           137,
-          52
+          59
         ],
         [
           138,
-          52
+          59
         ]
       ]
     },
@@ -3755,6 +3756,24 @@
       "nets": [
         "ZERO",
         "LEFT4"
+      ],
+      "joined": false
+    },
+    {
+      "column": 137,
+      "row": 54,
+      "nets": [
+        "AV4",
+        "AW-jumper"
+      ],
+      "joined": false
+    },
+    {
+      "column": 137,
+      "row": 55,
+      "nets": [
+        "AV4",
+        "AW-jumper"
       ],
       "joined": false
     }
@@ -5345,7 +5364,7 @@
         "row": 54,
         "side": "input",
         "net": "AW-jumper",
-        "semantic_terminal": "AW.U12"
+        "semantic_terminal": "AW.D12"
       },
       {
         "node": "AW",
@@ -5353,7 +5372,7 @@
         "row": 55,
         "side": "input",
         "net": "AW-jumper",
-        "semantic_terminal": "AW.U08"
+        "semantic_terminal": "AW.D08"
       },
       {
         "node": "AW",
@@ -5667,5 +5686,15 @@
     "reviewer": "AP3 ap_main independent reviewer",
     "reviewed_utc": "2026-10-14T12:02:44.671072+00:00",
     "evidence": "Independent minimal human OR-function normalization acceptance for AP121: 3 active functionfields/3 exact tokens/3 glyphcells. Exact directhumanquote and immutable instruction SHA9f84eab52599d4added07d98a3a8b920f706b2eba46cad15e061ed9b214e5334 verified. User UR/UH→OR and✲UR/✲UH→✲OR applies only standalone exact tokens in active functionlabels, including compoundlabels. Current accepted predecessor/sourceSHA/model/TXT/notes/preview and prior complete native/source/grid review evidence retained. No fresh whole-page native review, no newfull15 or retranscription performed or claimed. Actual relevant human before/candidate functionmontage(s) read in this turn, hash-bound to exact page functionstrip pixels and current approved before/candidate render crops; sevenmontages collectively cover161fields/165tokens/165glyphcells in main50pages. Full predecessor and candidate previews independently pixel-verified against JuliaMono20/12x18 TXT rendering, not claimed manually viewed as wholepages. Exact raw candidatebytes equal immutable predecessor with only declared functionglyph replacements, retaining every rawlineending/trailingnewline/245x103 position. Nodes.function changes independently recomputed from exact token rule; only declared active printedlabel aliases at identical row/column/span may change. Allother units/IDs/signals/prose/pins/nets/routes/portgeometry/wedges/banks/sourcegap/unknownmarkers and previoushuman/source/native/socket/header/card histories unchanged. Original literal observations preserved historically; human override is not a new nativelegibility assertion. New or_function_human_corrections record exact instructions and fields separately. Validation unchanged except explicit legacyprinter_grid_verified annotation from prior acceptedrootgrid where needed; stored and actualunknowncounts retained. AP211 existing BC✲OR and earlier confirmed AW D04/D08 preserved. Private acceptance only; canonicalhold respected, no canonical/export/workbook/originalscan writes."
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "1760ed7ad228af5eaa02871e1189845c4cd79dcc395492cb5ffc8b91e250a072",
+    "before_text_sha256": "90451d59b16d162ea6cbf2566ebd6df38a9259b89f3780a886f5614b0565aeca",
+    "before_json_sha256": "b4bd92e2f887949c5130641f83269997d5c83284955e0ed13d7442621c6411a8",
+    "private_candidate_text_sha256": "4e08c76a9a505e1496b563add249c2bde158865e326c3ae85b886f76c54ac9cf",
+    "private_candidate_json_sha256": "2b9279e957a479ceacdbdf80463124739547df1c786cf45e4e2f1a9aa2cfa783",
+    "field_edits": 2,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }

@@ -413,7 +413,9 @@ def sparse_shape_review_keepers(workspace):
     assert {x['artifact'] for x in publication['canonical_destinations']}=={'txt','json','notes','preview'}
     for item in publication['canonical_destinations']:
         current=Path(item['path']).resolve()
-        assert current.is_relative_to(workspace) and digest(current.read_bytes())==item['sha256']
+        assert current.is_relative_to(workspace) and current.is_file()
+        if digest(current.read_bytes()) != item['sha256']:
+            assert current_review_supersedes_historical_target(workspace,'AP041',current)
     assert len(manifest['text_edits'])==3 and len(manifest['model_edits'])==9
     assert {x['node'] for x in manifest['text_edits']}=={'AS','AU','BB'}
     keeper=Path('notes/Card types/Sparse shape review/Seventeen native comparisons')
@@ -582,6 +584,12 @@ def main():
             'Card-ALD/4191 release manifest.json',
         'tmp/ald-text/ald/card-4191-release/4191 canonical publication receipt.json':
             'Card-ALD/4191 canonical publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/4191 line ending preservation current audit.json':
+            'Card-ALD/4191 line ending preservation current audit.json',
+        'tmp/ald-text/ald/card-4191-release/4191 CRLF preservation manifest.json':
+            'Card-ALD/4191 CRLF preservation manifest.json',
+        'tmp/ald-text/ald/card-4191-release/4191 CRLF preservation publication receipt.json':
+            'Card-ALD/4191 CRLF preservation publication receipt.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/OR function human correction current audit.json':
             'Manual verification/OR function human correction current audit.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/CA211 human primary function correction current audit.json':
@@ -1513,7 +1521,7 @@ def main():
                 path.write_bytes(item['_raw'])
         # Include the published text/notes in the portable integrity inventory.
         managed = {item['path'] for item in report['files']}
-        for branch in ['ALD', 'notes', 'json', 'csv', 'tools']:
+        for branch in ['ALD', 'Card-ALD', 'notes', 'json', 'csv', 'tools']:
             for path in (repo/branch).rglob('*'):
                 if not path.is_file() or path==index_path or path.suffix.lower() not in {'.txt','.json','.csv','.py','.png'}:
                     continue

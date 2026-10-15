@@ -1956,7 +1956,7 @@
           "border_marker": null,
           "terminal_id": "BK.input5",
           "marker_column": null,
-          "net": "N52",
+          "net": "N46",
           "electrical_status": "undriven isolated jumper terminal"
         },
         {
@@ -2820,10 +2820,13 @@
     {
       "id": "N46",
       "driver": "BB.output",
-      "targets": [],
+      "targets": [
+        "BK.input5"
+      ],
       "external": null,
       "source_reviewed": true,
-      "native_evidence": "bank1-5-lower-routes-private.png;5K-r74-left-tight-original.png"
+      "native_evidence": "bank1-5-lower-routes-private.png;5K-r74-left-tight-original.png",
+      "source_review_basis": "Human-confirmed fifth distinct driver; native scan lower wire"
     },
     {
       "id": "N47",
@@ -2878,17 +2881,6 @@
       "external": null,
       "source_reviewed": true,
       "native_evidence": "bank2-4-r77-89-grid.png;bank4-7-bottom-feedback-grid.png"
-    },
-    {
-      "id": "N52",
-      "driver": null,
-      "targets": [
-        "BK.input5"
-      ],
-      "external": null,
-      "source_reviewed": true,
-      "classification": "isolated_jumper",
-      "native_evidence": "5K-r74-left-tight-original.png"
     },
     {
       "id": "N53",
@@ -4536,20 +4528,7 @@
           74
         ],
         [
-          138,
-          74
-        ]
-      ]
-    },
-    {
-      "net": "N52",
-      "points": [
-        [
-          140,
-          74
-        ],
-        [
-          141,
+          142,
           74
         ]
       ]
@@ -7042,9 +7021,9 @@
     "printer_grid_verified": true,
     "physical_ports_without_owning_net": [],
     "wire_cells_in_block_interiors": [],
-    "driven_input_terminal_count": 69,
+    "driven_input_terminal_count": 70,
     "driven_input_targets_owned_once": 69,
-    "undriven_terminal_count": 3,
+    "undriven_terminal_count": 2,
     "undriven_terminals": [
       "AZ.J02",
       "BA.J02",
@@ -8828,5 +8807,15 @@
       "n749c67daabbfedc3"
     ],
     "scope": "Printed circuit or card portion labels only; all wiring, pins and geometry preserved"
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "f887a92dec471955b9697dc64352e3113d6df9a55e795abdc9d5b7e2e170498b",
+    "before_text_sha256": "d4c211226474dcd7381016ae5616cf4affaf40b7e15ee91d501647530a17c52e",
+    "before_json_sha256": "0425d576435c00a8bdaed948cdc03847132fdb1cd80f602c29a3e0d71901d79c",
+    "private_candidate_text_sha256": "401e9eaa71d12eba587e4954c5b88cad43785156de1a80ef686520e30e556384",
+    "private_candidate_json_sha256": "cd147167fa37bd85b4c018a97c723eb8129f3757a7e64bf417c3430bdd8269d0",
+    "field_edits": 0,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }

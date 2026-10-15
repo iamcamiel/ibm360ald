@@ -229,8 +229,8 @@ def write_reports(rows, pages, topology):
         writer.writerows(topology)
     # A portion can have unused inputs on a particular ALD block. Inventory
     # the union of observed contacts rather than demanding every example pin
-    # on every use. Human-read AP041 pins remain separate from the published
-    # model until its source-bound correction is accepted.
+    # on every use. AP041's human-confirmed pins are present in the current
+    # source-bound published correction.
     contacts = defaultdict(list)
     for row in rows:
         for token in row["pins"].split():
@@ -242,7 +242,7 @@ def write_reports(rows, pages, topology):
             "portion": portion, "side": side, "pin": pin,
             "published_occurrences": len(observed_pages),
             "published_pages": " ".join(sorted(set(observed_pages))),
-            "human_verified_pending_source_update": "AP041" if
+            "human_verified_source": "AP041" if
                 (portion, side, pin) in {("07", "input", "D08"),
                                         ("07", "input", "D12")} else "",
         })
@@ -252,7 +252,7 @@ def write_reports(rows, pages, topology):
             inventory.append({
                 "portion": "07", "side": "input", "pin": pin,
                 "published_occurrences": 0, "published_pages": "",
-                "human_verified_pending_source_update": "AP041",
+                "human_verified_source": "AP041",
             })
     inventory.sort(key=lambda row: (row["portion"], row["side"], row["pin"]))
     inventory_out = REPORT_DIR / "4191 observed pin union.csv"

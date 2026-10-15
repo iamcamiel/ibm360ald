@@ -1605,14 +1605,14 @@
           "net": "N41"
         },
         {
-          "pin": "J07",
-          "printed_pin": "J07",
+          "pin": "D07",
+          "printed_pin": "D07",
           "row": 84,
           "side": "input",
           "triangle": false,
           "source_reviewed": true,
           "border_marker": null,
-          "terminal_id": "BA.J07",
+          "terminal_id": "BA.D07",
           "marker_column": null,
           "net": "N50"
         },
@@ -1852,7 +1852,7 @@
           "border_marker": null,
           "terminal_id": "BK.input5",
           "marker_column": null,
-          "net": "N46",
+          "net": "N51",
           "electrical_status": "undriven isolated jumper terminal"
         },
         {
@@ -2702,17 +2702,6 @@
       "native_evidence": "bank3-7-lower-native.png;direct-tiff-crops/5K.png"
     },
     {
-      "id": "N46",
-      "driver": null,
-      "targets": [
-        "BK.input5"
-      ],
-      "external": null,
-      "source_reviewed": true,
-      "classification": "isolated_jumper",
-      "native_evidence": "direct-tiff-crops/5K.png"
-    },
-    {
       "id": "N47",
       "driver": "BN.D09",
       "targets": [
@@ -2749,7 +2738,7 @@
       "id": "N50",
       "driver": "BE.D07",
       "targets": [
-        "BA.J07",
+        "BA.D07",
         "BH.B04"
       ],
       "external": null,
@@ -2759,10 +2748,13 @@
     {
       "id": "N51",
       "driver": "BA.output",
-      "targets": [],
+      "targets": [
+        "BK.input5"
+      ],
       "external": null,
       "source_reviewed": true,
-      "native_evidence": "direct-tiff-crops/4M.png"
+      "native_evidence": "direct-tiff-crops/4M.png",
+      "source_review_basis": "Human-confirmed fifth distinct driver; native scan lower wire"
     },
     {
       "id": "N52",
@@ -4312,20 +4304,7 @@
           74
         ],
         [
-          138,
-          74
-        ]
-      ]
-    },
-    {
-      "net": "N46",
-      "points": [
-        [
-          140,
-          74
-        ],
-        [
-          141,
+          142,
           74
         ]
       ]
@@ -6763,9 +6742,9 @@
     "printer_grid_verified": true,
     "physical_ports_without_owning_net": [],
     "wire_cells_in_block_interiors": [],
-    "driven_input_terminal_count": 67,
+    "driven_input_terminal_count": 68,
     "driven_input_targets_owned_once": 67,
-    "undriven_terminal_count": 2,
+    "undriven_terminal_count": 1,
     "undriven_terminals": [
       "AZ.D11",
       "BK.input5"
@@ -8575,5 +8554,15 @@
       }
     ],
     "scope": "Exact human H/port rules and three direct A exceptions applied only to independently approved H or unreadable function cells. All results remain marked as reconstructed and cannot become independent native witnesses."
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "4b69e2eaa822104d2b0f841211496d6973cf1fcd5b505bae486a0bedb2b5e721",
+    "before_text_sha256": "7a5de21f17a4523bacea3a7734836334ccbc7b0f951d111998591ce5d666122c",
+    "before_json_sha256": "e49bb75f34651c50432f2154ae553613f8457a0456a308aeb5e3473844d77cc3",
+    "private_candidate_text_sha256": "1bbdc4dc9e8f39b2defe128d28cfb1bde543b1dc9a32b7d247666efd83422d7f",
+    "private_candidate_json_sha256": "63c558f25c8b2434ba736ec377a2556015f63fd1a67bafd7e4758a8efa11e504",
+    "field_edits": 1,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }

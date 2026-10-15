@@ -335,7 +335,9 @@ def receipts():
                     'PX511 BB physical current audit.json',
                    'Second-pass circuit current audit.json',
                    'Direct human circuit current audit.json',
-                   'Clean singleton circuit current audit.json']:
+                   'Clean singleton circuit current audit.json',
+                   '4191 source correction current audit.json',
+                   '4191 line ending preservation current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit_name=='Circuit identifier source current audit.json':
@@ -482,7 +484,10 @@ def receipts():
                                      'PX511 BB physical current audit.json',
                                      'Second-pass circuit current audit.json',
                                      'Direct human circuit current audit.json'})
-   application_schema=application_schema or audit_name=='Clean singleton circuit current audit.json'
+   application_schema=application_schema or audit_name in {
+    'Clean singleton circuit current audit.json',
+    '4191 source correction current audit.json',
+    '4191 line ending preservation current audit.json'}
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]

@@ -1807,7 +1807,7 @@
           "border_marker": null,
           "terminal_id": "BK.input5",
           "marker_column": null,
-          "net": "N30",
+          "net": "N48",
           "electrical_status": "undriven isolated jumper terminal"
         },
         {
@@ -2499,17 +2499,6 @@
       "native_evidence": "lower-middle-c85-167.png;lower-right-c145-210.png"
     },
     {
-      "id": "N30",
-      "driver": null,
-      "targets": [
-        "BK.input5"
-      ],
-      "external": null,
-      "source_reviewed": true,
-      "classification": "isolated_jumper",
-      "native_evidence": "bank4-5-lower-route-native.png;direct-tiff-crops/5K.png"
-    },
-    {
       "id": "N31",
       "driver": "left:r87 -CLOCK P3 EXTENDED◇SHIFT R1",
       "targets": [
@@ -2695,10 +2684,13 @@
     {
       "id": "N48",
       "driver": "BA.output",
-      "targets": [],
+      "targets": [
+        "BK.input5"
+      ],
       "external": null,
       "source_reviewed": true,
-      "native_evidence": "direct-tiff-crops/4M.png"
+      "native_evidence": "direct-tiff-crops/4M.png",
+      "source_review_basis": "Human-confirmed fifth distinct driver; native scan lower wire"
     },
     {
       "id": "N49",
@@ -4147,20 +4139,7 @@
           74
         ],
         [
-          138,
-          74
-        ]
-      ]
-    },
-    {
-      "net": "N30",
-      "points": [
-        [
-          140,
-          74
-        ],
-        [
-          141,
+          142,
           74
         ]
       ]
@@ -6648,9 +6627,9 @@
     "printer_grid_verified": true,
     "physical_ports_without_owning_net": [],
     "wire_cells_in_block_interiors": [],
-    "driven_input_terminal_count": 65,
+    "driven_input_terminal_count": 66,
     "driven_input_targets_owned_once": 65,
-    "undriven_terminal_count": 1,
+    "undriven_terminal_count": 0,
     "undriven_terminals": [
       "BK.input5"
     ],
@@ -7798,5 +7777,15 @@
       }
     ],
     "scope": "Exact human H/port rules and three direct A exceptions applied only to independently approved H or unreadable function cells. All results remain marked as reconstructed and cannot become independent native witnesses."
+  },
+  "card_4191_correction_review": {
+    "source_scan_sha256": "a8d69b8e45f7475bcdfd5859d36cf2981bc7a660942040f7df30a5aa5089810f",
+    "before_text_sha256": "681a4811cd6b5c8fb6c832352b0c996f02488d706beb067153cc56d6d1c990ec",
+    "before_json_sha256": "ebc9b899feccfe2c56d41d99be876f1ddc9f11789f0f1d80816f805de6144d5c",
+    "private_candidate_text_sha256": "09789feecf0d1037b14c0071e713752469b3097edb4f75a98db0508603f8e6bf",
+    "private_candidate_json_sha256": "0527dc80dce39bd5b12d1b0fd5327874da7c897d6f80c411b507f664e70db795",
+    "field_edits": 0,
+    "wiring_reviewed": true,
+    "scope": "Exact corrected 4191 fields and source-supported wire routes; prior whole-page review retained"
   }
 }
