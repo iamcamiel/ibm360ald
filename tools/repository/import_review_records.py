@@ -20,6 +20,23 @@ def read_json(path):
     return json.loads(path.read_text(encoding='utf-8-sig'))
 
 
+def immutable_chain_binding(link, workspace):
+    """Resolve legacy relative receipt links against their declared workspace.
+
+    Coordinator audit links predate absolute-path normalization. Their tmp/...
+    paths are workspace-relative, regardless of the importer's launch directory.
+    No alternate-path search or hash exception is allowed.
+    """
+    workspace=Path(workspace).resolve()
+    declared=Path(link['file'])
+    assert declared.is_absolute() or not declared.drive, 'Drive-relative receipt path is ambiguous'
+    source=(declared if declared.is_absolute() else workspace/declared).resolve()
+    assert source.is_relative_to(workspace), source
+    raw=source.read_bytes()
+    assert digest(raw)==link['sha256'], source
+    return source,raw
+
+
 def companion(text):
     key = text.name.split(' ', 1)[0]
     for path in [text.with_suffix('.json'),
@@ -29,6 +46,346 @@ def companion(text):
         if path.is_file():
             return path
     return None
+
+
+def automatic_function_recovery_keepers(workspace):
+    """Keep exact accepted inference history separate from native observations."""
+    base=workspace/'tmp/ald-text/ald/card-type-database/function-unreadable-resolution-v1'
+    stage=base/'expanded-applications/2c3919e8676d5858-accepted-review-v2'
+    receipt_path=stage/'Approved unreadable function canonical publication receipt.json'
+    if not receipt_path.is_file():return []
+    def checked(b):
+        p=Path(b.get('path',b.get('file','')))
+        assert p.is_file() and digest(p.read_bytes())==b['sha256'],str(p)
+        return p
+    assert digest(receipt_path.read_bytes())=='c57ebebdb8a70a39162363d826bd9ed2ba4f6e9d6d10956c81722f6917078974'
+    receipt=read_json(receipt_path);assert receipt['passed'] is True and not receipt.get('failures')
+    manifest=checked(receipt['manifest']);peer=checked(receipt['independent_audit'])
+    assert digest(manifest.read_bytes())=='cbd5f512cedea4b09134ea97cfbb2d931f7a4afd4eb29f0f9ec57915106b4dab'
+    assert digest(peer.read_bytes())=='3717f829206a121367ed9af860ebe9e50a86caecba568ad92d61091134907039'
+    acceptance=read_json(peer);assert acceptance['passed'] is True and not acceptance.get('failures') and acceptance['visual_review_pending'] is False
+    assert checked(acceptance['manifest'])==checked(acceptance['application_manifest'])==manifest
+    assert len(receipt['pages'])==61 and len(acceptance['approved_candidate_ids'])==112 and not acceptance['held_candidate_ids']
+    assert receipt['derived_values_eligible_as_future_native_witnesses'] is False
+    keeper=Path('notes/Card types/Automatic function recoveries/V10 expanded unique fit')
+    files=[]
+    for folder,label in [(stage,'Application'),(base/'independent-review','Independent review'),(base/'expanded-shape-takeover-v1/v10-accepted-readonly','Frozen V10 candidates')]:
+        for source in sorted(folder.rglob('*')):
+            if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                files.append((source,keeper/label/source.relative_to(folder)))
+    for name in ['Classifier extraction verification.json','Expanded V9 script inspection.json','Automatic recovery integration preparation plan.json']:
+        source=base/'expanded-shape-takeover-v1'/name
+        if source.is_file():files.append((source,keeper/'Derivation proof'/source.name))
+    authority=workspace/'tmp/ald-text/ald/card-type-database/function-review-batch-8'
+    for name in ['Direct human batch8 answers.json','Direct human automatic unreadable label recovery authorization.json']:
+        files.append((authority/name,keeper/'Authority'/name))
+    reviews=workspace/'tmp/ald-text/ald/repository-export/independent-human-function-integration-review'
+    for name in ['Automatic function recovery preparation checks.json','Automatic function recovery integration guard review.json']:
+        source=reviews/name
+        if source.is_file():files.append((source,keeper/'Integration checks'/name))
+    for source in [base/'expanded-shape-takeover-v1/derive_expanded_candidates.py',base/'prepare_approved_expanded_amendments.py',base/'publish_approved_expanded_amendments.py',workspace/'tmp/ald-text/ald/repository-export/bind_automatic_function_recoveries.py']:
+        files.append((source,Path('tools/references/automatic-function-recovery')/source.name))
+    return files
+
+
+def H_rule_function_keepers(workspace):
+    """Preserve the compact accepted64-field proof without per-page receipt copies."""
+    base=workspace/'tmp/ald-text/ald/card-type-database/function-H-review-v1'
+    receipt_path=base/'application-unified64-v3/Unified H rule canonical publication receipt.json'
+    if not receipt_path.is_file():return []
+    def checked(b):
+        p=Path(b.get('path',b.get('file','')))
+        assert p.is_file() and digest(p.read_bytes())==b['sha256'],str(p)
+        return p
+    assert digest(receipt_path.read_bytes())=='d4ac76fd0b3abb6018c89bfa3841660a30f97cc553247e5a8448fc6036b3497f'
+    receipt=read_json(receipt_path);assert receipt['passed'] is True and not receipt['failures']
+    manifest_path=checked(receipt['manifest']);peer_path=checked(receipt['independent_audit'])
+    assert digest(manifest_path.read_bytes())=='a66c6e3145609d4ae0c5ff3996e40fdb8a593dbb100b1e369943ff86fcd14e1f'
+    assert digest(peer_path.read_bytes())=='3ec19ece8c388cf9d0f949f00b45f9c48e42c22dae161157ba5596c17f160fbd'
+    peer=read_json(peer_path);app=read_json(manifest_path)
+    assert peer['passed'] is True and not peer['failures'] and peer['visual_review_pending'] is False
+    assert checked(peer['manifest'])==checked(peer['application_manifest'])==manifest_path
+    assert len(receipt['pages'])==33 and len(peer['approved_candidate_ids'])==64 and not peer['held_candidate_ids']
+    assert receipt['new_independent_native_witnesses_created'] is False
+    keeper=Path('notes/Card types/H function rules/Unified 64 correction');files={}
+    def add(source,destination):
+        source=source.resolve();key=destination.as_posix()
+        if key in files:assert digest(files[key][0].read_bytes())==digest(source.read_bytes())
+        files[key]=(source,destination)
+    for source in base.glob('*.json'):
+        add(source,keeper/'Authority and review history'/source.name)
+    for source in manifest_path.parent.glob('*.json'):
+        add(source,keeper/'Application'/source.name)
+    # Historical v2 JSON remains evidence, but its retired duplicate paths are
+    # not live requirements. V3 points at retained equal-SHA prior originals.
+    old=base/'application-unified64-v2/Private unified H rule application manifest.json'
+    add(old,keeper/'Application history/v2 manifest.json')
+    for source in sorted((base/'independent-inventory').rglob('*')):
+        if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+            add(source,keeper/'Independent review'/source.relative_to(base/'independent-inventory'))
+    for page in app['pages']:
+        folder=page['page']+'-'+str(page['source_scan_id'])
+        for kind,group in [('before','before_quartet'),('candidate','candidate_quartet')]:
+            for b in page[group].values():
+                source=checked(b);add(source,keeper/'Page quartets'/folder/kind/source.name)
+        guard=checked(page['immutable_original_source_guard']);add(guard,keeper/'Page quartets'/folder/'before'/guard.name)
+        prior=checked(page['prior_review_record'])
+        existing_112_keeper=workspace/'ibm360ald/notes/Card types/Automatic function recoveries/V10 expanded unique fit/Automatic unreadable function recovery current audit.json'
+        if prior.name=='Automatic unreadable function recovery current audit.json' and existing_112_keeper.is_file():
+            # This exact full prior112 record already has a retained keeper.
+            # Preserve its binding in the compact manifest, not another15MB copy.
+            assert digest(existing_112_keeper.read_bytes())==page['prior_review_record']['sha256']
+        else:
+            add(prior,keeper/'Prior review records'/page['prior_review_record']['sha256']/prior.name)
+    for sheet in app['contact_sheets']:
+        source=checked(sheet['image']);add(source,keeper/'Contact sheets'/source.name)
+    for b in app['snapshot_inputs']:
+        source=checked(b);add(source,keeper/'Immutable input receipts'/source.name)
+    regression=workspace/'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/H function rule integration guard review.json'
+    if regression.is_file():add(regression,keeper/'Integration checks'/regression.name)
+    for source in [base/'review_unreadable_H_ambiguities.py',base/'build_unified_H_rule_inventory.py',base/'stage_unified_H_rule_application.py',base/'prepare_compact_v3.py',base/'publish_unified_H_rule_application.py',workspace/'tmp/ald-text/ald/repository-export/bind_H_rule_function_corrections.py']:
+        add(source,Path('tools/references/H-function-rule-recovery')/source.name)
+    return list(files.values())
+
+
+def native_three_correction_keepers(workspace):
+    """Retain the exact three-page native-source correction and independent gate."""
+    base=workspace/'tmp/ald-text/ald/card-type-database/native-three-review'
+    manifest_path=base/'unified-stage/Unified native three correction manifest.json'
+    audit_path=base/'independent-review/Independent three native corrections acceptance.json'
+    publication_path=base/'unified-stage/Unified native three publication receipt.json'
+    binder_path=workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Native three source corrections current audit.json'
+    if not publication_path.is_file():return []
+    frozen={
+        manifest_path:'726a8926ab81dc7d1ea1f0fde9272b82198e47a1c94a5fc938273138e267bf5b',
+        audit_path:'9ff7d60e334dd2cf04d1ee86fc080f111c28ee4ffe785683f8db1907890d9deb',
+        publication_path:'da36314bd4e296b0c8ea6473afe93b6f9e51a7ccd6af9e074860f419393a962f',
+    }
+    for source,expected in frozen.items():
+        assert source.is_file() and digest(source.read_bytes())==expected,str(source)
+    manifest=read_json(manifest_path);audit=read_json(audit_path);publication=read_json(publication_path);binder=read_json(binder_path)
+    assert audit['passed'] is True and audit['failures']==[] and binder['passed'] is True and binder['failures']==[]
+    assert audit['manifest']['sha256']==publication['manifest']['sha256']==frozen[manifest_path]
+    assert publication['independent_audit']['sha256']==frozen[audit_path]
+    assert binder['manifest']['sha256']==frozen[manifest_path] and binder['publication']['sha256']==frozen[publication_path]
+    assert binder['independent_audit']['sha256']==frozen[audit_path]
+    assert publication['quartet_files']==12 and publication['repository_writes']==0 and publication['original_scan_writes']==0
+    assert len(manifest['pages'])==3 and {p['page'] for p in manifest['pages']}=={'PX311','KU641','AP743'}
+    assert len(binder['pages'])==3 and {p['page'] for p in binder['pages']}=={'PX311','KU641','AP743'}
+    keeper=Path('notes/Card types/Native source corrections/Three page source review');files={}
+    def add(source,destination):
+        source=Path(source).resolve();assert source.is_file() and source.is_relative_to(workspace)
+        key=destination.as_posix();raw=source.read_bytes()
+        if key in files:assert digest(files[key][0].read_bytes())==digest(raw)
+        files[key]=(source,destination)
+    def checked(binding):
+        source=Path(binding.get('path',binding.get('file','')))
+        assert source.is_file() and digest(source.read_bytes())==binding['sha256'],str(source)
+        return source
+    for source in [manifest_path,audit_path,publication_path,binder_path]:add(source,keeper/'Core'/source.name)
+    for source in [base/'unified_native_three.py',base/'independent-review/independent_three_review.py',base/'independent-review/make_preview_contact.py',workspace/'tmp/ald-text/ald/repository-export/bind_native_three_corrections.py']:
+        add(source,Path('tools/references/native-three-source-corrections')/source.name)
+    contact=base/'independent-review/Three page preview before-after contact.png'
+    assert digest(contact.read_bytes())=='f65dd984de3dbc42f8d4009825d6aa91bf5df808ea7373ee8751ea9cc08e5753'
+    add(contact,keeper/'Independent review'/contact.name)
+    for page in manifest['pages']:
+        name=page['page'];source=checked(page['evidence']);add(source,keeper/'Native evidence'/name/source.name)
+        crop=next(x['native_three_crop'] for x in binder['pages'] if x['page']==name)
+        crop_path=checked(crop);add(crop_path,keeper/'Native evidence'/name/crop_path.name)
+        original=checked(page['source'])
+        assert original.resolve().is_relative_to(Path('D:/Reference Materials/IBM 360/IBM_360_ALD').resolve())
+        for group in ['before_quartet','candidate_quartet']:
+            for binding in page[group].values():
+                path=checked(binding);add(path,keeper/'Page quartets'/name/group/path.name)
+        for binding in page['candidate_quartet'].values():
+            target=next(x for x in publication['canonical_destinations'] if x['sha256']==binding['sha256'])
+            assert checked(target).resolve().is_relative_to((workspace/'ALD_Visual_Transcriptions').resolve())
+    v13=base/'v13-builder';release=v13/'Final native three finding release.json'
+    if release.is_file():
+        assert digest(release.read_bytes())=='31c97212e9e0ecc6423d14b633cd43e412acadb3c2abe5e05babc4b350c1c994'
+        final=read_json(release)
+        assert final['schema_version']=='card-db-native-three-release-v1'
+        assert final['review_sha256']==digest((workspace/'ibm360ald/notes/Card types/Independent OH OK and triangle native review.json').read_bytes())
+        for binding,expected in [('stage_manifest',frozen[manifest_path]),('independent_acceptance',frozen[audit_path]),('publication_receipt',frozen[publication_path])]:
+            assert final[binding]['sha256']==expected
+            checked(final[binding])
+        assert len(final['releases'])==3 and {r['page'] for r in final['releases']}=={'PX311','KU641','AP743'}
+        for item in final['releases']:
+            page=next(p for p in manifest['pages'] if p['page']==item['page'])
+            assert item['scan_id']==str(page['scan_id']) and item['original_TIFF_sha256']==page['source']['sha256']
+            assert item['accepted_text_sha256']==page['candidate_quartet']['txt']['sha256']
+            assert item['accepted_model_sha256']==page['candidate_quartet']['json']['sha256']
+        builder=v13/'build_card_type_database.py'
+        invocation=v13/'Private V13 build invocation.json'
+        assert digest(builder.read_bytes())=='bc73037e31effa9931b976d301da4b891bce41092212a854d2a744d740a4ccca'
+        assert digest(invocation.read_bytes())=='6e413cca76c861a149c390a963290ffacaad7c4080aa47e3fdb8b30ddb71fe41'
+        for source in [release,builder,invocation]:
+            add(source,keeper/'V13 release'/source.name)
+    return list(files.values())
+
+
+def eleven_function_correction_keepers(workspace):
+    """Preserve eleven current native/human function corrections and their gate."""
+    base=workspace/'tmp/ald-text/ald/card-type-database/v13-next-review'
+    manifest_path=base/'eleven-page-private-stage/Eleven native and human function correction manifest.json'
+    native_path=base/'V13 seven source-bound function correction candidates.json'
+    human_path=base/'V13 four direct-human function corrections and DT001 comparison.json'
+    audit_path=base/'Independent eleven native and human function corrections acceptance.json'
+    publication_path=base/'eleven-page-private-stage/Eleven canonical publication receipt.json'
+    binder_path=workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Eleven function corrections current audit.json'
+    if not publication_path.is_file():return []
+    frozen={
+        manifest_path:'9bdeb975f0a457bdbd98e37d6bb162bba754f12074dc820d09b858be8f6c028f',
+        native_path:'7f12522b6e83348a529646ff01c5f683a633b59c2f53af35e008c46c0ba42d52',
+        human_path:'f7ac879f867147fd9553587e8ca99db293c5a3f3eb8ea00813cd1f2a4f41014f',
+        audit_path:'aa8d69862b3e6a86179a2df96b7971d99faeb43b56ae3c2137607cb70628f81a',
+        publication_path:'dfc760aca5398e959faec09fbb74127d1ba8310bd51200b2e65e7fc278d22ec7',
+    }
+    for source,expected in frozen.items():
+        assert source.is_file() and digest(source.read_bytes())==expected,str(source)
+    manifest=read_json(manifest_path);audit=read_json(audit_path)
+    publication=read_json(publication_path);binder=read_json(binder_path)
+    assert audit['passed'] is True and audit['failures']==[] and audit['visual_review_pending'] is False
+    assert binder['passed'] is True and binder['failures']==[]
+    assert audit['manifest']['sha256']==publication['manifest']['sha256']==frozen[manifest_path]
+    assert publication['independent_audit']['sha256']==frozen[audit_path]
+    assert binder['manifest']['sha256']==frozen[manifest_path]
+    assert binder['publication']['sha256']==frozen[publication_path]
+    assert binder['independent_audit']['sha256']==frozen[audit_path]
+    assert publication['canonical_quartet_files']==44 and len(publication['canonical_destinations'])==44
+    assert publication['repository_writes']==publication['original_scan_writes']==0
+    native_pages={'AP737','AP181','RQ683','KU601','RQ781','MC371','AP441'}
+    human_pages={'AP531','XM181','AS201','AP313'}
+    assert {p['page'] for p in manifest['pages']}==native_pages|human_pages
+    assert len(binder['pages'])==11 and {p['page'] for p in binder['pages']}==native_pages|human_pages
+    assert manifest['direct_human_authority']==read_json(human_path)['direct_human_authority']
+    assert manifest['confirmed_no_change']['page']=='DT001' and manifest['confirmed_no_change']['current_function']=='A'
+    keeper=Path('notes/Card types/Function source corrections/Eleven page source review');files={}
+    def add(source,destination):
+        source=Path(source).resolve();assert source.is_file() and source.is_relative_to(workspace)
+        key=destination.as_posix();raw=source.read_bytes()
+        if key in files:assert digest(files[key][0].read_bytes())==digest(raw)
+        files[key]=(source,destination)
+    def checked(binding):
+        source=Path(binding.get('path',binding.get('file',''))).resolve()
+        assert source.is_file() and digest(source.read_bytes())==binding['sha256'],str(source)
+        return source
+    semantics_path=base/'0143 human semantics provenance.json'
+    semantics=read_json(semantics_path)
+    assert semantics['schema']=='card-type-0143-human-semantics-authority-v1'
+    assert semantics['confirmed_page']=='DT001' and semantics['literal_page_correction'] is None
+    assert semantics['raw_statement'].startswith('in 0143, the C1-C2-C3 parts form a group')
+    assert semantics['selected_answer']=='Yes, DT001 switches them (recommended)'
+    for source in [manifest_path,native_path,human_path,audit_path,publication_path,binder_path,semantics_path]:
+        add(source,keeper/'Core'/source.name)
+    for source in [base/'stage_seven.py',base/'stage_eleven.py',base/'publish_eleven.py',
+                   base/'audit_eleven_independent.py',
+                   workspace/'tmp/ald-text/ald/repository-export/bind_eleven_function_corrections.py']:
+        add(source,Path('tools/references/eleven-function-source-corrections')/source.name)
+    audited={x['page']:x for x in audit['reviewed_pages']}
+    published={str(Path(x['path']).resolve()):x['sha256'] for x in publication['canonical_destinations']}
+    assert len(published)==44 and set(audited)==native_pages|human_pages
+    for page in manifest['pages']:
+        name=page['page'];review=audited[name]
+        assert page['authority_kind']==review['authority_kind']==('native' if name in native_pages else 'direct-human')
+        original=checked(page['source'])
+        assert original.is_relative_to(Path('D:/Reference Materials/IBM 360/IBM_360_ALD').resolve())
+        for key in ('source_crop','broad_context_crop'):
+            source=checked(page[key]);add(source,keeper/'Native evidence'/name/source.name)
+        for group in ('before_quartet','candidate_quartet'):
+            for binding in page[group].values():
+                source=checked(binding);add(source,keeper/'Page quartets'/name/group/source.name)
+        for kind,binding in page['candidate_quartet'].items():
+            target=Path(page['canonical_quartet'][kind]['path']).resolve()
+            assert target.is_relative_to((workspace/'ALD_Visual_Transcriptions').resolve())
+            assert target.is_file() and digest(target.read_bytes())==binding['sha256']==published[str(target)]
+        record=next(x for x in binder['pages'] if x['page']==name)
+        assert record['current_quartet']['txt']['sha256']==page['candidate_quartet']['txt']['sha256']
+        assert record['source']['sha256']==page['source']['sha256']
+        assert checked(record['eleven_authority_record']) in {native_path.resolve(),human_path.resolve()}
+    human=read_json(human_path)
+    comparison=human['matching_OR_example_for_DT001']
+    assert comparison['page']=='DT011' and comparison['printed_function']=='OR'
+    dt011_crop=checked(comparison['source_crop'])
+    add(dt011_crop,keeper/'Native evidence'/'DT011 comparison'/dt011_crop.name)
+    v14_release=base/'v14-builder/Final eleven function finding release.json'
+    if v14_release.is_file():
+        assert digest(v14_release.read_bytes())=='bfa9c1a5a289335eabcc04f02441841f92e18dfa0f8178b3eeb5c13b0798b26e'
+        release=read_json(v14_release)
+        assert release['schema_version']=='card-db-eleven-function-release-v1'
+        assert release['stage_manifest']['sha256']==frozen[manifest_path]
+        assert release['independent_acceptance']['sha256']==frozen[audit_path]
+        assert release['publication_receipt']['sha256']==frozen[publication_path]
+        assert release['native_candidate_record']['sha256']==frozen[native_path]
+        assert release['human_candidate_record']['sha256']==frozen[human_path]
+        assert release['direct_human_authority']==human['direct_human_authority']
+        assert len(release['releases'])==11 and {x['page'] for x in release['releases']}==native_pages|human_pages
+        add(v14_release,keeper/'V14 release'/v14_release.name)
+    return list(files.values())
+
+
+def retired_kt_fact_keepers(workspace):
+    """Archive three historical companions without restoring active content."""
+    path = workspace/'tmp/ald-text/ald/card-type-database/function-review-batch-7/application/Retired KT source facts/Retired KT source facts receipt.json'
+    if not path.is_file():
+        return []
+    assert digest(path.read_bytes()) == '7b7132908bfd1ffca3164cc3541892f38783332056d04ad4d107699339c9cc32'
+    receipt = read_json(path)
+    assert receipt['passed'] is True and not receipt['failures']
+    assert {r['page'] for r in receipt['retirements']} == {'KT701','KT721','KT731'}
+    assert len(receipt['retirements']) == 3
+
+    def checked(binding):
+        file = Path(binding['path'])
+        assert file.is_file() and digest(file.read_bytes()) == binding['sha256'], str(file)
+        return file
+
+    before_path = checked(receipt['before_content_manifest'])
+    after_path = checked(receipt['after_content_manifest'])
+    before = {r['path']:r for r in read_json(before_path)['files']}
+    after = {r['path']:r for r in read_json(after_path)['files']}
+    expected = {'json/KT Indicator Rollers and Scan Bus/'+page+' source facts.json'
+                for page in ['KT701','KT721','KT731']}
+    assert set(before)-set(after) == expected and not set(after)-set(before)
+    assert receipt['counts'] == {'before_content_records':len(before),
+                                'after_content_records':len(after),
+                                'removed_companions':3,'added_records':0,
+                                'primary_page_models_retained':3}
+    recovery = read_json(checked(receipt['KT_recovery_acceptance']))
+    assert recovery['passed'] is True and recovery['published'] is True
+    recovery = {r['page']:r for r in recovery['acceptance_receipts'] if r['passed'] is True}
+    publication = read_json(checked(receipt['batch7_publication']))
+    assert publication['passed'] is True and not publication.get('failures')
+    publication = {r['page']:r for r in publication['pages']}
+    files = [path,before_path,after_path]
+    for item in receipt['retirements']:
+        page = item['page']; old = recovery[page]; accepted = publication[page]
+        relative = item['retired_relative_path']
+        assert relative == 'json/KT Indicator Rollers and Scan Bus/'+page+' source facts.json'
+        assert item['original_content_record'] == before[relative]
+        facts = checked(item['preserved_facts'])
+        assert facts.resolve().is_relative_to((workspace/'tmp/ald-text/ald/repository-export/held accepted snapshots/content-20261014T202147005112Z').resolve())
+        assert facts.name == page+' source facts.json'
+        assert item['preserved_facts']['sha256'] == before[relative]['sha256'] == old['accepted_hashes']['facts_sha256']
+        assert item['old_accepted_text_sha256'] == old['accepted_hashes']['text_sha256'] == accepted['before_quartet']['txt']['sha256']
+        assert item['batch7_current_text_at_retirement'] == accepted['current_quartet']['txt']
+        assert item['batch7_current_text_at_retirement']['sha256'] != item['old_accepted_text_sha256']
+        assert item['frozen_batch7_accepted_text'] == accepted['independently_reviewed_candidate_quartet']['txt']
+        checked(item['frozen_batch7_accepted_text'])
+        assert item['frozen_batch7_accepted_primary_model'] == accepted['independently_reviewed_candidate_quartet']['json']
+        checked(item['frozen_batch7_accepted_primary_model'])
+        primary = item['primary_page_model_present_at_retirement']
+        relative_primary = Path(primary['path']).relative_to(workspace/'ibm360ald').as_posix()
+        assert relative_primary in after and after[relative_primary]['role'] == 'Published page content model'
+        assert primary['sha256'] == after[relative_primary]['sha256'] == item['frozen_batch7_accepted_primary_model']['sha256']
+        assert item['original_TIFF'] == accepted['source']
+        assert Path(item['original_TIFF']['path']).resolve() == Path(old['source_tiff']).resolve()
+        assert item['original_TIFF']['sha256'] == old['source_sha256']
+        checked(item['original_TIFF'])
+        assert item['original_TIFF_unchanged'] is True and item['owner_source_facts_unchanged_at_retirement'] is True
+        files.append(facts)
+    assert len({f.name for f in files}) == 6
+    return files
 
 
 def main():
@@ -79,6 +436,90 @@ def main():
             'Card types/Function correction history/R TU human function correction current audit.json',
         'tmp/ald-text/ald/card-type-database/Direct human R TU function correction.json':
             'Card types/Direct human R TU function correction.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Returned function answers current audit.json':
+            'Card types/Function review answers/Returned function answers current audit.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 2 current audit.json':
+            'Card types/Function review answers/Batch 2/Function review batch 2 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-2/Direct human answers 1-4.json':
+            'Card types/Function review answers/Batch 2/Direct human answers 1-4.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-2/Direct human answers 5-10.json':
+            'Card types/Function review answers/Batch 2/Direct human answers 5-10.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-2/Effective human answers 1-10.json':
+            'Card types/Function review answers/Batch 2/Effective human answers 1-10.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-2/Second ten function review questions.json':
+            'Card types/Function review answers/Batch 2/Second ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 2 integration guard review.json':
+            'Card types/Function review answers/Batch 2/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 3 current audit.json':
+            'Card types/Function review answers/Batch3/Function review batch 3 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-3/Direct human batch3 answers.json':
+            'Card types/Function review answers/Batch3/Direct human batch3 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-3/Third ten function review questions.json':
+            'Card types/Function review answers/Batch3/Third ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 3 integration guard review.json':
+            'Card types/Function review answers/Batch3/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 4 current audit.json':
+            'Card types/Function review answers/Batch4/Function review batch 4 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-4/Direct human batch4 answers.json':
+            'Card types/Function review answers/Batch4/Direct human batch4 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-4/Fourth ten function review questions.json':
+            'Card types/Function review answers/Batch4/Fourth ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 4 integration guard review.json':
+            'Card types/Function review answers/Batch4/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 5 current audit.json':
+            'Card types/Function review answers/Batch5/Function review batch 5 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-5/Direct human batch5 answers.json':
+            'Card types/Function review answers/Batch5/Direct human batch5 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-5/Fifth ten function review questions.json':
+            'Card types/Function review answers/Batch5/Fifth ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 5 integration guard review.json':
+            'Card types/Function review answers/Batch5/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 6 current audit.json':
+            'Card types/Function review answers/Batch6/Function review batch 6 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-6/Direct human batch6 answers.json':
+            'Card types/Function review answers/Batch6/Direct human batch6 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-6/Sixth ten function review questions.json':
+            'Card types/Function review answers/Batch6/Sixth ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 6 integration guard review.json':
+            'Card types/Function review answers/Batch6/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 7 current audit.json':
+            'Card types/Function review answers/Batch7/Function review batch 7 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-7/Direct human batch7 answers.json':
+            'Card types/Function review answers/Batch7/Direct human batch7 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-7/Seventh ten function review questions.json':
+            'Card types/Function review answers/Batch7/Seventh ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 7 integration guard review.json':
+            'Card types/Function review answers/Batch7/Integration guard review.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-7/application/Retired KT source facts/Retirement keeper guard review.json':
+            'Card types/Function review answers/Batch7/Retired KT source facts/Retirement keeper guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Function review batch 8 current audit.json':
+            'Card types/Function review answers/Batch8/Function review batch 8 current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-8/Direct human batch8 answers.json':
+            'Card types/Function review answers/Batch8/Direct human batch8 answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-8/Direct human automatic unreadable label recovery authorization.json':
+            'Card types/Function review answers/Batch8/Direct human automatic unreadable label recovery authorization.json',
+        'tmp/ald-text/ald/card-type-database/function-review-batch-8/Eighth ten function review questions.json':
+            'Card types/Function review answers/Batch8/Eighth ten function review questions.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Function batch 8 integration guard review.json':
+            'Card types/Function review answers/Batch8/Integration guard review.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Automatic unreadable function recovery current audit.json':
+            'Card types/Automatic function recoveries/V10 expanded unique fit/Automatic unreadable function recovery current audit.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/H function port rule current audit.json':
+            'Card types/H function rules/Unified 64 correction/H function port rule current audit.json',
+        'tmp/ald-text/ald/card-type-database/function-review-answers-v1/Direct human function review answers.json':
+            'Card types/Function review answers/Direct human function review answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-answers-v1/Direct human correction to returned function answers.json':
+            'Card types/Function review answers/Direct human correction to returned function answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-answers-v1/Effective human function review answers.json':
+            'Card types/Function review answers/Effective human function review answers.json',
+        'tmp/ald-text/ald/card-type-database/function-review-answers-v1/Returned workbook/ALD function shape review v1.xlsx':
+            'Card types/Function review answers/Returned workbook/ALD function shape review v1.xlsx',
+        'outputs/01a12afd-f7e4-7a21-aa71-cbee821ab67d/ALD function shape review v1.xlsx':
+            'Card types/Function review answers/Issued workbook/ALD function shape review v1.xlsx',
+        'tmp/ald-text/ald/card-type-database/shape-review-workbook-v1/First ten rare function review questions current.json':
+            'Card types/Function review answers/Issued questions snapshot.json',
+        'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/Returned function answer integration guard review.json':
+            'Card types/Function review answers/Integration guard review.json',
         'tmp/ald-text/ald/repository-export/independent-human-function-integration-review/R TU integration guard review.json':
             'Card types/Function correction history/R TU integration guard review.json',
         'tmp/ald-text/ald/card-type-database/Direct human card-type observations.json':
@@ -428,6 +869,17 @@ def main():
         path = workspace/relative
         if path.is_file():
             copy(path, repo/'notes'/name, 'Provenance or approved convention')
+    for path in retired_kt_fact_keepers(workspace):
+        copy(path, repo/'notes/Card types/Function review answers/Batch7/Retired KT source facts'/path.name,
+             'Historical KT companion retired after its bound TXT changed; primary page model retained')
+    for source,destination in automatic_function_recovery_keepers(workspace):
+        copy(source,repo/destination,'Independently accepted source-derived masked-function recovery; retained as inference provenance, not a native witness')
+    for source,destination in H_rule_function_keepers(workspace):
+        copy(source,repo/destination,'Exact human H/count rules and three A exceptions, independently accepted source-specific64-function correction and compact provenance; not new native witness evidence')
+    for source,destination in native_three_correction_keepers(workspace):
+        copy(source,repo/destination,'Native TIFF-supported PX311, KU641, and AP743 corrections, independent acceptance, published quartets, and release provenance')
+    for source,destination in eleven_function_correction_keepers(workspace):
+        copy(source,repo/destination,'Eleven independently accepted native and direct-human function corrections, source crops, published quartets, and provenance')
     caption_records = workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/AP accepted parity caption immutable records'
     human_prefix_records = workspace/'tmp/ald-text/ald/manual-verification/human-c2a-prefix-correction'
     if human_prefix_records.is_dir():
@@ -486,10 +938,7 @@ def main():
                 link = page.get(key)
                 if not isinstance(link, dict) or not link.get('file'):
                     continue
-                source = Path(link['file']).resolve()
-                assert source.is_relative_to(workspace)
-                raw = source.read_bytes()
-                assert digest(raw) == link['sha256'], source
+                source,raw = immutable_chain_binding(link,workspace)
                 destination = repo/'notes/Manual verification/immutable receipts'/(link['sha256'][:16]+' '+source.name)
                 add(destination, raw, source, 'Immutable named independent acceptance chain')
                 chain_map[str(source)] = {'repository_path': destination.relative_to(repo).as_posix(),
@@ -662,7 +1111,15 @@ def main():
         ('non-ap-OR-correction','Non-AP OR function canonical publication receipt.json','OR'),
         ('non-ap-supplemental-function-correction','Non-AP supplemental function canonical publication receipt.json','Supplemental'),
         ('CA211-human-function-correction','CA211 human function canonical publication receipt.json','CA211 exact primary function'),
-        ('R-TU-human-function-correction','R TU human function canonical publication receipt.json','R TU exact function spelling')]:
+        ('R-TU-human-function-correction','R TU human function canonical publication receipt.json','R TU exact function spelling'),
+        ('function-review-answers-v1/application','Returned function answers canonical publication receipt.json','Returned function review answers'),
+        ('function-review-batch-2/application-ten','Batch2 ten function answers canonical publication receipt.json','Function review batch 2 answers'),
+        ('function-review-batch-3/application','Batch3 function answers canonical publication receipt.json','Function review batch 3 answers'),
+        ('function-review-batch-4/application','Batch4 function answers canonical publication receipt.json','Function review batch 4 answers'),
+        ('function-review-batch-5/application','Batch5 function answers canonical publication receipt.json','Function review batch 5 answers'),
+        ('function-review-batch-6/application-current-snapshot','Batch6 function answers canonical publication receipt.json','Function review batch 6 answers'),
+        ('function-review-batch-7/application','Batch7 function answers canonical publication receipt.json','Function review batch 7 answers'),
+        ('function-review-batch-8/application','Batch8 function answers canonical publication receipt.json','Function review batch 8 answers')]:
         function_batch = workspace/'tmp/ald-text/ald/card-type-database'/subdir
         function_receipt = function_batch/receipt_name
         if not function_receipt.is_file():
@@ -681,8 +1138,23 @@ def main():
                          'Exact human function correction, independently reviewed delta and preserved source acceptance')
         for source in sorted(function_batch.glob('*')):
             if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
-                copy(source,repo/'notes/Card types/Function correction history'/label/source.name,
+                keeper=(repo/'notes/Card types/Function review answers/Application' if subdir=='function-review-answers-v1/application'
+                        else repo/'notes/Card types/Function review answers/Batch 2/Application' if subdir=='function-review-batch-2/application-ten'
+                        else repo/'notes/Card types/Function review answers/Batch3/Application' if subdir=='function-review-batch-3/application'
+                        else repo/'notes/Card types/Function review answers/Batch4/Application' if subdir=='function-review-batch-4/application'
+                        else repo/'notes/Card types/Function review answers/Batch5/Application' if subdir=='function-review-batch-5/application'
+                        else repo/'notes/Card types/Function review answers/Batch6/Application' if subdir=='function-review-batch-6/application-current-snapshot'
+                        else repo/'notes/Card types/Function review answers/Batch7/Application' if subdir=='function-review-batch-7/application'
+                        else repo/'notes/Card types/Function review answers/Batch8/Application' if subdir=='function-review-batch-8/application'
+                        else repo/'notes/Card types/Function correction history'/label)
+                copy(source,keeper/source.name,
                      'Human function correction batch publication or independent acceptance')
+    batch8_review = workspace/'tmp/ald-text/ald/card-type-database/function-review-batch-8/independent-review'
+    if batch8_review.is_dir():
+        for source in sorted(batch8_review.iterdir()):
+            if source.is_file() and source.suffix.lower() in {'.json','.png'}:
+                copy(source,repo/'notes/Card types/Function review answers/Batch8/Independent review'/source.name,
+                     'Root independent batch8 acceptance, bound before/after panels, or preserved first diagnostic')
     for suffix in ['human-batch-v4-5796f6dd2e40','socket-high-followup-v1','definite-header-followup-v2','card-type-human-followup-v1','or-function-human-followup-v1','additional-function-human-followup-v1']:
         batch_root = workspace/'tmp/ald-text/ald/ap3/root'/suffix
         receipt_name = ('Bounded human batch publication receipt.json' if suffix.startswith('human')

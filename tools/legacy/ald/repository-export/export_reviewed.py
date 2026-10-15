@@ -58,6 +58,24 @@ def xx_independent_acceptance(review):
 
 def receipts():
  records=defaultdict(list)
+ def application_target(item,page):
+  # Printed page codes can be shared by independently scanned subpages.
+  # A specific application supersedes only its exact canonical TXT path.
+  quartet=item.get('current_quartet',{})
+  paths=[Path(v.get('path','')) for v in quartet.values() if isinstance(v,dict)]
+  texts=[p for p in paths if p.suffix=='.txt' and not p.stem.endswith(' review notes')]
+  if len(texts)!=1:return None
+  target=texts[0];file_page=target.name.split(' ',1)[0]
+  if not target.resolve().is_relative_to(EXPORTS.resolve()) or not PAGE.fullmatch(file_page):return None
+  if file_page!=page and (('-' in page) or file_page.split('-',1)[0]!=page):return None
+  return target
+ def supersede_target(page,target,blocked):
+  if target is None:
+   records[page]=[{'blocked':True}];return page
+  key=target.name.split(' ',1)[0]
+  records[key]=[p for p in records[key] if not p.get('text_path') or Path(p['text_path']).resolve()!=target.resolve()]
+  if blocked:records[key].insert(0,{'blocked':True,'text_path':str(target)})
+  return key
  patterns=['*root reviews.json','*root layout review.json','*visual reviews.json',
            '*root final review.json','*final visual review.json',
            '*final review completion.json','DS native independent review ledger.json',
@@ -297,9 +315,33 @@ def receipts():
                     'Recorded and recovered UTF8 application current audit.json',
                     'OR function human correction current audit.json',
                     'CA211 human primary function correction current audit.json',
-                    'R TU human function correction current audit.json']:
+                    'R TU human function correction current audit.json',
+                    'Returned function answers current audit.json',
+                    'Function review batch 2 current audit.json',
+                    'Function review batch 3 current audit.json',
+                    'Function review batch 4 current audit.json',
+                    'Function review batch 5 current audit.json',
+                    'Function review batch 6 current audit.json',
+                    'Function review batch 7 current audit.json',
+                    'Function review batch 8 current audit.json',
+                    'Automatic unreadable function recovery current audit.json',
+                    'H function port rule current audit.json',
+                    'Native three source corrections current audit.json',
+                    'Eleven function corrections current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
+  if audit_name=='Eleven function corrections current audit.json' and audit.get('passed') is not True:
+   # This newest source-specific acceptance supersedes the prior text receipts
+   # even if the binder disappears or fails to load. Never resurrect old copy.
+   for page in {'AP737','AP181','RQ683','KU601','RQ781','MC371','AP441','AP531','XM181','AS201','AP313'}:
+    for target in EXPORTS.rglob(page+' *.txt'):
+     if not target.stem.endswith(' review notes'):supersede_target(page,target,True)
+   continue
+  if audit_name in {'Function review batch 3 current audit.json','Function review batch 4 current audit.json','Function review batch 5 current audit.json','Function review batch 6 current audit.json','Function review batch 7 current audit.json','Function review batch 8 current audit.json','Automatic unreadable function recovery current audit.json','H function port rule current audit.json','Native three source corrections current audit.json'} and audit.get('passed') is not True:
+   # A failed latest source-specific review cannot restore an older approval.
+   for item in audit.get('pages',[]):
+    if item.get('page') and PAGE.fullmatch(item['page']):supersede_target(item['page'],application_target(item,item['page']),True)
+   continue
   if audit.get('passed') is not True:continue
   for item in audit.get('pages',[]):
    page=item.get('page')
@@ -307,14 +349,28 @@ def receipts():
    application_schema=(audit_name in {'Recorded and recovered UTF8 application current audit.json',
                                      'OR function human correction current audit.json',
                                      'CA211 human primary function correction current audit.json',
-                                     'R TU human function correction current audit.json'})
-   records[page]=[{'blocked':True}] if application_schema else []
+                                     'R TU human function correction current audit.json',
+                                     'Returned function answers current audit.json',
+                                     'Function review batch 2 current audit.json',
+                                     'Function review batch 3 current audit.json',
+                                     'Function review batch 4 current audit.json',
+                                     'Function review batch 5 current audit.json',
+                                     'Function review batch 6 current audit.json',
+                                     'Function review batch 7 current audit.json',
+                                     'Function review batch 8 current audit.json',
+                                     'Automatic unreadable function recovery current audit.json',
+                                     'H function port rule current audit.json',
+                                     'Native three source corrections current audit.json',
+                                     'Eleven function corrections current audit.json'})
+   target=application_target(item,page) if application_schema else None
+   record_page=supersede_target(page,target,True) if application_schema else page
+   if not application_schema:records[page]=[]
    checks=item.get('checks',{})
    if item.get('eligible') is not True or not checks or not all(value is True for value in checks.values()):continue
    source=item.get('source',{});sp=Path(source.get('path',''))
    if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):continue
    valid=True
-   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory']:
+   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop']:
     chain=item.get(key)
     if not isinstance(chain,dict) or not chain.get('file'):continue
     cp=Path(chain['file'])
@@ -344,10 +400,13 @@ def receipts():
         or Path(a['path']).resolve().is_relative_to((ROOT/'tmp/ald-text/a1').resolve()))
       and sha(Path(a['path']).read_bytes())==a.get('sha256') for a in auxiliary):continue
    if len(quartet)!=len(expected):continue
-   if set(paths)!=expected or text_path.name.split(' ',1)[0]!=page:continue
+   if set(paths)!=expected:continue
+   if application_schema:
+    if target is None or text_path.resolve()!=target.resolve():continue
+   elif text_path.name.split(' ',1)[0]!=page:continue
    if not all(p.is_file() and p.resolve().is_relative_to(EXPORTS.resolve()) and sha(p.read_bytes())==value.get('sha256') for p,value in zip(paths,quartet.values())):continue
-   if application_schema:records[page]=[]
-   records[page].append({'receipt':str(audit_path.relative_to(ROOT)),'hashes':[sha(text_path.read_bytes())],
+   if application_schema:record_page=supersede_target(page,target,False)
+   records[record_page].insert(0,{'receipt':str(audit_path.relative_to(ROOT)),'hashes':[sha(text_path.read_bytes())],
                          'text_path':str(text_path),'source_path':str(sp)})
  return records
 
@@ -362,8 +421,9 @@ def companion_metadata(txt):
 def reviewed(txt,page,hash_value,meta,proofs):
  holds=read_json(AUDIT/'Coordinator source review holds.json') or {}
  if page[:2] in holds.get('families',{}) or page in holds.get('pages',{}):return None
- if any(proof.get('blocked') for proof in proofs.get(page,[])):return None
- for proof in proofs.get(page,[]):
+ matching=[proof for proof in proofs.get(page,[]) if not proof.get('text_path') or Path(proof['text_path']).resolve()==txt.resolve()]
+ if any(proof.get('blocked') for proof in matching):return None
+ for proof in matching:
   if proof['hashes'] is None or hash_value in proof['hashes']:return proof['receipt']
  # Table/CAS pages have their own completed visual verification, rather than
  # the later ALD circuit root-review receipts.

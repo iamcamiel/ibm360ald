@@ -8,8 +8,146 @@ import argparse, csv, hashlib, json, re
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
+from validate_eleven_release import validate as validate_eleven_release
 
 VERSION = "2.0"
+NATIVE_REVIEW_SHA256 = '843fd5a60089ed540db19745bb38ccd0e75f7683c64ab94b0b5bc048b2b8fd8c'
+NATIVE_HISTORY_KEY = 'source_native_three_corrections_v1'
+ELEVEN_HISTORY_KEY = 'source_eleven_function_corrections_v1'
+NATIVE_RELEASE_SPECS = {
+    3: {'page':'PX311','scan_id':'1555','node_pointer':'/nodes/11',
+        'canvas':(7,96,'│','◺'),
+        'model_changes':(('/nodes/11/pins/1/triangle',False,True),('/printed_labels/27/text','B09','B09◺'))},
+    4: {'page':'KU641','scan_id':'1113','node_pointer':'/nodes/35',
+        'canvas':(54,149,'◺','│'),
+        'model_changes':(('/nodes/35/pins/2/triangle',True,False),)},
+    5: {'page':'AP743','scan_id':'327','node_pointer':'/nodes/20',
+        'canvas':(17,120,'O','A'),
+        'model_changes':(('/nodes/20/function','OR','AR'),)},
+}
+
+def _json_pointer_get(root, pointer):
+    value=root
+    for part in pointer.lstrip('/').split('/'):
+        part=part.replace('~1','/').replace('~0','~')
+        value=value[int(part)] if isinstance(value,list) else value[part]
+    return value
+
+def _json_pointer_set(root, pointer, value):
+    parts=[p.replace('~1','/').replace('~0','~') for p in pointer.lstrip('/').split('/')]
+    target=root
+    for part in parts[:-1]:target=target[int(part)] if isinstance(target,list) else target[part]
+    last=parts[-1]
+    if isinstance(target,list):target[int(last)]=value
+    else:target[last]=value
+
+def _canonical_json_bytes(value, current_bytes):
+    """Accept only the existing indent/newline encoding, so reversal proves no hidden edits."""
+    candidates=[(json.dumps(value,indent=2,ensure_ascii=False)+end).replace('\n',newline).encode('utf-8')
+                for newline in ('\r\n','\n') for end in ('\n','')]
+    return next((candidate for candidate in candidates if candidate==current_bytes),None)
+
+def validate_native_finding_release(review_path, release_path, review, repo, pages, sources, file_sources):
+    """Release only three exact reviewed findings after byte-bound canonical correction."""
+    if sha(review_path)!=NATIVE_REVIEW_SHA256:
+        raise ValueError('Immutable native review hash changed; release refused')
+    release=read(release_path)
+    if release.get('schema_version')!='card-db-native-three-release-v1' or release.get('review_sha256')!=NATIVE_REVIEW_SHA256:
+        raise ValueError('Native release does not bind the exact immutable review')
+    bound_docs={}
+    for key in ('stage_manifest','independent_acceptance','publication_receipt'):
+        binding=release.get(key)
+        if not isinstance(binding,dict) or not isinstance(binding.get('path'),str) or not isinstance(binding.get('sha256'),str):
+            raise ValueError('Native release lacks bound '+key)
+        path=Path(binding['path'])
+        if sha(path)!=binding['sha256']:raise ValueError('Native release '+key+' hash mismatch')
+        bound_docs[key]=read(path)
+    stage=bound_docs['stage_manifest'];audit=bound_docs['independent_acceptance'];publication=bound_docs['publication_receipt']
+    manifest_binding=release['stage_manifest']
+    if (stage.get('schema')!='source-native-three-page-correction-stage-v1' or len(stage.get('pages',[]))!=3 or
+            audit.get('passed') is not True or audit.get('failures') or audit.get('manifest')!=manifest_binding or
+            publication.get('manifest')!=manifest_binding or publication.get('independent_audit')!=release['independent_acceptance'] or
+            publication.get('pages')!=3 or publication.get('repository_writes')!=0 or publication.get('original_scan_writes')!=0):
+        raise ValueError('Native release lacks independently accepted three-page publication chain')
+    stage_pages={page.get('page'):page for page in stage['pages']}
+    audit_pages={page.get('page'):page for page in audit.get('independent_checks',[])}
+    published={slashes(x['path']):x['sha256'] for x in publication.get('canonical_destinations',[]) if isinstance(x,dict) and 'path' in x and 'sha256' in x}
+    expected_pages={spec['page'] for spec in NATIVE_RELEASE_SPECS.values()}
+    if set(stage_pages)!=expected_pages or set(audit_pages)!=expected_pages:
+        raise ValueError('Native release acceptance page set mismatch')
+    entries=release.get('releases')
+    if not isinstance(entries,list) or len(entries)!=3 or {x.get('finding_index') for x in entries if isinstance(x,dict)}!=set(NATIVE_RELEASE_SPECS):
+        raise ValueError('Native release must contain exactly the three approved finding identities')
+    if len(review.get('findings',[]))!=6:
+        raise ValueError('Immutable native review finding count changed')
+    released=set()
+    for entry in entries:
+        index=entry['finding_index'];spec=NATIVE_RELEASE_SPECS[index];finding=review['findings'][index]
+        if {k:entry.get(k) for k in ('page','scan_id','node_pointer')}!={k:spec[k] for k in ('page','scan_id','node_pointer')}:
+            raise ValueError('Native release page/block/scan identity mismatch')
+        if {k:str(finding.get('source_scan_id')) if k=='scan_id' else finding.get(k) for k in ('page','scan_id','node_pointer')}!={k:spec[k] for k in ('page','scan_id','node_pointer')}:
+            raise ValueError('Immutable native finding identity mismatch')
+        if finding.get('status')!='Native-supported exact correction; publication held for coordinated author':
+            raise ValueError('Native finding status is not an active exact correction')
+        page=pages.get(spec['scan_id'])
+        if not page or page['page']!=spec['page'] or entry.get('text_path')!=page['text_path']:
+            raise ValueError('Native release accepted text path mismatch')
+        model_path=Path(finding['current_model']['path'])
+        model_rel=repo_path_from_absolute(model_path,repo,'json')
+        if entry.get('model_path')!=model_rel or model_rel not in file_sources:
+            raise ValueError('Native release accepted model path mismatch')
+        source_sha=sources[page['original_source_id']]['sha256']
+        if entry.get('original_TIFF_sha256')!=source_sha or source_sha!=finding['source']['sha256']:
+            raise ValueError('Native release original TIFF binding mismatch')
+        text_sha=sources[page['text_source_id']]['sha256'];model_sha=sources[file_sources[model_rel]]['sha256']
+        if entry.get('accepted_text_sha256')!=text_sha or entry.get('accepted_model_sha256')!=model_sha:
+            raise ValueError('Native release accepted current source hashes mismatch')
+        staged=stage_pages[spec['page']];accepted=audit_pages[spec['page']]
+        if (str(staged.get('scan_id'))!=spec['scan_id'] or staged['source']['sha256']!=source_sha or
+                staged['candidate_quartet']['txt']['sha256']!=text_sha or staged['candidate_quartet']['json']['sha256']!=model_sha or
+                accepted['candidate_hashes']['txt']!=text_sha or accepted['candidate_hashes']['json']!=model_sha or
+                published.get(slashes(staged['canonical_quartet']['txt']['path']))!=text_sha or
+                published.get(slashes(staged['canonical_quartet']['json']['path']))!=model_sha or
+                sha(Path(staged['canonical_quartet']['txt']['path']))!=text_sha or
+                sha(Path(staged['canonical_quartet']['json']['path']))!=model_sha):
+            raise ValueError('Native release stage/audit/publication/current canonical hashes disagree')
+        text_bytes=(repo/page['text_path']).read_bytes();text=text_bytes.decode('utf-8');lines=text.splitlines(keepends=True)
+        row,col,before,after=spec['canvas']
+        if not 0<=row<len(lines) or lines[row][col:col+1]!=after or entry.get('canvas')!={'row':row,'column':col,'before':before,'after':after}:
+            raise ValueError('Native release corrected canvas cell mismatch')
+        lines[row]=lines[row][:col]+before+lines[row][col+1:]
+        predecessor_text_sha=hashlib.sha256(''.join(lines).encode('utf-8')).hexdigest()
+        if predecessor_text_sha!=finding['current_text']['sha256']:
+            raise ValueError('Native release text differs beyond one approved glyph')
+        model_bytes=(repo/model_rel).read_bytes();model=json.loads(model_bytes)
+        if _canonical_json_bytes(model,model_bytes) is None:
+            raise ValueError('Native release model serialization is not the accepted canonical form')
+        history=model.pop(NATIVE_HISTORY_KEY,None)
+        if not isinstance(history,dict) or entry.get('history_sha256')!=hashlib.sha256(json.dumps(history,sort_keys=True,ensure_ascii=False).encode('utf-8')).hexdigest():
+            raise ValueError('Native release exact new provenance history is absent or unbound')
+        if (history.get('scan_id')!=spec['scan_id'] or history.get('original_tiff',{}).get('sha256')!=source_sha or
+                slashes(history.get('original_tiff',{}).get('path',''))!=slashes(finding['source']['path'])):
+            raise ValueError('Native release model history lacks its exact source TIFF identity')
+        if history.get('predecessor_text_sha256')!=finding['current_text']['sha256'] or history.get('predecessor_model_sha256')!=finding['current_model']['sha256']:
+            raise ValueError('Native release model history lacks predecessor hashes')
+        if history.get('text_cell')!={'row':row,'column':col,'before':before,'after':after}:
+            raise ValueError('Native release model history lacks exact text cell')
+        expected_changes=[{'pointer':pointer,'before':old,'after':new} for pointer,old,new in spec['model_changes']]
+        if history.get('active_model_changes')!=expected_changes:
+            raise ValueError('Native release model history lacks exact active model changes')
+        evidence=history.get('source_evidence')
+        if not isinstance(evidence,dict) or not isinstance(evidence.get('path'),str) or not isinstance(evidence.get('sha256'),str) or sha(Path(evidence['path']))!=evidence['sha256']:
+            raise ValueError('Native release source evidence is missing or stale')
+        for pointer,old,new in spec['model_changes']:
+            if _json_pointer_get(model,pointer)!=new:raise ValueError('Native release corrected model field mismatch: '+pointer)
+            _json_pointer_set(model,pointer,old)
+        newline='\r\n' if b'\r\n' in model_bytes else '\n'
+        end='\n' if model_bytes.endswith(b'\n') else ''
+        restored=(json.dumps(model,indent=2,ensure_ascii=False)+end).replace('\n',newline).encode('utf-8')
+        if hashlib.sha256(restored).hexdigest()!=finding['current_model']['sha256']:
+            raise ValueError('Native release model differs beyond exact approved fields and history')
+        released.add(index)
+    return released
 CONFIRMED_FUNCTION_PAIRS = ('A OR','N OR','OR OR','OR A','A A','N A','✲OR OR','AR ID','OR FL','A FL','AR T')
 UNDERSTOOD_FUNCTION_NAMES = frozenset(('A','N','OR','✲OR','R','AR','R T0','R T1','R T2','R T3','R T4','SW A','TD D'))
 
@@ -330,6 +468,103 @@ def separate_decoration_evidence(port,text_lines,node,candidate_rows):
     if declared_star and not star:result['status']='Separate model star annotation conflicts with source-bound field'
     return result
 
+
+def source_derived_function_dependencies(model, pointer, literal, text_bindings):
+    """Export accepted source-derived history, never create a new native vote."""
+    dependencies=[]
+    for key,history in model.items():
+        if not key.startswith('source_derived_unique_function_recovery_'):
+            continue
+        if not isinstance(history,dict) or not isinstance(history.get('fields'),list):
+            raise ValueError('Malformed source-derived function history: '+key)
+        for i,field in enumerate(history['fields']):
+            if field.get('node_pointer')!=pointer:
+                continue
+            before,after=field.get('function_before'),field.get('function_after')
+            if not isinstance(before,str) or not isinstance(after,str) or after!=literal or '�' not in before or '�' in after or len(before)!=len(after) or any(a!='�' and a!=b for a,b in zip(before,after)):
+                raise ValueError('Source-derived function history conflicts with accepted literal: '+pointer)
+            if text_bindings!=[{'row':field.get('row'),'column':field.get('column'),'literal':after}]:
+                raise ValueError('Source-derived function history lacks exact accepted placement: '+pointer)
+            if not field.get('candidate_id') or not field.get('independent_witness_observation_ids'):
+                raise ValueError('Source-derived function history lacks immutable identity/witnesses: '+pointer)
+            dependencies.append({
+                'dependency_kind':'source_derived_unique_function_recovery',
+                'classification':'Accepted source-derived recovery; not a newly legible native or direct human field reading',
+                'witness_eligible':False,
+                'history_JSON_pointer':'/'+key+'/fields/'+str(i),
+                'candidate_id':field['candidate_id'],
+                'node_pointer':pointer,'function_before':before,'function_after':after,
+                'covered_cells':[[c['row'],c['column']] for c in field['exact_meaningful_cell_changes']],
+                'authority':history['authority'],'candidate_manifest':history['candidate_manifest'],
+                'independent_candidate_audit':history['independent_candidate_audit'],
+                'independent_witness_observation_ids':field['independent_witness_observation_ids'],
+                'witness_source_model_text_bindings':field['witness_source_model_text_bindings'],
+            })
+    if len(dependencies)>1:
+        raise ValueError('Ambiguous source-derived function histories: '+pointer)
+    return dependencies
+
+
+def H_rule_function_dependencies(model, observation):
+    """Record only exact accepted H-rule reconstructions; never native votes."""
+    key='source_derived_H_rule_function_recovery_v1'
+    history=model.get(key)
+    if history is None:return []
+    if not isinstance(history,dict) or not isinstance(history.get('fields'),list):
+        raise ValueError('Malformed H-rule function reconstruction history')
+    if history.get('authority',{}).get('sha256')!='32b2e29139fbf497a84fe7bbfb9367134400f313020a2d52b81db7c674cc0469':
+        raise ValueError('Unrecognized exact H-rule authority')
+    records=history.get('raw_authority_records',[])
+    if len(records)!=1 or records[0].get('sha256')!='e5898ee7c105d5f9c6fa5ace92f16bf349fbbc0aaf9754f2d7e3f6400d6cdd36':
+        raise ValueError('Unrecognized exact three-A exception authority')
+    if history.get('approved_inventory',{}).get('sha256')!='f36bd3339b9492a97e38724497374913e79cc9002414c8fdf4cad28d26414e76':
+        raise ValueError('Unrecognized exact64 H-rule field inventory')
+    dependencies=[]
+    for i,field in enumerate(history['fields']):
+        if field.get('node_pointer')!=observation['JSON_pointer']:continue
+        old,new=field.get('function_before'),field.get('function_after')
+        proof=field.get('source_evidence',{});target=proof.get('target',{})
+        if old not in ('H','�') or new not in ('A','R') or observation['function_literal']!=new:
+            raise ValueError('H-rule reconstruction conflicts with accepted function')
+        if proof.get('function_before')!=old or proof.get('function_after')!=new or proof.get('candidate_id')!=field.get('candidate_id'):
+            raise ValueError('H-rule source proof differs from exact function decision')
+        identity=(observation['observation_id'],observation['page'],observation['scan_id'],observation['JSON_pointer'],observation['node_identifier'],observation['printed_card_portion_literal'],observation['unit_code_literal'],observation['location_literal'])
+        expected=(target.get('observation_id'),target.get('page'),str(target.get('scan_id')),target.get('node_pointer'),target.get('node_identifier'),target.get('printed_card_portion'),target.get('unit'),target.get('location'))
+        if identity!=expected:raise ValueError('H-rule exact page/block/card/socket identity mismatch')
+        span=[{'row':field.get('row'),'column':field.get('column'),'literal':new}]
+        if observation['literal_text_bindings']['function']!=span or target.get('function_literal_bindings')!=[dict(span[0],literal=old)]:
+            raise ValueError('H-rule exact accepted function span mismatch')
+        if observation['port_annotation_availability']!='available' or observation['unassigned_direction_port_count'] or any(observation['ports_with_unknown_connection_counts'].values()) or observation['source_review_pending']:
+            raise ValueError('H-rule port count or source evidence is unresolved')
+        ni=observation['observed_connected_port_counts']['input'];no=observation['observed_connected_port_counts']['output']
+        if (ni,no)!=(field.get('connected_inputs'),field.get('connected_outputs')) or (ni,no)!=(proof.get('connected_inputs'),proof.get('connected_outputs')):
+            raise ValueError('H-rule port evidence differs from unchanged accepted ports')
+        if proof.get('direct_A_exception'):
+            permitted={('AP791','6J','0505B3'),('AP581','AF','463449'),('AP591','AG','463450')}
+            if (observation['page'],observation['node_identifier'],observation['printed_card_portion_literal']) not in permitted or (old,new,ni,no)!=('H','A',1,1) or proof.get('direct_exception_authority',{}).get('sha256')!=records[0]['sha256']:
+                raise ValueError('Unapproved one-input/output H-rule exception')
+            decision='Exact direct human A exception; original one input and one output retained'
+        else:
+            rule='R' if ni==1 and no==0 else 'A' if ni>=2 and no==1 else None
+            if rule!=new:raise ValueError('H-rule decision does not follow exact human port-count rule')
+            decision='Exact direct human H-invalid and connected port-count rule'
+        if (old=='H')!=(proof.get('case_class')=='standalone_H_function'):
+            raise ValueError('H-rule case classification changed')
+        dependencies.append({'dependency_kind':'human_H_rule_function_reconstruction',
+            'classification':'Accepted rule-based reconstruction; not a newly legible independent native function reading',
+            'witness_eligible':False,'history_JSON_pointer':'/'+key+'/fields/'+str(i),
+            'source_evidence_JSON_pointer':'/'+key+'/fields/'+str(i)+'/source_evidence',
+            'candidate_id':field['candidate_id'],'node_pointer':observation['JSON_pointer'],
+            'function_before':old,'function_after':new,'covered_cells':[[field['row'],field['column']]],
+            'observed_connected_input_count':ni,'observed_connected_output_count':no,
+            'authority':history['authority'],'raw_authority_records':records,'approved_inventory':history['approved_inventory'],
+            'decision_basis':decision,'direct_A_exception':bool(proof.get('direct_A_exception')),
+            'complete_native_witness_ids':proof.get('complete_native_witness_ids',[]),
+            'selected_distinct_scan_native_witness':proof.get('selected_distinct_scan_native_witness'),
+            'native_source_evidence':proof.get('native_evidence')})
+    if len(dependencies)>1:raise ValueError('Duplicate H-rule histories for one function')
+    return dependencies
+
 def build(args):
     repo = args.repo_root.resolve(); out = args.output_root.resolve()
     if out == repo or repo in out.parents: raise ValueError("Private output must be outside the input repository")
@@ -401,6 +636,10 @@ def build(args):
         sources['frozen-original-registry']={'path':copied.relative_to(out).as_posix(),'sha256':sha(args.original_source_registry),'role':'Previously independently reviewed original TIFF hashes; reused without archive rehash','external_input':True}
     pending_findings=[]
     pending_review_id=None
+    native_release_id=None
+    released_native_findings=set()
+    if args.native_finding_release and not args.pending_native_review:
+        raise ValueError('Native finding release requires its immutable pending review')
     if args.pending_native_review:
         review=read(args.pending_native_review);copied=out/'notes/Card types'/args.pending_native_review.name
         if review.get('passed') is not True or review.get('failures'):raise ValueError('Pending native review is not independently passing')
@@ -409,6 +648,55 @@ def build(args):
         sources[pending_review_id]={'path':copied.relative_to(out).as_posix(),'sha256':sha(args.pending_native_review),'role':'Independent source findings awaiting canonical correction; no implicit application','external_input':True}
         initial_hashes[str(args.pending_native_review)]=sha(args.pending_native_review)
         pending_findings=review.get('findings',[])
+        if args.native_finding_release:
+            released_native_findings=validate_native_finding_release(args.pending_native_review,args.native_finding_release,review,repo,pages,sources,file_sources)
+            receipt=args.native_finding_release;release_copy=out/'notes/Card types'/receipt.name
+            release_copy.parent.mkdir(parents=True,exist_ok=True);release_copy.write_bytes(receipt.read_bytes())
+            native_release_id=sid('h',receipt.name)
+            sources[native_release_id]={'path':release_copy.relative_to(out).as_posix(),'sha256':sha(receipt),
+                'role':'Exact source-bound release of three independently accepted native corrections; immutable historical review retained',
+                'external_input':True}
+            initial_hashes[str(receipt)]=sha(receipt)
+            release_data=read(receipt)
+            for kind in ('stage_manifest','independent_acceptance','publication_receipt'):
+                original=Path(release_data[kind]['path']);copied=out/'notes/Card types/Native three release evidence'/original.name
+                copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(original.read_bytes())
+                sources[sid('h','native-three-'+kind)]={'path':copied.relative_to(out).as_posix(),'sha256':sha(original),
+                    'role':'Immutable '+kind+' supporting exact native finding release','external_input':True}
+                initial_hashes[str(original)]=sha(original)
+    if not args.eleven_function_release:
+        raise ValueError('V14 requires exact independently accepted eleven-function release')
+    eleven_releases=validate_eleven_release(args.eleven_function_release,repo,pages,sources,file_sources)
+    if len(eleven_releases)!=11:
+        raise ValueError('V14 eleven-function release is incomplete')
+    eleven_receipt=args.eleven_function_release
+    eleven_copy=out/'notes/Card types'/eleven_receipt.name
+    eleven_copy.parent.mkdir(parents=True,exist_ok=True);eleven_copy.write_bytes(eleven_receipt.read_bytes())
+    eleven_release_id=sid('h',eleven_receipt.name)
+    sources[eleven_release_id]={'path':eleven_copy.relative_to(out).as_posix(),'sha256':sha(eleven_receipt),
+        'role':'Exact source-bound release of seven native and four direct-human function readings','external_input':True}
+    initial_hashes[str(eleven_receipt)]=sha(eleven_receipt)
+    eleven_release_data=read(eleven_receipt)
+    for kind in ('stage_manifest','independent_acceptance','publication_receipt','native_candidate_record','human_candidate_record'):
+        original=Path(eleven_release_data[kind]['path']);copied=out/'notes/Card types/Eleven function release evidence'/original.name
+        copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(original.read_bytes())
+        sources[sid('h','eleven-functions-'+kind)]={'path':copied.relative_to(out).as_posix(),'sha256':sha(original),
+            'role':'Immutable '+kind+' supporting exact eleven-function release','external_input':True}
+        initial_hashes[str(original)]=sha(original)
+    if not args.group_0143_interpretation or sha(args.group_0143_interpretation)!='339d6e55e17db2eb4cbe2be13ee103ef1fbdceeb1bc85c1ad653772be47aaba7':
+        raise ValueError('V14 requires exact direct-human 0143 gate-group authority')
+    group_0143=read(args.group_0143_interpretation)
+    if (group_0143.get('schema')!='card-type-0143-human-semantics-authority-v1' or
+            group_0143.get('raw_statement')!='in 0143, the C1-C2-C3 parts form a group of internally connected gates; normally written with C1 and C2 as AND gates, and C3 as an OR gate. The DT011 use of the group switches that AND and OR functions, and adds inversion on the C1 and C2 inputs.' or
+            group_0143.get('clarification_prompt')!='Did you mean DT001 is the case that switches the C1/C2 AND and C3 OR functions? DT001 C3 reads A, while DT011 C3 reads OR.' or
+            group_0143.get('selected_answer')!='Yes, DT001 switches them (recommended)' or group_0143.get('confirmed_page')!='DT001' or group_0143.get('literal_page_correction') is not None):
+        raise ValueError('V14 0143 group authority wording/scope mismatch')
+    group_copy=out/'notes/Card types'/args.group_0143_interpretation.name
+    group_copy.parent.mkdir(parents=True,exist_ok=True);group_copy.write_bytes(args.group_0143_interpretation.read_bytes())
+    group_0143_source_id=sid('h',args.group_0143_interpretation.name)
+    sources[group_0143_source_id]={'path':group_copy.relative_to(out).as_posix(),'sha256':sha(args.group_0143_interpretation),
+        'role':'Direct-human 0143 C1/C2/C3 gate-group interpretation and DT001 clarification; no semantic relabeling','external_input':True}
+    initial_hashes[str(args.group_0143_interpretation)]=sha(args.group_0143_interpretation)
     occurrence_authority_id=None
     if args.occurrence_authority:
         authority=args.occurrence_authority; copied=out/'notes/Card types'/authority.name
@@ -466,6 +754,23 @@ def build(args):
             post_answer_ids.add(answer.get('id'))
     def repairs_for_page(page):
         return [r for r in recovery_by_page[page['page']] if not r.get('source_scan_id') or r['source_scan_id']==page['scan_id']]
+    group_0143_examples=[]
+    for example_page,expected in (
+        ('DT001',[('0143C1','OR',1,0),('0143C2','OR',1,0),('0143C3','A',0,1)]),
+        ('DT011',[('0143C1','A',0,0),('0143C2','A',0,0),('0143C3','OR',0,1),('0143C3','OR',0,1)])):
+        matches=[(rel,source_id,model,page) for rel,source_id,model,page in documents if page and page['page']==example_page and rel.startswith('json/DT Wrap/')]
+        if len(matches)!=1:raise ValueError('V14 0143 group example model missing/ambiguous: '+example_page)
+        rel,source_id,model,page=matches[0]
+        actual=[]
+        for i,node in enumerate(model.get('nodes',[])):
+            if node.get('printed_card_portion') not in ('0143C1','0143C2','0143C3'):continue
+            actual.append((node['printed_card_portion'],node.get('function'),
+                sum(p.get('side')=='input' and p.get('triangle') is True for p in node.get('pins',[])),
+                sum(p.get('side')=='output' and p.get('triangle') is True for p in node.get('pins',[]))))
+        if actual!=expected:raise ValueError('V14 0143 printed labels/input triangles changed: '+example_page)
+        group_0143_examples.append({'page':example_page,'scan_id':page['scan_id'],'accepted_model_source_id':source_id,
+            'accepted_text_source_id':page['text_source_id'],'accepted_literal_functions':[x[1] for x in actual],
+            'input_triangle_counts':[x[2] for x in actual], 'output_triangle_counts':[x[3] for x in actual]})
     cards = {}
     def card(code):
         if code not in cards:
@@ -611,6 +916,7 @@ def build(args):
             obs['secondary_function_labels']=interpreted['secondary_function_labels']
             obs['source_review_pending']=[]
             for fi,finding in enumerate(pending_findings):
+                if fi in released_native_findings:continue
                 if str(finding.get('source_scan_id'))==page['scan_id'] and finding.get('node_pointer')==pointer:
                     if finding.get('current_model',{}).get('sha256') and finding['current_model']['sha256']!=sources[source_id]['sha256']:raise ValueError('Pending native finding model binding is stale: '+page['page'])
                     if finding.get('current_text',{}).get('sha256') and finding['current_text']['sha256']!=sources[page['text_source_id']]['sha256']:raise ValueError('Pending native finding text binding is stale: '+page['page'])
@@ -625,7 +931,25 @@ def build(args):
                 for recovered in repairs_for_page(page):
                     if occupied & {tuple(x) for x in recovered['covered_cells']}:deps.append(recovered)
                 obs['field_recovery_dependencies'][field]=deps
-            obs['embedded_history_dependency_pointers']=['/'+k for k in model if any(s in k for s in ('recover','human_','source_derived','firm_resolution'))]
+            derived_function_dependencies=source_derived_function_dependencies(model,pointer,obs['function_literal'],obs['literal_text_bindings']['function'])
+            if derived_function_dependencies:
+                obs['field_recovery_dependencies']['function'].extend(derived_function_dependencies)
+                obs['function_independent_native_witness_eligible']=False
+            exact_native_release=any(i in released_native_findings and spec['scan_id']==page['scan_id'] and spec['node_pointer']==pointer
+                for i,spec in NATIVE_RELEASE_SPECS.items())
+            exact_eleven_release=eleven_releases.get((page['scan_id'],pointer))
+            if exact_eleven_release:
+                obs['function_reading_provenance']={
+                    'classification':'Exact native source-supported function reading' if exact_eleven_release['authority_kind']=='native' else 'Exact direct-human-confirmed function reading',
+                    'authority_kind':exact_eleven_release['authority_kind'],
+                    'release_source_id':eleven_release_id,
+                    'history_JSON_pointer':exact_eleven_release['history_JSON_pointer'],
+                    'accepted_text_span':exact_eleven_release['text_span'],
+                    'source_derived_recovery':False,
+                }
+            obs['embedded_history_dependency_pointers']=['/'+k for k in model if any(s in k for s in ('recover','human_','source_derived','firm_resolution'))
+                or (k==NATIVE_HISTORY_KEY and exact_native_release)
+                or (k==ELEVEN_HISTORY_KEY and exact_eleven_release)]
             counts, named_counts, unknown_counts = Counter(), Counter(), Counter()
             obs['port_annotation_availability']='available' if isinstance(node.get('pins'),list) else 'unavailable'
             for pi, pin in enumerate(node['pins'] if isinstance(node.get('pins'),list) else []):
@@ -737,6 +1061,10 @@ def build(args):
             obs['unassigned_direction_port_count']=sum(p['direction'] is None and p['drawn_connected_port'] is not False for p in obs['pins'])
             obs["observed_named_pin_counts"] = {x: named_counts[x] for x in ("input", "output")}
             obs['distinct_observed_physical_pin_names']={side:sorted({p['physical_pin'] for p in obs['pins'] if p['direction']==side and p['physical_pin']}) for side in ('input','output')}
+            H_rule_dependencies=H_rule_function_dependencies(model,obs)
+            if H_rule_dependencies:
+                obs['field_recovery_dependencies']['function'].extend(H_rule_dependencies)
+                obs['function_independent_native_witness_eligible']=False
             obs['occurrence_signature']=occurrence_signature(obs)
             obs['function_combination']=function_combination(obs)
             obs['human_interpretation']=equivalence_note(obs,occurrence_authority_id)
@@ -880,6 +1208,16 @@ def build(args):
             if len(values) > 1:
                 conflict = {"subject": code, "field": role, "alternatives": values, "facts": facts, "manual_review_required": True, "reason": "Distinct accepted listing assertions remain separate"}
                 data["conflicts"].append(conflict); conflict_rows.append(conflict)
+        if code=='0143':
+            data['human_reported_gate_group_interpretation']={
+                'authority_source_id':group_0143_source_id,
+                'authority_JSON_pointers':['/raw_statement','/clarification_prompt','/selected_answer'],
+                'normal_arrangement_reported_by_human':'C1 and C2 are AND gates; C3 is an OR gate',
+                'switched_example_confirmed_by_human':'DT001',
+                'DT001_interpretation_reported_by_human':'C1/C2 and C3 gate roles are switched; C1/C2 inputs have inversion marks',
+                'accepted_literal_examples':group_0143_examples,
+                'scope':'Interpretation note only; accepted literal function labels, pin decorations, wiring and occurrence groupings are unchanged by this note',
+            }
         write(out / "json/Card types" / (code + ".json"), data)
     report = question_report(args.question_manifest, pages, cards, depiction_by_page, repo, post_answer_ids) if args.question_manifest else None
     if report: write(out / "notes/Card types/Question candidates.json", report)
@@ -917,7 +1255,12 @@ def build(args):
             'control_prefix':'Raw numeric/other printed control prefix retained; no Boolean meaning invented.'},
         'N_rule':'Preserve N as N. The human single-used-input interpretation is restricted to inspected 0135A1 observations with exactly one known used input.',
         'equivalence_rule':'Human equivalence of AND with inverted output and OR with inverted inputs applies only to the same fully known observed used-input subset/output pin. Detailed printed forms remain separate.',
-        'pending_native_review_source_id':pending_review_id,'canonical_inputs_mutated':False,'full_physical_pinout_complete':False})
+        'pending_native_review_source_id':pending_review_id,'native_finding_release_source_id':native_release_id,
+        'released_native_finding_indexes':sorted(released_native_findings),
+        'eleven_function_release_source_id':eleven_release_id,
+        'released_eleven_function_readings':{'native_source_supported':7,'direct_human_confirmed':4},
+        'human_0143_gate_group_authority_source_id':group_0143_source_id,
+        'canonical_inputs_mutated':False,'full_physical_pinout_complete':False})
     write(out / "notes/Card types/Conflicts.json", conflict_rows)
     # Detect concurrent snapshot changes rather than publish a mixed view.
     for path, before in initial_hashes.items():
@@ -932,14 +1275,26 @@ def build(args):
     original_registry={"status":"Frozen independently reviewed original-source bindings reused; no original archive rehash in this build" if frozen_originals is not None else "Build-time read-only observed original-source bindings; not retroactive native acceptance","sources":{k:v for k,v in sources.items() if v.get('source_archive')}}
     write(out / 'notes/Card types/Original source registry.json',original_registry)
     toolcopy=out/'tools/references/build_card_type_database.py';toolcopy.parent.mkdir(parents=True,exist_ok=True);toolcopy.write_bytes(Path(__file__).read_bytes())
+    validationcopy=out/'tools/references/validate_eleven_release.py';validationcopy.write_bytes((Path(__file__).parent/'validate_eleven_release.py').read_bytes())
     counts = {"accepted_text_pages_bound": len(pages), "accepted_content_files_bound": len(manifest['files']), "original_TIFF_hashes_bound":len(original_stats), "card_types": len(cards), "diagram_observations": len(observed_rows),
               "listing_observations": len(listing_records), "pin_observations": len(pin_rows), "card_portions": len(portion_rows), 'occurrence_signatures':len(occurrence_rows),
               'function_combinations':len(combination_rows),'shape_review_flags':len(shape_review_rows),
               'shape_review_held_observations':sum(len(p['shape_review_held_observations']) for d in cards.values() for p in d['portions'].values()),
               'source_review_pending_observations':sum(bool(o['source_review_pending']) for d in cards.values() for o in d['diagram_observations']), "conflicts": len(conflict_rows), "skipped": dict(skipped)}
+    counts['exact_native_function_readings_released']=sum(o.get('function_reading_provenance',{}).get('authority_kind')=='native' for d in cards.values() for o in d['diagram_observations'])
+    counts['exact_direct_human_function_readings_released']=sum(o.get('function_reading_provenance',{}).get('authority_kind')=='direct-human' for d in cards.values() for o in d['diagram_observations'])
+    counts['source_derived_unique_function_witness_ineligible']=sum(any(dep.get('dependency_kind')=='source_derived_unique_function_recovery' for dep in o['field_recovery_dependencies']['function']) and o.get('function_independent_native_witness_eligible') is False for d in cards.values() for o in d['diagram_observations'])
+    counts['all_derived_function_witness_ineligible']=sum(o.get('function_independent_native_witness_eligible') is False for d in cards.values() for o in d['diagram_observations'])
+    if counts['exact_native_function_readings_released']!=7 or counts['exact_direct_human_function_readings_released']!=4 or counts['source_derived_unique_function_witness_ineligible']!=112 or counts['all_derived_function_witness_ineligible']!=176 or counts['source_review_pending_observations']!=0:
+        raise ValueError('V14 exact release/derived witness/pending counts changed unexpectedly')
     build_manifest = {"schema_version": VERSION, "status": "PRIVATE; awaits independent review", "created_utc": datetime.now(timezone.utc).isoformat(), "snapshot_utc": export.get("created_utc"),
                       "input_manifests": [{"path": "notes/Reviewed export provenance.json", "sha256": sha(export_path)}, {"path": "notes/Content data manifest.json", "sha256": sha(manifest_path)}],
-                      "human_facts_sha256": sha(args.human_facts), 'additional_recorded_answer_inputs':post_answer_inputs, "builder_sha256": sha(Path(__file__)), "counts": counts, "question_report_counts": report["counts"] if report else None,
+                      "human_facts_sha256": sha(args.human_facts), 'additional_recorded_answer_inputs':post_answer_inputs,
+                      'native_finding_release_sha256':sha(args.native_finding_release) if args.native_finding_release else None,
+                      'eleven_function_release_sha256':sha(args.eleven_function_release),
+                      'human_0143_gate_group_authority_sha256':sha(args.group_0143_interpretation),
+                      'released_native_finding_indexes':sorted(released_native_findings),
+                      "builder_sha256": sha(Path(__file__)), "counts": counts, "question_report_counts": report["counts"] if report else None,
                       "original_TIFF_bytes_rehashed": frozen_originals is None, "original_source_scope": "Frozen independently reviewed original-source registry reused without archive rehash; scan identities and available accepted model source declarations checked; sources never modified" if frozen_originals is not None else "Every accepted original TIFF read-hashed and checked against available accepted model declarations; sources never modified",
                       "outputs": [{"path": p.relative_to(out).as_posix(), "sha256": sha(p)} for p in sorted(out.rglob("*")) if p.is_file() and p.name not in ("Build manifest.json", "Database notes.txt")]}
     notes = "Card type reference database\n\nAccepted input snapshot: " + str(export.get("created_utc")) + "\nIndependent database audit.json and Database import receipt.json record review and publication.\n\n" + json.dumps(counts, ensure_ascii=False, indent=2) + "\n\n" + (
@@ -960,9 +1315,12 @@ def build(args):
               'Human equivalence notes concern the matching observed used-input subset, never a complete physical card pinout.\n')
     notes += ('Function combinations group by primary name, connected/unknown input and output counts, and decorations, ignoring physical pin identity. Detailed signatures retain the pins.\n'
               'Visible known-unconnected ports retain separate counts and decoration multisets in every combination and shape key; they do not increase connected counts.\n'
-              'Missing port metadata gives unavailable/null counts; it is never reported as a known zero. Unlabeled drawn wires still count.\n'
-              'Pending native source findings: PX311 AG B09 missing triangle; KU641 printed BX B10 false triangle; AP743 AQ/4C function correction. Current accepted literals remain unchanged and combinations remain pending.\n'
-              'Three OH/OK observations remain held with OR as a best guess, requiring manual confirmation. The immutable independent native review records exact source identities and proof.\n')
+              'Missing port metadata gives unavailable/null counts; it is never reported as a known zero. Unlabeled drawn wires still count.\n' +
+              ('Three exact native source findings were released after independently accepted canonical corrections; original review retained unchanged.\n' if released_native_findings else
+               'Pending native source findings: PX311 AG B09 missing triangle; KU641 printed BX B10 false triangle; AP743 AQ/4C function correction. Current accepted literals remain unchanged and combinations remain pending.\n') +
+              'Any remaining active OH/OK findings stay held with OR as a best guess, requiring manual confirmation. The immutable independent native review records exact source identities and proof.\n')
+    notes += ('Seven native source function readings and four direct-human function readings are released through the exact eleven-page acceptance chain.\n'
+              'The 0143 C1/C2/C3 gate-group interpretation identifies DT001 as the switched case without renaming literal function labels or changing pins, wiring or grouping.\n')
     notes += ('Function shape review flags compare distinct primary names on exactly known matching count/decoration shapes within the same card type and portion. They are review leads, never errors or automatic replacements.\n'
               'Readable P remains P; P→A is a human hypothesis, not a blanket correction. Legal A/AR/OR variants and minority readings are preserved.\n'
               'Incomplete, unavailable and source-review-pending geometry is kept in a separate held-observation list and excluded from strong shape flags.\n')
@@ -1009,6 +1367,7 @@ def question_report(path, pages, cards, bypage, repo, recorded_answer_ids=()):
             for o in others:
                 value = o.get(field)
                 rawfield='function' if kind=='function' else 'unit'
+                if rawfield=='function' and o.get('function_independent_native_witness_eligible') is False:continue
                 if value and "�" not in value and len(o['literal_text_bindings'][rawfield])==1:
                     values[value].append({"observation_id": o["observation_id"], "source_id": o["source_id"], "JSON_pointer": o["JSON_pointer"] + ("/function" if kind == "function" else "/unit"), "page": o["page"], "physical_instance_key": o["physical_instance_key"],
                                           'literal_text_binding':o['literal_text_bindings'][rawfield], 'field_recovery_dependencies':o['field_recovery_dependencies'][rawfield]+o['field_recovery_dependencies']['printed_card_portion'],
@@ -1071,5 +1430,8 @@ if __name__ == "__main__":
     parser.add_argument('--occurrence-authority',type=Path,help='Immutable direct human function-name and decoration interpretation')
     parser.add_argument('--original-source-registry',type=Path,help='Previously independently reviewed frozen original-source hash registry; avoids archive rehash, recorded explicitly')
     parser.add_argument('--pending-native-review',type=Path,help='Independent native findings awaiting separate canonical correction; annotation only')
+    parser.add_argument('--native-finding-release',type=Path,help='Exact source-bound release of three corrected native findings; requires immutable pending review')
+    parser.add_argument('--eleven-function-release',required=True,type=Path,help='Exact released seven native plus four direct-human function corrections')
+    parser.add_argument('--group-0143-interpretation',required=True,type=Path,help='Verbatim direct-human 0143 gate-group statement and DT001 clarification')
     parser.add_argument("--question-manifest", type=Path)
     build(parser.parse_args())

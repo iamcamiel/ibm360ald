@@ -1,0 +1,161 @@
+DS061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 33,
+  "A1_total_card_portions": 33,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 59,
+  "passed": true,
+  "pin_label_corners": [
+    {
+      "column": 130,
+      "row": 33,
+      "glyph": "┘"
+    },
+    {
+      "column": 176,
+      "row": 33,
+      "glyph": "┘"
+    },
+    {
+      "column": 153,
+      "row": 61,
+      "glyph": "┘"
+    },
+    {
+      "column": 176,
+      "row": 75,
+      "glyph": "┘"
+    },
+    {
+      "column": 84,
+      "row": 89,
+      "glyph": "┘"
+    },
+    {
+      "column": 46,
+      "row": 75,
+      "glyph": "┌"
+    },
+    {
+      "column": 69,
+      "row": 75,
+      "glyph": "┌"
+    },
+    {
+      "column": 115,
+      "row": 14,
+      "glyph": "┌"
+    },
+    {
+      "column": 115,
+      "row": 24,
+      "glyph": "└"
+    },
+    {
+      "column": 138,
+      "row": 38,
+      "glyph": "┌"
+    },
+    {
+      "column": 115,
+      "row": 59,
+      "glyph": "┌"
+    },
+    {
+      "column": 138,
+      "row": 77,
+      "glyph": "┌"
+    },
+    {
+      "column": 85,
+      "row": 12,
+      "glyph": "┘"
+    },
+    {
+      "column": 107,
+      "row": 12,
+      "glyph": "┘"
+    },
+    {
+      "column": 108,
+      "row": 33,
+      "glyph": "┐"
+    },
+    {
+      "column": 84,
+      "row": 47,
+      "glyph": "┐"
+    },
+    {
+      "column": 130,
+      "row": 75,
+      "glyph": "┐"
+    },
+    {
+      "column": 107,
+      "row": 75,
+      "glyph": "┐"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 2
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "source_uncertainty",
+    "evidence": "BF second printed OR first glyph damaged/open; candidate OR needs independent source review."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "Count digits in combiners must be retained where printed."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "No card portion printed for DOT OR BH/BJ."
+  },
+  {
+    "kind": "source_uncertainty",
+    "evidence": "Wedges vary within 3630 family: AK has wedges while AC/AN/AW lack them; retain per-native inspection."
+  },
+  {
+    "kind": "floating_wire_annotations",
+    "evidence": "Root native follow-up confirms AY8, BF3, BB6 and BG3/6 are separate wire annotations at border column minus4, with blank physical ports and three intervening wire cells. Original internal IDs retained for ownership. Same source convention independently confirmed by AP181/AP441. Prior full independent source review remains applicable; only these annotations and final input wire cells changed."
+  },
+  {
+    "kind": "native_correction",
+    "evidence": "Enlarged 061 BE native ports.png and AW BE channel show two inputs only: upper AH.blank and D07 DS025BL4. No middle input; AW.D13 descends independently to global AN4."
+  },
+  {
+    "kind": "native_footer_damage",
+    "evidence": "AB4 first hardware continuation has an erased D glyph before 12; retained �12. Hardware footer source begins at native c35, with continuation column c50."
+  },
+  {
+    "kind": "native_grid",
+    "evidence": "Normal native block columns and printed row ranks calibrated to this scan. CS061BB4/DS205BB4 input-reference diamonds lie at c46 on the lower reference row, AS135AG4 at c45; their actual longer horizontal reference spans are retained. Two DOT blocks have no printed card portion. BM.B07 forks at its explicit native diamond to BK.B03 and AH.D09."
+  }
+]
+
+Original scan order
+Before DS065 NORMAL BRANCH SET ROSAR BIT 10 PER ROS SENSE LTH BITS 62-68.tif
+After DS071 NORMAL FAST FUNCTIONAL BRANCH ON ROSAR BIT 11.tif
+
+Independent review acceptance
+{
+  "kind": "independent_native_review",
+  "reviewer": "DS root",
+  "utc": "2026-10-12T06:37:36.732559+00:00",
+  "evidence": "Previous independent full source review retained: all35blocks59inputs, BE two actual ports and no invented middle, BM common diamond fork, hardware AM4c49 and AD4 faint000 native digits. Follow-up independently checked AY8 BF3 BB6 BG3/6 in gates31/32/33 and exact BF/BG crops; restored floating numbers at borderminus4 with blank physical terminals. Corrected complete preview and all59input geometry checks passed."
+}

@@ -25,7 +25,8 @@ def allowed(relative):
     return ('..' not in parts and not PurePosixPath(relative).is_absolute()
             and (parts[:2] in [('json', 'Card types'), ('csv', 'Card types'),
                                ('notes', 'Card types')]
-                 or relative == 'tools/references/build_card_type_database.py'))
+                 or relative in ('tools/references/build_card_type_database.py',
+                                 'tools/references/validate_eleven_release.py')))
 
 
 def main():

@@ -1,0 +1,76 @@
+{
+  "created_utc": "2026-10-14T20:27:11.275338+00:00",
+  "passed": true,
+  "failures": [],
+  "receipt": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-type-database\\function-review-batch-7\\application\\Retired KT source facts\\Retired KT source facts receipt.json",
+    "sha256": "7b7132908bfd1ffca3164cc3541892f38783332056d04ad4d107699339c9cc32"
+  },
+  "importer": {
+    "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\repository\\import_review_records.py",
+    "sha256": "ed157efb965600dda418c2dccdc5a22a445e3ab97c53677176cf3f1464bc7d8f"
+  },
+  "checks": [
+    {
+      "check": "Accept exactly receipt two frozen manifests and three historical companions",
+      "passed": true,
+      "expected_rejection": false,
+      "error": null
+    },
+    {
+      "check": "Reject missing KT page",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Reject wrong preserved companion hash",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: D:\\Github\\IBM360\\tmp\\ald-text\\ald\\repository-export\\held accepted snapshots\\content-20261014T202147005112Z\\json\\KT Indicator Rollers and Scan Bus\\KT701 source facts.json"
+    },
+    {
+      "check": "Reject missing historical artifact",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-type-database\\function-review-batch-7\\application\\Retired KT source facts\\MISSING.json"
+    },
+    {
+      "check": "Reject old text hash presented as current",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Reject changed original TIFF declaration",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Reject source facts presented as primary model",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Reject forged former primary model hash",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Reject counts concealing extra retired files",
+      "passed": true,
+      "expected_rejection": true,
+      "error": "AssertionError: "
+    },
+    {
+      "check": "Keeper registration points only into notes retirement archive",
+      "passed": true,
+      "expected_rejection": false,
+      "error": null
+    }
+  ],
+  "scope": "Bounded read-only keeper tests; no canonical, source-facts, active JSON or repository content writes."
+}
