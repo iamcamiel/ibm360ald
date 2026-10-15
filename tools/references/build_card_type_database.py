@@ -9,8 +9,10 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from validate_eleven_release import validate as validate_eleven_release
+from validate_sparse_review_v15 import (validate_ap041, validate_review,
+    annotate_shape_flag, validate_review_coverage)
 
-VERSION = "2.0"
+VERSION = "2.1-private-v15"
 NATIVE_REVIEW_SHA256 = '843fd5a60089ed540db19745bb38ccd0e75f7683c64ab94b0b5bc048b2b8fd8c'
 NATIVE_HISTORY_KEY = 'source_native_three_corrections_v1'
 ELEVEN_HISTORY_KEY = 'source_eleven_function_corrections_v1'
@@ -697,6 +699,40 @@ def build(args):
     sources[group_0143_source_id]={'path':group_copy.relative_to(out).as_posix(),'sha256':sha(args.group_0143_interpretation),
         'role':'Direct-human 0143 C1/C2/C3 gate-group interpretation and DT001 clarification; no semantic relabeling','external_input':True}
     initial_hashes[str(args.group_0143_interpretation)]=sha(args.group_0143_interpretation)
+    if not (args.ap041_threeway_publication and args.sparse_shape_review and args.sparse_shape_binding):
+        raise ValueError('Private V15 requires AP041 source-bound publication and the exact human shape-review bindings')
+    ap041_gate=validate_ap041(repo,pages,sources,file_sources,args.ap041_threeway_publication)
+    reviewed_cases=validate_review(args.sparse_shape_review,args.sparse_shape_binding)
+    reviewed_seen=set()
+    shape_review_source_id=sid('h',args.sparse_shape_review.name)
+    for authority,source_id,role in (
+        (args.sparse_shape_review,shape_review_source_id,'Direct human reviewed sparse function-shape variations; no source correction'),
+        (args.sparse_shape_binding,sid('h',args.sparse_shape_binding.name),'Frozen V14 exact observation identities for bounded human shape review'),
+        (args.ap041_threeway_publication,sid('h',args.ap041_threeway_publication.name),'Independently accepted AP041 three-way native portion publication')):
+        copied=out/'notes/Card types/V15 source and human review'/authority.name
+        copied.parent.mkdir(parents=True,exist_ok=True);copied.write_bytes(authority.read_bytes())
+        sources[source_id]={'path':copied.relative_to(out).as_posix(),'sha256':sha(authority),'role':role,'external_input':True}
+        initial_hashes[str(authority)]=sha(authority)
+    for kind in ('stage','independent_acceptance'):
+        original=Path(ap041_gate['publication'][kind]['path'])
+        copied=out/'notes/Card types/V15 source and human review'/original.name
+        copied.write_bytes(original.read_bytes())
+        sources[sid('h','ap041-threeway-'+kind)]={'path':copied.relative_to(out).as_posix(),'sha256':sha(original),
+            'role':'Exact '+kind+' supporting independently accepted AP041 three-way publication','external_input':True}
+        initial_hashes[str(original)]=sha(original)
+    ap041_stage=ap041_gate['stage']
+    for evidence in [ap041_stage['source_candidate'],*ap041_stage['native_crops'],ap041_stage['comparison']]:
+        original=Path(evidence['path'])
+        if sha(original)!=evidence['sha256']:
+            raise ValueError('V15 AP041 native evidence changed: '+str(original))
+        copied=out/'notes/Card types/V15 source and human review'/original.name
+        copied.write_bytes(original.read_bytes())
+        sources[sid('h','ap041-threeway-evidence-'+original.name)]={'path':copied.relative_to(out).as_posix(),
+            'sha256':sha(original),'role':'AP041 original-source three-way portion evidence','external_input':True}
+        initial_hashes[str(original)]=sha(original)
+    for published in ap041_gate['publication']['canonical_destinations']:
+        original=Path(published['path'])
+        initial_hashes[str(original)]=sha(original)
     occurrence_authority_id=None
     if args.occurrence_authority:
         authority=args.occurrence_authority; copied=out/'notes/Card types'/authority.name
@@ -1180,6 +1216,8 @@ def build(args):
                 'unknown_output_count':i['combination']['output']['connection_unknown_count']},'combination_id':i['combination_id'],
                 'observation_ids':[o['observation_id'] for o in i['observations']]} for i in portiondata['function_combinations']]
             flags,held_shapes=function_shape_reviews(obs)
+            for flag in flags:
+                annotate_shape_flag(code+p,flag,reviewed_cases,shape_review_source_id,reviewed_seen)
             portiondata['shape_review_flags']=flags
             portiondata['shape_review_held_observations']=held_shapes
             for flag in flags:
@@ -1191,7 +1229,10 @@ def build(args):
                     'unconnected_input_decorations':flag['shape']['input']['visible_unconnected_decoration_multiset'],'unconnected_output_decorations':flag['shape']['output']['visible_unconnected_decoration_multiset'],
                     'observation_count':flag['observation_count'],'examples':[{'page':o['page'],'scan_id':o['scan_id'],'primary_function':o['primary_function'],'literal':o['function_literal'],'JSON_pointer':o['JSON_pointer']} for o in flag['observations']],
                     'observation_ids':[o['observation_id'] for o in flag['observations']],
-                    'stronger_pin_and_unit_context_matches':flag['stronger_pin_and_unit_context_matches'],'automatic_correction_authorized':False})
+                    'stronger_pin_and_unit_context_matches':flag['stronger_pin_and_unit_context_matches'],
+                    'manual_review_required':flag['manual_review_required'],'review_status':flag['review_status'],
+                    'review_authority_source_id':flag.get('review_authority_source_id'),
+                    'automatic_correction_authorized':False})
             for role, facts in (("function", portiondata['primary_function_facts']), ("unit", units)):
                 if len(facts) > 1:
                     conflict = {"subject": code + p, "field": role, "alternatives": facts, "manual_review_required": True, "reason": "Readable accepted literal alternatives; no majority selection"}
@@ -1219,6 +1260,7 @@ def build(args):
                 'scope':'Interpretation note only; accepted literal function labels, pin decorations, wiring and occurrence groupings are unchanged by this note',
             }
         write(out / "json/Card types" / (code + ".json"), data)
+    validate_review_coverage(reviewed_cases,reviewed_seen,cards)
     report = question_report(args.question_manifest, pages, cards, depiction_by_page, repo, post_answer_ids) if args.question_manifest else None
     if report: write(out / "notes/Card types/Question candidates.json", report)
     index = {"schema_version": VERSION, "snapshot_utc": export.get("created_utc"), "sources": sources, "pages": pages,
@@ -1260,6 +1302,10 @@ def build(args):
         'eleven_function_release_source_id':eleven_release_id,
         'released_eleven_function_readings':{'native_source_supported':7,'direct_human_confirmed':4},
         'human_0143_gate_group_authority_source_id':group_0143_source_id,
+        'human_sparse_shape_review_source_id':shape_review_source_id,
+        'sparse_shape_reviewed_legitimate_cases':16,
+        'sparse_shape_case_0497A2':'Direct human accepted legitimate after corrected KD101 crop',
+        'sparse_shape_case_4633K4':'AP041 misgrouping corrected by source-bound K8/K4/K6 portion publication',
         'canonical_inputs_mutated':False,'full_physical_pinout_complete':False})
     write(out / "notes/Card types/Conflicts.json", conflict_rows)
     # Detect concurrent snapshot changes rather than publish a mixed view.
@@ -1276,9 +1322,12 @@ def build(args):
     write(out / 'notes/Card types/Original source registry.json',original_registry)
     toolcopy=out/'tools/references/build_card_type_database.py';toolcopy.parent.mkdir(parents=True,exist_ok=True);toolcopy.write_bytes(Path(__file__).read_bytes())
     validationcopy=out/'tools/references/validate_eleven_release.py';validationcopy.write_bytes((Path(__file__).parent/'validate_eleven_release.py').read_bytes())
+    v15validation=out/'tools/references/validate_sparse_review_v15.py';v15validation.write_bytes((Path(__file__).parent/'validate_sparse_review_v15.py').read_bytes())
     counts = {"accepted_text_pages_bound": len(pages), "accepted_content_files_bound": len(manifest['files']), "original_TIFF_hashes_bound":len(original_stats), "card_types": len(cards), "diagram_observations": len(observed_rows),
               "listing_observations": len(listing_records), "pin_observations": len(pin_rows), "card_portions": len(portion_rows), 'occurrence_signatures':len(occurrence_rows),
               'function_combinations':len(combination_rows),'shape_review_flags':len(shape_review_rows),
+              'shape_review_human_reviewed_legitimate':sum(not f['manual_review_required'] for d in cards.values() for p in d['portions'].values() for f in p['shape_review_flags']),
+              'shape_review_open_flags':sum(f['manual_review_required'] for d in cards.values() for p in d['portions'].values() for f in p['shape_review_flags']),
               'shape_review_held_observations':sum(len(p['shape_review_held_observations']) for d in cards.values() for p in d['portions'].values()),
               'source_review_pending_observations':sum(bool(o['source_review_pending']) for d in cards.values() for o in d['diagram_observations']), "conflicts": len(conflict_rows), "skipped": dict(skipped)}
     counts['exact_native_function_readings_released']=sum(o.get('function_reading_provenance',{}).get('authority_kind')=='native' for d in cards.values() for o in d['diagram_observations'])
@@ -1287,12 +1336,19 @@ def build(args):
     counts['all_derived_function_witness_ineligible']=sum(o.get('function_independent_native_witness_eligible') is False for d in cards.values() for o in d['diagram_observations'])
     if counts['exact_native_function_readings_released']!=7 or counts['exact_direct_human_function_readings_released']!=4 or counts['source_derived_unique_function_witness_ineligible']!=112 or counts['all_derived_function_witness_ineligible']!=176 or counts['source_review_pending_observations']!=0:
         raise ValueError('V14 exact release/derived witness/pending counts changed unexpectedly')
+    if counts['shape_review_human_reviewed_legitimate']!=16:
+        raise ValueError('V15 exact bounded human shape review count changed')
+    if counts['shape_review_open_flags']!=counts['shape_review_flags']-16:
+        raise ValueError('V15 open shape flags count inconsistent with the bounded human dispositions')
     build_manifest = {"schema_version": VERSION, "status": "PRIVATE; awaits independent review", "created_utc": datetime.now(timezone.utc).isoformat(), "snapshot_utc": export.get("created_utc"),
                       "input_manifests": [{"path": "notes/Reviewed export provenance.json", "sha256": sha(export_path)}, {"path": "notes/Content data manifest.json", "sha256": sha(manifest_path)}],
                       "human_facts_sha256": sha(args.human_facts), 'additional_recorded_answer_inputs':post_answer_inputs,
                       'native_finding_release_sha256':sha(args.native_finding_release) if args.native_finding_release else None,
                       'eleven_function_release_sha256':sha(args.eleven_function_release),
                       'human_0143_gate_group_authority_sha256':sha(args.group_0143_interpretation),
+                      'ap041_threeway_publication_sha256':sha(args.ap041_threeway_publication),
+                      'human_sparse_shape_review_sha256':sha(args.sparse_shape_review),
+                      'sparse_shape_binding_sha256':sha(args.sparse_shape_binding),
                       'released_native_finding_indexes':sorted(released_native_findings),
                       "builder_sha256": sha(Path(__file__)), "counts": counts, "question_report_counts": report["counts"] if report else None,
                       "original_TIFF_bytes_rehashed": frozen_originals is None, "original_source_scope": "Frozen independently reviewed original-source registry reused without archive rehash; scan identities and available accepted model source declarations checked; sources never modified" if frozen_originals is not None else "Every accepted original TIFF read-hashed and checked against available accepted model declarations; sources never modified",
@@ -1433,5 +1489,8 @@ if __name__ == "__main__":
     parser.add_argument('--native-finding-release',type=Path,help='Exact source-bound release of three corrected native findings; requires immutable pending review')
     parser.add_argument('--eleven-function-release',required=True,type=Path,help='Exact released seven native plus four direct-human function corrections')
     parser.add_argument('--group-0143-interpretation',required=True,type=Path,help='Verbatim direct-human 0143 gate-group statement and DT001 clarification')
+    parser.add_argument('--ap041-threeway-publication',required=True,type=Path,help='Independently accepted exact AP041 three-way native portion publication')
+    parser.add_argument('--sparse-shape-review',required=True,type=Path,help='Exact direct human review of 17 sparse-shape cases')
+    parser.add_argument('--sparse-shape-binding',required=True,type=Path,help='Frozen V14 identities of 16 human-reviewed legitimate cases')
     parser.add_argument("--question-manifest", type=Path)
     build(parser.parse_args())

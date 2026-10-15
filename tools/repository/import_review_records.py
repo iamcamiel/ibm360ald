@@ -324,6 +324,114 @@ def eleven_function_correction_keepers(workspace):
     return list(files.values())
 
 
+def sparse_shape_review_keepers(workspace):
+    """Retain the 17 native-crop comparisons and the AP041 K4/K6/K8 repair.
+
+    The original TIFFs remain in the reference archive.  Their hashes are
+    recorded in these receipts; only derivative crops and review records are
+    imported into the repository.
+    """
+    base=workspace/'tmp/ald-text/ald/card-type-database/sparse-shape-review'
+    verdict_path=base/'Human review of 17 sparse shape cases.json'
+    gallery_path=base/'All 17 source-crop evidence.json'
+    ap=base/'ap041-k8'
+    candidate_path=ap/'AP041 three-way portion correction candidate.json'
+    manifest_path=ap/'three-way-private-stage/AP041 three-way private stage manifest.json'
+    acceptance_path=ap/'AP041 independent three-way private-stage acceptance.json'
+    publication_path=ap/'AP041 three-way canonical publication receipt.json'
+    frozen={
+        verdict_path:'de8bd7edd9ee7762d036db7203f61dad8a263bfeeda233c6d7ffe4131f08be81',
+        gallery_path:'dd49d41d43b5d2ba702e40118e35aa6b1587f665193cadc991796fa59744c013',
+        candidate_path:'af84b44ae4450f8a8acb7e96d7da5af9dbe2e081ea10dc0def6e5e24631568b6',
+        manifest_path:'6f75210fd899c41065e1334d32687d1d8aa6770fa843ec69278ba6a1865ae60a',
+        acceptance_path:'6c1fe94f5fc8230e3e1a73520a5725911a8d033835419b3bd6f03afb0278d977',
+        publication_path:'80afb1f7abc05f17dd2ea04367b37cc9b71ba4f47a6e5b8768bc40482a8df629',
+    }
+    for source,expected in frozen.items():
+        assert source.is_file() and digest(source.read_bytes())==expected,str(source)
+    verdict, gallery=read_json(verdict_path),read_json(gallery_path)
+    candidate,manifest=read_json(candidate_path),read_json(manifest_path)
+    acceptance,publication=read_json(acceptance_path),read_json(publication_path)
+    assert verdict['schema_version']=='ald-sparse-function-shape-human-review-v1'
+    assert len(gallery['cases'])==17 and [x['index'] for x in gallery['cases']]==list(range(1,18))
+    assert verdict['interpretation']['review_after_corrected_crop']==[]
+    assert set(verdict['interpretation']['accepted_as_legitimate_different_shape'])=={
+        '0141C3','0141D3','0143D1','0412G1','0486C1','0488B2','0490K1',
+        '0497A2','0500A2','0505B3','0505B4','0512G1','3161B1','3311C4',
+        '3365A1','8005B5'}
+    assert verdict['interpretation']['native_recheck_card_portion']==['4633K4']
+    assert candidate['source_tiff']['sha256']==manifest['original_tiff']['sha256']==publication['source_tiff']['sha256']
+    original=Path(publication['source_tiff']['path']).resolve()
+    assert original.suffix.lower() in {'.tif','.tiff'} and original.is_file()
+    assert digest(original.read_bytes())==publication['source_tiff']['sha256']
+    assert acceptance['status']=='PASS' and not acceptance['failures']
+    assert publication['stage']['sha256']==frozen[manifest_path]
+    assert publication['independent_acceptance']['sha256']==frozen[acceptance_path]
+    assert manifest['source_candidate']['sha256']==frozen[candidate_path]
+    assert {x['artifact'] for x in publication['canonical_destinations']}=={'txt','json','notes','preview'}
+    for item in publication['canonical_destinations']:
+        current=Path(item['path']).resolve()
+        assert current.is_relative_to(workspace) and digest(current.read_bytes())==item['sha256']
+    assert len(manifest['text_edits'])==3 and len(manifest['model_edits'])==9
+    assert {x['node'] for x in manifest['text_edits']}=={'AS','AU','BB'}
+    keeper=Path('notes/Card types/Sparse shape review/Seventeen native comparisons')
+    ap_keeper=Path('notes/Card types/Sparse shape review/AP041 three-way portion correction')
+    files={}
+    def add(source,destination):
+        source=Path(source).resolve()
+        assert source.is_file() and source.is_relative_to(workspace),str(source)
+        assert source.suffix.lower() not in {'.tif','.tiff'},str(source)
+        key=destination.as_posix()
+        if key in files:assert digest(files[key][0].read_bytes())==digest(source.read_bytes()),key
+        files[key]=(source,destination)
+    def checked(binding):
+        source=Path(binding['path']).resolve()
+        assert source.is_file() and digest(source.read_bytes())==binding['sha256'],str(source)
+        return source
+    for source in [verdict_path,gallery_path,base/'All 17 function-shape source crops.html']:
+        add(source,keeper/source.name)
+    for case in gallery['cases']:
+        assert len(case['flagged'])==2 and case['normal_has_same_shape'] is False
+        for item in [*case['flagged'],case['normal']]:
+            crop=(base/item['crop']).resolve()
+            assert crop.is_relative_to(base.resolve()) and digest(crop.read_bytes())==item['crop_sha256']
+            assert crop.suffix.lower()=='.png' and Path(item['source_TIFF']).suffix.lower() in {'.tif','.tiff'}
+            add(crop,keeper/item['crop'])
+    # Retain the comparison sheets shown to the user, as well as their exact
+    # crop bindings.  The corrected KD101 crop is required by gallery case 8.
+    for folder in ['agent1','agent2','agent3']:
+        for source in sorted((base/folder).glob('*')):
+            if source.is_file() and source.suffix.lower() in {'.png','.json'}:
+                add(source,keeper/folder/source.name)
+    for source in [candidate_path,manifest_path,acceptance_path,publication_path]:
+        add(source,ap_keeper/'Core'/source.name)
+    for group in ['before_quartet','candidate_quartet']:
+        for binding in manifest[group].values():
+            source=checked(binding)
+            add(source,ap_keeper/'Page quartets'/group/source.name)
+    for binding in manifest['native_crops']+[manifest['comparison']]:
+        source=checked(binding)
+        add(source,ap_keeper/'Native evidence'/source.name)
+    for source in sorted(ap.glob('*.png')):
+        add(source,ap_keeper/'Native evidence'/source.name)
+    for source in [ap/'stage_ap041_threeway.py',ap/'audit_ap041_threeway.py',
+                   ap/'publish_ap041_threeway.py',ap/'build_current_ap041_audit.py',
+                   base/'make_gallery.py']:
+        add(source,Path('tools/references/sparse-shape-and-ap041-review')/source.name)
+    audit_path=workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/AP041 three-way portion current audit.json'
+    if audit_path.is_file():
+        audit=read_json(audit_path)
+        assert audit['passed'] is True and not audit['failures'] and len(audit['pages'])==1
+        page=audit['pages'][0]
+        assert page['page']=='AP041' and page['eligible'] is True
+        assert page['source']['sha256']==publication['source_tiff']['sha256']
+        assert page['owner_receipt']['sha256']==frozen[publication_path]
+        for kind,binding in manifest['candidate_quartet'].items():
+            assert page['current_quartet'][kind]['sha256']==binding['sha256']
+        add(audit_path,ap_keeper/'Core'/audit_path.name)
+    return list(files.values())
+
+
 def retired_kt_fact_keepers(workspace):
     """Archive three historical companions without restoring active content."""
     path = workspace/'tmp/ald-text/ald/card-type-database/function-review-batch-7/application/Retired KT source facts/Retired KT source facts receipt.json'
@@ -880,6 +988,29 @@ def main():
         copy(source,repo/destination,'Native TIFF-supported PX311, KU641, and AP743 corrections, independent acceptance, published quartets, and release provenance')
     for source,destination in eleven_function_correction_keepers(workspace):
         copy(source,repo/destination,'Eleven independently accepted native and direct-human function corrections, source crops, published quartets, and provenance')
+    for source,destination in sparse_shape_review_keepers(workspace):
+        copy(source,repo/destination,'Seventeen native sparse-shape comparisons, direct human review, and independently accepted AP041 three-way portion correction')
+    manual_reports = [
+        ('SY22-2798-2 ALD notation review.md',
+         'SY22-2798-2_LogicBlocks_AutomatedLogicDiagrams_SLT,SLD,ASLT,MST_TO_Oct71.pdf',
+         '1d030693fea73b1161ef597473558ca8c8c75d4e5c19c4049a99f917c98a439e',
+         'e3214d20d24a698beb464766df8acabcee20c5f4ea298c3e4b95407a455f84f7'),
+        ('SLT-specific manual source review.md',
+         'Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf',
+         '7cb58126da276c7b372be1f45abddf9ffa8f3e256ce3a63ee4daebc9807ab75c',
+         '74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623'),
+        ('Older SLT card catalog source review.md',
+         'SLT_Card_Schematics_Jan67.pdf',
+         '71e191106a383b8a32e8885b8d59bb1798b1e920c4f34831223db3a55db11850',
+         '32551f42c44f1a9f28cf6fd1d880412d84952712cbfb72b837586e84c54a8f5d'),
+    ]
+    for report_name,pdf_name,report_sha,pdf_sha in manual_reports:
+        report=workspace/'tmp/ald-text/ald/manual-guide-review'/report_name
+        pdf=Path('D:/Reference Materials/IBM 360')/pdf_name
+        assert report.is_file() and pdf.is_file()
+        assert digest(report.read_bytes())==report_sha and digest(pdf.read_bytes())==pdf_sha
+        copy(report,repo/'notes/Card types/Reference manuals'/report_name,
+             'Source-bound ALD and SLT manual interpretation; original PDF retained in reference materials')
     caption_records = workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/AP accepted parity caption immutable records'
     human_prefix_records = workspace/'tmp/ald-text/ald/manual-verification/human-c2a-prefix-correction'
     if human_prefix_records.is_dir():

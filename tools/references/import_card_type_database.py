@@ -26,7 +26,8 @@ def allowed(relative):
             and (parts[:2] in [('json', 'Card types'), ('csv', 'Card types'),
                                ('notes', 'Card types')]
                  or relative in ('tools/references/build_card_type_database.py',
-                                 'tools/references/validate_eleven_release.py')))
+                                 'tools/references/validate_eleven_release.py',
+                                 'tools/references/validate_sparse_review_v15.py')))
 
 
 def main():

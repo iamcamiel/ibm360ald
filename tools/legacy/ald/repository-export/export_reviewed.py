@@ -327,9 +327,16 @@ def receipts():
                     'Automatic unreadable function recovery current audit.json',
                     'H function port rule current audit.json',
                     'Native three source corrections current audit.json',
-                    'Eleven function corrections current audit.json']:
+                    'Eleven function corrections current audit.json',
+                    'AP041 three-way portion current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
+  if audit_name=='AP041 three-way portion current audit.json':
+   # The newest AP041 source reading supersedes older approval even if this
+   # exact full-quartet audit is missing, malformed or stale.
+   for target in EXPORTS.rglob('AP041 *.txt'):
+    if not target.stem.endswith(' review notes'):supersede_target('AP041',target,True)
+   if audit.get('passed') is not True:continue
   if audit_name=='Eleven function corrections current audit.json' and audit.get('passed') is not True:
    # This newest source-specific acceptance supersedes the prior text receipts
    # even if the binder disappears or fails to load. Never resurrect old copy.
@@ -361,7 +368,8 @@ def receipts():
                                      'Automatic unreadable function recovery current audit.json',
                                      'H function port rule current audit.json',
                                      'Native three source corrections current audit.json',
-                                     'Eleven function corrections current audit.json'})
+                                     'Eleven function corrections current audit.json',
+                                     'AP041 three-way portion current audit.json'})
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]
@@ -370,7 +378,7 @@ def receipts():
    source=item.get('source',{});sp=Path(source.get('path',''))
    if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):continue
    valid=True
-   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop']:
+   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop','ap041_manifest','ap041_source_evidence','ap041_source_crop','ap041_publication']:
     chain=item.get(key)
     if not isinstance(chain,dict) or not chain.get('file'):continue
     cp=Path(chain['file'])
