@@ -576,6 +576,12 @@ def main():
     copy(args.reference/'ALD Scan Order.csv', repo/'notes/ALD Scan Order.csv',
          'Original scan order and current TIFF filename catalogue')
     shared = {
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/4191 source correction current audit.json':
+            'Card-ALD/4191 source correction current audit.json',
+        'tmp/ald-text/ald/card-4191-release/manifest.json':
+            'Card-ALD/4191 release manifest.json',
+        'tmp/ald-text/ald/card-4191-release/4191 canonical publication receipt.json':
+            'Card-ALD/4191 canonical publication receipt.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/OR function human correction current audit.json':
             'Manual verification/OR function human correction current audit.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/CA211 human primary function correction current audit.json':

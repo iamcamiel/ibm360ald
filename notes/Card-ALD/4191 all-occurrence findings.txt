@@ -1,0 +1,139 @@
+4191 ALL-OCCURRENCE CHECK (2026-10-15)
+
+Scope: current published AP ALD text and structured JSON, compared with the
+02B-E1 K6/K7 Card-ALD example. This is an audit, not an acceptance of changed
+source readings. The detailed block and wiring comparisons are in the adjacent
+CSV files.
+
+644 blocks on 68 pages use card type 4191. All 45 portion codes occur. On each
+page the published text and JSON contain the same multiset of 4191 portions.
+
+Sixty adder slices have a 4191 A-to-OR join. The current structured JSON
+links all five A drivers on 53 sheets; it omits two links on AP521 and one
+link each on AP541, AP551, AP561, AP571, AP581, and AP591. Direct human
+review of those seven physical sheets confirms five separate A-output wires
+on EVERY one. AP441 and AP531 also have separate wires, although their JSON
+combines a pair of driver outputs into one net. These are nine transcription-
+data wiring corrections, not missing or joined wires on the original sheets.
+
+The updated comparison generated overlapping candidate counts: 13 circuit-
+identifier differences, one primary-function difference, 49 invalid physical-
+pin-like readings, and 11 other physical pin differences. The initial audit
+also flagged 95 blocks for one or more K6/K7 example pins not shown (118
+individual absences in the current comparison). That category is NOT a
+discrepancy: direct human clarification on 2026-10-15 established that an ALD
+block can omit inputs that the card portion has but that this use leaves idle.
+The card-level input set must be the union of verified uses, not the inputs
+visible in each individual block. Other pin differences need native review
+before a K6/K7 pin is imposed on another page.
+
+Pin-reading triage now has 58 individual invalid-label observations. Native
+and connected-pin review resolves the feedback cases and the D12 contact
+pattern; 36 more have a unique same-number contact elsewhere. AP481's
+remaining U12 resolves to D12 because its input shares a net with BF.D12
+and the same AW box already has a separate J12 input. Physical-page review on
+2026-10-15 settled portion 25's disputed contact as D08. AP071's published
+J08 and five other U08-like readings on that portion are staged as D08;
+AP191 already reads D08. Eleven other physical-pin differences remain in
+the published-source comparison, which does not apply staged corrections.
+The 36 unique same-number contacts have now been recorded as inferred
+corrections and staged as private TXT/JSON candidates. Their peer-page
+evidence is in the decision ledger. No invalid-label pin candidate remains
+unresolved in the current 4191 triage.
+
+Native checks made during this audit:
+- AP491 and AP531 portions 15, 16, and 17 show U03AA on the scans; the
+  published JSON says U03AQ in all six cases.
+- AP301 portion 24 shows open-asterisk OR on the scan; the published text has
+  an unreadable character in the O position (✲�R).
+- AP041 portion 07 has pin glyphs that resemble U12 and U08 in the scan;
+  direct human review of the crop on 2026-10-15 resolved them as damaged
+  D12 and D08. The portion has three possible inputs, D08, D12 and J12; the
+  AP041 use shows only D08 and D12, and the K6/K7 use shows D12 and J12.
+  The Card-ALD now shows all three possible inputs on its portion 07 box.
+- The same portion-07 U12-like glyph on AP081, AP121, AP201, AP241 and
+  AP281 resolves to D12 by the fixed contact and paired D08 pattern.
+  Portion-01 U12-like terminator glyphs on AP401, AP441 and AP601 likewise
+  resolve to D12; AP401 and AP601 share a net with a labeled D12 input.
+  AP521's portion-01 J12 reading also resolves to D12 by that same-net
+  comparison and the fixed contact across other sheets.
+- AP391 portion 27 reads J05, not the published D05; AP531 portion 15 reads
+  B12, not the published J12. Both native crops match the contacts seen on
+  other uses of those portions.
+- AP131/AP171/AP211 portion 13 and AP181/AP221 portion 19 use the additional
+  D08 input seen in their native crops. This is a valid optional contact on
+  those portions, not a conflict with the K6/K7 example's two shown inputs.
+  Card-ALD/4191.txt now shows D08 branching to portions 07, 13, 19 and 25,
+  with one outer-edge D08 pin and the regular seven-line block grid.
+- Direct human physical-page review resolved the AP071 portion-25 J08 reading
+  as D08, matching AP191. Five worn U08 readings on the same portion resolve
+  to that fixed contact.
+- AP121's B10 contact is genuine but assigned to the wrong block in the
+  published TXT/JSON. The native crop places it on portion 08 (AX), after a
+  vertical rail crosses portion 07's two inputs without joining either.
+  The private candidate moves B10 from AW to AX and marks both crossings ┼.
+  B10 is therefore not a fourth card-level input on portion 07.
+- Direct human review of the AP041 portion 42 crop on 2026-10-15 resolved
+  U61HP as a damaged U61AP.
+- Direct human review of AP051 portion 43, AP081 portion 42, and AP091
+  portion 43 likewise resolved their U61HP readings as U61AP.
+- AP241 portion 42 reads U61AP despite a worn U. AP281 portion 09 reads
+  U03AA; another U03AA box on the same scan provides a matching print.
+- AP781 portion B1 was initially read T05AA from the worn scan. Direct human
+  review of the physical page on 2026-10-15 confirms T06AA, matching the
+  K6/K7-based reference.
+- AP411 portion 18 has B04 at its output on the original scan, not the
+  published B09. AP171 portion 18 likewise has a worn B04 output, not D04:
+  its wire enters two N boxes both marked B04.
+- Ten feedback-input disagreements have matching physical pins on the
+  connected N output: AP051/AP171/AP451/AP491/AP531 portion 17 reads B07;
+  AP101/AP301/AP461/AP501 portion 23 reads J11; and AP561 portion 11
+  reads D07. Native crops support those corrections. The current JSON
+  records other letters or an unreadable glyph at those ten inputs.
+- Direct human review of AP531 on 2026-10-15 confirms portions 16 and 17
+  have separate outputs into portion 18. The structured JSON incorrectly
+  combines them as AZBA and leaves BJ.input73 as an undriven stub.
+- AP521's two lower A-output routes, from portions 10 and 11, reach separate
+  portion-12 OR inputs. The current JSON represents those OR inputs only as
+  BJgap73/BJgap74 placeholders rather than driven nets.
+- AP541, AP551, AP561, AP571, AP581 and AP591 each have a fifth A output
+  reaching a separate OR input. Direct human review confirms all five driver
+  wires are present and separate on each physical sheet; the current JSON
+  simply lacks one driver link on each.
+- AP441's AW and AX output routes cross without a diamond, so the
+  combined AWAX source in the structured JSON should be split.
+
+The source crops are in notes/Card-ALD/evidence. Do not silently overwrite
+accepted ALD text or JSON from this comparison; resolve each source-bound
+reading through the established review process.
+
+Forty-one published pages with 82 exact field-reading candidates (46 direct
+human/source-reviewed and 36 uniquely cross-referenced) have
+source-hash-bound private candidate TXT/JSON pairs in
+tmp/ald-text/ald/card-4191-readings-stage. Those staged pairs exclude the
+nine A-to-OR wiring corrections and the AP121 input-rail correction; they are
+not yet independently accepted or published.
+
+The ten wiring corrections now have a second set of source-hash-bound private
+TXT/JSON candidates in tmp/ald-text/ald/card-4191-lower-link-stage. AP521
+routes portions 10 and 11 to separate OR inputs with two unjoined crossings;
+AP531 likewise separates portions 16 and 17. AP441 changes the AW/AX crossing
+from a junction diamond to a nonjoining crossing and splits their structured
+net. AP541, AP551, AP561, AP571, AP581 and AP591 link the lower A output to
+the existing fifth OR input. Each candidate retains the 245 by 103 grid and
+has an exact predecessor/source hash record. The AP541 scan has a visibly
+interrupted lower line, so its proposed one-cell repair particularly needs
+independent native review before publication. Neither private set has been
+published.
+AP121's additional candidate places B10 on AX and retains the independent
+AW input wire through two nonjoining crossings.
+
+A guarded three-way merge has now prepared one combined review set for 45
+distinct pages at tmp/ald-text/ald/card-4191-combined-stage. Six pages carry
+both reading and wiring edits. All 45 candidate TXT files retain exactly 103
+rows of 245 characters; all predecessor, candidate and scan hashes verify;
+the nine adder-join candidates each have five distinct A drivers and five
+distinct OR inputs in JSON. The AP121 candidate has one B10 target on AX and
+two explicit unjoined crossings. This is still a private review set, not a change
+to the accepted repository ALD/JSON. Its manifest is copied into this notes
+folder, and tools/card_ald/verify_4191_candidates.py repeats those checks.

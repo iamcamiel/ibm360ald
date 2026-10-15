@@ -1,0 +1,63 @@
+{
+  "schema": "card-ald-pin-rule-source-review-v1",
+  "card_type": "4191",
+  "installation": "02B-E1 K6/K7",
+  "rule": "Double-card physical pins use B02-B13, D02-D13, G02-G13 or J02-J13.",
+  "derived_card_ald": "Card-ALD/4191.txt",
+  "canonical_source_status": "Accepted ALD TXT and JSON retain the prior readings pending source-bound amendment and independent acceptance.",
+  "findings": [
+    {
+      "page": "AP451",
+      "node": "BA",
+      "portion": "17",
+      "old_pin": "D07",
+      "corrected_pin": "B07",
+      "basis": "Native scan shows B07 at portion 17, and the same card's portion 34 drives B07. Bit 44 portion 32 drives D07, so the old reading wrongly joined two bit feedback loops.",
+      "pending_structured_correction": "AP451 node BA lower input pin and printed_label; net BE target BA.D07 to BA.B07; printed_labels row 84 column 116; TXT row 84 lower input label.",
+      "tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP451 PARALLEL ADDER BIT 45.tif",
+      "tiff_sha256": "f8e502f4ca1ba41a25ed1ad0ebbc32cc1e3585dabc6f6c8ce2001457af2a7567",
+      "crop": "notes/Card-ALD/evidence/AP451-BA-BE-pins-native.png",
+      "crop_rect": [4500, 4900, 8400, 5700],
+      "crop_sha256": "277664580d8ce0dce035acd6dfb8e10a79c040bebf4319213acb839706ab6a7f"
+    },
+    {
+      "page": "AP441",
+      "node": "BF",
+      "portion": "01",
+      "old_pin": "U12",
+      "corrected_pin": "D12",
+      "basis": "Direct human physical-page correction; the common D12 branch is also shown in the user's card sketch.",
+      "tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP441 PARALLEL ADDER BIT 44.tif",
+      "tiff_sha256": "a16a1114136405adb87b91eec4af5f0a6d2c8a623fabeb3a1e1df82d50e81af0",
+      "crop": "notes/Card-ALD/evidence/AP441-BF-pin-native.png",
+      "crop_rect": [3350, 3100, 4600, 3600],
+      "crop_sha256": "67270d41350648a13e4ee58df940b91a447a377a5fa0a0d71bfd0fdf457dd9d9"
+    },
+    {
+      "page": "AP461",
+      "node": "BA",
+      "portion": "23",
+      "old_pin": "U11",
+      "corrected_pin": "J11",
+      "basis": "Native scan shows J11; output of portion 37 and repeated instances of portion 23 agree.",
+      "tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP461 PARALLEL ADDER BIT 46.tif",
+      "tiff_sha256": "2459ae626af47b9f2dee13d470d938d4929a72931fb1556053da77fe62361f78",
+      "crop": "notes/Card-ALD/evidence/AP461-BA-pin-native.png",
+      "crop_rect": [4400, 5100, 5750, 5950],
+      "crop_sha256": "dec62c78117e4678ddc6cc5d89dc3a29c0030e4b407a9b638383eec4059ec61a"
+    },
+    {
+      "page": "AP471",
+      "node": "AX",
+      "portion": "25",
+      "old_pin": "U04",
+      "corrected_pin": "J04",
+      "basis": "Native scan clearly shows J04; neighboring portion 05 and repeated instances of portion 25 agree.",
+      "tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP471 PARALLEL ADDER BIT 47.tif",
+      "tiff_sha256": "4a8b5343bbda29d5c824082a661ac5e30fe3a71b8ea670861a80e1964c3257b8",
+      "crop": "notes/Card-ALD/evidence/AP471-AX-pin-native.png",
+      "crop_rect": [4400, 3300, 5750, 3850],
+      "crop_sha256": "f924845a199aed3c82f27597d9689b805460e3343072e8a651177ccc2fd2bb21"
+    }
+  ]
+}

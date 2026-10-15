@@ -1,0 +1,110 @@
+4191 CARD-ALD EXAMPLE — SOURCE AND LIMITS
+
+The drawing in Card-ALD/4191.txt represents the complete observed 5804191
+double card installed at 02B-E1 K6/K7. A1251-02 identifies K6/K7 as a
+DOUBLE CARD with part number 5804191. The AP pages show 45 distinct portions:
+01–43, B1 and B2.
+
+Source ALDs: AP001, AP441, AP451, AP461, AP471, AP690 and AP701. The
+accompanying 4191 source-bound review.json records the TIFF paths, source
+hashes, page crops and exact observed portion inventory.
+
+Native-page findings used in the diagram:
+* Each bit slice has five distinct, pinless A-portion outputs feeding five
+  separate inputs of its ✲OR portion. AP441's current JSON incorrectly
+  merges portions 07 and 08 as a single AWAX net; the native scan has two
+  adjacent, separate rails. The Card-ALD follows the native scan.
+* The OR / DOT symbol marks a wired-OR junction, not a separate card.
+  Each 4191 ✲OR output joins other drivers there and the same net branches
+  to two 4191 N inputs. Thus D10, B04, G10 or G03 is one driven physical
+  output pin, even where the source repeats its label at internal inputs.
+  The user confirmed the DOT OR meaning after review of the first example.
+* AP701 shows portion B1 feeding a pinless input of portion B2. B1's
+  shared G08 input/output is drawn once on the output side, with that net
+  also feeding B2. This follows the user's simplified AR convention.
+* Four physical input pins appear at both an A portion and an R portion:
+  D13 at 10/42, B03 at 16/43, J10 at 22/40, and G02 at 28/41.
+* AP451's 419117 lower input reads B07 on the native scan. Its source is
+  419134's B07 output on the same bit-45 page. The earlier accepted AP451
+  text and JSON transcribed that input as D07, creating a false link to
+  bit 44's 419132 D07 output. The Card-ALD now uses the native B07 reading.
+  The AP451 native crop is in evidence/AP451-BA-BE-pins-native.png.
+
+This is a source-bound example for one installed card, not yet a universal
+pinout for every 4191 installation. D07 from 32 feeds 11; B07 from 34
+feeds 17. J11 from 37 feeds 23, and J07 from 39
+feeds 29. Only D10, B04 and G10 are supported as inputs of portion 35;
+its D06 input is an external pin, not the G03 output of portion 30.
+The P3 feed is traced by page references; its exact physical route is not
+asserted to be wholly inside the card.
+
+AP471's present JSON has an invalid top-level source field. Its TIFF was
+selected by its AP471 page name and verified separately in the review
+record. No existing ALD text or JSON was altered for this Card-ALD example.
+
+Correction, 2026-10-15: the first Card-ALD draft mistakenly called the
+OR / DOT symbol "4633" and treated its two sides as separate nets. Nearby
+AP441 blocks carry 4633K-series numbers, but DOT at AP441 BC (grid 6K)
+has no card number. The user's reading confirms DOT OR means the wires are
+joined. The drawing and source-bound review were corrected accordingly.
+
+Direct human pin correction, 2026-10-15: AP441 block BF, card portion
+419101 at 02B-E1 K6/K7, has input D12, not U12. Card-ALD/4191.txt applies
+this reading. The previously accepted AP441 text and JSON still contain
+U12; their wiring/acceptance records need reconciliation before those
+source files and the derived card-type database are republished. The
+user's hand sketch places AP441 portions 01 and 07 on a common D12 branch,
+which the revised Card-ALD now draws.
+
+Layout revision, 2026-10-15: the Card-ALD is one continuous ALD-style
+diagram, with a closed box for each of the 45 portions, separate A-to-✲OR
+wires, the four shared-pin wired nets, N feedback loops, and the common 35,
+03, 06, B1 and B2 portions. The user's hand sketches guided this logical
+arrangement. It is a card-level reconstruction rather than a reproduction
+of the original page coordinates. The later pin-unique revision puts each
+used physical pin once at the left or right edge, with all fanout and
+feedback wires between these edges. The R blocks sit immediately below the
+A blocks whose inputs they terminate. Feedback cycles prevent a strict
+acyclic layering for the fifth A in each bit slice.
+
+Layout refinement, 2026-10-15: all five A portions of a bit now share one
+block column, whether or not they have a clock input. Each R termination
+is directly below its associated A block; the shared input wire branches
+just left of those two boxes. Portion 03 is in the first clear lane before
+its P3 consumers, and portion 06 is in the clear lane above bit 47, where
+J02 is first used. Every present block is seven character rows high,
+including borders. The function is on row 2, circuit identifier and output
+on row 4, and portion on row 5. A taller block is permitted only if more
+than five input wires require it; none on this card does.
+
+Pin-range correction, 2026-10-15: the native AP461 419123 input is J11,
+misread as U11; the native AP471 419125 input is J04, misread as U04.
+The relevant native crops are retained under tmp/ald-text/ald/card-type-
+database/circuit-identifier-review/card-4191-k6k7. The accepted ALD TXT
+and JSON still need source-bound correction and renewed acceptance.
+
+Box-terminal revision, 2026-10-15: every physical pin is now labelled
+directly against each portion box where it occurs. The left and right
+outer-edge lists still show each used physical pin only once. A repeated
+label beside two boxes represents a shared pin or a feedback connection,
+not a second physical terminal. Unjoined wire crossings use ┼; joined
+branches use ◇. The five wires entering each ✲OR portion have separate
+tracks so their crossings and destinations can be followed individually.
+
+Grid and wiring revision, 2026-10-15: all 45 box tops occupy seven-line
+grid positions and every box is seven lines high. Repeated external-input
+buses use tracks three columns apart, leaving two blank columns between
+parallel verticals. Diamonds are reserved for three-way or larger joins;
+two-way bus ends and feedback turns now use corners. The generator checks
+box positions, box count, pin labels and junction degree when rebuilt.
+
+Compact-layout revision, 2026-10-15: the A and R portions of each bit
+slice occupy seven consecutive seven-line grid slots, removing the empty
+slot between portions 08 and 10 and the corresponding gaps in the other
+bit slices. Because A inputs are equivalent, the input shared with an R
+portion is drawn on the bottom input row of its A box, immediately above
+the R box. Thus the 07/01 D12 branch and corresponding branches on other
+bits do not cross another input of their A boxes. The five outputs enter
+each ✲OR in their source order, with the upper and lower bend tracks
+chosen to avoid crossings between those five wires. These layout changes
+do not change the physical pin identities or net relationships.
