@@ -1053,6 +1053,31 @@ def main():
         assert digest(report.read_bytes())==report_sha and digest(pdf.read_bytes())==pdf_sha
         copy(report,repo/'notes/Card types/Reference manuals'/report_name,
              'Source-bound ALD and SLT manual interpretation; original PDF retained in reference materials')
+    # Preserve the complete independently accepted KU451/XX151 correction
+    # chain, including frozen predecessor quartets and native source crops.
+    clean_root = workspace/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/clean-singleton-native-comparison'
+    clean_stage = clean_root/'private-correction-stage'
+    clean_receipt = clean_stage/'Two-page circuit canonical publication receipt.json'
+    if clean_receipt.is_file():
+        published = read_json(clean_receipt)
+        assert published['schema']=='two-page-native-circuit-canonical-publication-v1'
+        assert {item['page'] for item in published['pages']}=={'KU451','XX151'}
+        for key in ('stage_manifest','mechanical_verification','independent_acceptance'):
+            linked=published[key]
+            assert digest(Path(linked['path']).read_bytes())==linked['sha256']
+        evidence_names=['native-findings.json','crop-manifest.json',
+                        '04-target-KU451-CH.png','04-normal-MC062-EG.png','04-pair.png',
+                        '05-target-XX151-AT.png','05-normal-RB801-AK.png','05-pair.png']
+        for name in evidence_names:
+            source=clean_root/name
+            assert source.is_file(), source
+            copy(source,repo/'notes/Card types/Circuit identifiers/Clean singleton native review'/name,
+                 'Native source evidence for independently accepted KU451 and XX151 circuit corrections')
+        for source in sorted(clean_stage.rglob('*')):
+            if source.is_file() and source.suffix.lower() in {'.json','.txt','.png'}:
+                copy(source,
+                     repo/'notes/Card types/Circuit identifiers/Clean singleton native review/private-correction-stage'/source.relative_to(clean_stage),
+                     'Frozen predecessor, candidate, independent acceptance, and publication receipt for KU451 and XX151')
     caption_records = workspace/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/AP accepted parity caption immutable records'
     human_prefix_records = workspace/'tmp/ald-text/ald/manual-verification/human-c2a-prefix-correction'
     if human_prefix_records.is_dir():

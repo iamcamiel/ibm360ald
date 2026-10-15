@@ -333,7 +333,9 @@ def receipts():
                     'Physical circuit confirmation current audit.json',
                     'Tied circuit clarification current audit.json',
                     'PX511 BB physical current audit.json',
-                    'Second-pass circuit current audit.json']:
+                   'Second-pass circuit current audit.json',
+                   'Direct human circuit current audit.json',
+                   'Clean singleton circuit current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit_name=='Circuit identifier source current audit.json':
@@ -402,6 +404,39 @@ def receipts():
      raise ValueError('Second-pass circuit publication has an invalid page target')
     supersede_target(page,target,True)
    if audit.get('passed') is not True:continue
+  if audit_name=='Direct human circuit current audit.json':
+   # Do not supersede predecessors until guarded publication has written its
+   # source-bound receipt. After publication, a missing/stale current audit
+   # cannot revive the old reading.
+   receipt_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/workbook-approved-stage/Direct human circuit canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('Direct human circuit audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='direct-human-circuit-canonical-publication-v1' or len(receipt.get('pages',[]))!=16:
+    raise ValueError('Direct human circuit publication receipt is invalid')
+   for published in receipt['pages']:
+    page=published.get('page')
+    target=Path(published.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Direct human circuit publication has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='Clean singleton circuit current audit.json':
+   receipt_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/clean-singleton-native-comparison/private-correction-stage/Two-page circuit canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('Clean singleton circuit audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='two-page-native-circuit-canonical-publication-v1' or {x.get('page') for x in receipt.get('pages',[])}!={'KU451','XX151'}:
+    raise ValueError('Clean singleton circuit publication receipt is invalid')
+   for published in receipt['pages']:
+    page=published.get('page')
+    target=Path(published.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Clean singleton circuit publication has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
   if audit_name=='AP041 three-way portion current audit.json':
    # The newest AP041 source reading supersedes older approval even if this
    # exact full-quartet audit is missing, malformed or stale.
@@ -445,7 +480,9 @@ def receipts():
                                      'Physical circuit confirmation current audit.json',
                                      'Tied circuit clarification current audit.json',
                                      'PX511 BB physical current audit.json',
-                                     'Second-pass circuit current audit.json'})
+                                     'Second-pass circuit current audit.json',
+                                     'Direct human circuit current audit.json'})
+   application_schema=application_schema or audit_name=='Clean singleton circuit current audit.json'
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]
@@ -454,7 +491,7 @@ def receipts():
    source=item.get('source',{});sp=Path(source.get('path',''))
    if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):continue
    valid=True
-   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop','ap041_manifest','ap041_source_evidence','ap041_source_crop','ap041_publication','circuit_stage_manifest','circuit_source_review','physical_stage_manifest','physical_authority','tied_stage_manifest','tied_human_authority','tied_BB_source_review','px511_bb_stage_manifest','px511_bb_human_authority']:
+   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop','ap041_manifest','ap041_source_evidence','ap041_source_crop','ap041_publication','circuit_stage_manifest','circuit_source_review','circuit_human_authority','circuit_mechanical_integrity','physical_stage_manifest','physical_authority','tied_stage_manifest','tied_human_authority','tied_BB_source_review','px511_bb_stage_manifest','px511_bb_human_authority','clean_singleton_stage_manifest','clean_singleton_source_review']:
     chain=item.get(key)
     if not isinstance(chain,dict) or not chain.get('file'):continue
     cp=Path(chain['file'])

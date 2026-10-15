@@ -1,0 +1,26 @@
+ALD SLT PIN-RANGE REVIEW
+
+The physical SLT card rule is B02-B13 and D02-D13 for a single card, with
+G02-G13 and J02-J13 also available on a double card. The A1 socket listing
+supplies each card type's single/double classification. A pin-like label on
+an A1-classified card outside that range is a review finding, not an
+automatic replacement.
+
+The audit reads the structured fields of every published ALD page JSON that
+has nodes. It does not infer characters directly from all TIFF pixels. Its
+findings CSV contains only card types classified by A1. The separate
+unclassified-terminals CSV retains candidate labels on connectors, service
+grounds and blocks without an A1 card classification; these require their
+own terminal rules. For example, the native ZA014 programmed-ground scan
+visibly prints E09 and E10 on a SERV✲ block; see ZA014-example-native.png.
+Those letters should not be silently rewritten as SLT card-pin misreads.
+
+The AP451 419117 D07/B07 error illustrates a different check: both pin
+labels are within the allowed double-card range, but B07 is the correct
+reading from the source scan and matches the same card's portion 34 output.
+The 4191 Card-ALD builder now checks that each bit's feedback input matches
+the second N portion's output for that bit.
+
+Accepted page TXT and JSON remain unchanged until a source-bound amendment
+updates their review records and repository manifests. The Card-ALD and
+source-bound correction evidence are under notes/Card-ALD.

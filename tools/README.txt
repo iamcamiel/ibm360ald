@@ -64,3 +64,17 @@ are recorded in notes/Content data manifest.json; aggregate tables can still
 cover their printed records. It does not fabricate missing per-page models.
 
 The original working tools remain in place for the active transcription chats.
+
+tools/pins/audit_pin_labels.py checks the physical pin labels recorded in the
+published ALD page JSON against the A1 single/double-card inventory. A single
+SLT card has B02-B13 and D02-D13; a double card also has G02-G13 and
+J02-J13. It writes source-bound findings and optional cross-page suggestions
+to csv/Pin validation and a count summary to notes/Pin validation. It reads
+all structured ALD pages but does not OCR TIFF pixels or automatically change
+accepted text. Service grounds, cables, and other non-SLT terminals require
+separate classification before applying the SLT card rule.
+
+tools/card_ald/build_4191.py regenerates the Card-ALD/4191.txt example.
+Its source observations and native-scan exceptions are recorded under
+notes/Card-ALD. The builder verifies one label per used physical pin and
+requires every bit feedback pin to match the same bit's N-stage output.
