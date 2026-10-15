@@ -1028,6 +1028,28 @@ def main():
             'FX External Bus/summary history/FX transcription notes before interrupted export.txt',
         'tmp/ald-text/ald/repository-export/Interrupted supplemental note history/RT transcription notes.txt':
             'RT T Register/summary history/RT transcription notes before interrupted export.txt',
+        'tmp/pin-native-review/Independent physical-pin review.json':
+            'Card types current/Physical pin review/Independent scan review.json',
+        'tmp/pin-native-review/Independent candidate acceptance.json':
+            'Card types current/Physical pin review/Independent native candidate acceptance.json',
+        'tmp/ald-text/ald/card-type-database/physical-pin-two/candidate/Stage manifest.json':
+            'Card types current/Physical pin review/Native correction stage manifest.json',
+        'tmp/ald-text/ald/card-type-database/physical-pin-two/Canonical publication receipt.json':
+            'Card types current/Physical pin review/Native correction publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Physical pin native corrections current audit.json':
+            'Card types current/Physical pin review/Native corrections current audit.json',
+        'tmp/ald-text/ald/card-type-database/physical-pin-human-two/Direct human physical pin decisions.json':
+            'Card types current/Physical pin review/Direct human physical pin decisions.json',
+        'tmp/pin-native-review/Independent human pin candidate acceptance.json':
+            'Card types current/Physical pin review/Independent human-directed candidate acceptance.json',
+        'tmp/ald-text/ald/card-type-database/physical-pin-human-two/candidate/Stage manifest.json':
+            'Card types current/Physical pin review/Human-directed correction stage manifest.json',
+        'tmp/ald-text/ald/card-type-database/physical-pin-human-two/Canonical publication receipt.json':
+            'Card types current/Physical pin review/Human-directed correction publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Physical pin human corrections current audit.json':
+            'Card types current/Physical pin review/Human-directed corrections current audit.json',
+        'tmp/ald-text/ald/card-type-database/Current catalog v7 publication receipt.json':
+            'Card types current/Physical pin review/Current catalog publication receipt.json',
     }
     for relative, name in shared.items():
         path = workspace/relative

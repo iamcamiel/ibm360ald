@@ -1,0 +1,74 @@
+5804633 AND 5804634 CARD-ALD REVIEW
+
+The Card-ALD drawings use one installed card of each type as a source-bound
+example. Each box is seven text rows high. The circuits and used inputs are
+drawn from the current page models; an unused input is not a claim that the
+physical card lacks that input. A physical pin is shown once at the outside
+edge of each example. The 4633 example has 38 observed portions and two
+additional database portions shown closed and unrouted. The 4634 example has
+54 observed portions and three additional database portions shown closed and
+unrouted.
+
+The diagrams distinguish direct same-page net edges from connections inferred
+by matching a physical output and input pin on the same installed card. Their
+per-page source and model hashes, edge counts, and working pin interpretations
+are in 4633 drawing provenance.json and 4634 drawing provenance.json. A
+working pin interpretation in the drawing is not by itself a correction to
+the published ALD transcription.
+
+All-occurrence inventories and comparison findings are in the corresponding
+JSON files in this directory. A comparison outlier is a review candidate, not
+an instruction to normalize a literal printed difference. The physical-page
+owner corrected AP321 and AP531 4633 AR portions from U55PC to U55AC, and
+AP121 and AP131 4634 portions 08 and 12 from U61AF to U61AE. The owner also
+confirmed AP561 block AJ as 463425, correcting the earlier 463429 reading.
+AP701 prints A on 4634 portion B1; that function label is retained literally.
+
+The SLT Component Circuits manual, figure 87 (printed page 62), identifies
+U03AU as AND-Terminate and U03AW as OR-Terminate Inverter with Load. Its
+polarity rules explain AP561's OR label with wedges on both inputs and the
+output as an AND circuit in positive logic. AP561 also has a separate
+portion 30 labeled U03AW and ✲A. Fourteen other even-bit AP sheets put the
+matching OR/U03AU block at portion 25, while all fifteen even-bit sheets put
+the ✲A/U03AW block at portion 30. The physical-page confirmation establishes
+AP561 AJ as portion 25. Its U03AU circuit and decorations remain unchanged.
+
+The same manual's wedge definition and its U03AM AND-Inverter circuit show
+that AP701's A with two plain inputs and a wedged output is the same NAND
+function as the other 4634B1 blocks drawn OR with two wedged inputs and a
+plain output. This is an equivalent polarity notation, not a function-name
+transcription error. These interpretations do not overwrite the printed
+functions or wedges in the page text.
+
+The physical-page owner confirmed AP411 4633J4 as U03AM, AP511 4633H1 as
+U55AC, AP621 4633G1 as U55AC, AP211 4634 portion 29 as U03AW, and the
+4633A7 inputs on AP071 and AP551 as B13. Native review also identified B13
+on AP111. Current audit records in this directory bind the prior and corrected
+text, data, notes, preview, and original TIFF. Original damaged-glyph
+descriptions in historical review records remain available as provenance.
+
+Native scan and matching-portion review corrected 37 further 4633 physical
+pins and 57 4634 physical pins. AP491's omitted 463439-to-463452 wire and
+the separate 463440-to-463452 middle input were restored in text and data.
+AP511's apparent missing join was already recorded as a multi-driver net;
+AP391 and AP091 show genuine alternate or separate routes.
+The AP701 4634B1 upper input was a transcription mismatch: the native scan
+prints G10 above the separate G12 lower input. The page text and net model
+were corrected with a source-bound audit.
+AP571's 4634 portion 21 output is pinless and feeds portion 29. Its earlier
+B08 label was erroneous; B08 belongs only to portion 29's output. The page
+text, pin data and driver reference were corrected against the native scan.
+Of the remaining repeated-edge comparison entries, 20 join the same
+physical pin on an installed 4633 card and are represented as inferred
+Card-ALD links. The AP091 4633 entry has separate G03/G04 contacts, and
+the AP391 4634 entry is the verified alternate route. Neither indicates a
+missing page wire.
+
+The remaining raw invalid-pin flags are not unresolved physical-pin readings.
+The 4633 report has 19 internal labels, 15 open-asterisk decorations, and six
+logical A/B input designators. The 4634 report has 99 leading border/wire
+marks, 25 internal labels, two decorations, and one logical A designator.
+Some leading marks remain embedded in the structured transcription and are
+interpreted separately when drawing the card; they should not be treated as
+letters in a physical pin number. Every named correction above has a current
+source-bound acceptance audit.

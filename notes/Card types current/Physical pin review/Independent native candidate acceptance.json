@@ -1,0 +1,86 @@
+{
+  "schema": "independent-physical-pin-candidate-acceptance-v1",
+  "review_date": "2026-10-15",
+  "verdict": "pass",
+  "scope": "Staged AP551/AP571 quartets only; no canonical or repository file was edited by this audit.",
+  "bindings": {
+    "stage_manifest": {
+      "path": "D:/Github/IBM360/tmp/ald-text/ald/card-type-database/physical-pin-two/candidate/Stage manifest.json",
+      "sha256": "d6884131141f9fd2c599c1f07a8d87e1cf141b573da18af463f26f0a211d0fb7"
+    },
+    "independent_native_review": {
+      "path": "D:/Github/IBM360/tmp/pin-native-review/Independent physical-pin review.json",
+      "sha256": "e90eeb37725e352df0b5662e065ddfa73eb90aca3a6757d873bb0c320e29f794"
+    }
+  },
+  "checks": [
+    "All bound source TIFF, prior-review, predecessor-quartet and candidate-quartet SHA-256 values were recomputed and matched the manifest.",
+    "Each staged TXT has exactly one changed character at its declared zero-based row and column; all other lines and characters match its predecessor.",
+    "A recursive JSON comparison found exactly the five declared pointer changes per page and no changed node, net or wire geometry.",
+    "Each review note preserves all predecessor bytes and appends only its new correction note.",
+    "Each candidate preview is pixel-identical to a fresh JuliaMono rendering of its candidate TXT at 245x103 cells and 12x18 pixels per cell.",
+    "Both corrected glyphs agree with the original TIFFs and the bound independent native review."
+  ],
+  "pages": [
+    {
+      "page": "AP551",
+      "node": "B�",
+      "portion": "3106C1",
+      "change": "G03✲ → B03✲",
+      "text_cell_zero_based": [54, 196],
+      "source_tiff_sha256": "f887a92dec471955b9697dc64352e3113d6df9a55e795abdc9d5b7e2e170498b",
+      "prior_review_sha256": "351e1f6a5fc17456b499857b1e4055aadb84c7ba47f27a36ecf12aacb5b47c6e",
+      "predecessor_sha256": {
+        "txt": "a894cda9b114b9715c4ae514336004c3e1c305643abc944d13f7bc39d5433227",
+        "json": "5528fa719faad9eccb691fd299d3d16faf2bd3be2a2a6aa1d4cf353f2c638fa4",
+        "notes": "69e0e69cc3df051809c0bb9d0da9a2e52249f16f191862a4c5a7e0143863122f",
+        "preview": "3da8295d7a1361770e5748055611e2b83f03eadbe020e9ff1af627afc157e4fd"
+      },
+      "candidate_sha256": {
+        "txt": "a7c16caa80c9274e8bf7ac5ac514a662c49696e3df5588f0a55e86bee7705eac",
+        "json": "7ffe472f540de21732a248f01a7c654bccf2f715314f38ecf5c9966bec6bd5e0",
+        "notes": "488f356945112d1c59f50de0d324cfdef9a2cad7a003c0c8369d4e5fb9c2732e",
+        "preview": "34f104ec277e3e4c5f6fc3080a22486de7fc195b5478175473ae9e8e72d81904"
+      },
+      "changed_json_pointers": [
+        "/nodes/33/pins/1/pin",
+        "/nodes/33/pins/1/printed_pin",
+        "/nodes/33/pins/1/terminal_id",
+        "/nets/53/driver",
+        "/printed_labels/110/text"
+      ],
+      "same_portion_peer_check": "37 other 3106C1 outputs have normalized B03: 35 pin=B03 and 2 pin=B03✲ in current diagram JSON. AP421 and AP581 original TIFFs were visually compared.",
+      "result": "pass"
+    },
+    {
+      "page": "AP571",
+      "node": "BM",
+      "portion": "3106B1",
+      "change": "J13 → B13",
+      "text_cell_zero_based": [54, 185],
+      "source_tiff_sha256": "a8d69b8e45f7475bcdfd5859d36cf2981bc7a660942040f7df30a5aa5089810f",
+      "prior_review_sha256": "f60591b04a995e3b7f825110f4d34483a14c4240622debc52bce335c91bc4298",
+      "predecessor_sha256": {
+        "txt": "717aefb452415b3b7b258c931a252318e7f149efa1a8abbf25478a02f1e654c7",
+        "json": "46c7456cf9d0776e817fd448cc80e6465b6e96df1fa83fd47d2929f1c9f14888",
+        "notes": "770c52e8664c08d85fed02c22ae2077609c0faa968bf74b811b7dc0218e33c45",
+        "preview": "b9fdb2c61ed58e1ae1f9f143e7a4d370bacc18419983f87d45828216f16f94bd"
+      },
+      "candidate_sha256": {
+        "txt": "664b72c30611134f3dfcf6eb1845d8f382c81e75efc8b3ba1f797b1c10a43b5b",
+        "json": "cb5705a3652738a8bcd959d7c4194046ba86f9f75534d4a76a96455808e0834f",
+        "notes": "a8f3126cc147fc5f83f6adeaf62399052ee878c956e97872d7a18d086518711b",
+        "preview": "66fbfda5a161baec86590d2550bdf52ddc712d89761304d833f9ae6546adc644"
+      },
+      "changed_json_pointers": [
+        "/nodes/31/pins/0/pin",
+        "/nodes/31/pins/0/printed_pin",
+        "/nodes/31/pins/0/terminal_id",
+        "/nets/33/targets/0",
+        "/printed_labels/104/text"
+      ],
+      "same_portion_peer_check": "34 other 3106B1 inputs have B13 in current diagram JSON. AP411 and AP541 original TIFFs were visually compared.",
+      "result": "pass"
+    }
+  ]
+}

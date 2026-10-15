@@ -1,0 +1,97 @@
+{
+  "review": "Independent native TIFF inspection of four single-card pin readings",
+  "review_date": "2026-10-15",
+  "physical_pin_rule": "Single-card pins are B02-B13 or D02-D13; this rule is recorded separately from the glyph actually printed in a source scan.",
+  "canonical_files_edited": false,
+  "a1_single_card_evidence": {
+    "source_tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/A1 Socket Listing/A1121-01 SOCKET LISTING.tif",
+    "source_sha256": "d312a9519eb0e0f4316b1615587587f0c8ce0b363717ff01679d44f4efd79fbe",
+    "3106": {
+      "socket": "C4",
+      "printed": "SINGLE CARD / 5803106 3106",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/A1121-01-C3-C4-native.png",
+      "crop_sha256": "2b0baf82e5465bc6be80288be3e5a624e73de87b851dc793afe184b7ac3a1100"
+    },
+    "3308": {
+      "sockets": ["C3", "D3"],
+      "printed": "SINGLE CARD / 5803308 3308; D3 lists MA287 B1 among its portions",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/A1121-01-D3-native.png",
+      "crop_sha256": "bf05782cd6204c082cb5ec4dcf812840333c5f1bcae1e6d3bf9c14fb44c56e52"
+    },
+    "limit": "A1121-01 documents card types and an MA287 portion on its own board; it is not a wiring listing for the four investigated physical sockets."
+  },
+  "findings": [
+    {
+      "page": "AP401",
+      "node": "BJ",
+      "portion": "3106A1",
+      "location": "B-E1L2",
+      "terminal": "input",
+      "current_text_and_json": "J09",
+      "proposed_physical_pin": "D09",
+      "native_reading": "J09",
+      "visual_basis": "The first glyph has the bottom hook of J; the same AP401 sheet prints a D09 with a left stem and bowed right side elsewhere.",
+      "source_tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP401 PARALLEL ADDER BIT 40.tif",
+      "source_sha256": "ebe629d27da79d3459a43d1052be6633db2260ea484cc32bfd8fa457459c5f9a",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/AP401-native.png",
+      "crop_sha256": "3fd23c2de6cbf79bd6ea943bc31ccdd4eb7001303d95bc977cdc4eb03d0c3527",
+      "same_portion_peers": {"scope": "AP Parallel Adder canonical page JSON", "count_excluding_target": 0, "pages": []},
+      "verdict": "Retain J09 as a native exception; D09 would be a physical interpretation unsupported as a source-literal correction.",
+      "native_reading_certainty": "high"
+    },
+    {
+      "page": "AP551",
+      "node": "B�",
+      "portion": "3106C1",
+      "location": "B-E2K7",
+      "terminal": "output",
+      "current_text_and_json": "G03✲",
+      "proposed_physical_pin": "B03✲",
+      "native_reading": "B03✲",
+      "visual_basis": "The output glyph has the double-bowl shape of B, matching same-portion AP421 and AP581 outputs; it does not have G's open right edge.",
+      "source_tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP551 PARALLEL ADDER BIT 55.tif",
+      "source_sha256": "f887a92dec471955b9697dc64352e3113d6df9a55e795abdc9d5b7e2e170498b",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/AP551-native.png",
+      "crop_sha256": "0fafe8857db184cd0b5c3b08639796ef1dff2b25765f8cf8cb7ddad424435d8d",
+      "same_portion_peers": {"scope": "AP Parallel Adder original TIFFs and canonical page JSON", "count_excluding_target": 2, "pages": ["AP421: 3106C1 output B03✲", "AP581: 3106C1 output B03✲"]},
+      "verdict": "Correct the source transcription and structured pin/printed label G03✲ to B03✲.",
+      "native_reading_certainty": "high"
+    },
+    {
+      "page": "AP571",
+      "node": "BM",
+      "portion": "3106B1",
+      "location": "B-E2E7",
+      "terminal": "input",
+      "current_text_and_json": "J13",
+      "proposed_physical_pin": "B13",
+      "native_reading": "B13",
+      "visual_basis": "The first glyph has the B bowls and matches same-portion AP411 and AP541 inputs; unlike J it has no descending hook.",
+      "source_tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP571 PARALLEL ADDER BIT 57.tif",
+      "source_sha256": "a8d69b8e45f7475bcdfd5859d36cf2981bc7a660942040f7df30a5aa5089810f",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/AP571-native.png",
+      "crop_sha256": "84f9be10c2fb1ccfbca7c32e4c1a94524c5722949195be403680aa1effe8dff4",
+      "same_portion_peers": {"scope": "AP Parallel Adder original TIFFs and canonical page JSON", "count_excluding_target": 2, "pages": ["AP411: 3106B1 input B13", "AP541: 3106B1 input B13"]},
+      "verdict": "Correct the source transcription and structured pin/printed label J13 to B13.",
+      "native_reading_certainty": "high"
+    },
+    {
+      "page": "MA287",
+      "node": "AE",
+      "portion": "3308B1",
+      "location": "A-B1D3",
+      "terminal": "output",
+      "current_text_and_json": "J02✲",
+      "proposed_physical_pin": "D02✲",
+      "native_reading": "J02✲",
+      "visual_basis": "The output's first glyph has J's right stem and bottom hook, whereas same-page D07✲ and same-portion peer D02✲ glyphs have D's left stem and bowl.",
+      "source_tiff": "D:/Reference Materials/IBM 360/IBM_360_ALD/MA Storage Address Bus/MA287 SIMPLEX DRIVERS SAB PARITY PB.tif",
+      "source_sha256": "5312f5519d24e94ee08c827c52cf1d5abe89696dc7902880fedf06f0f1e0cc1d",
+      "crop": "D:/Github/IBM360/tmp/pin-native-review/MA287-native.png",
+      "crop_sha256": "609cb6cf54d1bf38a8b4011b1cb239e9a6e8310074ac5130efe3017a8ec7c8a1",
+      "same_portion_peers": {"scope": "MA Storage Address Bus canonical page JSON, with MA285 and MA905 original TIFFs visually checked", "count_excluding_target": 3, "pages": ["MA281: 3308B1 output D02", "MA285: 3308B1 output D02✲", "MA905: 3308B1 output D02✲"]},
+      "verdict": "Retain J02✲ as a native exception; D02✲ is the likely physical meaning from peer pattern but is not what this sheet prints.",
+      "native_reading_certainty": "high"
+    }
+  ]
+}
