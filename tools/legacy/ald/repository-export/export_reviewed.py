@@ -328,9 +328,80 @@ def receipts():
                     'H function port rule current audit.json',
                     'Native three source corrections current audit.json',
                     'Eleven function corrections current audit.json',
-                    'AP041 three-way portion current audit.json']:
+                    'AP041 three-way portion current audit.json',
+                    'Circuit identifier source current audit.json',
+                    'Physical circuit confirmation current audit.json',
+                    'Tied circuit clarification current audit.json',
+                    'PX511 BB physical current audit.json',
+                    'Second-pass circuit current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
+  if audit_name=='Circuit identifier source current audit.json':
+   # Every staged page supersedes its old acceptance, even if the new audit
+   # is missing or stale. Never fall back to an older text-only receipt.
+   stage_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/pipeline/private-stage/Circuit identifier private stage manifest.json'
+   stage=read_json(stage_path)
+   if not isinstance(stage,dict) or stage.get('schema')!='circuit-identifier-source-bound-private-stage-v1' or stage.get('counts',{}).get('staged_pages')!=77:
+    raise ValueError('Circuit identifier source stage is missing or invalid; export refused')
+   for staged in stage.get('pages',[]):
+    page=staged.get('page')
+    target=Path(staged.get('canonical_before_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Circuit identifier source stage has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='Physical circuit confirmation current audit.json':
+   stage_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/pipeline/physical-confirmations-private-stage/Physical circuit confirmations private stage manifest.json'
+   stage=read_json(stage_path)
+   if not isinstance(stage,dict) or stage.get('schema')!='physical-circuit-confirmations-private-stage-v1' or len(stage.get('pages',[]))!=3:
+    raise ValueError('Physical circuit confirmation stage is missing or invalid; export refused')
+   for staged in stage['pages']:
+    page=staged.get('page')
+    target=Path(staged.get('canonical_before_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Physical circuit confirmation stage has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='Tied circuit clarification current audit.json':
+   stage_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/pipeline/tied-clarification-private-stage/Tied circuit clarifications private stage manifest.json'
+   stage=read_json(stage_path)
+   if not isinstance(stage,dict) or stage.get('schema')!='tied-circuit-clarifications-private-stage-v1' or len(stage.get('pages',[]))!=2:
+    raise ValueError('Tied circuit clarification stage is missing or invalid; export refused')
+   for staged in stage['pages']:
+    page=staged.get('page')
+    target=Path(staged.get('canonical_before_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Tied circuit clarification stage has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='PX511 BB physical current audit.json':
+   stage_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/pipeline/px511-bb-physical-private-stage/PX511 BB physical private stage manifest.json'
+   stage=read_json(stage_path)
+   if not isinstance(stage,dict) or stage.get('schema')!='px511-bb-physical-circuit-private-stage-v1':
+    raise ValueError('PX511 BB physical stage is missing or invalid; export refused')
+   target=Path(stage.get('canonical_before_quartet',{}).get('txt',{}).get('path',''))
+   if not target.resolve().is_relative_to(EXPORTS.resolve()):
+    raise ValueError('PX511 BB physical stage has an invalid page target')
+   supersede_target('PX511',target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='Second-pass circuit current audit.json':
+   # This newer source-bound quartet supersedes each predecessor only after
+   # its guarded canonical publication receipt exists. A missing or stale
+   # current audit may not fall back to an older accepted text.
+   receipt_path=ROOT/'tmp/ald-text/ald/card-type-database/circuit-identifier-review/pipeline/Second-pass accepted circuit canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('Second-pass circuit audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='second-pass-accepted-circuit-canonical-publication-v1' or len(receipt.get('pages',[]))!=11:
+    raise ValueError('Second-pass circuit publication receipt is invalid')
+   for published in receipt['pages']:
+    page=published.get('page')
+    target=Path(published.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('Second-pass circuit publication has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
   if audit_name=='AP041 three-way portion current audit.json':
    # The newest AP041 source reading supersedes older approval even if this
    # exact full-quartet audit is missing, malformed or stale.
@@ -369,7 +440,12 @@ def receipts():
                                      'H function port rule current audit.json',
                                      'Native three source corrections current audit.json',
                                      'Eleven function corrections current audit.json',
-                                     'AP041 three-way portion current audit.json'})
+                                     'AP041 three-way portion current audit.json',
+                                     'Circuit identifier source current audit.json',
+                                     'Physical circuit confirmation current audit.json',
+                                     'Tied circuit clarification current audit.json',
+                                     'PX511 BB physical current audit.json',
+                                     'Second-pass circuit current audit.json'})
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]
@@ -378,7 +454,7 @@ def receipts():
    source=item.get('source',{});sp=Path(source.get('path',''))
    if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):continue
    valid=True
-   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop','ap041_manifest','ap041_source_evidence','ap041_source_crop','ap041_publication']:
+   for key in ['root_acceptance','owner_receipt','legacy_ledger','independent_audit','human_authority','frozen_occurrence_inventory','original_answers','human_amendment','returned_workbook','batch2_raw_first','batch2_raw_rest','batch2_questions','batch3_questions','batch4_questions','batch5_questions','batch6_questions','batch7_questions','batch8_questions','predecessor_acceptance','predecessor_approval','automatic_candidate_manifest','automatic_derivation_script','automatic_database_audit','automatic_raw_authority','function_rule_unreadable_review','function_rule_application_manifest','native_three_manifest','native_three_source_evidence','native_three_crop','eleven_manifest','eleven_authority_record','eleven_source_crop','eleven_broad_context_crop','ap041_manifest','ap041_source_evidence','ap041_source_crop','ap041_publication','circuit_stage_manifest','circuit_source_review','physical_stage_manifest','physical_authority','tied_stage_manifest','tied_human_authority','tied_BB_source_review','px511_bb_stage_manifest','px511_bb_human_authority']:
     chain=item.get(key)
     if not isinstance(chain,dict) or not chain.get('file'):continue
     cp=Path(chain['file'])

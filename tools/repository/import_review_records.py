@@ -37,6 +37,27 @@ def immutable_chain_binding(link, workspace):
     return source,raw
 
 
+def current_review_supersedes_historical_target(workspace, page_name, target):
+    """Check that a later, reviewed export accounts for a changed live quartet file."""
+    workspace=Path(workspace).resolve();target=Path(target).resolve()
+    plan=read_json(workspace/'tmp/ald-text/ald/repository-export/export plan.json')
+    assert plan['conflicts']==[]
+    entries=[x for x in plan['exported'] if x['page']==page_name]
+    assert len(entries)==1,page_name
+    entry=entries[0]
+    audit=read_json(workspace/entry['review_record'])
+    records=[x for x in audit['pages'] if x['page']==page_name and x.get('eligible')]
+    assert len(records)==1,page_name
+    current=records[0]['current_quartet']
+    assert any(Path(value['path']).resolve()==target and value['sha256']==digest(target.read_bytes())
+               for value in current.values()),target
+    assert Path(entry['transcription_source']).resolve()==Path(current['txt']['path']).resolve()
+    assert entry['text_sha256']==current['txt']['sha256']
+    repo_text=Path(entry['destination'])
+    assert repo_text.is_file() and digest(repo_text.read_bytes())==entry['text_sha256']
+    return True
+
+
 def companion(text):
     key = text.name.split(' ', 1)[0]
     for path in [text.with_suffix('.json'),
@@ -182,6 +203,25 @@ def native_three_correction_keepers(workspace):
         source=Path(binding.get('path',binding.get('file','')))
         assert source.is_file() and digest(source.read_bytes())==binding['sha256'],str(source)
         return source
+    def checked_published_target(binding,page_name):
+        """Accept a historical publication target only through the current reviewed export."""
+        source=Path(binding.get('path',binding.get('file','')))
+        assert source.is_file(),str(source)
+        current_hash=digest(source.read_bytes())
+        if current_hash==binding['sha256']:return source
+        plan=read_json(workspace/'tmp/ald-text/ald/repository-export/export plan.json')
+        assert plan['conflicts']==[]
+        exported=[x for x in plan['exported'] if x['page']==page_name]
+        assert len(exported)==1,page_name
+        entry=exported[0]
+        current_audit=read_json(workspace/entry['review_record'])
+        accepted=[x for x in current_audit['pages'] if x['page']==page_name and x.get('eligible')]
+        assert len(accepted)==1,page_name
+        assert any(Path(value['path']).resolve()==source.resolve() and value['sha256']==current_hash
+                   for value in accepted[0]['current_quartet'].values()),str(source)
+        assert Path(entry['transcription_source']).resolve()==Path(accepted[0]['current_quartet']['txt']['path']).resolve()
+        assert entry['text_sha256']==accepted[0]['current_quartet']['txt']['sha256']
+        return source
     for source in [manifest_path,audit_path,publication_path,binder_path]:add(source,keeper/'Core'/source.name)
     for source in [base/'unified_native_three.py',base/'independent-review/independent_three_review.py',base/'independent-review/make_preview_contact.py',workspace/'tmp/ald-text/ald/repository-export/bind_native_three_corrections.py']:
         add(source,Path('tools/references/native-three-source-corrections')/source.name)
@@ -199,7 +239,7 @@ def native_three_correction_keepers(workspace):
                 path=checked(binding);add(path,keeper/'Page quartets'/name/group/path.name)
         for binding in page['candidate_quartet'].values():
             target=next(x for x in publication['canonical_destinations'] if x['sha256']==binding['sha256'])
-            assert checked(target).resolve().is_relative_to((workspace/'ALD_Visual_Transcriptions').resolve())
+            assert checked_published_target(target,name).resolve().is_relative_to((workspace/'ALD_Visual_Transcriptions').resolve())
     v13=base/'v13-builder';release=v13/'Final native three finding release.json'
     if release.is_file():
         assert digest(release.read_bytes())=='31c97212e9e0ecc6423d14b633cd43e412acadb3c2abe5e05babc4b350c1c994'
@@ -298,7 +338,9 @@ def eleven_function_correction_keepers(workspace):
         for kind,binding in page['candidate_quartet'].items():
             target=Path(page['canonical_quartet'][kind]['path']).resolve()
             assert target.is_relative_to((workspace/'ALD_Visual_Transcriptions').resolve())
-            assert target.is_file() and digest(target.read_bytes())==binding['sha256']==published[str(target)]
+            assert target.is_file() and binding['sha256']==published[str(target)]
+            if digest(target.read_bytes())!=binding['sha256']:
+                assert current_review_supersedes_historical_target(workspace,name,target)
         record=next(x for x in binder['pages'] if x['page']==name)
         assert record['current_quartet']['txt']['sha256']==page['candidate_quartet']['txt']['sha256']
         assert record['source']['sha256']==page['source']['sha256']
