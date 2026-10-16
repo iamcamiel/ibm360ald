@@ -1,0 +1,24 @@
+{
+  "schema": "slt-supply-pin-human-confirmed-interpretation-v1",
+  "recorded_utc": "2026-10-16T09:31:09.842468+00:00",
+  "scope": "Ordinary single- and double-card SLT logic in the completed source and manual supply-pin review; connectors, resistor terminators, switches and other nonstandard modules excluded.",
+  "direct_human_statement": "I believe we have no unexplained use of power pins in ALD diagrams anymore, correct? They are used to tie otherwise undriven nets or inputs to ground or to +3V, and the one exception is the limiter block which is to make the connection to the transformer ground.",
+  "conclusion": "No unexplained power-contact use remains in the reviewed ordinary SLT logic scope. Remaining genuine contacts tie otherwise undriven nets/inputs to ground or +3V. KD901 AS (S21AA / 3310A1) D08 is the transformer-ground reference for its mains-frequency limiter.",
+  "contacts": {
+    "D08": "ground",
+    "J08": "ground",
+    "D03": "+3V",
+    "J03": "+3V",
+    "B06": "-3V",
+    "G06": "-3V",
+    "B11": "+6V",
+    "G11": "+6V"
+  },
+  "negative_and_six_volt_conclusion": "No unexplained -3V or +6V contact use remains in the reviewed ordinary logic cases.",
+  "annotation_caveat": "Literal numeric pin/wire annotations are preserved. The meaning of 8 is unresolved; L-as-latch is a human hypothesis. These annotation questions are separate from the identified supply connection.",
+  "answer_ledgers": [
+    "SLT supply-pin manual answers.json",
+    "Electrical rule manual answers.json"
+  ],
+  "current_release": "Supply pin visual and human current audit.json"
+}

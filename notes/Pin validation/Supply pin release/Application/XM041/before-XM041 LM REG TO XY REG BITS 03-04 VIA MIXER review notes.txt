@@ -1,0 +1,54 @@
+XM041 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 14,
+  "A1_total_card_portions": 14,
+  "A1_direct_page_card_portions": 14,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 22,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "XM041 native source",
+    "evidence": "Both B and J bit bands, seven printed blocks per bit, control-port strings, A-pair brackets, format rail, output references, bottom legend, and title field inspected in enlarged native crops."
+  },
+  {
+    "location": "Isolated A input brackets in bit 03",
+    "evidence": "D08/B12 at 5B and D08/B09 at 5C form printed short local U stubs. The native gap between these and the format feed into 5D is retained. No driver is invented."
+  },
+  {
+    "location": "AR resistor tap",
+    "evidence": "Both physical outputs of each AR portion join at the named U61AN resistor input; the N input is routed around the resistor box, not through a fabricated resistor output."
+  },
+  {
+    "location": "Review status",
+    "evidence": "Native source transcription and local validation; independent root source and full-preview audit accepted at tmp/ald-text/xm/audits/XM041.json."
+  }
+]
+
+Original scan order
+Before XM035 FORMAT POWERING.tif
+After XM061 LM REG TO XY REG BITS 05-06 VIA MIXER.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AB: R TO -> R T0, AJ: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

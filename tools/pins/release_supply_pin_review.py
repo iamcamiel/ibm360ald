@@ -406,7 +406,11 @@ def finalize():
         entry = exported[page]
         assert entry['review_record'].endswith(NAME), page
         assert digest(Path(entry['destination'])) == current['txt']['sha256'], page
-        assert digest(Path(entry['notes_destination'])) == current['notes']['sha256'], page
+        exported_notes = Path(entry['notes_destination'])
+        assert digest(exported_notes) == entry['notes_sha256'], page
+        # Exported notes add catalogue provenance and normalize line endings.
+        original_note_text = Path(current['notes']['path']).read_text(encoding='utf-8-sig').rstrip()
+        assert original_note_text in exported_notes.read_text(encoding='utf-8-sig'), page
         model = content[Path(current['json']['path']).resolve()]
         assert model['sha256'] == current['json']['sha256'] == digest(ROOT / model['path']), page
     stamp = datetime.now(timezone.utc).isoformat()
@@ -439,7 +443,7 @@ def finalize():
               'updated_text_and_model_pages': sum('txt' in r['changed_kinds'] for r in manifest['records']),
               'recorded_human_answers': 25, 'unanswered_manual_questions': 0,
               'reviewed_queue_entries': len(rows), 'selected_correction_or_confirmation_entries': len(selected),
-              'canonical_and_repository_text_model_notes_equal': True,
+              'canonical_and_repository_text_models_byte_equal_notes_preserved': True,
               'current_audit': binding(AUDIT), 'independent_stage_review': binding(EVIDENCE / 'Supply pin staged independent review.json'),
               'remaining_interpretation': 'Meaning of numeric 8 annotation remains unresolved; literal 8D03 preserved. L-as-latch explanation remains a recorded human hypothesis.',
               'completed_review_csv': binding(csv_path)}

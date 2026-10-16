@@ -1,0 +1,62 @@
+AR421 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 16,
+  "A1_total_card_portions": 16,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [
+    "AE",
+    "AG",
+    "AJ"
+  ],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 45,
+  "passed": true,
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "AE / AG / AJ",
+    "evidence": "Source shows OR / DOT / B-A1 / grid label blocks without card portions. Preserve these local wire combiners; exempt only them from A1 physical card matches."
+  },
+  {
+    "location": "Shared rails",
+    "evidence": "AR421 source trunk0/1/2 enlarged crops distinguish the separate AA→AC.B08 and AS→AF.D12 segments on the rightmost rail: they are separated between rows41 and45. All seven routing rails traced from printed diamonds."
+  },
+  {
+    "location": "Combined outputs",
+    "evidence": "Source joins AC.B10 to AE local combiner output, AF.B13 to AG output, AK.B12 to AJ output. additional_drivers explicitly lists the second source output pin."
+  },
+  {
+    "location": "AA4 output and margin references",
+    "evidence": "AR421 AE margin native.png and AA output trace.png show the separate negative EQ01100 output. AA.D02 branch r36 extends to adjacent c139 and up to marginr31; AC.B08 rail staysc138. Three AA4 refs hangr32. BC refs AR071/AR081 both hangr83."
+  },
+  {
+    "location": "Rightmost rail at c138",
+    "evidence": "Source-aligned vertical AA/AS segments cross horizontal input stubs at the cell immediately before the pin text, without diamonds. Twelve explicit endpoint exceptions preserve the separate vertical net; validator requires the foreign stroke to be purely vertical and rejects any diamond. The gaps between the AA and AS rail segments are retained."
+  },
+  {
+    "location": "Printer grid",
+    "evidence": "User-confirmed zero-based 245×103 grid: borders50/73/96/119/142/165/188, normal rows2+7n, inclusive width8; pin coordinates remapped individually from draft. Header/footer and aligned signal/reference columns rebuilt. Full native source and both complete JuliaMono preview halves compared; source margin rails, hanging references and calibrated footer verified. Independent root review remains pending."
+  }
+]
+
+Original scan order
+Before AR411 ROS DECODER FIELD 69-73 SADDER A SIDE SHEET 2.tif
+After AR501 SADDER FINAL BUS B 00-03.tif

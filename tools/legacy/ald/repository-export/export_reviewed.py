@@ -356,9 +356,13 @@ def receipts():
                    '0141 physical pin corrections current audit.json',
                    '0141 human final current audit.json',
                    '0141 AS105 human pin current audit.json',
-                   '0141 KT755 human pin current audit.json']:
+                   '0141 KT755 human pin current audit.json',
+                   'Supply pin visual and human current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
+  if audit_name=='Supply pin visual and human current audit.json' and audit:
+   if audit.get('schema')!='slt-supply-pin-source-bound-current-audit-v1':
+    raise ValueError('Supply pin visual and human current audit has an invalid schema')
   if audit_name=='Circuit identifier source current audit.json':
    # Every staged page supersedes its old acceptance, even if the new audit
    # is missing or stale. Never fall back to an older text-only receipt.
@@ -611,7 +615,8 @@ def receipts():
     '0141 physical pin corrections current audit.json',
     '0141 human final current audit.json',
     '0141 AS105 human pin current audit.json',
-    '0141 KT755 human pin current audit.json'}
+    '0141 KT755 human pin current audit.json',
+    'Supply pin visual and human current audit.json'}
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]
