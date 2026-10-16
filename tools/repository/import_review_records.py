@@ -755,7 +755,9 @@ def source_review_repository_keepers(repo):
     keep = set()
     for branch in ['tools/reviews', 'notes/Source reviews',
                    'json/Socket listings uniform', 'csv/Socket listings uniform',
-                   'notes/Socket listings uniform', 'notes/Reference data/Uniform socket listings']:
+                   'notes/Socket listings uniform', 'notes/Reference data/Uniform socket listings',
+                   'json/Socket ALD audit', 'csv/Socket ALD audit',
+                   'notes/Reference data/Socket ALD audit']:
         root = repo/branch
         for path in root.rglob('*'):
             if not path.is_file() or '__pycache__' in path.parts or path.suffix.lower() in {'.pyc', '.lock', '.tmp'}:

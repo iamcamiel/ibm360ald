@@ -81,7 +81,10 @@ class KeeperTests(unittest.TestCase):
                   'json/Socket listings uniform/pages/A1 Socket Listing/A1111-01.json',
                   'csv/Socket listings uniform/Portion references.csv',
                   'notes/Socket listings uniform/Build manifest.json',
-                  'notes/Reference data/Uniform socket listings/Independent verification.json']
+                  'notes/Reference data/Uniform socket listings/Independent verification.json',
+                  'json/Socket ALD audit/Audit metadata.json',
+                  'csv/Socket ALD audit/Matching findings.csv',
+                  'notes/Reference data/Socket ALD audit/Independent final audit acceptance.json']
         for name in wanted:self.put(name, name.encode())
         self.assertEqual(set(self.entries()), set(wanted))
 
