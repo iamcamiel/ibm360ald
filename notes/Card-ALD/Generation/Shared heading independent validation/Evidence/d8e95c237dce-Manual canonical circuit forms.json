@@ -1,0 +1,401 @@
+{
+  "schema": "manual-canonical-circuit-forms-v1",
+  "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+  "manual_sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+  "selection_policy": "Use written manual circuit definition for the base canonical symbol, even where only one input is used; actual legal occurrence functions/decorations remain numbered variants with identical layout geometry.",
+  "caveat": "A manual ALD illustration can use a DeMorgan-equivalent notation rather than the definition-normalized canonical representation. These are recorded independently. Input/output wedge encodes signal polarity.",
+  "cards": {
+    "4191": {
+      "catalog": "D:\\Github\\IBM360\\ibm360ald\\json\\Card types current\\4191.json",
+      "catalog_sha256": "681d92eedce26183cbc02c882545e5d79c3dd16b5059939910e2c5d703d98daa",
+      "circuit_identifiers": [
+        "T06AA",
+        "U03AA",
+        "U03AF",
+        "U03AP",
+        "U03CN",
+        "U61AC",
+        "U61AP"
+      ]
+    },
+    "4633": {
+      "catalog": "D:\\Github\\IBM360\\ibm360ald\\json\\Card types current\\4633.json",
+      "catalog_sha256": "4c9479cee74f126fa37a597b1c34fef946cd610e8e3cf4db139df45fc07b7062",
+      "circuit_identifiers": [
+        "U03AI",
+        "U03AL",
+        "U03AM",
+        "U55AC"
+      ]
+    },
+    "4634": {
+      "catalog": "D:\\Github\\IBM360\\ibm360ald\\json\\Card types current\\4634.json",
+      "catalog_sha256": "067c8a31c4e4a96c3eccf4cb3ba8624f95a24d38e64027c9e1a2ad7ee67f610a",
+      "circuit_identifiers": [
+        "U03AI",
+        "U03AL",
+        "U03AM",
+        "U03AU",
+        "U03AW",
+        "U03AY",
+        "U61AD",
+        "U61AE"
+      ]
+    }
+  },
+  "circuits": {
+    "U03AA": {
+      "manual_definition": "AND",
+      "definition_status": "index_definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 91,
+        "printed_page": 90,
+        "figure": null,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-91.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "No detailed figure for this identifier found in the manual; canonical A/plain/plain follows its explicit AND definition."
+    },
+    "U03AF": {
+      "manual_definition": "AND-Inverter with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 59,
+        "printed_page": 58,
+        "figure": 81,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-59.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "OR",
+        "all_input_triangles": true,
+        "all_output_triangles": false
+      },
+      "inference_or_limit": "Canonical A/plain/output wedge is DeMorgan-equivalent to the illustrated OR/all-input wedges/plain output. The canonical normalized form is a definition-based representation, not a claim that Figure81 draws this exact arrangement."
+    },
+    "U03AP": {
+      "manual_definition": "AND Network to 1.2K",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 62,
+        "printed_page": 61,
+        "figure": 85,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-62.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "output_connection": "pinless"
+      },
+      "inference_or_limit": "No inversion on the pinless group output; multiple U03AP outputs feed a U03CN group."
+    },
+    "U03CN": {
+      "manual_definition": "OR-Inverter-Terminate with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 62,
+        "printed_page": 61,
+        "figure": 85,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-62.png"
+      },
+      "canonical_form": {
+        "primary_function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true
+      },
+      "inference_or_limit": "The asterisk is part of the illustrated grouped OR notation. Preserve independent incoming group wires; do not replace them with an electrical short."
+    },
+    "T06AA": {
+      "manual_definition": "Line Sensing Amplifier",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 65,
+        "printed_page": 64,
+        "figure": 94,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-65.png"
+      },
+      "canonical_form": {
+        "primary_function": "AR",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "AR",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "visible_inputs": 1,
+        "visible_outputs": 2
+      },
+      "inference_or_limit": "The illustration includes one pin-labeled output sharing the input contact and another pinless output. The user authorizes omitting the duplicate same-contact output, while retaining the separate pinless output."
+    },
+    "U61AC": {
+      "manual_definition": "125 Ohm to +3V",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 63,
+        "printed_page": 62,
+        "figure": 87,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-63.png"
+      },
+      "canonical_form": {
+        "primary_function": "R",
+        "all_input_triangles": false,
+        "all_output_triangles": null,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "R T1",
+        "all_input_triangles": false,
+        "visible_outputs": 0,
+        "also_illustrated_pdf_page": 62,
+        "also_illustrated_printed_page": 61,
+        "also_illustrated_figure": 86
+      },
+      "inference_or_limit": "Figure87 caption and physical resistor; Figure86 shows R T1 ALD symbol. R is the primary function; T1 may remain a secondary variant. The power endpoint is not a signal output."
+    },
+    "U61AP": {
+      "manual_definition": "Line Terminating Network",
+      "definition_status": "index_definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 92,
+        "printed_page": 91,
+        "figure": null,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-92.png"
+      },
+      "canonical_form": {
+        "primary_function": "R",
+        "all_input_triangles": null,
+        "all_output_triangles": null,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "Index establishes passive terminating network, but no exact ALD symbol/decorations found. R/no output is a display convention inferred from passive role and observed occurrences, not an explicitly illustrated canonical form."
+    },
+    "U03AI": {
+      "manual_definition": "AND",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 61,
+        "printed_page": 60,
+        "figure": 83,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-61.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "output_connection": "pinless"
+      },
+      "inference_or_limit": null
+    },
+    "U03AL": {
+      "manual_definition": "OR-Inverter with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 61,
+        "printed_page": 60,
+        "figure": 83,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-61.png"
+      },
+      "canonical_form": {
+        "primary_function": "OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true
+      },
+      "inference_or_limit": null
+    },
+    "U03AM": {
+      "manual_definition": "AND-Inverter with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 61,
+        "printed_page": 60,
+        "figure": 84,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-61.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "N",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "visible_inputs": 1
+      },
+      "inference_or_limit": "The illustrated N is a one-used-input version of the explicit AND-Inverter definition. Canonical A follows the user-selected definition rule; retain actual N as an occurrence variant."
+    },
+    "U03AU": {
+      "manual_definition": "AND-Terminate",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 63,
+        "printed_page": 62,
+        "figure": 87,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-63.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": false,
+        "output_connection": "pinless"
+      },
+      "inference_or_limit": null
+    },
+    "U03AW": {
+      "manual_definition": "OR-Terminate Inverter with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 63,
+        "printed_page": 62,
+        "figure": 87,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-63.png"
+      },
+      "canonical_form": {
+        "primary_function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true
+      },
+      "inference_or_limit": null
+    },
+    "U03AY": {
+      "manual_definition": "AND-Inverter-Terminate with Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 63,
+        "printed_page": 62,
+        "figure": 88,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-63.png"
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "N",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "visible_inputs": 1
+      },
+      "inference_or_limit": "Illustrated N is a one-used-input case; canonical A follows explicit AND definition, actual N is a variant."
+    },
+    "U61AD": {
+      "manual_definition": "420 Ohm to +3V",
+      "definition_status": "index_definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 92,
+        "printed_page": 91,
+        "figure": null,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-92.png"
+      },
+      "canonical_form": {
+        "primary_function": "R",
+        "all_input_triangles": null,
+        "all_output_triangles": null,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "Index-only passive resistor definition. R/no signal output is inferred; polarity decorations are not established by a dedicated symbol figure."
+    },
+    "U61AE": {
+      "manual_definition": "165 Ohm to +3V",
+      "definition_status": "index_definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 92,
+        "printed_page": 91,
+        "figure": null,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-92.png"
+      },
+      "canonical_form": {
+        "primary_function": "R",
+        "all_input_triangles": null,
+        "all_output_triangles": null,
+        "basis": "Normalize the written circuit definition to ordinary noninverted inputs; preserve this primary function even where only one input is used."
+      },
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "Index-only passive resistor definition. R/no signal output is inferred; polarity decorations are not established by a dedicated symbol figure."
+    },
+    "U55AC": {
+      "manual_definition": null,
+      "definition_status": "not_found_in_supplied_manual",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 92,
+        "printed_page": 91,
+        "figure": null,
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-universal\\manual-pages\\SLT-pdf-92.png"
+      },
+      "canonical_form": null,
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "U55AC is absent from the alphabetical listing, which contains U55AA and U55AD. Current4633 catalog has40 U55AC occurrences labeled AR. Retain observation-derived AR only with explicit provisional status; do not infer electrical identity from nearby U55 codes."
+    }
+  }
+}
