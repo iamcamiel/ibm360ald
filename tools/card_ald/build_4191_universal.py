@@ -334,8 +334,16 @@ def build(output_path=OUTPUT):
             if row_index < 7:
                 continue
             assert rows[row_index + 2][match.start() - 1:match.start() + 7] == "└──────┘"
+    from compact_card_columns import compact
+    spacing = compact(c, geometry, block_pins, (0, OUTPUT_COL))
+    result = "\n".join(lines[:7] + [c.render()] + lines[8:]) + "\n"
     from universal_card_symbols import save_geometry
     save_geometry(output_path, geometry, 7)
+    import json
+    geometry_path = output_path.with_suffix('.geometry.json')
+    document = json.loads(geometry_path.read_text(encoding='utf-8'))
+    document['column_compaction'] = spacing
+    geometry_path.write_text(json.dumps(document, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     output_path.write_text(result, encoding="utf-8")
     return result
 

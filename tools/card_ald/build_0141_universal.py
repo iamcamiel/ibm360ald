@@ -19,6 +19,12 @@ ORDER = [
     ('D1', 'D2', 'D3', ('D04', 'B05'), ('B07', 'D06'), 'B03'),
 ]
 POWER = {'D08': 'GROUND / 0V', 'D03': '+3V', 'B06': '-3V', 'B11': '+6V'}
+WIDTH = 39
+FIRST_COLUMN = 8
+SECOND_COLUMN = 23
+WIRE_TRACKS = (18, 20)
+OUTPUT_COLUMN = 36
+HEADER_ROWS = 5
 
 
 def digest(path):
@@ -27,7 +33,7 @@ def digest(path):
 
 class Canvas:
     def __init__(self):
-        self.rows = [[' '] * 83 for _ in range(56)]
+        self.rows = [[' '] * WIDTH for _ in range(56)]
         self.boxes = []
 
     def put(self, x, y, text):
@@ -151,40 +157,91 @@ def main():
     canvas = Canvas()
     for index, (a, b, c, pa, pb, output) in enumerate(ORDER):
         base = index*14
-        canvas.box(23, base, a, 'A', 'U03AA')
-        canvas.box(23, base+7, b, 'A', 'U03AA')
-        canvas.box(52, base+7, c, 'OR', 'U03AE')
+        canvas.box(FIRST_COLUMN, base, a, 'A', 'U03AA')
+        canvas.box(FIRST_COLUMN, base+7, b, 'A', 'U03AA')
+        canvas.box(SECOND_COLUMN, base+7, c, 'OR', 'U03AE')
         for top, pins in ((base, pa), (base+7, pb)):
             for row, pin in ((top+1, pins[0]), (top+5, pins[1])):
                 canvas.put(0, row, pin)
-                canvas.horizontal(3, 19, row)
-                canvas.put(20, row, pin)
-        canvas.horizontal(31, 35, base+3)
-        canvas.put(36, base+3, '┐')
-        canvas.vertical(36, base+4, base+7)
-        canvas.put(36, base+8, '└')
-        canvas.horizontal(37, 51, base+8)
-        canvas.horizontal(31, 41, base+10)
-        canvas.put(42, base+10, '┐')
-        canvas.vertical(42, base+11, base+11)
-        canvas.put(42, base+12, '└')
-        canvas.horizontal(43, 51, base+12)
-        canvas.put(59, base+10, '◺')
-        canvas.put(60, base+10, output)
-        canvas.horizontal(63, 79, base+10)
-        canvas.put(80, base+10, output)
+                canvas.horizontal(3, FIRST_COLUMN-4, row)
+                canvas.put(FIRST_COLUMN-3, row, pin)
+        canvas.horizontal(FIRST_COLUMN+8, WIRE_TRACKS[0]-1, base+3)
+        canvas.put(WIRE_TRACKS[0], base+3, '┐')
+        canvas.vertical(WIRE_TRACKS[0], base+4, base+7)
+        canvas.put(WIRE_TRACKS[0], base+8, '└')
+        canvas.horizontal(WIRE_TRACKS[0]+1, SECOND_COLUMN-1, base+8)
+        canvas.horizontal(FIRST_COLUMN+8, WIRE_TRACKS[1]-1, base+10)
+        canvas.put(WIRE_TRACKS[1], base+10, '┐')
+        canvas.vertical(WIRE_TRACKS[1], base+11, base+11)
+        canvas.put(WIRE_TRACKS[1], base+12, '└')
+        canvas.horizontal(WIRE_TRACKS[1]+1, SECOND_COLUMN-1, base+12)
+        canvas.put(SECOND_COLUMN+7, base+10, '◺')
+        canvas.put(SECOND_COLUMN+8, base+10, output)
+        canvas.horizontal(SECOND_COLUMN+11, OUTPUT_COLUMN-1, base+10)
+        canvas.put(OUTPUT_COLUMN, base+10, output)
     text = (
-        'CARD-ALD  5800141  SINGLE CARD  COMPLETE SIGNAL PINOUT\n'
-        '12 PORTIONS   16 INPUT PINS   4 OUTPUT PINS   8 INTERNAL CONNECTIONS\n'
-        'POWER PINS: D08 GROUND / 0V; D03 +3V; B06 -3V; B11 +6V\n'
-        'U03AA = AND; U03AE = OR WITH INVERTED OUTPUT (◺).\n\n'
+        'CARD-ALD 5800141 SINGLE CARD\n'
+        '12 PORTIONS; 16 INPUTS; 4 OUTPUTS\n'
+        'POWER: D08=0V D03=+3V B06=-3V B11=+6V\n'
+        'U03AA: A; U03AE: OR WITH OUTPUT ◺\n\n'
     ) + canvas.render()
     diagram = outdir/'0141.txt'
     diagram.write_text(text, encoding='utf-8', newline='\n')
+    # Record route vertices and measured whitespace independently of glyphs.
+    # Every box keeps its source portion and its original top row.
+    routes = []
+    for index, (a, b, c, *_rest) in enumerate(ORDER):
+        base = index*14
+        for source, row, target_row, track, old_track in (
+                (a, base+3, base+8, WIRE_TRACKS[0], 36),
+                (b, base+10, base+12, WIRE_TRACKS[1], 42)):
+            routes.append({'from_portion': source, 'to_portion': c,
+                'old_vertices': [[30,row],[old_track,row],[old_track,target_row],[52,target_row]],
+                'vertices': [[FIRST_COLUMN+7,row],[track,row],[track,target_row],[SECOND_COLUMN,target_row]]})
+    wire_box_gaps = []
+    wire_label_gaps = []
+    for route in routes:
+        track = route['vertices'][1][0]
+        for y in range(route['vertices'][1][1],route['vertices'][2][1]+1):
+            for box in canvas.boxes:
+                if box['top'] <= y < box['top']+box['height']:
+                    left,right=box['left'],box['left']+box['width']-1
+                    assert not left <= track <= right
+                    wire_box_gaps.append(min(abs(track-left),abs(track-right))-1)
+                    if box['portion'].endswith('3') and y==box['top']+3:
+                        wire_label_gaps.append(abs(track-(right+1))-1)
+                    elif not box['portion'].endswith('3') and y in (box['top']+1,box['top']+5):
+                        wire_label_gaps.append(abs(track-(left-1))-1)
+    assert min(wire_box_gaps) >= 2
+    assert min(wire_label_gaps) >= 2
+    assert WIRE_TRACKS[1]-WIRE_TRACKS[0]-1 == 1
+    assert all(b['width']==8 and b['height']==7 and b['top']%7==0 for b in canvas.boxes)
+    assert len(canvas.boxes)==12 and max(map(len,text.splitlines()))<=WIDTH
+    geometry = {'canvas_width':WIDTH,'canvas_height':56,'header_rows':HEADER_ROWS,
+        'box_geometry':canvas.boxes,'internal_routes':routes,
+        'old_to_new_columns':{'first_box_left':[23,FIRST_COLUMN],'second_box_left':[52,SECOND_COLUMN],
+            'first_vertical_track':[36,WIRE_TRACKS[0]],'second_vertical_track':[42,WIRE_TRACKS[1]],
+            'input_attached_pin_start':[20,FIRST_COLUMN-3],'output_attached_pin_start':[60,SECOND_COLUMN+8],
+            'outer_output_pin_start':[80,OUTPUT_COLUMN]},
+        'clearance':{'minimum_wire_to_box_intervening_cells':min(wire_box_gaps),
+            'minimum_wire_to_attached_pin_intervening_cells':min(wire_label_gaps),
+            'parallel_track_intervening_cells':WIRE_TRACKS[1]-WIRE_TRACKS[0]-1},
+        'checks':{'two_cells_minimum_from_box_or_attached_label':True,
+            'one_cell_between_parallel_tracks':True,'eight_by_seven_boxes':True,
+            'twelve_boxes':True,'eight_source_target_routes_preserved':True,'max_width_39':True}}
+    (outdir/'0141 compact geometry.json').write_text(json.dumps(geometry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    from PIL import Image,ImageDraw,ImageFont
+    font=ImageFont.truetype('D:/Github/IBM360/tmp/ald-text/JuliaMono-Regular.ttf',20)
+    rows=text.splitlines();image=Image.new('RGB',(WIDTH*12+32,len(rows)*25+32),'white')
+    draw=ImageDraw.Draw(image)
+    for y,line in enumerate(rows):draw.text((16,16+y*25),line,font=font,fill='black')
+    image.save(outdir/'0141.png')
     provenance = {
         'schema': 'card-ald-universal-composite-v1', 'card_type': '0141',
         'full_part_number': '5800141', 'card_width': 'SINGLE CARD',
         'diagram': {'path': str(diagram), 'sha256': digest(diagram)},
+        'preview': {'path':str(outdir/'0141.png'),'sha256':digest(outdir/'0141.png')},
+        'geometry':geometry,
         'catalog': {'path': str(catalog_path), 'sha256': digest(catalog_path)},
         'counts': {'occurrences': len(occurrences), 'pages': len(pages),
                    'page_socket_installations': len(installations), 'portions': 12,

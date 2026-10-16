@@ -6,7 +6,7 @@ import hashlib
 import json
 import re
 
-from build_0141_universal import ROOT, ORDER, digest
+from build_0141_universal import ROOT, ORDER, digest, WIDTH, FIRST_COLUMN, SECOND_COLUMN, HEADER_ROWS
 
 
 def wedge(pin):
@@ -19,14 +19,14 @@ def build_variants(outdir):
     base = base_path.read_text(encoding='utf-8').splitlines()
     catalog_path = ROOT/'json/Card types current/0141.json'
     catalog = json.loads(catalog_path.read_text(encoding='utf-8'))
-    header_rows = 5
+    header_rows = HEADER_ROWS
     geometry = {}
     whitelist = set()
     for index, (a, b, c, pa, pb, output) in enumerate(ORDER):
         top = index*14
-        geometry[a] = {'left': 23, 'top': top, 'input_pins': pa, 'function': 'A', 'output': False}
-        geometry[b] = {'left': 23, 'top': top+7, 'input_pins': pb, 'function': 'A', 'output': False}
-        geometry[c] = {'left': 52, 'top': top+7, 'input_pins': (a, b), 'function': 'OR', 'output': True}
+        geometry[a] = {'left': FIRST_COLUMN, 'top': top, 'input_pins': pa, 'function': 'A', 'output': False}
+        geometry[b] = {'left': FIRST_COLUMN, 'top': top+7, 'input_pins': pb, 'function': 'A', 'output': False}
+        geometry[c] = {'left': SECOND_COLUMN, 'top': top+7, 'input_pins': (a, b), 'function': 'OR', 'output': True}
     for p, g in geometry.items():
         x, y = g['left'], g['top']+header_rows
         whitelist |= {(col, y+1) for col in range(x+1, x+7)}
@@ -37,7 +37,7 @@ def build_variants(outdir):
     unique = {}
     canonical_sources = []
     for (page, location, source_text), occurrences in sorted(groups.items()):
-        rows = [list(r.ljust(83)) for r in base]
+        rows = [list(r.ljust(WIDTH)) for r in base]
         witness = {'page': page, 'location': location, 'source_text': source_text,
                    'observed_portions': sorted(o['portion'] for o in occurrences),
                    'unobserved_portions_kept_canonical': sorted(set(geometry)-{o['portion'] for o in occurrences}),
@@ -88,7 +88,7 @@ def build_variants(outdir):
         rendered = [''.join(r).rstrip() for r in rows]
         changes = []
         for y, (old, new) in enumerate(zip(base, rendered)):
-            for x, (a, b) in enumerate(zip(old.ljust(83), new.ljust(83))):
+            for x, (a, b) in enumerate(zip(old.ljust(WIDTH), new.ljust(WIDTH))):
                 if a != b:
                     assert (x, y) in whitelist, (page, location, x, y, a, b)
                     changes.append({'column': x, 'line': y, 'before': a, 'after': b})
@@ -128,6 +128,8 @@ def build_variants(outdir):
         'delta_whitelist': [{'column': x, 'line': y} for x, y in sorted(whitelist, key=lambda p: (p[1], p[0]))],
         'checks': {'every_variant_uses_one_witnessed_pattern': True, 'geometry_identical': True,
                    'all_cell_deltas_whitelisted': True, 'canonical_symbols_manual_defined': True},
+        'geometry':{'width':WIDTH,'first_box_left':FIRST_COLUMN,'second_box_left':SECOND_COLUMN,
+            'header_rows':HEADER_ROWS,'spacing_validation':'0141 compact geometry.json'},
         'canonical_pattern_sources': canonical_sources,
         'variants': variants,
     }

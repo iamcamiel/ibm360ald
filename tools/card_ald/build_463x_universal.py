@@ -25,6 +25,10 @@ SOURCE_CORRECTIONS = {
     ("4633", "AP673", "BY"): {"J05": "J02"},
     ("4633", "AP301", "BB"): {"D09": "D04"},
 }
+IDENTITY_NORMALIZATIONS = {
+    ("4633", "AP271", "AS", "F2"): ("A2", "B08 OR/U03AI to A3 uniquely matches A2 on all other slices; installed socket listing has A2 and no F2; worn literal retained in source model"),
+    ("4634", "AP421", "AK", "09"): ("04", "Native final portion digit has the open 4 shape, matching the earlier 4 in4634 and differing from the 9 above in463419; B09 termination and paired19 use uniquely match04, not09"),
+}
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -48,15 +52,17 @@ def extract(card):
     catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
     observations = []
     corrections_used = []
-    minority_audit_path = OUT.parent / "4191/4634-minority-crops/verdicts.json"
+    minority_audit_path = OUT.parent / f"4191/{card}-minority-crops/verdicts.json"
     minority_audit = json.loads(minority_audit_path.read_text(encoding="utf-8")) if minority_audit_path.is_file() else {"rows": []}
+    native_output_audit_path = OUT / "4633 output native audit.json"
+    native_identity_audit_path = OUT.parent / "4191/4634-minority-crops/AP421 AK identity verdict.json"
     for record in catalog["diagram_occurrences"]:
         if not record.get("source_reviewed"):
             continue
         correction = SOURCE_CORRECTIONS.get((card, record["page"], record["node"]), {})
         correction = dict(correction)
         indexed_corrections = {}
-        if card == "4634":
+        if minority_audit["rows"]:
             for verdict in minority_audit["rows"]:
                 if verdict["page"] == record["page"] and verdict["block"] == record["node"] and verdict["verdict"] == "clear_model_misread":
                     index = verdict["pin_index"]
@@ -70,18 +76,21 @@ def extract(card):
         pins = []
         for pin_index, p in enumerate(record["pins"]):
             raw = p.get("pin")
-            physical = contact(indexed_corrections.get(pin_index, correction.get(raw, raw)))
+            corrected_raw = indexed_corrections.get(pin_index, correction.get(raw, raw))
+            physical = contact(corrected_raw)
             pins.append({"physical_pin": physical, "direction": p["side"],
                          "drawn_connected_port": True, "triangle_glyph": bool(p.get("triangle")),
-                         "pin_name_readability": "physical name" if physical else "unprinted" if p["pin"] is None or re.fullmatch(r"(?:IN|OUT)\d+|[AB]", str(p["pin"])) else "other terminal/control label",
-                         "printed_label_literal": p.get("printed_pin"),
+                         "pin_name_readability": "physical name" if physical else "unprinted" if corrected_raw is None or re.fullmatch(r"(?:IN|OUT)\d+|[AB]", str(corrected_raw)) else "other terminal/control label",
+                         "printed_label_literal": corrected_raw,
+                         "original_model_label": raw,
                          "polarity_decoration": {"marker": "triangle" if p.get("triangle") else "none",
                             "glyph_bindings": [{"glyph": "◺" if p.get("triangle") else "│"}]}})
         portion = record["portion"]
-        if (card, record["page"], record["node"], portion) == ("4633", "AP271", "AS", "F2"):
-            portion = "A2"
-            corrections_used.append({"page": "AP271", "node": "AS", "portion": {"F2": "A2"},
-                "basis": "B08 OR/U03AI to A3 uniquely matches A2 on all other slices; installed socket listing has A2 and no F2; worn literal retained in source model"})
+        identity_correction = IDENTITY_NORMALIZATIONS.get((card, record["page"], record["node"], portion))
+        if identity_correction:
+            original_portion = portion
+            portion, basis = identity_correction
+            corrections_used.append({"page": record["page"], "node": record["node"], "portion": {original_portion: portion}, "basis": basis})
         observations.append({"portion_literal": portion, "page": record["page"],
             "node_identifier": record["node"], "function_literal": record["function_label"],
             "unit_code_literal": record["circuit_identifier"], "pins": pins,
@@ -167,7 +176,7 @@ def extract(card):
             drivers = [net.get("driver")]
             drivers += net.get("declared_physical_output_drivers", []) or []
             drivers += net.get("route_owners", []) or []
-            for driver in set(d for d in drivers if isinstance(d, str)):
+            for driver in sorted(set(d for d in drivers if isinstance(d, str))):
                 if "." not in driver:
                     continue
                 sid, source_ref = driver.split(".", 1)
@@ -209,7 +218,12 @@ def extract(card):
                         elif len(target_named) == 1:
                             target_pin = next(iter(target_named))
                         else:
-                            issues.append({"kind": "unmapped unlabelled net target", "page": page, "driver": driver, "target": target})
+                            if source_pin and source_pin not in target_named:
+                                rejected.append({"page": page, "driver": driver, "target": target,
+                                    "reason": "stale target suffix; all current named target contacts differ from source contact, so any literal page connection is an installation strap",
+                                    "source_contact": source_pin, "target_contacts": sorted(target_named)})
+                            else:
+                                issues.append({"kind": "unmapped unlabelled net target", "page": page, "driver": driver, "target": target})
                             continue
                     if source_pin and target_pin and source_pin != target_pin:
                         rejected.append({"page": page, "driver": driver, "target": target,
@@ -283,6 +297,8 @@ def extract(card):
             "power_pins": SUPPLY, "conflicts": conflicts, "issues": issues,
             "candidate_source_corrections": corrections_used,
             "native_minority_audit": {"path": str(minority_audit_path), "sha256": sha(minority_audit_path)} if minority_audit_path.is_file() else None,
+            "native_output_audit": {"path": str(native_output_audit_path), "sha256": sha(native_output_audit_path)} if card == "4633" and native_output_audit_path.is_file() else None,
+            "native_identity_audit": {"path": str(native_identity_audit_path), "sha256": sha(native_identity_audit_path)} if card == "4634" and native_identity_audit_path.is_file() else None,
             "excluded_installation_straps": rejected,
             "models": [{"page": page, "path": str(path.relative_to(ROOT)), "sha256": sha(path)}
                        for page, (path, _) in sorted(models.items())]}
@@ -295,6 +311,20 @@ def main():
         print(card, "occurrences", result["observations"], "pages", result["pages"],
               "portions", len(result["portions"]), "edges", len(result["edges"]),
               "pins", len(result["signal_pins"]), "conflicts", len(result["conflicts"]))
+    write(OUT / "463x candidate inventory.json", {
+        "schema": "card-universal-candidate-inventory-v1", "canonical_ALD_files_modified": False,
+        "tools": [{"path": str(p.relative_to(ROOT)), "sha256": sha(p)}
+                  for p in (Path(__file__), Path(renderer.__file__))],
+        "outputs": [{"path": str(p), "sha256": sha(p)}
+                    for p in sorted(OUT.iterdir()) if p.suffix == ".txt" and re.fullmatch(r"463[34](?:-\d+)?",p.stem)],
+        "review_notes": [
+            "4633 includes all 39 resolved portions; G05 has no observed signal connection after native misread corrections.",
+            "The isolated 4633 F2 reading on AP271 is normalized to A2 by unique cross-reference evidence; canonical source preserved.",
+            "4634 includes all 57 observed/listed portions; G13 is possibly unused, with no connection observed, and is not claimed to be unconnected electrically.",
+            "The genuine B09 on AP421 belongs to portion04; native portion09 was a 4/9 identity misread. Portion09 retains its observed G04 contact.",
+            "U55AC is absent from the supplied 1965 SLT manual; its AR form is explicitly observation-derived and provisional.",
+            "Named source/target contacts that differ are excluded installation straps. Ambiguous multi-driver page nets do not prove individual fixed internal edges.",
+            "Every numbered variant retains exactly the base layout and wiring. Only six function cells and the input/output border wedge cells may change."]})
 
 def render_candidates(model):
     card = model["card_type"]
@@ -316,6 +346,7 @@ def render_candidates(model):
                 "input_wedge": Counter(p["triangle"] for p in node["_inputs"]).most_common(1)[0][0] if node["_inputs"] else False,
                 "output_wedge": Counter(p["triangle"] for p in node["_outputs"]).most_common(1)[0][0] if node["_outputs"] else False}
     geometry = renderer.prepare(model)
+    validation = renderer.verify(model, geometry)
     observed_signal = set(model["signal_pins"])
     unavailable = sorted({f"{a}{n:02}" for a in "BDGJ" for n in range(2,14)} - observed_signal - set(SUPPLY))
     header = [f"CARD-ALD 580{card} DOUBLE CARD  COMPOSITE PINOUT  CANONICAL CIRCUIT FORMS",
@@ -325,6 +356,8 @@ def render_candidates(model):
               "PROVISIONAL OBSERVATION-DERIVED CIRCUIT FORM: " + (", ".join(p+" "+model['portions'][p]['unit'] for p in provisional) if provisional else "NONE"),
               "WIRING IS THE UNION OF REVIEWED CARD OCCURRENCES; INSTALLATION STRAPS ARE EXCLUDED.",
               "FUNCTIONS AND WEDGES FOLLOW THE SLT MANUAL DEFINITIONS; NUMBERED FILES RETAIN OBSERVED NOTATION."]
+    if card == "4634":
+        header[3] = "G13 POSSIBLY UNUSED; NO CONNECTION OBSERVED"
     base = renderer.draw(model, geometry, canonical, header)
     (OUT / f"{card}.txt").write_text(base, encoding="utf-8")
     # One observed installed card can be spread over several sheets. Build
@@ -332,17 +365,22 @@ def render_candidates(model):
     # Portions unused in that installation keep the canonical symbol.
     installed = defaultdict(dict)
     installed_evidence = defaultdict(list)
+    occurrence_conflicts = []
     for record in catalog["diagram_occurrences"]:
         portion = record["portion"]
-        if (card, record["page"], record["node"], portion) == ("4633", "AP271", "AS", "F2"):
-            portion = "A2"
+        identity_correction = IDENTITY_NORMALIZATIONS.get((card, record["page"], record["node"], portion))
+        if identity_correction:
+            portion = identity_correction[0]
         if portion not in model["portions"]:
             continue
         ins = [bool(p["triangle"]) for p in record["pins"] if p["side"] == "input"]
         outs = [bool(p["triangle"]) for p in record["pins"] if p["side"] == "output"]
         # The observed function convention determines uniform polarity of
         # equivalent inputs; majority resolves a partially omitted marker.
-        form = {"function": layered.primary_function(record["function_label"]),
+        literal_function = str(record["function_label"] or "").strip()
+        displayed_function = literal_function if len(literal_function) <= 6 else layered.primary_function(literal_function)
+        assert len(displayed_function) <= 6, (card, record["page"], record["node"], literal_function)
+        form = {"function": displayed_function,
                 "input_wedge": Counter(ins).most_common(1)[0][0] if ins else canonical[portion]["input_wedge"],
                 "output_wedge": Counter(outs).most_common(1)[0][0] if outs else canonical[portion]["output_wedge"]}
         correction = next((x.get("pins", {}) for x in model["candidate_source_corrections"]
@@ -369,12 +407,40 @@ def render_candidates(model):
                     # Preserve the literal row pattern in evidence if its
                     # connection-to-row attribution is not uniquely known.
                     form["unmapped_pinless_markers"] = unknown
+                    form["input_wedge"] = canonical[portion]["input_wedge"]
             if explicit:
                 form[side + "_wedges"] = explicit
         key = record["location"]
-        installed[key][portion] = form
+        prior = installed[key].get(portion)
+        if prior:
+            conflicts = []
+            if prior["function"] != form["function"]:
+                conflicts.append("printed function labels differ")
+            for side in ("input", "output"):
+                for pin, wedge in form.get(side+"_wedges", {}).items():
+                    earlier = prior.get(side+"_wedges", {})
+                    if pin in earlier and earlier[pin] != wedge:
+                        conflicts.append(f"{side} {pin} marker differs")
+            if conflicts:
+                alternate = key + "@" + record["page"] + ":" + record["node"]
+                installed[alternate] = deepcopy(installed[key])
+                installed[alternate][portion] = form
+                installed_evidence[alternate] = list(installed_evidence[key])
+                occurrence_conflicts.append({"physical_instance": key, "portion": portion,
+                    "page": record["page"], "node": record["node"], "reasons": conflicts,
+                    "alternative_variant_key": alternate, "prior_form": prior, "observed_form": form})
+                key = alternate
+            else:
+                combined = deepcopy(prior)
+                for side in ("input", "output"):
+                    combined.setdefault(side+"_wedges", {}).update(form.get(side+"_wedges", {}))
+                installed[key][portion] = combined
+        else:
+            installed[key][portion] = form
         installed_evidence[key].append({"page": record["page"], "node": record["node"], "portion": portion,
                                         "literal_function": record["function_label"],
+                                        "displayed_function": displayed_function,
+                                        "display_basis": "full printed label" if displayed_function == literal_function else "primary display; full literal exceeds six cells",
                                         "input_markers": ins, "output_markers": outs})
     variants = {}
     for instance, observed in installed.items():
@@ -388,6 +454,21 @@ def render_candidates(model):
         variants[signature]["instances"].append(instance)
         variants[signature]["evidence"].extend(installed_evidence[instance])
     positions, ports, exterior, router = geometry
+    # Two partial observations can describe the same final symbol pattern
+    # with different redundant per-port overrides. Deduplicate the rendered
+    # circuit cells, rather than the representation of those overrides.
+    rendered_variants = {}
+    base_body = "\n".join(base.splitlines()[7:])
+    for variant in variants.values():
+        body = "\n".join(renderer.draw(model, geometry, variant["forms"], header).splitlines()[7:])
+        if body == base_body:
+            continue
+        if body not in rendered_variants:
+            rendered_variants[body] = variant
+        else:
+            rendered_variants[body]["instances"].extend(variant["instances"])
+            rendered_variants[body]["evidence"].extend(variant["evidence"])
+    variants = rendered_variants
     mutable = {(x, y) for n in positions.values() for x in range(n["x"]+1,n["x"]+7)
                for y in (n["top"]+1,)}
     mutable |= {(positions[p]["x"] if side == "input" else positions[p]["x"]+7, port["point"][1])
@@ -406,17 +487,28 @@ def render_candidates(model):
         name = f"{card}-{number:02}.txt"
         (OUT / name).write_text(text, encoding="utf-8")
         index.append({"file": name, "sha256": sha(OUT/name), **variant})
+    current_names = {entry["file"] for entry in index}
+    for old in OUT.glob(f"{card}-[0-9][0-9].txt"):
+        assert old.resolve().parent == OUT.resolve()
+        if old.name not in current_names:
+            old.unlink()
     write(OUT / f"{card} render provenance.json", {
         "schema": "card-composite-render-v1", "card_type": card,
         "base": {"file": f"{card}.txt", "sha256": sha(OUT/f"{card}.txt")},
         "composite_model_sha256": sha(OUT/f"{card} composite.json"),
         "canonical_dictionary": {"path": str(dictionary_path), "sha256": sha(dictionary_path)},
         "canonical_forms": canonical, "provisional_canonical_portions": provisional,
+        "repeated_instance_symbol_conflicts": occurrence_conflicts,
         "unobserved_contacts": unavailable, "variants": index,
+        "human_hypotheses": [{"contact": "G13", "hypothesis": "possibly unused", "status": "not proven unconnected",
+                               "display": "G13 POSSIBLY UNUSED; NO CONNECTION OBSERVED"}] if card == "4634" else [],
         "variant_geometry_identity_verified": True,
+        "validation": validation,
         "geometry": {"width": router.width, "height": router.height, "boxes": positions,
                      "ports": [{"portion": p,"side":side,"net":net,**port} for (p,side,net),port in ports.items()],
                      "exterior_contacts": exterior,
+                     "virtual_endpoint_directions": [{"point": point, "nets": {net: sorted(ds) for net,ds in nets.items()}}
+                                                     for point,nets in router.virtual_endpoint_directions.items() if nets],
                      "net_wire_cells": {net: sorted(cells) for net,cells in router.by_net.items()}}})
 
 if __name__ == "__main__":
