@@ -41,6 +41,12 @@ class PinValidationTests(unittest.TestCase):
                 self.assertEqual(result["literals"]["pin"], literal)
                 self.assertEqual(result["severity"], "info")
 
+    def test_invalid_contact_has_no_contradictory_valid_issue(self):
+        for literal in ['C12','D00']:
+            result=self.check(node(pin(literal)))[0]
+            self.assertEqual(result['severity'],'error')
+            self.assertNotIn('valid',{issue['status'] for issue in result['issues']})
+
     def test_explicit_numeric_suffix_only(self):
         result = self.check(node(pin("B122", physical_pin="B12", printed_numeric_suffix="2")))[0]
         self.assertEqual(result["physical_contact"], "B12")

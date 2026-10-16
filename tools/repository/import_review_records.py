@@ -769,6 +769,12 @@ def source_review_repository_keepers(repo):
     for name in ['README.txt', 'build_uniform_socket_listings.py',
                  'verify_uniform_socket_listings.py', 'socket_text_parser.py',
                  'socket_listing_records.py', 'socket_pin_validation.py',
+                 'audit_socket_ald.py', 'socket_ald_matching.py', 'socket_ald_pin_audit.py',
+                 'socket_ald_reverse.py', 'test_socket_ald_reverse.py',
+                 'socket_ald_identity_adapter.py', 'test_socket_ald_identity_adapter.py',
+                 'socket_ald_reconciliation.py', 'test_socket_ald_reconciliation.py',
+                 'investigate_absent_ald_references.py', 'test_audit_socket_ald.py',
+                 'test_socket_ald_matching.py', 'test_socket_ald_pin_audit.py',
                  'test_uniform_socket_listings.py', 'test_verify_uniform_socket_listings.py',
                  'test_socket_text_parser.py', 'test_socket_listing_records.py',
                  'test_socket_pin_validation.py']:

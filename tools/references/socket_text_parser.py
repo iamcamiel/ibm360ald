@@ -29,6 +29,16 @@ def _kind(text):
     return 'UNSPECIFIED'
 
 
+def _continuation_socket(printed, occupied):
+    """An unqualified repeated label may abbreviate an active B/T position.
+
+    An explicit opposite qualifier is a different header, never a continuation.
+    """
+    if printed in occupied:return True
+    if re.search(r'\d[BT]$',printed):return False
+    return printed in {re.sub(r'(?<=\d)[BT]$','',s) for s in occupied}
+
+
 def parse_listings(pages):
     records=[];issues=[];active=None;reference=None;mode=None;previous_board=None;span_counts={};orphan=[];tables=[]
     def close():
@@ -58,7 +68,7 @@ def parse_listings(pages):
         if not spans:
             issues.append({'kind':'column_rules_not_found','page':page_key,'scan_id':scan});continue
         for left,right in spans:
-            footer=False;plug_list=False;saw_content=False
+            footer=False;plug_list=False;saw_content=False;boundary_separator=False
             header_margins={m.start(1) for line in lines if (m:=re.match(r'^\s{0,10}('+SOCKET+r')\s+(?:SINGLE|DOUBLE|CABL|XOVR|CONNECTOR|EMPTY|UNUSED)',line[left:right]))}
             for row,line in enumerate(lines):
                 literal=line[left:right]
@@ -87,6 +97,7 @@ def parse_listings(pages):
                     footer=True;continue
                 if re.fullmatch(r'[─┼┌┐└┘│✲* .]{8,}',lexical) and any(c in literal for c in '─✲*.'):
                     if saw_content:close()
+                    else:boundary_separator=True
                     continue
                 if literal.count('.')>len(literal)*0.65 and len(re.sub(r'[. ]','',literal))<=2:
                     if saw_content:close()
@@ -96,7 +107,7 @@ def parse_listings(pages):
                 if ruled_label and active and ruled_label[1] in active['sockets']:
                     close();continue
                 repeated=re.match(r'^\s{0,10}('+SOCKET+r')(\s+)(.+)$',lexical.rstrip())
-                if not saw_content and active and repeated and re.sub(r'(?<=\d)[BT]$','',repeated[1]) in {re.sub(r'(?<=\d)[BT]$','',x) for x in active['sockets']} and not re.search(r'SINGLE|DOUBLE|CABL|XOVR|CONNECTOR',repeated[3]):
+                if not saw_content and not boundary_separator and active and repeated and _continuation_socket(repeated[1],active['sockets']) and not re.search(r'SINGLE|DOUBLE|CABL|XOVR|CONNECTOR',repeated[3]):
                     listing_socket=repeated[1];lexical=' '*repeated.start(3)+repeated[3];text=lexical.strip()
                 header=re.match(r'^\s{0,10}('+SOCKET+r')(?:\s+(.*))?$',lexical.rstrip())
                 if header:
@@ -107,7 +118,10 @@ def parse_listings(pages):
                         kind=_kind(tail)
                         continuation_half=active and active['kind']=='DOUBLE CARD' and len(active['sockets'])==1 and not active['part_number'] and not active['references'] and kind=='UNSPECIFIED' and (not tail or re.search(r'[0-9�]{7}\s+[0-9�]{4}',tail))
                         immediate=active and active['header_source']['scan_id']==scan and active['header_source']['column']==left and row==active['header_source']['row']+1
-                        if (immediate or continuation_half) and (active['kind']=='DOUBLE CARD' or kind=='DOUBLE CARD') and len(active['sockets'])==1 and socket not in active['sockets']:
+                        boundary_bare_continuation=active and not saw_content and not boundary_separator and not tail and _continuation_socket(socket,active['sockets'])
+                        if boundary_bare_continuation:
+                            pass  # Bare physical socket repeats its qualified owner.
+                        elif (immediate or continuation_half) and (active['kind']=='DOUBLE CARD' or kind=='DOUBLE CARD') and len(active['sockets'])==1 and socket not in active['sockets']:
                             active['sockets'].append(socket)
                             if kind=='DOUBLE CARD':active['kind']=kind
                         elif active and socket in active['sockets'] and (not tail or 'UNUSED' in tail or re.search(r'[0-9�]{7}\s+[0-9�]{4}',tail)):

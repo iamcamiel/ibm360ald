@@ -72,5 +72,25 @@ class SourceTextParser(unittest.TestCase):
         r=parse_listings([self.page(['A2 SINGLE CARD','   6194'])])['records'][0]
         self.assertEqual(r['card_type'],'6194');self.assertIsNone(r['part_number'])
 
+    def test_qualified_connector_bare_socket_page_continuation(self):
+        a=self.page([],right=['N4B CABL 5802429'],scan='1')
+        b=self.page(['N4','   ZB011 FF','   GOES TO 02B-C1A5B','   N4 B09 RB741AA4'],scan='2',page='A1111-02')
+        r=parse_listings([a,b])['records'];self.assertEqual(len(r),1)
+        self.assertEqual(r[0]['sockets'],['N4B']);self.assertEqual(r[0]['connector_listing'],'ZB011')
+        self.assertEqual(r[0]['wire_code'],'FF');self.assertEqual(r[0]['references'],[])
+        self.assertEqual(r[0]['pins'][0]['pin'],'B09')
+    def test_qualified_connector_bare_socket_column_continuation(self):
+        p=self.page(['N4B CABL 5802429'],['N4','   ZB011 FF','   N4 B09 RB741AA4'])
+        self.assertEqual(len(parse_listings([p])['records']),1)
+    def test_explicit_opposite_qualifier_starts_distinct_header(self):
+        p=self.page(['N4B CABL 5802429'],['N4T','   ZB011 FF'])
+        r=parse_listings([p])['records'];self.assertEqual([x['sockets'] for x in r],[['N4B'],['N4T']])
+    def test_new_kind_starts_distinct_header_even_same_physical_socket(self):
+        p=self.page(['N4B CABL 5802429'],['N4 SINGLE CARD','   5803308 3308'])
+        r=parse_listings([p])['records'];self.assertEqual(len(r),2);self.assertEqual(r[1]['card_type'],'3308')
+    def test_separator_blocks_bare_socket_continuation(self):
+        p=self.page(['N4B CABL 5802429'],['────────────────────────────','N4','   ZB011 FF'])
+        self.assertEqual(len(parse_listings([p])['records']),2)
+
 
 if __name__=='__main__':unittest.main()

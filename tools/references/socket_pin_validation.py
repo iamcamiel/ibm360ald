@@ -165,7 +165,7 @@ def audit_node_pins(node, kinds, definition=None):
                             add("shared_contact_passthrough", "info", "AR repeats the same physical input/output contact; redundant stub is allowed.")
                         else:
                             add("definition_discrepancy", "review", "Contact or direction is absent from this reviewed portion.")
-            elif kind:
+            elif kind and not any(item['status'] in {'invalid_letter','invalid_number'} for item in issues):
                 add("valid", "info", "Physical contact is in the known SLT pin range; no reviewed portion check supplied.")
             key = (side, contact, bool(pin.get("triangle")) or pin.get("border_marker") == "◺")
             if key in seen:
