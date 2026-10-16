@@ -2,6 +2,7 @@
 
 from collections import defaultdict
 from pathlib import Path
+import argparse
 import re
 
 from source_4191 import Canvas, SLICES
@@ -91,11 +92,9 @@ def draw(c):
             portions.add(portion)
             c.box(x, top, top + 6, portion, "A", circuit)
             pins = list(observed_pins)
-            # The card-level diagram combines verified uses of these
-            # portions. D08 is printed on AP041/AP131/AP181/AP191 and peers even
-            # when a different input is idle on the K6/K7 example pages.
-            if portion in {"07", "13", "19", "25"}:
-                pins.insert(0, "D08")
+            # D08 is the SLT ground contact. Some ALD pages print a local
+            # jumper from D08 to a used signal input. The card view omits
+            # this supply contact; it is never an external signal rail.
             # Equivalent inputs may exchange rows. Keep the input shared
             # with an R portion closest to that R box, so its branch never
             # crosses another input to the same A portion.
@@ -257,7 +256,7 @@ def draw(c):
     expected = {f"{number:02d}" for number in range(1, 44)} | {"B1", "B2"}
     assert portions == expected, (expected - portions, portions - expected)
     assert declared == DRIVEN, (DRIVEN - declared, declared - DRIVEN)
-    assert len(external) + len(declared) == 41
+    assert len(external) + len(declared) == 40
     # Add physical designations last, after routing. A designation replaces
     # the final three wire characters directly against the appropriate box.
     assert len({(x - 3 if side == "input" else x + 8, y)
@@ -268,7 +267,7 @@ def draw(c):
     return c, external, declared, block_pins
 
 
-def build():
+def build(output_path=OUTPUT):
     c = Canvas(WIDTH, 301)
     _, inputs, outputs, block_pins = draw(c)
     assert len(c.boxes) == 45
@@ -295,6 +294,7 @@ def build():
         "CARD-ALD  5804191  DOUBLE CARD  EXAMPLE ROUTING: 02B-E1 K6/K7",
         "PINS ARE LABELLED AT THE BOXES AND ONCE AT THE OUTER EDGE.",
         "BOXES FOLLOW A SEVEN-LINE GRID; INPUTS INCLUDE VERIFIED OTHER USES.",
+        "SUPPLY CONTACTS ARE OMITTED; PAGE-LEVEL VOLTAGE TIES ARE RECORDED SEPARATELY.",
         "",
         c.render(),
         "",
@@ -308,13 +308,14 @@ def build():
     rows = result.splitlines()
     label_re = re.compile(r"(?<![A-Z0-9])[BDGJ](?:0[2-9]|1[0-3])(?![A-Z0-9])")
     expected_labels = set(inputs) | outputs
-    outside_labels = [match.group() for row in rows[4:] for match in label_re.finditer(row)
+    outside_labels = [match.group() for row in rows[5:] for match in label_re.finditer(row)
                       if match.start() in {0, OUTPUT_COL}]
-    assert len(outside_labels) == len(set(outside_labels)) == len(expected_labels) == 41
+    assert len(outside_labels) == len(set(outside_labels)) == len(expected_labels) == 40
     assert set(outside_labels) == expected_labels
+    assert "D08" not in expected_labels and "D08" not in result
     for x, y, pin, side in block_pins:
         start = x - 3 if side == "input" else x + 8
-        assert rows[y + 4][start:start + 3] == pin, (x, y, pin, side)
+        assert rows[y + 5][start:start + 3] == pin, (x, y, pin, side)
     assert len(rows) < 390 and max(map(len, rows)) <= WIDTH
     assert all("│" not in row[:3] and "│" not in row[OUTPUT_COL:] for row in rows)
     assert "U04" not in result and "U11" not in result and "U12" not in result
@@ -322,12 +323,14 @@ def build():
     assert len(portions) == len(set(portions)) == 45
     for row_index, row in enumerate(rows):
         for match in re.finditer(r"4191(?:[0-9]{2}|B[12])", row):
-            if row_index < 4:
+            if row_index < 5:
                 continue
             assert rows[row_index + 2][match.start() - 1:match.start() + 7] == "└──────┘"
-    OUTPUT.write_text(result, encoding="utf-8")
+    output_path.write_text(result, encoding="utf-8")
     return result
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, default=OUTPUT)
+    build(parser.parse_args().output)

@@ -1,0 +1,49 @@
+{
+  "schema": "card-4191-supply-contact-diagram-publication-v1",
+  "diagram": {
+    "path": "Card-ALD\\4191.txt",
+    "sha256": "becf9aa2dfb2650cef2000cc5986f12ffd25f1b96dff888958bff733dc0ff478"
+  },
+  "previous_diagram": {
+    "path": "notes\\Card-ALD\\history\\4191 pre-supply-rule drawing.txt",
+    "sha256": "a42d263b38164f22fa7933a93fb1f77555ac5a556bf7b085082795d1a8e31334"
+  },
+  "owner_rule": {
+    "path": "notes\\Pin validation\\SLT supply contact rule.json",
+    "sha256": "fa925a7dd72331635bad09e52f40304b22f8a64ff082989ff2c81ede3c772860"
+  },
+  "builder": {
+    "path": "tools\\card_ald\\build_4191_layered.py",
+    "sha256": "43e6e0d058f86e3fdd03fdc02c997c6c6b38ca3fd8648957f3de4bb67bfc96ef"
+  },
+  "example_page_model": {
+    "path": "json\\AP Parallel Adder\\AP041 PARALLEL ADDER BIT 04.json",
+    "sha256": "4003fdd869ea3de5e1bb80ef76544f2ee2d779ac6a91d02186d54e9337cb9c37"
+  },
+  "example_page_tie": {
+    "page": "AP041",
+    "block": "AW",
+    "portion": "07",
+    "source_net": "AW-jumper",
+    "targets": [
+      "AW.D12",
+      "AW.D08"
+    ],
+    "interpretation": "D12 tied to ground via the supply contact; the supply contact is omitted from the card-level signal routing."
+  },
+  "omitted_supply_contact": "D08",
+  "affected_gate_portions": [
+    "07",
+    "13",
+    "19",
+    "25"
+  ],
+  "checks": {
+    "all_45_portions_preserved": true,
+    "all_non_supply_exterior_contacts_preserved": true,
+    "all_circuit_identifier_counts_preserved": true,
+    "all_supply_contacts_absent_from_diagram": true,
+    "builder_geometry_and_wire_assertions_passed": true
+  },
+  "ALD_page_changes": 0
+}

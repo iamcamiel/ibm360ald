@@ -476,6 +476,141 @@ def sparse_shape_review_keepers(workspace):
     return list(files.values())
 
 
+def supply_pin_review_keepers(workspace):
+    """Keep only the published supply-pin release and its exact source evidence.
+
+    Source records retain their original paths.  The returned location index
+    maps those paths and hashes to portable repository copies; TIFF originals
+    are hash checked but remain solely in the reference archive.
+    """
+    workspace=workspace.resolve()
+    base=workspace/'tmp/ald-text/ald/slt-supply-visual'
+    stage=base/'release-stage'
+    publication_path=stage/'publication.json'
+    if not publication_path.is_file():return [],None
+    keeper=Path('notes/Pin validation/Supply pin release')
+    files={};locations={};cache={}
+    def checked(path,expected=None):
+        path=Path(path)
+        if not path.is_absolute():
+            path=(workspace/'ibm360ald'/path if path.parts[0] in {'notes','csv','json'} else workspace/path)
+        path=path.resolve()
+        assert path.is_file(),path
+        if path not in cache:cache[path]=digest(path.read_bytes())
+        if expected is not None:assert cache[path]==expected,path
+        return path
+    def add(path,destination,expected=None,original=None):
+        source=checked(path,expected)
+        assert source.is_relative_to(workspace),source
+        destination=Path(destination)
+        assert destination.is_relative_to(keeper),destination
+        if destination in files:assert files[destination]==source,destination
+        files[destination]=source
+        original=str(Path(original).resolve() if original else source)
+        locations[(original,cache[source])]={
+            'original_absolute_path':original,'sha256':cache[source],
+            'repository_path':destination.as_posix()}
+        return source
+    def binding(link):return checked(link.get('file',link.get('path')),link['sha256'])
+    publication=read_json(publication_path)
+    assert publication.get('schema')=='slt-supply-pin-publication-v1'
+    manifest_path=binding(publication['stage_manifest'])
+    assert manifest_path==stage/'manifest.json'
+    manifest=read_json(manifest_path)
+    assert manifest.get('schema')=='slt-supply-pin-release-stage-v1'
+    acceptance_path=binding(publication['independent_review'])
+    acceptance=read_json(acceptance_path)
+    assert acceptance.get('schema')=='slt-supply-pin-staged-independent-review-v1'
+    assert acceptance.get('passed') is True and acceptance.get('failures')==[]
+    assert acceptance['manifest_sha256']==cache[manifest_path]
+    records=manifest['records']
+    assert set(publication['published_pages'])=={r['page'] for r in records}
+    verified_stage={manifest_path,publication_path}
+    add(manifest_path,keeper/'Application/manifest.json')
+    add(publication_path,keeper/'Application/publication.json')
+    add(acceptance_path,keeper/'Reviews'/acceptance_path.name)
+    inputs={}
+    for link in manifest['inputs']:
+        source=binding(link)
+        assert source.is_relative_to(stage/'inputs'),source
+        inputs[source.name]=read_json(source)
+        verified_stage.add(source)
+        add(source,keeper/'Application'/source.relative_to(stage),link['sha256'])
+    snapshot=stage/'Human answers immutable snapshot.json'
+    human=read_json(snapshot)
+    assert human['manual']==inputs['SLT supply-pin manual answers.json']
+    assert human['electrical']==inputs['Electrical rule manual answers.json']
+    verified_stage.add(snapshot)
+    add(snapshot,keeper/'Application'/snapshot.name)
+    for record in records:
+        source=record['source'];checked(source['path'],source['sha256'])
+        for kind,link in record['staged_quartet'].items():
+            staged=binding(link)
+            assert staged.is_relative_to(stage/record['page']),staged
+            verified_stage.add(staged)
+            add(staged,keeper/'Application'/staged.relative_to(stage),link['sha256'])
+            prior=record['prior_quartet'][kind]
+            before=stage/record['page']/('before-'+Path(prior['path']).name)
+            verified_stage.add(before)
+            add(before,keeper/'Application'/before.relative_to(stage),prior['sha256'],prior['path'])
+    # Refuse new/unbound stage artifacts instead of accidentally sweeping in
+    # later experiments or accepting changes to an immutable quartet.
+    assert {p.resolve() for p in stage.rglob('*') if p.is_file()}==verified_stage
+    def evidence(path,expected):
+        source=checked(path,expected)
+        if source.suffix.lower() in {'.tif','.tiff'}:
+            assert source.is_relative_to(Path('D:/Reference Materials/IBM 360/IBM_360_ALD').resolve())
+            locations[(str(source),expected)]={
+                'original_absolute_path':str(source),'sha256':expected,
+                'repository_path':None,'reason':'Original TIFF retained in reference archive'}
+        elif source.suffix.lower()=='.png':
+            assert source.is_relative_to(base) or source.is_relative_to(workspace/'ibm360ald/notes/Pin validation')
+            add(source,keeper/'Evidence'/source.relative_to(workspace),expected)
+        else:raise AssertionError('Unexpected supply-pin evidence type: '+str(source))
+    def evidence_in(value):
+        if isinstance(value,list):
+            for item in value:evidence_in(item)
+        elif isinstance(value,dict):
+            for key in ('path','file'):
+                path=value.get(key)
+                if isinstance(path,str) and Path(path).suffix.lower() in {'.png','.tif','.tiff'} and value.get('sha256'):
+                    evidence(path,value['sha256'])
+            for key,value_hash in value.items():
+                if key.endswith('_sha256') and isinstance(value_hash,str):
+                    stem=key[:-7]
+                    path=value.get(stem,value.get(stem+'_path'))
+                    if isinstance(path,str) and Path(path).suffix.lower() in {'.png','.tif','.tiff'}:
+                        evidence(path,value_hash)
+            for item in value.values():evidence_in(item)
+    for path,value_hash in manifest['evidence_hashes'].items():evidence(path,value_hash)
+    visual=inputs['SLT supply-pin visual review.json']
+    for link in visual['reviewer_ledgers']+[visual['coordinator_review'],visual['queue'],visual['review_csv'],visual['questions_csv']]:
+        source=binding(link)
+        add(source,keeper/'Reviews'/source.relative_to(workspace),link['sha256'])
+        if source.suffix.lower()=='.json':evidence_in(read_json(source))
+    for value in inputs.values():evidence_in(value)
+    # These bounded independent reviews contain the RR141 full-block proposal
+    # and paired AP531 correction, rather than unrelated review experiments.
+    rr_review_path=base/'RR141 AP531 independent native review.json'
+    rr_review=read_json(rr_review_path)
+    assert rr_review.get('schema')=='independent-source-bound-review-v1'
+    assert rr_review.get('status')=='approved_with_prose_correction'
+    add(rr_review_path,keeper/'Reviews'/rr_review_path.name)
+    for key in ('proposal','staged_model','staged_text'):
+        source=checked(rr_review['rr141'][key],rr_review['rr141'][key+'_sha256'])
+        add(source,keeper/'Reviews/RR141'/source.name)
+        if key=='proposal':evidence_in(read_json(source))
+    evidence_in(rr_review)
+    release_review=base/'independent-release-review.json'
+    add(release_review,keeper/'Reviews'/release_review.name)
+    evidence_in(read_json(release_review))
+    return list((source,destination) for destination,source in files.items()),{
+        'schema':'slt-supply-pin-portable-source-locations-v1',
+        'publication_sha256':cache[publication_path],
+        'stage_manifest_sha256':cache[manifest_path],
+        'bindings':sorted(locations.values(),key=lambda x:(x['original_absolute_path'],x['sha256']))}
+
+
 def retired_kt_fact_keepers(workspace):
     """Archive three historical companions without restoring active content."""
     path = workspace/'tmp/ald-text/ald/card-type-database/function-review-batch-7/application/Retired KT source facts/Retired KT source facts receipt.json'
@@ -578,6 +713,8 @@ def main():
     copy(args.reference/'ALD Scan Order.csv', repo/'notes/ALD Scan Order.csv',
          'Original scan order and current TIFF filename catalogue')
     shared = {
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Supply pin visual and human current audit.json':
+            'Pin validation/Supply pin visual and human current audit.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/4191 source correction current audit.json':
             'Card-ALD/4191 source correction current audit.json',
         'tmp/ald-text/ald/card-4191-release/manifest.json':
@@ -1050,11 +1187,63 @@ def main():
             'Card types current/Physical pin review/Human-directed corrections current audit.json',
         'tmp/ald-text/ald/card-type-database/Current catalog v7 publication receipt.json':
             'Card types current/Physical pin review/Current catalog publication receipt.json',
+        'tmp/ald-text/ald/card-type-database/Current catalog v8 publication receipt.json':
+            'Card types current/0141 pin review/Current catalog publication receipt.json',
+        'tmp/ald-text/ald/card-type-database/Current catalog v9 publication receipt.json':
+            'Card types current/0141 human final/Current catalog publication receipt.json',
+        'tmp/ald-text/ald/card-type-database/Current catalog v10 publication receipt.json':
+            'Card types current/0141 human markings/AS105 catalog publication receipt.json',
+        'tmp/ald-text/ald/card-0141-review/0141 diagram publication receipt.json':
+            'Card-ALD/history/0141 XX651 source-style publication receipt.json',
+        'tmp/ald-text/ald/card-0141-review/topology/0141 three-link native verdict.json':
+            'Card-ALD/0141 three-link native verdict.json',
+        'tmp/ald-text/ald/card-0141-review/pin-review/0141 pin source audit.json':
+            'Card-ALD/0141 pin review/Initial source pin audit.json',
+        'tmp/ald-text/ald/card-0141-review/pin-review/private-stage/stage manifest.json':
+            'Card-ALD/0141 pin review/Private correction stage manifest.json',
+        'tmp/ald-text/ald/card-0141-review/independent-stage-review/0141 pin batch independent acceptance.json':
+            'Card-ALD/0141 pin review/Independent candidate acceptance.json',
+        'tmp/ald-text/ald/card-0141-review/0141 pin batch canonical publication receipt.json':
+            'Card-ALD/0141 pin review/Canonical publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/0141 physical pin corrections current audit.json':
+            'Card-ALD/0141 pin review/Current pin corrections audit.json',
+        'tmp/ald-text/ald/card-0141-review/human-final/Human answer record.json':
+            'Card-ALD/0141 human final/Direct physical-page answers.json',
+        'tmp/ald-text/ald/card-0141-review/human-final/Stage manifest.json':
+            'Card-ALD/0141 human final/Private correction stage.json',
+        'tmp/ald-text/ald/card-0141-review/human-final/Exact stage review.json':
+            'Card-ALD/0141 human final/Exact stage review.json',
+        'tmp/ald-text/ald/card-0141-review/human-final/Canonical publication receipt.json':
+            'Card-ALD/0141 human final/Canonical publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/0141 human final current audit.json':
+            'Card-ALD/0141 human final/Current human corrections audit.json',
+        'tmp/ald-text/ald/card-0141-review/human-markings/as105/Human answer.json':
+            'Card-ALD/0141 human markings/AS105 direct physical-page answer.json',
+        'tmp/ald-text/ald/card-0141-review/human-markings/as105/Stage manifest.json':
+            'Card-ALD/0141 human markings/AS105 private correction stage.json',
+        'tmp/ald-text/ald/card-0141-review/human-markings/as105/Exact stage review.json':
+            'Card-ALD/0141 human markings/AS105 exact stage review.json',
+        'tmp/ald-text/ald/card-0141-review/human-markings/as105/Canonical publication receipt.json':
+            'Card-ALD/0141 human markings/AS105 canonical publication receipt.json',
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/0141 AS105 human pin current audit.json':
+            'Card-ALD/0141 human markings/AS105 current correction audit.json',
     }
     for relative, name in shared.items():
         path = workspace/relative
         if path.is_file():
             copy(path, repo/'notes'/name, 'Provenance or approved convention')
+    pin_review_0141 = workspace/'tmp/ald-text/ald/card-0141-review/pin-review/0141 pin source audit.json'
+    if pin_review_0141.is_file():
+        for item in read_json(pin_review_0141).get('candidates', []):
+            crop = Path(item['crop_path'])
+            assert crop.is_file() and digest(crop.read_bytes()) == item['crop_sha256']
+            assert crop.resolve().is_relative_to((workspace/'tmp/ald-text/ald/card-0141-review/pin-review').resolve())
+            copy(crop, repo/'notes/Card-ALD/evidence/0141/pins'/crop.name,
+                 'Original-scan crop for 0141 physical-pin audit')
+    rt841_crop = workspace/'tmp/ald-text/ald/card-0141-review/source-crops/RT841-BG-A3.png'
+    if rt841_crop.is_file():
+        copy(rt841_crop, repo/'notes/Card-ALD/evidence/0141/RT841-BG-A3.png',
+             'Original-scan crop for unresolved 0141 function reading')
     for path in retired_kt_fact_keepers(workspace):
         copy(path, repo/'notes/Card types/Function review answers/Batch7/Retired KT source facts'/path.name,
              'Historical KT companion retired after its bound TXT changed; primary page model retained')
@@ -1068,6 +1257,14 @@ def main():
         copy(source,repo/destination,'Eleven independently accepted native and direct-human function corrections, source crops, published quartets, and provenance')
     for source,destination in sparse_shape_review_keepers(workspace):
         copy(source,repo/destination,'Seventeen native sparse-shape comparisons, direct human review, and independently accepted AP041 three-way portion correction')
+    supply_files,supply_locations=supply_pin_review_keepers(workspace)
+    for source,destination in supply_files:
+        copy(source,repo/destination,'Source-bound supply-pin release, immutable before/accepted quartets, human answers and exact native-crop evidence')
+    if supply_locations is not None:
+        add(repo/'notes/Pin validation/Supply pin release/Source locations.json',
+            (json.dumps(supply_locations,ensure_ascii=False,indent=2)+'\n').encode('utf-8'),
+            workspace/'tmp/ald-text/ald/slt-supply-visual/release-stage/publication.json',
+            'Portable original absolute source and hash mapping; original source records retain their paths')
     manual_reports = [
         ('SY22-2798-2 ALD notation review.md',
          'SY22-2798-2_LogicBlocks_AutomatedLogicDiagrams_SLT,SLD,ASLT,MST_TO_Oct71.pdf',
@@ -1167,8 +1364,12 @@ def main():
                 continue
             if (audit_path.relative_to(workspace).as_posix(), page.get('page')) not in selected_audit_pages:
                 continue
-            for key in ['root_acceptance', 'owner_receipt', 'legacy_ledger',
-                        'independent_audit', 'independent_acceptance']:
+            chain_keys = ['root_acceptance', 'owner_receipt', 'legacy_ledger',
+                          'independent_audit', 'independent_acceptance']
+            if record.get('schema') == 'slt-supply-pin-source-bound-current-audit-v1':
+                chain_keys += ['human_authority', 'physical_pin_stage_manifest',
+                               'physical_pin_publication']
+            for key in chain_keys:
                 link = page.get(key)
                 if not isinstance(link, dict) or not link.get('file'):
                     continue

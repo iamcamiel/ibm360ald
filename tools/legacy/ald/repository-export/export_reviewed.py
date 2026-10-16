@@ -352,7 +352,11 @@ def receipts():
                    '463x human unit outliers current audit.json',
                    '4634 AP561 portion25 current audit.json',
                    'Physical pin native corrections current audit.json',
-                   'Physical pin human corrections current audit.json']:
+                   'Physical pin human corrections current audit.json',
+                   '0141 physical pin corrections current audit.json',
+                   '0141 human final current audit.json',
+                   '0141 AS105 human pin current audit.json',
+                   '0141 KT755 human pin current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
   if audit_name=='Circuit identifier source current audit.json':
@@ -484,6 +488,62 @@ def receipts():
      raise ValueError('Human physical pin publication has an invalid page target')
     supersede_target(page,target,True)
    if audit.get('passed') is not True:continue
+  if audit_name=='0141 physical pin corrections current audit.json':
+   receipt_path=ROOT/'tmp/ald-text/ald/card-0141-review/0141 pin batch canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('0141 physical pin audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='card-0141-pin-batch-canonical-publication-v1' or len(receipt.get('pages',[]))!=17 or len({x.get('page') for x in receipt['pages']})!=17:
+    raise ValueError('0141 physical pin publication receipt is invalid')
+   for published in receipt['pages']:
+    page=published.get('page')
+    target=Path(published.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('0141 physical pin publication has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='0141 human final current audit.json':
+   receipt_path=ROOT/'tmp/ald-text/ald/card-0141-review/human-final/Canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('0141 human final audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='card-0141-human-final-canonical-publication-v1' or {x.get('page') for x in receipt.get('pages',[])}!={'AP673','RT841'}:
+    raise ValueError('0141 human final publication receipt is invalid')
+   for published in receipt['pages']:
+    page=published.get('page')
+    target=Path(published.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+    if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()):
+     raise ValueError('0141 human final publication has an invalid page target')
+    supersede_target(page,target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='0141 AS105 human pin current audit.json':
+   receipt_path=ROOT/'tmp/ald-text/ald/card-0141-review/human-markings/as105/Canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('0141 AS105 human pin audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='card-0141-as105-human-pin-canonical-publication-v1' or receipt.get('page')!='AS105':
+    raise ValueError('0141 AS105 human pin publication receipt is invalid')
+   target=Path(receipt.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+   if not target.resolve().is_relative_to(EXPORTS.resolve()):
+    raise ValueError('0141 AS105 human pin publication has an invalid page target')
+   supersede_target('AS105',target,True)
+   if audit.get('passed') is not True:continue
+  if audit_name=='0141 KT755 human pin current audit.json':
+   receipt_path=ROOT/'tmp/ald-text/ald/card-0141-review/human-markings/kt755/Canonical publication receipt.json'
+   receipt=read_json(receipt_path)
+   if not isinstance(receipt,dict):
+    if audit:raise ValueError('0141 KT755 human pin audit exists without a publication receipt')
+    continue
+   if receipt.get('schema')!='card-0141-kt755-human-pin-canonical-publication-v1' or receipt.get('page')!='KT755':
+    raise ValueError('0141 KT755 human pin publication receipt is invalid')
+   target=Path(receipt.get('canonical_quartet',{}).get('txt',{}).get('path',''))
+   if not target.resolve().is_relative_to(EXPORTS.resolve()):
+    raise ValueError('0141 KT755 human pin publication has an invalid page target')
+   supersede_target('KT755',target,True)
+   if audit.get('passed') is not True:continue
   if audit_name=='AP041 three-way portion current audit.json':
    # The newest AP041 source reading supersedes older approval even if this
    # exact full-quartet audit is missing, malformed or stale.
@@ -547,7 +607,11 @@ def receipts():
     '463x human unit outliers current audit.json',
     '4634 AP561 portion25 current audit.json',
     'Physical pin native corrections current audit.json',
-    'Physical pin human corrections current audit.json'}
+    'Physical pin human corrections current audit.json',
+    '0141 physical pin corrections current audit.json',
+    '0141 human final current audit.json',
+    '0141 AS105 human pin current audit.json',
+    '0141 KT755 human pin current audit.json'}
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]

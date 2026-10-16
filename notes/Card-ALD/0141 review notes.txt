@@ -1,0 +1,37 @@
+5800141 CARD-ALD REVIEW
+
+The published 0141.txt shows the complete 02L-A2 H3 installation on XX651.
+It has twelve portions, sixteen input and four output contacts, and the eight
+pinless A1/A2 to A3, B1/B2 to B3, C1/C2 to C3, and D1/D2 to D3 links found
+on the accepted sheet and in its page model. No unprinted input or universal
+pinout is inferred. The card-level function view draws U03AA as AND with
+plain inputs and U03AE as OR with a wedge on its inverted output.
+
+An independent review checked the seven-row boxes, source-specific wedge and
+open-asterisk marks, pin labels, and all eight links against the original scan.
+XX651 prints a wedge at one input of each A block. Those marks remain in the
+ALD transcription, while the card diagram uses the normalized function view.
+The source-style first drawing, its provenance, and its publication receipt
+are preserved under notes/Card-ALD/history. The exact-delta review verifies
+that the current diagram changes only those eight input wedges and adds four
+OR output wedges; every wire, box, and pin label stays in place. The SLT
+component manual describes a wedge as a low-active polarity mark at a block
+edge; see Z22-2798-1, printed pages 24-25, "Wedges". XX651's input wedges
+are recorded as a source-page polarity variant in 0141 input wedge variation
+audit.json. Other modeled wedge marks need native-source confirmation before
+being treated as source-confirmed. The original scan and accepted page files
+are hash-bound in the drawing provenance. The generator in tools/card_ald
+creates a fresh candidate and refuses to overwrite a published diagram.
+
+Across other 0141 installations, equivalent logic can use different ALD
+notations and show different subsets of the available contacts. AP891 and
+KW061 have source-visible open continuations; these must not be joined just
+because the corresponding portions usually connect. XM010 records its
+composite D-group drivers in additional_driver_outputs. These cases do not
+change the XX651 example.
+
+The all-occurrence pin review is recorded separately. A nonmodal pin is not
+changed merely to match this example: some unusual labels are genuinely
+printed. The physical-page readings resolved AP673 BG/A2 as B08 and RT841
+BG/A3 as OR. An early AP673 evidence crop omitted the pin under review; its
+scan-only reading has been superseded and preserved in the review history.

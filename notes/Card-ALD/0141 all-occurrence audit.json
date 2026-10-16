@@ -1,0 +1,245 @@
+{
+  "schema": "card-0141-current-all-occurrence-audit-v1",
+  "scope": "All currently accepted 0141 diagram blocks, with a complete-card drawing for XX651.",
+  "counts": {
+    "diagram_blocks": 1083,
+    "pages": 148,
+    "page_socket_installations": 185,
+    "observed_portions": 12,
+    "source_corrected_pin_readings": 17,
+    "source_printed_nonmodal_pin_readings_preserved": 7,
+    "human_confirmed_pin_readings": 3,
+    "human_confirmed_nonmodal_pin_readings": 6,
+    "human_confirmed_function_readings": 1,
+    "unresolved_0141_readings": 0
+  },
+  "published_example": {
+    "page": "XX651",
+    "socket": "02L-A2 H3",
+    "drawing": {
+      "path": "Card-ALD\\0141.txt",
+      "sha256": "747ab0fcf5bebb4546e3d1f15ce9676e0c9ef9630ccb139c498147f7491a1048"
+    },
+    "publication_receipt": {
+      "path": "notes\\Card-ALD\\0141 diagram publication receipt.json",
+      "sha256": "02ba2ca0a2e644b66c946a130d4a4fc4367ed0cb10af44455f16edbe9371a717"
+    },
+    "exact_delta_review": {
+      "path": "notes\\Card-ALD\\0141 normalized function delta review.json",
+      "sha256": "6dfe904e3c518b215fffeee190633ad9221d293b035af2700f1f9cabf2ef67f0"
+    },
+    "input_contacts": 16,
+    "output_contacts": 4,
+    "pinless_internal_links": 8
+  },
+  "source_printed_nonmodal_pins": [
+    {
+      "page": "BF155",
+      "block": "AE",
+      "portion": "A1",
+      "pin": "D03",
+      "source_reading": "D03",
+      "reason": "A1 has a third, visibly printed D03 input in this installation.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/BF155-AE-A1-input-D03.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "BF155",
+      "block": "AF",
+      "portion": "A2",
+      "pin": "D03",
+      "source_reading": "D03",
+      "reason": "A2 has a third, visibly printed D03 input from the same local branch as A1.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/BF155-AF-A2-input-D03.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "BF235",
+      "block": "AE",
+      "portion": "B1",
+      "pin": "D03",
+      "source_reading": "D03",
+      "reason": "B1 has a third, visibly printed D03 input in this installation.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/BF235-AE-B1-input-D03.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "BF235",
+      "block": "AF",
+      "portion": "B2",
+      "pin": "D03",
+      "source_reading": "D03",
+      "reason": "B2 has a third, visibly printed D03 input from the same local branch as B1.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/BF235-AF-B2-input-D03.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "DN095",
+      "block": "AT",
+      "portion": "D2",
+      "pin": "D08",
+      "source_reading": "D08",
+      "reason": "D2 lower input is unambiguously printed D08; normal D2 input is D06, so do not silently normalize.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/DN095-AT-D2-input-D08.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "DS211",
+      "block": "AM",
+      "portion": "A2",
+      "pin": "D08",
+      "source_reading": "D08",
+      "reason": "A2 upper input is unambiguously printed D08; the lower B08 is obscured by the wire but separate.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/DS211-AM-A2-input-D08.png",
+      "physical_page_confirmed": true
+    },
+    {
+      "page": "RX003",
+      "block": "5B",
+      "portion": "C2",
+      "pin": "D08",
+      "source_reading": "D08",
+      "reason": "C2 lower input is unambiguously printed D08 on the source, not the usual D05.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/RX003-5B-C2-input-D08.png",
+      "physical_page_confirmed": false
+    }
+  ],
+  "human_resolutions": [
+    {
+      "page": "AP673",
+      "block": "BG",
+      "portion": "A2",
+      "input_pin": "B08",
+      "note": "The initial crop ended above the pin. A larger scan crop made the degraded digit look like 6; the physical page confirms 8.",
+      "corrected_crop": "notes/Card-ALD/evidence/0141/pins/AP673-BG-A2-corrected-crop.png"
+    },
+    {
+      "page": "RT841",
+      "block": "BG",
+      "portion": "A3",
+      "function": "OR",
+      "crop": "notes/Card-ALD/evidence/0141/RT841-BG-A3.png"
+    },
+    {
+      "page": "AS105",
+      "block": "AG",
+      "portion": "C2",
+      "input_pin": "D05",
+      "note": "The physical page resolves the degraded scan-only D03 reading.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/AS105-AG-C2-input-D03.png"
+    },
+    {
+      "page": "KT755",
+      "block": "AM",
+      "portion": "A2",
+      "input_pin": "B08",
+      "note": "The physical page resolves the degraded scan-only B06 reading.",
+      "crop": "notes/Card-ALD/evidence/0141/pins/KT755-AM-A2-input-B06.png"
+    }
+  ],
+  "unresolved": [],
+  "pin_interpretation": [
+    {
+      "pin": "D03",
+      "meaning": "Positive supply rail on SLT modules; an ALD input marked D03 indicates an input tied high.",
+      "authority": "Owner's physical-page and SLT research explanation, 2026-10-16",
+      "scope": "Interpretation of the confirmed BF155 and BF235 0141 D03 inputs; preserve the literal printed pin labels."
+    },
+    {
+      "pin": "D08",
+      "meaning": "Ground on SLT cards; an ALD input marked D08 indicates an input tied low.",
+      "authority": "Owner's physical-page and SLT research explanation, 2026-10-16",
+      "scope": "Interpretation of the confirmed DN095 and DS211 0141 D08 inputs; preserve the literal printed pin labels."
+    }
+  ],
+  "input_wedge_variations": {
+    "record": {
+      "path": "notes\\Card-ALD\\0141 input wedge variation audit.json",
+      "sha256": "3a454a35350e86c83e9a840d606856f24ad0dd1becd7e109dec25e5abbea4bd7"
+    },
+    "counts": {
+      "u03aa_and_occurrences_compared": 488,
+      "occurrences_with_input_wedges": 18,
+      "pages_with_input_wedges": 5,
+      "wedge_marked_contacts": 18,
+      "occurrences_with_repeated_input_pin_labels": 2
+    },
+    "status": "Model-observed differences; native verification needed before treating them as transcription errors."
+  },
+  "topology_notes": [
+    "AP891 D2-to-D3 and KW061 B1-to-B3 remain source-visible open continuations.",
+    "XM010 D-group links use additional_driver_outputs in its page model.",
+    "KS201 A3/B3 function slots are blank on the source; adjacent A/C letters are pin designators."
+  ],
+  "circuit_variants": "Eight U03AF, one CE101 U03HH, and one RB705 U03AP are source-visible and retained.",
+  "source_bindings": {
+    "catalog": {
+      "path": "json\\Card types current\\0141.json",
+      "sha256": "51ffe24a9269623e600275919f4901995474d330afe473c726a78b2ecab131ed"
+    },
+    "source_pin_audit": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\pin-review\\0141 pin source audit.json",
+      "sha256": "6cd2ad242852a286abd7ca50a61d805ffd22f2feccab3957d836e15eaf26d999"
+    },
+    "independent_acceptance": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\independent-stage-review\\0141 pin batch independent acceptance.json",
+      "sha256": "58172bda928f59a13556ecc5068987134acf6070bbbadf76f2edbdd6c8f1c30e"
+    },
+    "canonical_publication": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\0141 pin batch canonical publication receipt.json",
+      "sha256": "6ff6ba32853f42ede98ab5437d743f4f8c10b4327305e5529d85281346a370c0"
+    },
+    "human_answers": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-final\\Human answer record.json",
+      "sha256": "d0702569415c593784405338bee8c248e1b5f0ca30fb6d5e61509cfd8a4d1118"
+    },
+    "human_publication": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-final\\Canonical publication receipt.json",
+      "sha256": "09f67d32b5242961287c2d2081956c8c6d76a05e537142a561e855c709dedad3"
+    },
+    "as105_human_answer": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-markings\\as105\\Human answer.json",
+      "sha256": "3a70801d22eb3ce3665433607d0cfb53faed36d24d431c21f3cbf24241961d75"
+    },
+    "as105_human_publication": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-markings\\as105\\Canonical publication receipt.json",
+      "sha256": "93fe8f404e42b15d1995db6bd43aa5e61094436fb80b8c166519f7767812c3c0"
+    },
+    "kt755_human_answer": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-markings\\kt755\\Human answer.json",
+      "sha256": "46c52f1002c11574843511653cb9597f0329ea03abff919d66ea5135ae4b8d7d"
+    },
+    "kt755_human_publication": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\human-markings\\kt755\\Canonical publication receipt.json",
+      "sha256": "81cf6e96aba14e71bb79cb6a825862410dc39dfccd1c4cc29a08c3118e78603d"
+    },
+    "misframed_crop_reassessment": {
+      "path": "notes\\Card-ALD\\AP673 BG input pin reassessment.json",
+      "sha256": "7c217c4ebb0198c72b98383c1d5eab8ea9426d16ea09c65d63c58c69e078e674"
+    },
+    "physical_page_confirmations": {
+      "path": "notes\\Card-ALD\\0141 physical-page confirmations.json",
+      "sha256": "5fee0d052b74e536e42649915b8ab7887b6fa946d623b7eeec9f46bbe2714187"
+    },
+    "input_wedge_variations": {
+      "path": "notes\\Card-ALD\\0141 input wedge variation audit.json",
+      "sha256": "3a454a35350e86c83e9a840d606856f24ad0dd1becd7e109dec25e5abbea4bd7"
+    },
+    "diagram_publication": {
+      "path": "notes\\Card-ALD\\0141 diagram publication receipt.json",
+      "sha256": "02ba2ca0a2e644b66c946a130d4a4fc4367ed0cb10af44455f16edbe9371a717"
+    },
+    "diagram_exact_delta": {
+      "path": "notes\\Card-ALD\\0141 normalized function delta review.json",
+      "sha256": "6dfe904e3c518b215fffeee190633ad9221d293b035af2700f1f9cabf2ef67f0"
+    },
+    "diagram_owner_instruction": {
+      "path": "notes\\Card-ALD\\0141 function presentation answer.json",
+      "sha256": "ace2eecae7f15d7fb5bdcb710235281c14e7527cfc179034bd0aa721b5e5681a"
+    },
+    "topology_verdict": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-0141-review\\topology\\0141 three-link native verdict.json",
+      "sha256": "b51be6d71e7b5c1ee3279949de2bb8fbe4afb257d6feaad4f9ebae29fe68e837"
+    }
+  }
+}

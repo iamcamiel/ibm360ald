@@ -1,0 +1,415 @@
+{
+  "schema": "slt-supply-pin-coordinator-native-review-v1",
+  "created_utc": "2026-10-16T08:03:38.125677+00:00",
+  "scope": "Coordinator target/crop and cross-occurrence review of the 192-entry native-scan audit. No ALD or page-model mutations.",
+  "rows": [
+    {
+      "queue_index": 12,
+      "reviewer_row_sha256": "db2be44a82d0fe1d4fc71f059bfb212523f16b025e29f4308f262ae174af6b49",
+      "replace": {
+        "verdict": "unresolved",
+        "proposed_pin": null,
+        "native_reading": "B0[6/8]",
+        "confidence": "uncertain",
+        "question": "KD721 AS output (0497B3): is the printed label B08 or B06?",
+        "best_guess": "B08",
+        "rationale": "All other comparable 0497B3 outputs use B08; the scan glyph still resembles 6.",
+        "crop_path": "D:\\Github\\IBM360\\ibm360ald\\notes\\Pin validation\\Supply pin manual review\\KD721-AS.png",
+        "crop_sha256": "7969cd2c2e00f29d107a520abfced6d1403524a97fc4288fb8ae8d828409b9d5"
+      }
+    },
+    {
+      "queue_index": 14,
+      "reviewer_row_sha256": "595eb5df69fc6e77fdaf1bc43696a6cfdfa1eeb603abeb190e57a7840d424b43",
+      "replace": {
+        "verdict": "unresolved",
+        "proposed_pin": null,
+        "native_reading": "B0[6/8]",
+        "confidence": "uncertain",
+        "question": "KM426 AA output (3381BD): is the printed label B08 or B06?",
+        "best_guess": "B08",
+        "rationale": "The matching 3381BD occurrence on DS161 uses B08; this worn glyph still resembles 6.",
+        "crop_path": "D:\\Github\\IBM360\\ibm360ald\\notes\\Pin validation\\Supply pin manual review\\KM426-AA.png",
+        "crop_sha256": "b268ccf155cb908ec543a63271d3febe00d6691269282be04e38d98afb698842"
+      }
+    },
+    {
+      "queue_index": 22,
+      "reviewer_row_sha256": "778e559600377a4803fd20da01f89da38d4c8e0cb943a93d6151a941ad91ea70",
+      "replace": {
+        "verdict": "unresolved",
+        "proposed_pin": null,
+        "native_reading": "[B/D]06✲",
+        "confidence": "uncertain",
+        "question": "RR041 4D / AF output (3308E1): does the label read D06 followed by the open asterisk?",
+        "best_guess": "D06✲",
+        "rationale": "3308E1 outputs read D06 on 217 other pages; the first letter here is degraded.",
+        "crop_path": "D:\\Github\\IBM360\\ibm360ald\\notes\\Pin validation\\Supply pin manual review\\RR041-4D.png",
+        "crop_sha256": "17eb32aa6e3635c0237e408d06151821000cb50a01cb8b421e34bfaf5cb0e07b"
+      }
+    },
+    {
+      "queue_index": 28,
+      "reviewer_row_sha256": "695487ddb6f10b8d48efc6c3bd53cd0d89eab9bd4f5bc2f81808264aa590eb76",
+      "replace": {
+        "verdict": "other_genuine_print",
+        "rationale": "Native AP271 AF input clearly reads B06. It is a literal printed case for electrical/card-rule review, not an unreadable glyph."
+      }
+    },
+    {
+      "queue_index": 29,
+      "reviewer_row_sha256": "aaba5f56b03a3f01b979e98c667b4a6c542298084b79e971954189e80b3b2f7b",
+      "replace": {
+        "verdict": "genuine_supply_tie",
+        "native_reading": "D08 (worn D)",
+        "rationale": "The worn first glyph is consistent with D08, and the wire locally joins J04. The user physically confirmed D08 for this same 4191 portion 25 on AP071/AP191; retain that source-supported pin identity."
+      }
+    },
+    {
+      "queue_index": 30,
+      "reviewer_row_sha256": "36c24d9c049a35cb4b426a5ffde15b77e3c9a797a60d99b4bdbbf7ac2dffa910",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D05",
+        "proposed_pin": "D05",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: the lower AF input is D05, matching the 5 glyph in upper 2B05 and repeated 0432A5 inputs. Model D03 is a misread."
+      }
+    },
+    {
+      "queue_index": 34,
+      "reviewer_row_sha256": "c3a6d374549e043caaa66efc1d6fc94279f405fa0c2586bdbe7b3e647f845573",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D05",
+        "proposed_pin": "D05",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: AF row 11 is D05. The model also misreads the separate row-13 B05 as D05; reconcile both fields together to avoid creating a duplicate D05."
+      }
+    },
+    {
+      "queue_index": 40,
+      "reviewer_row_sha256": "71ae5c7441c11d8958c3de91425118f5a65a03f472e3d63760097f4f5169b01f",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D02",
+        "proposed_pin": "D02",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: AP711 AL R T0 input is D02, not D03."
+      }
+    },
+    {
+      "queue_index": 47,
+      "reviewer_row_sha256": "3e33cc6053c5b682106268b63a76f3ed8b2936b4f044cabb0397e5e5bac24c9d",
+      "replace": {
+        "verdict": "genuine_supply_tie",
+        "rationale": "Native AR311 AX lower input reads D03 and is locally looped with D04/D11. Preserve the printed label; this is a local voltage-tie candidate rather than a glyph question."
+      }
+    },
+    {
+      "queue_index": 57,
+      "reviewer_row_sha256": "cf7a4c140f934c7ebd1435370f643207c78ce8ca80d3bc8c63ac6513ffa3dd50",
+      "replace": {
+        "verdict": "other_genuine_print",
+        "rationale": "Native DS261 AP input clearly reads B06. The printed routed contact requires electrical/card-rule interpretation, not another literal reading question."
+      }
+    },
+    {
+      "queue_index": 60,
+      "reviewer_row_sha256": "8bd562998aae21dc8947237dcd976352aa4ca253d14ff53030c1507cec824cd4",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "B08",
+        "proposed_pin": "B08",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: FS311 AX 3308F1 input is B08; the 8 is degraded. This agrees with the other reviewed 3308F1 occurrences."
+      }
+    },
+    {
+      "queue_index": 81,
+      "reviewer_row_sha256": "e14bc3243f513b865d2a5d074e85f94f2b88a63576762df23059e05944030c4e",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "B08",
+        "proposed_pin": "B08",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: KC101 AU 3369C1 input reads B08, not B06."
+      }
+    },
+    {
+      "queue_index": 97,
+      "reviewer_row_sha256": "60b025ed783067073278f7a3e299a20054db496625e62ea8e2b15f8becd856ae",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "B08",
+        "proposed_pin": "B08",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: LS851 AQ 3308F1 input reads B08, not B06; consistent with the repeated 3308F1 pattern."
+      }
+    },
+    {
+      "queue_index": 116,
+      "reviewer_row_sha256": "346f280a9f1836d2d6363d8c11e2e30f3746cd2086da70090f853b04a6718998",
+      "replace": {
+        "verdict": "unresolved",
+        "proposed_pin": null,
+        "native_reading": "B0?",
+        "confidence": "uncertain",
+        "question": "MC741 BC lower input (0135C1): what is the complete B0? label below B08?",
+        "best_guess": "B09",
+        "rationale": "The three-input 0135C1 pattern is D07/B08/B09 on many other pages; the final digit here is washed out.",
+        "crop_path": "D:\\Github\\IBM360\\ibm360ald\\notes\\Pin validation\\Supply pin manual review\\MC741-BC.png",
+        "crop_sha256": "634dedb8b5f4b7d0c4487052f8f3b658c27da9df8d83e9c76610c92f94097074"
+      }
+    },
+    {
+      "queue_index": 123,
+      "reviewer_row_sha256": "41e89899c381e132a50afdbbb3fcd6c8edc68cf85546d3653e0fcdc23392b823",
+      "replace": {
+        "verdict": "unresolved",
+        "proposed_pin": null,
+        "native_reading": "?03",
+        "confidence": "uncertain",
+        "question": "RB481 CK input (3308B1): does its first character read B, giving B03?",
+        "best_guess": "B03",
+        "rationale": "B03 is consistent with 3308B1 elsewhere, but the first letter is damaged in this scan.",
+        "crop_path": "D:\\Github\\IBM360\\ibm360ald\\notes\\Pin validation\\Supply pin manual review\\RB481-CK.png",
+        "crop_sha256": "705bea8748baf3b99c681f3f1e127c374eac6343c1930dceccc2ffec9920b2cd"
+      }
+    },
+    {
+      "queue_index": 129,
+      "reviewer_row_sha256": "a0a1b773a8e16dd758bb09b5baa892e3398dcbd4192a9ffce99407f523bb134e",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D05",
+        "proposed_pin": "D05",
+        "confidence": "high",
+        "rationale": "Coordinator target-bound native crop: RR141 AR second input reads D05. The model also disagrees on the block function/portion and other inputs; full block reconciliation is needed before applying a partial pin correction.",
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\129-root-final.png",
+        "crop_rect": [
+          5600,
+          4550,
+          6350,
+          5100
+        ],
+        "crop_sha256": "fa1833cd8f17b4e7906c6a09201df10165e8781f5fd8d4652bd1eeaa5346facd"
+      }
+    },
+    {
+      "queue_index": 132,
+      "reviewer_row_sha256": "7963213bfaefeaca5b4caee6746142ded208aa405fa620b744d320af64c81637",
+      "replace": {
+        "proposed_pin": "2B07",
+        "rationale": "Native RY131 AB lower input reads 2B07. Preserve its numeric qualifier when correcting the modeled B06."
+      }
+    },
+    {
+      "queue_index": 133,
+      "reviewer_row_sha256": "f6800f06a2e8f3d2661d4e598dd62617060f6d98c62e0c409c761bafcc7a8b10",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D06",
+        "proposed_pin": "D06",
+        "confidence": "high",
+        "rationale": "Coordinator target-bound native crop: XM015 AJ (0510D1, 3F) input reads D06, not D03.",
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\133-root-final.png",
+        "crop_rect": [
+          4050,
+          2700,
+          4950,
+          3400
+        ],
+        "crop_sha256": "02a0bde31558d6fd9c4f5199066afb23a4f53089926e93c3947772d8c7594be7"
+      }
+    },
+    {
+      "queue_index": 135,
+      "reviewer_row_sha256": "6934da1e4295be1ffa2797455aeebb2757522f259eb3c925ab173ed264c01f1b",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D06",
+        "proposed_pin": "D06",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: XM041 AL lower tied input is D06, not B06. The adjacent D08 rail label is retained."
+      }
+    },
+    {
+      "queue_index": 148,
+      "reviewer_row_sha256": "e634e24f8163640f8d7b7c2225c3f30203c9e1d5b01f0f6de99a150266c6733b",
+      "replace": {
+        "verdict": "other_genuine_print",
+        "rationale": "AP319 AD visibly prints D08. Its modeled source is the GROUP 14 CARRY signal, so a local vertical route alone is not proof of a voltage tie; retain as a printed-rule concern."
+      }
+    },
+    {
+      "queue_index": 151,
+      "reviewer_row_sha256": "d9d929513cf0aba559ff9d7c042884867c54a420ca896a0506ec412ab04ed998",
+      "replace": {
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\151-root-final.png",
+        "crop_rect": [
+          6500,
+          2500,
+          7500,
+          3300
+        ],
+        "crop_sha256": "b0e568d90cf268cc39b98fb24e1ca490c6297f9dc14f13d7f12464d75daca0bb",
+        "rationale": "Coordinator target-bound native crop confirms AQ input D03 is printed. Preserve the literal source; its signal use remains an electrical/card-rule concern."
+      }
+    },
+    {
+      "queue_index": 152,
+      "reviewer_row_sha256": "eb861d1d1693f5c2adb3508cc5965308a20145fbc06a9b64a8343d329b9b7225",
+      "replace": {
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\152-root-final.png",
+        "crop_rect": [
+          7200,
+          3300,
+          8300,
+          3950
+        ],
+        "crop_sha256": "97534e7ab9e9871afc0a79d92e850f808df67ac7918c78129f2b8fa64839609e",
+        "rationale": "Coordinator target-bound native crop confirms AV R T0 input D03 is printed. Preserve the literal source; its signal use remains an electrical/card-rule concern."
+      }
+    },
+    {
+      "queue_index": 153,
+      "reviewer_row_sha256": "429378b08639680822e27726d5d8ee82e1502eac737049958ac41b673487d49a",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D09",
+        "proposed_pin": "D09",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: AP745 BH 3388D1 input reads D09, not D08."
+      }
+    },
+    {
+      "queue_index": 155,
+      "reviewer_row_sha256": "efe9e0d613a0a8f1f7942b86b66b3c4f8ea3550935b294c4ffec2eaa199a82c0",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "2B08",
+        "proposed_pin": "2B08",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: the worn final glyph is 8. Repeated 3358A2 blocks use B08 at this input, including matching qualified 2B08 cases. Preserve qualifier 2."
+      }
+    },
+    {
+      "queue_index": 156,
+      "reviewer_row_sha256": "658cbc4f86ff644e96871ec9b0f78eb4f7a8a9a890cc68f8cc07a9d64c0382ae",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "2B08",
+        "proposed_pin": "2B08",
+        "confidence": "high",
+        "rationale": "Coordinator native-crop review: the worn final glyph is 8. Repeated 3358A6 blocks use B08 at this input, including matching qualified 2B08 cases. Preserve qualifier 2."
+      }
+    },
+    {
+      "queue_index": 162,
+      "reviewer_row_sha256": "7c394777e7c069dd6602b767d88484066e467a0c5e4b0373e3c07a95004aabf8",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D05",
+        "proposed_pin": "D05",
+        "confidence": "high",
+        "rationale": "Coordinator wide native-crop review: FD951 BE 3808F1 input is D05, not D03."
+      }
+    },
+    {
+      "queue_index": 177,
+      "reviewer_row_sha256": "bb080d001aa09c7dab3af12a740f61aa9be8f93c3c577f1d2c309de753c9e2df",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "4B03",
+        "proposed_pin": "4B03",
+        "confidence": "high",
+        "rationale": "Coordinator target-bound native crop: KM381 AL input reads 4B03, not 4D03. Preserve qualifier 4.",
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\177-root-final.png",
+        "crop_rect": [
+          5250,
+          4650,
+          6200,
+          5250
+        ],
+        "crop_sha256": "43dca69391d9fa8f0aa48451ed53c204ba6307491615a73b4d144f78640639d1"
+      }
+    },
+    {
+      "queue_index": 180,
+      "reviewer_row_sha256": "20d78026eec037be188287ecf9751fdb66f45dd66949e8941690430941e366a8",
+      "replace": {
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\180-root-final.png",
+        "crop_rect": [
+          3000,
+          2600,
+          5200,
+          4400
+        ],
+        "crop_sha256": "0dd92d05e89627a8cf860340603994a1eb251db7e24b14fb5646170eff2da06b"
+      }
+    },
+    {
+      "queue_index": 188,
+      "reviewer_row_sha256": "ec7d4f2fcc111d0d48e06f3036b9afd04ad06d645cca0772dd3365b1a1be4574",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "B12",
+        "proposed_pin": "B12",
+        "confidence": "high",
+        "rationale": "Coordinator target-bound native crop: RR141 AR bottom input reads B12, not B11. Reconcile the whole block because its model has additional function/portion/pin discrepancies.",
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\188-root-final.png",
+        "crop_rect": [
+          5600,
+          4550,
+          6350,
+          5100
+        ],
+        "crop_sha256": "fa1833cd8f17b4e7906c6a09201df10165e8781f5fd8d4652bd1eeaa5346facd"
+      }
+    },
+    {
+      "queue_index": 190,
+      "reviewer_row_sha256": "f07cedee286fb3335da6715b9d33a9e0cee8766437f0eaf3858fbfe4f841be52",
+      "replace": {
+        "verdict": "clear_misread",
+        "native_reading": "D04",
+        "proposed_pin": "D04",
+        "confidence": "high",
+        "rationale": "Coordinator target-bound native crop: RX003 7K / CH (0143D1) lower input reads D04, not D08.",
+        "crop_path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\slt-supply-visual\\c\\190-root-final.png",
+        "crop_rect": [
+          6700,
+          4350,
+          7750,
+          4900
+        ],
+        "crop_sha256": "65e0b46547bdecfa291a76c3cbfca37f2b102fe01da0c4f792c7755b24e8784e"
+      }
+    }
+  ],
+  "collateral_findings": [
+    {
+      "page": "RR141",
+      "block": "AR",
+      "finding": "The native 5L AR block appears A / 0147A1 and shows D04, D05, D11 and B12 inputs. The published model is N / 0147B1 with D09, D08 and B11. Reconcile the entire block against the original before applying individual corrections."
+    },
+    {
+      "page": "AP531",
+      "block": "AF",
+      "finding": "The native row-11 input is D05 and row-13 input is B05. The model has D03 and D05 respectively; correct them together."
+    }
+  ],
+  "manual_reference_notes": [
+    {
+      "path": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+      "pdf_page_index": 84,
+      "fact": "S06AV is indexed as RESISTOR TERMINATORS 100 OHM."
+    },
+    {
+      "path": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+      "pdf_page_index": 86,
+      "fact": "S61AY is indexed as PLUGGABLE SWITCH."
+    }
+  ]
+}
