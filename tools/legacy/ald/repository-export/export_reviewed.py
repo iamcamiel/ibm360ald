@@ -17,6 +17,68 @@ def read_json(p):
  try:return json.loads(p.read_text(encoding='utf-8-sig'))
  except (ValueError,OSError):return None
 
+def source_review_successor_records():
+ """Read exact current successors; configured registry/evidence fail closed."""
+ tool_dir=ROOT/'ibm360ald/tools/reviews'
+ if str(tool_dir) not in sys.path:sys.path.insert(0,str(tool_dir))
+ from successor_registry import accepted_successors
+ registry=AUDIT/'Source review successor registry.json'
+ return accepted_successors(registry,ROOT,EXPORTS,SOURCE)['records']
+
+def native_card_review_publication():
+ """Validate the immutable 3308 publication before superseding older receipts."""
+ base=ROOT/'tmp/ald-text/ald/card-data/3308-universal/review'
+ publication_path=base/'application-stage/publication.json'
+ if not publication_path.is_file():return None
+ publication=read_json(publication_path)
+ if not isinstance(publication,dict):raise ValueError('Invalid 3308 publication receipt')
+ def checked(link,expected):
+  if not isinstance(link,dict):raise ValueError('Missing 3308 publication binding')
+  path=Path(link.get('file',link.get('path','')))
+  if not path.is_absolute():path=ROOT/path
+  if path.resolve()!=expected.resolve() or not path.is_file() or sha(path.read_bytes())!=link.get('sha256'):
+   raise ValueError('Changed 3308 publication binding: '+str(expected))
+  return path
+ manifest_path=checked(publication.get('stage_manifest'),base/'application-stage/manifest.json')
+ acceptance_path=checked(publication.get('independent_audit',publication.get('independent_review')),
+                         base/'Staged independent acceptance.json')
+ manifest=read_json(manifest_path);acceptance=read_json(acceptance_path)
+ if not isinstance(manifest,dict) or manifest.get('schema')!='native-card-review-private-stage-v1' or manifest.get('card_type')!='3308':
+  raise ValueError('Invalid 3308 publication stage')
+ if not isinstance(acceptance,dict) or acceptance.get('passed') is not True or acceptance.get('failures'):
+  raise ValueError('3308 independent acceptance did not pass')
+ if acceptance.get('manifest_sha256')!=sha(manifest_path.read_bytes()):
+  raise ValueError('3308 independent acceptance binds a different stage')
+ records=manifest.get('records',[])
+ if not records or len({r.get('page') for r in records})!=len(records):
+  raise ValueError('Invalid 3308 publication page inventory')
+ published=publication.get('published_pages',publication.get('pages',[]))
+ names={r.get('page') if isinstance(r,dict) else r for r in published}
+ if names!={r['page'] for r in records}:raise ValueError('3308 published pages differ from the bound stage')
+ for link in manifest.get('inputs',[]):
+  path=Path(link.get('file',link.get('path','')))
+  if not path.is_absolute():path=ROOT/path
+  if not path.resolve().is_relative_to(base.resolve()) or not path.is_file() or sha(path.read_bytes())!=link.get('sha256'):
+   raise ValueError('Changed 3308 stage input')
+ for record in records:
+  page=record.get('page');source=record.get('source',{});sp=Path(source.get('path',''))
+  target=Path(record.get('prior_quartet',{}).get('txt',{}).get('path',''))
+  if not page or not PAGE.fullmatch(page) or not target.resolve().is_relative_to(EXPORTS.resolve()) or target.suffix!='.txt' or target.name.split(' ',1)[0]!=page:
+   raise ValueError('Invalid 3308 publication target')
+  if not sp.is_file() or not sp.resolve().is_relative_to(SOURCE.resolve()) or sha(sp.read_bytes())!=source.get('sha256'):
+   raise ValueError('Changed 3308 original source: '+str(page))
+  if set(record.get('prior_quartet',{}))!=set(record.get('staged_quartet',{})) or set(record.get('staged_quartet',{}))!=set(record.get('before_saved',{})) or set(record.get('staged_quartet',{}))!={'txt','json','notes','preview'}:
+   raise ValueError('Invalid 3308 staged quartet inventory')
+  for kind in record['staged_quartet']:
+   for link in [record['staged_quartet'][kind],record['before_saved'][kind]]:
+    path=Path(link.get('file',link.get('path','')))
+    if not path.is_absolute():path=ROOT/path
+    if not path.resolve().is_relative_to((base/'application-stage'/page).resolve()) or not path.is_file() or sha(path.read_bytes())!=link.get('sha256'):
+     raise ValueError('Changed 3308 preserved stage artifact')
+   if record['before_saved'][kind]['sha256']!=record['prior_quartet'][kind]['sha256']:
+    raise ValueError('3308 predecessor snapshot differs from its binding')
+ return manifest
+
 def canonical(candidates):
  # Retire the three old pilot copies in favour of the current family exports.
  priority={'ALD Diagrams':0,'CAS Diagrams':0}
@@ -357,9 +419,33 @@ def receipts():
                    '0141 human final current audit.json',
                    '0141 AS105 human pin current audit.json',
                    '0141 KT755 human pin current audit.json',
-                   'Supply pin visual and human current audit.json']:
+                   'Supply pin visual and human current audit.json',
+                   '3308 native and human current audit.json']:
   audit_path=ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3'/audit_name
   audit=read_json(audit_path) or {}
+  if audit_name=='3308 native and human current audit.json':
+   manifest=native_card_review_publication()
+   if manifest is None:
+    if audit:raise ValueError('3308 current audit exists without a publication receipt')
+    continue
+   # Publication permanently retires these exact predecessors. A missing or
+   # stale current audit must never revive an older text-only acceptance.
+   for record in manifest['records']:
+    supersede_target(record['page'],Path(record['prior_quartet']['txt']['path']),True)
+   if not audit:continue
+   if audit.get('schema')!='native-card-review-source-bound-current-audit-v1':
+    raise ValueError('Invalid 3308 current audit schema')
+   if audit.get('passed') is not True:continue
+   if len(audit.get('pages',[]))!=len(manifest['records']) or {r.get('page') for r in audit.get('pages',[])}!={r['page'] for r in manifest['records']}:
+    raise ValueError('3308 current audit page inventory differs from publication')
+   staged={r['page']:r for r in manifest['records']}
+   for item in audit['pages']:
+    record=staged[item['page']];current=item.get('current_quartet',{})
+    if item.get('source')!=record['source'] or set(current)!=set(record['staged_quartet']):
+     raise ValueError('3308 audit source or quartet differs from stage')
+    for kind,value in current.items():
+     if Path(value.get('path','')).resolve()!=Path(record['prior_quartet'][kind]['path']).resolve() or value.get('sha256')!=record['staged_quartet'][kind]['sha256']:
+      raise ValueError('3308 current quartet does not match the accepted candidate')
   if audit_name=='Supply pin visual and human current audit.json' and audit:
    if audit.get('schema')!='slt-supply-pin-source-bound-current-audit-v1':
     raise ValueError('Supply pin visual and human current audit has an invalid schema')
@@ -616,7 +702,8 @@ def receipts():
     '0141 human final current audit.json',
     '0141 AS105 human pin current audit.json',
     '0141 KT755 human pin current audit.json',
-    'Supply pin visual and human current audit.json'}
+    'Supply pin visual and human current audit.json',
+    '3308 native and human current audit.json'}
    target=application_target(item,page) if application_schema else None
    record_page=supersede_target(page,target,True) if application_schema else page
    if not application_schema:records[page]=[]
@@ -663,6 +750,11 @@ def receipts():
    if application_schema:record_page=supersede_target(page,target,False)
    records[record_page].insert(0,{'receipt':str(audit_path.relative_to(ROOT)),'hashes':[sha(text_path.read_bytes())],
                          'text_path':str(text_path),'source_path':str(sp)})
+ # Ordered generic source reviews supersede only their exact accepted targets.
+ # The configured registry is mandatory: deleting it cannot revive old proofs.
+ for item in source_review_successor_records():
+  key=supersede_target(item['page'],Path(item['text_path']),False)
+  records[key].insert(0,{name:item[name] for name in ['receipt','hashes','text_path','source_path']})
  return records
 
 def companion_metadata(txt):

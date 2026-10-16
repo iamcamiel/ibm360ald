@@ -1,0 +1,61 @@
+XM035 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 29,
+  "A1_total_card_portions": 29,
+  "A1_direct_page_card_portions": 29,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 38,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native XM035 source",
+    "evidence": "All 29 physical card portions and 38 printed inputs read from the native TIFF crops in tmp/ald-text/xm/mid/XM035; direct XM035 A1 gives 29/29. Upper FMTD and lower N/U source rails were traced separately. Complete preview compared against the native source; independent root audit completed."
+  },
+  {
+    "location": "AW versus AU",
+    "evidence": "aw-au-crop.png confirms the 7E AW printed ID and +FMTD-0-1 output. The 6H AU portion is a distinct 3106E1 output carrying +FMTN-1."
+  },
+  {
+    "location": "BF4 literal",
+    "evidence": "BF4-v-BC4-labels.png compares the printed +FMTU-1 U against +FMTN-7 N. The glyph is U-shaped; reciprocal XM016 read agrees."
+  },
+  {
+    "location": "Right continuations",
+    "evidence": "right-labels-0.png through right-labels-3.png establish the native right-margin diamond branches and hooked secondary page references. AB4 and AN4 each carry two sequential branch diamonds; BA4 carries two lower branch diamonds. Inline XM003/XM007/XM015 references without a printed diamond remain inline."
+  },
+  {
+    "location": "Footer",
+    "evidence": "footer-left-native.png and footer-right-native.png establish the two connector references, four revision entries, title, date, log, part number, and BJ block."
+  },
+  {
+    "location": "Root native corrections",
+    "evidence": "Source confirms FMTN1 to AE.B07 and FMTN7 to AE.D07. BB literal input is B08 (focused enlargement distinguishes both loops). Native input borders AG/AH/AS/AT/AV/AW/BG are plain; AK/BH/BE triangles retained. Input and branch stems now use measured native columns; corners precede primary references; output names start at211 and extra references at215/224/234. Root inspected all six native card panels, legends, footer and focused AP/AL paths."
+  },
+  {
+    "location": "Independent peer check",
+    "evidence": "xm_mid independently checked final preview against native source: AE N7/N1 owners, FMTD4 to AM.B13/AN.D04 via c138, FMTD5 to AN.D05 via c137, FMTD6 long drop at c88 to AN.D06. Confirmed source-specific plain/wedge markers and BB literal B08."
+  }
+]
+
+Original scan order
+Before XM033 LM REG BIT RCVRS FOR PARITY PREDICT.tif
+After XM041 LM REG TO XY REG BITS 03-04 VIA MIXER.tif

@@ -1,0 +1,75 @@
+RT581 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 36,
+  "A1_total_card_portions": 36,
+  "A1_mismatches": [],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 72,
+  "geometry_passed": true,
+  "source_literal_A1_exceptions": {},
+  "unresolved_A1_mismatches": [],
+  "passed": true,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "native_body_pin_review",
+    "detail": "All 36 A1 card portions and 72 printed input terminals were checked against enlarged native TIFF crops. Their literal fields match the source, with no unreadable characters."
+  },
+  {
+    "kind": "footer_crosscheck",
+    "detail": "Native footer AA4 continuation appears 02B-B3A3B05; A1 socket listing records socket A3T, pin B05. Retain the literal footer while this physical glyph remains under review."
+  },
+  {
+    "kind": "native_roof_calibration",
+    "detail": "RT581 enlarged native source: AQ 1A roof ~150 px; 1B 565; 3B 570; 4B 565; 5C 992; 6B 569; 7B 569. Twelve-roof fit: 59.735 px per row, origin 29.888 px. Provisional handoff proof misidentified an interior body line as first roof. The 4B OR OR card is truly on B row; no grid-label exception."
+  },
+  {
+    "kind": "native_special_gate",
+    "detail": "AS5E has a seven-row body (native roof row30, grid row36), while BS5M has an eight-row body (roof row79, grid row86). Enlarged native crops show both upper inputs at +1, lower inputs at +5, and outputs at +3. AJ/BJ feed upper inputs and AP/BP lower inputs on separate c138 stems."
+  },
+  {
+    "kind": "native_T06_crossings",
+    "detail": "Wide native BQ crop shows its B03 lower output running to c92, rising across the upper-output row without a diamond, then reaching +PADDL 59 at row47. AR G05 descends at c87, bends at row38, crosses storage row37 without a diamond and reaches +SADDL 02 at row36 through c199."
+  },
+  {
+    "kind": "native_unlabeled_input",
+    "detail": "AG D10 is fed by an unlabeled short line across columns 135–138 at row1, then a vertical stem to row5. Native top bank crop confirms the shape; no signal name is inferred."
+  },
+  {
+    "kind": "native_wire_review",
+    "detail": "Native horizontal and vertical occupancy comparison supports the bank rails and independent crossings. Enlarged source crops fix the lower +LS BUS-27 at c105, upper +LS BUS-26 at c109, BG-to-BE at c158, BD storage at c160, upper AE/AF-to-AB at c176, lower BE/BF-to-BB at c182/184, and the separate AR and BQ export paths."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT561 T REGISTER BITS 56 AND 57.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT601 T REGISTER BITS 60 AND 61.tif
+
+Source SHA-256: 91c3fc54295871720e0202b92dac0cb0f7531106278d9ea185708f7c4a26ee87
+
+3308 native and human review, 2026-10-16: RT581:AT: /pins/0/pin=B07, /pins/1/pin=D06✲, /pins/0/reference=AT.input.B07, /pins/1/printed_pin=D06✲, /pins/1/reference=AT.output.D06✲. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.

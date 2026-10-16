@@ -666,11 +666,11 @@
       "grid": "3B",
       "pins": [
         {
-          "pin": "D04",
+          "pin": "B04",
           "row": 12,
           "side": "input",
           "triangle": true,
-          "reference": "CQ.D04",
+          "reference": "CQ.B04",
           "point": [
             92,
             12
@@ -1586,22 +1586,22 @@
       "grid": "5L",
       "pins": [
         {
-          "pin": "D06",
+          "pin": "D09",
           "row": 75,
           "side": "input",
           "triangle": true,
-          "reference": "DA.D06",
+          "reference": "DA.D09",
           "point": [
             138,
             75
           ]
         },
         {
-          "pin": "D07",
+          "pin": "D07✲",
           "row": 75,
           "side": "output",
           "triangle": false,
-          "reference": "DA.D07",
+          "reference": "DA.D07✲",
           "point": [
             153,
             75
@@ -2157,8 +2157,8 @@
       "function_offset": 1,
       "unit": "U03AF",
       "card_type": "3308",
-      "portion": "D1",
-      "printed_card_portion": "3308D1",
+      "portion": "B1",
+      "printed_card_portion": "3308B1",
       "location": "A-B2G6",
       "grid": "6G",
       "pins": [
@@ -2186,23 +2186,28 @@
         }
       ],
       "source_reviewed": true,
-      "socket_listing_fallback_evidence": [
-        {
-          "kind": "card portion",
-          "board": "02A-B2",
-          "sockets": [
-            "G6"
-          ],
-          "part_number": "5803308",
-          "card_type": "3308",
-          "portion": "D1",
-          "source_listings": [
-            "A1122-01 SOCKET LISTING"
-          ],
-          "source_listing": "A1122-01 SOCKET LISTING",
-          "evidence_page": "MC471"
-        }
-      ]
+      "socket_listing_fallback_evidence": [],
+      "socket_listing_evidence": {
+        "kind": "card portion",
+        "board": "02A-B2",
+        "sockets": [
+          "G6"
+        ],
+        "part_number": "5803308",
+        "card_type": "3308",
+        "portion": "B1",
+        "source_listings": [
+          "A1122-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1122-01 SOCKET LISTING",
+        "actual_A1_page_key": "MC741",
+        "source_record_binding": {
+          "path": "D:\\Github\\IBM360\\ibm360ald\\json\\A1 Socket Listing\\A1122-01 SOCKET LISTING.json",
+          "sha256": "fac3bb0a3e520f6ce693d0dae8c2341991dcf612f7f4c2d432fdf87987ad0611",
+          "pointer": "/sockets/43"
+        },
+        "basis": "Fresh direct same-board/socket/card/portion A1 lookup after native/human portion correction; prior claim is preserved in the separate Socket evidence refresh receipt."
+      }
     },
     {
       "id": "AD",
@@ -2908,7 +2913,7 @@
       "id": "CP.B10",
       "driver": "CP.B10",
       "targets": [
-        "CQ.D04"
+        "CQ.B04"
       ],
       "source_reviewed": true
     },
@@ -2996,7 +3001,7 @@
       "source_reviewed": true,
       "drivers": [
         "CC.B04",
-        "DA.D07",
+        "DA.D07✲",
         "ED.B13"
       ]
     },
@@ -3074,7 +3079,7 @@
         "BC.B09",
         "CS.D10",
         "AD.D11",
-        "DA.D06",
+        "DA.D09",
         "ED.D11"
       ],
       "source_reviewed": true
@@ -5952,7 +5957,7 @@
     {
       "column": 93,
       "row": 12,
-      "text": "D04◺"
+      "text": "B04◺"
     },
     {
       "column": 104,
@@ -6187,7 +6192,7 @@
     {
       "column": 139,
       "row": 75,
-      "text": "D06◺"
+      "text": "D09◺"
     },
     {
       "column": 150,
@@ -8775,5 +8780,28 @@
   "independent_review": {
     "status": "PASS",
     "canonical_txt_sha256": "84d2c5d4482f00bd799de8d8cdadd400fb9620182bec07eff3bd17800b4d2a1b"
+  },
+  "card_3308_native_and_human_review_v1": {
+    "authority": "Completed independent native review and all17 direct human answers",
+    "review_plan": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-data\\3308-universal\\review\\Normalized correction plan.json",
+      "sha256": "4148311fa956444c058b19402504782c8991759bb70cbfaed1428bf7e8f71e15"
+    },
+    "human_answers": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-data\\3308-universal\\review\\Manual review queue.json",
+      "sha256": "81f7a293d86cf7a6d11ab4ecb6ddc672ec322a2f7fafe2ae5d8458c12b4d99a2"
+    },
+    "case_ids": [
+      "MC741:CQ",
+      "MC741:CT",
+      "MC741:DA"
+    ],
+    "source": {
+      "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC741 INVALID ADDRESS AND FRAME STOP.tif",
+      "sha256": "c625c06d6278f81385d68761d6ebc3f11d7ff29e84942fe5718927a865b54f83"
+    },
+    "predecessor_txt_sha256": "af68151bb3ecc57f0ca9db138f16e1a7a0d7df31ee49a079b415e48ad28f7ea2",
+    "predecessor_json_sha256": "93f35a1c795d59d21b131410a896bb3be55064194741cefc546c8d6c6fe38c77",
+    "scope": "Bounded printed fields and active metadata; original box and wire geometry preserved."
   }
 }

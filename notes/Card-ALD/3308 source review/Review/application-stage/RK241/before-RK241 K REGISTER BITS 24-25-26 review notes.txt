@@ -1,0 +1,76 @@
+RK241 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 25,
+  "A1_total_card_portions": 30,
+  "A1_page_listing_card_portions": 29,
+  "A1_mismatches": [
+    "AU",
+    "AC",
+    "AF",
+    "AJ",
+    "AW"
+  ],
+  "duplicate_pin_references": {},
+  "wrong_side_net_targets": [],
+  "wrong_side_net_drivers": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 48,
+  "documented_native_A1_disagreements": [
+    {
+      "id": "AU",
+      "evidence": "Native 4C AU socket line reads B-C2F5, with F-shaped glyph lacking lower E stroke. A1 gives E5/E6 for 4198 B7. Literal native F5 retained. Enlarged evidence rk_high/RK241/AU socket.png; independently confirmed by root source review."
+    },
+    {
+      "id": "AC",
+      "evidence": "Native 1F AC prints 4198BA at B-C2E5. The current A1 reference index lists 29 RK241 card portions and omits BA; A1232-01 prints B7 B8 BB BB BC BD, with duplicate BB. The readable native BA portion is retained."
+    },
+    {
+      "id": "AF",
+      "evidence": "Native 1L AF (4198BL) prints P-C2E5. A1 has a different board prefix; literal source retained. Enlarged evidence: rk_independent/RK241/bit26 native card fields.png."
+    },
+    {
+      "id": "AJ",
+      "evidence": "Native 2M AJ (4198BQ) prints P-C2E5. A1 has a different board prefix; literal source retained. Enlarged evidence: rk_independent/RK241/bit26 native card fields.png."
+    },
+    {
+      "id": "AW",
+      "evidence": "Native 4L AW socket line reads B-C2F5, with F-shaped glyph lacking lower E stroke. A1 gives E5/E6 for 4198 BS. Literal native F5 retained. Enlarged evidence rk_high/RK241/AW socket.png; independently confirmed by root source review."
+    }
+  ],
+  "A1_unexplained_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+printer grid
+evidence: 245 columns by103 rows; normal bank columns50,73,96,119,142,165,188. Literal native source paths and labels; no automatic route derivation.
+
+Anonymous ports and fanout counts
+evidence: Each native top AND has detached fanout count 3 at column 92, with wire 93–95 to anonymous border 96. All otherwise unlabeled inputs and outputs retain explicit keyed ports. R TO modules have native inputs only. Wedges replace border cells and numeric 4 prefixes are literal.
+
+Native reading
+evidence: All native gates, terminals, field labels, references and shared rail diamonds individually inspected. BB indicator output has an explicit reference diamond and two hanging references KT141 and KT142. BF input label reads E04 in native tight crop.
+
+Owning native and rendered-page QA
+evidence: Full native page and JuliaMono preview compared, including all 30 gates, 48 printed inputs, connector table, centered range title, detached fanout counts, return corners, unjoined crossings and control rail diamonds. AE input B05 verified in tight crop. BF source input E04 and AU/AW source socket F5 retained literally with source evidence; no wiring inferred from A1. No unreadable characters or unsupported glyphs.
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RK K Register\RK221 K REGISTER BITS 22-23-PARITY 16-23.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RK K Register\RK271 K REGISTER BITS 27-28-29.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BG: R TO -> R T0, AG: R TO -> R T0, BH: R TO -> R T0, AH: R TO -> R T0, BJ: R TO -> R T0, AJ: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

@@ -1,0 +1,45 @@
+RD211 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 45,
+  "A1_total_card_portions": 45,
+  "A1_page_listing_card_portions": 44,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 66,
+  "documented_native_A1_disagreements": [],
+  "A1_unexplained_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+printer grid
+evidence: 245 columns by103 rows; normal bank columns50,73,96,119,142,165,188. Literal native source paths and labels; no automatic route derivation.
+
+Native source
+evidence: All45 native blocks, card/portion/socket fields read from native bank crops. D21/22/23 circuit differs from RD181: direct OR register modules, added CR R and CS/CP N blocks, positive feedback rails and negative rails routed from above/below. A1 is corroboration only.
+
+Source and rendered-page QA
+evidence: Full native page and enlarged banks/pins/common controls/output returns/footer compared with JuliaMono rendering.45 physical blocks and66 printed inputs retained; A1 listing44 entries plus one exact socket/card/portion fallback. Positive rails177/178 and bottom negative rail89 remain separate. KEY30 origin retained literally PX241PX4, as visibly printed. No new glyphs or unreadable print.
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RD D Register\RD181 D REGISTER BITS 18-20.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RD D Register\RD215 D REGISTER PARITY BITS.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AR: R TO -> R T0, BQ: R TO -> R T0, CQ: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+3308 native and human review, 2026-10-16: RD211:AE: /pins/1/triangle=False; RD211:CS: /pins/0/triangle=False. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.

@@ -1,0 +1,60 @@
+KU351 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 38,
+  "A1_total_card_portions": 38,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [
+    "3M"
+  ],
+  "A1_unrepresented_card_portions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 69,
+  "passed": true,
+  "duplicate_port_references": {},
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "4C.D11",
+    "evidence": "Native 4C D11 route crop shows the input line rising a short distance and ending open; no upstream rail or diamond touches it."
+  },
+  {
+    "location": "Right -RESET DIAG 12 FIELD TGRS rail",
+    "evidence": "Native 7M output crop shows a visible gap after the B10/B13 joined output diamond before this short rightgoing labelled rail; no on-page driver is visible at its open left end."
+  },
+  {
+    "location": "3M source/A1 discrepancy",
+    "evidence": "Native crop 3M-native.png reads 3350B1, E-B3F7, 3M-BP. KU351 A1 entries contain 3350D1 and 3350E1 on socket F7, but no 3350B1. Source print retained."
+  },
+  {
+    "location": "Cable legend column 33 row 94, first character",
+    "candidates": [
+      "A",
+      "B"
+    ],
+    "evidence": "Original source cable crop and 3x enlarged crop differ between A-like and B-like first glyph in �P4 E-B3A5B08; preserve replacement character until a clearer source is available."
+  }
+]
+
+Original scan order
+Before KU331 SCAN CTR CTRL AND ROS TEST LTH.tif
+After KU371 MANUAL INPUTS TO SCAN.tif
+Native circuit/portion source review: 3G unit U03AR -> U03AA; 3D unit U03AR -> U03AA; 3E unit U03AR -> U03AA; 3F unit U03AR -> U03AA. Original TIFF SHA-256 f6bd0a40a5bf0185718b758a1dd8627ca435632a80f8f9d88d25e80cd85a1833. No wiring, pins or geometry changed.
+
+3308 native and human review, 2026-10-16: KU351:5C: /pins/1/triangle=False; KU351:5F: /pins/1/triangle=False; KU351:6J: /pins/0/triangle=False. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.

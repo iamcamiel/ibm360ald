@@ -33,6 +33,11 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def same_literal(left, right):
+    """Compare JSON observations without a tuple/list serialization mismatch."""
+    return json.dumps(left,sort_keys=True,separators=(',',':'))==json.dumps(right,sort_keys=True,separators=(',',':'))
+
+
 def primary(value):
     return str(value or '').strip().split(' ',1)[0].lstrip('✲*')
 
@@ -374,7 +379,7 @@ def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=N
                 evidence=exception.get('evidence',{});ep=resolve_path(root,evidence.get('path',''))
                 valid=ep.is_file() and evidence.get('sha256')==digest(ep) and exception.get('model_sha256',entry['sha256'])==entry['sha256']
                 for flag in flags:
-                    if flag['field']==exception.get('field') and flag['observed']==exception.get('observed'):
+                    if flag['field']==exception.get('field') and same_literal(flag['observed'],exception.get('observed')):
                         if valid:flag.update(status=exception.get('status','recorded_variant'),reason=exception.get('reason',flag['reason']),reviewed_exception=exception)
                         else:flag.update(status='source_uncertainty',reason='Reviewed exception evidence is stale or missing.',reviewed_exception=exception)
             occurrences.append({'page':doc.get('page'),'block':node['id'],'portion':portion,'location':node.get('location'),

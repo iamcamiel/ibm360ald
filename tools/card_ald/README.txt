@@ -8,7 +8,7 @@ This generates the canonical Card-ALD/4191.txt and every reviewed numbered
 notation variant. It also updates generation receipts, the current card model
 and the searchable variant index. Existing read-only file flags are preserved.
 
-Currently reviewed definitions: 0141, 4191, 4633 and 4634.
+Reviewed definitions are listed in json/Card-ALD/definitions.
 Use all four digits, including the leading zero in 0141.
 
 BUILD DATA FROM THE TRANSCRIPTION DATABASE
@@ -159,3 +159,50 @@ Original source acceptance and variant witnesses remain under
 notes/Card-ALD/Universal. Current generation receipts are under
 notes/Card-ALD/Generation. Earlier publication records are preserved under
 notes/Card-ALD/history/Before shared generator.
+
+PUBLISH A NEW REVIEWED CARD FAMILY
+
+    python tools/card_ald/build_card_data.py CARD --render --output-dir CANDIDATE
+    python tools/card_ald/collect_card_variants.py CARD --definition DEFINITION --publication-policy complete-witnesses --output-dir VARIANTS
+    python tools/card_ald/audit_card_uses.py CARD --definition DEFINITION --overrides SUPPLEMENT --output-dir AUDIT
+    python tools/card_ald/publish_card_candidate.py CARD --definition DEFINITION --overrides SUPPLEMENT --audit USE_AUDIT --review INDEPENDENT_REVIEW --check
+    python tools/card_ald/publish_card_candidate.py CARD --definition DEFINITION --overrides SUPPLEMENT --audit USE_AUDIT --review INDEPENDENT_REVIEW
+
+CARD is exactly four digits. The same commands work for a new card or an
+updated family; no Python dispatch table or per-card publisher is needed.
+Candidate derivation and source review remain explicit: missing evidence is
+not converted into an assumed pinout. The publication check reruns the current
+source-use audit, rejects unresolved source findings, validates every diagram
+and requires a default-builder roundtrip of the reviewed output bytes.
+Technical source-model coverage limitations remain recorded in the receipt.
+
+The independent review JSON must contain passed:true, failures:[], and exact
+candidate_bindings for the definition, reviewed supplement and use-audit file.
+Supporting evidence is listed in supporting_files. Numbered variants also need
+a variant_index binding, included among those bound files. The publication
+index must declare publication_policy complete-witnesses. That index has a
+card_type and variants list; each entry supplies number, variant_definition,
+witnesses, source_pages and source_locations. Counts complete_witnesses and
+partial_witnesses distinguish fully observed card patterns from profiles whose
+unobserved portions retain canonical symbols. The default collector discovery
+policy all-observed retains those partial profiles as candidates. The explicit
+complete-witnesses policy selects only profiles with at least one complete
+physical-card field witness and preserves excluded_partial_profiles in the
+evidence index, without renumbering or discarding observations. Purely partial
+canonical-filled profiles cannot pass the guarded publisher. Existing reviewed
+partial notation records remain explicitly labeled in the CSV when generated.
+
+Publication preserves predecessors, the review, audit and witness index under
+notes/Card-ALD/Generation/Accepted candidates and notes/Card-ALD/history. The
+exact reviewed definition and supplement are installed, then the existing
+shared generator publishes the canonical TXT, all numbered variants, receipts,
+current card model and searchable CSV rows. New card rows are inserted
+individually with source pages and sockets; unrelated cards, generation
+receipts and index rows are checked unchanged. A failure restores all touched
+canonical files. The generator also reads the durable per-card witness index
+under notes/Card-ALD/Notation witnesses when regenerating that family later.
+
+Keep reviewed supplement bindings portable: immutable seed definitions and
+supporting JSON should already be stored under repository notes before final
+review. Original scan bindings remain references to their source archive.
+Publication never commits, pushes or changes source ALD transcriptions.

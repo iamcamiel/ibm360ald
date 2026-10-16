@@ -341,12 +341,19 @@ def write_protected(path, raw):
 
 def record_generation(spec, path, outputs, checks):
     card = spec['card_type']
+    witness_path = ROOT/f'notes/Card-ALD/Notation witnesses/{card}.json'
+    witness_index = read(witness_path) if witness_path.exists() else None
+    if witness_index is not None:
+        assert witness_index.get('card_type') == card, 'Witness index escaped card namespace'
     receipt = {'schema': 'card-ald-generation-v1', 'card_type': card,
                'canonical': f'Card-ALD/{card}.txt', 'diagram_sha256': digest(outputs[card+'.txt']),
                'definition': {'path': path.relative_to(ROOT).as_posix(), 'sha256': digest(path.read_bytes())},
                'renderer': {'path': Path(__file__).relative_to(ROOT).as_posix(), 'sha256': digest(Path(__file__).read_bytes())},
                'source_evidence': spec['provenance'], 'validation': checks,
                'files': [{'path': 'Card-ALD/' + name, 'sha256': digest(raw)} for name, raw in outputs.items()]}
+    if witness_index is not None:
+        receipt['notation_witness_index'] = {'path': witness_path.relative_to(ROOT).as_posix(),
+                                            'sha256': digest(witness_path.read_bytes())}
     raw = (json.dumps(receipt, ensure_ascii=False, indent=2)+'\n').encode('utf-8')
     for destination in [f'Generation/{card}.json', f'{card} drawing provenance.json', f'{card} diagram publication receipt.json']:
         write_protected(ROOT/'notes/Card-ALD'/destination, raw)
@@ -356,19 +363,62 @@ def record_generation(spec, path, outputs, checks):
                  render_definition=receipt['definition'], generation_receipt=f'notes/Card-ALD/Generation/{card}.json')
     write_protected(model_path, (json.dumps(model, ensure_ascii=False, indent=2)+'\n').encode('utf-8'))
     index_path = ROOT/'csv/Card-ALD/Notation variants.csv'
+    fields = ['card_type', 'file', 'kind', 'source_pages', 'source_locations', 'sha256']
+    entries = []
     if index_path.exists():
         with index_path.open(encoding='utf-8-sig', newline='') as source:
             reader = csv.DictReader(source)
             fields, entries = reader.fieldnames, list(reader)
-        for entry in entries:
-            if entry['file'] in outputs:
-                entry['sha256'] = digest(outputs[entry['file']])
-        import io
-        buffer = io.StringIO(newline='')
-        writer = csv.DictWriter(buffer, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(entries)
-        write_protected(index_path, b'\xef\xbb\xbf'+buffer.getvalue().encode('utf-8'))
+        assert fields and set(['card_type', 'file', 'sha256']) <= set(fields), 'Unsupported notation index'
+    witnesses = spec.get('provenance', {}).get('variant_witnesses', [])
+    if not witnesses and witness_index is not None:
+        witnesses = witness_index.get('variants', [])
+    if isinstance(witnesses, dict):
+        witnesses = [dict(value, number=int(number)) for number, value in witnesses.items()]
+    by_number = {int(w.get('number', w.get('variant_number', 0))): w for w in witnesses}
+    def witness_text(witness, key):
+        value = witness.get(key, [])
+        if isinstance(value, str):
+            return value
+        return '; '.join(sorted(set(str(v) for v in value)))
+    assert not any(e['file'] in outputs and e['card_type'] != card for e in entries), 'Notation index namespace collision'
+    def notation_kind(number):
+        if number == 0:
+            return 'canonical'
+        witness = by_number.get(number, {})
+        if witness.get('partial_witnesses') and not witness.get('complete_witnesses'):
+            return 'partial observed notation; canonical-filled'
+        return 'observed notation variant'
+    known = {e['file']: e for e in entries if e['card_type'] == card}
+    assert len(known) == len([e for e in entries if e['card_type'] == card]), 'Duplicate card notation index row'
+    for name, content in outputs.items():
+        match = re.fullmatch(re.escape(card) + r'(?:-(\d+))?\.txt', name)
+        assert match, 'Generated output escaped card namespace'
+        number = int(match.group(1) or 0)
+        if name not in known:
+            entry = {field: '' for field in fields}
+            entry.update(card_type=card, file=name, sha256=digest(content))
+            for key, value in [('kind', notation_kind(number)),
+                               ('source_pages', witness_text(by_number.get(number, {}), 'source_pages')),
+                               ('source_locations', witness_text(by_number.get(number, {}), 'source_locations'))]:
+                if key in fields:
+                    entry[key] = value
+            entries.append(entry)
+            known[name] = entry
+        else:
+            known[name]['sha256'] = digest(content)
+            if number in by_number:
+                if 'kind' in fields:
+                    known[name]['kind'] = notation_kind(number)
+                for key in ['source_pages', 'source_locations']:
+                    if key in fields:
+                        known[name][key] = witness_text(by_number[number], key)
+    import io
+    buffer = io.StringIO(newline='')
+    writer = csv.DictWriter(buffer, fieldnames=fields)
+    writer.writeheader()
+    writer.writerows(entries)
+    write_protected(index_path, b'\xef\xbb\xbf'+buffer.getvalue().encode('utf-8'))
     inventory_path = ROOT/'notes/Card-ALD/Universal card diagrams publication.json'
     if inventory_path.exists():
         inventory = read(inventory_path)

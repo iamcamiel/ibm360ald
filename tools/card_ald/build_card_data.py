@@ -48,12 +48,9 @@ def physical_contact(raw):
     """Parse a physical name without interpreting its numeric annotation."""
     if raw is None:
         return None
-    text = str(raw).strip().rstrip("✲*")
-    if PIN.fullmatch(text):
-        return text
-    if len(text) == 4 and text[0].isdigit() and PIN.fullmatch(text[1:]):
-        return text[1:]
-    return None
+    text = str(raw).strip()
+    match = re.fullmatch(r"\d*(?P<pin>[BDGJ](?:0[2-9]|1[0-3]))[✲*]?T?", text)
+    return match.group("pin") if match else None
 
 def primary(label):
     text = str(label or "").strip()
@@ -343,6 +340,15 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
                         else:
                             rejected.append({"page":page,"driver":driver,"target":target,"reason":"unmapped target suffix; no uniquely identified physical or pinless input"})
                             continue
+                    # Fallbacks above may identify a previously anonymous
+                    # endpoint. Recheck the final contacts: page wiring between
+                    # two different pins is an installation strap, not a card
+                    # internal connection, even when both ends are unambiguous.
+                    if sp in power or tp in power:
+                        continue
+                    if sp and tp and sp != tp:
+                        rejected.append({"page":page,"driver":driver,"target":target,"reason":"different physical contacts after endpoint inference: installation strap"})
+                        continue
                     edges[s,t,sp or "PINLESS",tp or "PINLESS"].append({"page":page,"driver":driver,"target":target,"instance":source["_instance"]})
     for pin,sides in sorted(contact_ports.items()):
         if len(sides["output"]) > 1:
@@ -632,6 +638,8 @@ def reviewed_definition(card, overlay, model, provenance, uncertainties):
           "review_status":"reviewed supplemental layout; current-evidence comparisons retained separately"}
     if "header" in overlay:
         spec["header"]=reviewed_header(overlay,model)
+    if "audit_policy" in overlay:
+        spec["audit_policy"]=deepcopy(overlay["audit_policy"])
     assert generate_card.wiring_graph(spec)==sorted(nets),"Portable reviewed geometry differs from reviewed terminal nets"
     generate_card.validate(spec)
     return spec,comparisons

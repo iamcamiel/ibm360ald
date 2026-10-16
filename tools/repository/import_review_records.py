@@ -476,6 +476,75 @@ def sparse_shape_review_keepers(workspace):
     return list(files.values())
 
 
+def native_card_3308_review_keepers(workspace, reference_root=None):
+    """Preserve the published 3308 review, exact staged bytes and native evidence."""
+    workspace=Path(workspace).resolve()
+    reference_root=Path(reference_root or 'D:/Reference Materials/IBM 360/IBM_360_ALD').resolve()
+    base=workspace/'tmp/ald-text/ald/card-data/3308-universal/review'
+    stage=base/'application-stage';publication_path=stage/'publication.json'
+    if not publication_path.is_file():return [],None
+    keeper=Path('notes/Card-ALD/3308 source review')
+    tool_keeper=Path('tools/legacy/card_ald/3308-native-review')
+    files={};locations={}
+    def checked(link,expected=None):
+        assert isinstance(link,dict), 'Missing 3308 source binding'
+        source=Path(link.get('file',link.get('path','')))
+        if not source.is_absolute():source=workspace/source
+        source=source.resolve()
+        if expected is not None:assert source==expected.resolve(),source
+        assert source.is_file() and digest(source.read_bytes())==link['sha256'],source
+        return source
+    def add(source,destination,expected=None,original=None):
+        source=Path(source).resolve();destination=Path(destination)
+        assert source.is_relative_to(workspace) and (destination.is_relative_to(keeper) or destination.is_relative_to(tool_keeper))
+        raw=source.read_bytes();value=digest(raw)
+        if expected is not None:assert value==expected,source
+        if destination in files:assert files[destination]==source,destination
+        files[destination]=source
+        locations[(str(original or source),value)]={
+            'original_absolute_path':str(original or source),'sha256':value,
+            'repository_path':destination.as_posix()}
+    publication=read_json(publication_path)
+    manifest_path=checked(publication.get('stage_manifest'),stage/'manifest.json')
+    acceptance_path=checked(publication.get('independent_audit',publication.get('independent_review')),
+                            base/'Staged independent acceptance.json')
+    manifest=read_json(manifest_path);acceptance=read_json(acceptance_path)
+    assert manifest.get('schema')=='native-card-review-private-stage-v1' and manifest.get('card_type')=='3308'
+    assert acceptance.get('passed') is True and not acceptance.get('failures')
+    assert acceptance.get('manifest_sha256')==digest(manifest_path.read_bytes())
+    records=manifest['records']
+    assert records and len({r['page'] for r in records})==len(records)
+    published=publication.get('published_pages',publication.get('pages',[]))
+    assert {r.get('page') if isinstance(r,dict) else r for r in published}=={r['page'] for r in records}
+    for link in manifest['inputs']:
+        source=checked(link)
+        assert source.is_relative_to(base),source
+        destination=(tool_keeper/source.relative_to(base) if source.suffix.lower()=='.py'
+                     else keeper/'Review'/source.relative_to(base))
+        add(source,destination,link['sha256'])
+    for record in records:
+        source=checked(record['source'])
+        assert source.is_relative_to(reference_root),source
+        locations[(str(source),record['source']['sha256'])]={
+            'original_absolute_path':str(source),'sha256':record['source']['sha256'],
+            'repository_path':None,'reason':'Original TIFF retained in reference archive'}
+        assert set(record['prior_quartet'])==set(record['staged_quartet'])==set(record['before_saved'])=={'txt','json','notes','preview'}
+        for kind in record['staged_quartet']:
+            staged=checked(record['staged_quartet'][kind]);before=checked(record['before_saved'][kind])
+            assert staged.is_relative_to(stage/record['page']) and before.is_relative_to(stage/record['page'])
+            assert record['before_saved'][kind]['sha256']==record['prior_quartet'][kind]['sha256']
+            add(staged,keeper/'Review'/staged.relative_to(base),record['staged_quartet'][kind]['sha256'])
+            add(before,keeper/'Review'/before.relative_to(base),record['prior_quartet'][kind]['sha256'],record['prior_quartet'][kind]['path'])
+    # Preserve literal review ledgers, answers, native crops and exact stage
+    # inputs. Later exploratory binaries and Python caches are not swept in.
+    for source in sorted(base.rglob('*')):
+        if source.is_file() and '__pycache__' not in source.parts and source.suffix.lower() in {'.json','.jsonl','.txt','.png','.py'}:
+            destination=(tool_keeper/source.relative_to(base) if source.suffix.lower()=='.py'
+                         else keeper/'Review'/source.relative_to(base))
+            add(source,destination)
+    return [(source,destination) for destination,source in sorted(files.items())],list(locations.values())
+
+
 def supply_pin_review_keepers(workspace):
     """Keep only the published supply-pin release and its exact source evidence.
 
@@ -675,6 +744,43 @@ def retired_kt_fact_keepers(workspace):
     return files
 
 
+def source_review_repository_keepers(repo):
+    """Keep reusable source-review tools and already published portable evidence.
+
+    These are repository-owned records, not new acceptance discovery. Preserve
+    their exact bytes in the next rebuilt inventory, including fonts and other
+    immutable evidence extensions omitted by the historical final suffix scan.
+    """
+    repo = Path(repo).resolve()
+    keep = set()
+    for branch in ['tools/reviews', 'notes/Source reviews']:
+        root = repo/branch
+        for path in root.rglob('*'):
+            if not path.is_file() or '__pycache__' in path.parts or path.suffix.lower() in {'.pyc', '.lock', '.tmp'}:
+                continue
+            assert path.resolve().is_relative_to(root.resolve()), 'Source-review keeper escapes its repository tree'
+            keep.add(path)
+    for name in ['import_source_review.py', 'test_import_source_review.py',
+                 'refresh_inventory.py', 'test_refresh_inventory.py']:
+        path = repo/'tools/repository'/name
+        if path.is_file(): keep.add(path)
+    for pointer in (repo/'notes').rglob('* source review current.json'):
+        document = read_json(pointer)
+        assert document.get('schema') == 'source-review-repository-current-v1', pointer
+        quartet = document.get('current_repository_quartet', {})
+        assert set(quartet) == {'txt', 'json', 'notes', 'preview'}, pointer
+        keep.add(pointer)
+        for kind, link in quartet.items():
+            declared = Path(link['path'])
+            assert not declared.is_absolute() and not declared.drive, 'Current pointer must be repository-relative'
+            artifact = (repo/declared).resolve()
+            branch = 'ALD' if kind == 'txt' else 'json' if kind == 'json' else 'notes'
+            assert artifact.is_relative_to((repo/branch).resolve()), artifact
+            assert artifact.is_file() and digest(artifact.read_bytes()) == link['sha256'], artifact
+            if kind == 'preview': keep.add(artifact)
+    return [(path, path.relative_to(repo).as_posix()) for path in sorted(keep)]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace', type=Path,
@@ -713,6 +819,8 @@ def main():
     copy(args.reference/'ALD Scan Order.csv', repo/'notes/ALD Scan Order.csv',
          'Original scan order and current TIFF filename catalogue')
     shared = {
+        'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/3308 native and human current audit.json':
+            'Card-ALD/3308 source review/3308 native and human current audit.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Supply pin visual and human current audit.json':
             'Pin validation/Supply pin visual and human current audit.json',
         'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/4191 source correction current audit.json':
@@ -1232,6 +1340,14 @@ def main():
         path = workspace/relative
         if path.is_file():
             copy(path, repo/'notes'/name, 'Provenance or approved convention')
+    native_3308_files,native_3308_locations=native_card_3308_review_keepers(workspace)
+    for source,destination in native_3308_files:
+        copy(source,repo/destination,'3308 native and human review, exact staged predecessor/candidate quartets, answers and source crops')
+    if native_3308_locations is not None:
+        add(repo/'notes/Card-ALD/3308 source review/Source locations.json',
+            (json.dumps(native_3308_locations,ensure_ascii=False,indent=2)+'\n').encode('utf-8'),
+            workspace/'tmp/ald-text/ald/card-data/3308-universal/review/application-stage/publication.json',
+            'Portable 3308 original-to-repository source and hash mapping')
     pin_review_0141 = workspace/'tmp/ald-text/ald/card-0141-review/pin-review/0141 pin source audit.json'
     if pin_review_0141.is_file():
         for item in read_json(pin_review_0141).get('candidates', []):
@@ -1366,7 +1482,8 @@ def main():
                 continue
             chain_keys = ['root_acceptance', 'owner_receipt', 'legacy_ledger',
                           'independent_audit', 'independent_acceptance']
-            if record.get('schema') == 'slt-supply-pin-source-bound-current-audit-v1':
+            if record.get('schema') in {'slt-supply-pin-source-bound-current-audit-v1',
+                                        'native-card-review-source-bound-current-audit-v1'}:
                 chain_keys += ['human_authority', 'physical_pin_stage_manifest',
                                'physical_pin_publication']
             for key in chain_keys:
@@ -1719,6 +1836,10 @@ def main():
              'Historical shared conversion/validation source; original workspace dependencies')
     copy(work/'cas_characters.py', repo/'tools/cas/cas_characters.py',
          'Reusable CAS glyph normalization helper')
+
+    for source, relative in source_review_repository_keepers(repo):
+        copy(source, repo/relative,
+             'Reusable source-review workflow or exact portable source-review evidence/current pointer')
 
     # Never silently replace a user's independently edited repository record.
     index_path = repo/'notes/Repository records manifest.json'

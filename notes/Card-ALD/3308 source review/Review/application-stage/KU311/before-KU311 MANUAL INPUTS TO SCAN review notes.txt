@@ -1,0 +1,113 @@
+KU311 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 41,
+  "A1_total_card_portions": 42,
+  "A1_mismatches": [],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [
+    {
+      "kind": "card portion",
+      "board": "02E-B3",
+      "sockets": [
+        "B7"
+      ],
+      "part_number": "5803350",
+      "card_type": "3350",
+      "portion": "E1",
+      "source_listings": [
+        "A1523-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1523-01 SOCKET LISTING"
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 66,
+  "passed": true,
+  "duplicate_pin_references": {},
+  "A1_documented_source_discrepancies": [
+    {
+      "node": "AF",
+      "native_crop": "KU311 banks/bank1 clean2.png",
+      "printed_card_portion": "0410J1",
+      "reason": "The original KU311 diagram prints this portion, but the A1 KU311 index has no identical portion at the printed socket."
+    },
+    {
+      "node": "AK",
+      "native_crop": "KU311 banks/bank2 clean1.png",
+      "printed_card_portion": "3388F1",
+      "reason": "The original KU311 diagram prints this portion, but the A1 KU311 index has no identical portion at the printed socket."
+    },
+    {
+      "node": "AR",
+      "native_crop": "KU311 banks/bank3 clean1.png",
+      "printed_card_portion": "0410H1",
+      "reason": "The original KU311 diagram prints this portion, but the A1 KU311 index has no identical portion at the printed socket."
+    }
+  ],
+  "duplicate_port_references": {},
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "KU311 bank 7 lower edge, E-B3B7",
+    "evidence": "KU311 banks/bank7 context3.png; KU311 bank7 bottom.png",
+    "finding": "The physical diagram prints U03AF 3350G1 at E-B3B7, grid 7M. The A1 socket listing also indexes 3350E1 at this socket, but no second B7 box appears in the native lower bank."
+  },
+  {
+    "location": "KU311 scan-versus-A1 card portions",
+    "evidence": "KU311 banks/bank1 clean2.png; KU311 banks/bank2 clean1.png; KU311 banks/bank3 clean1.png",
+    "finding": "The native boxes AF, AK and AR print 0410J1, 3388F1 and 0410H1 respectively, unlike the A1 index. Physical printed values retained."
+  },
+  {
+    "location": "KU311 BN unit, grid 6L",
+    "evidence": "KU311 banks/bank6 context3.png; KU311 wires center lower.png",
+    "finding": "The native box prints UC3AF rather than U03AF. The printed C is retained as a source revision or typographic difference."
+  },
+  {
+    "location": "KU311 AN.D09 and BH.D12, row-55 input-only rail",
+    "evidence": "KU311 AN lower rail.png; KU311 BGdetail.png",
+    "finding": "The scan shows AN.D09 and BH.D12 joined by the long row-55 rail. Its visible leftward continuation has no identifiable printed driver on this sheet. Three crossings at the AN vertical have no diamond and remain unjoined."
+  },
+  {
+    "location": "KU311 upper console latch rails, rows 2 and 26",
+    "evidence": "KU311 upper right trace.png; KU311 top right rails.png",
+    "finding": "Row 2 rises from the BD B10 / BK D09 diamond before the inverter. Row 26 branches from BK D07 after the inverter. The BP B13 and BQ B04 diamonds are on the latter rail."
+  },
+  {
+    "location": "KU311 BR output, grid 7F",
+    "evidence": "KU311 BR out exact.png",
+    "finding": "The native output terminal reads D10 with no adjacent star; an earlier draft D11✲ was corrected."
+  },
+  {
+    "location": "KU311 parallel BA and BR trigger rails, bank 5/7 middle",
+    "evidence": "KU311 BA_BS1.png; KU311 BA_BS2.png",
+    "finding": "BA D02 is the upper rail to BS B09 and -FLT BACKSPACE TGR. BR D10 descends to the lower parallel rail and branches at a printed diamond to BF D05 and BG D05. Their crossings are unjoined."
+  },
+  {
+    "location": "KU311 BE B02 and B03 input-stub crossings",
+    "evidence": "KU311 BE native pin crossings.png",
+    "finding": "The -MACH RESET vertical crosses both input stubs as unjoined plus crossings. BE B02 is driven by +CHECK RESET PB and B03 by -FLT COMPLETE."
+  },
+  {
+    "location": "KU311 three middle source rails, rows 51-53",
+    "evidence": "KU311 middle three source rails1.png; KU311 sync junction exact.png; KU311 BF inputs and FLT exact.png; KU311 sync line whole.png",
+    "finding": "+ROS TEST+FLT LTH reaches BF B07 and BG B10 through the diamonded middle vertical. +SYNC TRIGGER rises to BQ D06. -FLT COMPLETE bends upward into BE B03 and crosses the neighboring BF B07 conductor without joining."
+  }
+]
+
+Original scan order
+Before KU291 CHANNEL COMMUNICATION.tif
+After KU331 SCAN CTR CTRL AND ROS TEST LTH.tif

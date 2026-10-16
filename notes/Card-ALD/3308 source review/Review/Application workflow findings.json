@@ -1,0 +1,117 @@
+{
+  "schema": "3308-application-workflow-research-v1",
+  "created_utc": "2026-10-16T13:52:30.302911+00:00",
+  "read_only_source_research": true,
+  "canonical_or_repository_mutations": false,
+  "affected_occurrences": 214,
+  "affected_pages": 141,
+  "local_json_matches_repository": {
+    "all141": true,
+    "all_models_are_text_siblings": true,
+    "mapping": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-data\\3308-universal\\review\\Application source path mapping.json"
+  },
+  "rendering": {
+    "finding": "No established universal lossless source-ALD JSON-to-TXT entrypoint found. Source page schemas and owner renderers are heterogeneous. Current accepted correction pipelines patch exact cells of accepted TXT and active JSON fields, retain historical fields, regenerate preview only. The Card-ALD generate_card.py renderer is for synthesized card diagrams and must not be used for source ALD sheets.",
+    "strongest_template": "ibm360ald/tools/pins/release_supply_pin_review.py",
+    "preview_function": "ibm360ald/tools/card_ald/release_463x_source_corrections.py:preview(bytes)->PNG bytes; requires103lines of245chars; pads preview input when accepted TXT rows are shorter",
+    "alternative_preview": "tmp/ald-text/ald/card-type-database/prepare_non_ap_OR_corrections.py:render(lines,config), supports exact prior preview dimension/config reproduction",
+    "alias_handling": "Use node.id for active model reference keys; printed_id may differ and must remain distinct. Update pin/reference/terminal_id/physical_pin/printed_pin/printed_label aliases and only active nodes/nets/wire_paths/wires/connections/terminals/junctions/unjoined_crossings/printed_labels/physical_pin_feedthroughs. Preserve historical records.",
+    "variable_pin_lengths": "The existing supply-pin patcher asserts new_label<=old_label and is insufficient for newly restored open asterisks. Keep the block border anchored; output-label growth may consume a confirmed horizontal wire cell. Verify every consumed cell is safe wire, do not overwrite corners/junctions or change unrelated geometry. Input growth must extend left. Record exact changed cells and retain245columns/103rows/line endings."
+  },
+  "quartet": {
+    "kinds": [
+      "txt",
+      "json",
+      "notes",
+      "preview"
+    ],
+    "mapping_authorities": [
+      "ibm360ald/notes/Reviewed export provenance.json:exported entry transcription_source/destination/source_relative/review_record",
+      "ibm360ald/notes/Content data manifest.json:files role Published page content model source/path/hash"
+    ],
+    "preview_exception": {
+      "page": "DR071",
+      "finding": "Both stem preview.png and stem.png exist. Use the current acceptance-bound preview.",
+      "current_acceptance": "tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/OR function human correction current audit.json",
+      "accepted_preview": {
+        "path": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\ALD Diagrams\\DR071 ROS DECODES FIELD 21 TO 24 Q TO R preview.png",
+        "sha256": "651944e915c8a0edbd3935b5da310f62f958c921446e4da77ae215867e44484e"
+      }
+    }
+  },
+  "new_audit_hook": {
+    "file": "tmp/ald-text/ald/repository-export/export_reviewed.py",
+    "required_changes": [
+      "Add new current audit basename in receipts() named audit list aroundline303",
+      "Add same basename to application_schema set aroundline594",
+      "Recommended stale-publication branch: after publication receipt exists, supersede affected exact targets even if new audit goes missing/stale; do not allow historical text-only acceptance fallback"
+    ],
+    "audit_root": "tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3",
+    "audit_top": {
+      "passed": true,
+      "pages": "array"
+    },
+    "page_required": {
+      "page": "printed page code",
+      "eligible": true,
+      "artifact_schema": "reviewed-current-quartet-v1",
+      "source": "path andsha256 originalTIFF under source root",
+      "current_quartet": "exact four local canonical paths andsha256",
+      "checks": "nonempty map, every value exactlyTrue"
+    },
+    "recognized_chain_keys": "independent_audit, owner_receipt, root_acceptance, human_authority, physical_pin_stage_manifest, physical_pin_publication etc; bindings use file+sha256",
+    "sibling_rule": "Exporter expects TXT, TXTstem.json, TXTstem review notes.txt, and accepted preview suffix preview.png/.png/JuliaMono preview.png/JuliaMono.png, allunderALD_Visual_Transcriptions."
+  },
+  "preservation_import_hook": {
+    "file": "ibm360ald/tools/repository/import_review_records.py",
+    "actions": [
+      "Add new audit path to shared mapping with notes/Card-ALD/3308...destination",
+      "Preserve stage, exact before/candidate quartet, independent receipt, question/answer evidence and native crops under durable notes/Card-ALD namespace",
+      "Generic immutable-chain copier supports independent_audit/owner_receipt; human_authority+physical_pin_stage_manifest/publication are only auto-included for supply-pin schema, so add new schema handling or explicit copies."
+    ]
+  },
+  "ordered_commands_after_guarded_canonical_publication": [
+    "python tmp/ald-text/ald/repository-export/export_reviewed.py",
+    "python tmp/ald-text/ald/repository-export/export_reviewed.py --write --expect-eligible EXPECTED_CURRENT_SCOPE_COUNT",
+    "python ibm360ald/tools/repository/import_content_data.py --workspace D:/Github/IBM360 --write",
+    "python ibm360ald/tools/repository/import_review_records.py --workspace D:/Github/IBM360 --write",
+    "python ibm360ald/tools/repository/verify_repository.py"
+  ],
+  "verification_notes": [
+    "Run export plan before write and require no conflicts and unchanged full scoped count.",
+    "Content import before review import ensures final integrity manifest covers updatedJSON.",
+    "After mirroring require repoTXT==currenttxt hash, repoJSON==currentjson hash and acceptance record points to new audit for changedpages.",
+    "Exported notes wrap canonical note text with catalogue provenance, so byte equality is not expected; require canonical note content contained in wrapper and verify wrapper manifest hash.",
+    "verify_repository is UTF8+snapshot integrity, not visual/wiring acceptance. Independent staged delta review is still required."
+  ],
+  "source_bindings": [
+    {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\pins\\release_supply_pin_review.py",
+      "sha256": "25c09e7dabcb93e26988965c7c6177b6a3cacaef376a2241564fa5aa6a39fbc4"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\card_ald\\release_463x_source_corrections.py",
+      "sha256": "b2be3840c8bff4b74dc6a4d88694aff55032203e5ee12a91ff6420f4b26b24a1"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-type-database\\prepare_non_ap_OR_corrections.py",
+      "sha256": "6e78281de9aa1714156810fb4ebbe5b14a82fa843cb2f02c2fcb37ac3f884885"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\repository-export\\export_reviewed.py",
+      "sha256": "0de9fd826ba26d9a77965bebec56a872193047c382029adda5e99ec512c521e0"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\repository\\import_content_data.py",
+      "sha256": "b7e8e174c56ad458b56a5cb34d667a82620b4540f60a84877ae8b0f3cde70e26"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\repository\\import_review_records.py",
+      "sha256": "485eb03f51ef28c9f1fd6f51a22b23b62cf10119ff17e219b3f35ee7cd2fa3ea"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\tools\\repository\\verify_repository.py",
+      "sha256": "928db90938bd82566363f6e8bbb9a473c92004fba16f1e85923d2761e4936de7"
+    }
+  ]
+}

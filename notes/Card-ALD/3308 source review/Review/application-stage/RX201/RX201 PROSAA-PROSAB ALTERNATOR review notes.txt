@@ -1,0 +1,69 @@
+RX201 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 31,
+  "A1_total_card_portions": 31,
+  "A1_mismatches": [],
+  "A1_native_exceptions": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 45,
+  "passed": true,
+  "printer_grid": {
+    "columns": 245,
+    "rows": 103,
+    "block_lattice_errors": []
+  },
+  "pin_label_corners": [
+    {
+      "column": 114,
+      "row": 66,
+      "glyph": "└"
+    }
+  ],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": [],
+  "title_footer": {
+    "machine": {
+      "value": "7201-02",
+      "one_blank_before_right_border": true
+    },
+    "part_number": {
+      "value": "2586036",
+      "one_blank_before_right_border": true
+    },
+    "part_number_abbreviation": true
+  }
+}
+
+Unclear source print and evidence
+[
+  {
+    "status": "Source-open control",
+    "detail": "HH4 has a short source-visible right continuation next to 7E with no traced local output card. Its source remains open; no inferred connection to 7E.D07."
+  },
+  {
+    "status": "Source-open control",
+    "detail": "JJ4 y≈3065 conductor is tied by native diamond to 5E.B07 on its x≈5865 vertical. It crosses 5E.B08 and GG4 without joining. The upper y≈1930 origin is still not traced to a local driver."
+  }
+]
+
+Original scan order
+Before RX111 READ ONLY STORAGE ADDRESS REGISTER BIT 11.tif
+After RX211 PREVIOUS READ ONLY STORAGE ADDRESS A AND B BITS 0-2.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: LS: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+3308 native and human review, 2026-10-16: RX201:LL: /pins/0/triangle=False; RX201:LU: /pins/0/triangle=False. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.

@@ -77,8 +77,8 @@
       "function_offset": 1,
       "unit": "U03AF",
       "card_type": "3308",
-      "portion": "B1",
-      "printed_card_portion": "3308B1",
+      "portion": "D1",
+      "printed_card_portion": "3308D1",
       "location": "A-A2G6",
       "grid": "2C",
       "pins": [
@@ -94,11 +94,11 @@
           ]
         },
         {
-          "pin": "D07",
+          "pin": "D07✲",
           "row": 19,
           "side": "output",
           "triangle": false,
-          "reference": "AC.D07",
+          "reference": "AC.D07✲",
           "point": [
             84,
             19
@@ -106,23 +106,28 @@
         }
       ],
       "source_reviewed": true,
-      "socket_listing_fallback_evidence": [
-        {
-          "kind": "card portion",
-          "board": "02A-A2",
-          "sockets": [
-            "G6"
-          ],
-          "part_number": "5803308",
-          "card_type": "3308",
-          "portion": "B1",
-          "source_listings": [
-            "A1112-01 SOCKET LISTING"
-          ],
-          "source_listing": "A1112-01 SOCKET LISTING",
-          "evidence_page": "MC776"
-        }
-      ]
+      "socket_listing_fallback_evidence": [],
+      "socket_listing_evidence": {
+        "kind": "card portion",
+        "board": "02A-A2",
+        "sockets": [
+          "G6"
+        ],
+        "part_number": "5803308",
+        "card_type": "3308",
+        "portion": "D1",
+        "source_listings": [
+          "A1112-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1112-01 SOCKET LISTING",
+        "actual_A1_page_key": "MC743",
+        "source_record_binding": {
+          "path": "D:\\Github\\IBM360\\ibm360ald\\json\\A1 Socket Listing\\A1112-01 SOCKET LISTING.json",
+          "sha256": "3d1cee41762ec618148c60ce651551bd03f73f3ceb12613d21e5e61ad8064cdc",
+          "pointer": "/sockets/42"
+        },
+        "basis": "Fresh direct same-board/socket/card/portion A1 lookup after native/human portion correction; prior claim is preserved in the separate Socket evidence refresh receipt."
+      }
     },
     {
       "id": "BE",
@@ -670,7 +675,7 @@
           "pin": "D09",
           "row": 33,
           "side": "input",
-          "triangle": false,
+          "triangle": true,
           "reference": "AG.D09",
           "point": [
             138,
@@ -1425,11 +1430,11 @@
       "grid": "5M",
       "pins": [
         {
-          "pin": "D07",
+          "pin": "B07",
           "row": 82,
           "side": "input",
           "triangle": true,
-          "reference": "AS.D07",
+          "reference": "AS.B07",
           "point": [
             138,
             82
@@ -1673,7 +1678,7 @@
     },
     {
       "id": "AC fanout",
-      "driver": "AC.D07",
+      "driver": "AC.D07✲",
       "targets": [
         "AD.B02"
       ],
@@ -1860,7 +1865,7 @@
       "id": "AR.B10",
       "driver": "AR.B10",
       "targets": [
-        "AS.D07"
+        "AS.B07"
       ],
       "source_reviewed": true
     },
@@ -3226,7 +3231,7 @@
     {
       "column": 139,
       "row": 82,
-      "text": "D07◺"
+      "text": "B07◺"
     },
     {
       "column": 150,
@@ -4132,5 +4137,28 @@
       }
     ],
     "scope": "Exact printed function-label tokens only; all geometric and routing fields unchanged"
+  },
+  "card_3308_native_and_human_review_v1": {
+    "authority": "Completed independent native review and all17 direct human answers",
+    "review_plan": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-data\\3308-universal\\review\\Normalized correction plan.json",
+      "sha256": "4148311fa956444c058b19402504782c8991759bb70cbfaed1428bf7e8f71e15"
+    },
+    "human_answers": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-data\\3308-universal\\review\\Manual review queue.json",
+      "sha256": "81f7a293d86cf7a6d11ab4ecb6ddc672ec322a2f7fafe2ae5d8458c12b4d99a2"
+    },
+    "case_ids": [
+      "MC743:AC",
+      "MC743:AG",
+      "MC743:AS"
+    ],
+    "source": {
+      "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC743 CANCEL.tif",
+      "sha256": "74ce319e7a6fbf2aa4339941cf5cb09c0a60384d1418e41aeac8a561acd91946"
+    },
+    "predecessor_txt_sha256": "6f2eee768b54992fbb182398e897e0f6ed7ad5665d171845c682f968eb0d737a",
+    "predecessor_json_sha256": "404e80236e34a1d4f4394df1a3958c09bce3b059eaf18ffe7d0cb19edb0118e4",
+    "scope": "Bounded printed fields and active metadata; original box and wire geometry preserved."
   }
 }

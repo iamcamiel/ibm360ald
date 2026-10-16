@@ -1,0 +1,52 @@
+DR211 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 54,
+  "A1_documented_native_exceptions": [],
+  "A1_total_card_portions": 54,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 76,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  {
+    "detail": "Native TIFF visually reviewed, including separate parallel control stems. DJ unnamed right terminal drives DK; AM B12 drives AG 4B13; DS B07 continues separately to DR015 DS4. The upper c66 AM segment ends at row24 and lower c66 DS segment starts at row29; no join is inferred across that gap."
+  },
+  {
+    "detail": "Native AK location C-D4G6 corrected from provisional C-D4C6 after focused enlarged TIFF review; all 54 printed card portions now agree with socket listing."
+  },
+  {
+    "detail": "EU D10 outer feedback loops to AG 4D13. It crosses DD4 at row31 without a printed diamond. Upper DT common AA D11/AF D10 continuation at row66 and lower DF to BF D07 continuation at row67 remain separate."
+  },
+  {
+    "detail": "EH B05 and D08 have a visible isolated local U-shaped wire joining the two input terminals, with no marked output driver. This source-drawn input-only net is retained explicitly."
+  },
+  {
+    "detail": "Printed numeric input prefixes remain literal digit controls. All source diamonds and pin-border wedges are separately recorded; crossings carry no connection without a visible diamond."
+  }
+]
+
+Original scan order
+Before DR201 SCAN CODE CONTROL LINES DECODE FIELDS 17-19 25-30 31-35.tif
+After DS011 FIRST LEVEL DECODER ROS FUNCTI BRANCHES FIELD J SENSE LTH BIT.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: DK: R TO -> R T0, AH: R TO -> R T0, AJ: R TO -> R T0, DM: R TO -> R T0, DR: R TO -> R T0, EB: R TO -> R T0, CC: R TO -> R T0, EM: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+Native circuit/portion source review: EP unit U03AA -> U03AR. Original TIFF SHA-256 092b8abd2eeddc2a314dac028e9dbe7710b15f2ce14d52371a57547c2d4c6812. No wiring, pins or geometry changed.
