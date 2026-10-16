@@ -5,8 +5,8 @@ Run from the repository root with Python 3.12 or later:
   python tools/references/build_uniform_socket_listings.py --output ../socket-listing-build
   python tools/references/verify_uniform_socket_listings.py --dataset ../socket-listing-build
 
-Only the Python standard library is required. --repo selects a different local
-repository. The output must be a separate root, outside the canonical ALD,
+Only the Python standard library is required. --repo selects the checkout root;
+run that checkout's installed copy of the script. The output must be a separate root, outside the canonical ALD,
 json, csv and notes trees. Running the builder does not change those trees.
 
 The builder selects all accepted files whose names contain SOCKET LISTING,

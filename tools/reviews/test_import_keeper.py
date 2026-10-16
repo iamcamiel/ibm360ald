@@ -56,6 +56,27 @@ class KeeperTests(unittest.TestCase):
         actual = self.entries(); self.assertEqual(set(actual), set(wanted))
         for name, path in actual.items(): self.assertEqual(path.read_bytes(), name.encode())
 
+    def test_uniform_socket_tools_survive_a_future_import(self):
+        wanted = ['tools/references/build_uniform_socket_listings.py',
+                  'tools/references/verify_uniform_socket_listings.py',
+                  'tools/references/socket_text_parser.py',
+                  'tools/references/socket_pin_validation.py',
+                  'tools/references/test_uniform_socket_listings.py',
+                  'tools/references/README.txt']
+        for name in wanted:self.put(name, name.encode())
+        self.put('tools/references/__pycache__/cache.pyc')
+        self.put('tools/references/temporary-probe.py')
+        self.assertEqual(set(self.entries()), set(wanted))
+
+    def test_uniform_socket_dataset_and_its_proof_survive_a_future_import(self):
+        wanted = ['json/Socket listings uniform/Socket listings.json',
+                  'json/Socket listings uniform/pages/A1 Socket Listing/A1111-01.json',
+                  'csv/Socket listings uniform/Portion references.csv',
+                  'notes/Socket listings uniform/Build manifest.json',
+                  'notes/Reference data/Uniform socket listings/Independent verification.json']
+        for name in wanted:self.put(name, name.encode())
+        self.assertEqual(set(self.entries()), set(wanted))
+
     def test_current_pointer_and_preview_included_with_quartet_hash_validation(self):
         pointer, doc = self.pointer()
         self.assertEqual(set(self.entries()), {'notes/Folder/PAGE source review current.json', 'notes/Folder/PAGE preview.png'})

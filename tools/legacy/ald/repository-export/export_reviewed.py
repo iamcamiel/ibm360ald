@@ -119,6 +119,14 @@ def xx_independent_acceptance(review):
  return bool(evidence) and all(checks.get(k) is True for k in required)
 
 def receipts():
+ # Registered A1 corrections cannot fall back to historical columns approval.
+ tool_dir=ROOT/'ibm360ald/tools/reviews'
+ if str(tool_dir) not in sys.path:sys.path.insert(0,str(tool_dir))
+ from register_a1_application import validate_registered_applications
+ validate_registered_applications(
+  AUDIT/'A1 table application registry.json',
+  ROOT/'tmp/ald-text/ald/manual-verification/contextual-cross-reference-v3/Recorded and recovered UTF8 application current audit.json',
+  ROOT,EXPORTS,SOURCE)
  records=defaultdict(list)
  def application_target(item,page):
   # Printed page codes can be shared by independently scanned subpages.

@@ -64,6 +64,15 @@ class UniformDatasetTests(unittest.TestCase):
         self.assertEqual(index['records'][0]['unused_sockets'],['A3'])
         self.assertEqual(out[0]['supplementary_tables'],[table])
 
+    def test_source_filename_cannot_escape_output_root(self):
+        p=page();p['source_relative']='../../../../escaped.tif'
+        index,out=builder.build([p],{'records':[record()]})
+        with tempfile.TemporaryDirectory() as directory:
+            target=Path(directory)/'candidate'
+            with self.assertRaisesRegex(ValueError,'must be relative'):
+                builder.write_dataset(Path(directory),target,[p],index,out,[])
+            self.assertFalse((Path(directory)/'escaped.json').exists())
+
     def test_missing_header_and_duplicate_ids_rejected(self):
         r=record();r['header_source']['scan_id']='unknown'
         with self.assertRaisesRegex(ValueError,'header'):builder.build([page()],{'records':[r]})

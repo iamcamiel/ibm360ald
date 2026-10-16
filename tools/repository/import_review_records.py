@@ -745,7 +745,7 @@ def retired_kt_fact_keepers(workspace):
 
 
 def source_review_repository_keepers(repo):
-    """Keep reusable source-review tools and already published portable evidence.
+    """Keep reusable review/reference tools and published portable evidence.
 
     These are repository-owned records, not new acceptance discovery. Preserve
     their exact bytes in the next rebuilt inventory, including fonts and other
@@ -753,7 +753,9 @@ def source_review_repository_keepers(repo):
     """
     repo = Path(repo).resolve()
     keep = set()
-    for branch in ['tools/reviews', 'notes/Source reviews']:
+    for branch in ['tools/reviews', 'notes/Source reviews',
+                   'json/Socket listings uniform', 'csv/Socket listings uniform',
+                   'notes/Socket listings uniform', 'notes/Reference data/Uniform socket listings']:
         root = repo/branch
         for path in root.rglob('*'):
             if not path.is_file() or '__pycache__' in path.parts or path.suffix.lower() in {'.pyc', '.lock', '.tmp'}:
@@ -763,6 +765,14 @@ def source_review_repository_keepers(repo):
     for name in ['import_source_review.py', 'test_import_source_review.py',
                  'refresh_inventory.py', 'test_refresh_inventory.py']:
         path = repo/'tools/repository'/name
+        if path.is_file(): keep.add(path)
+    for name in ['README.txt', 'build_uniform_socket_listings.py',
+                 'verify_uniform_socket_listings.py', 'socket_text_parser.py',
+                 'socket_listing_records.py', 'socket_pin_validation.py',
+                 'test_uniform_socket_listings.py', 'test_verify_uniform_socket_listings.py',
+                 'test_socket_text_parser.py', 'test_socket_listing_records.py',
+                 'test_socket_pin_validation.py']:
+        path = repo/'tools/references'/name
         if path.is_file(): keep.add(path)
     for pointer in (repo/'notes').rglob('* source review current.json'):
         document = read_json(pointer)

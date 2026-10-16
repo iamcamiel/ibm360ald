@@ -59,17 +59,21 @@ def parse_listings(pages):
             issues.append({'kind':'column_rules_not_found','page':page_key,'scan_id':scan});continue
         for left,right in spans:
             footer=False;plug_list=False;saw_content=False
+            header_margins={m.start(1) for line in lines if (m:=re.match(r'^\s{0,10}('+SOCKET+r')\s+(?:SINGLE|DOUBLE|CABL|XOVR|CONNECTOR|EMPTY|UNUSED)',line[left:right]))}
             for row,line in enumerate(lines):
                 literal=line[left:right]
                 lexical=literal.replace('.',' ') if literal.count('.')>=3 else literal
                 if left==0 and row>80:
                     marginal=re.match(r'^(\s{0,3})[A-Z0-9](?=[A-Z]|\s|─|✲|\*)',lexical)
+                    if re.match(r'^\s{0,3}000(?=\s|$)',lexical):
+                        lexical=re.sub(r'^(\s{0,3})000',lambda m:m[1]+'   ',lexical)
                     if marginal:
                         at=marginal.end()-1;lexical=lexical[:at]+' '+lexical[at+1:]
                 text=lexical.strip()
                 if not text:continue
                 if 'SOLID LOGIC' in line or 'DESIGN AUTOMATION' in line or (row<5 and 'SOCKET LISTING' in line):continue
                 evidence={'page':page_key,'scan_id':scan,'row':row,'column':left,'literal':literal}
+                listing_socket=None
                 # Page headings and boxed footers are preserved by the caller's
                 # original row inventory, never interpreted as socket contents.
                 if 'SOLID LOGIC' in text or 'DESIGN AUTOMATION' in text:continue
@@ -88,13 +92,16 @@ def parse_listings(pages):
                     if saw_content:close()
                     continue
                 if re.search(r'\b(?:BOARD\s+0[12][A-Z]-|MACH\.|FRAME\b|P\.N\.|IBM CORP|PREV\. ENGR|PRES\. ENGR|DATE\s+\d)',text):continue
+                ruled_label=re.fullmatch(r'\s*('+SOCKET+r')[─]{8,}\s*',lexical)
+                if ruled_label and active and ruled_label[1] in active['sockets']:
+                    close();continue
                 repeated=re.match(r'^\s{0,10}('+SOCKET+r')(\s+)(.+)$',lexical.rstrip())
                 if not saw_content and active and repeated and re.sub(r'(?<=\d)[BT]$','',repeated[1]) in {re.sub(r'(?<=\d)[BT]$','',x) for x in active['sockets']} and not re.search(r'SINGLE|DOUBLE|CABL|XOVR|CONNECTOR',repeated[3]):
-                    lexical=' '*repeated.start(3)+repeated[3];text=lexical.strip()
+                    listing_socket=repeated[1];lexical=' '*repeated.start(3)+repeated[3];text=lexical.strip()
                 header=re.match(r'^\s{0,10}('+SOCKET+r')(?:\s+(.*))?$',lexical.rstrip())
                 if header:
                     socket,tail=header[1],header[2] or ''
-                    bare_allowed=header.start(1)<=3 or (active and active['kind']=='DOUBLE CARD' and header.start(1)==active['header_source'].get('socket_column',left)-left)
+                    bare_allowed=header.start(1)<=3 or header.start(1) in header_margins or (active and socket in active['sockets']) or (active and active['kind']=='DOUBLE CARD' and header.start(1)==active['header_source'].get('socket_column',left)-left)
                     good=(not tail and bare_allowed) or bool(re.search(r'CARD|SINGLE|DOUBLE|CABL|XOVR|SOCKET|CONNECTOR|EMPTY|UNUSED|[0-9�]{7}\s+[0-9�]{4}',tail))
                     if good:
                         kind=_kind(tail)
@@ -137,12 +144,20 @@ def parse_listings(pages):
                 dest=re.search(r'GOES TO\s+(\S+)',text)
                 if dest:active['destination']=dest[1];reference=None;recognized=True
                 if active['kind'] in ('CABL','XOVR','CONNECTOR'):
-                    wire=re.fullmatch(r'\s*(?:'+SOCKET+r'\s+)?('+PAGE+r')\s+([A-Z�]{2})\s*',lexical)
+                    wire=re.fullmatch(r'\s*(?:'+SOCKET+r'\s+)?('+PAGE+r')\s*([A-Z�]{2})\s*',lexical)
                     if wire:active['connector_listing']=wire[1];active['wire_code']=wire[2];recognized=True
                 # Physical connector labels are not restricted to SLT B/D pins.
                 pin=re.fullmatch(r'\s*(?:('+SOCKET+r')[ .]+)?([A-Z�][0-9�]{2})\s+('+PAGE+r'[A-Z0-9�.]+)\s*',lexical)
                 if pin:
-                    active['pins'].append({'pin':pin[2],'printed_socket':pin[1],'ALD_reference':pin[3],'evidence':evidence});recognized=True
+                    active['pins'].append({'pin':pin[2],'printed_socket':pin[1],'listing_socket':listing_socket,'ALD_reference':pin[3],'evidence':evidence});recognized=True
+                unreferenced_pin=re.fullmatch(r'\s*(?:('+SOCKET+r')[ .]+)?([A-Z�][0-9�]{2})\s*',lexical)
+                if unreferenced_pin and mode!='unused_pins' and active['kind'] in ('CABL','XOVR','CONNECTOR'):
+                    active['pins'].append({'pin':unreferenced_pin[2],'printed_socket':unreferenced_pin[1],'listing_socket':listing_socket,'ALD_reference':None,'reference_status':'no_reference_printed','evidence':evidence});recognized=True
+                if not pin:
+                    malformed=re.fullmatch(r'\s*(?:('+SOCKET+r')[ .]+)?([A-Z�][0-9�]{2})\s+([A-Z�][A-Z0-9�]{4}[A-Z0-9�.]+)\s*',lexical)
+                    if malformed:
+                        active['pins'].append({'pin':malformed[2],'printed_socket':malformed[1],'listing_socket':listing_socket,'ALD_reference':malformed[3],'evidence':evidence})
+                        issues.append({'kind':'malformed_printed_ALD_reference','record_id':active['id'],'literal_reference':malformed[3],'evidence':evidence});recognized=True
                 is_card=active['card_type'] is not None or active['kind'] in ('SINGLE CARD','DOUBLE CARD','UNSPECIFIED')
                 pg=re.search(r'(?<![A-Z0-9�])('+PAGE+r')\s+((?:[A-Z0-9�]{1,2}\s*)+)$',lexical.rstrip()) if is_card and mode not in ('unused_portions','unused_pins') else None
                 if pg:

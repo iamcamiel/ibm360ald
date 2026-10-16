@@ -51,4 +51,26 @@ class SourceTextParser(unittest.TestCase):
         self.assertTrue(any(x['kind']=='orphan_significant_line' for x in parse_listings([p])['issues']))
 
 
+    def test_repeated_listing_socket_and_dotted_pin_socket_are_distinct(self):
+        p=self.page(['T7 CONNECTOR'],['T7           J8.D06 MC645BL4'])
+        pin=parse_listings([p])['records'][0]['pins'][0]
+        self.assertEqual((pin['listing_socket'],pin['printed_socket'],pin['pin']),('T7','J8','D06'))
+    def test_unused_pin_without_reference_is_retained_not_guessed(self):
+        p=self.page(['A2 CABL 5802425','   A2 B03'])
+        pin=parse_listings([p])['records'][0]['pins'][0]
+        self.assertIsNone(pin['ALD_reference']);self.assertEqual(pin['reference_status'],'no_reference_printed')
+    def test_indented_bare_empty_socket_matches_column_header_margin(self):
+        p=self.page(['        A2','────────────────────────────','        A3 SINGLE CARD','           5803308 3308'])
+        self.assertEqual([x['sockets'] for x in parse_listings([p])['records']],[['A2'],['A3']])
+    def test_double_second_half_can_begin_next_column(self):
+        p=self.page(['E6 DOUBLE CARD'],['E7          5801524 1524','      EF111 A1 B1'])
+        r=parse_listings([p])['records'][0];self.assertEqual(r['sockets'],['E6','E7']);self.assertEqual(r['card_type'],'1524')
+    def test_marginal_page_digit_does_not_hide_late_socket_header(self):
+        left=['']*90+[' 4      A2 SINGLE CARD','        5803308 3308']
+        self.assertEqual(parse_listings([self.page(left)])['records'][0]['card_type'],'3308')
+    def test_type_without_part_number_remains_literal(self):
+        r=parse_listings([self.page(['A2 SINGLE CARD','   6194'])])['records'][0]
+        self.assertEqual(r['card_type'],'6194');self.assertIsNone(r['part_number'])
+
+
 if __name__=='__main__':unittest.main()

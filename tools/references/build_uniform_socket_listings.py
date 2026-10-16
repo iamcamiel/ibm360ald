@@ -130,6 +130,12 @@ def normalize_record(record, ordinal):
         references.append({'page': ref.get('page', ref.get('ald_page')),
             'portions': [str(x) for x in ref.get('portions', [])],
             'source_spans': ref.get('evidence', [])})
+    pins = [{'pin': pin.get('pin'), 'printed_socket': pin.get('printed_socket'),
+             'listing_socket': pin.get('listing_socket'),
+             'ALD_reference': pin.get('ALD_reference'),
+             'reference_status': pin.get('reference_status',
+                 'listed' if pin.get('ALD_reference') else 'no_reference_printed'),
+             'evidence': pin.get('evidence')} for pin in record.get('pins', [])]
     return {'id': str(record.get('id', f'record-{ordinal:05d}')),
         'board': record.get('board'),
         'sockets': [str(x) for x in record.get('sockets', [])],
@@ -137,7 +143,7 @@ def normalize_record(record, ordinal):
         'kind': kind_name(record.get('kind')), 'kind_literal': record.get('kind'),
         'part_number': record.get('part_number'), 'card_type': record.get('card_type'),
         'ambiguous_fields': record.get('ambiguous_fields', {}),
-        'references': references, 'pin_references': record.get('pins', []),
+        'references': references, 'pin_references': pins,
         'unused_portions': record.get('unused_portions', []),
         'unused_pins': record.get('unused_pins', []),
         'unused_sockets': record.get('unused_sockets', []),
@@ -219,6 +225,7 @@ def build(pages, parser_result):
     for table in tables:
         tables_by_scan[evidence_page(table['evidence'], by_scan, by_name)['scan_id']].append(table)
     for page in pages:
+        nested_evidence(page.get('board_proof', []), 'board field')
         raw = reconstruct_text(page)
         if raw is not None and digest(raw) != page['text_sha256']:
             raise ValueError('Source grid cannot reconstruct exact TXT: ' + page['page'])
@@ -233,6 +240,7 @@ def build(pages, parser_result):
             'continuation_record_ids': page_continuations[page['scan_id']]})
     counts = {'source_pages': len(pages), 'boards': len({p['board'] for p in pages}),
         'logical_records': len(records), 'record_kinds': dict(Counter(r['kind'] for r in records)),
+        'card_instances': sum(r['card_type'] is not None and 'CARD' in str(r['kind_literal']) for r in records),
         'portion_references': sum(len(ref['portions']) for r in records for ref in r['references']),
         'source_spans_verified': len(spans_checked), 'parser_issues': len(parser_result.get('issues', []))}
     index = {'schema': SCHEMA, 'document_kind': 'socket_listing_collection', 'counts': counts,
@@ -246,7 +254,12 @@ def build(pages, parser_result):
 def write_dataset(repo, output, pages, index, output_pages, bindings):
     files = []
     def put(relative, raw):
-        path = output / relative
+        relative = Path(relative)
+        if relative.is_absolute() or '..' in relative.parts or relative.drive:
+            raise ValueError('Output path must be relative: ' + str(relative))
+        path = (output / relative).resolve()
+        if not path.is_relative_to(output.resolve()):
+            raise ValueError('Output path escapes build root: ' + str(relative))
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
         files.append({'path': Path(relative).as_posix(), 'sha256': digest(raw)})
@@ -293,6 +306,8 @@ def main():
     parser.add_argument('--repo', type=Path, default=ROOT)
     parser.add_argument('--output', type=Path)
     args = parser.parse_args();repo = args.repo.resolve()
+    if not Path(__file__).resolve().is_relative_to(repo):
+        parser.error('Run the installed copy of this tool in the selected repository')
     output = (args.output or repo.parent/'tmp/ald-text/ald/uniform-socket-listings').resolve()
     if output == repo or any(output.is_relative_to(repo/p) for p in ['ALD','json','csv','notes']):
         parser.error('Choose a separate output root, not a canonical data subtree')

@@ -127,6 +127,25 @@ accepted_successors(...) returns exact-target records and preservation_files.
 The reusable scoped repository importer consumes those validated records to
 mirror an accepted successor over an otherwise verified export baseline.
 
+A1 TABLE APPLICATIONS
+
+register_a1_application.py registers an already independently reviewed and
+published socket-table literal correction. It does not stage or apply source
+changes and does not convert a table into an ALD nodes model. Preflight is the
+default; --register updates only the existing current-field adapter and the
+mandatory A1 table registry, retaining their exact predecessors.
+
+Supply --stage, --publication, --acceptance, --adapter, --registry, --workspace,
+--exports and --source-root. The accepted table schema has a real current TXT,
+review-notes file and preview, plus immutable page-specific columns evidence.
+Historical columns-reviewed arrays remain unchanged. Shared collection JSON
+updates stay in the immutable publication review, rather than becoming live
+dependencies of an unrelated table page.
+
+The exporter calls validate_registered_applications before reading legacy
+receipts. Missing or changed registered proof, adapter item or current table
+companions blocks fallback to the old columns-file-presence rule.
+
 Tests (all sources/destinations are disposable fixtures):
 
   python -m unittest discover -s tools/reviews -p "test*.py" -v
