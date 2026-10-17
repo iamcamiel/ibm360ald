@@ -13,16 +13,15 @@ from hashlib import sha256
 import json
 from pathlib import Path
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
-import read_page as page_reader
+import card_source as page_reader
 import re
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "references"))
-from current_card_identity import catalogue_identity
+from card_source import physical_contact, resolve_net_port
 
 import generate_card
 import render_composite_card
+import component_forms
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_OUTPUT = ROOT.parent / "tmp/ald-text/ald/card-data"
@@ -50,126 +49,6 @@ def verify_binding(item):
     if not path.is_absolute(): path = ROOT / path
     actual = digest(path) if path.is_file() else None
     return {**item, "actual_sha256":actual, "current":actual==item.get("sha256")}
-
-def physical_contact(raw):
-    """Parse a physical name without interpreting its numeric annotation."""
-    if raw is None:
-        return None
-    text = str(raw).strip()
-    match = re.fullmatch(r"\d*(?P<pin>[BDGJ](?:0[2-9]|1[0-3]))[✲*]?T?", text)
-    return match.group("pin") if match else None
-
-def resolve_net_port(node, endpoint, side, adapted_pins=None):
-    """Resolve local terminal identity before its printed contact label.
-
-    Explicit source aliases take precedence over synthesized label aliases.
-    Failed lookup is unresolved, never evidence of an anonymous terminal.
-    """
-    node_id = str(node.get("id", node.get("node", "")))
-    if not isinstance(endpoint, str) or not endpoint.startswith(node_id + "."):
-        return {"status": "unresolved", "reason": "endpoint outside scoped node"}
-    suffix = endpoint[len(node_id) + 1:]
-    raw_ports = node.get("pins", [])
-    if not isinstance(raw_ports, list) or any(not isinstance(port, dict) for port in raw_ports):
-        return {"status": "unresolved", "reason": "unsupported raw terminal schema"}
-    ports = [(i, p) for i, p in enumerate(raw_ports) if p.get("side") == side]
-
-    def k_marked(port):
-        return any(port.get(k) == "K" for k in
-                   ("border_marker", "border_control", "border_qualifier", "printed_qualifier", "marker"))
-
-    def contact_label(port, value):
-        contact = physical_contact(value)
-        if contact is None and k_marked(port) and isinstance(value, str):
-            match = re.fullmatch(r"K([BDGJ](?:0[2-9]|1[0-3]))[✲*]?", value.strip())
-            if match:
-                contact = match.group(1)
-        return contact
-
-    def declared_aliases(port):
-        names = set()
-        for field in ("reference", "terminal_id", "ref", "id", "port_id", "key", "alias",
-                      "aliases", "references", "terminal_ids"):
-            values = port.get(field, [])
-            for value in values if isinstance(values, (list, tuple)) else [values]:
-                if isinstance(value, int) and not isinstance(value, bool):
-                    value = str(value)
-                if isinstance(value, str) and value:
-                    names.add(value if value.startswith(node_id + ".") else node_id + "." + value)
-        return names
-
-    def label_aliases(port):
-        names = {node_id + "." + port[k] for k in ("pin", "printed_pin")
-                 if isinstance(port.get(k), str) and port[k]}
-        if k_marked(port):
-            for value in list(names | declared_aliases(port)):
-                tokens = value.split(".")
-                for token in tokens:
-                    if token.startswith("K") and contact_label(port, token):
-                        names.add(".".join(token[1:] if t == token else t for t in tokens))
-        return names
-
-    matches = [(i, port) for i, port in ports if endpoint in declared_aliases(port)]
-    basis = "exact side-scoped declared terminal alias"
-    if not matches:
-        matches = [(i, port) for i, port in ports if endpoint in label_aliases(port)]
-        basis = "exact side-scoped printed-label alias"
-    if not matches:
-        # Some source models explicitly qualify endpoint labels with a row.
-        qualified = re.fullmatch(r"(.+)@(\d+)", suffix)
-        row = int(qualified.group(2)) if qualified else None
-        label = qualified.group(1) if qualified else suffix
-        named_contact = physical_contact(label)
-        if named_contact:
-            matches = [(i, port) for i, port in ports
-                       if contact_label(port, port.get("pin")) == named_contact
-                       and (row is None or port.get("absolute_row", port.get("row")) == row)]
-            basis = "exact side-scoped physical label" + (" and row" if row is not None else "")
-        elif qualified and label.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
-            matches = [(i, port) for i, port in ports
-                       if port.get("absolute_row", port.get("row")) == row]
-            basis = "exact side-scoped terminal row"
-        else:
-            # Unqualified numbered forms are rows only when an ordinal index
-            # is impossible. Ambiguous zero/one-based ordinals stay unresolved.
-            numeric = re.fullmatch(r"(?:in|input)(\d+)" if side == "input" else r"(?:out|output)(\d+)", suffix, re.I)
-            if numeric and int(numeric.group(1)) > len(ports):
-                row = int(numeric.group(1))
-                matches = [(i, port) for i, port in ports
-                           if port.get("absolute_row", port.get("row")) == row]
-                basis = "unambiguous local terminal row convention"
-            elif suffix.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
-                matches = ports
-                basis = "single local side-specific generic endpoint"
-    if len(matches) != 1:
-        return {"status": "unresolved", "reason": "ambiguous terminal alias" if matches else "terminal alias not found",
-                "candidate_indices": [i for i, _ in matches]}
-    index, raw = matches[0]
-    effective = raw
-    if adapted_pins is not None:
-        if index >= len(adapted_pins) or any(adapted_pins[index].get(k) != raw.get(k) for k in ("side", "row")):
-            return {"status": "unresolved", "reason": "adapted/raw port identity differs", "port_index": index}
-        effective = adapted_pins[index]
-    label = effective.get("pin")
-    contact = contact_label(raw, label)
-    raw_contact = contact_label(raw, raw.get("pin"))
-    mirrors = {contact_label(raw, raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
-    mirrors.discard(None)
-    semantic = bool(re.fullmatch(
-        r"(?:(?:[A-Z][A-Z0-9]*_)?(?:IN|OUT)(?:[_-].*)?|INPUT|OUTPUT|TIE|TERMINAL|FEEDTHROUGH)", str(label), re.I))
-    if contact is None and semantic and len(mirrors) == 1:
-        contact = next(iter(mirrors))
-    result = {"port_index": index, "basis": basis, "raw_port": deepcopy(raw),
-              "effective_label": label, "physical_contact": contact}
-    if len(mirrors) > 1 or (raw_contact and mirrors and mirrors != {raw_contact}):
-        return {**result, "status": "unresolved", "reason": "conflicting raw physical contact mirrors"}
-    if contact:
-        return {**result, "status": "numbered"}
-    placeholder = label is None or str(label).strip() == "" or re.fullmatch(
-        r"(?:IN|OUT)\d*|[AB]|(?:input|output)\d*", str(label), re.I)
-    if placeholder and not mirrors:
-        return {**result, "status": "pinless"}
-    return {**result, "status": "unresolved", "reason": "unreadable or unsupported printed contact label"}
 
 
 def primary(label):
@@ -255,33 +134,12 @@ def normalize_occurrence(raw, corrections, uncertainties):
     return item, changes
 
 def locate_catalog_node(model, occurrence):
-    """Resolve exact source pointer first; anonymous IDs never identify a node."""
-    nodes = model.get("nodes")
-    if not isinstance(nodes, list):
-        return None, {"reason": "model nodes is not a list"}
-    pointer = occurrence.get("node_pointer")
-    expected_id = occurrence.get("node")
-    if pointer is not None:
-        match = re.fullmatch(r"/nodes/(0|[1-9][0-9]*)", pointer) if isinstance(pointer, str) else None
-        if not match:
-            return None, {"reason": "invalid node pointer", "node_pointer": pointer}
-        index = int(match.group(1))
-        if index >= len(nodes) or not isinstance(nodes[index], dict):
-            return None, {"reason": "node pointer does not identify an object", "node_pointer": pointer}
-        node = nodes[index]
-        if expected_id not in (None, "") and node.get("id") != expected_id:
-            return None, {"reason": "node pointer and declared ID disagree", "node_pointer": pointer,
-                          "expected_id": expected_id, "actual_id": node.get("id")}
-        return node, {"method": "exact node_pointer", "node_pointer": pointer}
-    if expected_id in (None, ""):
-        return None, {"reason": "missing pointer and non-null ID"}
-    matches = [node for node in nodes if isinstance(node, dict) and node.get("id") == expected_id]
-    if len(matches) != 1:
-        return None, {"reason": "non-unique ID fallback", "id": expected_id, "matches": len(matches)}
-    return matches[0], {"method": "unique non-null ID", "id": expected_id}
+    node,pointer,problem=page_reader.exact_source_node(model,occurrence)
+    return node, ({'reason':problem,'node_pointer':occurrence.get('node_pointer')} if problem else
+                  {'method':'exact node_pointer' if occurrence.get('node_pointer') is not None else 'unique non-null ID','node_pointer':pointer})
 
 
-def load_evidence(card, overlay):
+def load_evidence(card, overlay, component_authority_path=None):
     catalog_path = ROOT / "json/Card types current" / f"{card}.json"
     if not catalog_path.is_file():
         raise ValueError(f"No current occurrence catalog for {card}")
@@ -311,7 +169,7 @@ def load_evidence(card, overlay):
     manifest_path = ROOT / "notes/Content data manifest.json"
     manifest = read(manifest_path)
     models = {}
-    bindings = [binding(catalog_path), binding(manifest_path), binding(Path(__file__).resolve().parents[1] / "references/current_card_identity.py")]
+    bindings = [binding(catalog_path), binding(manifest_path), binding(Path(page_reader.__file__))]
     bindings.extend(binding(path) for path in page_reader.runtime_paths(ROOT))
     for entry in manifest["files"]:
         if entry.get("role") != "Published page content model":
@@ -323,7 +181,7 @@ def load_evidence(card, overlay):
         if digest(path) != entry["sha256"]:
             uncertainties.append({"kind": "current model differs from published hash", "page": page, "path": str(path)})
             continue
-        models[page] = page_reader.read(path)
+        models[page] = page_reader.read(path,ROOT)
         bindings.append(binding(path))
     for page in sorted(pages - set(models)):
         uncertainties.append({"kind": "current source model unavailable", "page": page})
@@ -334,8 +192,8 @@ def load_evidence(card, overlay):
         if node is None:
             uncertainties.append({"kind":"catalog node unresolved in current hash-bound model","page":page,"node":raw.get("node"),"source_lookup":source_lookup})
             continue
-        node, identity_audit = catalogue_identity(node)
-        if identity_audit["status"] == "conflict":
+        identity_audit = node.get("_identity_conflict")
+        if identity_audit:
             uncertainties.append({"kind":"conflicting raw model card identity aliases", "page":page, "node":raw.get("node"), "identity_adaptation":identity_audit})
             continue
         differences=[]
@@ -383,9 +241,37 @@ def load_evidence(card, overlay):
     else:
         power = {}
         uncertainties.append({"kind": "module kind lacks one unambiguous ordinary SLT single/double pinout", "observed_widths": sorted(widths), "listing_kinds": sorted(kinds),"circuit_identifiers":sorted(circuit_codes)})
+    profiles,component_binding=component_forms.reviewed_components(ROOT,component_authority_path,observations,widths,kinds,catalog.get("full_part_numbers_observed",[]))
+    if profiles:
+        authorized_power=next(iter(profiles.values()))["power_contacts"]
+        if "power_contacts" in overlay and overlay["power_contacts"]!=authorized_power:
+            raise ValueError("Supplement power contacts differ from current component authority")
+        power=deepcopy(authorized_power)
+        catalog["_reviewed_component_forms"]=profiles
+        bindings.append(component_binding)
+        uncertainties[:]=[u for u in uncertainties if u.get("kind")!="module kind lacks one unambiguous ordinary SLT single/double pinout"]
     # Deduplicate exact source bindings while preserving deterministic order.
     bindings = sorted({(b["path"], b["sha256"]): b for b in bindings}.values(), key=lambda b:b["path"])
     return catalog, observations, models, power, bindings, changes, uncertainties
+
+def annotation_supply_driver(raw_nodes, drivers, power):
+    """Recognize only an explicitly reviewed non-card ground service terminal.
+
+    A pin named like a supply rail on a real card is not sufficient evidence.
+    Mixed-driver nets and unreadable/unreviewed pseudo-blocks remain unresolved.
+    """
+    if len(drivers)!=1:return None
+    reference=next(iter(drivers))
+    if not isinstance(reference,str) or '.' not in reference:return None
+    node=raw_nodes.get(reference.split('.',1)[0],{})
+    if (node.get('kind')!='service' or node.get('source_reviewed') is not True
+        or node.get('card_type') not in (None,'') or node.get('portion') not in (None,'')
+        or node.get('unit')!='GND' or not node.get('non_card_evidence')):return None
+    port=resolve_net_port(node,reference,'output')
+    if port['status']!='numbered' or power.get(port['physical_contact'])!='GROUND':return None
+    return {'reference':reference,'power_contact':port['physical_contact'],'level':'GROUND',
+            'source_kind':'reviewed non-card ground service terminal'}
+
 
 def derive_semantics(card, catalog, observations, models, power, uncertainties):
     portions = defaultdict(list)
@@ -416,6 +302,16 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
             uncertainties.append({"kind": "canonical circuit form not established by manual", "portion": portion, "circuit_identifier": circuit, "observed_functions": dict(labels)})
         node = {"portion": portion, "id": portion, "card_type": card, "function": function, "unit": circuit,
                 "_inputs": [], "_outputs": [], "observations": [{"page": o["page"], "node": o["node"]} for o in occurrences]}
+        profile=catalog.get("_reviewed_component_forms",{}).get(circuit)
+        if profile:
+            node["function"]=profile["printed_function"]
+            node["_reviewed_component"]=deepcopy(profile)
+            if profile.get("above_block_caption"):node["above_block_caption"]=profile["above_block_caption"]
+            uncertainties[:]=[u for u in uncertainties if not (u.get("kind")=="canonical circuit form not established by manual" and u.get("portion")==portion)]
+            node["_observed_function_labels"]=sorted({str(o.get("function_label") or "").strip() for o in occurrences})
+            node["_source_auxiliary_labels"]=component_forms.source_labels(occurrences,models)
+            node["_source_pin_literals"]=sorted([{"side":side,"physical_contact":contact,"literal":literal} for side,contact,literal in {
+                (p.get("side"),physical_contact(p.get("pin")),str(p.get("pin"))) for o in occurrences for p in o.get("pins",[]) if physical_contact(p.get("pin")) and str(p.get("pin"))!=physical_contact(p.get("pin"))}],key=lambda p:(p["side"],p["physical_contact"],p["literal"]))
         node["_canonical_triangles"] = triangles
         node["_observed_pinless_counts"] = {}
         node["_observed_pinless_triangles"] = {}
@@ -452,7 +348,13 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
                     readings = {bool(p.get("triangle")) for _,p in entries}
                     wedge = next(iter(readings)) if len(readings) == 1 else False
                     if len(readings) > 1:
-                        uncertainties.append({"kind": "noncanonical decoration differs", "portion": portion, "side": side, "pin": pin})
+                        if profile:
+                            node.setdefault('_source_decoration_variants',[]).append({
+                                'side':side,'pin':pin,'baseline_triangle':wedge,
+                                'status':'Observed source notation variants; no hidden wiring or algebraic equivalence inferred.',
+                                'occurrences':[{'page':o['page'],'node':o['node'],'row':p.get('row'),'triangle':bool(p.get('triangle'))} for o,p in entries]})
+                        else:
+                            uncertainties.append({"kind": "noncanonical decoration differs", "portion": portion, "side": side, "pin": pin})
                 port = {"pin": pin, "triangle": wedge, "side": side, "row": len(node["_inputs"] if side == "input" else node["_outputs"]),
                         "ref": pin, "evidence": [{"page":o["page"],"node":o["node"],"row":p.get("row")} for o,p in entries]}
                 node["_inputs" if side == "input" else "_outputs"].append(port)
@@ -461,6 +363,8 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
     edges = defaultdict(list)
     rejected = []
     endpoint_records = []
+    supply_ties = []
+    supply_ports = set()
     for page, model in sorted(models.items()):
         records = by_page[page]
         raw_nodes = {n.get("id"): n for n in model.get("nodes", [])}
@@ -486,6 +390,16 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
                         uncertainties.append({"kind": "net endpoint identity unresolved", "page": page,
                                               "net_index": net_index, "reference": reference, "side": side,
                                               "resolution": deepcopy(resolution)})
+            supply=annotation_supply_driver(raw_nodes,drivers,power)
+            if supply:
+                for (side,reference),resolution in resolutions.items():
+                    if side!='input' or resolution['status']!='pinless':continue
+                    occurrence=records[reference.split('.',1)[0]]
+                    supply_ports.add((page,occurrence['node'],resolution['port_index']))
+                    supply_ties.append({'page':page,'net_index':net_index,'net_id':net.get('id'),
+                        'portion':occurrence['portion'],'node':occurrence['node'],'target':reference,
+                        'target_port_index':resolution['port_index'],**deepcopy(supply),
+                        'interpretation':'Explicit page supply tie, omitted from signal wiring; no internal card edge inferred.'})
             if resolutions:
                 endpoint_records.append({"page": page, "net_index": net_index, "net_id": net.get("id"),
                     "declared_driver": deepcopy(net.get("driver")), "declared_targets": deepcopy(net.get("targets", [])),
@@ -556,6 +470,14 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
             node["_outputs"].append({"pin":None,"triangle":node["_observed_pinless_triangles"]["output"],"side":"output","row":0,"ref":"PINLESS"})
         for side,key in (("input","_inputs"),("output","_outputs")):
             expected=node["_observed_pinless_counts"][side]
+            if side=='input':
+                # Remove only those exact anonymous terminals individually proved
+                # to be supply ties; a different use still needs normal tracing.
+                expected=max((sum(1 for index,port in enumerate(o.get('pins',[]))
+                    if port.get('side')=='input' and (port.get('pin') is None or
+                    re.fullmatch(r"(?:IN|OUT)\d+|[AB]|(?:input|output)\d*",str(port.get('pin')),re.I))
+                    and (o['page'],o['node'],index) not in supply_ports)
+                    for o in portions[portion]),default=0)
             routed=sum(p["pin"] is None for p in node[key])
             # A globally named output can recover an unlabelled occurrence of
             # that single output. Multiple anonymous ports remain unresolved.
@@ -570,10 +492,12 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
     for portion in sorted(listed-set(nodes)):
         uncertainties.append({"kind":"listing portion has no current diagram occurrence","portion":portion})
     possible={f"{letter}{number:02}" for letter in ("BDGJ" if set(power)==set(DOUBLE_POWER) else "BD" if set(power)==set(SINGLE_POWER) else "") for number in range(2,14)}
+    if catalog.get("_reviewed_component_forms"):
+        possible={f"{letter}{number:02}" for letter in next(iter(catalog["_reviewed_component_forms"].values()))["contact_banks"] for number in range(2,14)}
     return {"schema":"derived-card-data-v1","card_type":card,"observations":len(observations),
             "pages":len(by_page),"portions":nodes,"edges":final_edges,
             "signal_pins":{pin:{side:sorted(ps) for side,ps in sides.items()} for pin,sides in sorted(contact_ports.items())},
-            "power_pins":power,"rejected_installation_or_unmapped_edges":rejected,
+            "power_pins":power,"source_supply_ties":supply_ties,"rejected_installation_or_unmapped_edges":rejected,
             "source_net_endpoint_resolutions":endpoint_records,
             "unobserved_contacts":sorted(possible-set(power)-set(contact_ports)),
             "unobserved_contact_interpretation":"No connection observed; electrical disconnection is not established.",
@@ -653,6 +577,10 @@ def normalize_free_row_scene(spec):
 
 
 def generic_definition(model, provenance, uncertainties, reviewed_overlay=None):
+    component_width=component_forms.minimum_heading_width(model,uncertainties)
+    if component_width:
+        model=deepcopy(model)
+        model.setdefault("layout_hints",{})["minimum_width"]=max(component_width,model.get("layout_hints",{}).get("minimum_width",0))
     geometry = render_composite_card.prepare(model)
     boundary_review=None
     if model.get("layout_hints",{}).get("row_step")==1:
@@ -719,6 +647,7 @@ def generic_definition(model, provenance, uncertainties, reviewed_overlay=None):
         spec["review_status"]="reviewed topology and notation; private unreviewed graph placement"
         if "header" in reviewed_overlay:
             spec["header"]=reviewed_header(reviewed_overlay,model)
+    component_forms.decorate_definition(spec,model,reviewed_overlay)
     normalize_free_row_scene(spec)
     spec["nets"]=generate_card.wiring_graph(spec)
     if reviewed_overlay:
@@ -735,6 +664,9 @@ def reviewed_routing_model(overlay,observed_model):
     for portion,fact in overlay["reviewed_portions"].items():
         node={"id":portion,"portion":portion,"card_type":observed_model["card_type"],
               "function":fact["function"],"unit":fact.get("unit",fact.get("circuit_identifier")),"_inputs":[],"_outputs":[]}
+        observed=observed_model["portions"].get(portion,{})
+        for key in ("_reviewed_component","_source_auxiliary_labels","_source_decoration_variants","above_block_caption"):
+            if key in observed:node[key]=deepcopy(observed[key])
         for p in fact["ports"]:
             port={"id":p["id"],"pin":p.get("pin"),"triangle":bool(p["triangle"]),"side":p["side"],"row":0,"ref":p["id"]}
             node["_inputs" if p["side"]=="input" else "_outputs"].append(port)
@@ -830,11 +762,12 @@ def reviewed_definition(card, overlay, model, provenance, uncertainties):
         spec["header"]=reviewed_header(overlay,model)
     if "audit_policy" in overlay:
         spec["audit_policy"]=deepcopy(overlay["audit_policy"])
+    component_forms.decorate_definition(spec,model,overlay)
     assert generate_card.wiring_graph(spec)==sorted(nets),"Portable reviewed geometry differs from reviewed terminal nets"
     generate_card.validate(spec)
     return spec,comparisons
 
-def _build(card_type, overrides_path=None, relayout=False):
+def _build(card_type, overrides_path=None, relayout=False, component_authority_path=None):
     if not re.fullmatch(r"\d{4}",card_type):
         raise ValueError("Card type must be exactly four digits")
     path=Path(overrides_path) if overrides_path else ROOT/"json/Card-ALD/build-overrides"/(card_type+".json")
@@ -848,7 +781,7 @@ def _build(card_type, overrides_path=None, relayout=False):
         if any(not item["current"] for item in overlay_binding_checks):
             rejected_overlay={"path":str(path),"reason":"reviewed supplement source binding is stale or missing","bindings":overlay_binding_checks}
             overlay={}
-    catalog,obs,models,power,bindings,changes,uncertainties=load_evidence(card_type,overlay)
+    catalog,obs,models,power,bindings,changes,uncertainties=load_evidence(card_type,overlay,component_authority_path)
     if rejected_overlay:uncertainties.append({"kind":"reviewed supplement not applied",**rejected_overlay})
     model,manual_path=derive_semantics(card_type,catalog,obs,models,power,uncertainties)
     if manual_path.is_file():bindings.append(binding(manual_path))
@@ -864,13 +797,13 @@ def _build(card_type, overrides_path=None, relayout=False):
         if overlay:
             definition,comparisons=reviewed_definition(card_type,overlay,model,provenance,uncertainties)
             report["reviewed_fact_comparisons"]=comparisons
-        elif not power:
+        elif not power and not catalog.get("_reviewed_component_forms"):
             uncertainties.append({"kind":"definition not routed for unsupported or ambiguous module kind"})
         elif not relayout:
             # A requested graph relayout must reach its spacing trials even
             # when the legacy default placement cannot route this card.
             definition=generic_definition(model,provenance,uncertainties)
-        if relayout and (overlay or power):
+        if relayout and (overlay or power or catalog.get("_reviewed_component_forms")):
             definition=None
             import graph_card_layout
             routing_model=reviewed_routing_model(overlay,model) if overlay else deepcopy(model)
@@ -914,13 +847,13 @@ def _build(card_type, overrides_path=None, relayout=False):
         report["validation"]=generate_card.validate(definition)
     return definition,report
 
-def build(card_type, overrides_path=None, root=None, relayout=False):
+def build(card_type, overrides_path=None, root=None, relayout=False, component_authority_path=None):
     """Build without writes; root= supports portable clones and fixture tests."""
     global ROOT
     previous=ROOT
     try:
         if root is not None:ROOT=Path(root).resolve()
-        return _build(card_type,overrides_path,relayout)
+        return _build(card_type,overrides_path,relayout,component_authority_path)
     finally:
         ROOT=previous
 
@@ -930,12 +863,13 @@ def main():
     parser.add_argument("--output-dir",type=Path,help="Private destination, default tmp/ald-text/ald/card-data/CARD")
     parser.add_argument("--overrides",type=Path,help="Portable reviewed supplement JSON; default checks json/Card-ALD/build-overrides/CARD.json")
     parser.add_argument("--root",type=Path,help="Repository root for portable clones or private evidence fixtures")
+    parser.add_argument("--component-authority",type=Path,help="Explicit source-bound component preview authority; no implicit S-family eligibility")
     parser.add_argument("--relayout",action="store_true",help="Privately plan/reroute the graph; reviewed cards retain exact approved terminals and port IDs")
     parser.add_argument("--render",action="store_true",help="Also validate/render TXT candidates privately")
     parser.add_argument("--check",action="store_true",help="Read/derive/validate without writing files")
     args=parser.parse_args()
     if not re.fullmatch(r"\d{4}",args.card_type):parser.error("Use a four-digit card type, for example0141")
-    try:definition,report=build(args.card_type,args.overrides,args.root,args.relayout)
+    try:definition,report=build(args.card_type,args.overrides,args.root,args.relayout,args.component_authority)
     except (ValueError,AssertionError,KeyError) as exc:parser.error(str(exc))
     out=args.output_dir or DEFAULT_OUTPUT/args.card_type
     if not args.check:

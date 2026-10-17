@@ -244,6 +244,10 @@ def prepare(model):
                     "review the source terminal union before routing."
                 )
             top=hints.get("tops",{}).get(p,y)
+            if nodes[p].get("above_block_caption"):
+                # A caption occupies the preceding row and is an actual routing obstacle.
+                top=max(top,y+1)
+                top=((top+row_step-1)//row_step)*row_step
             positions[p] = {"x": hints.get("first_bank_x",60) + rank*bank_interval, "top": top, "height": height}
             y=max(y,top+((height+row_gap+row_step-1)//row_step)*row_step)
     width = max(max(p["x"] for p in positions.values()) + max(20,hints.get("right_margin",60)),hints.get("minimum_width",0))
@@ -253,6 +257,11 @@ def prepare(model):
     for p, pos in positions.items():
         x, y, h = pos["x"], pos["top"], pos["height"]
         blocked.update((xx, yy) for xx in range(x, x+8) for yy in range(y, y+h))
+        caption=nodes[p].get("above_block_caption")
+        if caption:
+            if not isinstance(caption,str) or not caption or "\n" in caption:
+                raise ValueError("Invalid single-line block caption")
+            blocked.update((xx,y-1) for xx in range(x,x+len(caption)))
         for side, values in (("input", inputs[p]), ("output", outputs[p])):
             offsets = range(1, h-1) if side == "input" else [3,2,4,1,5] + list(range(6,h-1))
             for (key, port), off in zip(sorted(values,key=lambda v:(v[0],v[1].get("id",""))), offsets):

@@ -14,6 +14,14 @@ unreviewed pinouts or modify the ALD transcriptions. Existing reviewed layout
 supplements retain their placement; new families use the current generic graph
 planner with free vertical placement.
 
+The three card tools share one in-process source reader and cache. The catalogue
+verifier remains independent. --subprocess provides isolated tool execution for
+comparison. A final source-byte check covers the complete accepted page set.
+Explicit direct-human exclusions are recorded in notes/Card-ALD/Scope
+exclusions.json; 1457 and 1724 are excluded because their only listed use is on
+missing RT011. Excluded catalogue records remain present and batch reports list
+the exclusions. Component-form authority and its notes are epoch-bound inputs.
+
 From the ibm360ald repository directory:
 
     python tools/card_ald/generate_card.py 4191
@@ -122,15 +130,10 @@ pass retains already compact terminations.
 
 PUBLISH INDEPENDENTLY REVIEWED LAYOUTS
 
-    python tools/card_ald/adopt_card_layout.py 4191 --definition PATH --review RECEIPT
-    python tools/card_ald/adopt_card_layout.py 0141 4191 4633 4634 --definitions ROOT --review RECEIPT
-
-The batch form accepts ROOT/CARD.json or ROOT/CARD/CARD.json. All source-bound
-review hashes are checked before canonical files change. Each card must retain
-its circuit, semantic port identities, notation variants and power contacts.
-Every candidate passes the default builder and renderer privately first.
-Predecessors and the accepted review are preserved in uniquely named history
-and acceptance directories. A failed publication restores previous files.
+Use publish_card_candidate.py for new cards and reviewed layout updates, as
+described below. Circuit, semantic port identities, notation witnesses and power
+contacts must pass current review. Older adopt/import helpers are retained for
+reading historical review stages, not for current repository publication.
 
 Use --output-dir PATH with either builder or auditor to choose another private
 destination. NetworkX is needed for graph relayout, not for the shared text
@@ -176,18 +179,14 @@ when structured header metadata is present. Historical definitions without
 that metadata retain their original annotations for reproducible archives.
 The heading change preserves every diagram row and all routing coordinates.
 
-SOURCE AND HISTORICAL TOOLS
+CURRENT SOURCE RECORDS
 
-import_reviewed_layout.py was the one-time importer for the accepted drawings.
-It is not part of normal generation. Historical per-card build, extraction,
-review and publication tools remain as evidence of earlier work; they are not
-the current generation entry point. Current reviewed layout changes belong in
-the JSON definitions and are rendered with generate_card.py.
-
-Original source acceptance and variant witnesses remain under
-notes/Card-ALD/Universal. Current generation receipts are under
-notes/Card-ALD/Generation. Earlier publication records are preserved under
-notes/Card-ALD/history/Before shared generator.
+Current reviewed source state is recorded in notes/Source status.json. Current
+card generation receipts are under notes/Card-ALD/Generation and current notation
+witnesses are under notes/Card-ALD/Notation witnesses. Concise retained notes
+record meaningful corrections, exceptions and unresolved questions. Git keeps
+older states; routine publication does not create predecessor or evidence-copy
+trees. Current reviewed layouts are JSON definitions rendered by generate_card.py.
 
 PUBLISH A NEW REVIEWED CARD FAMILY
 
@@ -221,17 +220,20 @@ evidence index, without renumbering or discarding observations. Purely partial
 canonical-filled profiles cannot pass the guarded publisher. Existing reviewed
 partial notation records remain explicitly labeled in the CSV when generated.
 
-Publication preserves predecessors, the review, audit and witness index under
-notes/Card-ALD/Generation/Accepted candidates and notes/Card-ALD/history. The
-exact reviewed definition and supplement are installed, then the existing
-shared generator publishes the canonical TXT, all numbered variants, receipts,
-current card model and searchable CSV rows. New card rows are inserted
-individually with source pages and sockets; unrelated cards, generation
-receipts and index rows are checked unchanged. A failure restores all touched
-canonical files. The generator also reads the durable per-card witness index
-under notes/Card-ALD/Notation witnesses when regenerating that family later.
+Publication installs current definitions, supplements, card models, TXT files,
+one current source-use audit and one generation receipt. The receipt retains
+the exact independent acceptance hash without copying private drafts or crops.
+Unrelated cards and index rows must remain unchanged. Per-target atomic writes
+check exact predecessors; rollback restores only exact owned output bytes and
+preserves concurrent changes with an explicit failure report. The established
+exact allowlist refresh updates the repository inventory without history copies.
 
-Keep reviewed supplement bindings portable: immutable seed definitions and
-supporting JSON should already be stored under repository notes before final
-review. Original scan bindings remain references to their source archive.
-Publication never commits, pushes or changes source ALD transcriptions.
+Runtime source bindings must be portable repository references. Keep only the
+current facts and concise authority needed to reproduce the definition; avoid
+seed snapshots and predecessor chains. Original scans remain in their reference
+archive. Publication never commits, pushes or changes source ALD transcriptions.
+
+    python tools/card_ald/publish_card_candidate.py CARD --verify-current
+
+This verifies current source bindings, the use audit, default-builder roundtrip,
+receipt and rendered bytes without opening private candidate or review files.

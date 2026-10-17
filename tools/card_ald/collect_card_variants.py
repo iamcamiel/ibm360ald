@@ -12,10 +12,9 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
-import read_page as page_reader
 import re
+import card_source as page_reader
+from card_source import (accepted_page_context,identity_document,selected_source_nodes,source_identity_issues,catalogue_source_coverage,recheck_identity_context)
 
 ROOT=Path(__file__).resolve().parents[2]
 CONTACT=re.compile(r'\d*([BDGJ](?:0[2-9]|1[0-3]))(?:[✲*]?T?|[✲*])\Z')
@@ -25,23 +24,11 @@ def read(path):return json.loads(Path(path).read_text(encoding='utf-8-sig'))
 def binding(path):
     path=Path(path).resolve()
     return {'path':str(path),'sha256':sha256(path.read_bytes()).hexdigest()}
-def physical_readings(port):
-    readings={}
-    for field in ('physical_pin','physical_pin_candidate','printed_pin','printed_label','pin'):
-        raw=port.get(field)
-        if raw is not None:
-            match=CONTACT.fullmatch(str(raw).strip())
-            if match:readings[field]=match.group(1)
-    return readings
+physical_readings=page_reader.physical_readings
+physical=page_reader.terminal_contact
+wedge=page_reader.wedge
 
-def physical(port):
-    contacts=set(physical_readings(port).values())
-    return next(iter(contacts)) if len(contacts)==1 else None
-def wedge(port):
-    if port.get('border_marker')=='◺':return True
-    if 'triangle' in port and port['triangle'] is not None:return bool(port['triangle'])
-    if 'border_marker' in port:return False
-    return None
+
 def primary(function):
     words=str(function).strip().lstrip('✲*').split()
     return words[0] if words else ''
@@ -118,31 +105,36 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
     root=Path(root).resolve();definition=Path(definition).resolve();spec=read(definition)
     assert spec['card_type']==card
     boxes={b['portion']:b for b in spec['boxes']};groups=defaultdict(list);model_bindings=[];occurrences=0
-    source_bindings={};pages=set();unmatched=[]
+    source_bindings={};pages=set();unmatched=[];documents={};source_context=accepted_page_context(root);coverage_issues=[]
     # Only page models have nodes; generated card catalogs and archived note
     # snapshots are outside this tree or excluded explicitly.
-    for path in sorted((root/'json').rglob('*.json')):
-        relative=path.relative_to(root/'json')
-        if relative.parts[0] in ('Card-ALD','Card types','Card types current','A1 Socket Listing'):continue
-        doc=page_reader.read(path)
-        if not isinstance(doc,dict) or not isinstance(doc.get('nodes'),list):continue
-        nodes=[n for n in doc['nodes'] if n.get('card_type')==card]
-        if not nodes:continue
+    for path,entry in page_reader.iter_documents(root,card):
+        original=entry['document'];doc=identity_document(root,path,original,source_context)
+        nodes=selected_source_nodes(doc,card)
+        issues=source_identity_issues(doc,card)
+        if not nodes and not issues:continue
+        documents[path.resolve()]={'document':doc,'sha256':binding(path)['sha256'],'original':original}
+        coverage_issues.extend(issues)
         model_binding=binding(path);model_bindings.append(model_binding)
         source=doc.get('source');source=source.get('source') if isinstance(source,dict) else source
         source_binding=None
         if source and Path(source).is_file():
-            if source not in source_bindings:source_bindings[source]=binding(source)
+            if source not in source_bindings:source_bindings[source]=page_reader.source_binding(source)
             source_binding=source_bindings[source]
             expected=doc.get('source_sha256')
             if expected:assert source_binding['sha256']==expected,('Stale source binding',path)
         page=doc.get('page',doc.get('ALD_page',path.stem.split()[0]));pages.add(page)
         for node in nodes:
             occurrences+=1
-            location,known=location_key(node.get('location'),node['id'])
+            fallback=str(node.get('id'))if node.get('id')not in(None,'')else str(path.resolve())+'|'+node['_source_pointer']
+            location,known=location_key(node.get('location'),fallback)
             group_key=(page,location,str(path))
             groups[group_key].append({'node':node,'model':model_binding,'source':source_binding,
                                       'location_verified_format':known,'literal_location':node.get('location')})
+    catalog_path=root/'json/Card types current'/f'{card}.json'
+    identity_coverage={'catalogue_present':catalog_path.is_file(),'source_observations':occurrences}
+    if catalog_path.is_file():
+        extra,identity_coverage=catalogue_source_coverage(root,read(catalog_path),documents);coverage_issues.extend(extra)
     # Compare only fields actually observed: omitted ports must not falsely
     # contradict an explicit mark from another page of the same physical card.
     def observed_signature(items):
@@ -172,16 +164,19 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
     profiles={};canonical=[];uncertain=[];complete_count=0
     for location,contexts,items in selected:
         context_pages=sorted({context[0] for context,unused in contexts})
-        observed_portions=sorted({i['node'].get('portion') for i in items})
+        observed_portions=sorted({i['node'].get('portion') for i in items},key=str)
         witness={'page':context_pages[0] if len(context_pages)==1 else None,'source_pages':context_pages,
                  'location':location,'source_locations':[location],
                  'literal_locations':sorted({str(i['literal_location']) for i in items}),
                  'models':list({i['model']['path']:i['model'] for i in items}.values()),
                  'sources':list({i['source']['path']:i['source'] for i in items if i['source']}.values()),
-                 'nodes':[{'page':context[0],'node':item['node']['id'],'model':item['model']} for context,context_items in contexts for item in context_items],
+                 'nodes':[{'page':context[0],'node':item['node'].get('id'),'node_pointer':item['node']['_source_pointer'],'model':item['model'],'source_reviewed':item['node'].get('source_reviewed'),'identity_adaptation':item['node'].get('_identity_adaptation')} for context,context_items in contexts for item in context_items],
                  'page_socket_contexts':len(contexts),'observed_portions':observed_portions,
                  'unobserved_portions_kept_canonical':sorted(set(boxes)-set(observed_portions)),
                  'fields_not_inferred':[],'ignored_supply_ties':[], 'observed_fields':{}}
+        if coverage_issues:witness['fields_not_inferred'].append({'field':'source_catalogue_coverage','reason':'Source identity/catalogue coverage is incomplete; a full publication witness is not certified.','issues':len(coverage_issues)})
+        for item in items:
+            if item['node'].get('source_reviewed')is not True:witness['fields_not_inferred'].append({'field':'source_review_acceptance','node':item['node'].get('id'),'node_pointer':item['node']['_source_pointer'],'literal':item['node'].get('source_reviewed'),'reason':'Explicit false/unknown review retained; not a complete reviewed field witness.'})
         changes={};merged,conflicts=observed_signature(items)
         if conflicts:
             witness['fields_not_inferred'].extend({'reason':'Conflicting observed fields within page/socket context.',**c} for c in conflicts)
@@ -189,12 +184,12 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
         for item in items:
             node=item['node'];portion=node.get('portion')
             if portion not in boxes:
-                witness['fields_not_inferred'].append({'portion':portion,'node':node['id'],'reason':'Portion absent from common definition.'});continue
+                witness['fields_not_inferred'].append({'portion':portion,'node':node.get('id'),'reason':'Portion absent from common definition.'});continue
             form,observed,missing,ignored=observed_form(node,boxes[portion],spec['power_contacts'])
-            witness['ignored_supply_ties'].extend({'portion':portion,'node':node['id'],**m} for m in ignored)
+            witness['ignored_supply_ties'].extend({'portion':portion,'node':node.get('id'),**m} for m in ignored)
             # A readable observation elsewhere can complete an omitted field;
             # identity mismatches remain explicit, never hidden by aggregation.
-            witness['fields_not_inferred'].extend({'portion':portion,'node':node['id'],**m} for m in missing
+            witness['fields_not_inferred'].extend({'portion':portion,'node':node.get('id'),**m} for m in missing
                 if m.get('field')=='circuit_identifier' or 'physical_contact_readings' in m or m.get('reason','').startswith('Conflicting source uses') or (portion,m.get('port_id',m.get('field'))) not in merged)
         for portion in sorted(set(observed_portions)&set(boxes)):
             box=boxes[portion];override={};known={field:value for (p,field),value in merged.items() if p==portion}
@@ -236,17 +231,18 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             'variants_witnessed_only_partially':sum(v['complete_witnesses']==0 for v in variants),
             'canonical_pattern_witnesses':len(canonical),'witnesses_with_unmapped_or_omitted_fields':len(uncertain)}
     report = {'schema':'card-ald-observed-variant-candidates-v1','card_type':card,
-            'definition':binding(definition),'collector':binding(Path(__file__)),
-            'page_reader_tools':[binding(path) for path in page_reader.runtime_paths(root)],
+            'definition':binding(definition),'collector':binding(Path(__file__)),'page_reader_tools':[binding(p) for p in page_reader.runtime_paths(root)],
             'grouping':grouping,'conflicting_physical_card_sites':conflict_sites,
             'rules':['Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.',
                      'Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.',
                      'Only function text and mapped port triangles may change; all pins, circuits, geometry and nets remain canonical.',
                      'Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.',
                      'Distinguish completely witnessed full-card profiles from partial observations with canonical fill.'],
+            'identity_coverage':identity_coverage,'coverage_issues':coverage_issues,'source_review_bindings':source_context['bindings'],
             'counts':counts,'model_bindings':model_bindings,'source_bindings':list(source_bindings.values()),
             'canonical_pattern_witnesses':canonical,'profiles_left_uncertain':uncertain,
             'variants':variants,'source_or_repository_data_changes_applied':False}
+    recheck_identity_context(source_context,documents)
     return apply_publication_policy(report, publication_policy)
 
 

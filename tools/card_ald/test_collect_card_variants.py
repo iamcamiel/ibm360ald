@@ -11,9 +11,6 @@ C=importlib.util.module_from_spec(spec);spec.loader.exec_module(C)
 class CollectorTest(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[3]/"tmp");self.root=Path(self.temp.name);(self.root/'json/XX').mkdir(parents=True)
-        normalizer=self.root/'tools/normalization';normalizer.mkdir(parents=True)
-        for source in C.page_reader.runtime_paths(Path(C.__file__).resolve().parents[2]):
-            (normalizer/source.name).write_bytes(source.read_bytes())
         self.definition=self.root/'definition.json'
         boxes=[]
         for portion,pin,out in [('A1','D04','B03'),('B1','B05','D02')]:
@@ -24,7 +21,7 @@ class CollectorTest(unittest.TestCase):
     def tearDown(self):self.temp.cleanup()
     def node(self,portion,**kwargs):
         p,o={'A1':('D04','B03'),'B1':('B05','D02')}[portion]
-        n={'id':portion,'location':'A-A1J6','card_type':'1234','portion':portion,'unit':'U03AF','function':'N','pins':[
+        n={'id':portion,'source_reviewed':True,'location':'A-A1J6','card_type':'1234','portion':portion,'unit':'U03AF','function':'N','pins':[
             {'side':'input','pin':p,'triangle':False},{'side':'output','pin':o,'triangle':True}]};n.update(kwargs);return n
     def page(self,page,nodes):
         (self.root/'json/XX'/f'{page}.json').write_text(json.dumps({'page':page,'nodes':nodes}),encoding='utf-8')

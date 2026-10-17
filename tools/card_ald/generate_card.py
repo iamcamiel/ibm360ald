@@ -53,7 +53,11 @@ def header_lines(spec, variant=None):
         assert isinstance(facts[key], int) and facts[key] >= 0
     assert facts['reviewed_pages'] <= facts['reviewed_occurrences']
     banks = 'BD' if facts['card_width'] == 'SINGLE CARD' else 'BDGJ'
-    assert {p[0] for p in spec['power_contacts']} == set(banks)
+    authority=spec.get('component_power_authority', {'role':'ordinary_slt'})
+    role=authority.get('role')
+    assert role in ('ordinary_slt','reviewed_special','not_established'), 'Unknown power authority'
+    if role=='ordinary_slt':assert {p[0] for p in spec['power_contacts']} == set(banks)
+    if role=='not_established':assert not spec['power_contacts'], 'Unknown rails must remain unassigned'
     signal = {p['pin'] for p in spec['exterior_pins']}
     possible = {f'{bank}{n:02}' for bank in banks for n in range(2, 14)}
     unconnected = sorted(possible - set(spec['power_contacts']) - signal)
@@ -78,18 +82,41 @@ def header_lines(spec, variant=None):
                                  for circuit, portions in sorted(provisional.items())) or 'NONE'
     number = (variant or {}).get('number', 0)
     identity = f'VARIANT {number:02}' if variant else 'CANONICAL'
-    symbols = f'OBSERVED NOTATION VARIANT {number:02}' if variant else 'SLT MANUAL STANDARD'
+    standard=facts.get('symbol_standard','SLT MANUAL STANDARD')
+    assert standard in ('SLT MANUAL STANDARD','PRINTED ALD FORMS')
+    symbols = f'OBSERVED NOTATION VARIANT {number:02}' if variant else standard
+    power_text='; '.join(power) if power and role!='not_established' else 'NOT ESTABLISHED'
+    power_heading='RESERVED SYSTEM CONTACTS: ' if authority.get('source_contact_role')=='reserved_system_contact_positions' else 'POWER: '
+    contact_text=(', '.join(unconnected)+' (POSSIBLY UNUSED)' if unconnected else 'NONE')
+    if role!='ordinary_slt' and authority.get('contact_set_complete')is not True:contact_text='NOT ESTABLISHED'
     lines = [
         f"CARD-ALD {facts['part_number']}  {facts['card_width']}  {identity}",
         f"PORTIONS: {len(boxes)}; SIGNAL CONTACTS: {len(signal)} ({inputs} INPUT, {outputs} OUTPUT)",
-        'POWER: ' + '; '.join(power),
-        'UNCONNECTED SIGNAL CONTACTS: ' + (', '.join(unconnected) + ' (POSSIBLY UNUSED)' if unconnected else 'NONE'),
+        power_heading + power_text,
+        'UNCONNECTED SIGNAL CONTACTS: ' + contact_text,
         'PROVISIONAL CIRCUIT FORMS: ' + provisional_text,
         'SYMBOLS: ' + symbols,
         f"SOURCE: {facts['reviewed_occurrences']} REVIEWED OCCURRENCES ON {facts['reviewed_pages']} PAGES",
     ]
     assert all(len(line) <= spec['canvas']['width'] for line in lines), 'Shared heading exceeds the reserved width'
     return lines
+
+
+
+def caption_locations(spec):
+    """Captions have one geometry shared by canonical and notation variants."""
+    boxes={box['portion']:box for box in spec['boxes']}
+    seen=set();result=[]
+    for caption in spec.get('box_captions',[]):
+        assert set(caption)=={'portion','text'}, 'Caption may not override geometry'
+        portion=caption['portion'];label=caption['text']
+        assert portion in boxes and portion not in seen, 'Unknown or duplicate caption portion'
+        assert isinstance(label,str) and label and '\n' not in label and '\r' not in label
+        box=boxes[portion];assert 'compact_termination' not in box
+        x,y=box['x'],box['top']-1
+        assert y>=spec['canvas']['header_rows'] and 0<=x<x+len(label)<=spec['canvas']['width']
+        result.append((x,y,label));seen.add(portion)
+    return result
 
 
 def render(spec, variant=None):
@@ -136,6 +163,7 @@ def render(spec, variant=None):
             rows[port['row']][border] = '◺' if triangles.get(port['id'], port['triangle']) else '│'
             if port['pin']:
                 put(rows, x - 3 if port['side'] == 'input' else x + 8, port['row'], port['pin'])
+    for x,y,label in caption_locations(spec):put(rows,x,y,label)
     for pin in spec['exterior_pins']:
         put(rows, pin['x'], pin['row'], pin['pin'])
     for annotation in spec['annotations']:
@@ -288,6 +316,7 @@ def validate(spec):
     assert {p['pin'] for b in boxes for p in b['ports'] if p['pin']} == {p['pin'] for p in spec['exterior_pins']}, 'Exterior and block pin coverage differ'
     assert wiring_graph(spec) == spec['nets'], 'Wiring differs from reviewed terminal connections'
     base = render(spec)
+    occupied |= {(x+i,y) for x,y,label in caption_locations(spec) for i in range(len(label))}
     box_and_label = occupied | {(x, p['row']) for b in boxes if 'compact_termination' not in b for p in b['ports'] if p['pin']
                                 for x in range(b['x'] - 3, b['x']) if p['side'] == 'input'}
     box_and_label |= {(x, p['row']) for b in boxes if 'compact_termination' not in b for p in b['ports'] if p['pin'] and p['side'] == 'output'
@@ -349,14 +378,15 @@ def record_generation(spec, path, outputs, checks):
                'canonical': f'Card-ALD/{card}.txt', 'diagram_sha256': digest(outputs[card+'.txt']),
                'definition': {'path': path.relative_to(ROOT).as_posix(), 'sha256': digest(path.read_bytes())},
                'renderer': {'path': Path(__file__).relative_to(ROOT).as_posix(), 'sha256': digest(Path(__file__).read_bytes())},
-               'source_evidence': spec['provenance'], 'validation': checks,
+               'source_evidence': {'source_status_ref':'notes/Source status.json',
+                   'reviewed_occurrences':spec.get('header',{}).get('reviewed_occurrences'),
+                   'reviewed_pages':spec.get('header',{}).get('reviewed_pages')}, 'validation': checks,
                'files': [{'path': 'Card-ALD/' + name, 'sha256': digest(raw)} for name, raw in outputs.items()]}
     if witness_index is not None:
         receipt['notation_witness_index'] = {'path': witness_path.relative_to(ROOT).as_posix(),
                                             'sha256': digest(witness_path.read_bytes())}
     raw = (json.dumps(receipt, ensure_ascii=False, indent=2)+'\n').encode('utf-8')
-    for destination in [f'Generation/{card}.json', f'{card} drawing provenance.json', f'{card} diagram publication receipt.json']:
-        write_protected(ROOT/'notes/Card-ALD'/destination, raw)
+    write_protected(ROOT/f'notes/Card-ALD/Generation/{card}.json', raw)
     model_path = ROOT/f'json/Card-ALD/{card}.json'
     model = read(model_path) if model_path.exists() else {'schema':'card-ald-generated-model-v1','card_type':card}
     model.update(drawing=receipt['canonical'], drawing_sha256=receipt['diagram_sha256'],

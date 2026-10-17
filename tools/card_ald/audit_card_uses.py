@@ -15,10 +15,10 @@ import hashlib
 import itertools
 import json
 from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
-import read_page as page_reader
 import re
+import sys
+import card_source as page_reader
+from card_source import (accepted_page_context, exact_source_node, node_mentions_card, identity_document, selected_source_nodes, source_identity_issues, catalogue_source_coverage, unambiguous_wiring_documents, recheck_identity_context)
 
 ROOT = Path(__file__).resolve().parents[2]
 PIN = re.compile(r'(?P<qualifier>\d*)(?P<pin>[BDGJ](?:0[2-9]|1[0-3]))(?:✲?T?|✲)\Z')
@@ -46,12 +46,12 @@ def primary(value):
 
 
 def physical(value):
-    match = PIN.fullmatch(str(value or '').strip())
-    return match['pin'] if match else None
+    return page_reader.terminal_contact(value) if isinstance(value,dict) else page_reader.physical_contact(value)
 
 
 def triangle(port):
-    return bool(port.get('triangle')) or port.get('border_marker') == '◺'
+    # Unknown decorations remain uncertain, rather than becoming False.
+    return page_reader.wedge(port)
 
 
 def finding(status,field,observed,expected,reason,**extra):
@@ -77,8 +77,8 @@ def expected_forms(spec):
 def port_mapping(ports,form):
     """Match physical contacts; pinless equivalent inputs may exchange rows."""
     available={p['id']:p for p in form['ports']};pairs=[]
-    for observed in sorted(ports,key=lambda p:(physical(p.get('pin')) is None,p.get('row',0))):
-        pin=physical(observed.get('pin'));side=observed['side']
+    for observed in sorted(ports,key=lambda p:(physical(p) is None,p.get('row',0))):
+        pin=physical(observed);side=observed['side']
         candidates=[p for p in available.values() if p['side']==side and p.get('pin')==pin]
         if not candidates:return None
         candidates.sort(key=lambda p:(p['triangle']!=triangle(observed),p['row']))
@@ -127,11 +127,16 @@ def compare_occurrence(node,box,forms,power):
             'circuit_identifier',circuit,box['circuit_identifier'],'Circuit identifier differs from the reviewed common portion.'))
     ports=[];seen_contacts=set()
     expected_pins={(p['side'],p['pin']) for p in box['ports'] if p.get('pin')}
-    observed_pins={(p.get('side'),physical(p.get('pin'))) for p in node.get('pins',[])}
+    observed_pins={(p.get('side'),physical(p)) for p in node.get('pins',[])}
     for index,port in enumerate(node.get('pins',[])):
-        raw=port.get('pin');pin=physical(raw);side=port.get('side')
+        raw=port.get('pin');pin=physical(port);side=port.get('side')
         if side not in ('input','output'):
             findings.append(finding('source_uncertainty','pin_direction',side,['input','output'],'Port has no usable direction.',pin_index=index));continue
+        readings=page_reader.physical_readings(port)
+        if len(set(readings.values()))>1:
+            findings.append(finding('source_uncertainty','pin_identity',readings,None,'Active physical contact observations disagree.',pin_index=index));continue
+        if triangle(port) is None:
+            findings.append(finding('source_uncertainty','border_decoration',port.get('_border_decorations',port),None,'Border decoration is absent or contradictory.',pin_index=index));continue
         if pin in power:
             findings.append(finding('recorded_variant' if side=='input' else 'discrepancy','power_contact',raw,power[pin],
                 'Page-level input supply/bias tie is separate from the card signal graph.' if side=='input' else 'A power contact is modeled as a driven output; inspect the source and module classification.',pin_index=index));continue
@@ -186,31 +191,18 @@ def resolve_path(root,value):
     p=Path(value);return p if p.is_absolute() else root/p
 
 
-def load_documents(root,catalog):
+def load_documents(root,catalog,context=None):
+    context=accepted_page_context(root) if context is None else context
     documents={};issues=[]
+    for path,entry in page_reader.iter_documents(root,catalog['card_type']):
+        doc=identity_document(root,path,entry['document'],context)
+        documents[path]={'document':doc,'sha256':entry['sha256'],'original':entry['document']}
+        issues.extend(source_identity_issues(doc,catalog['card_type']))
     for occurrence in catalog.get('diagram_occurrences',[]):
-        source=Path(occurrence['source_text']);parts=list(source.parts)
-        if parts[0]=='ALD':parts[0]='json'
-        path=resolve_path(root,Path(*parts).with_suffix('.json'))
-        if path in documents:continue
-        if not path.is_file():issues.append(finding('source_uncertainty','source_model',str(path),None,'Published model is missing.'));continue
-        doc=page_reader.read(path)
-        documents[path]={'document':doc,'sha256':digest(path),'original':deepcopy(doc)}
-    # A stale/incomplete catalog must not hide a newly transcribed occurrence.
-    # Only actual published page models are eligible; catalogs and card render
-    # definitions have their own schemas and are not transcription sources.
-    for path in (root/'json').rglob('*.json'):
-        if path in documents or any(p in ('Card types','Card types current','Card-ALD') for p in path.relative_to(root/'json').parts[:-1]):continue
-        try:
-            raw=path.read_bytes()
-            decoded=json.loads(raw.decode("utf-8-sig"))
-        except (UnicodeError,json.JSONDecodeError):continue
-        # Some auxiliary A1 column tables are arrays, not page documents.
-        if not isinstance(decoded,dict):continue
-        doc=page_reader.loads(raw)
-        if not isinstance(doc.get('nodes'),list):continue
-        if not any(n.get('card_type')==catalog['card_type'] for n in doc['nodes'] if isinstance(n,dict)):continue
-        documents[path]={'document':doc,'sha256':digest(path),'original':deepcopy(doc)}
+        parts=list(Path(occurrence['source_text']).parts)
+        if parts and parts[0]=='ALD':parts[0]='json'
+        path=resolve_path(root,Path(*parts).with_suffix('.json')).resolve()
+        if not path.is_file():issues.append(finding('source_uncertainty','source_model',str(path),None,'Published model is missing.'))
     return documents,issues
 
 
@@ -220,10 +212,10 @@ def apply_scoped_corrections(root,card,documents,overrides):
         binding=correction.get('model_binding',{});path=resolve_path(root,binding.get('path',''))
         entry=documents.get(path);status='recorded_variant'
         valid=bool(entry and binding.get('sha256')==entry['sha256'])
-        nodes=[n for n in (entry or {}).get('document',{}).get('nodes',[]) if n.get('id')==correction.get('node') and n.get('card_type')==card]
-        if not valid or len(nodes)!=1:
+        node,pointer,problem=exact_source_node((entry or {}).get('document',{}),correction)
+        if not valid or problem or node.get('card_type')!=card:
             records.append(dict(page=correction.get('page'),block=correction.get('node'),**finding('source_uncertainty','reviewed_source_correction',correction,None,'Scoped correction evidence is stale, missing or does not uniquely identify a card node.')));continue
-        n=nodes[0]
+        n=node
         if entry['document'].get('page')!=correction.get('page'):
             records.append(finding('source_uncertainty','reviewed_source_correction',correction,None,'Page does not match the model binding.'));continue
         for field,key in (('portion','portion'),('unit','unit'),('function','function')):
@@ -267,7 +259,7 @@ def endpoint(node,label,side):
     key=(listing.get('board'),tuple(sorted(listing.get('sockets',[])))) if listing.get('board') and listing.get('sockets') else None
     location=str(node.get('location') or '')
     stable_id=(exact[0].get('id') or str(exact[0].get('terminal_id') or '').split('.')[-1]) if len(exact)==1 else None
-    return {'portion':str(node.get('portion')),'pin':physical(exact[0].get('pin')) if len(exact)==1 else None,
+    return {'portion':str(node.get('portion')),'pin':physical(exact[0]) if len(exact)==1 else None,
             'side':side,'label':label,'id':node['id'],'location':location,'card_key':key,'port_resolved':len(exact)==1,'stable_port_id':stable_id,'endpoint_problem':problem}
 
 
@@ -366,46 +358,47 @@ def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=N
     op=Path(overrides_path) if overrides_path else root/'json/Card-ALD/build-overrides'/f'{card}.json'
     spec=read(dp);catalog=read(cp);overrides=read(op) if op.is_file() else {}
     if spec.get('card_type')!=card or catalog.get('card_type')!=card:raise ValueError('Definition/catalog card identity differs.')
-    documents,source_issues=load_documents(root,catalog)
-    catalog_ids={(o.get('page'),o.get('node')) for o in catalog.get('diagram_occurrences',[])}
-    live_ids={(e['document'].get('page'),n.get('id')) for e in documents.values() for n in e['document'].get('nodes',[]) if n.get('card_type')==card}
-    for page,block in sorted(live_ids-catalog_ids):
-        source_issues.append(dict(page=page,block=block,**finding('source_uncertainty','catalog_coverage','source occurrence missing from catalog',None,'Occurrence found by inventorying current published models; included in this audit despite the catalog gap.')))
-    for page,block in sorted(catalog_ids-live_ids):
-        source_issues.append(dict(page=page,block=block,**finding('source_uncertainty','catalog_coverage','catalog occurrence missing from source model',None,'Catalog points to an absent current card occurrence.')))
+    context=accepted_page_context(root)
+    documents,source_issues=load_documents(root,catalog,context)
+    coverage_issues,identity_coverage=catalogue_source_coverage(root,catalog,documents)
+    source_issues.extend(coverage_issues)
     corrections=apply_scoped_corrections(root,card,documents,overrides)
     forms=expected_forms(spec);boxes={b['portion']:b for b in spec['boxes']};occurrences=[]
     for path,entry in documents.items():
         doc=entry['document']
-        for node in doc.get('nodes',[]):
-            if node.get('card_type')!=card:continue
+        for node in selected_source_nodes(doc,card):
             portion=str(node.get('portion'));box=boxes.get(portion)
             flags=compare_occurrence(node,box,forms[portion],spec['power_contacts']) if box else [finding('source_uncertainty' if '�' in portion else 'discrepancy','portion',portion,sorted(boxes),'Source portion does not exist in the common card definition.')]
+            if node.get('source_reviewed')is not True:
+                flags.append(finding('source_uncertainty','source_review_acceptance',node.get('source_reviewed'),True,'Occurrence is included, but explicit false/unknown review is not replaced by page acceptance.'))
             # Data-only exceptions require exact scope, literal field value and a current model binding.
             for exception in spec.get('audit_policy',{}).get('reviewed_exceptions',[]):
-                if exception.get('page')!=doc.get('page') or exception.get('block')!=node['id']:continue
+                if exception.get('page')!=doc.get('page') or exception.get('block')!=node.get('id'):continue
                 evidence=exception.get('evidence',{});ep=resolve_path(root,evidence.get('path',''))
                 valid=ep.is_file() and evidence.get('sha256')==digest(ep) and exception.get('model_sha256',entry['sha256'])==entry['sha256']
                 for flag in flags:
                     if flag['field']==exception.get('field') and same_literal(flag['observed'],exception.get('observed')):
                         if valid:flag.update(status=exception.get('status','recorded_variant'),reason=exception.get('reason',flag['reason']),reviewed_exception=exception)
                         else:flag.update(status='source_uncertainty',reason='Reviewed exception evidence is stale or missing.',reviewed_exception=exception)
-            occurrences.append({'page':doc.get('page'),'block':node['id'],'portion':portion,'location':node.get('location'),
-                'model':str(path),'model_sha256':entry['sha256'],'findings':flags,
+            occurrences.append({'page':doc.get('page'),'block':node.get('id'),'portion':portion,'location':node.get('location'),
+                'model':str(path),'model_sha256':entry['sha256'],'node_pointer':node['_source_pointer'],'identity_adaptation':node.get('_identity_adaptation'),'source_reviewed':node.get('source_reviewed'),'source_review_inherited':node.get('_source_review_inherited',False),'findings':flags,
                 'status':max((f['status'] for f in flags),key=SEVERITY.get,default='match')})
-    wires,wiring_observations=audit_wiring(card,spec,documents)
-    review=[dict(page=o['page'],block=o['block'],portion=o['portion'],**f) for o in occurrences for f in o['findings'] if f['status'] in ('discrepancy','source_uncertainty')]
+    wiring_docs,wiring_identity_issues=unambiguous_wiring_documents(documents,card)
+    wires,wiring_observations=audit_wiring(card,spec,wiring_docs)
+    review=[dict(page=o['page'],block=o['block'],node_pointer=o['node_pointer'],portion=o['portion'],**f) for o in occurrences for f in o['findings'] if f['status'] in ('discrepancy','source_uncertainty')]
     coverage_fields={'unresolved_wire_endpoint','stale_wire_endpoint','internal_port_mapping'}
-    coverage=[r for r in wires if r['field'] in coverage_fields]
+    coverage=[r for r in wires if r['field'] in coverage_fields]+wiring_identity_issues
     review += [r for r in wires if r['field'] not in coverage_fields]+source_issues+[r for r in corrections if r['status']=='source_uncertainty']
+    recheck_identity_context(context,documents)
     return {'schema':'card-use-audit-v1','created_utc':datetime.now(timezone.utc).isoformat(),'card_type':card,
-        'read_only':True,'page_reader_tools':[{'path':str(path),'sha256':digest(path)} for path in page_reader.runtime_paths(root)],'definition':{'path':str(dp),'sha256':digest(dp)},'catalog':{'path':str(cp),'sha256':digest(cp)},
+        'read_only':True,'page_reader_tools':[{'path':str(p),'sha256':digest(p)} for p in page_reader.runtime_paths(root)],'definition':{'path':str(dp),'sha256':digest(dp)},'catalog':{'path':str(cp),'sha256':digest(cp)},
         'overrides':{'path':str(op),'sha256':digest(op)} if op.is_file() else None,
         'summary':{'pages':len(documents),'occurrences':len(occurrences),'occurrence_statuses':dict(Counter(o['status'] for o in occurrences)),
             'needs_review':len(review),'new_discrepancies':sum(r['status']=='discrepancy' for r in review),
             'source_uncertainties':sum(r['status']=='source_uncertainty' for r in review),'known_reviewed_source_corrections':sum(r['status']=='recorded_variant' for r in corrections),
             'coverage_limitations':len(coverage),'coverage_limitation_categories':dict(Counter(r['field'] for r in coverage)),
             'wiring_observations':dict(Counter(r['classification'] for r in wiring_observations))},
+        'identity_coverage':identity_coverage,'identity_adapter':{'path':str(Path(page_reader.__file__).resolve()),'sha256':digest(page_reader.__file__)},'source_review_bindings':context['bindings'],
         'review':review,'coverage_limitations':coverage,'occurrences':occurrences,'known_reviewed_source_corrections':corrections,
         'wiring_observations':wiring_observations,'source_bindings':[{'path':str(p),'sha256':e['sha256']} for p,e in documents.items()],
         'interpretation':['A report identifies source/model differences; it does not assert every flagged item is a transcription error.',
@@ -418,7 +411,7 @@ def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=N
 def write_reports(report,outdir):
     outdir=Path(outdir);outdir.mkdir(parents=True,exist_ok=True);card=report['card_type']
     (outdir/f'{card} use audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    fields=['page','block','portion','status','field','observed','expected','reason']
+    fields=['page','block','node_pointer','portion','status','field','observed','expected','reason']
     with (outdir/f'{card} review.csv').open('w',encoding='utf-8-sig',newline='') as stream:
         writer=csv.DictWriter(stream,fieldnames=fields);writer.writeheader()
         for row in report['review']:writer.writerow({k:json.dumps(row[k],ensure_ascii=False) if isinstance(row.get(k),(dict,list,tuple)) else row.get(k,'') for k in fields})
