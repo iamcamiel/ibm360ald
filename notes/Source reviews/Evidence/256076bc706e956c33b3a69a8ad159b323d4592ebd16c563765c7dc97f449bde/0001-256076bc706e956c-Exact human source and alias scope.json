@@ -1,0 +1,119 @@
+{
+  "schema": "private-human-contact-source-scope-v1",
+  "source": {
+    "path": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\ED ROS Diagrams, Drivers\\ED081 SELECT BUS BASE DRIVERS 11-15.tif",
+    "sha256": "7dcd5aaf3209fce2738b1cca8627453de83a7be0719e8c445e8d308bf45f89cf"
+  },
+  "native_crop": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ed\\low\\ED081 B04 pin.png",
+    "sha256": "14b517b53339a8615ab8bdbceb9a4501cdae17b82238c2cb546979dc42d600de",
+    "box": [
+      5000,
+      2100,
+      6700,
+      3000
+    ]
+  },
+  "human_ledger": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-prefix1-review-20261017\\ED081 BA human B04X source correction v2\\Human answer ledger revision2.json",
+    "sha256": "f02da35b15d0099990b591558b9ff6c3061fc16a006b149021ae80f0a6fc489b"
+  },
+  "answer": {
+    "kind": "answer",
+    "question_id": "ED081-BA-1124A6-B01X",
+    "raw": "B04X is printed",
+    "normalized": "B04",
+    "response_id": "call_141d7f363a7c4f6792dee6a68e1158cf-0",
+    "normalization_note": "Human confirms literal B04X. Store physical pin B04 and retain separate existing X border marker; supersedes scanned B01X reading.",
+    "revision": 2,
+    "created_utc": "2026-10-17T10:46:56.152365+00:00",
+    "previous_sha256": "ce25ae6fbb0495d0d128f274a32bd78ed40a1216bc108eac98ecafd9a74433a9",
+    "sha256": "d3e85e1f1992b5a9eebe7af1d914e24b62db1647c9c4fc239a3154d223e9de41"
+  },
+  "current_node": {
+    "id": "BA",
+    "column": 142,
+    "row": 23,
+    "function": "✲AR",
+    "unit": "T06CF",
+    "printed_card_portion": "1124A6",
+    "card_type": "1124",
+    "portion": "A6",
+    "location": "D-C2D6",
+    "grid": "5D",
+    "height": 6,
+    "header": "001",
+    "pins": [
+      {
+        "pin": "B07",
+        "side": "input",
+        "row": 24,
+        "reference": "BA.B07",
+        "point": [
+          138,
+          24
+        ],
+        "border_marker": null,
+        "source_reviewed": true
+      },
+      {
+        "pin": "B01",
+        "side": "input",
+        "row": 28,
+        "reference": "BA.B01",
+        "point": [
+          138,
+          28
+        ],
+        "border_marker": "X",
+        "source_reviewed": true
+      },
+      {
+        "pin": "B09",
+        "side": "output",
+        "row": 26,
+        "reference": "BA.B09",
+        "point": [
+          153,
+          26
+        ],
+        "border_marker": null,
+        "source_reviewed": true
+      }
+    ],
+    "source_reviewed": true,
+    "socket_listing_evidence": {
+      "kind": "card portion",
+      "board": "01D-C2",
+      "sockets": [
+        "D6",
+        "D7"
+      ],
+      "part_number": "5801124",
+      "card_type": "1124",
+      "portion": "A6",
+      "source_listing": "EF461 SOCKET LISTING",
+      "source_listings": [
+        "EF461 SOCKET LISTING"
+      ]
+    }
+  },
+  "prior_review_notes": [
+    {
+      "kind": "literal pin anomaly",
+      "text": "BA lower reference input printed B01X, confirmed native tiny crop; retained as B01 pin and X border marker.",
+      "source_crop": "tmp/ald-text/ed/low/ED081 B04 pin.png"
+    },
+    {
+      "kind": "printer grid",
+      "text": "User-confirmed 245 columns and103 rows; ordinary source gates retain8-column width and7-row height. Source fields, native routes and source diamonds reviewed using native crops; geometric checks passed."
+    }
+  ],
+  "remaining_historical_B01_strings": [
+    {
+      "pointer": "/review_notes/0/text",
+      "value": "BA lower reference input printed B01X, confirmed native tiny crop; retained as B01 pin and X border marker."
+    }
+  ],
+  "scope": "Human physical-sheet answer supersedes old scan reading. B04 contact replaces B01 in all four active aliases; X, row, point, other contacts, all net paths/IDs and geometry unchanged."
+}

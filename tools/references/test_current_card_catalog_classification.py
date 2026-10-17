@@ -44,7 +44,7 @@ class CatalogueClassificationTests(unittest.TestCase):
         content={'files':[{'path':self.model_rel,'sha256':sha(self.repo/self.model_rel),'role':'Published page content model'},
             {'path':legacy,'sha256':sha(self.repo/legacy),'role':'Accepted existing A1 board model or source-column table'}]}
         self.put('notes/Content data manifest.json',encoded(content))
-        for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py']:
+        for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py','current_card_identity.py']:
             self.put('tools/references/'+name,Path(__file__).with_name(name).read_bytes())
         self.sync_uniform()
 
