@@ -14,6 +14,9 @@ import re
 from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 
 from current_card_identity import catalogue_identity
 
@@ -144,12 +147,12 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def read_checked(path: Path, expected: str):
+def read_checked(path: Path, expected: str, page_model=False):
     raw = path.read_bytes()
     actual = sha(raw)
     if actual != expected:
         raise ValueError(f"Changed source: {path}: {actual} != {expected}")
-    return json.loads(raw.decode("utf-8-sig"))
+    return page_reader.loads(raw) if page_model else json.loads(raw.decode("utf-8-sig"))
 
 
 def dump(path: Path, value):
@@ -231,7 +234,7 @@ def main():
         text_path = repo / text_rel
         if sha(text_path.read_bytes()) != text_entry["text_sha256"]:
             raise ValueError(f"Text changed after acceptance: {text_rel}")
-        model = read_checked(relative_path(repo, model_rel), entry["sha256"])
+        model = read_checked(relative_path(repo, model_rel), entry["sha256"], page_model=True)
         page_key = text_rel
         source_pages[page_key] = {
             "page": model.get("page", text_entry["page"]),
@@ -454,6 +457,8 @@ def main():
     for name in ("build_current_card_catalog.py", "verify_current_card_catalog.py", "verify_uniform_socket_listings.py", "current_card_identity.py"):
         relative = "tools/references/" + name
         source_inputs[relative] = sha((repo / relative).read_bytes())
+    for path in page_reader.runtime_paths(repo):
+        source_inputs[path.relative_to(repo).as_posix()] = sha(path.read_bytes())
     for relative, expected in source_inputs.items():
         if sha(relative_path(repo, relative).read_bytes()) != expected:
             raise ValueError("Catalogue source changed during build: " + relative)

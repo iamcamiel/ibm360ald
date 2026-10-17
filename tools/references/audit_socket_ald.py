@@ -12,6 +12,9 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import re
 
 import socket_ald_matching as matching
@@ -63,7 +66,7 @@ def load_ald(repo,provenance,content):
         if text_path not in accepted:raise ValueError('Model without accepted text: '+relative)
         acceptance=accepted[text_path]
         checked(text_path,acceptance['text_sha256'])
-        model=json.loads(checked(path,entry['sha256']).decode('utf-8-sig'))
+        model=page_reader.loads(checked(path,entry['sha256']))
         if not isinstance(model,dict):raise ValueError('Page model is not an object: '+relative)
         match=PAGE.match(text_path.stem)
         if not match:raise ValueError('Unrecognized page filename: '+str(text_path))
@@ -288,6 +291,7 @@ def run(repo,output):
         path=Path(__file__).with_name(name)
         raw=path.read_bytes();tool_sources[name]=raw
         tool_bindings.append({'path':path.relative_to(repo).as_posix(),'sha256':sha(raw)})
+    tool_bindings.extend({'path':path.relative_to(repo).as_posix(),'sha256':sha(path.read_bytes())} for path in page_reader.runtime_paths(repo))
     provenance_path=repo/'notes/Reviewed export provenance.json';content_path=repo/'notes/Content data manifest.json'
     index_path=repo/'json/Socket listings uniform/Socket listings.json'
     manifest_path=repo/'notes/Socket listings uniform/Build manifest.json'

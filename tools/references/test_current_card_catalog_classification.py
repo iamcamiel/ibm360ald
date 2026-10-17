@@ -46,6 +46,8 @@ class CatalogueClassificationTests(unittest.TestCase):
         self.put('notes/Content data manifest.json',encoded(content))
         for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py','current_card_identity.py']:
             self.put('tools/references/'+name,Path(__file__).with_name(name).read_bytes())
+        for path in builder.page_reader.runtime_paths(Path(builder.__file__).resolve().parents[2]):
+            self.put('tools/normalization/'+path.name,path.read_bytes())
         self.sync_uniform()
 
     def tearDown(self):self.fixture.tearDown()

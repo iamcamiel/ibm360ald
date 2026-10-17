@@ -9,6 +9,9 @@ import argparse,csv,hashlib,json,re,shutil
 from collections import Counter,defaultdict
 from datetime import datetime,timezone
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 
 ENDPOINT=re.compile(r'(?<![A-Z0-9�])(?P<prefix>(?:[0-9A-Z�]{2})?[A-Z�])-(?P<gate>[A-Z�][0-9�])(?P<socket>[A-Z�][0-9�]{1,2}(?:[TB�])?)(?P<pin>[A-Z�][A-Z0-9�]{2})(?![A-Z0-9�])')
 CODE=re.compile(r'(?<![A-Z0-9�])(?:[A-Z�]{2}[0-9�]{3}(?:-[0-9�]{2})?)?[A-Z�]{1,3}[0-9�]{1,2}(?![A-Z0-9�])')
@@ -144,7 +147,7 @@ def main():
         basename=e['destination'].replace('\\','/').rsplit('/',1)[-1];folder=e['source_relative'].replace('\\','/').rsplit('/',1)[0];rel='ALD/'+folder+'/'+basename;tp=repo/rel;assert digest(tp)==e['text_sha256']==owned[rel],rel
         modelrel='json/'+str(Path(rel).relative_to('ALD').with_suffix('.json')).replace('\\','/');mp=repo/modelrel;model=None;mb=None
         if mp.is_file():
-            assert modelrel in modelindex and digest(mp)==modelindex[modelrel]['sha256']==owned[modelrel],modelrel;model=read(mp);mb=repo_binding(mp,repo)
+            assert modelrel in modelindex and digest(mp)==modelindex[modelrel]['sha256']==owned[modelrel],modelrel;model=page_reader.read(mp);mb=repo_binding(mp,repo)
         sid=str(e['source_scan_id']);lines=tp.read_text(encoding='utf-8').splitlines();bound={'text':repo_binding(tp,repo),'model':mb,'source_relative':e['source_relative'],'original_scan_name':e.get('original_scan_name'),'accepted_export_record':e['review_record']}
         entries=extract_entries(e['page'],sid,lines,model,units,bound);all_entries.extend(entries);pages.append({'page':e['page'],'source_scan_id':sid,'binding':bound,'endpoint_count':len(entries),'model_status':'Current separately published model'if mb else'No separately published page model; literal accepted TXT is authority'});page_by_scan[sid]=e;models_by_scan[sid]=model;lines_by_scan[sid]=lines
     # Prefer independently literal full-unit proof when the same governed endpoint
@@ -152,6 +155,7 @@ def main():
     by_physical=defaultdict(list)
     for d in all_entries:
         if d['board']:by_physical[(d['board'],d['socket_normalized'],d['pin'])].append(d)
+    inputs += [repo_binding(path,repo) for path in page_reader.runtime_paths(repo)]
     v4=read(issued);ov=read(overlay);closed={q['id']for q in ov['source_derived_resolutions']};issued_ids={q['id']for q in v4['questions']};assert closed<=issued_ids,'Overlay contains IDs absent from the issued manifest'
     issued_a1=[q for q in v4['questions']if q['group']=='A1'];a1=[q for q in issued_a1 if q['id']not in closed];matches=[]
     for q in a1:

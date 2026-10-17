@@ -1,5 +1,8 @@
 """Focused defect-injection tests for the generic read-only card auditor."""
 import unittest
+import tempfile
+import json
+from pathlib import Path
 from copy import deepcopy
 import audit_card_uses as audit
 
@@ -22,6 +25,15 @@ def compare(n,b=None,forms=None):
 
 
 class CardAuditTests(unittest.TestCase):
+    def test_fallback_skips_auxiliary_array_tables(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);columns=root/'json/A1 Socket Listing/table.json';columns.parent.mkdir(parents=True)
+            columns.write_text(json.dumps([{'pin':'B02'}]),encoding='utf-8')
+            model=root/'json/XX/XX001.json';model.parent.mkdir(parents=True)
+            model.write_text(json.dumps({'page':'XX001','nodes':[{'id':'AA','card_type':'1234'}]}),encoding='utf-8')
+            documents,issues=audit.load_documents(root,{'card_type':'1234','diagram_occurrences':[]})
+            self.assertEqual(set(documents),{model});self.assertEqual(issues,[])
+
     def test_omitted_unused_input(self):
         n=node();n['pins'].pop(1)
         self.assertFalse(any(f['status'] in ('discrepancy','source_uncertainty') for f in compare(n)))

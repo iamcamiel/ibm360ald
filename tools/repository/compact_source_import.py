@@ -12,6 +12,9 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'reviews'))
 import source_review as sr
 import current_checkpoint as checkpoint_api
 import compact_metadata
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'normalization'))
+import read_page as page_reader
+from pages import renormalize_page
 
 CONTENT='notes/Content data manifest.json'
 PROVENANCE='notes/Reviewed export provenance.json'
@@ -151,7 +154,8 @@ def prepare(repo,manifest_path,acceptance_path,source_root):
         current_txt=capture(text_path,links['txt']['sha256']);current_json=capture(model_path,links['json']['sha256'])
         before_clean,_=compact_metadata.prune_history(checkpoint_api.read_json(before['json']))
         after_model=checkpoint_api.read_json(after['json']);after_clean,_=compact_metadata.prune_history(after_model)
-        current_model=checkpoint_api.read_json(current_json)
+        current_document=checkpoint_api.read_json(current_json)
+        current_model=page_reader.source_view(current_document)
         sr.require(current_txt in (before['txt'],after['txt']),'Current repository TXT is not the new stage predecessor or successor')
         is_before=before['txt']==current_txt and sr.json_equal(before_clean,current_model)
         is_after=after['txt']==current_txt and sr.json_equal(after_clean,current_model)
@@ -161,7 +165,10 @@ def prepare(repo,manifest_path,acceptance_path,source_root):
         if old_notes is not None:
             sr.require(notes_relative in inventory_entries and inventory_entries[notes_relative]['sha256']==sr.digest(old_notes),'Current notes are not owned')
         clean,compact_notes=_notes_after(after_model,(old_notes or b'').decode('utf-8-sig'),record.get('json_patches',[]),record.get('notes_append'))
-        model_raw=sr.model_bytes(clean,current_json)
+        if page_reader.is_uniform(current_document):
+            clean=renormalize_page(clean,current_document)
+            model_raw=(json.dumps(clean,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n').encode('utf-8')
+        else:model_raw=sr.model_bytes(clean,current_json)
         put(links['txt']['path'],after['txt'],'Current reviewed source TXT')
         put(links['json']['path'],model_raw,'Current compact page model')
         put(notes_relative,compact_notes,'Current significant corrections and unresolved source notes')

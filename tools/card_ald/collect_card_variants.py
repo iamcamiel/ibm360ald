@@ -12,6 +12,9 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import re
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -121,7 +124,7 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
     for path in sorted((root/'json').rglob('*.json')):
         relative=path.relative_to(root/'json')
         if relative.parts[0] in ('Card-ALD','Card types','Card types current','A1 Socket Listing'):continue
-        doc=read(path)
+        doc=page_reader.read(path)
         if not isinstance(doc,dict) or not isinstance(doc.get('nodes'),list):continue
         nodes=[n for n in doc['nodes'] if n.get('card_type')==card]
         if not nodes:continue
@@ -234,6 +237,7 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             'canonical_pattern_witnesses':len(canonical),'witnesses_with_unmapped_or_omitted_fields':len(uncertain)}
     report = {'schema':'card-ald-observed-variant-candidates-v1','card_type':card,
             'definition':binding(definition),'collector':binding(Path(__file__)),
+            'page_reader_tools':[binding(path) for path in page_reader.runtime_paths(root)],
             'grouping':grouping,'conflicting_physical_card_sites':conflict_sites,
             'rules':['Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.',
                      'Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.',

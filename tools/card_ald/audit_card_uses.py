@@ -15,6 +15,9 @@ import hashlib
 import itertools
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import re
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -191,16 +194,21 @@ def load_documents(root,catalog):
         path=resolve_path(root,Path(*parts).with_suffix('.json'))
         if path in documents:continue
         if not path.is_file():issues.append(finding('source_uncertainty','source_model',str(path),None,'Published model is missing.'));continue
-        doc=read(path)
+        doc=page_reader.read(path)
         documents[path]={'document':doc,'sha256':digest(path),'original':deepcopy(doc)}
     # A stale/incomplete catalog must not hide a newly transcribed occurrence.
     # Only actual published page models are eligible; catalogs and card render
     # definitions have their own schemas and are not transcription sources.
     for path in (root/'json').rglob('*.json'):
         if path in documents or any(p in ('Card types','Card types current','Card-ALD') for p in path.relative_to(root/'json').parts[:-1]):continue
-        try:doc=read(path)
+        try:
+            raw=path.read_bytes()
+            decoded=json.loads(raw.decode("utf-8-sig"))
         except (UnicodeError,json.JSONDecodeError):continue
-        if not isinstance(doc,dict) or not isinstance(doc.get('nodes'),list):continue
+        # Some auxiliary A1 column tables are arrays, not page documents.
+        if not isinstance(decoded,dict):continue
+        doc=page_reader.loads(raw)
+        if not isinstance(doc.get('nodes'),list):continue
         if not any(n.get('card_type')==catalog['card_type'] for n in doc['nodes'] if isinstance(n,dict)):continue
         documents[path]={'document':doc,'sha256':digest(path),'original':deepcopy(doc)}
     return documents,issues
@@ -391,7 +399,7 @@ def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=N
     coverage=[r for r in wires if r['field'] in coverage_fields]
     review += [r for r in wires if r['field'] not in coverage_fields]+source_issues+[r for r in corrections if r['status']=='source_uncertainty']
     return {'schema':'card-use-audit-v1','created_utc':datetime.now(timezone.utc).isoformat(),'card_type':card,
-        'read_only':True,'definition':{'path':str(dp),'sha256':digest(dp)},'catalog':{'path':str(cp),'sha256':digest(cp)},
+        'read_only':True,'page_reader_tools':[{'path':str(path),'sha256':digest(path)} for path in page_reader.runtime_paths(root)],'definition':{'path':str(dp),'sha256':digest(dp)},'catalog':{'path':str(cp),'sha256':digest(cp)},
         'overrides':{'path':str(op),'sha256':digest(op)} if op.is_file() else None,
         'summary':{'pages':len(documents),'occurrences':len(occurrences),'occurrence_statuses':dict(Counter(o['status'] for o in occurrences)),
             'needs_review':len(review),'new_discrepancies':sum(r['status']=='discrepancy' for r in review),

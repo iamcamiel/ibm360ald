@@ -4,6 +4,9 @@ Never infers unit identity, pin labels, or card functions from spatial order.
 """
 import argparse,collections,hashlib,json,re
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 from datetime import datetime,timezone
 UNITS={x:'02'+x for x in 'ABCEKL'}
 LOC=re.compile(r'(?P<prefix>(?:[0-9�]{2})?[A-Z�])-(?P<gate>[A-Z�][0-9�])(?P<socket>[A-Z�][0-9�]{1,2}[BT]?)$')
@@ -80,11 +83,12 @@ def main():
  authority=Path(a.human_instruction)if a.human_instruction else out/'Direct human socket function instructions.json'
  inputs=[repo/'notes/Reviewed export provenance.json',repo/'notes/Manual verification/Workbook binding manifest v4.json',repo/'notes/Manual verification/Pending inventory after V4.json',authority,repo/'notes/Repository records manifest.json'];export,issued,overlay=map(read,inputs[:3]);closed={x['id']for x in overlay['source_derived_resolutions']};records=read(inputs[4]);managed={x['path']:x['sha256']for x in records['files']}
  rules=repo/'notes/A1 Socket Listing/Endpoint reference index';inputs.extend(rules/n for n in ['Direct human abbreviated endpoint units instruction.json','Direct human bare A endpoint instruction.json','Direct human socket matching instruction.json']);bindings=[bound(p,repo)for p in inputs]
+ bindings.extend(bound(path,repo)for path in page_reader.runtime_paths(repo))
  pages={};a1=[]
  for e in export['exported']:
   tp=sourcepath(e,repo);assert hashp(tp)==e['text_sha256'];sid=str(e['source_scan_id']);mp=repo/'json'/Path(e['source_relative'].replace('\\','/')).parent/(tp.stem+'.json')
   if mp.exists():assert hashp(mp)==managed[mp.relative_to(repo).as_posix()]
-  page={'page':e['page'],'scan_id':sid,'lines':tp.read_text(encoding='utf-8').splitlines(),'text_binding':bound(tp,repo),'model_binding':bound(mp,repo)if mp.exists()else None,'source_relative':e['source_relative'],'review_record':e['review_record'],'model':read(mp)if mp.exists()else{}}
+  page={'page':e['page'],'scan_id':sid,'lines':tp.read_text(encoding='utf-8').splitlines(),'text_binding':bound(tp,repo),'model_binding':bound(mp,repo)if mp.exists()else None,'source_relative':e['source_relative'],'review_record':e['review_record'],'model':page_reader.read(mp)if mp.exists()else{}}
   page['source_sha256']=page['model'].get('source_sha256')
   pages[sid]=page
   if 'A1 Socket Listing'in e['source_relative']:

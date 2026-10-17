@@ -12,6 +12,9 @@ from copy import deepcopy
 from hashlib import sha256
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import re
 import sys
 
@@ -309,6 +312,7 @@ def load_evidence(card, overlay):
     manifest = read(manifest_path)
     models = {}
     bindings = [binding(catalog_path), binding(manifest_path), binding(Path(__file__).resolve().parents[1] / "references/current_card_identity.py")]
+    bindings.extend(binding(path) for path in page_reader.runtime_paths(ROOT))
     for entry in manifest["files"]:
         if entry.get("role") != "Published page content model":
             continue
@@ -319,7 +323,7 @@ def load_evidence(card, overlay):
         if digest(path) != entry["sha256"]:
             uncertainties.append({"kind": "current model differs from published hash", "page": page, "path": str(path)})
             continue
-        models[page] = read(path)
+        models[page] = page_reader.read(path)
         bindings.append(binding(path))
     for page in sorted(pages - set(models)):
         uncertainties.append({"kind": "current source model unavailable", "page": page})

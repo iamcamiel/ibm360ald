@@ -12,6 +12,9 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import re
 import verify_uniform_socket_listings as uniform_verifier
 
@@ -69,7 +72,7 @@ def verify(repo,root):
     for item in content['files']:
         if item['role']!='Published page content model':continue
         relative=item['path'];need(relative.startswith('json/') and relative.endswith('.json'),'Invalid model path')
-        model=read(checked(relative,item['sha256']));text='ALD/'+relative[5:-5]+'.txt'
+        model=page_reader.read(checked(relative,item['sha256']));text='ALD/'+relative[5:-5]+'.txt'
         need(text in accepted and text not in pages,'Missing/duplicate accepted model source')
         entry=accepted[text];checked(text,entry['text_sha256'])
         pages[text]={'page':model.get('page',entry['page']),'model':relative,'model_sha256':item['sha256'],
@@ -99,6 +102,7 @@ def verify(repo,root):
     for text,binding in pages.items():expected_inputs.update({text:binding['text_sha256'],binding['model']:binding['model_sha256']})
     for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py','current_card_identity.py']:
         relative='tools/references/'+name;expected_inputs[relative]=digest(repo/relative)
+    for path in page_reader.runtime_paths(repo):expected_inputs[path.relative_to(repo).as_posix()]=digest(path)
     actual_inputs={x['path']:x['sha256']for x in m['source_inputs']}
     need(len(actual_inputs)==len(m['source_inputs'])and actual_inputs==expected_inputs,'Declared catalogue source input inventory differs')
     for relative,expected in actual_inputs.items():checked(relative,expected)

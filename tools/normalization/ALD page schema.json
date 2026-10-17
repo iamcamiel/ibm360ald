@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ibm360:ald-page:v2",
+  "title": "Current IBM 360 ALD page",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "document_id", "page", "source_status_ref", "objects", "nets", "junctions", "source_containers", "current_extensions"],
+  "properties": {
+    "schema": {"const": "ibm360-ald-page-v2"},
+    "document_id": {"type": "string", "minLength": 1},
+    "page": {
+      "type": "object",
+      "required": ["scan_id", "kind"],
+      "properties": {"scan_id": {"type": "string"}, "kind": {"type": "string"}}
+    },
+    "source_status_ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "scan_id"],
+      "properties": {"path": {"const": "notes/Source status.json"}, "scan_id": {"type": "string"}}
+    },
+    "objects": {"type": "array", "items": {"$ref": "#/$defs/object"}},
+    "nets": {"type": "array", "items": {"$ref": "#/$defs/network"}},
+    "junctions": {"type": "array", "items": {"$ref": "#/$defs/network"}},
+    "source_containers": {"type": "object"},
+    "current_extensions": {"type": "object"}
+  },
+  "$defs": {
+    "source_form": {
+      "type": "object", "required": ["container", "ordinal", "value_type"],
+      "properties": {"container": {"type": "string"}, "ordinal": {"type": "integer", "minimum": 0}, "value_type": {"enum": ["null", "boolean", "integer", "number", "string", "array", "object"]}}
+    },
+    "object": {
+      "type": "object", "required": ["object_id", "kind", "source_form"],
+      "properties": {"object_id": {"type": "string"}, "kind": {"type": "string"}, "source_form": {"$ref": "#/$defs/source_form"}, "terminals": {"type": "array", "items": {"$ref": "#/$defs/terminal"}}}
+    },
+    "terminal": {
+      "type": "object", "required": ["terminal_id", "pin_number", "pin_number_status", "symbols", "border_decorations", "source_literals", "source_form"],
+      "properties": {"terminal_id": {"type": "string"}, "pin_number": {"type": ["string", "null"]}, "pin_number_status": {"type": "string"}, "symbols": {"type": "object"}, "border_decorations": {"type": "array"}, "source_form": {"type": "object"}}
+    },
+    "network": {
+      "type": "object", "required": ["network_id", "kind", "source_form", "endpoint_claims", "routes", "junctions"],
+      "properties": {"network_id": {"type": "string"}, "kind": {"type": "string"}, "source_form": {"$ref": "#/$defs/source_form"}, "endpoint_claims": {"type": "array"}, "routes": {"type": "array"}, "junctions": {"type": "array"}, "routing_status": {"enum": ["recorded", "partial", "not-recorded"]}},
+      "not": {"required": ["crossings"]}
+    }
+  }
+}

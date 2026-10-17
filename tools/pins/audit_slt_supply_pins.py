@@ -8,6 +8,9 @@ Connector and non-SLT modules are outside this audit.
 from collections import Counter, defaultdict
 from hashlib import sha256
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import csv
 import json
 import re
@@ -96,7 +99,7 @@ def audit():
             continue
         matched_model_texts.add(txt.as_posix())
         assert digest(path) == item["sha256"], path
-        data = read(path)
+        data = page_reader.read(path)
         if not isinstance(data.get("nodes"), list):
             models_without_nodes.append(txt.as_posix())
             continue
@@ -168,6 +171,7 @@ def audit():
         "schema": "slt-supply-pin-all-accepted-model-audit-v1",
         "scope": "Accepted ALD page models only; nodes whose card type has a SINGLE or DOUBLE SLT socket-listing classification. Connectors and other modules excluded.",
         "pin_rules": SUPPLY,
+        "page_reader_tools": [{"path":str(path.relative_to(ROOT)),"sha256":digest(path)} for path in page_reader.runtime_paths(ROOT)],
         "source_bindings": {
             "socket_reference": {"path": str(SOCKETS.relative_to(ROOT)), "sha256": digest(SOCKETS)},
             "content_manifest": {"path": str(CONTENT.relative_to(ROOT)), "sha256": digest(CONTENT)},

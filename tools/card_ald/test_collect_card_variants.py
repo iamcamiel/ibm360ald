@@ -11,6 +11,9 @@ C=importlib.util.module_from_spec(spec);spec.loader.exec_module(C)
 class CollectorTest(unittest.TestCase):
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[3]/"tmp");self.root=Path(self.temp.name);(self.root/'json/XX').mkdir(parents=True)
+        normalizer=self.root/'tools/normalization';normalizer.mkdir(parents=True)
+        for source in C.page_reader.runtime_paths(Path(C.__file__).resolve().parents[2]):
+            (normalizer/source.name).write_bytes(source.read_bytes())
         self.definition=self.root/'definition.json'
         boxes=[]
         for portion,pin,out in [('A1','D04','B03'),('B1','B05','D02')]:

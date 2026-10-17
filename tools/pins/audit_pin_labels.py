@@ -8,6 +8,9 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+import read_page as page_reader
 import csv
 import json
 import re
@@ -91,10 +94,13 @@ def audit():
         if path.parent.name in {"A1 Socket Listing", "Card types"}:
             continue
         try:
-            data = json.loads(path.read_text(encoding="utf-8"))
+            raw = path.read_bytes()
+            data = json.loads(raw.decode("utf-8-sig"))
         except (UnicodeError, json.JSONDecodeError):
             counts["unreadable_json_files"] += 1
             continue
+        if isinstance(data, dict):
+            data = page_reader.loads(raw)
         if not isinstance(data, dict) or not isinstance(data.get("nodes"), list):
             continue
         json_files += 1
@@ -215,6 +221,7 @@ def audit():
         "a1_sha256": sha256(SOURCE.read_bytes()).hexdigest(),
         "observation_source": str(OBSERVATIONS.relative_to(ROOT)).replace("\\", "/"),
         "observation_sha256": sha256(OBSERVATIONS.read_bytes()).hexdigest(),
+        "page_reader_tools": [{"path":str(path.relative_to(ROOT)),"sha256":sha256(path.read_bytes()).hexdigest()} for path in page_reader.runtime_paths(ROOT)],
         "json_page_files_scanned": json_files,
         "pages_with_pin_fields": len(pages_with_pin_fields),
         "pages_with_classified_card_pin_fields": len(classified_pages),

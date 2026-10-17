@@ -1,0 +1,46 @@
+CURRENT UNIFORM ALD PAGE DATA
+
+Every accepted page uses ibm360-ald-page-v2 at its existing json/family/page.json
+path. All share page, objects, nets, junctions and current_extensions sections.
+Unsupported table/CAS values remain explicit current data. Source container
+presence, array order, duplicate/anonymous object IDs, null and false survive.
+
+Object identities, terminal observations and net claims use the independently
+reviewed identity.py and terminals.py pure mappers. pin_number, symbols and
+border_decorations are separate. Geometry is copied without coordinate changes;
+no driver, electrical connection or physical pin is inferred. Source status is
+one portable reference to notes/Source status.json and its scan ID.
+
+Net routes retain recorded coordinates; junctions retain explicit joined marks.
+Crossings are rendered from intersecting paths, not a second maintained list.
+Old literal crossing claims remain only in source_literals for exact current
+adapter compatibility. routing_status is recorded for explicit paths, partial
+for coordinate-only or damaged route claims, and not-recorded without routes.
+It does not certify a complete trace or create corners from logical incidence.
+
+source_literals and source_form contain only CURRENT spellings, alias fields,
+collection membership and value representations needed by the temporary legacy
+reader. They are not previous versions, review histories or raw-byte archives.
+Unknown current facts are retained conservatively; no history-name wildcard is
+applied to already compacted source models. Significant explanatory page notes
+stay in the existing notes tree. No extra per-page provenance tree is written.
+
+normalize_page(raw, model_relative, source_scan_id,
+               source_status_ref='notes/Source status.json', context=None)
+returns {data, mapping}. The rich mapper mapping is TRANSIENT for independent
+verification only; the builder must never serialize it into the repository.
+restore_page(data) returns a detached exact current source-shaped dictionary
+for consumers awaiting migration. It fails on duplicate source occurrences or
+terminal memberships. It also reprojects that current representation and rejects
+disagreement with structured functions, contacts, decorations or endpoint facts,
+so a structured edit cannot be silently ignored by an older reader. This
+consistency check is not a fresh source acceptance. Geometry stored once is
+guarded by current page/checkpoint hashes. validate_current_page(data) exposes
+the same check. renormalize_page(raw, template, context=None) returns new
+uniform data with stable document/checkpoint identity for reviewed source edits.
+
+load_uniform_page.load_page(root, relative) loads the current common interface.
+It rejects duplicate JSON keys, malformed envelopes and escaping file paths.
+load_legacy_view is the temporary current-shape adapter. Neither loads history.
+Loading data does not grant a new visual or electrical acceptance; current
+source/checkpoint bindings are validated by the build/import/review workflows.
