@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -149,7 +149,7 @@
+     mirrors = {contact_label(raw, raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
+     mirrors.discard(None)
+     semantic = bool(re.fullmatch(
+-        r"(?:(?:[A-Z]+_)?(?:IN|OUT)(?:[_-].*)?|INPUT|OUTPUT|TIE|TERMINAL|FEEDTHROUGH)", str(label), re.I))
++        r"(?:(?:[A-Z][A-Z0-9]*_)?(?:IN|OUT)(?:[_-].*)?|INPUT|OUTPUT|TIE|TERMINAL|FEEDTHROUGH)", str(label), re.I))
+     if contact is None and semantic and len(mirrors) == 1:
+         contact = next(iter(mirrors))
+     result = {"port_index": index, "basis": basis, "raw_port": deepcopy(raw),

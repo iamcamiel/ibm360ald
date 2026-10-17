@@ -53,47 +53,87 @@ def physical_contact(raw):
     return match.group("pin") if match else None
 
 def resolve_net_port(node, endpoint, side, adapted_pins=None):
-    """Resolve an occurrence terminal before interpreting its printed label.
+    """Resolve local terminal identity before its printed contact label.
 
-    Reference strings identify ports; failed lookup never means PINLESS.
-    Source fields/decorations and electrical net membership remain untouched.
+    Explicit source aliases take precedence over synthesized label aliases.
+    Failed lookup is unresolved, never evidence of an anonymous terminal.
     """
     node_id = str(node.get("id", node.get("node", "")))
     if not isinstance(endpoint, str) or not endpoint.startswith(node_id + "."):
         return {"status": "unresolved", "reason": "endpoint outside scoped node"}
     suffix = endpoint[len(node_id) + 1:]
-    ports = [(i, p) for i, p in enumerate(node.get("pins", [])) if p.get("side") == side]
-    def aliases(port):
+    raw_ports = node.get("pins", [])
+    if not isinstance(raw_ports, list) or any(not isinstance(port, dict) for port in raw_ports):
+        return {"status": "unresolved", "reason": "unsupported raw terminal schema"}
+    ports = [(i, p) for i, p in enumerate(raw_ports) if p.get("side") == side]
+
+    def k_marked(port):
+        return any(port.get(k) == "K" for k in
+                   ("border_marker", "border_control", "border_qualifier", "printed_qualifier", "marker"))
+
+    def contact_label(port, value):
+        contact = physical_contact(value)
+        if contact is None and k_marked(port) and isinstance(value, str):
+            match = re.fullmatch(r"K([BDGJ](?:0[2-9]|1[0-3]))[✲*]?", value.strip())
+            if match:
+                contact = match.group(1)
+        return contact
+
+    def declared_aliases(port):
         names = set()
-        for field in ("reference", "terminal_id", "ref", "id", "port_id", "alias",
+        for field in ("reference", "terminal_id", "ref", "id", "port_id", "key", "alias",
                       "aliases", "references", "terminal_ids"):
             values = port.get(field, [])
             for value in values if isinstance(values, (list, tuple)) else [values]:
+                if isinstance(value, int) and not isinstance(value, bool):
+                    value = str(value)
                 if isinstance(value, str) and value:
                     names.add(value if value.startswith(node_id + ".") else node_id + "." + value)
-        for field in ("pin", "printed_pin"):
-            if isinstance(port.get(field), str) and port[field]:
-                names.add(node_id + "." + port[field])
-        markers = {port.get(k) for k in ("border_marker", "border_control", "border_qualifier")}
-        contact = physical_contact(port.get("pin"))
-        if "K" in markers and contact:
-            for value in list(names):
-                tokens = value.split(".")
-                if "K" + contact in tokens:
-                    names.add(".".join(contact if t == "K" + contact else t for t in tokens))
         return names
-    matches = [(i, p) for i, p in ports if endpoint in aliases(p)]
-    basis = "exact side-scoped terminal alias"
+
+    def label_aliases(port):
+        names = {node_id + "." + port[k] for k in ("pin", "printed_pin")
+                 if isinstance(port.get(k), str) and port[k]}
+        if k_marked(port):
+            for value in list(names | declared_aliases(port)):
+                tokens = value.split(".")
+                for token in tokens:
+                    if token.startswith("K") and contact_label(port, token):
+                        names.add(".".join(token[1:] if t == token else t for t in tokens))
+        return names
+
+    matches = [(i, port) for i, port in ports if endpoint in declared_aliases(port)]
+    basis = "exact side-scoped declared terminal alias"
     if not matches:
-        contact = physical_contact(suffix)
-        if contact:
-            matches = [(i, p) for i, p in ports if physical_contact(p.get("pin")) == contact]
-            basis = "exact side-scoped physical label"
-        elif suffix.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
-            # A generic endpoint may identify one LOCAL port, never an output
-            # guessed from different occurrences of this card portion.
-            matches = ports
-            basis = "single local side-specific generic endpoint"
+        matches = [(i, port) for i, port in ports if endpoint in label_aliases(port)]
+        basis = "exact side-scoped printed-label alias"
+    if not matches:
+        # Some source models explicitly qualify endpoint labels with a row.
+        qualified = re.fullmatch(r"(.+)@(\d+)", suffix)
+        row = int(qualified.group(2)) if qualified else None
+        label = qualified.group(1) if qualified else suffix
+        named_contact = physical_contact(label)
+        if named_contact:
+            matches = [(i, port) for i, port in ports
+                       if contact_label(port, port.get("pin")) == named_contact
+                       and (row is None or port.get("absolute_row", port.get("row")) == row)]
+            basis = "exact side-scoped physical label" + (" and row" if row is not None else "")
+        elif qualified and label.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
+            matches = [(i, port) for i, port in ports
+                       if port.get("absolute_row", port.get("row")) == row]
+            basis = "exact side-scoped terminal row"
+        else:
+            # Unqualified numbered forms are rows only when an ordinal index
+            # is impossible. Ambiguous zero/one-based ordinals stay unresolved.
+            numeric = re.fullmatch(r"(?:in|input)(\d+)" if side == "input" else r"(?:out|output)(\d+)", suffix, re.I)
+            if numeric and int(numeric.group(1)) > len(ports):
+                row = int(numeric.group(1))
+                matches = [(i, port) for i, port in ports
+                           if port.get("absolute_row", port.get("row")) == row]
+                basis = "unambiguous local terminal row convention"
+            elif suffix.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
+                matches = ports
+                basis = "single local side-specific generic endpoint"
     if len(matches) != 1:
         return {"status": "unresolved", "reason": "ambiguous terminal alias" if matches else "terminal alias not found",
                 "candidate_indices": [i for i, _ in matches]}
@@ -104,18 +144,23 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
             return {"status": "unresolved", "reason": "adapted/raw port identity differs", "port_index": index}
         effective = adapted_pins[index]
     label = effective.get("pin")
-    contact = physical_contact(label)
+    contact = contact_label(raw, label)
+    raw_contact = contact_label(raw, raw.get("pin"))
+    mirrors = {contact_label(raw, raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
+    mirrors.discard(None)
+    semantic = bool(re.fullmatch(
+        r"(?:(?:[A-Z][A-Z0-9]*_)?(?:IN|OUT)(?:[_-].*)?|INPUT|OUTPUT|TIE|TERMINAL|FEEDTHROUGH)", str(label), re.I))
+    if contact is None and semantic and len(mirrors) == 1:
+        contact = next(iter(mirrors))
     result = {"port_index": index, "basis": basis, "raw_port": deepcopy(raw),
               "effective_label": label, "physical_contact": contact}
+    if len(mirrors) > 1 or (raw_contact and mirrors and mirrors != {raw_contact}):
+        return {**result, "status": "unresolved", "reason": "conflicting raw physical contact mirrors"}
     if contact:
-        raw_contact = physical_contact(raw.get("pin"))
-        mirrors = {physical_contact(raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
-        mirrors.discard(None)
-        if mirrors and (raw_contact is None or mirrors != {raw_contact}):
-            return {**result, "status": "unresolved", "reason": "conflicting raw physical contact mirrors"}
         return {**result, "status": "numbered"}
-    placeholder = label is None or re.fullmatch(r"(?:IN|OUT)\d+|[AB]|(?:input|output)\d*", str(label), re.I)
-    if placeholder and not any(physical_contact(raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")):
+    placeholder = label is None or str(label).strip() == "" or re.fullmatch(
+        r"(?:IN|OUT)\d*|[AB]|(?:input|output)\d*", str(label), re.I)
+    if placeholder and not mirrors:
         return {**result, "status": "pinless"}
     return {**result, "status": "unresolved", "reason": "unreadable or unsupported printed contact label"}
 

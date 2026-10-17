@@ -83,6 +83,21 @@ Compatible fanout trees also try one vertical trunk with horizontal branches,
 including internal nets, shared inputs and exposed output contacts. All other
 net layers stay fixed. A change must improve crossings, bends or wire length.
 
+Initial routing protects a horizontal escape corridor for every terminal before
+laying longer wires. Separate pieces of one net are joined using actual wire
+connectivity. If an early net blocks a later one, a bounded deterministic search
+retries the routing order. These rules use geometry and net identities only.
+Temporary corridor reservations are released before later input and exterior
+pin optimizations. Box placement remains on free rows, and all variants retain
+the same geometry. A source terminal union that needs more output slots than
+the agreed box format permits is reported for review instead of enlarging the
+box solely to fit extra outputs.
+
+Routing validation also checks reciprocal wire segments, exact wire-layer
+membership, every exterior contact and physical-contact net consistency. A
+crossing must remain two straight, perpendicular wires; it cannot conceal a
+branch or a bend. Failed route searches do not leave partial wire changes.
+
 PREVIEW SHORT SHARED-NET R TERMINATIONS
 
     python tools/card_ald/compact_terminations.py 4191 --output-dir PATH

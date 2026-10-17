@@ -60,6 +60,22 @@ class Router:
 
     def route(self, net, start, goals):
         """Find one orthogonal route; cross only a straight unrelated wire."""
+        goals = set(goals)
+        if not goals:
+            raise ValueError(("No route goals", net, start))
+        if start in self.reserved and net not in self.reserved[start]:
+            raise ValueError(("Route starts in another net's terminal escape", net, start))
+        if any(n != net for n in self.wires.get(start, {})):
+            raise ValueError(("Route starts on an unrelated wire", net, start))
+        def straight_crossing(net_layers, own_dirs):
+            others = [ds for n, ds in net_layers.items() if n != net]
+            if not others:
+                return True
+            if len(others) != 1 or others[0] not in ({0, 2}, {1, 3}):
+                return False
+            # A branch or bend can never be hidden by a crossing glyph.
+            allowed = {1, 3} if others[0] == {0, 2} else {0, 2}
+            return bool(own_dirs) and own_dirs <= allowed
         # Goals are often a long existing tree. Use the entire tree as the
         # target, with a bounding-box lower bound for an admissible heuristic.
         minx, maxx = min(x for x, _ in goals), max(x for x, _ in goals)
@@ -77,12 +93,18 @@ class Router:
             x, y, direction = state
             if (x, y) in goals:
                 # No branch can originate at a crossing of unrelated nets.
-                if len(self.wires[(x, y)]) <= 1:
+                if not any(n != net for n in self.wires.get((x, y), {})):
                     final = state
                     break
-            current_others = {n: ds for n, ds in self.wires[(x, y)].items() if n != net}
+            current_layers = self.wires.get((x, y), {})
+            current_others = {n: ds for n, ds in current_layers.items() if n != net}
             for nd, (dx, dy) in enumerate(DIRS):
                 if current_others and direction >= 0 and nd != direction:
+                    continue
+                own_dirs = set(current_layers.get(net, set())) | self.virtual_endpoint_directions.get((x, y), {}).get(net, set()) | {nd}
+                if direction >= 0:
+                    own_dirs.add(OPPOSITE[direction])
+                if not straight_crossing(current_layers, own_dirs):
                     continue
                 nx, ny = x + dx, y + dy
                 if not (3 <= nx < self.width - 3 and 7 <= ny < self.height - 1):
@@ -96,7 +118,8 @@ class Router:
                     continue
                 if dy and ((x,y) in self.vertical_forbidden or (nx,ny) in self.vertical_forbidden):
                     continue
-                others = {n: ds for n, ds in self.wires[(nx, ny)].items() if n != net}
+                next_layers = self.wires.get((nx, ny), {})
+                others = {n: ds for n, ds in next_layers.items() if n != net}
                 if others:
                     if len(others) != 1:
                         continue
@@ -105,8 +128,11 @@ class Router:
                         continue
                     if nd in dirs:
                         continue
+                own_next_dirs = set(next_layers.get(net, set())) | self.virtual_endpoint_directions.get((nx, ny), {}).get(net, set()) | {OPPOSITE[nd]}
+                if not straight_crossing(next_layers, own_next_dirs):
+                    continue
                 if dy and any(n != net and ({1, 3} & ds) for xx in (nx-1, nx+1)
-                              for n, ds in self.wires[(xx, ny)].items()):
+                              for n, ds in self.wires.get((xx, ny), {}).items()):
                     continue
                 step = 1 + (self.bend_penalty if direction >= 0 and direction != nd else 0) + (self.crossing_penalty if others else 0)
                 new_cost = cost + step
@@ -210,11 +236,17 @@ def prepare(model):
                 portions.remove(p)
                 portions.insert(portions.index(anchor)+1, p)
         for p in portions:
-            height = max(7, len(inputs[p])+2, len(outputs[p])+2)
+            height = max(7, len(inputs[p])+2)
+            if len(outputs[p]) > height - 2:
+                raise ValueError(
+                    f"Portion {p} has {len(outputs[p])} output terminals but only "
+                    f"{height - 2} output slots in its {height}-row ALD box; "
+                    "review the source terminal union before routing."
+                )
             top=hints.get("tops",{}).get(p,y)
             positions[p] = {"x": hints.get("first_bank_x",60) + rank*bank_interval, "top": top, "height": height}
             y=max(y,top+((height+row_gap+row_step-1)//row_step)*row_step)
-    width = max(max(p["x"] for p in positions.values()) + hints.get("right_margin",60),hints.get("minimum_width",0))
+    width = max(max(p["x"] for p in positions.values()) + max(20,hints.get("right_margin",60)),hints.get("minimum_width",0))
     height = max(p["top"]+p["height"] for p in positions.values()) + 35
     ports = {}
     blocked = set()
@@ -277,6 +309,75 @@ def prepare(model):
         key=data["net"]
         point = (3 if data["side"] == "input" else width-4, data["row"])
         router.virtual_endpoint_directions[point][key].add(2 if data["side"] == "input" else 0)
+    baseline_reserved = deepcopy(reserved)
+    # Protect the only legal horizontal exit of every terminal before a
+    # trunk can seal it off. These stubs do not merge electrical nets.
+    escapes = {}
+    protected = {}
+    terminals = [(port["point"], port["net"], -1 if side == "input" else 1)
+                 for (portion, side, port_key), port in ports.items()]
+    terminals += [((3 if data["side"] == "input" else width-4, data["row"]),
+                   data["net"], 1 if data["side"] == "input" else -1)
+                  for data in exterior.values()]
+    same_net_terminals = defaultdict(set)
+    for endpoint, key, direction in terminals:
+        same_net_terminals[key].add(endpoint)
+    for endpoint, key, direction in terminals:
+        x, y = endpoint
+        path = [endpoint]
+        turn = None
+        while 3 <= x < width-3:
+            point = (x, y)
+            foreign = reserved.get(point, set()) - {key}
+            # Facing same-net terminals may need only a straight wire, even
+            # when the narrow gap has no legal vertical turn column.
+            if point != endpoint and point in same_net_terminals[key] and not foreign:
+                turn = point
+                break
+            if point != endpoint and (point in blocked or foreign):
+                break
+            if x % 2 == 0 and point not in vertical_forbidden:
+                legal_vertical = any(7 <= y+dy < height-1
+                                     and (x,y+dy) not in blocked
+                                     and (x,y+dy) not in vertical_forbidden
+                                     and not (reserved.get((x,y+dy),set())-{key})
+                                     for dy in (-1,1))
+                if legal_vertical:
+                    turn = point
+                    break
+            x += direction
+            if 3 <= x < width-3:
+                path.append((x,y))
+        if turn is None:
+            raise ValueError(("No legal terminal escape corridor", key, endpoint, direction))
+        for point in path:
+            if point in protected and protected[point] != key:
+                raise ValueError(("Conflicting protected terminal corridors", key, endpoint, point))
+            protected[point] = key
+        escapes[endpoint,key] = (turn,path)
+    for point, key in protected.items():
+        reserved[point] = {key}
+    for (endpoint,key), (turn,path) in escapes.items():
+        for a,b in zip(path,path[1:]):
+            direction = DIRS.index((b[0]-a[0],b[1]-a[1]))
+            router.wires[a].setdefault(key,set()).add(direction)
+            router.wires[b].setdefault(key,set()).add(OPPOSITE[direction])
+        router.by_net[key].update(path)
+
+    def connected_tree(active, key, origin):
+        seen, pending = set(), [origin]
+        while pending:
+            point = pending.pop()
+            if point in seen:
+                continue
+            seen.add(point)
+            for direction in active.wires.get(point,{}).get(key,set()):
+                dx,dy = DIRS[direction]
+                neighbor = (point[0]+dx,point[1]+dy)
+                if OPPOSITE[direction] in active.wires.get(neighbor,{}).get(key,set()):
+                    pending.append(neighbor)
+        return seen
+
     # Route the longest/highest-fanout nets first to reserve clean trunks.
     def routing_priority(item):
         key,net=item
@@ -285,14 +386,60 @@ def prepare(model):
             score=max((priority.get(p,0) for p,_ in net["inputs"]+net["outputs"]),default=0)
             return (-score,-len(net["inputs"]),key)
         return (not key.startswith("INTERNAL:"),-len(net["inputs"]),key)
-    for key, net in sorted(nets.items(), key=routing_priority):
-        ends = endpoints.get(key, [])
-        if not ends:
+    original_order = [key for key,net in sorted(nets.items(), key=routing_priority)
+                      if endpoints.get(key)]
+    seed_router = router
+    orders = [original_order]
+    tried = set()
+    attempts = []
+    last_error = None
+    max_attempts = min(8, len(original_order)+2)
+    while orders and len(attempts) < max_attempts:
+        order = orders.pop(0)
+        signature = tuple(order)
+        if signature in tried:
             continue
-        tree = {ends[0]}
-        for endpoint in ends[1:]:
-            router.route(key, endpoint, tree)
-            tree = router.by_net[key] | tree
+        tried.add(signature)
+        active = deepcopy(seed_router)
+        try:
+            for key in order:
+                ends = endpoints[key]
+                boundary = next(((3 if d["side"] == "input" else width-4,d["row"])
+                                 for d in exterior.values() if d["net"] == key), None)
+                if boundary is not None:
+                    ends = [boundary] + [point for point in ends if point != boundary]
+                origin = ends[0]
+                tree = connected_tree(active,key,origin)
+                for endpoint in ends[1:]:
+                    if endpoint in tree:
+                        continue
+                    start = escapes[endpoint,key][0]
+                    active.route(key,start,tree)
+                    tree = connected_tree(active,key,origin)
+                assert all(endpoint in tree for endpoint in ends), "Disconnected protected terminal component"
+            attempts.append({"order":order,"success":True})
+            active.routing_attempts = attempts
+            active.protected_escape_corridors = len(escapes)
+            active.protected_escape_cells = len(protected)
+            # Escape ownership is temporary; retained wires and the original
+            # terminal reservations govern subsequent pin/order optimizers.
+            active.reserved = deepcopy(baseline_reserved)
+            router = active
+            break
+        except ValueError as exc:
+            last_error = exc
+            detail = exc.args[0] if exc.args else None
+            failed = detail[1] if isinstance(detail,tuple) and len(detail)>1 else None
+            attempts.append({"order":order,"success":False,"detail":str(exc)})
+            if failed in order:
+                orders.insert(0,[failed]+[key for key in order if key!=failed])
+            for shift in range(1,len(original_order)):
+                rotated = original_order[shift:]+original_order[:shift]
+                if tuple(rotated) not in tried:
+                    orders.append(rotated)
+                    break
+    else:
+        raise ValueError(("Protected-stub routing exhausted deterministic orders", attempts)) from last_error
     return positions, ports, exterior, router
 
 def _optimize_boundary_pins(model, geometry, strategy="first-detour", selected_pin=None):
@@ -551,12 +698,25 @@ def verify(model, geometry):
                  for y in range(p["top"],p["top"]+p["height"])}
     occupied = {point for point,nets in router.wires.items() if nets}
     assert not occupied & box_cells, "A routed wire entered a block"
+    assert not occupied & router.clearance_obstacles, "A routed wire entered a box or pin label"
+    actual_layers = defaultdict(set)
+    for point, nets in router.wires.items():
+        for net, directions in nets.items():
+            assert directions and directions <= {0, 1, 2, 3}, (point, net, "Invalid or empty wire directions")
+            actual_layers[net].add(point)
+            assert point not in router.reserved or net in router.reserved[point], (point, net, "Wire entered another net's terminal escape")
+            for direction in directions:
+                dx, dy = DIRS[direction]
+                neighbor = point[0]+dx, point[1]+dy
+                assert OPPOSITE[direction] in router.wires.get(neighbor, {}).get(net, set()), (point, neighbor, net, "Non-reciprocal wire edge")
+    assert {n: ps for n, ps in router.by_net.items() if ps} == dict(actual_layers), "Wire layer index differs from actual occupied cells"
     crossings = []
     joins = []
     for point, nets in router.wires.items():
         if len(nets) > 1:
             assert len(nets) == 2
-            assert {frozenset(ds) for ds in nets.values()} == {frozenset({0,2}),frozenset({1,3})}, (point,nets)
+            effective = {n: ds | router.virtual_endpoint_directions.get(point, {}).get(n, set()) for n, ds in nets.items()}
+            assert {frozenset(ds) for ds in effective.values()} == {frozenset({0,2}),frozenset({1,3})}, (point,nets,"Crossing has a branch or terminal bend")
             crossings.append(point)
         if len(nets) == 1 and len(next(iter(nets.values()))) >= 3:
             joins.append(point)
@@ -578,9 +738,29 @@ def verify(model, geometry):
         assert seen == points, (net,"Disconnected wire cells")
     physical = {port["pin"] for port in ports.values() if port["pin"]}
     assert physical == set(model["signal_pins"]) == set(exterior)
+    contact_nets = defaultdict(set)
     for (portion, side, port_key), port in ports.items():
         net=port["net"]
         assert port["point"] in router.by_net[net], (portion,side,net,"unrouted port")
+        assert (2 if side == "input" else 0) in router.wires[port["point"]][net], (portion, side, net, "Port has no outward horizontal wire")
+        if port["pin"]:
+            contact_nets[port["pin"]].add(net)
+    for pin, data in exterior.items():
+        assert contact_nets[pin] == {data["net"]}, (pin, "Physical contact split between semantic nets")
+        point = (3 if data["side"] == "input" else router.width-4, data["row"])
+        assert point in router.by_net[data["net"]], (pin, "Unrouted exterior contact")
+        assert (0 if data["side"] == "input" else 2) in router.wires[point][data["net"]], (pin,"Exterior contact has no inward horizontal wire")
+    if model.get("networks") is not None:
+        semantic_ports = {}
+        for network in model["networks"]:
+            for side in ("input", "output"):
+                for portion, port_id in network[side+"s"]:
+                    key = (portion, side, port_id)
+                    assert key not in semantic_ports, (key, "Semantic port belongs to multiple networks")
+                    semantic_ports[key] = network["id"]
+        assert set(semantic_ports) == set(ports), "Routed semantic port coverage differs from networks"
+        assert all(port["net"] == semantic_ports[key] for key, port in ports.items()), "Routed port changed semantic network"
+        assert set(actual_layers) == set(semantic_ports.values()), "Routed network coverage differs from semantic networks"
     row_step=model.get("layout_hints",{}).get("row_step",7)
     assert all(pos["top"] % row_step == 0 for pos in positions.values())
     assert all(3 <= x < router.width-3 for x,y in occupied)
@@ -603,7 +783,10 @@ def verify(model, geometry):
     bends=sum(len(directions)==2 and directions not in ({0,2},{1,3})
               for point,nets in router.wires.items() for net,ds in nets.items()
               for directions in [ds|router.virtual_endpoint_directions[point].get(net,set())])
-    return {"no_wire_through_box": True, "all_net_layers_connected": True,
+    metrics = {"no_wire_through_box": True, "all_net_layers_connected": True,
+            "wire_edges_reciprocal_and_layer_index_exact": True,
+            "all_exterior_contacts_routed": True,
+            "physical_contact_networks_consistent": True,
             "all_ports_routed": True, "all_physical_contacts_once_at_exterior": True,
             "all_pin_bearing_ports_have_box_labels": True,
             "all_box_tops_on_configured_grid": True, "grid_step": row_step,
@@ -615,3 +798,9 @@ def verify(model, geometry):
             "routed_grid_steps":wire_length,"bends":bends,
             "crossings": len(crossings), "junctions": len(joins),
             "signals": len(exterior), "portions": len(positions), "ports": len(ports)}
+
+    if hasattr(router,"routing_attempts"):
+        metrics["routing_order_trials"] = deepcopy(router.routing_attempts)
+        metrics["protected_terminal_corridors"] = router.protected_escape_corridors
+        metrics["protected_terminal_cells"] = router.protected_escape_cells
+    return metrics
