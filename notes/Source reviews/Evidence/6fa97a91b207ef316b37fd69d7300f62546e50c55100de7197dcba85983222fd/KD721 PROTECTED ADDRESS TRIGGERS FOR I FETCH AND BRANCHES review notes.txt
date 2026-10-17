@@ -1,0 +1,63 @@
+KD721 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+Owner native source and JuliaMono preview visually reviewed; independent root native and final comparison accepted; final geometry and A1 checks passed
+User-confirmed printer grid applied; all printed box-grid fields and source-specific routes checked. Final native source/render comparison complete.
+{
+  "A1_card_portions_matched": 35,
+  "A1_total_card_portions": 36,
+  "A1_mismatches": [],
+  "A1_documented_source_discrepancies": [
+    {
+      "node": "AE",
+      "issue": "Native readable 0496F1; A1 card-portion listing gives 0496E1. Literal native print retained."
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 72,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "hidden_crossings": [],
+  "printer_grid_errors": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "AE card portion",
+    "native": "0496F1",
+    "A1": "0496E1",
+    "issue": "Readable native source/A1 card-portion discrepancy",
+    "evidence": "tmp/ald-text/kd/powering/KD721 AE card native.png"
+  },
+  {
+    "field": "AQ D12",
+    "issue": "Printed on right side as a passive feedback input; electrical input direction recorded separately from physical right-side placement. The neighbouring continuous BE reset rail crosses AQ D10 and AR B02 without a diamond; apparent T shapes are wire crossings, not pin suffixes.",
+    "evidence": "tmp/ald-text/kd/powering/KD721 right central rails native.png"
+  }
+]
+
+Original scan order
+Source img20141208_17081389.tif
+Before KD711 INSTRUCTION ADDRESS INVALID I FETCH INVALID ADR TGR.tif [img20141208_17072044.tif]
+After KD801 IC AND D REG 21-22 POWERING.tif [img20141208_17091101.tif]
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: Final whole-page source/render contact and native connector rows reviewed. AE 0496F1 and ROSR TOW literal readings independently confirmed. Native right-central BE rail crossings and AQ right-side D12 feedback port, lower BCU/MASTER/BF rail ownership, and final BJ4 hanging KD711 reference independently inspected.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.
+
+SLT supply-pin source and human review, 2026-10-16: AS B06 -> B08. Numeric wire qualifiers and asterisks are retained. Ground ties and the S21AA transformer ground reference are preserved where confirmed. Human answers and source hashes are recorded in the Pin validation release audit; older remarks remain historical.
+
+SOURCE VISUAL REVIEW 2026-10-17
+Native source trace review: AQ D10 and K D12 are correctly commoned externally. Retain side output and electrical_direction input metadata; add the missing K annotation only. AS lower wire prints standalone 8; retain literal annotation in TXT and printed_pin/control/qualifier metadata while removing its false physical contact interpretation. Preserve actual AP→AS and 0497B3 identity. Point117 remains immediately before the printed control at118; no geometry is moved onto that glyph.

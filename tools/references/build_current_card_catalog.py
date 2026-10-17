@@ -15,6 +15,8 @@ from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from current_card_identity import catalogue_identity
+
 
 CARD = re.compile(r"[0-9]{4}\Z")
 PIN = re.compile(r"([BDGJ])(0[2-9]|1[0-3])\Z")
@@ -252,6 +254,9 @@ def main():
                     "function_literal": node.get("function"), "explicit_flags": flags})
                 count["annotation_nodes_excluded"] += 1
                 continue
+            node, identity_audit = catalogue_identity(node)
+            if identity_audit["status"] == "conflict":
+                raise ValueError(f"Conflicting source identity: {text_rel} /nodes/{index}")
             card = node.get("card_type")
             if not isinstance(card, str) or not CARD.fullmatch(card):
                 count["nodes_without_card_type"] += 1
@@ -291,7 +296,10 @@ def main():
                 "grid": node.get("grid"),
                 "pins": pins,
                 "observed_shape": shape,
-                "source_reviewed": node.get("source_reviewed"),
+                "source_reviewed": node.get("source_reviewed", model.get("source_reviewed") is True),
+                **({"identity_adaptation": identity_audit} if identity_audit["status"] == "adapted" else {}),
+                **({"source_review_basis": "Hash-bound accepted page model and TXT; explicit page source_reviewed true, node review absent"}
+                   if "source_reviewed" not in node and model.get("source_reviewed") is True else {}),
             })
             count["card_occurrences"] += 1
 
@@ -443,7 +451,7 @@ def main():
     for text, binding in source_pages.items():
         source_inputs[text] = binding["text_sha256"]
         source_inputs[binding["model"]] = binding["model_sha256"]
-    for name in ("build_current_card_catalog.py", "verify_current_card_catalog.py", "verify_uniform_socket_listings.py"):
+    for name in ("build_current_card_catalog.py", "verify_current_card_catalog.py", "verify_uniform_socket_listings.py", "current_card_identity.py"):
         relative = "tools/references/" + name
         source_inputs[relative] = sha((repo / relative).read_bytes())
     for relative, expected in source_inputs.items():

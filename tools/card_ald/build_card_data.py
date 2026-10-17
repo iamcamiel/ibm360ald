@@ -13,6 +13,10 @@ from hashlib import sha256
 import json
 from pathlib import Path
 import re
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "references"))
+from current_card_identity import catalogue_identity
 
 import generate_card
 import render_composite_card
@@ -169,12 +173,32 @@ def primary(label):
     text = str(label or "").strip()
     return text.split()[0] if text else "�"
 
-def parse_location(text):
-    match = re.fullmatch(r"(?:02)?([ABCEKL])-([A-Z]\d)([A-Z]\d)(?:[BT])?", str(text or "").upper())
-    if match:
-        frame, board, socket = match.groups()
+def parse_location(text, listed_locations=None):
+    """Resolve abbreviated cabinets from actual socket-listing evidence.
+
+    A missing cabinet number is ambiguous when two listed cabinets match.
+    Ordinary 02 aliases retain their existing meaning when no listing matches.
+    """
+    literal = str(text or "").strip().upper()
+    explicit = re.fullmatch(r"(\d{2}[A-Z])-([A-Z]\d)([A-Z]\d)(?:[BT])?", literal)
+    if explicit:
+        cabinet, board, socket = explicit.groups()
+        return cabinet + "-" + board, socket
+    abbreviated = re.fullmatch(r"([A-Z])-([A-Z]\d)([A-Z]\d)(?:[BT])?", literal)
+    if not abbreviated:
+        return None
+    frame, board, socket = abbreviated.groups()
+    candidates = set()
+    for listed_board, listed_socket in listed_locations or ():
+        match = re.fullmatch(r"\d{2}([A-Z])-([A-Z]\d)", str(listed_board))
+        if match and match.groups() == (frame, board) and listed_socket == socket:
+            candidates.add((listed_board, socket))
+    if candidates:
+        return next(iter(candidates)) if len(candidates) == 1 else None
+    if frame in "ABCEKL":
         return "02" + frame + "-" + board, socket
     return None
+
 
 def correction_records(overlay):
     """Accept the portable explicit source-correction list and pointer form.
@@ -227,6 +251,33 @@ def normalize_occurrence(raw, corrections, uncertainties):
             target[final] = new
     return item, changes
 
+def locate_catalog_node(model, occurrence):
+    """Resolve exact source pointer first; anonymous IDs never identify a node."""
+    nodes = model.get("nodes")
+    if not isinstance(nodes, list):
+        return None, {"reason": "model nodes is not a list"}
+    pointer = occurrence.get("node_pointer")
+    expected_id = occurrence.get("node")
+    if pointer is not None:
+        match = re.fullmatch(r"/nodes/(0|[1-9][0-9]*)", pointer) if isinstance(pointer, str) else None
+        if not match:
+            return None, {"reason": "invalid node pointer", "node_pointer": pointer}
+        index = int(match.group(1))
+        if index >= len(nodes) or not isinstance(nodes[index], dict):
+            return None, {"reason": "node pointer does not identify an object", "node_pointer": pointer}
+        node = nodes[index]
+        if expected_id not in (None, "") and node.get("id") != expected_id:
+            return None, {"reason": "node pointer and declared ID disagree", "node_pointer": pointer,
+                          "expected_id": expected_id, "actual_id": node.get("id")}
+        return node, {"method": "exact node_pointer", "node_pointer": pointer}
+    if expected_id in (None, ""):
+        return None, {"reason": "missing pointer and non-null ID"}
+    matches = [node for node in nodes if isinstance(node, dict) and node.get("id") == expected_id]
+    if len(matches) != 1:
+        return None, {"reason": "non-unique ID fallback", "id": expected_id, "matches": len(matches)}
+    return matches[0], {"method": "unique non-null ID", "id": expected_id}
+
+
 def load_evidence(card, overlay):
     catalog_path = ROOT / "json/Card types current" / f"{card}.json"
     if not catalog_path.is_file():
@@ -257,7 +308,7 @@ def load_evidence(card, overlay):
     manifest_path = ROOT / "notes/Content data manifest.json"
     manifest = read(manifest_path)
     models = {}
-    bindings = [binding(catalog_path), binding(manifest_path)]
+    bindings = [binding(catalog_path), binding(manifest_path), binding(Path(__file__).resolve().parents[1] / "references/current_card_identity.py")]
     for entry in manifest["files"]:
         if entry.get("role") != "Published page content model":
             continue
@@ -275,9 +326,13 @@ def load_evidence(card, overlay):
     for raw in catalog.get("diagram_occurrences", []):
         page=raw.get("page")
         if page not in models:continue
-        node=next((n for n in models[page].get("nodes",[]) if n.get("id")==raw.get("node")),None)
+        node, source_lookup = locate_catalog_node(models[page], raw)
         if node is None:
-            uncertainties.append({"kind":"catalog node missing from current hash-bound model","page":page,"node":raw.get("node")})
+            uncertainties.append({"kind":"catalog node unresolved in current hash-bound model","page":page,"node":raw.get("node"),"source_lookup":source_lookup})
+            continue
+        node, identity_audit = catalogue_identity(node)
+        if identity_audit["status"] == "conflict":
+            uncertainties.append({"kind":"conflicting raw model card identity aliases", "page":page, "node":raw.get("node"), "identity_adaptation":identity_audit})
             continue
         differences=[]
         if str(node.get("card_type"))!=card:
@@ -302,7 +357,7 @@ def load_evidence(card, overlay):
         if text.is_file():
             bindings.append(binding(text))
     for o in observations:
-        location = parse_location(o.get("location"))
+        location = parse_location(o.get("location"), socket_pairs)
         pairs = socket_pairs.get(location, set()) if location else set()
         o["_instance"] = sorted(pairs)[0] if len(pairs) == 1 else location
         if location is None:

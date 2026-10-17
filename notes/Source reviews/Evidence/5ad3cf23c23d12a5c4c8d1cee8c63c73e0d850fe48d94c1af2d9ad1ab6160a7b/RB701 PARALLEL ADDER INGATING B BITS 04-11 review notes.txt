@@ -1,0 +1,45 @@
+RB701 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 28,
+  "A1_documented_native_exceptions": [],
+  "A1_total_card_portions": 28,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 54,
+  "unowned_wire_fragments": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "lowercase_characters": []
+}
+
+Unclear source print and evidence
+[
+  "All 28 printed bodies and main data/control fields reviewed. Standard banks retained. User interpreted the physical-copy top route: BB AR T right D05 runs over the top to BE R TO B05, BB upper anonymous output runs below to BC N input, and BC B05 runs below to BD N D01. Root mapped these three paths to the native stems and lower U loops without joining any unmarked crossing.",
+  "BB upper anonymous output returns down the outer right rail and up the outer left rail into BC anonymous wedge input. BC B05 inner return crosses the external BB LEFT D05 line with NO diamond; these nets stay separate. BB right D05 top loop goes to BE B05. At each crossing over the three external rails, the absence of a diamond is preserved.",
+  "BD D02 wedge output has no printed ✲ in the native control crop. Every main OR output has a source-printed ✲, preserved adjacent to the pin and immediate wire.",
+  "Main source crops independently reviewed: pairtop.png, pairleft.png, pairright.png, toprails.png, midrails.png, lowrails.png, upper left routes native.png and upper right routes native.png. The AT/AU bottom-input dogleg has no printed diamond at its bend; no diamond is inserted there.",
+  "Root confirmed that the main-route model aligns with the native overview and independently compared the top loops after the user supplied their physical-copy interpretation. All readable printed labels and the full footer are retained."
+]
+
+Original scan order
+Before RB671 B REGISTER BITS 67-PARITY 64-67.tif
+After RB703 PARALLEL ADDER INGATING B BITS 12-19.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BE: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+SOURCE VISUAL REVIEW 2026-10-17
+focused-169: BD pin_identity 'D01' → 'D04'

@@ -1,0 +1,68 @@
+KD802 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+Owner native source and JuliaMono preview visually reviewed. Independent root review pending.
+User-confirmed printer grid applied; all printed box-grid fields and source-specific routes checked. Final native source/render comparison complete.
+{
+  "A1_card_portions_matched": 37,
+  "A1_total_card_portions": 38,
+  "A1_mismatches": [],
+  "A1_documented_source_discrepancies": [
+    {
+      "node": "AW",
+      "issue": "Native 0512M1; A1 0512N1. Literal source retained."
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 43,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "hidden_crossings": [],
+  "printer_grid_errors": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "AW card portion",
+    "printed": "0512M1",
+    "A1": "0512N1",
+    "evidence": "KD802 middle-bottom.png",
+    "issue": "Readable native card portion disagrees with A1; literal source preserved"
+  },
+  {
+    "field": "PAL signal text",
+    "input": "+ PAL 40-62 EQ ZERO",
+    "outputs": "PAL 40-63 EQ 0",
+    "issue": "Readable input and output ranges differ in source; both literal readings preserved",
+    "evidence": "KD802 input labels.png and output labels.png"
+  }
+]
+
+Original scan order
+Source img20141208_17102137.tif
+Before KD801 IC AND D REG 21-22 POWERING.tif [img20141208_17091101.tif]
+After KD803 MISC I FETCH POWERING.tif [img20141208_17112865.tif]
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: Paired native/final layout and footer reviewed. Six regional native route crops independently inspected, including BB internal return, +IC11 route, branch and AT/AM/AN/AP/AV return lanes. Printed AW 0512M1 retained against A1 0512N1.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BP: R TO -> R T0, BN: R TO -> R T0, BE: R TO -> R T0, AW: R TO -> R T0, AX: R TO -> R T0, BF: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+SOURCE VISUAL REVIEW 2026-10-17
+focused-065: AR pin_identity 'BC7' → 'B07'

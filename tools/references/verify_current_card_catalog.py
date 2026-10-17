@@ -27,6 +27,24 @@ def inside(root,relative):
          and Path(relative).as_posix()==relative and '..' not in Path(relative).parts,'Unsafe catalogue/source path')
     path=(root/relative).resolve();need(path.is_relative_to(root),'Path escapes root');return path
 
+
+def expected_identity(raw):
+    view=deepcopy(raw);evidence=[]
+    for field in ('card','part','printed_card_portion'):
+        text=raw.get(field)
+        if isinstance(text,str) and len(text)==6 and text[:4].isascii() and text[:4].isdigit() and re.fullmatch('[A-Z0-9]{2}',text[4:]):
+            evidence.append((field,text[:4],text[4:]))
+    if not evidence:return view,{'status':'unchanged','source_fields':{}}
+    pairs={(c,p)for _,c,p in evidence}
+    need(len(pairs)==1,'Conflicting exact combined source identities')
+    card,portion=next(iter(pairs))
+    for field,value in [('card_type',card),('portion',portion),('printed_card_portion',card+portion)]:
+        need(raw.get(field)in(None,'',value),'Combined identity disagrees with declared source field')
+    filled=[]
+    for field,value in [('card_type',card),('portion',portion),('printed_card_portion',card+portion)]:
+        if view.get(field)in(None,''):view[field]=value;filled.append(field)
+    return view,{'status':'adapted'if filled else'unchanged','filled_fields':filled,'source_fields':{f:raw.get(f)for f,_,_ in evidence}}
+
 def verify(repo,root):
     repo,root=Path(repo).resolve(),Path(root).resolve();guards={}
     def checked(relative,expected,base=repo):
@@ -66,15 +84,20 @@ def verify(repo,root):
                     'source_model':relative,'source_model_sha256':item['sha256'],'text_sha256':entry['text_sha256'],
                     'node_pointer':pointer,'card_type_literal':node.get('card_type'),'circuit_identifier':node.get('unit'),
                     'function_literal':node.get('function'),'explicit_flags':flags})
-            elif isinstance(node.get('card_type'),str)and re.fullmatch('[0-9]{4}',node['card_type']):
-                nodes[(text,pointer)]=node;counts['card_occurrences']+=1
-            else:counts['nodes_without_card_type']+=1
+            else:
+                view,audit=expected_identity(node)
+                if isinstance(view.get('card_type'),str)and re.fullmatch('[0-9]{4}',view['card_type']):
+                    view['_expected_identity_audit']=audit
+                    view['_expected_review']=node.get('source_reviewed',model.get('source_reviewed')is True)
+                    view['_expected_review_inherited']='source_reviewed'not in node and model.get('source_reviewed')is True
+                    nodes[(text,pointer)]=view;counts['card_occurrences']+=1
+                else:counts['nodes_without_card_type']+=1
     need(m['source_pages']==pages,'Accepted model coverage differs')
     expected_inputs={**inputs,'notes/Reviewed export provenance.json':bindings['reviewed_export_provenance_sha256'],
         'notes/Content data manifest.json':bindings['content_data_manifest_sha256'],
         UNIFORM_MANIFEST:bindings['uniform_manifest_sha256'],DATA:bindings['uniform_dataset_sha256']}
     for text,binding in pages.items():expected_inputs.update({text:binding['text_sha256'],binding['model']:binding['model_sha256']})
-    for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py']:
+    for name in ['build_current_card_catalog.py','verify_current_card_catalog.py','verify_uniform_socket_listings.py','current_card_identity.py']:
         relative='tools/references/'+name;expected_inputs[relative]=digest(repo/relative)
     actual_inputs={x['path']:x['sha256']for x in m['source_inputs']}
     need(len(actual_inputs)==len(m['source_inputs'])and actual_inputs==expected_inputs,'Declared catalogue source input inventory differs')
@@ -113,6 +136,11 @@ def verify(repo,root):
         for occurrence in card['diagram_occurrences']:
             key=(occurrence['source_text'],occurrence['node_pointer']);need(key in nodes and key not in seen_nodes,'Unknown/duplicate/annotation physical node');node=nodes[key]
             need(node['card_type']==path.stem,'Occurrence card differs')
+            audit=node['_expected_identity_audit']
+            need(occurrence.get('identity_adaptation')==(audit if audit['status']=='adapted'else None),'Identity alias proof differs')
+            need(occurrence.get('source_reviewed')==node['_expected_review'],'Source review inheritance differs')
+            expected_basis='Hash-bound accepted page model and TXT; explicit page source_reviewed true, node review absent'if node['_expected_review_inherited']else None
+            need(occurrence.get('source_review_basis')==expected_basis,'Source review basis differs')
             for field,raw in [('node','id'),('function_literal','function'),('circuit_identifier','unit'),('location','location'),('grid','grid')]:need(occurrence[field]==node.get(raw),'Occurrence source field differs')
             need(occurrence['portion']==(str(node['portion'])if node.get('portion')is not None else None),'Occurrence portion differs');seen_nodes.add(key)
         profiles+=len(card['portion_profiles']);need(sum(x['occurrences']for x in card['portion_profiles'])==len(card['diagram_occurrences']),'Profile partition differs')

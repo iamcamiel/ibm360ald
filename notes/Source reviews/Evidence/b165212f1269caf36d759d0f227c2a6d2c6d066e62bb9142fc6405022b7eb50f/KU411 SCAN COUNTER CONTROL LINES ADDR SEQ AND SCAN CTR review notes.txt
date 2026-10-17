@@ -1,0 +1,91 @@
+KU411 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 25,
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [
+    "AL",
+    "AU"
+  ],
+  "source_local_logic_blocks": [],
+  "A1_unrepresented_card_portions": [
+    {
+      "kind": "card portion",
+      "board": "02E-A3",
+      "sockets": [
+        "G4"
+      ],
+      "part_number": "5800504",
+      "card_type": "0504",
+      "portion": "C1",
+      "source_listings": [
+        "A1513-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1513-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02E-A3",
+      "sockets": [
+        "J6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "B4",
+      "source_listings": [
+        "A1513-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1513-01 SOCKET LISTING"
+    }
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 58,
+  "passed": true,
+  "duplicate_port_references": {},
+  "source_documented_A1_discrepancies": {
+    "AL": "Native KU411 AL5F prints F-A3G4, with two F arms and no bottom arm; A1 lists E-A3G4. Independent source crop confirms F; source retained.",
+    "AU": "Native KU411 5L prints card0500R4 and locationF-A3J6; A1 lists0500B4 atE-A3J6. Parent independently confirmed source R and F. Original-resolution AU native field.png retained; source R4 preserved."
+  },
+  "unreviewed_A1_mismatches": [],
+  "unexpected_pin_endpoint_nets": [],
+  "wire_paths_under_pin_labels": [],
+  "unknown_targets": [],
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Source review",
+    "evidence": "Native overview, four quadrants, five enlarged gate/rail crops and three branch crops inspected. 27 printed blocks transcribed; lower reused col66 has a genuine gap between AZ.B03r74 and AZ.D06r77, keeping SET13 and SET7 separate. Each diamond and border wedge checked from source."
+  },
+  {
+    "location": "AU 5L",
+    "source_difference": "Native KU411 5L prints card0500R4 and locationF-A3J6; A1 lists0500B4 atE-A3J6. Parent independently confirmed source R and F. Original-resolution AU native field.png retained; source R4 preserved."
+  },
+  {
+    "location": "Input legends",
+    "evidence": "Native tight polarity crops confirm one blank after minus only for SCAN SUB1 row12, SCAN SET EQ16 row45, and SCAN SET EQ7 row84. Other negative legends are contiguous. SOROS row34 prints logical diamond, retained as ◇."
+  }
+]
+
+Original scan order
+Before KU391 SCAN RESULT DETERMINATION.tif
+After KU431 SCAN COUNTER CONTROL LINES.tif
+Native circuit/portion source review: AZ unit U03AQ -> U03AR; BM unit U61AG -> U61AC. Original TIFF SHA-256 4de55e8cec1409f7703da4d3f84c1cb3b305258c3b1294ac8ad37e11499aa334. No wiring, pins or geometry changed.
+
+SOURCE VISUAL REVIEW 2026-10-17
+focused-116: AL location 'F-A3G4' → 'E-A3G4'
+
+Standalone crop appears 0500R4 / F-A3J6; retain this scan appearance in notes. Full native context visibly connects the outputs of0500B1,0500B2,0500B3 to this OR block.
+0500B4 at E-A3J6

@@ -1,0 +1,787 @@
+Original source review notes — historical physical-print snapshot
+
+RT731 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 23,
+  "A1_total_card_portions": 29,
+  "A1_mismatches": [
+    "AT",
+    "AY",
+    "AJ",
+    "AM",
+    "AP",
+    "BE"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "wire_paths_inside_pin_labels": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 65,
+  "geometry_passed": true,
+  "A1_connectors_matched": 11,
+  "A1_total_connector_records": 12,
+  "A1_connector_source_contradictions": [
+    {
+      "source": {
+        "board": "02E-B3",
+        "connector": "N8",
+        "pin": "B04",
+        "reference": "RT731BA4",
+        "source_literal_preserved": true
+      },
+      "listing_matches": [],
+      "source_literal_preserved": true
+    }
+  ],
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 5
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Own source inspection",
+    "evidence": "All31 separate native blocks, four complete route quadrants, connector table, header and literal DSD footer inspected. Paired stem proofs and complete lower return panels distinguish ART physical-output returns, unnamed RTO paths, control rails and plain unjoined crossings. No new bank shift proposed. Source upper-left3330 and lower-left0505 macros are four-input OR OR; right0503 are five-input. The printed dots and stars remain literal, and no removed gates are inferred from A1."
+  },
+  {
+    "location": "Unclear native cells",
+    "evidence": [
+      {
+        "column": 58,
+        "row": 5,
+        "location": "BA secondary output initial pin glyph",
+        "candidates": [
+          "D",
+          "J"
+        ],
+        "evidence": "BA native block.png: lower outline survives but initial left stem is erased."
+      },
+      {
+        "column": 70,
+        "row": 21,
+        "location": "AS lower input initial pin glyph",
+        "candidates": [
+          "B",
+          "F"
+        ],
+        "evidence": "AS native block.png and left upper native: lower-right curve/arm insufficient to distinguish B from F."
+      },
+      {
+        "column": 70,
+        "row": 84,
+        "location": "AY lower input initial pin glyph",
+        "candidates": [
+          "B",
+          "D",
+          "F"
+        ],
+        "evidence": "AY native block.png and left lower native: print looks F-shaped with abraded right curve."
+      },
+      {
+        "column": 74,
+        "row": 84,
+        "location": "AY socket initial board letter",
+        "candidates": [
+          "B",
+          "E",
+          "F"
+        ],
+        "evidence": "AY native block.png: abbreviated bottom outline does not distinguish the board letter."
+      },
+      {
+        "column": 143,
+        "row": 21,
+        "location": "AJ socket initial board letter",
+        "candidates": [
+          "B",
+          "F",
+          "R"
+        ],
+        "evidence": "AJ native block.png: upper curved portion survives but lower-right outline is erased; a partial B could resemble F/R."
+      }
+    ]
+  },
+  {
+    "location": "Native socket conflicts",
+    "evidence": "AT E-B3J4, AM E-B3H4 and BE/AP E-E3H4 retained from source field crops. AJ/AY damaged board first glyphs remain replacement. Original previous scanRT727, followingRT733."
+  },
+  {
+    "location": "Complete physical route review",
+    "evidence": "Own final rendered layout compared with whole native and all6 paired stem panels. Complete lower return native panels resolve BD B08 output130↓72→114↓80 into BE; independent ART unlabelled output136↑57→160↓68 into BF; AF D05 output131↑56→153↓59 into AB upper DOT input. +ST49 stem138 fans to AJ upper17 and AL upper59 with printed diamond13840. -ST49 stem132 fans to AK upper24 and AM upper66 with printed diamond13249. Kgate row51 prints115 diamond and turns up136 into BH lower35, and down115 into BE lower84. BE output138↓86→154↑77 enters AD lowestinput; its crossing beside AP lower pin is unjoined. All65 input ownerships and all output references covered, no shared different-net segments, no wires inside pin text or blocks."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT727 ST AND D GATE TO PADDA BITS 46-47.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RT T Register\RT733 ST AND D GATE TO PADDA BITS 50-51.tif
+
+
+Source-derived recovery v2 — reviewed staging
+[
+  {
+    "stable_id": "RT731-89bfab4d23",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "�-B3K4",
+    "recovered_reading": "B-B3K4",
+    "row": 21,
+    "column": 143,
+    "covered_cells": [
+      [
+        21,
+        143
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block AJ (grid 5C) — board/socket location",
+    "question": "What is the complete board/socket location printed in block AJ (grid 5C)? Current fragment: “�-B3K4”.",
+    "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+    "decision": {
+      "id": "RT731-89bfab4d23",
+      "page": "RT731",
+      "candidate": "B-B3K4",
+      "confidence": "High",
+      "rule": "A1-exact-page-card-portion-location",
+      "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+      "evidence": [
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 72,
+          "column": 21,
+          "excerpt": "RT731 A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 69,
+          "column": 23,
+          "excerpt": "5800503 0503",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 68,
+          "column": 3,
+          "excerpt": "K4          SINGLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 72,
+          "column": 9,
+          "excerpt": "RT731 A7 A8 A9 AA AB AC",
+          "field": "A1 ALD page reference"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT731-89bfab4d23",
+      "page": "RT731",
+      "candidate": "B-B3K4",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.",
+      "kind": "location",
+      "mask": "�-B3K4",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-B3K4",
+          "board": "02B-B3",
+          "socket": "K4",
+          "card": "0503A9",
+          "portion": "A9",
+          "ALD_page": "RT731",
+          "source_listing": "A1223-02 SOCKET LISTING",
+          "subject_card_mask": "0503A9",
+          "joint_mask_recovery": false
+        }
+      ],
+      "compatible_exact_values": [
+        "B-B3K4"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT731",
+          "scan_id": "1977",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.txt",
+          "text_sha256": "1922ac0d915f4d50facd3b6cf66f381cbf96911fcc1f029016abd9fc8b70a356",
+          "model_sha256": "2900c80d2faccb1a194cbc9a07e75da4768d28b61567253a2e04343fff162b14",
+          "row": 21,
+          "column": 143,
+          "excerpt": "                                                              │    ┌┼┼�08│B-B3J4│   ┌───────────│B-B3J4│          ││              │  ┌─┼─┼┼B07│�-B3K4│   │┌──────────│B-B3K4│   │",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 72,
+          "column": 21,
+          "excerpt": "RT731 A7 A8 A9 AA AB AC",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 69,
+          "column": 23,
+          "excerpt": "5800503 0503",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 68,
+          "column": 3,
+          "excerpt": "K4          SINGLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-02",
+          "scan_id": "113",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+          "text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+          "model_sha256": null,
+          "row": 72,
+          "column": 9,
+          "excerpt": "RT731 A7 A8 A9 AA AB AC",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "RT731",
+          "scan_id": "1977",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.txt",
+          "text_sha256": "1922ac0d915f4d50facd3b6cf66f381cbf96911fcc1f029016abd9fc8b70a356",
+          "model_sha256": "2900c80d2faccb1a194cbc9a07e75da4768d28b61567253a2e04343fff162b14",
+          "row": 20,
+          "column": 143,
+          "excerpt": "                                                              │     ││   │3330AB│    └──────────│3330AF│          ││              │    │ ││   │0503A9│   ┌───────────│0503AC│   │",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1223-02",
+        "row": 72,
+        "column": 21,
+        "excerpt": "RT731 A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 69,
+        "column": 23,
+        "excerpt": "5800503 0503",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 68,
+        "column": 3,
+        "excerpt": "K4          SINGLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 96,
+        "column": 229,
+        "excerpt": "G 430       BOARD 02B-B3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-02",
+        "row": 72,
+        "column": 9,
+        "excerpt": "RT731 A7 A8 A9 AA AB AC",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-02 SOCKET LISTING.txt",
+        "frozen_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "current_text_sha256": "956d5391e1829e4479d1ef0969fb176874991ff40f7530a88f3f57142c023211",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.tif",
+    "source_sha256": "ba79da06715c558b6f72111c650cf87666454ee39b3d11c5b440cf85735c28bf",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT727 ST AND D GATE TO PADDA BITS 46-47.tif",
+    "after_scan": "RT733 ST AND D GATE TO PADDA BITS 50-51.tif"
+  },
+  {
+    "stable_id": "RT731-5fc90f6a51",
+    "classification": "Source-derived; reviewed handoff; not a human or physically newly legible reading",
+    "original_physical_fragment": "�-B3H5",
+    "recovered_reading": "B-B3H5",
+    "row": 84,
+    "column": 74,
+    "covered_cells": [
+      [
+        84,
+        74
+      ]
+    ],
+    "virtual_full_reading": null,
+    "location": "block AY (grid 2M) — board/socket location",
+    "question": "What is the complete board/socket location printed in block AY (grid 2M)? Current fragment: “�-B3H5”.",
+    "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+    "decision": {
+      "id": "RT731-5fc90f6a51",
+      "page": "RT731",
+      "candidate": "B-B3H5",
+      "confidence": "High",
+      "rule": "A1-exact-page-card-portion-location",
+      "basis": "A1 printed card portion explicitly belongs to this ALD page and readable subject card portion; socket selected only by compatible printed location.",
+      "evidence": [
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 43,
+          "column": 234,
+          "excerpt": "RT731 B1 B2 B3 B4 B5",
+          "field": "A1 printed portion"
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 40,
+          "column": 233,
+          "excerpt": "5800505 0505",
+          "field": "A1 card type"
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 39,
+          "column": 213,
+          "excerpt": "H5          SINGLE CARD",
+          "field": "A1 printed socket"
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board"
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 43,
+          "column": 219,
+          "excerpt": "RT731 B1 B2 B3 B4 B5",
+          "field": "A1 ALD page reference"
+        }
+      ],
+      "conflicts": []
+    },
+    "independent_handoff_check": {
+      "id": "RT731-5fc90f6a51",
+      "page": "RT731",
+      "candidate": "B-B3H5",
+      "verdict": "Approved High",
+      "reason": "The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.",
+      "kind": "location",
+      "mask": "�-B3H5",
+      "mask_preserved": true,
+      "independent_exact_matches": [
+        {
+          "value": "B-B3H5",
+          "board": "02B-B3",
+          "socket": "H5",
+          "card": "0505B4",
+          "portion": "B4",
+          "ALD_page": "RT731",
+          "source_listing": "A1223-01 SOCKET LISTING",
+          "subject_card_mask": "0505B4",
+          "joint_mask_recovery": false
+        }
+      ],
+      "compatible_exact_values": [
+        "B-B3H5"
+      ],
+      "conflict_review": [],
+      "evidence": [
+        {
+          "page": "RT731",
+          "scan_id": "1977",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.txt",
+          "text_sha256": "1922ac0d915f4d50facd3b6cf66f381cbf96911fcc1f029016abd9fc8b70a356",
+          "model_sha256": "2900c80d2faccb1a194cbc9a07e75da4768d28b61567253a2e04343fff162b14",
+          "row": 84,
+          "column": 74,
+          "excerpt": "                                                                  └───�09│�-B3H5│                                  └B04│E-E3H4│       └─┼┼┼D05│E-E3H4│    │",
+          "field": "current damaged subject field"
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 43,
+          "column": 234,
+          "excerpt": "RT731 B1 B2 B3 B4 B5",
+          "field": "A1 printed portion",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 40,
+          "column": 233,
+          "excerpt": "5800505 0505",
+          "field": "A1 card type",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 39,
+          "column": 213,
+          "excerpt": "H5          SINGLE CARD",
+          "field": "A1 printed socket",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 96,
+          "column": 229,
+          "excerpt": "G 430       BOARD 02B-B3    │2│",
+          "field": "A1 printed board",
+          "independently_checked": true
+        },
+        {
+          "page": "A1223-01",
+          "scan_id": "112",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+          "text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+          "model_sha256": null,
+          "row": 43,
+          "column": 219,
+          "excerpt": "RT731 B1 B2 B3 B4 B5",
+          "field": "A1 ALD page reference",
+          "independently_checked": true
+        },
+        {
+          "page": "RT731",
+          "scan_id": "1977",
+          "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.txt",
+          "text_sha256": "1922ac0d915f4d50facd3b6cf66f381cbf96911fcc1f029016abd9fc8b70a356",
+          "model_sha256": "2900c80d2faccb1a194cbc9a07e75da4768d28b61567253a2e04343fff162b14",
+          "row": 83,
+          "column": 74,
+          "excerpt": "                                                                  │      │0505B4│                                  │   │0503AB│       │ │││   │0503AA│    │",
+          "field": "readable subject card/portion"
+        }
+      ]
+    },
+    "evidence_bindings": [
+      {
+        "page": "A1223-01",
+        "row": 43,
+        "column": 234,
+        "excerpt": "RT731 B1 B2 B3 B4 B5",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "current_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-01",
+        "row": 40,
+        "column": 233,
+        "excerpt": "5800505 0505",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "current_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-01",
+        "row": 39,
+        "column": 213,
+        "excerpt": "H5          SINGLE CARD",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "current_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-01",
+        "row": 96,
+        "column": 229,
+        "excerpt": "G 430       BOARD 02B-B3    │2│",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "current_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      },
+      {
+        "page": "A1223-01",
+        "row": 43,
+        "column": 219,
+        "excerpt": "RT731 B1 B2 B3 B4 B5",
+        "handoff_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\A1 Socket Listing\\A1223-01 SOCKET LISTING.txt",
+        "frozen_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "current_text_sha256": "9d6d404fa5541563e994b1d95b33f3aaff7197bdc6543be8235652b022dbb393",
+        "supporting_printed_row_unchanged": true,
+        "model_path": null,
+        "model_sha256": null,
+        "model_hash_absence_preserved": true,
+        "frozen_archive_used": false
+      }
+    ],
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RT T Register\\RT731 ST AND D GATE TO PADDA BITS 48-49.tif",
+    "source_sha256": "ba79da06715c558b6f72111c650cf87666454ee39b3d11c5b440cf85735c28bf",
+    "physical_print_still_damaged": true,
+    "before_scan": "RT727 ST AND D GATE TO PADDA BITS 46-47.tif",
+    "after_scan": "RT733 ST AND D GATE TO PADDA BITS 50-51.tif"
+  }
+]
+
+Current recovery status
+Source-derived reviewed staging; publication requires companion current root/peer acceptance receipt.
+Current unresolved � cells: 3
+Original physical marker cells before source-derived recovery: 5
+Original damage records remain physical evidence; the logical recoveries do not make damaged glyphs newly legible.
+
+Current source-derived A1 compatibility (separate from historical native flags)
+[
+  {
+    "page": "RT731",
+    "block": "AY",
+    "node_index": 7,
+    "classification": "Unique current source-derived card/portion/board/socket compatibility",
+    "unique_compatible_match": true,
+    "still_partial": false,
+    "before_values": {
+      "card_type": "0505",
+      "portion": "B4",
+      "printed_card_portion": "0505B4",
+      "location": "�-B3H5"
+    },
+    "current_values": {
+      "card_type": "0505",
+      "portion": "B4",
+      "printed_card_portion": "0505B4",
+      "location": "B-B3H5"
+    },
+    "A1_evidence": [
+      {
+        "kind": "card portion",
+        "board": "02B-B3",
+        "sockets": [
+          "H5"
+        ],
+        "part_number": "5800505",
+        "card_type": "0505",
+        "portion": "B4",
+        "source_listings": [
+          "A1223-01 SOCKET LISTING"
+        ],
+        "source_listing": "A1223-01 SOCKET LISTING"
+      }
+    ],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT731-5fc90f6a51"
+    ]
+  },
+  {
+    "page": "RT731",
+    "block": "AJ",
+    "node_index": 10,
+    "classification": "Unique current source-derived card/portion/board/socket compatibility",
+    "unique_compatible_match": true,
+    "still_partial": false,
+    "before_values": {
+      "card_type": "0503",
+      "portion": "A9",
+      "printed_card_portion": "0503A9",
+      "location": "�-B3K4"
+    },
+    "current_values": {
+      "card_type": "0503",
+      "portion": "A9",
+      "printed_card_portion": "0503A9",
+      "location": "B-B3K4"
+    },
+    "A1_evidence": [
+      {
+        "kind": "card portion",
+        "board": "02B-B3",
+        "sockets": [
+          "K4"
+        ],
+        "part_number": "5800503",
+        "card_type": "0503",
+        "portion": "A9",
+        "source_listings": [
+          "A1223-02 SOCKET LISTING"
+        ],
+        "source_listing": "A1223-02 SOCKET LISTING"
+      }
+    ],
+    "A1_reference_file": "D:\\Github\\IBM360\\ALD_Visual_Transcriptions\\A1 Socket Listing\\ALD references.json",
+    "A1_reference_sha256": "d10e1b0391b9436363556f713051558ffd4b2517b6caf26afa2cd4314e4e54f6",
+    "stable_ids": [
+      "RT731-89bfab4d23"
+    ]
+  }
+]
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BJ: R TO -> R T0, BF: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+SOURCE VISUAL REVIEW 2026-10-17
+focused-189: AY pin_identity '�09' → 'B09'
+focused-190: BA pin_identity '�05✲' → 'D05✲'

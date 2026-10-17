@@ -1,0 +1,126 @@
+FD941 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 24,
+  "A1_total_card_portions": 25,
+  "A1_mismatches": [
+    "AA"
+  ],
+  "A1_source_DOT_exemptions": [
+    "BC"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 61,
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "geometry_passed": true,
+  "candidate_provisional": true,
+  "independent_review_complete": false
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "AA card literal",
+    "literal": "C505A1",
+    "A1": "0505A1",
+    "evidence": "AA_card.png native(3130,1160,3380,1360) first glyph is visibly C-shaped; native literal retained. Exact board02K-C2/socketK4/A1 portion contradicts first glyph. Independent review pending."
+  },
+  {
+    "field": "BIT31 source origin",
+    "literal": "FD301BL4",
+    "evidence": "leftlower.png shows BL4, not expected BB4; this source rail ends only at AY.D02; AZ/BA input pairs are separate local ties."
+  },
+  {
+    "field": "Seven input gate AU",
+    "evidence": "AU.png native6G/OR/U03AQ0516A1: input wedges on all seven rows44–50, top wedge replaces corner, plain outputB10 followed printed+; control+ retained."
+  },
+  {
+    "field": "BB internal controls",
+    "evidence": "BB.png prints8 on both lower wires at column115; no external pin letters; wire remains between control8 and border119. Unique physical input.3/input.4 references."
+  },
+  {
+    "field": "DOT BC",
+    "evidence": "Native source prints only OR/DOT/5J──BC, two input wedges and output wedge. No card fields printed; logical DOT is explicitly exempt from physical A1 matching."
+  },
+  {
+    "field": "Footer",
+    "evidence": "Native footerright LDG/MACH./BE; exact P.N. human correction, eight plugging-table lines and two revision lines retained; approved lattice and open-bottom frame."
+  },
+  {
+    "field": "Native source inspection",
+    "evidence": "All26 gate crops, four groups, all dense inputs/control/pin routes, OR/R branches, DOT lower channel, all seven interrupt inputs, output/header/footer inspected directly. No neighboring-page inference."
+  },
+  {
+    "field": "AZ and BA source-visible input ties",
+    "evidence": "lower_input_rails.png native(4410,3540,5010,6010) shows isolated U-shaped ties AZ.D10–D08 and BA.B07–D08; no source-visible driver. Earlier guessed BIT31/MASK31 fanouts removed before export. Input pairs own explicit undriven nets; unresolved driver classification retained without inventing circuitry."
+  }
+]
+
+Original scan order
+Before FD931 DAR INTERRUPTS.tif
+After FD951 DAR CONTROLS.tif
+
+Owned candidate field/pin/render audit
+{
+  "page": "FD941",
+  "status": "Owning agent fields/ports/render checked; independent review pending",
+  "source_hash_sha256": "35635cbef8526765ee76bf707920c0fc9c69fd22a24359feb90f3a6109254537",
+  "validation": {
+    "A1_card_portions_matched": 24,
+    "A1_total_card_portions": 25,
+    "A1_mismatches": [
+      "AA"
+    ],
+    "A1_source_DOT_exemptions": [
+      "BC"
+    ],
+    "missing_input_owners": [],
+    "multiple_target_owners": {},
+    "different_net_shared_segments": [],
+    "disconnected_nets": [],
+    "junction_errors": [],
+    "wire_paths_inside_blocks": [],
+    "endpoint_errors": [],
+    "printed_input_terminals": 61,
+    "passed": false,
+    "unsupported_characters": [],
+    "text_collisions": [],
+    "hidden_junctions": [],
+    "unreadable_characters": 0,
+    "geometry_passed": true,
+    "candidate_provisional": true,
+    "independent_review_complete": false,
+    "visible_source_field_errors": [],
+    "pin_adjacency_errors": [],
+    "canvas_columns": 245,
+    "canvas_rows": 103,
+    "preview_pixel_match_to_text": true,
+    "all_grid_IDs_two_strokes_visible": true
+  },
+  "artifact_sha256": {
+    ".txt": "7b28fe42915f345988c972a51c3121dd1981e005777eb50829e1f372441954a9",
+    ".json": "de4972485ef46188cb133a288d410b2a416f935ccc480fb81beca4aadf226366",
+    " preview.png": "cecc4750358a252c5d0e2c773e635a1dc32b502717b2d0dcb949cd34e011e284"
+  }
+}
+
+ROOT INDEPENDENT REVIEW: ACCEPTED
+All26 native gate crops read independently of owner,61 inputs and full source routes, labels, title and plugging table inspected; full final preview reviewed.
+AA printed C505A1 preserved despite A1 0505A1 conflict. Seven AU wedge inputs and B10+ output preserved.
+AZ D10/D08 and BA B07/D08 isolated native U ties retain null drivers; no invented BIT31 or MASK31 fanout.
+OR/DOT source crossings remain unjoined, including literal8 BB lower legs. AV B13 is plain.
+Footer source LDG918, exact P.N., machine/part233..239 and blank240 confirmed; no shifted block positions required.
+
+SOURCE VISUAL REVIEW 2026-10-17
+focused-059: AU pin_identity 'B10+' → 'B10✲'

@@ -1850,7 +1850,7 @@
           "pin": "B13",
           "row": 89,
           "side": "input",
-          "triangle": true,
+          "triangle": false,
           "reference": "BH.B13",
           "point": [
             184,
@@ -1861,7 +1861,7 @@
           "pin": "D11✲",
           "row": 89,
           "side": "output",
-          "triangle": false,
+          "triangle": true,
           "reference": "BH.D11✲",
           "point": [
             200,
@@ -2074,13 +2074,13 @@
         },
         {
           "pin": "B10",
-          "row": 89,
+          "row": 91,
           "side": "input",
-          "triangle": true,
+          "triangle": false,
           "reference": "BA.B10",
           "point": [
             138,
-            89
+            91
           ]
         },
         {
@@ -2489,8 +2489,7 @@
       "id": "AZ",
       "driver": "AZ.94",
       "targets": [
-        "AY.81",
-        "BA.B10"
+        "AY.81"
       ],
       "source_reviewed": true
     },
@@ -2509,8 +2508,7 @@
         "AJ.D12",
         "BL.D12",
         "BJ.D04",
-        "AH.B07",
-        "BH.B13"
+        "AH.B07"
       ],
       "source_reviewed": true,
       "additional_driver_outputs": [
@@ -2544,7 +2542,10 @@
     {
       "id": "AJ",
       "driver": "AJ.D10",
-      "targets": [],
+      "targets": [
+        "BA.B10",
+        "BH.B13"
+      ],
       "source_reviewed": true
     },
     {
@@ -3963,11 +3964,7 @@
           89
         ],
         [
-          138,
-          89
-        ],
-        [
-          138,
+          131,
           89
         ]
       ]
@@ -4096,8 +4093,12 @@
       ]
     },
     {
-      "net": "NLATCHED00",
+      "net": "AJ",
       "points": [
+        [
+          181,
+          85
+        ],
         [
           181,
           89
@@ -4109,15 +4110,23 @@
       ]
     },
     {
-      "net": "NLATCHED00",
+      "net": "AJ",
       "points": [
         [
-          181,
-          77
+          204,
+          85
         ],
         [
-          181,
-          89
+          137,
+          85
+        ],
+        [
+          137,
+          91
+        ],
+        [
+          138,
+          91
         ]
       ]
     },
@@ -4538,11 +4547,6 @@
       "row": 85
     },
     {
-      "net": "AZ",
-      "column": 131,
-      "row": 89
-    },
-    {
       "net": "NLATCHED00",
       "column": 181,
       "row": 75
@@ -4561,16 +4565,6 @@
       "net": "NLATCHED00",
       "column": 181,
       "row": 68
-    },
-    {
-      "net": "NLATCHED00",
-      "column": 181,
-      "row": 89
-    },
-    {
-      "net": "NLATCHED00",
-      "column": 181,
-      "row": 77
     },
     {
       "net": "NHS00",
@@ -4595,6 +4589,11 @@
     {
       "net": "AJ",
       "column": 204,
+      "row": 85
+    },
+    {
+      "net": "AJ",
+      "column": 181,
       "row": 85
     }
   ],
@@ -5311,8 +5310,8 @@
     },
     {
       "column": 139,
-      "row": 89,
-      "text": "B10◺"
+      "row": 91,
+      "text": "B10"
     },
     {
       "column": 150,
@@ -5357,7 +5356,7 @@
     {
       "column": 185,
       "row": 89,
-      "text": "B13◺"
+      "text": "B13│"
     },
     {
       "column": 211,
@@ -5430,9 +5429,9 @@
       "text": "AH4"
     },
     {
-      "column": 196,
+      "column": 195,
       "row": 89,
-      "text": "D11✲"
+      "text": "◺D11✲"
     },
     {
       "column": 205,
@@ -6297,20 +6296,29 @@
       "joined": false
     },
     {
-      "column": 181,
-      "row": 84,
-      "nets": [
-        "NLATCHED00",
-        "BE"
-      ],
-      "joined": false
-    },
-    {
       "column": 204,
       "row": 84,
       "nets": [
         "AJ",
         "BE"
+      ],
+      "joined": false
+    },
+    {
+      "column": 137,
+      "row": 87,
+      "nets": [
+        "AJ",
+        "P2"
+      ],
+      "joined": false
+    },
+    {
+      "column": 161,
+      "row": 85,
+      "nets": [
+        "AJ",
+        "BA"
       ],
       "joined": false
     }
