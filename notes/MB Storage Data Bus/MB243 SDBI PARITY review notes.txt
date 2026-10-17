@@ -1,80 +1,9 @@
-MB243 SDBI PARITY - TRANSLATION NOTES
-
-Reference scan: MB Storage Data Bus\MB243 SDBI PARITY.tif
-Original scan: img20141205_10410031.tif
-Original scan timestamp: 2014-12-05 10:41:00.310000
-Preceding scan: MB233-02 SDBI BYTE 56-63.tif
-Following scan: MB253 SDBI ERROR BITS 00-31.tif
-Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Second-pass circuit current audit.json
-
-PAGE NOTES
-
-MB243 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 38,
-  "A1_source_readable_exact_matches": 38,
-  "A1_corroborated_damaged_portions": 0,
-  "A1_total_card_portions": 38,
-  "A1_mismatches": [],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 66,
-  "unrecorded_A1_mismatches": [],
-  "passed": true,
-  "canvas_columns": 245,
-  "canvas_rows": 103,
-  "unsupported_characters": [],
-  "lowercase_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 1
-}
-
-Unclear source print and evidence
-[
-  {
-    "kind": "unreadable printed character",
-    "location": "Input origin for SCDN INSTR IN PROGRESS",
-    "literal": "KR01�BH4",
-    "proposed_reading": "KR011BH4",
-    "evidence": "The fifth character of the page key survives only as a period-shaped fragment in the native scan; no inferred repair applied."
-  },
-  {
-    "kind": "source wiring review",
-    "evidence": "All sixteen native tiles and focused native upper, middle and lower routing crops individually read. Middle origins traced through separate neighboring bends: BP4 to AU.B09 via113/131, BM4 to AS.B09 via106, AE4 to AR.B08 via128, AF4 to AT.B08 via138, MB133AP2 to AS.D04 via137, MB063AJ2 to AT.B04 via136. CH and CF are R T1 terminations. Default banks retained."
-  },
-  {
-    "kind": "native routing correction and calibration",
-    "evidence": "The prior upper-bank overview reading was superseded by tight native crops. CE output is row 16, above the six printed origins on rows 17-22. Those origins are respectively MB293BL4 to AQ.B07, MB293BK4 to CB.D11, MB043AM2 to CB.D05, MB043AJ2 to CD.B04, MB123AP2 to AQ.B08, and MB053AJ2 to AR.B04. Upper origins coordinates.png and top continuation route ends.png preserve the decisive source evidence. Approximate native pixel origin (1430,856), horizontal pitch35.6 and vertical pitch54.1 were measured from printed bank borders and seven-row blocks; routes are stored as discrete canvas coordinates. AL output uses column108 while BM4 incoming uses106. BM output uses130 while BP4 incoming uses113 then131. These crossings remain disjoint, with no inferred junctions."
-  },
-  {
-    "kind": "owner final visual review",
-    "evidence": "Owner mb_low compared all sixteen native source tiles, the full native overview, focused pin/route/connector crops, and the final 245-column JuliaMono preview. Reviewed scope includes all 38 printed gates, 66 input terminals, all external origins and destinations, diamonds versus crossings, footer text, connector table and the separate neighboring parity bends. Independent root review remains pending."
-  },
-  {
-    "kind": "footer correction after independent review",
-    "evidence": "Root flagged the prior LOG 9A3 reading. A new tight original footer crop, title log native tight.png, shows LOG 983: the middle glyph has closed curved sides matching the 8 in P.N. 2585543, rather than the straight left stem of the B in IBM. The former 9A3 reading is superseded."
-  },
-  {
-    "kind": "output identifier correction after cross-page audit",
-    "evidence": "Root flagged the positive byte00-07 output identifier mismatch. Tight original crop positive byte00 output identifier.png proves BK4. The former BW4 transcription is superseded; diagram and structured destination now retain BK4."
-  },
-  {
-    "kind": "literal source cross-page discrepancies",
-    "evidence": "Tight native crops upper ST gate name and origin.png and lower XY gate name and origin.png confirm source literals MB293BK4 +GATE ST TO SDBI and MB293BC4 +GATE XY TO SDBI. The cross-page audit reports a differing XY label at MB293BK4 and no MB293 output at BC4. These source literals are retained for review rather than silently repaired from other pages."
-  }
-]
-
-Original scan order
-Before MB233-02 SDBI BYTE 56-63.tif
-After MB253 SDBI ERROR BITS 00-31.tif
-Second-pass native-source correction: MB243 block AP, printed_card_portion 0500B4 -> 0500B1; original TIFF SHA-256 e364f98dfe5650214883bb91553b73e3a83f2237b5174a59e1b2aac5da4865da; crop SHA-256 35097717ca03d0d4f4bc3239777d5bf59339fe31ded05ffd971317fa60ba63a6.
-
-Unreadable printed characters retained as �: 1.
+Source: MB Storage Data Bus/MB243 SDBI PARITY.tif
+Current review: status="reviewed"
+Correction: {"after":"0500B1","before":"0500B4","block":"AP","field":"printed_card_portion"}
+Unresolved: {"field":"/nets/47/id","printed":"external KR01�BH4 26"}
+Unresolved: {"field":"/nets/47/driver","printed":"KR01�BH4"}
+Unresolved: {"field":"/wire_paths/47/net","printed":"external KR01�BH4 26"}
+Unresolved: {"field":"/wire_paths/48/net","printed":"external KR01�BH4 26"}
+Unresolved: {"field":"/junctions/0/net","printed":"external KR01�BH4 26"}
+Unresolved: {"field":"/printed_labels/176/text","printed":"KR01�BH4"}

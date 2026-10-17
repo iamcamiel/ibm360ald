@@ -1,118 +1,27 @@
-KR011 SCON AND SATR SIMPLEX RECEIVER SCON IN PROGRESS LTH - TRANSLATION NOTES
-
-Reference scan: KR SCON, SATR, Reconfigure\KR011 SCON AND SATR SIMPLEX RECEIVER SCON IN PROGRESS LTH.tif
-Original scan: img20141209_12570288.tif
-Original scan timestamp: 2014-12-09 12:57:02.880000
-Preceding scan: KR001 RECONFIGURE SELECT SE AND DE.tif
-Following scan: KR021 SWITCH FOR SELF SELECT CONTROL.tif
-Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\Supply pin visual and human current audit.json
-
-PAGE NOTES
-
-KR011 current source and physical-copy review
-
-Human confirms D0; final digit physically unreadable. Exact socket listing contains no pin data for this card; retain D0�. D06 is not approved by the conditional evidence.
-
-Exact human readings
-[
-  {
-    "page": "KR011",
-    "field": "AL output pin",
-    "human_reply": "D0, last digit unreadable. If the 6 comes from the socket listings, accept it.",
-    "confirmed_prefix": "D0",
-    "conditional_full_reading": "D06 only if exact relevant socket listing supports final6; otherwise retain D0� and document physical unreadability. No contextual substitution."
-  }
-]
-
-Current validation
-{
-  "A1_card_portions_matched": 32,
-  "A1_source_readable_exact_matches": 32,
-  "A1_corroborated_damaged_portions": 0,
-  "A1_total_card_portions": 32,
-  "A1_mismatches": [],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 36,
-  "unrecorded_A1_mismatches": [],
-  "passed": true,
-  "canvas_columns": 245,
-  "canvas_rows": 103,
-  "unsupported_characters": [],
-  "lowercase_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 1,
-  "physical_copy_patch_only": true
-}
-
-Current source review notes
-[
-  {
-    "kind": "right input border marker",
-    "evidence": "Every R TO K occupies the right border cell; physical Bxx/Dxx begins adjacent outside. Literal K retained and metadata distinguishes border_side from electrical input side."
-  },
-  {
-    "kind": "numeric qualifiers",
-    "evidence": "BF pin detail.png confirms literal 4 before B05 and B04, while left border is intact. BH LB02 includes literal L qualifier before physical B02."
-  },
-  {
-    "kind": "termination ports",
-    "evidence": "BC and BD have only left input ports printed; no right output invented. All eight upper local return paths source-read independently. No local unused jumper."
-  },
-  {
-    "kind": "page-specific footer",
-    "evidence": "Native footer-title confirms machine 7201-C2, BLK. BJ and two-line title. Header and vertical page ID match filename KR011."
-  },
-  {
-    "kind": "complete native review",
-    "evidence": "All 20 overlapping native gate/route bands, both footer crops and final full JuliaMono preview individually reviewed. Header and both vertical page identities match original filename; original scan order retained. No bank shift or extended box required. No unused local jumper observed."
-  },
-  {
-    "kind": "feedback source trace",
-    "evidence": "middle rails.png has a clear gap between the AT select input ending at c88/r47 and BH feedback starting at c91/r47. BH D02✲ rises at c154, joins the row47 feedback/output diamond, then returns via c91 to BF B03/r91. g3-1.png confirms BA B05→BE D05 bends at c92, separate from feedback c91. Root independently confirmed these native paths."
-  },
-  {
-    "kind": "source continuation discrepancy",
-    "detail": "KR011 prints -ROS DECODE NORMAL EUP, with an open-top U; KR101AZ4 prints -ROS DECODE NORMAL EOP. Root and owner independently checked NORMAL EUP literal audit.png and KR101 output labels.png. Both native source literals retained."
-  },
-  {
-    "kind": "physical copy review",
-    "decision": "Human confirms D0; final digit physically unreadable. Exact socket listing contains no pin data for this card; retain D0�. D06 is not approved by the conditional evidence.",
-    "human_readings": [
-      {
-        "page": "KR011",
-        "field": "AL output pin",
-        "human_reply": "D0, last digit unreadable. If the 6 comes from the socket listings, accept it.",
-        "confirmed_prefix": "D0",
-        "conditional_full_reading": "D06 only if exact relevant socket listing supports final6; otherwise retain D0� and document physical unreadability. No contextual substitution."
-      }
-    ],
-    "socket_listing_evidence": "D:\\Github\\IBM360\\tmp\\ald-text\\kr\\physical-copy-review-2026-10-13\\KR011 exact socket listing result.json",
-    "remaining_unreadable": "AL output final digit"
-  }
-]
-
-Original scan order
-{
-  "original_name": "img20141209_12570288.tif",
-  "timestamp": "2014-12-09 12:57:02.880000",
-  "before": "KR001 RECONFIGURE SELECT SE AND DE.tif",
-  "after": "KR021 SWITCH FOR SELF SELECT CONTROL.tif"
-}
-
-Earlier quartet and review notes preserved verbatim in D:\Github\IBM360\tmp\ald-text\kr\physical-copy-review-2026-10-13\before. Prior damaged readings are superseded only where specified above.
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AB: R TO -> R T0, AD: R TO -> R T0, AH: R TO -> R T0, AK: R TO -> R T0, AP: R TO -> R T0, AS: R TO -> R T0, AU: R TO -> R T0, AW: R TO -> R T0, BC: R TO -> R T0, BD: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
-
-SLT supply-pin source and human review, 2026-10-16: AJ B06 -> B04. Numeric wire qualifiers and asterisks are retained. Ground ties and the S21AA transformer ground reference are preserved where confirmed. Human answers and source hashes are recorded in the Pin validation release audit; older remarks remain historical.
-
-Unreadable printed characters retained as �: 1.
+Source: KR SCON, SATR, Reconfigure/KR011 SCON AND SATR SIMPLEX RECEIVER SCON IN PROGRESS LTH.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AB","row":10}
+Correction: {"after":"0","before":"O","column":54,"node":"AB","row":10}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AD","row":38}
+Correction: {"after":"0","before":"O","column":54,"node":"AD","row":38}
+Correction: {"after":"R T0","before":"R TO","column":74,"node":"AH","row":59}
+Correction: {"after":"0","before":"O","column":77,"node":"AH","row":59}
+Correction: {"after":"R T0","before":"R TO","column":97,"node":"AK","row":17}
+Correction: {"after":"0","before":"O","column":100,"node":"AK","row":17}
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AP","row":31}
+Correction: {"after":"0","before":"O","column":123,"node":"AP","row":31}
+Correction: {"after":"R T0","before":"R TO","column":143,"node":"AS","row":66}
+Correction: {"after":"0","before":"O","column":146,"node":"AS","row":66}
+Correction: {"after":"R T0","before":"R TO","column":166,"node":"AU","row":10}
+Correction: {"after":"0","before":"O","column":169,"node":"AU","row":10}
+Correction: {"after":"R T0","before":"R TO","column":166,"node":"AW","row":38}
+Correction: {"after":"0","before":"O","column":169,"node":"AW","row":38}
+Correction: {"after":"R T0","before":"R TO","column":74,"node":"BC","row":87}
+Correction: {"after":"0","before":"O","column":77,"node":"BC","row":87}
+Correction: {"after":"R T0","before":"R TO","column":97,"node":"BD","row":73}
+Correction: {"after":"0","before":"O","column":100,"node":"BD","row":73}
+Unresolved: {"field":"/nodes/8/pins/1/pin","printed":"D0�"}
+Unresolved: {"field":"/nodes/8/pins/1/physical_pin","printed":"D0�"}
+Unresolved: {"field":"/nodes/8/pins/1/reference","printed":"AL.D0�"}
+Unresolved: {"field":"/nets/11/driver","printed":"AL.D0�"}
+Unresolved: {"field":"/printed_labels/33/text","printed":"D0�"}

@@ -30,6 +30,14 @@ def main():
     result = {'checked_files': len(manifest['files']), 'failures': failures,
               'passed': not failures,
               'scope': 'Encoding and snapshot integrity; native scan, wiring and semantic review are separate'}
+    if (repo/'notes/Source status.json').is_file():
+        sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'reviews'))
+        import current_checkpoint
+        try:
+            result['current_source_status']=current_checkpoint.load_checkpoint(repo,inventory=manifest).report()
+        except (ValueError,OSError,UnicodeError) as exc:
+            failures.append({'path':'notes/Source status.json','problem':str(exc)})
+        result['passed']=not failures
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if not failures else 1
 

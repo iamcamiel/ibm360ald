@@ -20,6 +20,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'reviews'))
 import source_review as sr
 import successor_registry as registry_api
+import current_checkpoint
 
 ROOT = Path(__file__).resolve().parents[2]
 COMPLETED_REVIEW_STATUS = 'Completed published review status: native source and rendered layout reviewed; marked unreadable print retained.'
@@ -39,9 +40,11 @@ def load_exporter(workspace):
     return module,path
 
 
-def build_plan(registry, workspace, repo, exports, source_root, pages=None):
+def build_plan(registry, workspace, repo, exports, source_root, pages=None, *, legacy_history=False):
     """Return a public plan and private byte replacements; perform no writes."""
     registry,workspace,repo,exports,source_root=map(lambda p:Path(p).resolve(),(registry,workspace,repo,exports,source_root))
+    require(legacy_history or not (repo/current_checkpoint.DEFAULT_PATH).is_file(),
+            'Compact Source status is authoritative. Historical import is disabled by default; verify with --verify-current. A new source import must use current clean artifacts, or explicitly opt into --legacy-history while its evidence still exists.')
     require(repo.is_relative_to(workspace),'Repository must be inside workspace')
     guards={};updates={};roles={}
     def capture(path,expected=None):
@@ -288,13 +291,36 @@ def apply_plan(report,changes,guards,history):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('registry',type=Path);parser.add_argument('--workspace',type=Path,default=ROOT.parent)
+    parser.add_argument('registry',type=Path,nargs='?');parser.add_argument('--workspace',type=Path,default=ROOT.parent)
     parser.add_argument('--repo',type=Path,default=ROOT);parser.add_argument('--exports',type=Path)
     parser.add_argument('--source-root',type=Path,default=Path('D:/Reference Materials/IBM 360/IBM_360_ALD'))
     parser.add_argument('--pages',nargs='+');parser.add_argument('--write',action='store_true')
+    parser.add_argument('--verify-current',action='store_true',help='Validate compact current status/bindings without historical import or writes')
+    parser.add_argument('--legacy-history',action='store_true',help='Explicitly use the old historical import workflow when its external evidence remains available')
+    parser.add_argument('--compact-stage',type=Path,help='Import one newly published generic stage into current compact artifacts; no historical registry replay')
+    parser.add_argument('--acceptance',type=Path,help='Independent acceptance for --compact-stage')
     parser.add_argument('--plan-output',type=Path)
     args=parser.parse_args();exports=args.exports or args.workspace/'ALD_Visual_Transcriptions'
-    report,changes,guards=build_plan(args.registry,args.workspace,args.repo,exports,args.source_root,args.pages)
+    if args.compact_stage is not None:
+        require(args.registry is None and args.acceptance is not None and not args.verify_current and not args.legacy_history and args.pages is None,
+                '--compact-stage requires --acceptance and imports its exact page set without legacy/verification options')
+        import compact_source_import
+        prepared=compact_source_import.prepare(args.repo,args.compact_stage,args.acceptance,args.source_root)
+        if args.plan_output:
+            output=args.plan_output.resolve()
+            require(not any(output.is_relative_to(Path(root).resolve())for root in (args.repo,exports,args.source_root,args.compact_stage.parent)),
+                    'Compact plan output overlaps source, repository or accepted stage')
+            sr.atomic_write(output,encode(prepared['report']))
+        if args.write:
+            with sr.locked(args.workspace/'tmp/ald-text/ald/repository-export/Source review mirror.lock'):
+                report=compact_source_import.apply(prepared)
+        else:report=prepared['report']
+        print(json.dumps(report,ensure_ascii=False,indent=2));return
+    if args.verify_current:
+        require(not args.write and args.registry is None,'Current verification does not import/write a legacy registry')
+        print(json.dumps(current_checkpoint.load_checkpoint(args.repo).report(),ensure_ascii=False,indent=2));return
+    require(args.registry is not None,'Registry required for legacy import; use --verify-current for compact status')
+    report,changes,guards=build_plan(args.registry,args.workspace,args.repo,exports,args.source_root,args.pages,legacy_history=args.legacy_history)
     if args.plan_output:
         output=args.plan_output.resolve()
         require(not any(output.is_relative_to(Path(root).resolve()) for root in (args.repo,exports,args.source_root)),'Dry-run plan cannot overwrite source/repository trees')

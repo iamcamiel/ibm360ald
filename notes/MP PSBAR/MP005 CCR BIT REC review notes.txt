@@ -1,89 +1,23 @@
-MP005 CCR BIT REC - TRANSLATION NOTES
-
-Reference scan: MP PSBAR\MP005 CCR BIT REC.tif
-Original scan: img20141205_12145779.tif
-Original scan timestamp: 2014-12-05 12:14:57.790000
-Preceding scan: MP003 SE VALID TO BCU.tif
-Following scan: MP011 SE VALID INH AND COMPARE 1-3.tif
-Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\OR function human correction current audit.json
-
-PAGE NOTES
-
-MP005 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 29,
-  "A1_total_card_portions": 30,
-  "A1_mismatches": [
-    "BD"
-  ],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 30,
-  "passed": false,
-  "unsupported_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 0,
-  "structural_passed": true,
-  "A1_agreement": false
-}
-
-Unclear source print and evidence
-[
-  {
-    "kind": "Native literal differences",
-    "detail": "Native bit09 and bit16 input labels visibly read SF; other bit inputs read SE. Native final AR T at6N prints AL, duplicating3M AL. Internal AW identifies6N uniquely and printed_id preserves AL. No semantics substituted.",
-    "evidence": [
-      "tmp/ald-text/mp/decode/MP005 inputs focus.png",
-      "tmp/ald-text/mp/decode/MP005 last AT native.png"
-    ]
-  },
-  {
-    "kind": "Native A1 discrepancy",
-    "node": "BD",
-    "grid": "7M",
-    "native": "A-C4F6",
-    "A1": "02A-C4 E6 3308K1",
-    "detail": "Native F has no lower horizontal bar. All other receiver locations E6. No normalized substitution.",
-    "evidence": "tmp/ald-text/mp/decode/MP005 BD native.png"
-  },
-  {
-    "kind": "Native duplicate IDs",
-    "detail": "Final6N AR T prints AL, duplicating3M AL; final7N R TO prints BF, duplicating1K BF. Internal AW and BE preserve unique geometry and printed_id retains the literal duplicates."
-  },
-  {
-    "kind": "Native review",
-    "detail": "Thirty blocks, ten receiver paths, ten anonymous AR T to R TO wires, ten printed external outputs and continuation hooks individually inspected. Complete connector table read including native column wraps. All three final native and JuliaMono pairs owner reviewed; root combined acceptance pending. User-approved printed ┘ separators retained."
-  }
-]
-
-Original scan order
-Before MP003 SE VALID TO BCU.tif
-After MP011 SE VALID INH AND COMPARE 1-3.tif
-
-Root combined acceptance and owner freeze
-{
-  "owner_native_source_and_geometry_review_complete": true,
-  "root_combined_layout_review_complete": true,
-  "root_scope": "All three final source/render bands and native footer reviewed. MP001 physical output hooks join K-marked terminals and FRAME rails; early and lower return detours, distinct PHY bit buses and extended ten-input OR compared. Root independently traced AL B13/B12/D05 branches and inspected AF bottom. MP005 receiver/RTO paths, all ten outputs, corrected hanging references, duplicate native IDs and BD F6 discrepancy compared. User approved printed separator as ┘; final DF5 retained. Detailed native fields and routes reviewed by assigned owner.",
-  "approved_date": "2026-10-12",
-  "frozen": true
-}
-
-
-ROOT FINAL REVIEW
-Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
-Scope: All three final source/render bands and native footer reviewed. MP001 physical output hooks join K-marked terminals and FRAME rails; early and lower return detours, distinct PHY bit buses and extended ten-input OR compared. Root independently traced AL B13/B12/D05 branches and inspected AF bottom. MP005 receiver/RTO paths, all ten outputs, corrected hanging references, duplicate native IDs and BD F6 discrepancy compared. User approved printed separator as ┘; final DF5 retained. Detailed native fields and routes reviewed by assigned owner.
-Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AD: R TO -> R T0, AF: R TO -> R T0, AH: R TO -> R T0, AN: R TO -> R T0, AQ: R TO -> R T0, AS: R TO -> R T0, AY: R TO -> R T0, BA: R TO -> R T0, BC: R TO -> R T0, BE: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+Source: MP PSBAR/MP005 CCR BIT REC.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":74,"node":"AD","row":10}
+Correction: {"after":"0","before":"O","column":77,"node":"AD","row":10}
+Correction: {"after":"R T0","before":"R TO","column":74,"node":"AF","row":38}
+Correction: {"after":"0","before":"O","column":77,"node":"AF","row":38}
+Correction: {"after":"R T0","before":"R TO","column":74,"node":"AH","row":66}
+Correction: {"after":"0","before":"O","column":77,"node":"AH","row":66}
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AN","row":24}
+Correction: {"after":"0","before":"O","column":123,"node":"AN","row":24}
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AQ","row":52}
+Correction: {"after":"0","before":"O","column":123,"node":"AQ","row":52}
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AS","row":80}
+Correction: {"after":"0","before":"O","column":123,"node":"AS","row":80}
+Correction: {"after":"R T0","before":"R TO","column":189,"node":"AY","row":10}
+Correction: {"after":"0","before":"O","column":192,"node":"AY","row":10}
+Correction: {"after":"R T0","before":"R TO","column":189,"node":"BA","row":38}
+Correction: {"after":"0","before":"O","column":192,"node":"BA","row":38}
+Correction: {"after":"R T0","before":"R TO","column":189,"node":"BC","row":66}
+Correction: {"after":"0","before":"O","column":192,"node":"BC","row":66}
+Correction: {"after":"R T0","before":"R TO","column":189,"node":"BE","row":87}
+Correction: {"after":"0","before":"O","column":192,"node":"BE","row":87}
+Exception: {"note":"Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character."}

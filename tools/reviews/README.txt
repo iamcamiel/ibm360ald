@@ -1,5 +1,65 @@
 SOURCE REVIEW TOOLS
 
+CURRENT SOURCE STATUS
+
+notes/Source status.json is the compact current repository checkpoint. It binds
+each accepted TXT, optional current JSON/notes, scan reference and explicit page
+review status. It is not a new visual acceptance or a claim that every field is
+readable. Significant corrections and unresolved readings belong in concise
+current notes. No preview copies, old stages, raw-byte archives or repeated
+per-node acceptance contexts are required for current repository validation.
+
+  python tools/reviews/current_checkpoint.py --repo .
+  python tools/reviews/successor_registry.py verify-current --repo .
+  python tools/repository/import_source_review.py --verify-current --repo .
+  python tools/repository/verify_repository.py --repo .
+
+load_checkpoint(repo, path=None, inventory=None) returns current records, a small
+binding/report and recheck(). It verifies current bytes, portable paths, unique
+scan identities, exact model/TXT membership and explicit review statuses. It
+never reads TIFF bytes, historical receipt trees or optional external working
+quartets. Passing the current inventory also checks repository ownership. The
+checkpoint does not hash itself or the inventory, avoiding circular bindings.
+
+With Source status present, refresh_inventory.py defaults to compact retention:
+no inventory-predecessor copy and no appended review history. Exact allowlist,
+before/after hashes, all unrelated recorded-file checks and rollback remain.
+An explicit action:"remove" entry needs the exact recorded before_sha256,
+after_sha256:null, authority and an already absent file. The helper does not
+delete files or silently forget other missing records. Legacy inventory history
+is available only via --retain-inventory-history.
+
+To mirror a NEW published generic source-review stage:
+
+  python tools/repository/import_source_review.py --compact-stage MANIFEST --acceptance ACCEPTANCE --repo . --source-root ORIGINAL_SCANS
+
+This is a dry run; add --write for the guarded transaction. It verifies the one
+new stage/independent acceptance/publication, exact prior TXT, and equality of
+pruned prior JSON with the current repository model. It then imports the new
+TXT, pruned JSON and compact notes, and refreshes current Source status, Content,
+Reviewed export and inventory hashes. Existing concise correction/exception/
+unresolved notes survive; explicit new notes use those same labelled lines.
+No prior registry, old export plan, historical proof copy or repository preview
+is used. A repeat of the same accepted state is a no-op. Before-hash guards and
+in-memory rollback protect the transaction without creating an archive tree.
+Mixed epochs, changed current semantics and path aliases are rejected. This
+generic route currently requires an existing JSON model; TXT-only source rows
+need their own reviewed model/text workflow rather than an invented model.
+
+The result reports that uniform socket metadata and the current card catalogue
+need refreshing. Their existing source-hash guards remain in force; the import
+does not silently refresh or publish card diagrams. Source scan files and the
+external working owner files are never written by this repository mirror.
+
+The legacy source importer remains disabled by default on a compact repository
+to avoid restoring historical models or evidence folders. --legacy-history is
+an explicit old-workflow opt-in while its external evidence still exists.
+Current verification needs none of that history.
+
+The following source-edit/staging commands remain available for new explicitly
+reviewed changes. Their private transaction evidence is separate from current
+repository retention; old .history folders are not current runtime prerequisites.
+
 source_review.py records literal answers and applies explicit reviewed corrections.
 It does not read characters from scans, infer missing values, generate independent
 acceptance, or export to another repository. Python3.10+ is required. Pillow and

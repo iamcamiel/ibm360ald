@@ -1,85 +1,19 @@
-MB639 ST BUS BYTES 48-55 AND 56-63 - TRANSLATION NOTES
-
-Reference scan: MB Storage Data Bus\MB639 ST BUS BYTES 48-55 AND 56-63.tif
-Original scan: img20141205_10540429.tif
-Original scan timestamp: 2014-12-05 10:54:04.290000
-Preceding scan: MB637 ST BUS BYTES 32-39 AND 40-47.tif
-Following scan: MB701 SDBO BITS 00-07 AND P00-07.tif
-Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\OR function human correction current audit.json
-
-PAGE NOTES
-
-MB639 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 5,
-  "A1_total_card_portions": 5,
-  "A1_mismatches": [],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 5,
-  "invalid_net_drivers": [],
-  "unassigned_output_ports": [],
-  "documented_unused_jumpers": [],
-  "documented_A1_mismatches": [],
-  "unresolved_A1_mismatches": [],
-  "passed": true,
-  "unsupported_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 5
-}
-
-Unclear source print and evidence
-[
-  {
-    "kind": "unreadable_source_print",
-    "location": "Last external parity input at row86 and its origin row87",
-    "observed": "� �T BUS PARITY 56-63 / ���635BC4",
-    "proposed": "- ST BUS PARITY 56-63 / ✲RT635BC4",
-    "detail": "Minus/S and star/RT prefix erased. Surviving T BUS PARITY 56-63 and 635BC4 retained. Root and low assistant independently agree flags are needed.",
-    "crop": "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\last origin.png"
-  },
-  {
-    "kind": "source_evidence",
-    "detail": "Full source overview and all native gate/contact/individual input/footer crops visually read. Six/five R TO termination gates have only input pins. Each external diamond, lower hook and actual far-right bend traced. No output signals or connector table printed.",
-    "crops": [
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\AJ pin.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\all gates.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\footer.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\gate0.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\gate1.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\gate2.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\gate3.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\gate4.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input0.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input1.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input2.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input3.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input4.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\input5.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\last origin.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\LS235.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\signal55.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\signal56.png",
-      "D:\\Github\\IBM360\\tmp\\ald-text\\mb\\root-build\\MB639\\signals.png"
-    ]
-  }
-]
-
-Original scan order
-Before MB637 ST BUS BYTES 32-39 AND 40-47.tif
-After MB701 SDBO BITS 00-07 AND P00-07.tif
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AJ: R TO -> R T0, AC: R TO -> R T0, AD: R TO -> R T0, AF: R TO -> R T0, AT: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
-
-Unreadable printed characters retained as �: 5.
+Source: MB Storage Data Bus/MB639 ST BUS BYTES 48-55 AND 56-63.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AJ","row":31}
+Correction: {"after":"0","before":"O","column":123,"node":"AJ","row":31}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AC","row":38}
+Correction: {"after":"0","before":"O","column":54,"node":"AC","row":38}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AD","row":52}
+Correction: {"after":"0","before":"O","column":54,"node":"AD","row":52}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AF","row":80}
+Correction: {"after":"0","before":"O","column":54,"node":"AF","row":80}
+Correction: {"after":"R T0","before":"R TO","column":189,"node":"AT","row":80}
+Correction: {"after":"0","before":"O","column":192,"node":"AT","row":80}
+Unresolved: {"field":"/nets/4/id","printed":"external ��635BC4 86"}
+Unresolved: {"field":"/nets/4/driver","printed":"external ��635BC4"}
+Unresolved: {"field":"/wire_paths/8/net","printed":"external ��635BC4 86"}
+Unresolved: {"field":"/wire_paths/9/net","printed":"external ��635BC4 86"}
+Unresolved: {"field":"/junctions/4/net","printed":"external ��635BC4 86"}
+Unresolved: {"field":"/printed_labels/17/text","printed":" � �T BUS PARITY 56-63"}
+Unresolved: {"field":"/printed_labels/18/text","printed":"���635BC4"}

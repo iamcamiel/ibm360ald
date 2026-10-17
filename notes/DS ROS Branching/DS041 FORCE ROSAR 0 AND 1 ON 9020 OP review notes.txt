@@ -1,81 +1,20 @@
-DS041 FORCE ROSAR 0 AND 1 ON 9020 OP - TRANSLATION NOTES
-
-Reference scan: DS ROS Branching\DS041 FORCE ROSAR 0 AND 1 ON 9020 OP.tif
-Original scan: DS041 FORCE ROSAR 0 AND 1 ON 9020 OP.tif
-Original scan timestamp: 2014-12-08 11:07:13.302969
-Preceding scan: DS025 SECOND LEVEL DECODER ROS FUNCT BRANCHES FIELD J SENSE LTH BIT.tif
-Following scan: DS051 NORMAL FUNCTIONAL BRANCH SET ROSAR BIT 9.tif
-Review record: tmp\ald-text\ald\socket-ald-audit\remaining-source-review-20261017\Consolidated source correction preparation v4\stage\publication.json
-
-PAGE NOTES
-
-DS041 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 18,
-  "A1_total_card_portions": 18,
-  "A1_mismatches": [],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 25,
-  "documented_A1_discrepancies": [],
-  "passed": true,
-  "unsupported_characters": [],
-  "lowercase_characters": [],
-  "footer_spacing_errors": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 6
-}
-
-Unclear source print and evidence
-[
-  {
-    "kind": "printer_grid",
-    "evidence": "245 columns by 103 rows. Fixed anchors and footer checked against native scan. Header r0c235, title r93-102c210-241, revision r93c173."
-  },
-  {
-    "kind": "damaged_native",
-    "node": "AN",
-    "field": "portion",
-    "printed": "3388�1",
-    "candidate": "3388D1",
-    "evidence": "Native 041 gm2.png has damaged initial of portion; A1 exact card/socket corroborates D1. Diagram retains unreadable glyph."
-  },
-  {
-    "kind": "damaged_native",
-    "evidence": "AA input enlarged native AA-pin-native.png reads B�9 (candidate B09); earlier provisional 3U09 was wrong and contained an invented extra character. AN upper output and AR upper/lower input initials have missing top strokes, candidates D07/D11/D12; retain �07/�11/�12. AN destination initial candidate DS075, retained �S075. Native AN-AR-native.png and destination-full.png show damage. Footer hardware native crop confirms c34 start. Reference keys preserve provenance and do not assert uncertain printed glyphs."
-  },
-  {
-    "kind": "native_routes",
-    "evidence": "All18 native gates,25 inputs and open-bottom load boxes reviewed in six gate crops and full top/middle/bottom strips. Canonical grid placement replaces the expanded provisional geometry; bends follow source. Footer has no SDD."
-  }
-]
-
-Original scan order
-Before DS025 SECOND LEVEL DECODER ROS FUNCT BRANCHES FIELD J SENSE LTH BIT.tif
-After DS051 NORMAL FUNCTIONAL BRANCH SET ROSAR BIT 9.tif
-
-Independent review acceptance
-{
-  "kind": "independent_native_review",
-  "reviewer": "DS root",
-  "utc": "2026-10-12T11:54:29.068759+00:00",
-  "evidence": "Root compared native full-page overview with final UTF-8 preview, six gate crops and top/middle/bottom paths, output destinations and footer. Verified 18 ordinary portions and 25 inputs including passive R TO gates, separated PAL outputs and literal 9020 signal. Six damaged native glyphs retained with candidates in notes; final validation passes."
-}
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AC: R TO -> R T0, AG: R TO -> R T0, AD: R TO -> R T0, AK: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
-
-SOURCE VISUAL REVIEW 2026-10-17
-focused-022: AR pin_identity '�11' → 'D11'
-
-Unreadable printed characters retained as �: 5.
+Source: DS ROS Branching/DS041 FORCE ROSAR 0 AND 1 ON 9020 OP.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":97,"node":"AC","row":24}
+Correction: {"after":"0","before":"O","column":100,"node":"AC","row":24}
+Correction: {"after":"R T0","before":"R TO","column":166,"node":"AG","row":17}
+Correction: {"after":"0","before":"O","column":169,"node":"AG","row":17}
+Correction: {"after":"R T0","before":"R TO","column":97,"node":"AD","row":52}
+Correction: {"after":"0","before":"O","column":100,"node":"AD","row":52}
+Correction: {"after":"R T0","before":"R TO","column":97,"node":"AK","row":80}
+Correction: {"after":"0","before":"O","column":100,"node":"AK","row":80}
+Correction: {"note":"focused-022: AR pin_identity '�11' → 'D11'"}
+Unresolved: {"field":"/nodes/0/pins/0/pin","printed":"B�9"}
+Unresolved: {"field":"/nodes/9/printed_card_portion","printed":"3388�1"}
+Unresolved: {"field":"/nodes/9/pins/1/pin","printed":"�07"}
+Unresolved: {"field":"/nodes/10/pins/1/pin","printed":"�12"}
+Unresolved: {"field":"/printed_labels/0/text","printed":"B�9"}
+Unresolved: {"field":"/printed_labels/15/text","printed":"�11"}
+Unresolved: {"field":"/printed_labels/16/text","printed":"�12"}
+Unresolved: {"field":"/printed_labels/41/text","printed":"�07"}
+Unresolved: {"field":"/printed_labels/83/text","printed":"�S075"}

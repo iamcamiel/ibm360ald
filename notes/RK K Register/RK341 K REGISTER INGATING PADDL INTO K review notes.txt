@@ -1,69 +1,8 @@
-RK341 K REGISTER INGATING PADDL INTO K - TRANSLATION NOTES
-
-Reference scan: RK K Register\RK341 K REGISTER INGATING PADDL INTO K.tif
-Original scan: img20141205_22114660.tif
-Original scan timestamp: 2014-12-05 22:11:46.600000
-Preceding scan: RK301 K REGISTER BITS 30-31-PARITY 24-31.tif
-Following scan: RQ001 Q REGISTER BITS 00-03.tif
-Review record: tmp\ald-text\ald\manual-verification\contextual-cross-reference-v3\OR function human correction current audit.json
-
-PAGE NOTES
-
-RK341 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 27,
-  "A1_total_card_portions": 27,
-  "A1_page_listing_card_portions": 27,
-  "A1_mismatches": [],
-  "duplicate_pin_references": {},
-  "wrong_side_net_targets": [],
-  "wrong_side_net_drivers": [],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 31,
-  "documented_native_A1_disagreements": [],
-  "A1_unexplained_mismatches": [],
-  "passed": true,
-  "unsupported_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 0
-}
-
-Unclear source print and evidence
-printer grid
-evidence: 245 columns by103 rows; normal bank columns50,73,96,119,142,165,188. Literal native source paths and labels; no automatic route derivation.
-
-native functions and printed symbols
-evidence: All 27 physical modules and all card/location fields inspected. Qualified 2D09/3D13 inputs are plain; wedge outputs and plain N outputs follow the source. AA/AD main D05 and AF/AS/AU main outputs are unstarred; AB main D02 carries the printed open asterisk.
-
-two independent CLOCK P0 rails
-evidence: AP021AR4 branches to AC and AE; AS201AA4 branches to AH and AK. The rails cross other returns without source diamonds. The AF.D02 path feeds AL.D11, not AK.2D09.
-
-row 44 separated rails
-evidence: The AS201AA4 CLOCK P0 rail ends at its native branch diamond in column 113; the AE.B02 PADDL-reset return begins separately in column 115 on the same printed row. Native proof: RK341/AE reset clock exact.png.
-
-lower wrap crossings and joins
-evidence: AR.B09 owns BB.B12 and reset 08–15; AT.B09 owns BC.B04 and reset 16–23; AW.D07 owns BA.B08 and reset 00–07; AY.D07 owns BD.B08 and reset 24–31. Diamonds mark those branches. Plain crossings remain unjoined.
-
-right-side reference groups
-evidence: Each of the 16 right exports has its own source-printed triple continuation: RK001/031/061, RK081/111/141, RK161/191/221 or RK241/271/301. The right labels and hanging hooks preserve this order.
-
-source reading evidence
-evidence: Compared 10200×6600 native RK341 TIFF with independent crops at tmp/ald-text/rk_independent/RK341 and page sections at tmp/ald-text/ald/rk_root/RK341. The five left source rows, nine right output row baselines, all 27 boxes and lower crossing paths were compared against the JuliaMono preview. All 16 output tags agree with the corresponding RK incoming references. No native bank shift or handwritten content is encoded.
-
-Original scan order
-Before D:\Reference Materials\IBM 360\IBM_360_ALD\RK K Register\RK301 K REGISTER BITS 30-31-PARITY 24-31.tif
-After D:\Reference Materials\IBM 360\IBM_360_ALD\RQ Q Register\RQ001 Q REGISTER BITS 00-03.tif
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AL: R TO -> R T0, AV: R TO -> R T0, AX: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+Source: RK K Register/RK341 K REGISTER INGATING PADDL INTO K.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"AL","row":59}
+Correction: {"after":"0","before":"O","column":123,"node":"AL","row":59}
+Correction: {"after":"R T0","before":"R TO","column":143,"node":"AV","row":59}
+Correction: {"after":"0","before":"O","column":146,"node":"AV","row":59}
+Correction: {"after":"R T0","before":"R TO","column":166,"node":"AX","row":59}
+Correction: {"after":"0","before":"O","column":169,"node":"AX","row":59}

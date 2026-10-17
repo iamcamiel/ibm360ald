@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 import source_review as sr
+import current_checkpoint
 
 SCHEMA = 'source-review-successor-registry-v1'
 
@@ -120,17 +121,22 @@ def register(registry_path, publication_path, workspace, exports, source_root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['verify', 'register'])
-    parser.add_argument('registry', type=Path)
+    parser.add_argument('command', choices=['verify', 'register', 'verify-current'])
+    parser.add_argument('registry', type=Path, nargs='?')
+    parser.add_argument('--repo', type=Path,default=Path(__file__).resolve().parents[2])
     parser.add_argument('--publication', type=Path)
-    parser.add_argument('--workspace', type=Path, required=True)
-    parser.add_argument('--exports', type=Path, required=True)
-    parser.add_argument('--source-root', type=Path, required=True)
+    parser.add_argument('--workspace', type=Path)
+    parser.add_argument('--exports', type=Path)
+    parser.add_argument('--source-root', type=Path)
     args = parser.parse_args()
-    if args.command == 'register':
+    if args.command == 'verify-current':
+        result=current_checkpoint.load_checkpoint(args.repo).report()
+    elif args.command == 'register':
+        sr.require(args.registry is not None and all((args.workspace,args.exports,args.source_root)), 'Legacy registry and its roots are required')
         sr.require(args.publication is not None, '--publication is required')
         result = register(args.registry, args.publication, args.workspace, args.exports, args.source_root)
     else:
+        sr.require(args.registry is not None and all((args.workspace,args.exports,args.source_root)), 'Legacy registry and its roots are required')
         result = accepted_successors(args.registry, args.workspace, args.exports, args.source_root)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 

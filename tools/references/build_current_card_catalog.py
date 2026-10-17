@@ -435,8 +435,8 @@ def main():
         "marked unparsed rather than automatically called invalid. Non-numeric card labels,\n"
         "including structural blocks\n"
         "and damaged readings, are listed in Unclassified card identifiers.json.\n\n"
-        "The older json/Card types directory is the historical V15 research snapshot. Its\n"
-        "acceptance receipts are immutable; this current catalog is a separate derived view.\n",
+        "This is the current derived catalogue. Superseded research snapshots and\n"
+        "intermediate review histories are not retained in the working repository.\n",
         encoding="utf-8")
     files = []
     for branch in (json_dir, csv_dir, notes_dir):
@@ -469,7 +469,7 @@ def main():
         "limitations": ["Only accepted pages with a current published content model contribute diagram blocks.",
             "Visible port counts are not full card pinouts; unused inputs can be omitted.",
             "A1 part numbers and card widths are observed facts, not inferred from card-type digits.",
-            "The historic V15 database remains unchanged and retains its original acceptance chain."]}
+            "Current source references and review status are retained; Git holds version history."]}
     dump(notes_dir / "Build manifest.json", report)
     print(json.dumps({"card_types": len(cards), "counts": dict(count), "profiles": len(profiles_csv),
         "output": str(output)}, ensure_ascii=False))

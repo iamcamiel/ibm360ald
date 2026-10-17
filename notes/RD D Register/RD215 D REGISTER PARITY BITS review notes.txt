@@ -1,70 +1,13 @@
-RD215 D REGISTER PARITY BITS - TRANSLATION NOTES
-
-Reference scan: RD D Register\RD215 D REGISTER PARITY BITS.tif
-Original scan: img20141205_21313533.tif
-Original scan timestamp: 2014-12-05 21:31:35.330000
-Preceding scan: RD211 D REGISTER BITS 21-23.tif
-Following scan: RD220 PAR D REG BITS 18-21 TO F REG.tif
-Review record: tmp\ald-text\ald\socket-ald-audit\pin-letter-visual-20261016\stage-v4\publication.json
-
-PAGE NOTES
-
-RD215 source review
-
-Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
-{
-  "A1_card_portions_matched": 43,
-  "A1_total_card_portions": 44,
-  "A1_page_listing_card_portions": 44,
-  "A1_mismatches": [
-    "BP"
-  ],
-  "missing_input_owners": [],
-  "multiple_target_owners": {},
-  "different_net_shared_segments": [],
-  "disconnected_nets": [],
-  "junction_errors": [],
-  "wire_paths_inside_blocks": [],
-  "endpoint_errors": [],
-  "printed_input_terminals": 75,
-  "documented_native_A1_disagreements": [
-    {
-      "id": "BP",
-      "evidence": "Native BP3F prints B-B3F4 for358530; other3585 portions on this sheet and A1 give B-B3E4. The source reading is preserved rather than corrected from A1."
-    }
-  ],
-  "A1_unexplained_mismatches": [],
-  "passed": true,
-  "unsupported_characters": [],
-  "text_collisions": [],
-  "hidden_junctions": [],
-  "unreadable_characters": 0
-}
-
-Unclear source print and evidence
-printer grid
-evidence: 245 columns by103 rows; normal bank columns50,73,96,119,142,165,188. Literal native source paths and labels; no automatic route derivation.
-
-Source inspection
-evidence: 47 printed blocks with44 physical portions and three virtual OR/DOT board symbols; native fields read individually. Parity controls and common columns differ from ordinary D-register bits. Do not derive wiring from A1 socket metadata.
-
-Positive register feedback and parity controls
-evidence: Enlarged native routes reviewed independently:AC.B08T returns on177 to33 then69 upAL.B08;BC.B08T returns177 to61 then69 upBL.B08 while export rises176 to30;CC.B08T returns177 to89 then69 upCP.F08 while export rises184 to58. ONE PARITY00 drivesAH.D09 andCK.D10; ONE PARITY08 drivesBH.B12; PSW90drivesCL.F13. Those control wires are separate from register feedback. The two printed external references RA221CJ4/KM811BG4 share the BM.B05source wire with a native diamond45,40.
-
-Owning full native and preview QA
-evidence: All gate fields/pins, border wedges/numeric prefixes, anonymous terminals, long feedback rails, crossings, source diamonds, all external literals and references, footer and connector-table lines compared with enlarged native crops and final full JuliaMono rendering. Native BP3F B-B3F4 disagreement is retained and documented, with exact source evidence BP socket exact.png.47 blocks/75 inputs; no unreadable characters or new glyphs.
-
-Original scan order
-Before D:\Reference Materials\IBM 360\IBM_360_ALD\RD D Register\RD211 D REGISTER BITS 21-23.tif
-After D:\Reference Materials\IBM 360\IBM_360_ALD\RD D Register\RD220 PAR D REG BITS 18-21 TO F REG.tif
-
-Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
-Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
-Exact corrected fields: AQ: R TO -> R T0, BQ: R TO -> R T0, CT: R TO -> R T0, CS: R TO -> R T0
-Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
-
-NATIVE PIN LETTER REVIEW 2026-10-16
-Source-bound visual review with independent peer checks. Cases: pin-0051, pin-0052.
-Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
-pin-0051: F08 → B08
-pin-0052: F13 → B13
+Source: RD D Register/RD215 D REGISTER PARITY BITS.tif
+Current review: status="reviewed"
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"AQ","row":24}
+Correction: {"after":"0","before":"O","column":54,"node":"AQ","row":24}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"BQ","row":52}
+Correction: {"after":"0","before":"O","column":54,"node":"BQ","row":52}
+Correction: {"after":"R T0","before":"R TO","column":51,"node":"CT","row":80}
+Correction: {"after":"0","before":"O","column":54,"node":"CT","row":80}
+Correction: {"after":"R T0","before":"R TO","column":120,"node":"CS","row":73}
+Correction: {"after":"0","before":"O","column":123,"node":"CS","row":73}
+Correction: {"note":"pin-0051: F08 → B08"}
+Correction: {"note":"pin-0052: F13 → B13"}
+Exception: {"note":"Native BP3F prints B-B3F4 for358530; other3585 portions on this sheet and A1 give B-B3E4. The source reading is preserved rather than corrected from A1."}

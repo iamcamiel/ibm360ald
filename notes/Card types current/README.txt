@@ -19,5 +19,5 @@ marked unparsed rather than automatically called invalid. Non-numeric card label
 including structural blocks
 and damaged readings, are listed in Unclassified card identifiers.json.
 
-The older json/Card types directory is the historical V15 research snapshot. Its
-acceptance receipts are immutable; this current catalog is a separate derived view.
+This is the current derived catalogue. Superseded research snapshots and
+intermediate review histories are not retained in the working repository.

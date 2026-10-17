@@ -4,9 +4,10 @@ ALD/<original reference folder>/<page and title>.txt
     Reviewed UTF-8 diagrams and printed listings, with their monospaced layout.
 
 notes/<original reference folder>/
-    Translation notes, scan provenance, original review receipts, inventories,
-    accepted corrections and source/validation findings. These may be TXT,
-    JSON, CSV or focused native PNG evidence.
+    Current source references and review status, significant corrections or
+    exceptions, and unresolved questions. Keep notes concise. Intermediate
+    snapshots, repeated acceptance chains and agent progress reports are not
+    retained in the working repository; use Git for version history.
 
 json/<original reference folder>/<page and title>.json
     Available machine-readable page content, including ALD nodes, ports, wires
@@ -23,12 +24,19 @@ tools/repository/
     Repository imports and portable integrity verification.
 tools/cas/
     Reusable CAS glyph helper.
-tools/legacy/
-    Preserved shared conversion/validation source snapshots and local imports.
-    These retain their original paths and workspace dependencies; see README.txt.
+tools/references/
+    Current socket-listing and card-catalogue builders and cross-checks.
+
+tools/card_ald/
+    Shared card-data builder, renderer, use audit and layout tools.
+
+tools/reviews/
+    Current source-status validation and source-review tools. New reviewed
+    changes can be imported without restoring old repository snapshot trees.
 
 ALD, notes, json and csv use the original reference directory names. Collection-
-wide conventions, manifests and combined review records are at the notes root.
+wide conventions and current manifests are at the notes root. Source status.json
+binds the current reviewed files to their original scan references.
 The working collection remains outside this repository while conversion continues.
 
 CAS GRID CHANGE
