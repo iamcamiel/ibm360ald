@@ -11,12 +11,131 @@ import csv
 import hashlib
 import json
 import re
+from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
 
 
 CARD = re.compile(r"[0-9]{4}\Z")
 PIN = re.compile(r"([BDGJ])(0[2-9]|1[0-3])\Z")
+UNIFORM_DATA = "json/Socket listings uniform/Socket listings.json"
+UNIFORM_MANIFEST = "notes/Socket listings uniform/Build manifest.json"
+ANNOTATION_FLAGS = ("symbol_only", "annotation_only", "annotation_block")
+
+
+def relative_path(repo, relative):
+    if (not isinstance(relative, str) or "\\" in relative or
+            Path(relative).is_absolute() or Path(relative).as_posix() != relative or
+            ".." in Path(relative).parts):
+        raise ValueError(f"Unsafe repository input: {relative}")
+    path = (repo / relative).resolve()
+    if not path.is_relative_to(repo):
+        raise ValueError(f"Input outside repository: {relative}")
+    return path
+
+
+def accepted_relative(entry):
+    # Export history keeps its original checkout path; clones use the ALD suffix.
+    parts = str(entry["destination"]).replace("\\", "/").split("/ALD/", 1)
+    if len(parts) != 2:
+        raise ValueError("Accepted destination has no ALD suffix")
+    return "ALD/" + parts[1]
+
+
+def annotation_flags(node):
+    return [key for key in ANNOTATION_FLAGS if node.get(key) is True]
+
+
+def load_uniform_listings(repo):
+    """One source-bound physical record per stable uniform ID; no legacy loops."""
+    manifest_path = repo / UNIFORM_MANIFEST
+    manifest_raw = manifest_path.read_bytes()
+    manifest = json.loads(manifest_raw.decode("utf-8-sig"))
+    if manifest.get("schema") != "uniform-socket-listing-build-v1":
+        raise ValueError("Unsupported uniform socket build")
+    files = {item["path"]: item["sha256"] for item in manifest["files"]}
+    if len(files) != len(manifest["files"]) or UNIFORM_DATA not in files:
+        raise ValueError("Uniform collection is not uniquely inventoried")
+    data = read_checked(repo / UNIFORM_DATA, files[UNIFORM_DATA])
+    if data.get("schema") != "ibm360-socket-listings-v1":
+        raise ValueError("Unsupported uniform socket collection")
+    inputs = {}
+    for link in manifest["inputs"]:
+        path = relative_path(repo, link["path"])
+        if link["path"] in inputs or sha(path.read_bytes()) != link["sha256"]:
+            raise ValueError("Duplicate or changed uniform input: " + link["path"])
+        inputs[link["path"]] = link["sha256"]
+    provenance = "notes/Reviewed export provenance.json"
+    if provenance not in inputs:
+        raise ValueError("Uniform source lacks accepted export provenance")
+    by_scan, lines = {}, {}
+    for entry in read_checked(repo / provenance, inputs[provenance])["exported"]:
+        rel = accepted_relative(entry)
+        if rel not in inputs:
+            continue
+        scan = str(entry["source_scan_id"])
+        if scan in by_scan or entry["text_sha256"] != inputs[rel]:
+            raise ValueError("Duplicate or stale uniform accepted source")
+        by_scan[scan] = rel
+        lines[scan] = relative_path(repo, rel).read_text("utf-8-sig").splitlines()
+    def span_check(span):
+        scan = str(span.get("scan_id")); rows = lines.get(scan)
+        row, col, literal = span.get("row"), span.get("column"), span.get("literal")
+        if (rows is None or type(row) is not int or type(col) is not int or
+                not isinstance(literal, str) or not 0 <= row < len(rows) or col < 0 or
+                rows[row][col:col + len(literal)] != literal):
+            raise ValueError("Uniform card source span differs from accepted TXT")
+    rows = data["records"]
+    if len({r["id"] for r in rows}) != len(rows):
+        raise ValueError("Duplicate uniform physical record ID")
+    listings, unresolved, selected = defaultdict(list), [], 0
+    for index, record in enumerate(rows):
+        # This is the uniform builder's card-instance predicate. An unresolved
+        # printed width remains a physical card, without inventing single/double.
+        if record.get("card_type") is None or "CARD" not in str(record.get("kind_literal")):
+            continue
+        selected += 1
+        for span in [record["header_source"], *record["source_spans"]]:
+            span_check(span)
+        for reference in record["references"]:
+            for span in reference["source_spans"]:
+                span_check(span)
+        header = record["header_source"]
+        source = by_scan[str(header["scan_id"])]
+        references = deepcopy(record["references"])
+        for reference in references:
+            reference["printed_portions"] = deepcopy(reference["portions"])
+        listing = {"record_id": record["id"], "page": header["page"],
+            "record_pointer": f"/records/{index}", "source_text": source,
+            "source_text_sha256": inputs[source], "source_model": UNIFORM_DATA,
+            "source_model_sha256": files[UNIFORM_DATA], "board": record["board"],
+            "sockets": deepcopy(record["sockets"]),
+            "physical_sockets": deepcopy(record["physical_sockets"]),
+            "kind": {"single_card": "SINGLE CARD", "double_card": "DOUBLE CARD"}.get(record["kind"]),
+            "kind_normalized": record["kind"], "kind_literal": record["kind_literal"],
+            "part_number": record["part_number"], "references": references,
+            "unused_portions": deepcopy(record["unused_portions"]),
+            "header_source": deepcopy(header), "source_spans": deepcopy(record["source_spans"]),
+            "source_reviewed": True,
+            "source_review_basis": "Current accepted TXT and uniform source spans; no new visual acceptance"}
+        card = record["card_type"]
+        if not isinstance(card, str) or not CARD.fullmatch(card):
+            unresolved.append({"card_type_literal": card, "listing_record": listing})
+        else:
+            listings[card].append(listing)
+    if selected != data["counts"]["card_instances"] or selected != manifest["counts"]["card_instances"]:
+        raise ValueError("Uniform physical card coverage differs")
+    for rel, expected in inputs.items():
+        if sha((repo / rel).read_bytes()) != expected:
+            raise ValueError("Uniform source changed during catalogue read: " + rel)
+    if sha(manifest_path.read_bytes()) != sha(manifest_raw):
+        raise ValueError("Uniform manifest changed during catalogue read")
+    return listings, {"manifest": {"path": UNIFORM_MANIFEST, "sha256": sha(manifest_raw)},
+        "dataset": {"path": UNIFORM_DATA, "sha256": files[UNIFORM_DATA]},
+        "inputs": [{"path": rel, "sha256": expected} for rel, expected in inputs.items()],
+        "logical_records": len(rows), "physical_card_records": selected,
+        "typed_card_records": sum(map(len, listings.values())),
+        "unclassified_card_records": unresolved}
 
 
 def sha(data: bytes) -> str:
@@ -86,10 +205,8 @@ def main():
     content = json.loads(content_raw.decode("utf-8-sig"))
     accepted = {}
     for entry in provenance["exported"]:
-        destination = Path(entry["destination"]).resolve()
-        if not destination.is_relative_to(repo):
-            raise ValueError(f"Export outside repository: {destination}")
-        relative = destination.relative_to(repo).as_posix()
+        relative = accepted_relative(entry)
+        relative_path(repo, relative)
         if relative in accepted:
             raise ValueError(f"Duplicate accepted page: {relative}")
         accepted[relative] = entry
@@ -97,6 +214,7 @@ def main():
     cards = defaultdict(lambda: {"occurrences": [], "listings": []})
     source_pages = {}
     unclassified = []
+    excluded_annotations = []
     count = Counter()
     for entry in content["files"]:
         if entry["role"] != "Published page content model":
@@ -111,7 +229,7 @@ def main():
         text_path = repo / text_rel
         if sha(text_path.read_bytes()) != text_entry["text_sha256"]:
             raise ValueError(f"Text changed after acceptance: {text_rel}")
-        model = read_checked(repo / model_rel, entry["sha256"])
+        model = read_checked(relative_path(repo, model_rel), entry["sha256"])
         page_key = text_rel
         source_pages[page_key] = {
             "page": model.get("page", text_entry["page"]),
@@ -124,6 +242,16 @@ def main():
         count["models"] += 1
         for index, node in enumerate(model.get("nodes", [])):
             count["diagram_nodes"] += 1
+            flags = annotation_flags(node)
+            if flags:
+                excluded_annotations.append({"page": model.get("page", text_entry["page"]),
+                    "node": node.get("id"), "source_text": text_rel,
+                    "source_model": model_rel, "source_model_sha256": entry["sha256"],
+                    "text_sha256": text_entry["text_sha256"], "node_pointer": f"/nodes/{index}",
+                    "card_type_literal": node.get("card_type"), "circuit_identifier": node.get("unit"),
+                    "function_literal": node.get("function"), "explicit_flags": flags})
+                count["annotation_nodes_excluded"] += 1
+                continue
             card = node.get("card_type")
             if not isinstance(card, str) or not CARD.fullmatch(card):
                 count["nodes_without_card_type"] += 1
@@ -166,50 +294,13 @@ def main():
                 "source_reviewed": node.get("source_reviewed"),
             })
             count["card_occurrences"] += 1
-        if isinstance(model.get("records"), list) and isinstance(model.get("board"), str):
-            for index, record in enumerate(model["records"]):
-                card = record.get("card_type")
-                if not isinstance(card, str) or not CARD.fullmatch(card):
-                    continue
-                cards[card]["listings"].append({
-                    "page": model.get("page", text_entry["page"]),
-                    "record_pointer": f"/records/{index}",
-                    "source_text": text_rel,
-                    "board": record.get("board", model["board"]),
-                    "sockets": record.get("sockets", []),
-                    "kind": record.get("kind"),
-                    "part_number": record.get("part_number"),
-                    "references": record.get("references", []),
-                    "unused_portions": record.get("unused_portions", []),
-                    "source_reviewed": record.get("source_reviewed"),
-                })
-                count["listing_records"] += 1
 
-    # A few A1 board records are published separately from their page models.
-    for entry in content["files"]:
-        if entry["role"] != "Accepted existing A1 board model or source-column table":
-            continue
-        model_rel = entry["path"]
-        model = read_checked(repo / model_rel, entry["sha256"])
-        if not isinstance(model, dict) or not isinstance(model.get("records"), list):
-            continue
-        for index, record in enumerate(model["records"]):
-            card = record.get("card_type")
-            if not isinstance(card, str) or not CARD.fullmatch(card):
-                continue
-            cards[card]["listings"].append({
-                "page": model.get("page"),
-                "record_pointer": f"/records/{index}",
-                "source_model": model_rel,
-                "board": record.get("board", model.get("board")),
-                "sockets": record.get("sockets", []),
-                "kind": record.get("kind"),
-                "part_number": record.get("part_number"),
-                "references": record.get("references", []),
-                "unused_portions": record.get("unused_portions", []),
-                "source_reviewed": record.get("source_reviewed"),
-            })
-            count["supplemental_listing_records"] += 1
+    uniform_listings, listing_authority = load_uniform_listings(repo)
+    for card, listings in uniform_listings.items():
+        cards[card]["listings"].extend(listings)
+    count["listing_records"] = listing_authority["typed_card_records"]
+    count["physical_card_records"] = listing_authority["physical_card_records"]
+    count["unclassified_listing_records"] = len(listing_authority["unclassified_card_records"])
 
     json_dir = output / "json/Card types current"
     csv_dir = output / "csv/Card types current"
@@ -312,10 +403,20 @@ def main():
         "count": len(pin_width_exceptions),
         "scope": "Only unambiguously parsed physical pins whose letter conflicts with a known single-card width. Peer pins are suggestions, not corrections.",
         "exceptions": sorted(pin_width_exceptions, key=lambda x: (x["card_type"], x["page"], x["node"] or ""))})
+    dump(notes_dir / "Excluded annotation nodes.json", {
+        "schema": "current-card-catalog-excluded-annotations-v1",
+        "count": len(excluded_annotations),
+        "policy": "Only explicit true symbol_only, annotation_only or annotation_block flags exclude a node; card type 0000 alone does not.",
+        "observations": sorted(excluded_annotations, key=lambda x: (x["source_text"], x["node_pointer"]))})
     (notes_dir / "README.txt").write_text(
         "CURRENT CARD-TYPE CATALOG\n"
         "Rebuild with tools/references/build_current_card_catalog.py from the reviewed export and content-data manifests.\n"
         "Verify with tools/references/verify_current_card_catalog.py.\n\n"
+        "All physical card listings come once from the current accepted uniform socket dataset,\n"
+        "with stable record IDs and exact source spans. Legacy table shapes are not read again.\n"
+        "Continuations retain their source evidence but do not add physical card instances.\n"
+        "Unprinted or unreadable card width stays unknown. Explicit annotation nodes are\n"
+        "reported separately; a numeric 0000 card is retained unless explicitly annotated.\n\n"
         "json/Card types current/<number>.json contains each observed portion, its exact function label,\n"
         "primary function, circuit identifier, visible pins, polarity triangles, A1 listing facts,\n"
         "and source text/model pointers. csv/Card types current contains searchable summaries.\n"
@@ -333,9 +434,28 @@ def main():
     for branch in (json_dir, csv_dir, notes_dir):
         for path in sorted(branch.iterdir()):
             files.append({"path": path.relative_to(output).as_posix(), "sha256": sha(path.read_bytes())})
+    source_inputs = {"notes/Reviewed export provenance.json": sha(provenance_raw),
+        "notes/Content data manifest.json": sha(content_raw),
+        UNIFORM_MANIFEST: listing_authority["manifest"]["sha256"],
+        UNIFORM_DATA: listing_authority["dataset"]["sha256"]}
+    for item in listing_authority["inputs"]:
+        source_inputs[item["path"]] = item["sha256"]
+    for text, binding in source_pages.items():
+        source_inputs[text] = binding["text_sha256"]
+        source_inputs[binding["model"]] = binding["model_sha256"]
+    for name in ("build_current_card_catalog.py", "verify_current_card_catalog.py", "verify_uniform_socket_listings.py"):
+        relative = "tools/references/" + name
+        source_inputs[relative] = sha((repo / relative).read_bytes())
+    for relative, expected in source_inputs.items():
+        if sha(relative_path(repo, relative).read_bytes()) != expected:
+            raise ValueError("Catalogue source changed during build: " + relative)
     report = {"schema": "current-card-catalog-build-v1", "source_binding": {
         "reviewed_export_provenance_sha256": sha(provenance_raw),
-        "content_data_manifest_sha256": sha(content_raw)},
+        "content_data_manifest_sha256": sha(content_raw),
+        "uniform_manifest_sha256": listing_authority["manifest"]["sha256"],
+        "uniform_dataset_sha256": listing_authority["dataset"]["sha256"]},
+        "uniform_listing_authority": listing_authority,
+        "source_inputs": [{"path": relative, "sha256": expected} for relative, expected in sorted(source_inputs.items())],
         "counts": dict(count), "card_types": len(cards), "portion_profiles": len(profiles_csv),
         "source_pages": source_pages, "files": files,
         "limitations": ["Only accepted pages with a current published content model contribute diagram blocks.",

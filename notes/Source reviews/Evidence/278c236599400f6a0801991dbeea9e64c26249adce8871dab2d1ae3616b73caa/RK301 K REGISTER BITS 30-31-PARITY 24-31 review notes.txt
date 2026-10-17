@@ -1,0 +1,80 @@
+RK301 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 27,
+  "A1_total_card_portions": 30,
+  "A1_page_listing_card_portions": 29,
+  "A1_mismatches": [
+    "BB",
+    "AC",
+    "BD"
+  ],
+  "duplicate_pin_references": {},
+  "wrong_side_net_targets": [],
+  "wrong_side_net_drivers": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 48,
+  "documented_native_A1_disagreements": [
+    {
+      "id": "BB",
+      "evidence": "Native BB clearly prints B-C2F7, with F lacking the bottom stroke visible on same-scan BF B-C2E7. A1 lists this portion at B-C2E7. Preserve native F7 socket."
+    },
+    {
+      "id": "AC",
+      "evidence": "Native 1F clearly prints AR T/T06AA/4198BA/B-C2D6. RK301 A1 has29 portions and omits this printed thirtieth module. Preserve the extra native module; no missing portion was inferred."
+    },
+    {
+      "id": "BD",
+      "evidence": "Native BD clearly prints B-C2F7, with F lacking the bottom stroke visible on same-scan BF B-C2E7. A1 lists this portion at B-C2E7. Preserve native F7 socket."
+    }
+  ],
+  "A1_unexplained_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+printer grid
+evidence: 245 columns by103 rows; normal bank columns50,73,96,119,142,165,188. Literal native source paths and labels; no automatic route derivation.
+
+Detached annotations and literal pins
+evidence: Upper AND input3 is a detached fanout count at c92 with wire93–95 to an anonymous input, not a pin label. Native controls are D07/B10/4B12/4D11; numeric4 prefixes retained literally. AA WRAP input is E13. Feedback pins D12/D05/D02 source-read individually.
+
+Native lower PADDL clock ownership
+evidence: AF1L B03 rises to BH2G B12. AD1G B07 bends down and right, then descends to BJ2L D12. Native crossing crop BH BJ crossing exact.png and both source bands show no diamond connecting these two clock rails. No neighboring-page clock assumption applied.
+
+Native parity arrangement
+evidence: BE inverter is printed6L in bank6. Its negative branch is c161 to BF.D12; positive collector turns at c177 and returns along row89 to AT.D02. First two lanes use bank5 inverters and c138/c154 branches.
+
+Native A1 conflicts
+evidence: All30 printed modules retained. AC4198BA is absent from the29-portion page A1 extraction. BB3308G1 and BD3308H1 print F7 while A1 says E7. Tight same-scan BF3308J1 at E7 clearly distinguishes its bottom E stroke from F. A1 physically corroborates portions and sockets only, not these wire routes.
+
+Output and footer literals
+evidence: Native positive destinations RT747 for bits30/31 and RT777 for parity; IND destinations KT192/KT192/KT172. Department SDD, date08-14-69, LOG153B, P.N.2585864 and BLK.BK are directly printed. Connector legend E04/E09/E06 is retained as printed.
+
+Completed native-versus-rendered review
+evidence: Owning agent visually read the whole native scan, all12 enlarged band/quarter crops, shared four-control rails, AA E13 and detached3 details, BH/BJ clock crossing, BB/BD/BF socket comparisons and exact footer legend. Compared whole JuliaMono preview and enlarged upper/middle/lower render regions plus footer with source. All30 modules,48 inputs,30 physical outputs, native wedges, pin-adjacent turns, feedback collectors, separated crossings, actual diamonds, reference stubs, title and footer were reviewed. Geometry and character checks pass with zero unreadable glyphs.27 exact A1 portions matched; three readable native/listing conflicts explicitly retained. Independent root review remains pending.
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\RK K Register\RK271 K REGISTER BITS 27-28-29.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\RK K Register\RK341 K REGISTER INGATING PADDL INTO K.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BG: R TO -> R T0, AG: R TO -> R T0, BH: R TO -> R T0, AH: R TO -> R T0, BJ: R TO -> R T0, AJ: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+NATIVE PIN LETTER REVIEW 2026-10-16
+Source-bound visual review with independent peer checks. Cases: pin-0062.
+Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
+pin-0062: E13 → B13

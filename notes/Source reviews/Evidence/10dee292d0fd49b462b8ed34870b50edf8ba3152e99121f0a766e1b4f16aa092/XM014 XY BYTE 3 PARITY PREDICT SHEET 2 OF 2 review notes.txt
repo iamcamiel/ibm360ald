@@ -1,0 +1,71 @@
+XM014 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 16,
+  "A1_total_card_portions": 16,
+  "A1_direct_page_card_portions": 16,
+  "A1_mismatches": [],
+  "duplicate_port_references": [],
+  "A1_global_physical_matches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 56,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Source identity",
+    "evidence": "Native XM014 scan and XY BYTE 3 PARITY PREDICT SHEET 2 OF 2 title match inventory source SHA-256 87d863061537ac2c3149bf6b93a9715f92b74c2174246e7b00a0a021a4a86b61."
+  },
+  {
+    "location": "Printed portions",
+    "evidence": "Six 0479, five 0480 plus 0480AR, and four 0473 portions read in native source; all 16 match the direct A1 socket listing."
+  },
+  {
+    "location": "Lower shared rails",
+    "evidence": "Native TIFF crops and high/XM014/native right-rail trace.json follow all seven upper lower-network source rails, five 0480 trunks, and printed 0480A1-A4/0473A1-A3 input paths. 0473A1 B13 is the second rail with the first crossing plainly. The fourth +FMTU-1 and sixth +BITS 46-47 ARE ODD rails join at a native diamond, sharing D11/E02/D13. Detailed independent root audit completed."
+  },
+  {
+    "location": "0480 lower owner correction",
+    "evidence": "Focused native 0480-A2-A4-vertical-3x.png shows the first source trunk x≈3868 ending at 0480A2 D08. The lower +FMTN-7 rail has a separate diamond on the same x≈3868, branches to 0480A3 D09, then down to 0480A4 D10. 0480A4 D11 remains on the second x≈3829 trunk across plain crossings."
+  },
+  {
+    "location": "0480A2 D06",
+    "evidence": "Native close-up shows a short open D06 stub rather than a connected rail. It is modeled as an open stub and must not be inferred from adjacent trunks."
+  },
+  {
+    "location": "Uncarded OR DOT",
+    "evidence": "The printed OR DOT / 5G symbol is not an A1 card portion. It combines 0479A6, 0480A5, 0473A4 and branches to 0480AR B13 and the XX641 line."
+  },
+  {
+    "location": "Root source rank and symbol corrections",
+    "evidence": "Native printed bank/rank fields replace draft projected ranks. 0479/0480/0473 AND input/output borders and OR input borders are plain; OR outputs are wedges. Uncarded OR/DOT words are inside its wedge border, lower blank wedge takes 0480 OR while DOT takes 0473 OR. Upper 0479A1 literal bottom identifier AE retained. Native output star and branch diamond preserved."
+  },
+  {
+    "location": "Independent native peer review",
+    "evidence": "xm_high_resume compared corrected full preview with native sectors c00/c10/c11/c12/c20/c21/c22, confirming literal source ranks, plain AND borders, OR outputs with wedges, uncarded OR/DOT words and blank third wedge, and all three OR owners. Root independently inspected all nine native sectors, focused lower trunks, captions, fields/footer and final preview."
+  }
+]
+
+Original scan order
+Before XM013 XY BYTE 3 PARITY PREDICT SHEET 1 OF 2.tif
+After XM015 XY BYTE 4 PARITY PREDICT SHEET 1 OF 2.tif
+
+NATIVE PIN LETTER REVIEW 2026-10-16
+Source-bound visual review with independent peer checks. Cases: pin-0381, pin-0382.
+Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
+pin-0381: E07 → B07
+pin-0382: E02 → B02

@@ -1,0 +1,60 @@
+FS521 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 35,
+  "A1_total_card_portions": 35,
+  "A1_mismatches": [
+    "BN",
+    "CN"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 57,
+  "documented_native_A1_discrepancies": [
+    "BN",
+    "CN"
+  ],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "misplaced_border_wedges": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "duplicate printed IDs",
+    "evidence": "Source prints FD, FE, FF, FG, FH, FJ and FK in both banks 6 and 7. Printed lettering retained; machine-readable nodes use _N and _A suffixes to distinguish physical elements. All pins and control rails individually traced from source."
+  },
+  {
+    "location": "BN and CN card portions",
+    "evidence": "Native calibrated M3 crop clearly prints BN 0514F1 and CN 0514F2, both K-B1E5. The A1 index stops at E1/E2 for this socket and omits these two portions. Native values retained as documented source exceptions, independently confirmed by the root reviewer."
+  },
+  {
+    "location": "FS121 correspondence",
+    "evidence": "The source prints FF4 at grid 7G for -SEL REG 13 RESET FM SE 6✲DE 1, destination FS121. This supports the separately reviewed damaged FS121 origin; no contextual repair has been inserted into this page."
+  },
+  {
+    "location": "control rail ownership",
+    "evidence": "Native close crop proves c181 DLYD rail drives FL.D12/FM.D10 and lower logic top inputs; c183 BLOCK rail drives FL.D13/FM.B12 and lower bottom inputs. Non-delayed TGR row24 turns atc182 to FN.B08 only. FT complement drops tor27 then risesatc184 intoFN.D07. Qualified controlfields crossBLOCKrail unjoined at firstwirecellc183; strict perpendicular exceptions declared."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS511 SELECT REG RESET FROM SCON.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FS Select Register\FS531 SELECT REG RESET FM SCON.tif
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: FQ: R TO -> R T0, FS: R TO -> R T0, FU: R TO -> R T0, CA: R TO -> R T0, CB: R TO -> R T0, BC: R TO -> R T0, CG: R TO -> R T0, CJ: R TO -> R T0, CL: R TO -> R T0, CN: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+3308 native and human review, 2026-10-16: FS521:FG_N: /pins/1/pin=B09, /printed_id=EG, /pins/1/reference=FG_N.output_B09. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.

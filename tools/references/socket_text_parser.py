@@ -100,8 +100,18 @@ def parse_listings(pages):
                     else:boundary_separator=True
                     continue
                 if literal.count('.')>len(literal)*0.65 and len(re.sub(r'[. ]','',literal))<=2:
-                    if saw_content:close()
-                    continue
+                    # A dotted rule can carry the final portion of the preceding
+                    # ALD reference. Only its aligned portion area continues;
+                    # a socket-margin label or a bare rule still closes the card.
+                    aligned_portion=False
+                    if active and reference and mode is None and reference['evidence']:
+                        first=reference['evidence'][0]['literal'].replace('.',' ')
+                        anchor=re.search(r'(?<![A-Z0-9�])'+PAGE+r'\s+([A-Z0-9�]{1,2})(?:\s|$)',first)
+                        token=re.fullmatch(r'\s{6,}([A-Z0-9�]{1,2})\s*',lexical)
+                        aligned_portion=bool(anchor and token and token.start(1)>=anchor.start(1))
+                    if not aligned_portion:
+                        if saw_content:close()
+                        continue
                 if re.search(r'\b(?:BOARD\s+0[12][A-Z]-|MACH\.|FRAME\b|P\.N\.|IBM CORP|PREV\. ENGR|PRES\. ENGR|DATE\s+\d)',text):continue
                 ruled_label=re.fullmatch(r'\s*('+SOCKET+r')[─]{8,}\s*',lexical)
                 if ruled_label and active and ruled_label[1] in active['sockets']:

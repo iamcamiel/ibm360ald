@@ -1,0 +1,70 @@
+DP022 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 22,
+  "A1_total_card_portions": 22,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 22,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "field": "layout",
+    "evidence": "Native 10200 by 6600 scan and all overlapping native crops individually reviewed. Source field and net extraction is complete. Printer grid applied after native verification. Unjoined straight vertical crossings at the first pin wire cell are allowed only with horizontal main-wire incidence; this preserves native column alignments. Bit 6 route rises beyond the parity block as printed. Wire text overlays preserve source inline references; output pin stars are literal ✲. Only N inputs have printed open triangles. R T1 portions have input-only termination."
+  },
+  {
+    "field": "connector_table",
+    "evidence": "Printed footer flows through four columns of nine rows; AJ4 and BH4 second lines continue at the head of the next column. A1 supplies independent card portion evidence; source connector table kept literal where A1 page-key extraction differs."
+  },
+  {
+    "field": "upper gate input signal",
+    "literal": "-GATE � REG BYTE 16 23",
+    "candidate": "-GATE S REG BYTE 16 23",
+    "evidence": "Native top-input-label crop shows only a bottom curved fragment at the S position. Candidate S agrees with readable output signal, but the unreadable source character remains �. Y and T have partial but distinctive surviving strokes; AB D10 has a damaged yet distinct curved zero. Original neighboring scans are DP021 ST BYTES 00-07 08-15.tif and DP031 MULT DECODE M1 AND M2.tif."
+  },
+  {
+    "field": "AL4 connector table",
+    "literal": "A-D1F8D04",
+    "candidate": "A-D1E8D04",
+    "evidence": "Enlarged native footer prints F8D04; literal F8 is retained despite A1 connector reference E8D04. Board/socket/card portion match independently. Original neighboring scans are DP021 and DP031."
+  },
+  {
+    "field": "grid_ID_rows",
+    "evidence": "Native bottom rows of all22 ordinary portions reviewed: grid label and two-letter ID fill all six interior cells, e.g. 2B──AE and 4E──BX/BY. Two horizontal wire cells separate grid and ID; ID touches the right border."
+  },
+  {
+    "field": "printer_grid",
+    "evidence": "245 columns by 103 rows, zero based. Native source confirms R T1 c50, left stack c73, parity c119, right stack c165; body tops r2..86 every seven rows and full seven-row heights. Left output rails are c85..89 with native assignments. Shared source columns remain shared; no guessed channel widening. Input names c0 and origins c31; output destinations c205/namesc211/designationsc242. Title frame c210..241 r93..102 bottom open. Native plain input letters immediately precede the border, without an extra wire cell; input point is c−len(pin)−1. Native connector table placement: c33,c47,c61,c75 rows94..102; continuation indent two, including prior-column continuation at top of columns2/4."
+  }
+]
+
+Original scan order
+Before DP021 ST BYTES 00-07 08-15.tif
+After DP031 MULT DECODE M1 AND M2.tif
+
+Explicit user footer correction
+{
+  "scope": "explicit user footer correction",
+  "evidence": "User relayed through AP: sheet abbreviation P.N.; machine name and part number each end at c239, exactly one blank c240 before right border c241. Previous native footer source inspection retained; only specified footer labels/spacing changed."
+}
+
+Source-derived recovery DP022-4710331451
+Visible UTF-8 label: -GATE S REG BYTE 16 23
+Original native fragment: -GATE � REG BYTE 16 23 at row 1, column 6.
+The DP022 glyph remains physically damaged. RE941BL4 independently prints the compatible full signal.
+Only this signal-name character changed; the source scan, pins, wires, crossings, and grid are unchanged.
+Before snapshots and exact hashes: tmp/ald-text/dp/recoveries/DP022-4710331451/before manifest.json

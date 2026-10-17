@@ -1,5 +1,19 @@
 CURRENT CARD DIAGRAM TOOLS
 
+BATCH THE THREE UNIVERSAL TOOLS
+
+    python tools/card_ald/run_card_batch.py --prefix 0 --output-dir PATH
+
+Run this after source corrections and a verified current-catalog rebuild.
+It selects every four-digit catalog card matching the prefix and attempts the
+data builder, source-use auditor and renderer for each one. Candidates, tool
+logs and a searchable Batch summary.csv stay in the new private output folder.
+Missing definitions and other failures remain explicit; subsequent cards still
+run. Changed source-epoch bindings stop the batch. This command does not publish
+unreviewed pinouts or modify the ALD transcriptions. Existing reviewed layout
+supplements retain their placement; new families use the current generic graph
+planner with free vertical placement.
+
 From the ibm360ald repository directory:
 
     python tools/card_ald/generate_card.py 4191

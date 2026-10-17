@@ -27,7 +27,7 @@ class InferredInternalEdges(unittest.TestCase):
         result,_=self.derive([{'pin':'B03','side':'output'}],[{'pin':'B05','side':'input'}])
         self.assertEqual(result['edges'],[])
         self.assertEqual(len(result['rejected_installation_or_unmapped_edges']),1)
-        self.assertIn('after endpoint inference',result['rejected_installation_or_unmapped_edges'][0]['reason'])
+        self.assertIn('installation strap',result['rejected_installation_or_unmapped_edges'][0]['reason'])
     def test_same_physical_contact_is_retained(self):
         result,_=self.derive([{'pin':'B03','side':'output'}],[{'pin':'B03','side':'input'}])
         self.assertEqual(len(result['edges']),1)
@@ -54,7 +54,7 @@ class InferredInternalEdges(unittest.TestCase):
     def test_unmapped_multiple_inputs_remain_uncertain(self):
         result,_=self.derive([{'pin':'B03','side':'output'}],[{'pin':'B05','side':'input'},{'pin':'B07','side':'input'}])
         self.assertFalse(result['edges'])
-        self.assertIn('no uniquely identified',result['rejected_installation_or_unmapped_edges'][0]['reason'])
+        self.assertIn('unresolved exact side-specific endpoint',result['rejected_installation_or_unmapped_edges'][0]['reason'])
 
 
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,102 @@
+FX061 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 15,
+  "A1_total_card_portions": 15,
+  "A1_mismatches": [
+    "AY",
+    "AZ"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [
+    {
+      "edge": [
+        [
+          91,
+          80
+        ],
+        [
+          91,
+          81
+        ]
+      ],
+      "nets": [
+        "AZ_C06",
+        "AN_D09"
+      ]
+    },
+    {
+      "edge": [
+        [
+          90,
+          81
+        ],
+        [
+          91,
+          81
+        ]
+      ],
+      "nets": [
+        "AN_B11",
+        "AN_D09"
+      ]
+    }
+  ],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 67,
+  "geometry_passed": false,
+  "passed": false,
+  "wire_cells_inside_block_borders": [],
+  "wire_cells_on_pin_characters": [],
+  "footer_checks": {
+    "uppercase_only": true,
+    "part_label_exact": true,
+    "machine_position": true,
+    "part_position": true,
+    "no_obsolete_part_label": true
+  },
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 18
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "bottom of scan",
+    "printed": "�",
+    "evidence": "Scan cuts off the entire final title-block IBM/SDD/BLK line and lower portions of vertical page/subpage footer. Standard field cells are marked unreadable; no block identifier is reconstructed. Original scan neighbors accompany notes for physical lookup."
+  },
+  {
+    "location": "resistor loads",
+    "evidence": "All17 R card portions are passive3707A1 loads, with inputs only. CE POWER ON has one source diamond joining AE E09 and C09. Eight source service boxes represent two independent +6V buses. Native printed source labels and orthogonal fan-in turns are retained."
+  },
+  {
+    "location": "AN D09 / AN B11 / AZ C06 native collinear strokes",
+    "evidence": "Fresh native border fit and AN native.png show D09 rail c91, B11 c90, and C06 c91. Native SCU08 to D09 overlaps SCU05 to B11 horizontally from c90 to91 at r81, and overlaps SELECT-RESPONSE SCU03 to AZ C06 vertically at c91 r80..81. No printed diamond resolves either collinear overlap; preserve separate logical nets and literal strokes, report ambiguity instead of inventing clearance."
+  },
+  {
+    "location": "AE E09 CE POWER ON external reference",
+    "printed": "FX301BT4",
+    "evidence": "CE power reference native.png clearly prints FX301BT4. FX301 is absent from the current46-page FX source inventory. FX341 was checked as a possible reading, but its source-reviewed model contains neither a BT block nor CE POWER ON signal; no replacement is supported. Retain literal reference as an unresolved source anomaly."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX057 SCU SIMPLEX SIGNALS.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX071 DIST SIMPLEX DRIVER LOADS.tif
+
+SLT supply-pin source and human review, 2026-10-16: AB B11 -> E11. Numeric wire qualifiers and asterisks are retained. Ground ties and the S21AA transformer ground reference are preserved where confirmed. Human answers and source hashes are recorded in the Pin validation release audit; older remarks remain historical.
+
+NATIVE PIN LETTER REVIEW 2026-10-16
+Source-bound visual review with independent peer checks. Cases: pin-0506.
+Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
+pin-0506: E11 → B11

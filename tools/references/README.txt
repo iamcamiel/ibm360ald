@@ -67,6 +67,34 @@ provides the downstream SLT pin-range/contact checks. Neither tool changes
 accepted transcriptions. The cross-reference audit against ALD blocks is a
 separate stage after the uniform socket data has been checked.
 
+CURRENT CARD CATALOGUE
+
+  python tools/references/build_current_card_catalog.py --repo . --output ../card-catalogue-candidate
+  python tools/references/verify_current_card_catalog.py --repo . --catalog ../card-catalogue-candidate
+
+The catalogue reads physical card listings once from the accepted uniform
+socket collection, not from the heterogeneous legacy JSON table layouts.
+Stable record IDs, printed socket suffixes, physical sockets, literal kinds,
+and exact source spans are retained. A listing continued on another column or
+scan remains one physical card. Its electrical kind comes from the uniform
+owning header; CONTINUATION is pagination metadata. An unspecified printed
+width stays unknown rather than borrowing a width from another occurrence.
+
+Only true symbol_only, annotation_only or annotation_block flags exclude an
+ALD node from physical occurrences. Excluded annotation nodes.json records
+every exclusion with its current model/TXT bindings. A real numeric 0000
+card is kept unless explicitly marked as an annotation. Unknown card labels
+and component circuit identifiers remain literal; no power-pin layout is
+inferred from a circuit prefix.
+
+The catalogue build manifest declares source_inputs for its uniform dataset,
+uniform manifest and accepted source inputs, accepted ALD TXT/model pairs,
+reviewed manifests and current tools. A refresh must guard this complete
+array. The independent verifier checks the underlying uniform dataset, exact
+physical listing coverage, all source hashes and the complete node partition,
+so omissions or duplicate legacy copies cannot pass by changing totals alone.
+These tools generate candidates and never publish or alter ALD transcriptions.
+
 READ-ONLY SOCKET TO ALD AUDIT
 
   python tools/references/audit_socket_ald.py --output ../socket-ald-audit

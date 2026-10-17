@@ -1,0 +1,84 @@
+CE081 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 27,
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "semantic_driver_errors": [],
+  "printed_input_terminals": 66,
+  "confirmed_A1_source_disagreements": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "unreadable source print",
+    "node": "AD",
+    "printed": "0487B1 B-E3�3",
+    "proposals": [
+      "B-E3E3",
+      "B-E3F3"
+    ],
+    "A1": "0487 B1 B-E3E3",
+    "evidence": "CE081 AD location full.png: socket letter resembles F but has a faint detached lower dash consistent with damaged E. Native uncertainty retained."
+  },
+  {
+    "kind": "native physical output rail",
+    "reading": "AT B10 enters the lower BA DOT input. AT D10 separately bypasses BA and joins BA output rail at the printed diamond; both physical routes retained. Semantic driver is the native wired-OR output rail, not an invented isolated AT net.",
+    "evidence": "CE081 gate 22 and bottom-right native crops"
+  },
+  {
+    "kind": "continuation symbols",
+    "reading": "Native CE961 and RE081 continuation prefixes are printed corner stubs └; the RE081 prefix is not numeral 4."
+  },
+  {
+    "kind": "native printer-grid source review",
+    "reading": "Every native block field, port, input rail, wire bend, diamond, output continuation and footer was reviewed on the measured fixed printer grid. Raw -E11 stops at its c64,r49 diamond; gate-normal at c68,r51 rises to r49 and feeds AW.D07 and AK.D12. The source gap between raw -E11 and gate-normal is preserved. -E9 feeds AB.B02 and AC.B05; -E8 feeds AP.B04 and AR.B07. Both separate NEG9 diamonds c203,r15/r16 are preserved. Source-specific pin literals E13/E09, AP U03AH and damaged AD location remain.",
+    "evidence": [
+      "tmp/ald-text/ce/ce_high/ce081_grid/row49 split.png",
+      "tmp/ald-text/ce/root_review/CE081 native row49 gap.png",
+      "tmp/ald-text/ce/ce_low/CE081 original control gap.png",
+      "tmp/ald-text/ce/ce_high/ce081_grid/native plain.png"
+    ]
+  },
+  {
+    "kind": "independent native pin bend review",
+    "reading": "AL.D13 bend column 115; AS.B05 feedback column 115; adjacent AJ to AT rail column 114. Input bends sit before their pin labels and adjacent rails remain separate.",
+    "evidence": [
+      "tmp/ald-text/ce/root_review/CE081 AL native bend.png",
+      "tmp/ald-text/ce/root_review/CE081 AS AJ native bends.png"
+    ]
+  }
+]
+
+Original scan order
+Before CA911 NEW PAGE ADDRESS GATES TO IC.tif
+After CE101 E INCREMENTER LATCH BITS 10-11.tif
+
+Final user-authorized footer/uppercase correction: P.N. at c227; blanks c231–232; part digits c233–239; blank c240. MACH. c227–231, blank c232, 7201-02 c233–239, blank c240. Date, all wire paths, nets and diamonds unchanged. Original four artifacts backed up in D:\Github\IBM360\tmp\ald-text\ce\uppercase footer correction\original artifacts.
+
+Source-derived recovery CE081-8a40705409
+Physical source fragment: B-E3�3
+Recovered reading: B-E3E3
+Basis: The candidate preserves every surviving character and is the unique compatible exact subject page/card/portion/physical-socket association in independently readable accepted references.
+The damaged glyphs remain unreadable in the native print. No wire or gate geometry was inferred from this reading.
+Native circuit/portion source review: AP unit U03AH -> U03AA. Original TIFF SHA-256 301c9748c87c826997801127b629233e311fc418ab966164b8e4387419e6da99. No wiring, pins or geometry changed.
+
+NATIVE PIN LETTER REVIEW 2026-10-16
+Source-bound visual review with independent peer checks. Cases: pin-0469, pin-0470.
+Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
+pin-0469: E13 → B13
+pin-0470: E09 → B09

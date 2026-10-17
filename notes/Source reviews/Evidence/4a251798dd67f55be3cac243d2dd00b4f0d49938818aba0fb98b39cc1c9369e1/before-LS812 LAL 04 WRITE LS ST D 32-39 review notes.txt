@@ -1,0 +1,977 @@
+LS812 source review
+
+38 visually reviewed card portions; 58 nets and 114 paths.
+65 printed input terminals comprise 65 driven inputs and 0 isolated jumper terminals.
+A1 validation: {"A1_card_portions_matched": 37, "A1_total_card_portions": 38, "A1_unmatched_card_portions": ["CL"], "A1_damaged_page_key_matches": []}. Inputs have one semantic net owner; no different-net shared edges, disconnected nets or multi-net diamonds. A1 validates card portions and connector references, not local gate pins.
+Only printed ◇ joins wires. Unjoined crossings use ┼ and retain independent net IDs.
+Source lettering, gate portions, external references, pins, footer and wiring inspected in native crops; layout normalized to the printer grid. No handwriting transcribed.
+
+Source review notes
+[
+  {
+    "type": "A1 discrepancy",
+    "note": "Native CL explicitly prints C514F2, A-C4G5. The A1 index does not match that literal; the printed leading C is preserved."
+  },
+  {
+    "type": "native literals",
+    "note": "CL prints C514F2, retained as printed. EH is at printed grid 4G. AG, BN, EH, EJ, GJ/GK/GL/GM and GN printed stars retained. Physical output-border wedges on the latch B10 rows remain symbols, not card letters. Numeric 6D12/6D11 qualifiers and inline6 marks on the BH/DM outputs were read directly, corroborated by an independent high agent source view; no separate unapproved circle glyph is substituted."
+  },
+  {
+    "type": "native wiring",
+    "note": "All native parity/write-control return rails, the latch true output into DC, positive P0 into DC/DL, both delayed clock polarities, scan control and FM feedback were traced from the source. Only printed diamonds join wires. External output reference pairs and all26 connector-table rows retained."
+  },
+  {
+    "type": "scan / printing uncertainty",
+    "note": "Some lettering and local wire strokes are washed or interrupted. Readable remaining printing is retained; normalized wire-glyph continuity does not certify source electrical continuity. Footer title, LOG153A, part2585445, GP and one revision retained."
+  },
+  {
+    "type": "worn pin lettering",
+    "note": "Native-size inspection and independent high-agent source review confirm DM E05, GK F05, GM F13 and GL B05. The routing corner is separated from these pin glyphs; printed E/F letters are preserved rather than replaced with D."
+  },
+  {
+    "type": "source legend inconsistency",
+    "note": "AG4 output literally prints - ST BUS PARITY 32-19, with a clear 1 in the final range. The parity input and EH/EJ legends print 32-39. These separate native literals are retained; no range is inferred from the circuit function."
+  },
+  {
+    "type": "independent review correction",
+    "note": "EB B13 upper feedback endpoint and FE lower true-output bend are plain elbows, independently checked in native20/native31; only genuine diamonds retained."
+  },
+  {
+    "type": "source review",
+    "note": "Native page lettering, ports, printed wedges, diamonds, routes and footer reviewed independently. User-approved printer grid verified from printed grid labels, multiple native borders and local source character pitch. Independent review passed."
+  }
+]
+
+Original scan order
+{
+  "page": "LS812",
+  "printed_page": "LS812",
+  "title": "LAL 04 WRITE LS ST D 32-39",
+  "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\LS LS Bus\\LS812 LAL 04 WRITE LS ST D 32-39.tif",
+  "source_bytes": 67372974,
+  "source_sha256": "b22372c8a793a58833701bec67b6d21f46b9b4e0d376ed9b42728b2989f15c01",
+  "source_dimensions": [
+    10200,
+    6600
+  ],
+  "assigned_group": "high",
+  "scan_order": {
+    "original_name": "img20141211_21425897.tif",
+    "timestamp": "2014-12-11 21:42:58.970000",
+    "before": "LS811 LAL 02 AND 03.tif",
+    "after": "LS821 LAL LS REG DECODE 00-24.tif"
+  },
+  "a1_reference": [
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "A2T"
+      ],
+      "connector": "A2T",
+      "pin": "B02",
+      "ALD_reference": "LS812GL4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "A2T"
+      ],
+      "connector": "A2T",
+      "pin": "B03",
+      "ALD_reference": "LS812GK4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "A6B"
+      ],
+      "connector": "A6B",
+      "pin": "B09",
+      "ALD_reference": "LS812GN4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "A6B"
+      ],
+      "connector": "A6B",
+      "pin": "B10",
+      "ALD_reference": "LS812EH4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "B5T"
+      ],
+      "connector": "B5T",
+      "pin": "B02",
+      "ALD_reference": "LS812BN4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "C6"
+      ],
+      "part_number": "5800412",
+      "card_type": "0412",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "C6"
+      ],
+      "part_number": "5800412",
+      "card_type": "0412",
+      "portion": "B1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G3"
+      ],
+      "part_number": "5803350",
+      "card_type": "3350",
+      "portion": "D1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "C1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "C2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "D1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "D2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "E1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "E2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "F1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G5"
+      ],
+      "part_number": "5800514",
+      "card_type": "0514",
+      "portion": "F2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G6"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G6"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "C1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "G6"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "H1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A3",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "A2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "A3",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "A4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "B1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "B2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "B3",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "B4",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "H6"
+      ],
+      "part_number": "5800500",
+      "card_type": "0500",
+      "portion": "D1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "J5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "J5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A2",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "J5"
+      ],
+      "part_number": "5800477",
+      "card_type": "0477",
+      "portion": "A3",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K2"
+      ],
+      "part_number": "5803350",
+      "card_type": "3350",
+      "portion": "C1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K4"
+      ],
+      "part_number": "5803350",
+      "card_type": "3350",
+      "portion": "C1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "B1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "C1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "E1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "F1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K5"
+      ],
+      "part_number": "5803388",
+      "card_type": "3388",
+      "portion": "H1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "card portion",
+      "board": "02A-C4",
+      "sockets": [
+        "K7"
+      ],
+      "part_number": "5803350",
+      "card_type": "3350",
+      "portion": "A1",
+      "source_listings": [
+        "A1134-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "N5"
+      ],
+      "connector": "N5",
+      "pin": "B10",
+      "ALD_reference": "LS812GJ4",
+      "source_listings": [
+        "A1134-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "N5"
+      ],
+      "connector": "N5",
+      "pin": "B11",
+      "ALD_reference": "LS812GM4",
+      "source_listings": [
+        "A1134-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "N5"
+      ],
+      "connector": "N5",
+      "pin": "D06",
+      "ALD_reference": "LS812BC4",
+      "source_listings": [
+        "A1134-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-C4",
+      "sockets": [
+        "N5"
+      ],
+      "connector": "N5",
+      "pin": "D07",
+      "ALD_reference": "LS812EJ4",
+      "source_listings": [
+        "A1134-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1134-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D1",
+      "sockets": [
+        "A3T"
+      ],
+      "connector": "A3T",
+      "pin": "B02",
+      "ALD_reference": "LS812BN4",
+      "source_listings": [
+        "A1141-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1141-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D3",
+      "sockets": [
+        "N5"
+      ],
+      "connector": "N5",
+      "pin": "B09",
+      "ALD_reference": "LS812GK4",
+      "source_listings": [
+        "A1143-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1143-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "A3B"
+      ],
+      "connector": "A3B",
+      "pin": "B09",
+      "ALD_reference": "LS812AG4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "A5"
+      ],
+      "connector": "A5",
+      "pin": "B10",
+      "ALD_reference": "LS812GJ4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "A5"
+      ],
+      "connector": "A5",
+      "pin": "B11",
+      "ALD_reference": "LS812GM4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "A5"
+      ],
+      "connector": "A5",
+      "pin": "D06",
+      "ALD_reference": "LS812AG4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "A5"
+      ],
+      "connector": "A5",
+      "pin": "D07",
+      "ALD_reference": "LS812EJ4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-D4",
+      "sockets": [
+        "N4"
+      ],
+      "connector": "N4",
+      "pin": "D13",
+      "ALD_reference": "LS812GM4",
+      "source_listings": [
+        "A1144-01 SOCKET LISTING",
+        "A1144-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1144-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-E3",
+      "sockets": [
+        "A3T"
+      ],
+      "connector": "A3T",
+      "pin": "B02",
+      "ALD_reference": "LS812GL4",
+      "source_listings": [
+        "A1153-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1153-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-E3",
+      "sockets": [
+        "A3T"
+      ],
+      "connector": "A3T",
+      "pin": "B03",
+      "ALD_reference": "LS812GK4",
+      "source_listings": [
+        "A1153-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1153-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-E3",
+      "sockets": [
+        "A5"
+      ],
+      "connector": "A5",
+      "pin": "B09",
+      "ALD_reference": "LS812GK4",
+      "source_listings": [
+        "A1153-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1153-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02A-E4",
+      "sockets": [
+        "A4"
+      ],
+      "connector": "A4",
+      "pin": "D13",
+      "ALD_reference": "LS812GM4",
+      "source_listings": [
+        "A1154-01 SOCKET LISTING"
+      ],
+      "source_listing": "A1154-01 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02E-B4",
+      "sockets": [
+        "M4T"
+      ],
+      "connector": "M4",
+      "pin": "B05",
+      "ALD_reference": "LS812GN4",
+      "source_listings": [
+        "A1524-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1524-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02E-C4",
+      "sockets": [
+        "L5B"
+      ],
+      "connector": "L5",
+      "pin": "B09",
+      "ALD_reference": "LS812CN4",
+      "source_listings": [
+        "A1534-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1534-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02E-C4",
+      "sockets": [
+        "L5B"
+      ],
+      "connector": "L5",
+      "pin": "B10",
+      "ALD_reference": "LS812EH4",
+      "source_listings": [
+        "A1534-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1534-02 SOCKET LISTING"
+    },
+    {
+      "kind": "connector pin",
+      "board": "02E-C4",
+      "sockets": [
+        "L5T"
+      ],
+      "connector": "L5",
+      "pin": "B05",
+      "ALD_reference": "LS812CN4",
+      "source_listings": [
+        "A1534-02 SOCKET LISTING"
+      ],
+      "source_listing": "A1534-02 SOCKET LISTING"
+    }
+  ],
+  "status": "pending source review"
+}
+
+HASH-BOUND INDEPENDENT REVIEW
+{
+  "reviewed_utc": "2026-10-13T08:21:22.623401+00:00",
+  "reviewer": "ls_mid (independent of low author); root acceptance",
+  "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\LS LS Bus\\LS812 LAL 04 WRITE LS ST D 32-39.tif",
+  "source_sha256": "b22372c8a793a58833701bec67b6d21f46b9b4e0d376ed9b42728b2989f15c01",
+  "text_sha256": "5642d46a7925f36b1360212201faf9e74aef233d558ad0fd3aab78edb283cd68",
+  "review": "All38 native portions, labels/wedges/stars/printed numeric prefixes and inline6 controls examined. C514F2 literal and source A1 mismatch, EH4G, DM E05/GK F05/GM F13/GL B05 preserved. All upper latch folded controls/clock/feedback rails and lower parity/write/scan/delay returns traced; P0 positive branches DC/DL, FM write-return DN and gate inputs, AG/BN upward external output returns, paired destinations FC/GN and four GT writes compared. All26 connector rows, margin and footer2585445GP/08-14-69/153A/713380/fulltitle compared. Extra diamonds removed; AG4 source range32-19 corrected and independently rechecked. Full independent source and current complete preview comparison recorded in mid/takeover/low-crossreview/Independent cross reviews.json. Removed invented EB.B13 endpoint (137,14) and FE lower elbow (178,37) diamonds. Corrected AG4 right output literal to32-19 matching native closecrop; repeated32-39 elsewhere retained. Current full production preview and changed detail crops agree.",
+  "geometry_audit": "D:\\Github\\IBM360\\tmp\\ald-text\\ls\\root\\LS root geometry audit.json",
+  "normalized_visible_graph_passed": true,
+  "wiring_verification_passed": false,
+  "documented_continuity_uncertainties": [],
+  "native_subcell_wire_interruptions": [],
+  "prior_wiring_verification_result": false,
+  "source_electrical_continuity_verified": false,
+  "electrical_scope_clarified_utc": "2026-10-13T10:20:21.671828+00:00",
+  "electrical_scope_note": "Independent review verifies the visible printed text and layout. A normalized wire graph does not establish actual electrical continuity in the original scan. Page-specific damaged characters, physical gaps, and uncertain associations remain documented separately."
+}
+
+FINAL REVIEW SCOPE
+Independent review verifies the visible printed text and layout. A normalized wire graph does not establish actual electrical continuity in the original scan. Page-specific damaged characters, physical gaps, and uncertain associations remain documented separately.
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: CB: R TO -> R T0, CC: R TO -> R T0, CD: R TO -> R T0, CL: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.

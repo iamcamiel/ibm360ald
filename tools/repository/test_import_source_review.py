@@ -31,7 +31,7 @@ class ScopedMirror(unittest.TestCase):
         self.proof=self.w/'old review.json';self.write(self.proof,b'{"accepted": true}\n')
         self.txt=self.repo/'ALD/XX Group/XX001 TEST.txt';self.model=self.repo/'json/XX Group/XX001 TEST.json';self.notes=self.repo/'notes/XX Group/XX001 TEST review notes.txt'
         self.write(self.txt,self.old['txt']);self.write(self.model,self.old['json']);self.write(self.notes,str(self.proof).encode()+b'\n'+self.old['notes'])
-        entry={'page':'XX001','source_relative':'XX Group/XX001 TEST.tif','transcription_source':str(self.exports/'XX001 TEST.txt'),'destination':str(self.txt),'notes_destination':str(self.notes),'text_sha256':M.digest(self.old['txt']),'notes_sha256':M.digest(self.notes.read_bytes()),'review_record':str(self.proof)}
+        entry={'page':'XX001','source_scan_id':'1','source_relative':'XX Group/XX001 TEST.tif','transcription_source':str(self.exports/'XX001 TEST.txt'),'destination':str(self.txt),'notes_destination':str(self.notes),'text_sha256':M.digest(self.old['txt']),'notes_sha256':M.digest(self.notes.read_bytes()),'review_record':str(self.proof)}
         baseline={'exported':[entry],'managed_files':{str(self.txt):entry['text_sha256'],str(self.notes):entry['notes_sha256']},'conflicts':[]}
         self.write(self.audit/'export plan.json',M.encode(baseline));self.write(self.audit/'last export manifest.json',M.encode(baseline));self.write(self.repo/'notes/Reviewed export provenance.json',M.encode(baseline))
         key=self.model.relative_to(self.repo).as_posix();content={'files':[{'path':key,'role':'Published page content model','sha256':M.digest(self.old['json'])}],'managed_files':{key:M.digest(self.old['json'])}}
@@ -48,6 +48,121 @@ class ScopedMirror(unittest.TestCase):
     def tearDown(self):self.mock.stop();self.temp.cleanup()
     def write(self,p,raw):p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
     def plan(self):return M.build_plan(self.registry,self.w,self.repo,self.exports,self.source)
+    def set_predecessor_review_literal(self,literal):
+        self.notes.write_bytes(literal.encode()+b'\n'+self.old['notes'])
+        for path in [self.audit/'export plan.json',self.audit/'last export manifest.json',self.repo/'notes/Reviewed export provenance.json']:
+            doc=M.read(path.read_bytes());doc['exported'][0].update(review_record=literal,notes_sha256=M.digest(self.notes.read_bytes()))
+            doc['managed_files'][str(self.notes)]=M.digest(self.notes.read_bytes());self.write(path,M.encode(doc))
+        path=self.repo/'notes/Repository records manifest.json';doc=M.read(path.read_bytes())
+        for entry in doc['files']:
+            target=self.repo/entry['path']
+            if target in [self.notes,self.repo/'notes/Reviewed export provenance.json']:entry['sha256']=M.digest(target.read_bytes())
+        self.write(path,M.encode(doc))
+    def advance_export_plan(self):
+        path=self.audit/'export plan.json';doc=M.read(path.read_bytes());entry=doc['exported'][0]
+        entry.update(text_sha256=M.digest(self.new['txt']),
+                     notes_sha256=M.digest(self.record['receipt'].encode()+b'\n'+self.new['notes']),
+                     review_record=self.record['receipt'])
+        for target,key in [(self.txt,'text_sha256'),(self.notes,'notes_sha256')]:doc['managed_files'][str(target)]=entry[key]
+        self.write(path,M.encode(doc))
+    def mutate_advanced_entry(self,key,value,managed=False):
+        path=self.audit/'export plan.json';doc=M.read(path.read_bytes());doc['exported'][0][key]=value
+        if managed:doc['managed_files'][str(self.txt if key=='text_sha256' else self.notes)]=value
+        self.write(path,M.encode(doc))
+    def test_exact_advanced_plan_uses_mirrored_ownership_and_records_evidence(self):
+        self.advance_export_plan();report,changes,guards=self.plan()
+        proof=report['pages'][0]['advanced_export_plan_reconciliation']
+        self.assertEqual(proof['mirrored_entry']['text_sha256'],M.digest(self.old['txt']))
+        self.assertEqual(proof['validated_plan_entry']['text_sha256'],M.digest(self.new['txt']))
+        self.assertEqual(proof['changed_entry_fields'],['notes_sha256','review_record','text_sha256'])
+        self.assertEqual(proof['accepted_publication'],self.record['publication'])
+        self.assertEqual(self.txt.read_bytes(),self.old['txt'])
+        self.assertEqual(changes[self.notes],self.record['receipt'].encode()+b'\n'+self.new['notes'])
+        self.assertNotIn(self.repo/'tools/unrelated.py',changes)
+    def test_advanced_plan_wrong_text_rejected(self):
+        self.advance_export_plan();self.mutate_advanced_entry('text_sha256','arbitrary',True)
+        with self.assertRaisesRegex(ValueError,'text is not accepted successor'):self.plan()
+    def test_advanced_plan_wrong_notes_rejected_after_recomputation(self):
+        self.advance_export_plan();self.mutate_advanced_entry('notes_sha256','arbitrary',True)
+        with self.assertRaisesRegex(ValueError,'notes differ from exact current exporter notes'):self.plan()
+    def test_advanced_plan_wrong_review_rejected(self):
+        self.advance_export_plan();self.mutate_advanced_entry('review_record',str(self.proof))
+        with self.assertRaisesRegex(ValueError,'review is not exact accepted receipt'):self.plan()
+    def test_advanced_plan_changed_source_scan_target_or_extra_metadata_rejected(self):
+        original=(self.audit/'export plan.json').read_bytes()
+        for key,value in [('source_relative','other.tif'),('source_scan_id','2'),('destination',str(self.repo/'ALD/other.txt')),('scan_timestamp','later')]:
+            with self.subTest(key=key):
+                self.write(self.audit/'export plan.json',original);self.advance_export_plan();self.mutate_advanced_entry(key,value)
+                with self.assertRaisesRegex(ValueError,'stable identity disagree|entry keyset differs'):self.plan()
+    def test_advanced_plan_keyset_change_rejected(self):
+        self.advance_export_plan();self.mutate_advanced_entry('invented','value')
+        with self.assertRaisesRegex(ValueError,'entry keyset differs'):self.plan()
+    def test_advanced_plan_managed_hash_must_match_desired(self):
+        self.advance_export_plan();path=self.audit/'export plan.json';doc=M.read(path.read_bytes())
+        doc['managed_files'][str(self.notes)]='wrong';self.write(path,M.encode(doc))
+        with self.assertRaisesRegex(ValueError,'plan managed hash differs'):self.plan()
+    def test_advanced_plan_does_not_replace_mirrored_ownership(self):
+        self.advance_export_plan();path=self.audit/'last export manifest.json';doc=M.read(path.read_bytes())
+        doc['managed_files'][str(self.txt)]='wrong';self.write(path,M.encode(doc))
+        with self.assertRaisesRegex(ValueError,'mirrored ownership baseline missing'):self.plan()
+    def test_advanced_plan_does_not_bypass_actual_old_bytes(self):
+        self.advance_export_plan();self.txt.write_bytes(self.new['txt'])
+        with self.assertRaisesRegex(ValueError,'differs from export baseline'):self.plan()
+    def test_advanced_plan_prior_chain_guard_retained(self):
+        self.advance_export_plan();self.notes.write_bytes(b'owned but not any accepted notes')
+        path=self.audit/'last export manifest.json';doc=M.read(path.read_bytes());h=M.digest(self.notes.read_bytes())
+        doc['exported'][0]['notes_sha256']=h;doc['managed_files'][str(self.notes)]=h;self.write(path,M.encode(doc))
+        path=self.repo/'notes/Repository records manifest.json';doc=M.read(path.read_bytes())
+        next(e for e in doc['files'] if e['path']==self.notes.relative_to(self.repo).as_posix())['sha256']=h
+        self.write(path,M.encode(doc))
+        with self.assertRaisesRegex(ValueError,'not one exact accepted chain state'):self.plan()
+    def test_advanced_plan_second_import_is_idempotent(self):
+        self.advance_export_plan();report,changes,guards=self.plan();M.apply_plan(report,changes,guards,self.w/'history')
+        report,changes,guards=self.plan();self.assertFalse(changes)
+        self.assertNotIn('advanced_export_plan_reconciliation',report['pages'][0])
+    def test_advanced_plan_rollback_preserves_advanced_plan_and_old_mirror(self):
+        self.advance_export_plan();report,changes,guards=self.plan();before={p:p.read_bytes()if p.exists()else None for p in changes};actual=M.sr.atomic_write
+        def fail(path,raw):
+            if Path(path)==self.repo/'notes/Content data manifest.json':raise OSError('injected advanced import failure')
+            return actual(path,raw)
+        with patch.object(M.sr,'atomic_write',side_effect=fail):
+            with self.assertRaises(OSError):M.apply_plan(report,changes,guards,self.w/'history')
+        for p,old in before.items():self.assertEqual(p.read_bytes()if p.exists()else None,old,str(p))
+    def test_exact_completed_status_retains_real_predecessor_evidence(self):
+        self.set_predecessor_review_literal(M.COMPLETED_REVIEW_STATUS)
+        original_entry=M.read((self.audit/'last export manifest.json').read_bytes())['exported'][0]
+        report,changes,guards=self.plan();pointer=next(M.read(raw)for path,raw in changes.items()if path.name.endswith('source review current.json'))
+        link=pointer['preserved_predecessor_review'];target=self.repo/link['path'];snapshot=M.read(changes[target])
+        self.assertEqual(M.digest(changes[target]),link['sha256'])
+        self.assertEqual(snapshot['schema'],'source-review-completed-export-predecessor-v1')
+        self.assertTrue(snapshot['not_an_independent_review_receipt'])
+        self.assertEqual(snapshot['exact_export_entry'],original_entry)
+        self.assertEqual(snapshot['original_source'],M.sr.binding(self.sourcefile))
+        self.assertEqual(snapshot['matched_accepted_chain_states'][0]['json'],M.digest(self.old['json']))
+        for proof in snapshot['preserved_baseline_manifests'].values():
+            path=self.repo/proof['path'];raw=changes.get(path,path.read_bytes()if path.exists()else None)
+            self.assertEqual(M.digest(raw),proof['sha256'])
+        for kind,proof in snapshot['preserved_repository_predecessor_quartet'].items():
+            if proof is None:continue
+            path=self.repo/proof['path'];self.assertEqual(M.digest(changes[path]),proof['sha256'])
+        self.assertEqual(self.txt.read_bytes(),self.old['txt'])
+    def test_arbitrary_descriptive_status_is_rejected(self):
+        self.set_predecessor_review_literal('Completed because someone said so')
+        with self.assertRaisesRegex(ValueError,'Historical acceptance missing'):self.plan()
+    def test_missing_review_file_is_still_rejected(self):
+        self.set_predecessor_review_literal(str(self.w/'missing-review.json'))
+        with self.assertRaisesRegex(ValueError,'Historical acceptance missing'):self.plan()
+    def test_completed_status_does_not_bypass_content_guards(self):
+        self.set_predecessor_review_literal(M.COMPLETED_REVIEW_STATUS);self.model.write_bytes(b'unknown model')
+        with self.assertRaisesRegex(ValueError,'Content baseline differs'):self.plan()
+    def test_completed_status_snapshot_collision_is_rejected(self):
+        self.set_predecessor_review_literal(M.COMPLETED_REVIEW_STATUS);report,changes,guards=self.plan()
+        target=next(path for path in changes if path.name=='Completed export predecessor XX001.json');self.write(target,b'wrong immutable bytes')
+        with self.assertRaisesRegex(ValueError,'Immutable completed-review predecessor collision'):self.plan()
+    def test_completed_status_second_import_is_idempotent(self):
+        self.set_predecessor_review_literal(M.COMPLETED_REVIEW_STATUS);report,changes,guards=self.plan();M.apply_plan(report,changes,guards,self.w/'history')
+        pointer_path=self.repo/'notes/XX Group/XX001 TEST source review current.json';first_pointer=pointer_path.read_bytes()
+        report,changes,guards=self.plan();self.assertFalse(changes);self.assertEqual(pointer_path.read_bytes(),first_pointer)
     def test_dry_run_is_read_only_and_scope_is_bounded(self):
         old=self.txt.read_bytes();report,changes,guards=self.plan()
         self.assertEqual(self.txt.read_bytes(),old);self.assertEqual(len(report['pages']),1)

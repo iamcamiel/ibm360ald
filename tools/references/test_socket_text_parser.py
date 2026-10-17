@@ -25,6 +25,22 @@ class SourceTextParser(unittest.TestCase):
     def test_indented_first_column_header(self):
         p=self.page(['        A2 SINGLE CARD','           5803308 3308','               MA905 A1'])
         self.assertEqual(parse_listings([p])['records'][0]['sockets'],['A2'])
+    def test_single_portion_on_dotted_rule_keeps_card_and_reference(self):
+        p=self.page(['A2 SINGLE CARD','   5800432 0432','........DR191...A1.A2.A3','................B1.....................'])
+        r=parse_listings([p]);self.assertEqual(len(r['records']),1)
+        ref=r['records'][0]['references'][0]
+        self.assertEqual(ref['portions'],['A1','A2','A3','B1'])
+        self.assertEqual(ref['evidence'][-1]['literal'].strip(),p['lines'][3][:39].strip())
+        self.assertEqual(r['issues'],[])
+    def test_dotted_socket_margin_is_not_a_portion_continuation(self):
+        p=self.page(['A2 SINGLE CARD','   5800432 0432','........DR191...A1','A3.....................................','   5803308 3308'])
+        r=parse_listings([p]);self.assertEqual(r['records'][0]['references'][0]['portions'],['A1'])
+    def test_solid_rule_ends_previous_reference(self):
+        p=self.page(['A2 SINGLE CARD','   5800432 0432','........DR191...A1','───────────────────────────────────────','................B1.....................'])
+        r=parse_listings([p]);self.assertEqual(r['records'][0]['references'][0]['portions'],['A1'])
+    def test_dotted_unused_portion_stays_out_of_used_reference(self):
+        p=self.page(['A2 SINGLE CARD','   5800432 0432','........DR191...A1',' UNUSED PORTIONS','................B1.....................'])
+        r=parse_listings([p]);self.assertEqual(r['records'][0]['references'][0]['portions'],['A1'])
     def test_double_card_second_socket_is_occupied(self):
         p=self.page(['A2 DOUBLE CARD','A3','   5804191 4191','      AP211 03 07'])
         self.assertEqual(parse_listings([p])['records'][0]['sockets'],['A2','A3'])

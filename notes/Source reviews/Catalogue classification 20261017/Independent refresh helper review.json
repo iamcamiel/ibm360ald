@@ -1,0 +1,35 @@
+{
+  "schema": "independent-classification-refresh-helper-review-v1",
+  "passed": true,
+  "independent_review": true,
+  "helper": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\socket-ald-audit\\blocker-remediation-20261017\\refresh_current_catalog_classification.py",
+    "sha256": "52af72f8bc988f987116325cdf926a62e067ad0a862be1e7151ae00b41364679"
+  },
+  "predecessor_helper": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\socket-ald-audit\\blocker-remediation-20261017\\Predecessor refresh helper.py",
+    "sha256": "9b07eae131a80129a6537d81cb48ee4b717b52c42ded3ab220b299fcb97ce7e5"
+  },
+  "scope": "Only consumed_sources is changed. Publisher, predecessor preservation, target guards and rollback remain structurally identical. No real prepare/publication executed.",
+  "fixtures": [
+    "valid_complete_declared_inputs",
+    "stale_uniform_dependency",
+    "missing_uniform_dependency_file",
+    "duplicate_declared_dependency",
+    "traversal",
+    "absolute",
+    "noncanonical",
+    "invalid_declared_input_type_list",
+    "invalid_declared_input_type_dict",
+    "invalid_digest",
+    "invented_dependency_binding_field",
+    "old_schema_fallback"
+  ],
+  "fixture_count": 12,
+  "dependency_completeness_contract": "Helper binds exact declared inputs; production verifier reconstructs and requires the complete source_inputs set. The separate real catalogue regression suite rejects missing declared uniform datasets.",
+  "canonical_writes": 0,
+  "reviewer_program": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\socket-ald-audit\\blocker-remediation-20261017\\independent_classification_helper_review.py",
+    "sha256": "9e296617615c1d43fd3c7db1da4b08933d10889f39e0b0298ee8ef338d9261b5"
+  }
+}

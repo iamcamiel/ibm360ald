@@ -1,0 +1,82 @@
+KS021 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "duplicate_physical_port_references": [],
+  "physical_port_count": 138,
+  "unique_physical_port_count": 138,
+  "A1_direct_page_key_present": true,
+  "A1_card_portions_matched": 48,
+  "A1_total_card_portions": 49,
+  "A1_mismatches": [
+    "AW"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 81,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "Native source coverage",
+    "evidence": "All block fields, physical ports and source markers, incoming references, routes, joined outputs, printed junctions, footer and title individually reviewed against original native scan. Full rendered preview independently inspected before publication."
+  },
+  {
+    "location": "Native calibration",
+    "evidence": "Private calibration.json and exact native route crops document the source printer grid. Default block columns retained; scan skew and glyph bearings are calibration observations."
+  },
+  {
+    "location": "AW printed card portion",
+    "evidence": "Native enlarged AW exact.png reads 0513D1 at C-A4J7. The A1 socket listing corroborates the location but gives 0518D1. Preserve the literal scan value 0513D1; this is the sole card-portion corroboration mismatch."
+  },
+  {
+    "location": "CC input and repeated terminals",
+    "evidence": "CC input has a source border wedge and damaged but legible D13. Independent native proof tmp/ald-text/ks/audit/KS021 CC input proof.png confirms the final digit 3. Input reference CC.D13.input is distinct from output CC.D13. BC separately prints B09 twice; references BC.B09.input1 and BC.B09.input2 preserve both terminals and independent feeds."
+  },
+  {
+    "location": "BN OR/DOT entry",
+    "evidence": "BN literally prints OR, DOT, C-A4, and 6D──BN. Its three input border wedges and output border wedge followed by T are source-visible. DOT is literal unit-row print; no physical card number is printed. BN is an entry block excluded from physical-card corroboration."
+  },
+  {
+    "location": "BS and BT input loops",
+    "evidence": "The native scan draws short separate input loops at column 92 joining BS.B12/BS.D08 and BT.B09/BT.D08. No origin or driver is printed on either loop. JSON marks source_driver_not_printed=true and uses explicit external placeholders; no inferred physical driver or added source wire."
+  },
+  {
+    "location": "Native route measurements",
+    "evidence": "Private controls/KS021/native route measurements.json measures all visible modeled wire segments against paired-border polynomial calibration. No segment has coordinate residual beyond 0.38 cell. CF_OUT and BZ_OUT horizontal coverage is lower because their long printed signal names cover source strokes; their measured row residuals are -0.110 and 0.000 cell. Crowded columns 107–115 and 130–138, separate unjoined crossings, feedback columns 183/184 and all source diamonds were visually inspected in native annotated crops."
+  },
+  {
+    "location": "Footer and revisions",
+    "evidence": "All three native reference columns reviewed in footer1.png/footer2.png/footer3.png; root and ee011 independent review corrected ten initial damaged-glyph readings. The final literal strings include AC4, BA4, C4M5A12, N5B06, 02E-D4L2D09, 02E-E3M7B04, 02C-D4Q7B04, 02A-A2A7B09 and 02A-A2B1B09. Source columns retained at 35/37,49/51 and65. Native continuations include 02C-A4C4D10, 02C-A3H1D04 and 02C-A3Q6B09, independently confirmed by root. Revision-tight.png confirms 713674 and714958. Footer literal part2585114, date08-09-71, LOG379, FRAME02, BLKCG retained. No unreadable print remains."
+  }
+]
+
+Original scan order
+Before KR101 SCON AND SATR SPECIFICATION EXCEPTION CHECKING.tif
+After KS031 STAT TRIGGER B.tif
+
+
+Final independent review: complete. All native fields, terminals, signal/reference labels, paths, junctions/crossings, footer and full JuliaMono preview checked. See D:\Github\IBM360\ALD_Visual_Transcriptions\KS review reports\KS021 independent audit.json
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: AE: R TO -> R T0, CD: R TO -> R T0, AW: R TO -> R T0, BX: R TO -> R T0, BP: R TO -> R T0, AR: R TO -> R T0, AJ: R TO -> R T0, AV: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+SLT supply-pin source and human review, 2026-10-16: BA B11 -> B13. Numeric wire qualifiers and asterisks are retained. Ground ties and the S21AA transformer ground reference are preserved where confirmed. Human answers and source hashes are recorded in the Pin validation release audit; older remarks remain historical.
+
+NATIVE MODULE CIRCUIT AND CARD REVIEW 2026-10-17
+Source-bound native inspection, corroborating portions and recorded literal human answers. Cases: human-card-KS021-AW.
+Only the declared circuit identifiers and card-type identity fields are corrected. Existing portions, physical pins, annotations, wires, locations, geometry, functions and historical observations remain unchanged. Earlier conflict observations are retained as history; the case notes below record their current resolution.
+human-card-KS021-AW: Physical-page human answer: 0518D1, preserved literally in the bound response ledger.

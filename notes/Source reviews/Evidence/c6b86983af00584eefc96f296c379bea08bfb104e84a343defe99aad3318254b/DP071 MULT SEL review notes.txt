@@ -1,0 +1,117 @@
+DP071 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 26,
+  "A1_total_card_portions": 27,
+  "A1_mismatches": [
+    "BC"
+  ],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 47,
+  "A1_documented_source_discrepancies": [
+    "BC"
+  ],
+  "A1_unresolved_mismatches": [],
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 1
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "printer_grid",
+    "evidence": "Native source fitted user zero-based245 by103 printer grid; block columns50,73,96,119,142,165,188; normal keyed row positions; title r93 through102 open bottom.",
+    "exceptions": []
+  },
+  {
+    "kind": "readable_A1_discrepancy",
+    "node": "BC",
+    "source": "A-D1F6",
+    "A1": "3388E1 at A-D1E6; A-D1F6 lists3392D1",
+    "evidence": "Readable native F6 independently confirmed by parent; retain native field."
+  },
+  {
+    "kind": "unreadable_pin",
+    "node": "BP",
+    "grid": "7K",
+    "location": "A-D1L4",
+    "printed": "B1�",
+    "candidate": "B13",
+    "evidence": "Last glyph obscured by wedge; enlarged native crop independently reviewed by parent."
+  },
+  {
+    "kind": "foreign_unjoined_pin_crossing",
+    "source": "BH B09 crosses AK CLOCK P2 at first output wire cell; BE D13 star crosses ST BUS60 continuation at first output wire cell; BA external D09 crosses local R TO vertical wire",
+    "resolution": "Straight vertical foreign through-wires have no diamond and no shared segment; do not assign them ownership of horizontal pin."
+  }
+]
+
+Original scan order
+Before DP051 MULT SELECT.tif
+After DP091 S REG MPR PARITY CHECK.tif
+
+
+Detailed native source and preview comparison
+DP071 MULT SEL native visual extraction
+
+The native 10200 by 6600 TIFF and overview were inspected, followed by native crops of every gate, pin group, latch and timing rail, scan distribution, output label, connector table and title box. Confirmed fields and traced nets are stored in DP071 extraction.json. The extraction contains 27 blocks, 47 printed input terminals and 40 driven nets. Every declared source input has one owning output. A1 card type and portion plus board and socket matches are 26 of 27, with the readable BC discrepancy below. A1 supplied no pin wiring.
+
+Final UTF-8 text and JuliaMono preview use the approved 245 by103 printer grid. Native source was checked across multiple box borders and keyed rows, preserving shared columns, printed spans, continuation stubs and pin-adjacent corners. No printer-grid exceptions were needed. All geometry, character, connectivity and single input-owner checks pass.
+
+Important source trace evidence independently checked by parent
+BH B09 owns only AU D10. Its right vertical rail crosses the adjacent AX B10 rail without a diamond. AX B10 bends up the left rail to the CLOCK P3 output diamond and turns left on the top long feedback line below MASTER RESET. This top line owns AA 2D12, AB 2B10 and AD 2B13.
+AK B03 CLOCK P2 owns AX D12, AC 2B13, AN 2B02 and AE 2B05, plus the printed DP051 and DP091 destination references. This is the middle long feedback line below MASTER RESET.
+AU B05 TX owns AV D12, AW D02, AB B12 and BH D10 plus the printed DP051 destination. This is the bottom long feedback line below MASTER RESET.
+AJ B07 owns AN D02 and AC D09. The separate AP D07 rail crosses AJ output without a diamond and is driven by BD D11.
+AG D02 drives BC 6B10. BC D10 drives AK B04 and BH 2B04. BF D06 drives AP D05, BN D13 and positive scan distribution.
+BA D09 output drives the local BK B05 input. This local route crosses the separate BA D09 external input without joining.
+
+Readable source discrepancy
+BC in native grid 3M prints U03AF, 3388E1 and A─D1F6. The F has its top and middle strokes and lacks the bottom E stroke. Parent independently inspected the enlarged native crop. A1 lists 3388E1 at A-D1E6 while A-D1F6 contains 3392D1. Preserve the readable native F6 and document the conflict; do not infer a different socket or pin wiring.
+
+Unreadable printed location for physical-copy review
+BP in native grid 7K, U03AF, 3308H1, A─D1L4, input pin. The first two characters B1 are visible, but the last character is obscured at the open input triangle. Preserve B1� in the diagram. B13 is a candidate reading, but source evidence does not resolve it. Parent independently reviewed the enlarged native crop.
+
+Footer evidence
+DATE 05-28-70, MACH. 7201-02, LOG 583, FRAME 02, P.No 2584788, IBM CORP., SDD BLK. BQ. Both engineering change lines are printed: 08-08-69 713380 and 05-01-70 713674.
+The connector table spans three native columns. The middle column begins with continued BD4 entries after the left-column final BD4 A─D1A7B02. The right column begins with continued BE4 entries. Preserve columns and native continuation flow.
+
+Original scan order for physical-copy lookup
+This scan DP071 MULT SEL.tif
+Before DP051 MULT SELECT.tif
+After DP091 S REG MPR PARITY CHECK.tif
+
+Independent root review
+Parent inspected overview, continuation table and footer, BP unreadable pin crop, BC readable socket discrepancy, and full timing rails plus BH AU AX native crop. Final text geometry and preview are exported for independent aggregate review.
+
+Visual preview comparison
+The exported JuliaMono preview was compared with the native overview and enlarged native crops of the control rails, latch and selector groups, scan routing, output labels, continuation table and title frame. Box grid labels fill all six interior cells with two printed horizontal strokes between grid and ID.
+The unreadable BP pin character appears at zero-based column187,row68 (line69,column188). Identical physical pin labels on opposite sides of BD, BE and BA are recorded with explicit input/output references to avoid aliasing their distinct terminals.
+
+Explicit user footer correction
+{
+  "scope": "explicit user footer correction",
+  "evidence": "User relayed through AP: sheet abbreviation P.N.; machine name and part number each end at c239, exactly one blank c240 before right border c241. Previous native footer source inspection retained; only specified footer labels/spacing changed."
+}
+
+Human confirmed supplemental function correction: misread functions: CR is OR, R 11 is R T1, H T0 is R T0, H T1 is R T1, H T2 is R T2. A preceding space is not part of the function.
+Semantic whitespace and R TO authority: ["R TO is R T0", "those leading spaces should be removed from the json files as well"]
+Exact corrected fields: BK: R TO -> R T0
+Original function readings and source-bound predecessor artifacts remain in the private correction manifest; wiring and all unrelated text are unchanged.
+
+3308 native and human review, 2026-10-16: DP071:BP: /pins/0/pin=B13. All17 manual answers were collected before application. Native crops, direct answers, and exact changes are bound in the Card-ALD 3308 review records; earlier notes remain historical.
+
+NATIVE PIN LETTER REVIEW 2026-10-16
+Source-bound visual review with independent peer checks. Cases: pin-0483.
+Only the explicitly resolved contact labels, their active data mirrors, and separately accepted identity context are corrected. Printed control prefixes, asterisks, wedges, wiring, grid coordinates and historical observations are retained.
+pin-0483: A12 → B12

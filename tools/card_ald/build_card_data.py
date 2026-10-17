@@ -52,6 +52,74 @@ def physical_contact(raw):
     match = re.fullmatch(r"\d*(?P<pin>[BDGJ](?:0[2-9]|1[0-3]))[✲*]?T?", text)
     return match.group("pin") if match else None
 
+def resolve_net_port(node, endpoint, side, adapted_pins=None):
+    """Resolve an occurrence terminal before interpreting its printed label.
+
+    Reference strings identify ports; failed lookup never means PINLESS.
+    Source fields/decorations and electrical net membership remain untouched.
+    """
+    node_id = str(node.get("id", node.get("node", "")))
+    if not isinstance(endpoint, str) or not endpoint.startswith(node_id + "."):
+        return {"status": "unresolved", "reason": "endpoint outside scoped node"}
+    suffix = endpoint[len(node_id) + 1:]
+    ports = [(i, p) for i, p in enumerate(node.get("pins", [])) if p.get("side") == side]
+    def aliases(port):
+        names = set()
+        for field in ("reference", "terminal_id", "ref", "id", "port_id", "alias",
+                      "aliases", "references", "terminal_ids"):
+            values = port.get(field, [])
+            for value in values if isinstance(values, (list, tuple)) else [values]:
+                if isinstance(value, str) and value:
+                    names.add(value if value.startswith(node_id + ".") else node_id + "." + value)
+        for field in ("pin", "printed_pin"):
+            if isinstance(port.get(field), str) and port[field]:
+                names.add(node_id + "." + port[field])
+        markers = {port.get(k) for k in ("border_marker", "border_control", "border_qualifier")}
+        contact = physical_contact(port.get("pin"))
+        if "K" in markers and contact:
+            for value in list(names):
+                tokens = value.split(".")
+                if "K" + contact in tokens:
+                    names.add(".".join(contact if t == "K" + contact else t for t in tokens))
+        return names
+    matches = [(i, p) for i, p in ports if endpoint in aliases(p)]
+    basis = "exact side-scoped terminal alias"
+    if not matches:
+        contact = physical_contact(suffix)
+        if contact:
+            matches = [(i, p) for i, p in ports if physical_contact(p.get("pin")) == contact]
+            basis = "exact side-scoped physical label"
+        elif suffix.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
+            # A generic endpoint may identify one LOCAL port, never an output
+            # guessed from different occurrences of this card portion.
+            matches = ports
+            basis = "single local side-specific generic endpoint"
+    if len(matches) != 1:
+        return {"status": "unresolved", "reason": "ambiguous terminal alias" if matches else "terminal alias not found",
+                "candidate_indices": [i for i, _ in matches]}
+    index, raw = matches[0]
+    effective = raw
+    if adapted_pins is not None:
+        if index >= len(adapted_pins) or any(adapted_pins[index].get(k) != raw.get(k) for k in ("side", "row")):
+            return {"status": "unresolved", "reason": "adapted/raw port identity differs", "port_index": index}
+        effective = adapted_pins[index]
+    label = effective.get("pin")
+    contact = physical_contact(label)
+    result = {"port_index": index, "basis": basis, "raw_port": deepcopy(raw),
+              "effective_label": label, "physical_contact": contact}
+    if contact:
+        raw_contact = physical_contact(raw.get("pin"))
+        mirrors = {physical_contact(raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
+        mirrors.discard(None)
+        if mirrors and (raw_contact is None or mirrors != {raw_contact}):
+            return {**result, "status": "unresolved", "reason": "conflicting raw physical contact mirrors"}
+        return {**result, "status": "numbered"}
+    placeholder = label is None or re.fullmatch(r"(?:IN|OUT)\d+|[AB]|(?:input|output)\d*", str(label), re.I)
+    if placeholder and not any(physical_contact(raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")):
+        return {**result, "status": "pinless"}
+    return {**result, "status": "unresolved", "reason": "unreadable or unsupported printed contact label"}
+
+
 def primary(label):
     text = str(label or "").strip()
     return text.split()[0] if text else "�"
@@ -288,12 +356,39 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
         nodes[portion] = node
     edges = defaultdict(list)
     rejected = []
+    endpoint_records = []
     for page, model in sorted(models.items()):
         records = by_page[page]
-        for net in model.get("nets", []):
+        raw_nodes = {n.get("id"): n for n in model.get("nodes", [])}
+        for net_index, net in enumerate(model.get("nets", [])):
             drivers = {net.get("driver")} if isinstance(net.get("driver"),str) else set()
             for field in ("declared_physical_output_drivers", "route_owners"):
                 drivers.update(x for x in net.get(field, []) or [] if isinstance(x,str))
+            resolutions = {}
+            for side, references in (("output", sorted(drivers)), ("input", net.get("targets", []))):
+                for reference in references:
+                    if not isinstance(reference, str) or "." not in reference:
+                        continue
+                    node_id = reference.split(".", 1)[0]
+                    occurrence = records.get(node_id)
+                    if occurrence is None:
+                        continue
+                    # Real models must resolve their actual raw node. Minimal
+                    # fixtures without a nodes array can use occurrence ports.
+                    raw_node = raw_nodes.get(node_id, occurrence if "nodes" not in model else {})
+                    resolution = resolve_net_port(raw_node, reference, side, occurrence.get("pins"))
+                    resolutions[side, reference] = resolution
+                    if resolution["status"] == "unresolved":
+                        uncertainties.append({"kind": "net endpoint identity unresolved", "page": page,
+                                              "net_index": net_index, "reference": reference, "side": side,
+                                              "resolution": deepcopy(resolution)})
+            if resolutions:
+                endpoint_records.append({"page": page, "net_index": net_index, "net_id": net.get("id"),
+                    "declared_driver": deepcopy(net.get("driver")), "declared_targets": deepcopy(net.get("targets", [])),
+                    "declared_physical_output_drivers": deepcopy(net.get("declared_physical_output_drivers", [])),
+                    "route_owners": deepcopy(net.get("route_owners", [])),
+                    "terminals": [{"side": side, "reference": reference, **deepcopy(value)}
+                                  for (side, reference), value in sorted(resolutions.items())]})
             for driver in sorted(drivers):
                 if "." not in driver:
                     continue
@@ -313,11 +408,14 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
                         continue
                     outgoing = {p["pin"] for p in nodes[s]["_outputs"] if p["pin"]}
                     incoming = {p["pin"] for p in nodes[t]["_inputs"] if p["pin"]}
-                    sp,tp = physical_contact(suffix),physical_contact(tsuffix)
-                    # Resolve a missing source label only when the portion's
-                    # current evidence gives exactly one physical output.
-                    if sp is None and len(outgoing) == 1:
-                        sp = next(iter(outgoing))
+                    source_port = resolutions.get(("output", driver), {"status": "unresolved"})
+                    target_port = resolutions.get(("input", target), {"status": "unresolved"})
+                    if source_port["status"] == "unresolved" or target_port["status"] == "unresolved":
+                        rejected.append({"page":page,"driver":driver,"target":target,
+                                         "reason":"unresolved exact side-specific endpoint; no pinless inference",
+                                         "source_resolution":deepcopy(source_port),"target_resolution":deepcopy(target_port)})
+                        continue
+                    sp, tp = source_port["physical_contact"], target_port["physical_contact"]
                     if sp and sp not in outgoing or tp and tp not in incoming:
                         rejected.append({"page":page,"driver":driver,"target":target,"reason":"net suffix not present on corrected physical ports"})
                         continue
@@ -329,21 +427,8 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
                     if sp is None and tp and len(drivers) > 1:
                         rejected.append({"page":page,"driver":driver,"target":target,"reason":"multi-driver page net does not establish this individual internal edge"})
                         continue
-                    common = outgoing & incoming
-                    if len(common) == 1:
-                        sp = tp = next(iter(common))
-                    elif tp is None and not any(p.get("side") == "input" and physical_contact(p.get("pin")) is None for p in sink["pins"]):
-                        if sp in incoming:
-                            tp = sp
-                        elif len(incoming) == 1:
-                            tp = next(iter(incoming))
-                        else:
-                            rejected.append({"page":page,"driver":driver,"target":target,"reason":"unmapped target suffix; no uniquely identified physical or pinless input"})
-                            continue
-                    # Fallbacks above may identify a previously anonymous
-                    # endpoint. Recheck the final contacts: page wiring between
-                    # two different pins is an installation strap, not a card
-                    # internal connection, even when both ends are unambiguous.
+                    # Retain the existing installation/power boundary policy;
+                    # exact endpoint resolution does not infer anonymous ports.
                     if sp in power or tp in power:
                         continue
                     if sp and tp and sp != tp:
@@ -385,6 +470,7 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
             "pages":len(by_page),"portions":nodes,"edges":final_edges,
             "signal_pins":{pin:{side:sorted(ps) for side,ps in sides.items()} for pin,sides in sorted(contact_ports.items())},
             "power_pins":power,"rejected_installation_or_unmapped_edges":rejected,
+            "source_net_endpoint_resolutions":endpoint_records,
             "unobserved_contacts":sorted(possible-set(power)-set(contact_ports)),
             "unobserved_contact_interpretation":"No connection observed; electrical disconnection is not established.",
             "listing_portions":sorted(listed),"listing_records":catalog.get("listing_records",[])}, manual_path
@@ -676,7 +762,9 @@ def _build(card_type, overrides_path=None, relayout=False):
             report["reviewed_fact_comparisons"]=comparisons
         elif not power:
             uncertainties.append({"kind":"definition not routed for unsupported or ambiguous module kind"})
-        else:
+        elif not relayout:
+            # A requested graph relayout must reach its spacing trials even
+            # when the legacy default placement cannot route this card.
             definition=generic_definition(model,provenance,uncertainties)
         if relayout and (overlay or power):
             definition=None

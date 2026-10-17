@@ -1,0 +1,71 @@
+MP001 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 11,
+  "A1_total_card_portions": 11,
+  "A1_mismatches": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 70,
+  "passed": true,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 0,
+  "structural_passed": true,
+  "A1_agreement": true
+}
+
+Unclear source print and evidence
+[
+  {
+    "kind": "Native wiring review",
+    "detail": "All60 decoder inputs and10 OR inputs separately traced. Positive and negative register10 have disjoint segments on repeated columns; negative10 uses blank buses16/70 and positive09 uses blank bus54. Each decoder star hook descends to the K-marked physical output diamond; both output terminals share their printed FRAME net. FRAME nets branch to AL. No semantic complement or cross-page normalization was applied. K is an output-border marker, not an overflow socket suffix. Native extended OR79..88 retained.",
+    "evidence": [
+      "tmp/ald-text/mp/decode/MP001 AA top connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 AD top connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 AG top connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 AJ top connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 bank1 lower connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 bank3 lower connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 bank7 middle connectivity.png",
+      "tmp/ald-text/mp/decode/MP001 OR routes annotated.png"
+    ]
+  },
+  {
+    "kind": "Native output route review",
+    "detail": "Whole-column traces confirm AA turn49 and AG turn46, AH turn42, AC lower turn88 returning up toexternal64, AF lower turn87 returning up toexternal74. These native turns avoid gate bodies. Connector table fully read including native AK F09 versus E04 continuation discrepancy.",
+    "evidence": [
+      "tmp/ald-text/mp/decode/MP001 all first bank output trace.png",
+      "tmp/ald-text/mp/decode/MP001 bank5 early output routes.png",
+      "tmp/ald-text/mp/decode/MP001 bank7 early output routes.png",
+      "tmp/ald-text/mp/decode/MP001 AF output routes lower.png",
+      "tmp/ald-text/mp/decode/MP001 full connectors.png"
+    ]
+  }
+]
+
+Original scan order
+Before MC997 PAGE DATA EXCEPTION.tif
+After MP003 SE VALID TO BCU.tif
+
+Root combined acceptance and owner freeze
+{
+  "owner_native_source_and_geometry_review_complete": true,
+  "root_combined_layout_review_complete": true,
+  "root_scope": "All three final source/render bands and native footer reviewed. MP001 physical output hooks join K-marked terminals and FRAME rails; early and lower return detours, distinct PHY bit buses and extended ten-input OR compared. Root independently traced AL B13/B12/D05 branches and inspected AF bottom. MP005 receiver/RTO paths, all ten outputs, corrected hanging references, duplicate native IDs and BD F6 discrepancy compared. User approved printed separator as ┘; final DF5 retained. Detailed native fields and routes reviewed by assigned owner.",
+  "approved_date": "2026-10-12",
+  "frozen": true
+}
+
+
+ROOT FINAL REVIEW
+Owner detailed native and final preview review complete; root combined layout and artifact checks complete.
+Scope: All three final source/render bands and native footer reviewed. MP001 physical output hooks join K-marked terminals and FRAME rails; early and lower return detours, distinct PHY bit buses and extended ten-input OR compared. Root independently traced AL B13/B12/D05 branches and inspected AF bottom. MP005 receiver/RTO paths, all ten outputs, corrected hanging references, duplicate native IDs and BD F6 discrepancy compared. User approved printed separator as ┘; final DF5 retained. Detailed native fields and routes reviewed by assigned owner.
+Assigned owners reviewed detailed native fields, pins, routes and final JuliaMono previews. Root reviewed all combined source/render layouts, targeted native evidence and automated checks. This is not a second independent reading of every character.

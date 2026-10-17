@@ -1,0 +1,185 @@
+FX431 source review
+
+Use JuliaMono with wrapping disabled. ◇ joins wires; crossings ┼ are separate without a source diamond.
+{
+  "A1_card_portions_matched": 21,
+  "A1_total_card_portions": 22,
+  "A1_mismatches": [
+    "AL"
+  ],
+  "duplicate_physical_port_references": [],
+  "unowned_output_ports": [],
+  "missing_input_owners": [],
+  "multiple_target_owners": {},
+  "different_net_shared_segments": [],
+  "disconnected_nets": [],
+  "junction_errors": [],
+  "wire_paths_inside_blocks": [],
+  "endpoint_errors": [],
+  "printed_input_terminals": 34,
+  "geometry_passed": true,
+  "passed": false,
+  "unsupported_characters": [],
+  "text_collisions": [],
+  "hidden_junctions": [],
+  "unreadable_characters": 2
+}
+
+Unclear source print and evidence
+[
+  {
+    "location": "native source review",
+    "evidence": "Native11N receivers and11SW blocks inspected separately. Five switch outputs join external-input nets at printed diamonds; five printed D08 stubs are unused. Six other switches have separately printed local jumpers and carry inputs onward. Source N AE is ordinary bank5; other N are bank4. All footer connector continuations and both notes inspected. Source RESET upper versus RESTART lower labels retained."
+  },
+  {
+    "location": "native lattice calibration",
+    "anchors": [
+      {
+        "column": 50,
+        "row": 16,
+        "x": 2310,
+        "y": 1290
+      },
+      {
+        "column": 119,
+        "row": 2,
+        "x": 5050,
+        "y": 450
+      },
+      {
+        "column": 142,
+        "row": 30,
+        "x": 5950,
+        "y": 2140
+      }
+    ],
+    "evidence": "Native source borders/gridIDs reviewed for this scan. Default245x103 lattice, eightwide boxes; no source bank-shift exception proposed. Pixel positions reflect local scan geometry, not circuit-grid changes."
+  },
+  {
+    "location": "source control ports",
+    "evidence": "switch upper native.png clearly shows literal K at right border of BC/AU/AP/AQ/AX, not an inferred wedge. D08 at top-left is printed unconnected and documented as source_unused. Header first zero is readable, next two punched:0��  FX431."
+  },
+  {
+    "location": "final connector native calibration",
+    "connector_identifier_columns": [
+      36,
+      49,
+      63,
+      77,
+      91,
+      105
+    ],
+    "continuation_indent": 2,
+    "native_affine_border_candidates": [
+      [
+        406.9808157438485,
+        261.7888939621999
+      ],
+      [
+        39.887819970800294,
+        -0.0827738600555783
+      ],
+      [
+        -0.019248578466815047,
+        60.137430312459486
+      ]
+    ],
+    "evidence": "connector centers probe.png visually inspected against glyph centres, rather than glyph left edges. Later columns compared with independently visible identifiers/continuations; spacing14. No block-coordinate modification."
+  }
+]
+
+Original scan order
+Before D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX421 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 1.tif
+After D:\Reference Materials\IBM 360\IBM_360_ALD\FX External Bus\FX441 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 3.tif
+
+
+Source-derived recovery v2 — independently accepted
+{
+  "stable_id": "FX431-49a4cf7c11",
+  "classification": "Source-derived; independently accepted against original target/support evidence and current complete preview by root",
+  "original_physical_fragment": "0��",
+  "recovered_reading": "000",
+  "physical_print_still_damaged": true,
+  "row": 0,
+  "column": 235,
+  "covered_cells": [
+    [
+      0,
+      236
+    ],
+    [
+      0,
+      237
+    ]
+  ],
+  "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FX External Bus\\FX431 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 2.tif",
+  "source_sha256": "290f888bf31fbfab7b1d06167a3c80e109228690521e4d009ab02b8503fd4d2f",
+  "handoff": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\manual-verification\\source-derived-v2\\FX External Bus\\Reviewed recoveries.json",
+  "handoff_sha256": "b7041f8085dc4163546c3956c3ccf08ea4fc8fa517f63119da5a4c54559f03c6",
+  "basis": "The damaged header/footer fragment has one compatible literal among the subject sheet’s separately printed readable identity or subpage fields.",
+  "decision": {
+    "id": "FX431-49a4cf7c11",
+    "page": "FX431",
+    "candidate": "000",
+    "confidence": "High",
+    "rule": "Readable repetition on the same physical page",
+    "basis": "The damaged header/footer fragment has one compatible literal among the subject sheet’s separately printed readable identity or subpage fields.",
+    "evidence": [
+      {
+        "page": "FX431",
+        "scan_id": "811",
+        "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\FX External Bus\\FX431 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 2.txt",
+        "text_sha256": "c9b35206461e453e49c271cdac68c51e6bb5ed440e778b7f071c8fc2ee4b03f0",
+        "model_sha256": "2dbc9a881a1fbfe892b1291a4a4a1d7e6e20339096a918b7a0036075623f7ed4",
+        "row": 101,
+        "column": 0,
+        "excerpt": "000                                   02E-B2F1C11AF4 E-B1B6D06   02S-A2U1B12 AK4 E-B1C6B03   02F-B2H1A09                                                                                                          │                              │000",
+        "field": "readable repeated footer subpage code"
+      },
+      {
+        "page": "FX431",
+        "scan_id": "811",
+        "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\FX External Bus\\FX431 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 2.txt",
+        "text_sha256": "c9b35206461e453e49c271cdac68c51e6bb5ed440e778b7f071c8fc2ee4b03f0",
+        "model_sha256": "2dbc9a881a1fbfe892b1291a4a4a1d7e6e20339096a918b7a0036075623f7ed4",
+        "row": 101,
+        "column": 242,
+        "excerpt": "000                                   02E-B2F1C11AF4 E-B1B6D06   02S-A2U1B12 AK4 E-B1C6B03   02F-B2H1A09                                                                                                          │                              │000",
+        "field": "readable repeated footer subpage code"
+      }
+    ],
+    "conflicts": []
+  },
+  "evidence": [
+    {
+      "page": "FX431",
+      "scan_id": "811",
+      "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\FX External Bus\\FX431 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 2.txt",
+      "text_sha256": "c9b35206461e453e49c271cdac68c51e6bb5ed440e778b7f071c8fc2ee4b03f0",
+      "model_sha256": "2dbc9a881a1fbfe892b1291a4a4a1d7e6e20339096a918b7a0036075623f7ed4",
+      "row": 101,
+      "column": 0,
+      "excerpt": "000                                   02E-B2F1C11AF4 E-B1B6D06   02S-A2U1B12 AK4 E-B1C6B03   02F-B2H1A09                                                                                                          │                              │000",
+      "field": "readable repeated footer subpage code",
+      "current_hash_verified": true
+    },
+    {
+      "page": "FX431",
+      "scan_id": "811",
+      "text_file": "D:\\Github\\IBM360\\ibm360ald\\ALD\\FX External Bus\\FX431 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 2.txt",
+      "text_sha256": "c9b35206461e453e49c271cdac68c51e6bb5ed440e778b7f071c8fc2ee4b03f0",
+      "model_sha256": "2dbc9a881a1fbfe892b1291a4a4a1d7e6e20339096a918b7a0036075623f7ed4",
+      "row": 101,
+      "column": 242,
+      "excerpt": "000                                   02E-B2F1C11AF4 E-B1B6D06   02S-A2U1B12 AK4 E-B1C6B03   02F-B2H1A09                                                                                                          │                              │000",
+      "field": "readable repeated footer subpage code",
+      "current_hash_verified": true
+    }
+  ],
+  "original_scan_before": "FX421 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 1.tif",
+  "original_scan_after": "FX441 IOCE DISTRIBUTED SIMPLEX RECEIVERS IOCE 3.tif",
+  "raw_human_answers_preserved_in": "D:\\Github\\IBM360\\tmp\\ald-text\\recovery-v2\\ct_fx\\before\\human history\\Workbook binding manifest v2.json"
+}
+
+Current source-derived independent acceptance: D:\Github\IBM360\tmp\ald-text\recovery-v2\Root 18-page independent recovery review.json SHA256 b07c8b067bd15d47fa8b491d9051e39f457e60865b0335b75a37d0110804750a
+Physical legibility is not asserted; original historical notes and raw human answers remain preserved.

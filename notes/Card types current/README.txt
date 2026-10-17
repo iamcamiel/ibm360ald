@@ -2,6 +2,12 @@ CURRENT CARD-TYPE CATALOG
 Rebuild with tools/references/build_current_card_catalog.py from the reviewed export and content-data manifests.
 Verify with tools/references/verify_current_card_catalog.py.
 
+All physical card listings come once from the current accepted uniform socket dataset,
+with stable record IDs and exact source spans. Legacy table shapes are not read again.
+Continuations retain their source evidence but do not add physical card instances.
+Unprinted or unreadable card width stays unknown. Explicit annotation nodes are
+reported separately; a numeric 0000 card is retained unless explicitly annotated.
+
 json/Card types current/<number>.json contains each observed portion, its exact function label,
 primary function, circuit identifier, visible pins, polarity triangles, A1 listing facts,
 and source text/model pointers. csv/Card types current contains searchable summaries.

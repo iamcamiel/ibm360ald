@@ -22,6 +22,7 @@ import source_review as sr
 import successor_registry as registry_api
 
 ROOT = Path(__file__).resolve().parents[2]
+COMPLETED_REVIEW_STATUS = 'Completed published review status: native source and rendered layout reviewed; marked unreadable print retained.'
 
 
 def digest(raw):return sha256(raw).hexdigest()
@@ -102,8 +103,20 @@ def build_plan(registry, workspace, repo, exports, source_root, pages=None):
         for doc in baselines:
             hits=[e for e in doc['exported'] if e['page']==page and Path(e['transcription_source']).resolve()==Path(item['text_path']).resolve()]
             require(len(hits)==1,'Missing/ambiguous accepted baseline page: '+page);selected.append(hits[0])
-        first=selected[0]
-        require(sr.json_equal(first,selected[1]),'Export plan and mirrored baseline disagree: '+page)
+        # The read-only exporter can describe the validated successor before
+        # its bytes have been mirrored. Ownership and prior acceptance always
+        # come from the last mirrored entry, never from that advanced plan.
+        planned,first=selected
+        require(planned.keys()==first.keys(),'Export plan/baseline entry keyset differs: '+page)
+        plan_differences={key for key in first if not sr.json_equal(planned[key],first[key])}
+        advanced=bool(plan_differences)
+        require(plan_differences <= {'text_sha256','notes_sha256','review_record'},
+                'Export plan and mirrored stable identity disagree: '+page)
+        if advanced:
+            require(planned['text_sha256']==item['current_quartet']['txt']['sha256'],
+                    'Advanced export plan text is not accepted successor: '+page)
+            require(planned['review_record']==item['receipt'],
+                    'Advanced export plan review is not exact accepted receipt: '+page)
         require((source_root/first['source_relative']).resolve()==Path(item['source_path']).resolve(),'Source identity differs from baseline: '+page)
         require(Path(first['destination']).resolve().is_relative_to(repo/'ALD'),'Baseline TXT target is outside ALD')
         relative=Path(first['source_relative']).parent
@@ -119,7 +132,9 @@ def build_plan(registry, workspace, repo, exports, source_root, pages=None):
             if kind in ('txt','notes'):
                 expected=first['text_sha256' if kind=='txt' else 'notes_sha256']
                 require(old_hashes[kind]==expected,'Repository '+kind+' differs from export baseline: '+page)
-                require(baselines[0].get('managed_files',{}).get(str(path))==expected,'TXT/notes ownership baseline missing: '+page)
+                require(baselines[1].get('managed_files',{}).get(str(path))==expected,'TXT/notes mirrored ownership baseline missing: '+page)
+                desired=planned['text_sha256' if kind=='txt' else 'notes_sha256']
+                require(baselines[0].get('managed_files',{}).get(str(path))==desired,'TXT/notes plan managed hash differs: '+page)
             if kind=='json':
                 entry=content_entries.get(path.relative_to(repo).as_posix())
                 require(entry and entry['role']=='Published page content model' and entry['sha256']==old_hashes[kind], 'Content baseline differs: '+page)
@@ -143,9 +158,50 @@ def build_plan(registry, workspace, repo, exports, source_root, pages=None):
         current_meta=read(capture(item['current_quartet']['json']['path'],item['current_quartet']['json']['sha256']))
         wrapped_notes=exporter.note_content(Path(item['source_path']),Path(item['text_path']),current_meta,row,previous,following,item['receipt'])
         updates[paths['notes']]=wrapped_notes;new_hashes['notes']=digest(wrapped_notes)
-        prior_review=Path(first['review_record']);prior_review=prior_review if prior_review.is_absolute() else workspace/prior_review
-        raw=capture(prior_review);require(raw is not None,'Historical acceptance missing: '+page)
-        prior_link={'path':str(prior_review.resolve()),'sha256':digest(raw)};prior_preserved=preserve(prior_link)
+        reconciliation=None
+        if advanced:
+            require(planned['notes_sha256']==new_hashes['notes'],
+                    'Advanced export plan notes differ from exact current exporter notes: '+page)
+            reconciliation={'schema':'validated-advanced-export-plan-reconciliation-v1',
+                            'changed_entry_fields':sorted(plan_differences),
+                            'mirrored_entry':deepcopy(first),'validated_plan_entry':deepcopy(planned),
+                            'accepted_publication':deepcopy(item['publication']),
+                            'accepted_current_text':deepcopy(item['current_quartet']['txt']),
+                            'recomputed_exported_notes_sha256':new_hashes['notes'],
+                            'ownership_basis':'Last mirrored entry and managed hashes, exact repository inventory and accepted prior chain state'}
+        if first['review_record'] == COMPLETED_REVIEW_STATUS:
+            # This exact established export representation is descriptive text,
+            # not a path. Retain its real byte-bound predecessor evidence; do
+            # not manufacture an independent acceptance receipt for it.
+            immutable_baselines={}
+            for name,path in [('export_plan',baseline_paths[0]),('last_export_manifest',baseline_paths[1]),
+                              ('content_manifest',content_path),('reviewed_export_provenance',repo/'notes/Reviewed export provenance.json')]:
+                baseline_raw=capture(path);require(baseline_raw is not None,'Completed-review predecessor baseline missing: '+name)
+                immutable_baselines[name]=preserve({'path':str(path),'sha256':digest(baseline_raw)})
+            frozen_repository={}
+            for kind,path in paths.items():
+                before_raw=capture(path)
+                frozen_repository[kind]=None if before_raw is None else preserve({'path':str(path),'sha256':digest(before_raw)})
+            source_content=next(e for e in original_content['files'] if e['path']==paths['json'].relative_to(repo).as_posix())
+            predecessor={'schema':'source-review-completed-export-predecessor-v1',
+                         'evidence_kind':'Immutable snapshot of existing accepted export metadata and exact published content',
+                         'not_an_independent_review_receipt':True,
+                         'page':page,'source_scan_id':str(first['source_scan_id']),
+                         'review_record_literal':COMPLETED_REVIEW_STATUS,
+                         'exact_export_entry':deepcopy(first),'exact_content_entry':deepcopy(source_content),
+                         'original_source':deepcopy(item['source']),
+                         'preserved_baseline_manifests':immutable_baselines,
+                         'preserved_repository_predecessor_quartet':frozen_repository,
+                         'matched_accepted_chain_states':[{k:v for k,v in state.items() if k!='_snapshots'} for state in matched]}
+            prior_raw=encode(predecessor);prior_hash=digest(prior_raw)
+            prior_target=repo/'notes/Source reviews/Evidence'/prior_hash/('Completed export predecessor '+page+'.json')
+            existing=capture(prior_target);require(existing in (None,prior_raw),'Immutable completed-review predecessor collision')
+            put(prior_target,prior_raw,'Immutable completed-review export predecessor snapshot; not a new acceptance')
+            prior_preserved={'path':prior_target.relative_to(repo).as_posix(),'sha256':prior_hash}
+        else:
+            prior_review=Path(first['review_record']);prior_review=prior_review if prior_review.is_absolute() else workspace/prior_review
+            raw=capture(prior_review);require(raw is not None,'Historical acceptance missing: '+page)
+            prior_link={'path':str(prior_review.resolve()),'sha256':digest(raw)};prior_preserved=preserve(prior_link)
         pointer={'schema':'source-review-repository-current-v1','page':page,'source':item['source'],
                  'publication':item['publication'],'manifest':item['manifest'],'independent_acceptance':item['independent_acceptance'],
                  'registry':verified['registry'],'preserved_predecessor_review':prior_preserved,
@@ -169,8 +225,10 @@ def build_plan(registry, workspace, repo, exports, source_root, pages=None):
         entry=content_entries[paths['json'].relative_to(repo).as_posix()]
         entry.update(source=item['current_quartet']['json']['path'],sha256=new_hashes['json'])
         content['managed_files'][entry['path']]=new_hashes['json']
-        summaries.append({'page':page,'release_id':item['release_id'],'before':old_hashes,'after':new_hashes,
-                          'targets':{k:str(v) for k,v in paths.items()}})
+        summary={'page':page,'release_id':item['release_id'],'before':old_hashes,'after':new_hashes,
+                 'targets':{k:str(v) for k,v in paths.items()}}
+        if reconciliation is not None:summary['advanced_export_plan_reconciliation']=reconciliation
+        summaries.append(summary)
     stamp=datetime.now(timezone.utc).isoformat()
     if content!=original_content:content['updated_utc']=stamp
     put(content_path,encode(content),'Scoped current-content manifest update')
