@@ -97,6 +97,10 @@ def prepare(repo,allowlist_path,*,preserve_history=None):
     updated['updated_utc']=allowlist.get('created_utc',sr.now())
     if compact:
         updated.pop('scoped_inventory_reviews',None)
+        updated.pop('historical_shared_tools',None)
+        updated['scope']='Current published data, concise notes and reusable tools; Git holds version history.'
+        updated['reviewed_texts']=sum(record['status']=='reviewed' for record in checkpoint.records)
+        updated['shared_tools']=sum(entry['path'].startswith('tools/') for entry in updated['files'])
         updated['current_inventory_review']={'allowlist_sha256':digest(original_allowlist),'authorized_files':len(authorized)}
         checkpoint=current_checkpoint.load_checkpoint(repo,inventory=updated)
     else:
