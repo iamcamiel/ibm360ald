@@ -1,0 +1,1370 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "0537",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "8127d8d331d779e61ddac9c698c014b16ed58e8e3b316dec4543852e90f32c22"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "6d78eed767355a7570d5fb5a7355308cb2fd7eded05473480e071c793843875a"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 32,
+    "resolved_catalogue_observations": 32,
+    "source_observations": 32,
+    "exact_model_pointer_keys": 32,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "9c212f045d4029aeb9a1c3fc89d8aad26386c6733f9465d2708d7080f2a6fb28"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "94507a0d795046d27906212b7d43d5cf4e4b2808ec6781d91ca2424c1256c5ef"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "1825cbf208cd2dafb95433e1c9726b9447345c54ec404b59f626b553a03eac3b"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "455eff30a2e610073a3c0b109a0dc34faeaa0b14b8d9d955dded403145685d89"
+    }
+  ],
+  "counts": {
+    "occurrences": 32,
+    "pages": 8,
+    "page_socket_observations": 10,
+    "physical_card_sites": 4,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 4,
+    "complete_field_observation_witnesses": 2,
+    "partial_observation_witnesses": 2,
+    "distinct_observed_variants": 3,
+    "variants_with_complete_witness": 2,
+    "variants_witnessed_only_partially": 1,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 2,
+    "excluded_partial_profiles": 1
+  },
+  "model_bindings": [
+    {
+      "path": "json/DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.json",
+      "sha256": "1d39a8cdafd50eea5ad856a03a34b871689b5b1f250db37425109cd61439fb46"
+    },
+    {
+      "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+      "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+      "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+      "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+      "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX901 REPEAT ROS ADDRESS.json",
+      "sha256": "f28bd9e652891e2a17b02c89d730b494b68ad8a31c65e0a9ca75cebd1159b422"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+      "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+    },
+    {
+      "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+      "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "e6a59301a74dcea17b1b59d4fbac9559462eb0259871623660082aa48ae0f4f7",
+      "archive_relative": "DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.tif",
+      "role": "original source scan",
+      "scan_id": "520"
+    },
+    {
+      "sha256": "3bdde1b4a6d9828a069618dad5e1fcbbdd8a575ae7c4eb567eca2ec4c1824e97",
+      "archive_relative": "PX System Console/PX301 Test on Latched and Power On Reset.tif",
+      "role": "original source scan",
+      "scan_id": "1554"
+    },
+    {
+      "sha256": "f96bcb8d2b7dacab149cbb985e1846b20c45949e5b1b42bf55234cc8b716dbcd",
+      "archive_relative": "RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.tif",
+      "role": "original source scan",
+      "scan_id": "2052"
+    },
+    {
+      "sha256": "f1a35d8fefa162ffbb3804aade904473ce8ee1b37402fb2a6031607860c2fc54",
+      "archive_relative": "RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.tif",
+      "role": "original source scan",
+      "scan_id": "2053"
+    },
+    {
+      "sha256": "51cf8c55b7cc87bb30f4af6609ac3b0d5578a208d696eb5df9c0d053155b2787",
+      "archive_relative": "RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.tif",
+      "role": "original source scan",
+      "scan_id": "2054"
+    },
+    {
+      "sha256": "7762ed14caf0780f31e44553b651a557936940353f9a1537bd8a4e1b329b7bb7",
+      "archive_relative": "RX ROS Address Register/RX901 REPEAT ROS ADDRESS.tif",
+      "role": "original source scan",
+      "scan_id": "2055"
+    },
+    {
+      "sha256": "01fe3918ecb00dff044fca2fce483bd96abfa9501b0ce81090ae05c652ca7788",
+      "archive_relative": "RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.tif",
+      "role": "original source scan",
+      "scan_id": "2056"
+    },
+    {
+      "sha256": "0d4032c55ebe4415ee534597c413e371cc2c736a14554867e448dc08c941f54f",
+      "archive_relative": "RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.tif",
+      "role": "original source scan",
+      "scan_id": "2057"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "B1": {
+            "port_triangles": {
+              "output:3": true
+            },
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "DR015",
+            "RX303",
+            "RX901",
+            "RX911"
+          ],
+          "location": "02C-A3M5",
+          "source_locations": [
+            "02C-A3M5"
+          ],
+          "literal_locations": [
+            "C-A3M5"
+          ],
+          "models": [
+            {
+              "path": "json/DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.json",
+              "sha256": "1d39a8cdafd50eea5ad856a03a34b871689b5b1f250db37425109cd61439fb46"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+              "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX901 REPEAT ROS ADDRESS.json",
+              "sha256": "f28bd9e652891e2a17b02c89d730b494b68ad8a31c65e0a9ca75cebd1159b422"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+              "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "e6a59301a74dcea17b1b59d4fbac9559462eb0259871623660082aa48ae0f4f7",
+              "archive_relative": "DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.tif",
+              "role": "original source scan",
+              "scan_id": "520"
+            },
+            {
+              "sha256": "51cf8c55b7cc87bb30f4af6609ac3b0d5578a208d696eb5df9c0d053155b2787",
+              "archive_relative": "RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.tif",
+              "role": "original source scan",
+              "scan_id": "2054"
+            },
+            {
+              "sha256": "7762ed14caf0780f31e44553b651a557936940353f9a1537bd8a4e1b329b7bb7",
+              "archive_relative": "RX ROS Address Register/RX901 REPEAT ROS ADDRESS.tif",
+              "role": "original source scan",
+              "scan_id": "2055"
+            },
+            {
+              "sha256": "01fe3918ecb00dff044fca2fce483bd96abfa9501b0ce81090ae05c652ca7788",
+              "archive_relative": "RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.tif",
+              "role": "original source scan",
+              "scan_id": "2056"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "DR015",
+              "node": "AD",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.json",
+                "sha256": "1d39a8cdafd50eea5ad856a03a34b871689b5b1f250db37425109cd61439fb46"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "DR015",
+              "node": "AE",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.json",
+                "sha256": "1d39a8cdafd50eea5ad856a03a34b871689b5b1f250db37425109cd61439fb46"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "DR015",
+              "node": "AC",
+              "node_pointer": "/nodes/27",
+              "model": {
+                "path": "json/DR ROS Decoder/DR015 LIMIT LTH AND WRITE SELECT PSBAR AND ATR.json",
+                "sha256": "1d39a8cdafd50eea5ad856a03a34b871689b5b1f250db37425109cd61439fb46"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX303",
+              "node": "BF",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+                "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX901",
+              "node": "3G",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/RX ROS Address Register/RX901 REPEAT ROS ADDRESS.json",
+                "sha256": "f28bd9e652891e2a17b02c89d730b494b68ad8a31c65e0a9ca75cebd1159b422"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX901",
+              "node": "3K",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/RX ROS Address Register/RX901 REPEAT ROS ADDRESS.json",
+                "sha256": "f28bd9e652891e2a17b02c89d730b494b68ad8a31c65e0a9ca75cebd1159b422"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX901",
+              "node": "3N",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/RX ROS Address Register/RX901 REPEAT ROS ADDRESS.json",
+                "sha256": "f28bd9e652891e2a17b02c89d730b494b68ad8a31c65e0a9ca75cebd1159b422"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX911",
+              "node": "3B",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX911",
+              "node": "3E",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX911",
+              "node": "3H",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 4,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1",
+            "E1",
+            "F1",
+            "G1",
+            "H1",
+            "J1",
+            "K1"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "F1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "G1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "H1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "J1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "K1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "DR015",
+        "RX303",
+        "RX901",
+        "RX911"
+      ],
+      "source_locations": [
+        "02C-A3M5"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    },
+    {
+      "number": 3,
+      "variant_definition": {
+        "number": 3,
+        "box_overrides": {
+          "B1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "RX301",
+            "RX302"
+          ],
+          "location": "02C-A3K2",
+          "source_locations": [
+            "02C-A3K2"
+          ],
+          "literal_locations": [
+            "C-A3K2"
+          ],
+          "models": [
+            {
+              "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+              "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+              "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "f96bcb8d2b7dacab149cbb985e1846b20c45949e5b1b42bf55234cc8b716dbcd",
+              "archive_relative": "RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.tif",
+              "role": "original source scan",
+              "scan_id": "2052"
+            },
+            {
+              "sha256": "f1a35d8fefa162ffbb3804aade904473ce8ee1b37402fb2a6031607860c2fc54",
+              "archive_relative": "RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.tif",
+              "role": "original source scan",
+              "scan_id": "2053"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "RX301",
+              "node": "AB",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+                "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX301",
+              "node": "AC",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+                "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX301",
+              "node": "AD",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+                "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX301",
+              "node": "AE",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+                "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX301",
+              "node": "AF",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/RX ROS Address Register/RX301 ADDRESS SWITCHES AND ROSAR LATCH BITS 0-4 COMPARE.json",
+                "sha256": "5726189e65af6bff28a8004ce906bbc610647b28aacbc5ac12bf23280c03ecb4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX302",
+              "node": "AB",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+                "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX302",
+              "node": "AC",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+                "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX302",
+              "node": "AD",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+                "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX302",
+              "node": "AE",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+                "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX302",
+              "node": "AF",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/RX ROS Address Register/RX302 ADDRESS SWITCHES AND ROSAR LATCH BITS 5-9 COMPARE.json",
+                "sha256": "fc6875cc2e739477206fa75e69b2de259c42c88b93de4ee2d461ac7d04f9d4a1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 2,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1",
+            "E1",
+            "F1",
+            "G1",
+            "H1",
+            "J1",
+            "K1"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "F1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "G1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "H1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "J1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "K1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        },
+        {
+          "page": null,
+          "source_pages": [
+            "RX303",
+            "RX911",
+            "RX921"
+          ],
+          "location": "02C-A3L2",
+          "source_locations": [
+            "02C-A3L2"
+          ],
+          "literal_locations": [
+            "C-A3L2"
+          ],
+          "models": [
+            {
+              "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+              "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+              "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+            },
+            {
+              "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+              "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "51cf8c55b7cc87bb30f4af6609ac3b0d5578a208d696eb5df9c0d053155b2787",
+              "archive_relative": "RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.tif",
+              "role": "original source scan",
+              "scan_id": "2054"
+            },
+            {
+              "sha256": "01fe3918ecb00dff044fca2fce483bd96abfa9501b0ce81090ae05c652ca7788",
+              "archive_relative": "RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.tif",
+              "role": "original source scan",
+              "scan_id": "2056"
+            },
+            {
+              "sha256": "0d4032c55ebe4415ee534597c413e371cc2c736a14554867e448dc08c941f54f",
+              "archive_relative": "RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.tif",
+              "role": "original source scan",
+              "scan_id": "2057"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "RX303",
+              "node": "AC",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+                "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX303",
+              "node": "AD",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/RX ROS Address Register/RX303 EXECUTION CYCLE COMPARE SYNC POINT.json",
+                "sha256": "471c288f8c9a18953cd6f13fea290eaa8949fb0c608eab9c31a81ddd6bcf2ad4"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX911",
+              "node": "3L",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX911",
+              "node": "4N",
+              "node_pointer": "/nodes/26",
+              "model": {
+                "path": "json/RX ROS Address Register/RX911 FORCE ROSAR 3-7 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "0ec927701d49673aa944bb6fb1c7350db43636338c4cee8a3b23bd5e10d0ad0f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX921",
+              "node": "3C",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX921",
+              "node": "3F",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX921",
+              "node": "3J",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RX921",
+              "node": "3M",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/RX ROS Address Register/RX921 FORCE ROSAR 8-11 FOR REPEAT ROS OR SCAN.json",
+                "sha256": "ce87e8b9745848d4ff693c475242b538b112d785154054fb1f7d0d62c2f9e142"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 3,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1",
+            "E1",
+            "H1",
+            "J1",
+            "K1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "F1",
+            "G1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "H1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "J1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "K1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "RX301",
+        "RX302",
+        "RX303",
+        "RX911",
+        "RX921"
+      ],
+      "source_locations": [
+        "02C-A3K2",
+        "02C-A3L2"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 1
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX301",
+          "source_pages": [
+            "PX301"
+          ],
+          "location": "02E-B2J4",
+          "source_locations": [
+            "02E-B2J4"
+          ],
+          "literal_locations": [
+            "E-B2J4"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+              "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "3bdde1b4a6d9828a069618dad5e1fcbbdd8a575ae7c4eb567eca2ec4c1824e97",
+              "archive_relative": "PX System Console/PX301 Test on Latched and Power On Reset.tif",
+              "role": "original source scan",
+              "scan_id": "1554"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX301",
+              "node": "AB",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+                "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX301",
+              "node": "AC",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+                "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX301",
+              "node": "BD",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+                "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX301",
+              "node": "BE",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/PX System Console/PX301 TEST ON LATCHED AND POWER ON RESET.json",
+                "sha256": "cd257842052f96722e118b25eb583ff7b5bcad020f1e77463a03525f857dd034"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "E1",
+            "F1",
+            "G1",
+            "H1",
+            "J1",
+            "K1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "INT",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX301"
+      ],
+      "source_locations": [
+        "02E-B2J4"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "55cab276c9dfda0c6b320f019083a1438df935592c43b6008e28fcd7b5968cd6",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

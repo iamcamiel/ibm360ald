@@ -38,6 +38,14 @@ def location_key(literal,node_id):
 def key(overrides):return json.dumps(overrides,sort_keys=True,ensure_ascii=False,separators=(',',':'))
 
 
+def port_observation(port,mark):
+    result={'triangle':mark}
+    if '_border_decorations' in port:result['border_symbol']=page_reader.terminal_border_symbol(port)
+    symbols=page_reader.terminal_pin_symbols(port)
+    if symbols is not None:result['pin_symbols']=symbols
+    return result
+
+
 def observed_form(node,box,power):
     """Map only readable source fields onto stable common semantic port IDs."""
     function=str(node.get('function','')).strip()
@@ -51,6 +59,9 @@ def observed_form(node,box,power):
     else:unmapped.append({'field':'function','literal':function,'reason':'Missing, unreadable or wider than six cells.'})
     source_by_side=defaultdict(list)
     for index,port in enumerate(node.get('pins',[])):
+        if index in page_reader.ar_input_only_aliases(node):
+            ignored.append({'source_pin_index':index,'physical_pin':physical(port),
+                'reason':'AR repeated input contact is input-only; printed output stub omitted.'});continue
         readings=physical_readings(port)
         if len(set(readings.values()))>1:
             unmapped.append({'field':str(port.get('side'))+'_decoration','source_pin_index':index,
@@ -72,18 +83,32 @@ def observed_form(node,box,power):
                 unmapped.append({'field':side+'_decoration','source_pin_index':index,'literal':port.get('pin'),
                                  'reason':'No unique common physical contact on this side.'});continue
             target=choices[0]
+            if page_reader.intrinsic_contact_role(port)!=page_reader.intrinsic_contact_role(target):
+                unmapped.append({'field':side+'_contact_role','source_pin_index':index,'port_id':target['id'],
+                    'reason':'Logical versus explicitly nonlogical K contact role differs; not a notation variant.'});continue
             if target['id'] in ambiguous:continue
             mark=wedge(port)
             if mark is None:
                 unmapped.append({'field':side+'_decoration','source_pin_index':index,'reason':'Decoration is absent from both supported source schemas.'});continue
-            if target['id'] in mapped and form['port_triangles'][target['id']]!=mark:
+            try:detail=port_observation(port,mark)
+            except ValueError as problem:
+                unmapped.append({'field':side+'_symbols','source_pin_index':index,'port_id':'symbols:'+target['id'],
+                    'reason':'Unresolved typed source symbol: '+str(problem)});continue
+            origin=page_reader.occurrence_net_role(port)
+            if origin:
+                detail['occurrence_net_role']=page_reader.documentary_occurrence_net_role(port)
+                unmapped.append({'field':'occurrence_net_role','port_id':'occurrence_net_role:'+target['id'],
+                    'profile_only':True,'source_pin_index':index,
+                    'reason':'Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized.'})
+            previous=observed.get(target['id'],{})
+            if target['id'] in mapped and any(previous[k]!=detail[k] for k in previous.keys()&detail.keys() if k in ('triangle','pin_symbols','border_symbol')):
                 unmapped.append({'field':side+'_decoration','source_pin_index':index,'port_id':target['id'],
                                  'reason':'Conflicting source uses of one physical contact; canonical decoration retained.'})
                 ambiguous.add(target['id']);mapped.discard(target['id']);observed.pop(target['id'],None)
                 form['port_triangles'][target['id']]=target['triangle']
                 continue
             form['port_triangles'][target['id']]=mark;mapped.add(target['id'])
-            observed[target['id']]={'triangle':mark,'physical_pin':pin,'source_pin_index':index,'mapping':'physical_contact'}
+            observed[target['id']]={**detail,'physical_pin':pin,'source_pin_index':index,'mapping':'physical_contact'}
         pinless=[(i,p) for i,p,pin in source if pin is None and p.get('pin') in (None,'','IN','OUT')]
         common_pinless=[p for p in targets if p.get('pin') is None]
         if pinless and len(pinless)==len(common_pinless) and (len(pinless)==1 or (side=='input' and primary(function) in ('A','OR'))):
@@ -91,8 +116,11 @@ def observed_form(node,box,power):
             for (index,port),target in ordered:
                 mark=wedge(port)
                 if mark is not None:
+                    try:detail=port_observation(port,mark)
+                    except ValueError as problem:
+                        unmapped.append({'field':side+'_symbols','port_id':'symbols:'+target['id'],'reason':'Unresolved typed source symbol: '+str(problem)});continue
                     form['port_triangles'][target['id']]=mark;mapped.add(target['id'])
-                    observed[target['id']]={'triangle':mark,'source_pin_index':index,
+                    observed[target['id']]={**detail,'source_pin_index':index,
                         'mapping':'unique_pinless_port' if len(pinless)==1 else 'visual_order_of_equivalent_pinless_inputs'}
         for target in targets:
             if target['id'] not in mapped:
@@ -101,7 +129,17 @@ def observed_form(node,box,power):
     return form,observed,unmapped,ignored
 
 
-def collect(card,definition,root=ROOT,grouping="physical-card",publication_policy="all-observed"):
+def complete_k_context_hold(witness):
+    """Do not downgrade an otherwise complete unsupported K form to partial."""
+    missing=witness.get('fields_not_inferred',[])
+    if (not witness.get('unobserved_portions_kept_canonical') and missing
+        and all(m.get('field')=='occurrence_net_role' and m.get('profile_only')is True for m in missing)):
+        return {'field':'complete_K_context_unsupported','source_pages':witness['source_pages'],
+                'location':witness['location'],'reason':'All intrinsic fields and portions are witnessed, but the complete occurrence K glyph variant is unsupported by the fixed-layout renderer. Publication is held; no partial-profile downgrade.'}
+    return None
+
+
+def collect(card,definition,root=ROOT,grouping="physical-card",publication_policy="all-observed",component_authority_path=None):
     root=Path(root).resolve();definition=Path(definition).resolve();spec=read(definition)
     assert spec['card_type']==card
     boxes={b['portion']:b for b in spec['boxes']};groups=defaultdict(list);model_bindings=[];occurrences=0
@@ -135,6 +173,13 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
     identity_coverage={'catalogue_present':catalog_path.is_file(),'source_observations':occurrences}
     if catalog_path.is_file():
         extra,identity_coverage=catalogue_source_coverage(root,read(catalog_path),documents);coverage_issues.extend(extra)
+    if catalog_path.is_file():
+        import component_context
+        net_context=component_context.apply_context(root,read(catalog_path),
+            {entry['document'].get('page'):entry['document']for entry in documents.values()},
+            {entry['document'].get('page'):{'path':path.relative_to(root).as_posix(),'sha256':entry['sha256']}for path,entry in documents.items()},
+            authority_path=component_authority_path)
+        coverage_issues.extend({'field':'component_occurrence_net_origin','reason':'Current component page-net origin proof is unresolved.','detail':h}for h in net_context.get('holds',[]))
     # Compare only fields actually observed: omitted ports must not falsely
     # contradict an explicit mark from another page of the same physical card.
     def observed_signature(items):
@@ -144,10 +189,12 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             if portion not in boxes:continue
             form,observed,missing,ignored=observed_form(node,boxes[portion],spec['power_contacts'])
             for field,value in observed.items():
-                value=value if field=='function' else value['triangle']
-                slot=(portion,field)
-                if slot in fields and fields[slot]!=value:conflicts.append({'portion':portion,'field':field,'values':[fields[slot],value]})
-                fields[slot]=value
+                facts={field:value} if field=='function' else {field:value['triangle'],
+                    **{attribute+':'+field:value[attribute] for attribute in ('pin_symbols','border_symbol','occurrence_net_role') if attribute in value}}
+                for name,reading in facts.items():
+                    slot=(portion,name)
+                    if slot in fields and fields[slot]!=reading:conflicts.append({'portion':portion,'field':name,'values':[fields[slot],reading]})
+                    fields[slot]=reading
         return fields,conflicts
     physical_groups=defaultdict(list)
     for context,items in groups.items():physical_groups[context[1]].append((context,items))
@@ -190,17 +237,25 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             # A readable observation elsewhere can complete an omitted field;
             # identity mismatches remain explicit, never hidden by aggregation.
             witness['fields_not_inferred'].extend({'portion':portion,'node':node.get('id'),**m} for m in missing
-                if m.get('field')=='circuit_identifier' or 'physical_contact_readings' in m or m.get('reason','').startswith('Conflicting source uses') or (portion,m.get('port_id',m.get('field'))) not in merged)
+                if m.get('profile_only')or m.get('field')=='circuit_identifier' or 'physical_contact_readings' in m or m.get('reason','').startswith('Conflicting source uses') or (portion,m.get('port_id',m.get('field'))) not in merged)
         for portion in sorted(set(observed_portions)&set(boxes)):
             box=boxes[portion];override={};known={field:value for (p,field),value in merged.items() if p==portion}
             witness['observed_fields'][portion]=known
             if 'function' in known and known['function']!=box['function']:override['function']=known['function']
             triangles={p['id']:known[p['id']] for p in box['ports'] if p['id'] in known and known[p['id']]!=p['triangle']}
             if triangles:override['port_triangles']=triangles
+            for attribute,override_key,default in [('pin_symbols','port_symbols',{'prefix':[],'suffix':[]}),('border_symbol','border_symbols',None)]:
+                changed={p['id']:known[attribute+':'+p['id']] for p in box['ports'] if attribute+':'+p['id'] in known
+                         and known[attribute+':'+p['id']]!=p.get(attribute,default)}
+                if changed:override[override_key]=changed
             if override:changes[portion]=override
         # Deduplicate repeated missing-field records from cross-page witnesses.
         witness['fields_not_inferred']=list({key(m):m for m in witness['fields_not_inferred']}.values())
         witness['complete_portion_observation']=not witness['unobserved_portions_kept_canonical']
+        unsupported=complete_k_context_hold(witness)
+        if unsupported:
+            coverage_issues.append(unsupported)
+            witness['fields_not_inferred'].append(deepcopy(unsupported))
         witness['complete_field_observation']=witness['complete_portion_observation'] and not witness['fields_not_inferred']
         complete_count+=witness['complete_field_observation']
         if witness['fields_not_inferred']:uncertain.append(witness)
@@ -235,7 +290,7 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             'grouping':grouping,'conflicting_physical_card_sites':conflict_sites,
             'rules':['Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.',
                      'Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.',
-                     'Only function text and mapped port triangles may change; all pins, circuits, geometry and nets remain canonical.',
+                     'Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.',
                      'Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.',
                      'Distinguish completely witnessed full-card profiles from partial observations with canonical fill.'],
             'identity_coverage':identity_coverage,'coverage_issues':coverage_issues,'source_review_bindings':source_context['bindings'],
@@ -276,11 +331,12 @@ def main():
     parser.add_argument('--grouping',choices=('physical-card','page-socket'),default='physical-card')
     parser.add_argument('--publication-policy',choices=('all-observed','complete-witnesses'),default='all-observed',
                         help='Discovery retains all profiles; publication selects only profiles with a complete physical-card witness.')
+    parser.add_argument('--component-authority',type=Path)
     args=parser.parse_args();card=args.card_number
     if not re.fullmatch(r'\d{4}',card):parser.error('Use a four-digit card number.')
     definition=args.definition or args.root/'json/Card-ALD/definitions'/(card+'.json')
     out=args.output_dir or args.root.parent/'tmp/ald-text/ald/card-variants'/card
-    report=collect(card,definition,args.root,args.grouping,args.publication_policy);out.mkdir(parents=True,exist_ok=True)
+    report=collect(card,definition,args.root,args.grouping,args.publication_policy,args.component_authority);out.mkdir(parents=True,exist_ok=True)
     path=out/(card+' observed variant candidates.json')
     path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'report':binding(path),'counts':report['counts']},indent=2))

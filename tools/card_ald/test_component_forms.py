@@ -63,6 +63,76 @@ class ComponentForms(unittest.TestCase):
             self.assertFalse(cells&set(routing.wires))
         self.assertTrue(router.verify(model,(positions,ports,exterior,routing)))
 
+class PortDecorationAuthority(unittest.TestCase):
+    def fixture(self):
+        semantic={'side':'input','pin':'B04','border_symbol':'X','source_edge_decorations':[
+            {'terminal_id':'nodes:3/t:0','border_symbol':'X','border_decorations':[{'kind':'literal-border-mark','glyph':'X'}]}]}
+        model={'portions':{'A1':{'_inputs':[semantic],'_outputs':[]}}}
+        spec={'boxes':[{'portion':'A1','ports':[{'id':'input:1','side':'input','pin':'B04','triangle':False,'row':16}]}]}
+        return spec,model
+    def star(self,model):
+        symbols={'prefix':[],'suffix':['✲']}
+        source={'prefix':[],'suffix':[{'mark_id':'star:0','marks':[{'literal':'✲'}]}],
+            'unplaced':[],'selected_presentation':{'prefix_mark_ids':[],
+                'suffix_mark_ids':['star:0'],'unplaced_mark_ids':[]}}
+        p=model['portions']['A1']['_inputs'][0]
+        p['pin_symbols']=symbols
+        p['source_pin_symbol_observations']=[{'terminal_id':'nodes:3/t:0',
+            'pin_symbols':copy.deepcopy(symbols),'source_symbols':source}]
+    def test_selected_typed_star_is_separate_from_physical_contact(self):
+        spec,model=self.fixture();self.star(model)
+        forms.copy_port_decorations(spec,model)
+        port=spec['boxes'][0]['ports'][0]
+        self.assertEqual(port['pin'],'B04')
+        self.assertEqual(port['pin_symbols'],{'prefix':[],'suffix':['✲']})
+        self.assertEqual(port['border_symbol'],'X')
+    def test_known_source_symbol_variants_keep_an_exact_baseline_witness(self):
+        spec,model=self.fixture();self.star(model)
+        port=model['portions']['A1']['_inputs'][0]
+        plain=copy.deepcopy(port['source_pin_symbol_observations'][0])
+        plain['terminal_id']='nodes:4/t:0';plain['pin_symbols']={'prefix':[],'suffix':[]}
+        plain['source_symbols']={'prefix':[],'suffix':[],'unplaced':[],
+            'selected_presentation':{'prefix_mark_ids':[],'suffix_mark_ids':[],'unplaced_mark_ids':[]}}
+        port['source_pin_symbol_observations'].append(plain)
+        forms.copy_port_decorations(spec,model)
+        self.assertEqual(spec['boxes'][0]['ports'][0]['pin_symbols'],{'prefix':[],'suffix':['✲']})
+
+    def test_current_notation_profiles_are_preserved_idempotently(self):
+        spec,model=self.fixture()
+        node=model['portions']['A1'];node['_source_notation_baseline_witness']={'page':'ED001','node':'AA'}
+        node['_source_notation_variants']=[{'page':'ED002','node':'AB','symbols':{'B04':{'prefix':[],'suffix':['✲']}}}]
+        forms.copy_port_decorations(spec,model)
+        expected=copy.deepcopy(spec['source_notation_profiles'])
+        forms.copy_port_decorations(spec,model)
+        self.assertEqual(spec['source_notation_profiles'],expected)
+        self.assertEqual(expected[0]['source_variants'],node['_source_notation_variants'])
+
+    def test_literal_suffix_does_not_invent_intrinsic_star(self):
+        spec,model=self.fixture();model['portions']['A1']['_inputs'][0]['printed_pin']='B04✲'
+        forms.copy_port_decorations(spec,model)
+        self.assertNotIn('pin_symbols',spec['boxes'][0]['ports'][0])
+    def test_supplement_cannot_drop_selected_intrinsic_star(self):
+        spec,model=self.fixture();self.star(model)
+        overlay={'reviewed_portions':{'A1':{'ports':[{'id':'input:1','side':'input','pin':'B04','border_symbol':'X'}]}}}
+        with self.assertRaisesRegex(ValueError,'pin_symbols differs'):forms.copy_port_decorations(spec,model,overlay)
+
+    def test_exact_typed_mark_does_not_change_geometry_or_contact(self):
+        spec,model=self.fixture();before=copy.deepcopy(spec)
+        forms.copy_port_decorations(spec,model)
+        before['boxes'][0]['ports'][0]['border_symbol']='X'
+        self.assertEqual(spec,before)
+    def test_literal_suffix_is_not_source_edge_authority(self):
+        spec,model=self.fixture();model['portions']['A1']['_inputs'][0]['source_edge_decorations']=[]
+        with self.assertRaisesRegex(ValueError,'typed source'):forms.copy_port_decorations(spec,model)
+    def test_duplicate_anonymous_ports_remain_valid_without_mark(self):
+        spec,model=self.fixture();model['portions']['A1']['_inputs']=[{'side':'input','pin':None},{'side':'input','pin':None}]
+        forms.copy_port_decorations(spec,model)
+        self.assertNotIn('border_symbol',spec['boxes'][0]['ports'][0])
+    def test_overlay_stable_id_cannot_claim_another_contact(self):
+        spec,model=self.fixture();overlay={'reviewed_portions':{'A1':{'ports':[{'id':'input:1','side':'input','pin':'B05','border_symbol':'X'}]}}}
+        with self.assertRaisesRegex(ValueError,'stable layout ID'):forms.copy_port_decorations(spec,model,overlay)
+
+
 class SupplyTieEvidence(unittest.TestCase):
     def setUp(self):
         import build_card_data
@@ -151,6 +221,51 @@ class CurrentSpecialRoundtrip(unittest.TestCase):
         self.assertEqual(generate_card.build(first)[0],generate_card.build(second)[0])
         self.assertEqual(second['component_power_authority']['source_contact_role'],'reserved_system_contact_positions')
         self.assertEqual(len(report['derived_model']['source_supply_ties']),10)
+    def test_typed_special_border_symbols_survive_default_overlay(self):
+        import generate_card
+        expected={
+            '1124':{(p,'input','B04')for p in ('A2','A3','A4','A5','A6','A7','A8','A9','AA','AB','AC')},
+            '1524':{('A1','input','B10'),('A1','input','B08'),('A1','output','G09'),
+                    ('B1','input','D07'),('B1','input','D10'),('B1','output','J09'),
+                    ('C1','input','B05'),('C1','input','D05'),('C1','output','J13'),
+                    ('D1','input','B13'),('D1','input','D13'),('D1','output','G13')}}
+        for card,witnesses in expected.items():
+            with self.subTest(card=card):
+                first,overlay=self.fixture(card)
+                marked={(b['portion'],p['side'],p['pin'])for b in first['boxes']for p in b['ports']if p.get('border_symbol')=='X'}
+                self.assertEqual(marked,witnesses)
+                second,report=self.rebuilt(card,overlay)
+                self.assertIsNotNone(second,report['uncertainties'])
+                self.assertEqual(first['boxes'],second['boxes'])
+                self.assertEqual(first['nets'],second['nets'])
+                self.assertEqual(generate_card.build(first)[0],generate_card.build(second)[0])
+    def test_supplement_cannot_drop_current_typed_border_symbol(self):
+        _,overlay=self.fixture('1124')
+        port=next(p for n in overlay['reviewed_portions'].values()for p in n['ports']if p.get('border_symbol')=='X')
+        del port['border_symbol']
+        spec,report=self.rebuilt('1124',overlay)
+        self.assertIsNone(spec)
+        self.assertTrue(any('border_symbol differs'in x.get('detail','')for x in report['uncertainties']))
+
+    def test_standard_heading_special_power_roundtrip(self):
+        import generate_card
+        for card in ('0536','0611','0709'):
+            with self.subTest(card=card):
+                first,overlay=self.fixture(card)
+                overlay['header']={'schema':'card-ald-header-v1','part_number':'580'+card,
+                    'card_width':'SINGLE CARD','reviewed_occurrences':0,'reviewed_pages':0,
+                    'provisional_forms':[],'symbol_standard':'PRINTED ALD FORMS'}
+                overlay['layout']['annotations']=[a for a in overlay['layout']['annotations']
+                    if a['row']>=first['canvas']['header_rows']]
+                second,report=self.rebuilt(card,overlay)
+                self.assertIsNotNone(second,report['uncertainties'])
+                self.assertTrue(all(a['row']>=second['canvas']['header_rows']for a in second['annotations']))
+                self.assertEqual(second['header']['symbol_standard'],'PRINTED ALD FORMS')
+                first['header']=copy.deepcopy(second['header'])
+                first['annotations']=copy.deepcopy(overlay['layout']['annotations'])
+                self.assertEqual(generate_card.build(first)[0],generate_card.build(second)[0])
+                self.assertEqual(first['component_power_authority'],second['component_power_authority'])
+
     def test_supplement_cannot_assign_unknown_power(self):
         _,overlay=self.fixture('1524');overlay['power_contacts']={'D03':'+3V'}
         with self.assertRaisesRegex(ValueError,'power contacts differ'):self.rebuilt('1524',overlay)

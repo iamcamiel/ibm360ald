@@ -46,7 +46,7 @@ class SourceReaderTests(unittest.TestCase):
         node=C.view(self.v2(raw))['nodes'][0]
         box={'portion':'A1','function':'A','circuit_identifier':'U03AA','ports':[
             {'id':'input:1','side':'input','pin':'B04','row':1,'triangle':False},
-            {'id':'output:3','side':'output','pin':'D06','row':3,'triangle':False}]}
+            {'id':'output:3','side':'output','pin':'D06','row':3,'triangle':False,'contact_role':'nonlogical_common','border_control':'K','pin_symbols':{'prefix':[],'suffix':['✲']}}]}
         forms=audit.expected_forms({'boxes':[box],'variants':[]})
         findings=audit.compare_occurrence(node,box,forms['A1'],{})
         self.assertFalse([f for f in findings if f['status'] in ('discrepancy','source_uncertainty')])

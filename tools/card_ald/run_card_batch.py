@@ -46,10 +46,10 @@ def write(path, value):
 
 
 def select_cards(repo, prefix):
-    require(bool(re.fullmatch(r"[0-9]{1,4}", prefix)), "Use a numeric prefix of one to four digits")
+    require(prefix == "all" or bool(re.fullmatch(r"[0-9]{1,4}", prefix)), "Use all or a numeric prefix of one to four digits")
     cards = []
     for path in sorted((repo / "json/Card types current").glob("*.json")):
-        if re.fullmatch(r"[0-9]{4}", path.stem) and path.stem.startswith(prefix):
+        if re.fullmatch(r"[0-9]{4}", path.stem) and (prefix == "all" or path.stem.startswith(prefix)):
             require(read(path).get("card_type") == path.stem, "Catalog identity differs: " + str(path))
             cards.append(path.stem)
     require(bool(cards), "No current catalog card types match the prefix")
@@ -190,7 +190,7 @@ def _run_batch(repo, output, prefix):
         listed = {record["card_type"] for record in uniform["records"]
                   if isinstance(record.get("card_type"), str)
                   and re.fullmatch(r"[0-9]{4}", record["card_type"])
-                  and record["card_type"].startswith(prefix)}
+                  and (prefix == "all" or record["card_type"].startswith(prefix))}
         require(not (listed - set(catalog_cards)), "Current catalog is missing socket-listed card types: "
                 + ", ".join(sorted(listed - set(catalog_cards))))
         uniform_binding = [binding(uniform_path)]
@@ -295,7 +295,7 @@ def run_batch(repo, output, prefix, in_process=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=ROOT)
-    parser.add_argument("--prefix", default="0")
+    parser.add_argument("--prefix", default="0", help="Numeric card prefix, or all for every current catalogue type")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--subprocess", action="store_true", help="Run each card tool in a separate interpreter for comparison/debugging")
     args = parser.parse_args()

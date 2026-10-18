@@ -1,0 +1,347 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "0471",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "8127d8d331d779e61ddac9c698c014b16ed58e8e3b316dec4543852e90f32c22"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "6d78eed767355a7570d5fb5a7355308cb2fd7eded05473480e071c793843875a"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 3,
+    "resolved_catalogue_observations": 3,
+    "source_observations": 3,
+    "exact_model_pointer_keys": 3,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "9c212f045d4029aeb9a1c3fc89d8aad26386c6733f9465d2708d7080f2a6fb28"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "94507a0d795046d27906212b7d43d5cf4e4b2808ec6781d91ca2424c1256c5ef"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "1825cbf208cd2dafb95433e1c9726b9447345c54ec404b59f626b553a03eac3b"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "455eff30a2e610073a3c0b109a0dc34faeaa0b14b8d9d955dded403145685d89"
+    }
+  ],
+  "counts": {
+    "occurrences": 3,
+    "pages": 2,
+    "page_socket_observations": 2,
+    "physical_card_sites": 1,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 1,
+    "complete_field_observation_witnesses": 1,
+    "partial_observation_witnesses": 0,
+    "distinct_observed_variants": 1,
+    "variants_with_complete_witness": 1,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 1,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/MB Storage Data Bus/MB273 SDBI PARITY CHECK.json",
+      "sha256": "23c239ce353815290896d00d441ea8d19b978191ff6ce24c3af64438b0d8a367"
+    },
+    {
+      "path": "json/MB Storage Data Bus/MB293 SDBI GATE POWERING.json",
+      "sha256": "22a3423effe658aedf766d06538f24817adcaddba147ce081d1739a205c26731"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "fd4cf788e57c4f025a19490b1ab3e363b32bb700bde91aa68b4803f8d843b1e3",
+      "archive_relative": "MB Storage Data Bus/MB273 SDBI PARITY CHECK.tif",
+      "role": "original source scan",
+      "scan_id": "1363"
+    },
+    {
+      "sha256": "cc58a90af2424a7b3a44d62f7bc095c27ba228619cb4c62564fd2452b5fff205",
+      "archive_relative": "MB Storage Data Bus/MB293 SDBI GATE POWERING.tif",
+      "role": "original source scan",
+      "scan_id": "1365"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "input:3": true,
+              "input:4": true,
+              "input:5": true,
+              "input:6": true,
+              "input:7": true,
+              "input:8": true,
+              "output:3": false,
+              "output:2": false
+            }
+          },
+          "C1": {
+            "function": "N"
+          },
+          "D1": {
+            "function": "N",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": false
+            },
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "MB273",
+            "MB293"
+          ],
+          "location": "02A-D2F5",
+          "source_locations": [
+            "02A-D2F5"
+          ],
+          "literal_locations": [
+            "A-D2F5"
+          ],
+          "models": [
+            {
+              "path": "json/MB Storage Data Bus/MB273 SDBI PARITY CHECK.json",
+              "sha256": "23c239ce353815290896d00d441ea8d19b978191ff6ce24c3af64438b0d8a367"
+            },
+            {
+              "path": "json/MB Storage Data Bus/MB293 SDBI GATE POWERING.json",
+              "sha256": "22a3423effe658aedf766d06538f24817adcaddba147ce081d1739a205c26731"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "fd4cf788e57c4f025a19490b1ab3e363b32bb700bde91aa68b4803f8d843b1e3",
+              "archive_relative": "MB Storage Data Bus/MB273 SDBI PARITY CHECK.tif",
+              "role": "original source scan",
+              "scan_id": "1363"
+            },
+            {
+              "sha256": "cc58a90af2424a7b3a44d62f7bc095c27ba228619cb4c62564fd2452b5fff205",
+              "archive_relative": "MB Storage Data Bus/MB293 SDBI GATE POWERING.tif",
+              "role": "original source scan",
+              "scan_id": "1365"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "MB273",
+              "node": "AA",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/MB Storage Data Bus/MB273 SDBI PARITY CHECK.json",
+                "sha256": "23c239ce353815290896d00d441ea8d19b978191ff6ce24c3af64438b0d8a367"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MB273",
+              "node": "AE",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/MB Storage Data Bus/MB273 SDBI PARITY CHECK.json",
+                "sha256": "23c239ce353815290896d00d441ea8d19b978191ff6ce24c3af64438b0d8a367"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MB293",
+              "node": "AE",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/MB Storage Data Bus/MB293 SDBI GATE POWERING.json",
+                "sha256": "22a3423effe658aedf766d06538f24817adcaddba147ce081d1739a205c26731"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 2,
+          "observed_portions": [
+            "A1",
+            "C1",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "OR",
+              "input:8": true,
+              "pin_symbols:input:8": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:8": null,
+              "input:3": true,
+              "pin_symbols:input:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:3": null,
+              "input:6": true,
+              "pin_symbols:input:6": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:6": null,
+              "input:5": true,
+              "pin_symbols:input:5": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:5": null,
+              "input:7": true,
+              "pin_symbols:input:7": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:7": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:4": true,
+              "pin_symbols:input:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:4": null,
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "MB273",
+        "MB293"
+      ],
+      "source_locations": [
+        "02A-D2F5"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "eba90c7c697a65b5b2bff05f89831021cd67f7ff8d94c3efb09fd4acfd189dc6",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

@@ -67,10 +67,31 @@ def expected_forms(spec):
             form['function']=override.get('function',form['function'])
             for port in form['ports']:
                 port['triangle']=override.get('port_triangles',{}).get(port['id'],port['triangle'])
+                if port['id'] in override.get('port_symbols',{}):port['pin_symbols']=deepcopy(override['port_symbols'][port['id']])
+                if port['id'] in override.get('border_symbols',{}):port['border_symbol']=override['border_symbols'][port['id']]
             form['variant_number']=(variant or {}).get('number',0)
-            key=(form['function'],tuple((p['id'],p['triangle']) for p in form['ports']))
+            key=(form['function'],tuple((p['id'],p['triangle'],p.get('border_symbol'),
+                json.dumps(p.get('pin_symbols',{'prefix':[],'suffix':[]}),sort_keys=True)) for p in form['ports']))
             if not any(x['_key']==key for x in result[box['portion']]):
                 form['_key']=key;result[box['portion']].append(form)
+    boxes={b['portion']:b for b in spec['boxes']}
+    for profile in spec.get('source_notation_profiles',[]):
+        box=boxes.get(profile.get('portion'))
+        if box is None:continue
+        for witness in profile.get('source_variants',[]):
+            if not witness.get('model_binding') or not witness.get('node_pointer') or witness.get('conflicting_source_fields'):continue
+            form=deepcopy(box);valid=True
+            for observation in witness.get('ports',[]):
+                choices=[p for p in form['ports'] if p['side']==observation.get('side') and p.get('pin')==observation.get('pin')]
+                if len(choices)!=1:valid=False;break
+                port=choices[0]
+                for field in ('pin_symbols','border_symbol','triangle'):
+                    if field in observation:
+                        if field=='triangle' and type(observation[field])is not bool:valid=False;break
+                        port[field]=deepcopy(observation[field])
+            if valid:
+                form['variant_number']=0;form['_scoped_source']=deepcopy(witness)
+                result[box['portion']].append(form)
     return result
 
 
@@ -103,8 +124,8 @@ def equivalent_form(node,form,pairs,circuit_matches):
     Unknown functions are never equated just because their names resemble A/OR.
     """
     pf,ef=primary(node.get('function')),primary(form['function'])
-    inputs=[p for p in pairs if p[0]['side']=='input']
-    outputs=[p for p in pairs if p[0]['side']=='output']
+    inputs=[p for p in pairs if p[0]['side']=='input' and page_reader.logical_gate_terminal(p[0]) and page_reader.logical_gate_terminal(p[1])]
+    outputs=[p for p in pairs if p[0]['side']=='output' and page_reader.logical_gate_terminal(p[0]) and page_reader.logical_gate_terminal(p[1])]
     if not inputs or not outputs or len(inputs)>12:return False
     if 'N' in (pf,ef) and (len(inputs)!=1 or not circuit_matches):return False
     if pf not in ('A','OR','N','AR') or ef not in ('A','OR','N','AR'):return False
@@ -118,7 +139,58 @@ def equivalent_form(node,form,pairs,circuit_matches):
     return True
 
 
-def compare_occurrence(node,box,forms,power):
+def ground_service_inputs(document,power):
+    """Prove anonymous page inputs driven by one reviewed non-card ground service.
+
+    This is installation context only: no physical contact or card-internal net
+    is synthesized. Unreviewed/ambiguous sources and mixed drivers prove nothing.
+    """
+    grouped=defaultdict(list)
+    for node in document.get('nodes',[]):grouped[node.get('id')].append(node)
+    nodes={key:values[0] for key,values in grouped.items() if key and len(values)==1}
+    incidence=defaultdict(set)
+    for number,net in enumerate(document.get('nets',[])):
+        for target in net.get('targets',[]):
+            if not isinstance(target,str):continue
+            node=nodes.get(target.split('.',1)[0],{})
+            resolved=page_reader.resolve_net_port(node,target,'input')
+            if resolved.get('status')=='pinless':incidence[(node['id'],resolved['port_index'])].add(number)
+    proofs={}
+    for net in document.get('nets',[]):
+        if net.get('source_reviewed') is not True:continue
+        drivers=[]
+        for key in ('driver','drivers','declared_physical_output_drivers','route_owners'):
+            value=net.get(key)
+            drivers.extend(value if isinstance(value,list) else ([] if value is None else [value]))
+        if not drivers or any(not isinstance(v,str) for v in drivers)or len(set(drivers))!=1:continue
+        driver=drivers[0];source=nodes.get(driver.split('.',1)[0],{})
+        if (source.get('kind')!='service' or source.get('source_reviewed') is not True
+            or source.get('card_type') not in (None,'')or source.get('portion') not in (None,'')
+            or source.get('unit')!='GND'or not source.get('non_card_evidence')):continue
+        supply=page_reader.resolve_net_port(source,driver,'output')
+        if supply.get('status')!='numbered' or power.get(supply.get('physical_contact'))!='GROUND':continue
+        if supply['raw_port'].get('source_reviewed') is not True:continue
+        for target in net.get('targets',[]):
+            if not isinstance(target,str):continue
+            node=nodes.get(target.split('.',1)[0],{})
+            if node.get('source_reviewed') is not True:continue
+            resolved=page_reader.resolve_net_port(node,target,'input')
+            if resolved.get('status')!='pinless':continue
+            port=resolved['raw_port'];index=resolved['port_index']
+            anonymous=[p for p in node.get('pins',[])if p.get('side')=='input'and p.get('pin')in(None,'')and page_reader.pinless_terminal(p)]
+            if len(anonymous)!=1 or port.get('pin')not in(None,'')or port.get('source_reviewed') is not True:continue
+            point=net.get('target_coordinates',{}).get(target)
+            if point is not None and (not isinstance(point,(list,tuple))or len(point)!=2 or point[1]!=port.get('row')):continue
+            key=(node['id'],index)
+            if len(incidence[key])!=1:continue
+            proof={'net':net.get('id'),'driver':driver,'target':target,'ground_contact':supply['physical_contact'],
+                'source_kind':'reviewed non-card ground service','target_node_pointer':node.get('_source_pointer')}
+            if key in proofs and proofs[key]!=proof:proofs[key]=None
+            else:proofs[key]=proof
+    return {key:proof for key,proof in proofs.items()if proof is not None}
+
+
+def compare_occurrence(node,box,forms,power,ground_context=None):
     """Pure comparison API used by the CLI and independent fixture tests."""
     findings=[];circuit=node.get('unit',node.get('circuit_identifier'))
     circuit_matches=circuit==box['circuit_identifier']
@@ -129,7 +201,13 @@ def compare_occurrence(node,box,forms,power):
     expected_pins={(p['side'],p['pin']) for p in box['ports'] if p.get('pin')}
     observed_pins={(p.get('side'),physical(p)) for p in node.get('pins',[])}
     for index,port in enumerate(node.get('pins',[])):
+        if index in page_reader.ar_input_only_aliases(node):
+            findings.append(finding('recorded_variant','input_only_AR_contact',physical(port),'input',
+                'Repeated AR output stub is the existing input contact, never a block driver.',pin_index=index));continue
         raw=port.get('pin');pin=physical(port);side=port.get('side')
+        if page_reader.occurrence_net_role(port):
+            findings.append(finding('recorded_variant','occurrence_net_origin',page_reader.documentary_occurrence_net_role(port),None,
+                'K identifies an explicitly corroborated external page-net nonorigin. Canonical physical port and intrinsic card nets are unchanged; no Boolean function or active drive capability is inferred.',pin_index=index))
         if side not in ('input','output'):
             findings.append(finding('source_uncertainty','pin_direction',side,['input','output'],'Port has no usable direction.',pin_index=index));continue
         readings=page_reader.physical_readings(port)
@@ -137,9 +215,19 @@ def compare_occurrence(node,box,forms,power):
             findings.append(finding('source_uncertainty','pin_identity',readings,None,'Active physical contact observations disagree.',pin_index=index));continue
         if triangle(port) is None:
             findings.append(finding('source_uncertainty','border_decoration',port.get('_border_decorations',port),None,'Border decoration is absent or contradictory.',pin_index=index));continue
+        try:
+            symbols=page_reader.terminal_pin_symbols(port)
+            edge=page_reader.terminal_border_symbol(port)
+        except ValueError as problem:
+            findings.append(finding('source_uncertainty','typed_symbols',port,None,str(problem),pin_index=index));continue
         if pin in power:
             findings.append(finding('recorded_variant' if side=='input' else 'discrepancy','power_contact',raw,power[pin],
                 'Page-level input supply/bias tie is separate from the card signal graph.' if side=='input' else 'A power contact is modeled as a driven output; inspect the source and module classification.',pin_index=index));continue
+        proof=(ground_context or {}).get((node.get('id'),index))
+        if proof and side=='input'and pin is None and raw in(None,''):
+            findings.append(finding('recorded_variant','page_ground_service_input',None,'GROUND',
+                'Exact reviewed ground-service net drives this unique anonymous page input; omitted from the card signal graph without inventing a physical contact.',
+                pin_index=index,source_ground_service=proof));continue
         if raw not in (None,'') and (str(raw).isdigit() or str(raw) in ('L','E','K','X')):
             findings.append(finding('recorded_variant','wire_annotation',raw,None,
                 'Printed wire/border annotation is not a physical contact; its meaning is not inferred.',pin_index=index))
@@ -147,36 +235,47 @@ def compare_occurrence(node,box,forms,power):
         if raw not in (None,'') and pin is None and not re.fullmatch(r'(?:IN|OUT|input|output)\d*',str(raw)):
             findings.append(finding('source_uncertainty','pin_identity',raw,None,
                 'Not a valid single/double SLT physical contact or an unlabeled port.',pin_index=index));continue
-        if pin and (side,pin,triangle(port)) in seen_contacts:
+        signature=(side,pin,triangle(port),edge,json.dumps(symbols,sort_keys=True))
+        if pin and signature in seen_contacts:
             findings.append(finding('recorded_variant','repeated_same_contact',f'{side}:{pin}',pin,
                 'Repeated model terminal uses the same physical contact and polarity; it is one contact, not an extra gate input/output.',pin_index=index));continue
-        if pin:seen_contacts.add((side,pin,triangle(port)))
+        if pin:seen_contacts.add(signature)
         if pin and (side,pin) not in expected_pins:
             other='output' if side=='input' else 'input'
-            if primary(node.get('function'))=='AR' and (other,pin) in observed_pins and (other,pin) in expected_pins:
-                findings.append(finding('recorded_variant','shared_contact_passthrough',f'{side}:{pin}',f'{other}:{pin}',
-                    'AR repeats the same physical input/output terminal; common drawing omits the redundant stub.',pin_index=index));continue
             findings.append(finding('discrepancy','pin_direction' if (other,pin) in expected_pins else 'pin_identity',
                 f'{side}:{pin}',sorted(f'{s}:{p}' for s,p in expected_pins),
                 'Physical contact is on the opposite side.' if (other,pin) in expected_pins else 'Contact is absent from this common portion.',pin_index=index))
-        clone=deepcopy(port);clone['pin']=pin;clone['_index']=index;ports.append(clone)
+        clone=deepcopy(port);clone['pin']=pin;clone['_index']=index
+        page_reader.project_occurrence_net_role(port,clone,page=node.get('_source_page'),node=node.get('id'),model_binding=node.get('_source_model_binding'))
+        ports.append(clone)
     omitted=max(0,len([p for p in box['ports'] if p['side']=='input'])-len([p for p in ports if p['side']=='input']))
     if omitted:findings.append(finding('match','unused_inputs_omitted',omitted,None,'Unused available card inputs may be omitted on an installation ALD.'))
     matching=[]
     for form in forms:
+        scope=form.get('_scoped_source')
+        if scope and (scope.get('page')!=node.get('_source_page') or scope.get('node')!=node.get('id') or
+            scope.get('node_pointer')!=node.get('_source_pointer') or
+            not same_literal(scope.get('model_binding'),node.get('_source_model_binding'))):continue
         pairs=port_mapping(ports,form)
         if pairs is None:continue
+        if any(page_reader.intrinsic_contact_role(o)!=page_reader.intrinsic_contact_role(p) for o,p in pairs):continue
+        if any(triangle(o)!=p['triangle'] for o,p in pairs if not page_reader.logical_gate_terminal(o)):continue
         labels_equal=primary(node.get('function'))==primary(form['function'])
         decorations_equal=all(triangle(o)==p['triangle'] for o,p in pairs)
-        if labels_equal and decorations_equal:
-            status='match' if form['variant_number']==0 else 'recorded_variant'
-            matching.append((status,form['variant_number']));continue
-        if equivalent_form(node,form,pairs,circuit_matches):matching.append(('equivalent',form['variant_number']))
+        symbols_equal=all((page_reader.terminal_pin_symbols(o) is None or
+            page_reader.terminal_pin_symbols(o)==p.get('pin_symbols',{'prefix':[],'suffix':[]})) and
+            ('_border_decorations' not in o or page_reader.terminal_border_symbol(o)==p.get('border_symbol')) for o,p in pairs)
+        if labels_equal and decorations_equal and symbols_equal:
+            status='match' if form['variant_number']==0 and not scope else 'recorded_variant'
+            matching.append((status,form['variant_number'],scope));continue
+        if symbols_equal and equivalent_form(node,form,pairs,circuit_matches):matching.append(('equivalent',form['variant_number'],scope))
     if matching:
-        status,number=min(matching,key=lambda x:SEVERITY[x[0]])
+        status,number,scope=min(matching,key=lambda x:SEVERITY[x[0]])
         findings.append(finding(status,'function_and_decorations',node.get('function'),box['function'],
-            'Visible used-port function/polarity matches a declared complete notation form.' if status!='equivalent' else
-            'AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.',variant_number=number))
+            ('Readable partial source notation matches only its exact current-bound page/node/slot witness; no complete-card variant is claimed.' if scope else
+             'Visible used-port function/polarity matches a declared complete notation form.') if status!='equivalent' else
+            'AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.',variant_number=number,
+            **({'source_notation_witness':scope} if scope else {})))
     else:
         unmapped=port_mapping(ports,box) is None
         uncertain=any('�' in str(node.get(k,'')) for k in ('function','unit'))
@@ -259,8 +358,10 @@ def endpoint(node,label,side):
     key=(listing.get('board'),tuple(sorted(listing.get('sockets',[])))) if listing.get('board') and listing.get('sockets') else None
     location=str(node.get('location') or '')
     stable_id=(exact[0].get('id') or str(exact[0].get('terminal_id') or '').split('.')[-1]) if len(exact)==1 else None
+    input_only_alias=(len(exact)==1 and side=='output' and any(p is exact[0] for i,p in enumerate(node.get('pins',[])) if i in page_reader.ar_input_only_aliases(node)))
     return {'portion':str(node.get('portion')),'pin':physical(exact[0]) if len(exact)==1 else None,
-            'side':side,'label':label,'id':node['id'],'location':location,'card_key':key,'port_resolved':len(exact)==1,'stable_port_id':stable_id,'endpoint_problem':problem}
+            'input_only_alias':input_only_alias,'contact_role':page_reader.terminal_contact_role(exact[0]) if len(exact)==1 else None,
+            'side':'input' if input_only_alias else side,'label':label,'id':node['id'],'location':location,'card_key':key,'port_resolved':len(exact)==1,'stable_port_id':stable_id,'endpoint_problem':problem}
 
 
 def audit_wiring(card,spec,documents):
@@ -309,7 +410,7 @@ def audit_wiring(card,spec,documents):
             for value in driver_values:
                 for driver in references(value,page,'output'):driver_map[(driver.get('remote_page',page),driver['id'],driver['label'])]=driver
             drivers=list(driver_map.values())
-            for first,second in itertools.combinations(drivers,2):
+            for first,second in itertools.combinations([d for d in drivers if not d.get('input_only_alias') and d.get('contact_role')!='nonlogical_common'],2):
                 if first['location']!=second['location']:continue
                 an,ap,_=possible_nets(first);bn,bp,_=possible_nets(second)
                 if ap and bp and not an&bn:
@@ -338,8 +439,15 @@ def audit_wiring(card,spec,documents):
                                 findings.append(dict(context,**finding('source_uncertainty','internal_wiring',pair,None,'Pinless endpoint appears across different or unreadable card locations; inspect identity and route.')))
                             observations.append(dict(context,classification='between_card_installation_wire'));continue
                         dn,dp,_=possible_nets(driver);sn,sp,interchangeable=possible_nets(sink)
+                        if driver.get('input_only_alias'):
+                            if driver['pin'] and sink['pin'] and driver['pin']!=sink['pin']:
+                                observations.append(dict(context,classification='input_contact_installation_wire'));continue
+                            if dn&sn and dp and sp:
+                                observations.append(dict(context,classification='input_contact_fanout'));continue
+                            findings.append(dict(context,**finding('discrepancy','input_contact_fanout',pair,None,
+                                'Input-only AR contact fanout is absent from the common input net.')));continue
                         if pair in expected and dn&sn and dp and sp:
-                            observations.append(dict(context,classification='common_internal_link'));continue
+                            observations.append(dict(context,classification='common_nonlogical_contact_link' if driver.get('contact_role')=='nonlogical_common' else 'common_internal_link'));continue
                         if pair in expected and dn&sn and dp and interchangeable:
                             observations.append(dict(context,classification='common_internal_link_equivalent_input_order'));continue
                         if pair in expected and (not dp or not sp):
@@ -350,7 +458,7 @@ def audit_wiring(card,spec,documents):
     return findings,observations
 
 
-def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=None):
+def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=None,component_authority_path=None):
     root=Path(root).resolve();card=str(card).zfill(4)
     if not re.fullmatch(r'\d{4}',card):raise ValueError('Card number must have four digits.')
     dp=Path(definition_path) if definition_path else root/'json/Card-ALD/definitions'/f'{card}.json'
@@ -363,12 +471,23 @@ def audit(card,root=ROOT,definition_path=None,catalog_path=None,overrides_path=N
     coverage_issues,identity_coverage=catalogue_source_coverage(root,catalog,documents)
     source_issues.extend(coverage_issues)
     corrections=apply_scoped_corrections(root,card,documents,overrides)
+    import component_context
+    net_context=component_context.apply_context(root,catalog,
+        {entry['document'].get('page'):entry['document']for entry in documents.values()},
+        {entry['document'].get('page'):{'path':path.relative_to(root).as_posix(),'sha256':entry['sha256']}for path,entry in documents.items()},
+        authority_path=component_authority_path)
+    source_issues.extend(finding('source_uncertainty','component_occurrence_net_origin',h,None,
+        'Component K context lacks an exact current page-net origin proof.')for h in net_context.get('holds',[]))
     forms=expected_forms(spec);boxes={b['portion']:b for b in spec['boxes']};occurrences=[]
     for path,entry in documents.items():
         doc=entry['document']
+        ground_context=ground_service_inputs(doc,spec['power_contacts'])
         for node in selected_source_nodes(doc,card):
             portion=str(node.get('portion'));box=boxes.get(portion)
-            flags=compare_occurrence(node,box,forms[portion],spec['power_contacts']) if box else [finding('source_uncertainty' if '�' in portion else 'discrepancy','portion',portion,sorted(boxes),'Source portion does not exist in the common card definition.')]
+            compared=deepcopy(node);compared['_source_page']=doc.get('page')
+            compared['_source_model_binding']={'path':path.relative_to(root).as_posix(),'sha256':entry['sha256']}
+            page_reader.attach_typed_terminals(compared,node)
+            flags=compare_occurrence(compared,box,forms[portion],spec['power_contacts'],ground_context) if box else [finding('source_uncertainty' if '�' in portion else 'discrepancy','portion',portion,sorted(boxes),'Source portion does not exist in the common card definition.')]
             if node.get('source_reviewed')is not True:
                 flags.append(finding('source_uncertainty','source_review_acceptance',node.get('source_reviewed'),True,'Occurrence is included, but explicit false/unknown review is not replaced by page acceptance.'))
             # Data-only exceptions require exact scope, literal field value and a current model binding.
@@ -423,7 +542,8 @@ def write_reports(report,outdir):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('card')
     parser.add_argument('--root',type=Path,default=ROOT);parser.add_argument('--definition',type=Path);parser.add_argument('--catalog',type=Path);parser.add_argument('--overrides',type=Path);parser.add_argument('--output-dir',type=Path)
-    args=parser.parse_args();report=audit(args.card,args.root,args.definition,args.catalog,args.overrides)
+    parser.add_argument('--component-authority',type=Path)
+    args=parser.parse_args();report=audit(args.card,args.root,args.definition,args.catalog,args.overrides,args.component_authority)
     out=args.output_dir or args.root.parent/'tmp/ald-text/ald/card-use-audit'/report['card_type']
     write_reports(report,out);print(json.dumps({'output_directory':str(out),**report['summary']},ensure_ascii=False,indent=2))
 

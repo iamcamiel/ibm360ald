@@ -12,6 +12,7 @@ import json
 from pathlib import Path
 import re
 import stat
+from display_direction import exterior_display_side
 
 ROOT = Path(__file__).resolve().parents[2]
 PIN = re.compile(r'[BDGJ](?:0[2-9]|1[0-3])\Z')
@@ -40,6 +41,53 @@ def termination_label(box, variant=None):
     change = (variant or {}).get('box_overrides', {}).get(box['portion'], {})
     return ' '.join([change.get('function', box['function']),
                      box['circuit_identifier'], box['portion']])
+
+
+def port_label(box, port):
+    """Physical contacts stay separate from their explicitly placed source marks."""
+    symbols = port.get('pin_symbols', {})
+    assert isinstance(symbols, dict) and set(symbols) <= {'prefix', 'suffix'}, 'Unknown pin symbol placement'
+    for side in ('prefix', 'suffix'):
+        assert isinstance(symbols.get(side, []), list), 'Pin symbols require ordered literal arrays'
+        assert all(mark == '✲' for mark in symbols.get(side, [])), 'Unsupported intrinsic pin symbol'
+    assert port.get('pin') or not any(symbols.values()), 'A pin symbol requires a physical contact'
+    role=port.get('contact_role','logical');control=port.get('border_control')
+    assert role in ('logical','nonlogical_common'), 'Unknown physical contact role'
+    assert (control=='K') == (role=='nonlogical_common'), 'Nonlogical contact requires an explicit K control'
+    assert role!='nonlogical_common' or port.get('pin'), 'Nonlogical K contact requires a physical pin'
+    assert not (control=='K' and (port.get('border_symbol') or port['triangle'])), 'K cannot share one border cell with a triangle or X'
+    text = ''.join(symbols.get('prefix', [])) + (port.get('pin') or '') + ''.join(symbols.get('suffix', []))
+    start = box['x'] - len(text) if port['side'] == 'input' else box['x'] + 8
+    return start, port['row'], text
+
+
+def put_port_label(rows, box, port):
+    x, y, label = port_label(box, port)
+    assert 0 <= x <= len(rows[y]) - len(label), 'Pin label exceeds canvas'
+    original_start = box['x'] - 3 if port['side'] == 'input' else box['x'] + 8
+    for offset, char in enumerate(label):
+        xx = x + offset
+        expected = ' ' if original_start <= xx < original_start + 3 else '─'
+        assert rows[y][xx] == expected, ('Pin symbol needs a straight wire label slot', xx, y)
+        rows[y][xx] = char
+
+
+def notation_ports(box, change):
+    """Notation overrides may replace decorations, never terminal identity/geometry."""
+    ids = {port['id'] for port in box['ports']}
+    for key in ('port_triangles', 'border_symbols', 'port_symbols'):
+        assert isinstance(change.get(key, {}), dict) and set(change.get(key, {})) <= ids, 'Unknown port decoration override'
+    result = []
+    for original in box['ports']:
+        port = dict(original)
+        for source, target in (('port_triangles', 'triangle'), ('border_symbols', 'border_symbol'), ('port_symbols', 'pin_symbols')):
+            if port['id'] in change.get(source, {}):
+                port[target] = change[source][port['id']]
+        assert port.get('border_symbol') in (None, 'X'), 'Unsupported source border symbol'
+        assert not (port.get('border_symbol') and port['triangle']), 'A port cannot combine a triangle and X'
+        port_label(box, port)
+        result.append(port)
+    return result
 
 
 def header_lines(spec, variant=None):
@@ -83,7 +131,7 @@ def header_lines(spec, variant=None):
     number = (variant or {}).get('number', 0)
     identity = f'VARIANT {number:02}' if variant else 'CANONICAL'
     standard=facts.get('symbol_standard','SLT MANUAL STANDARD')
-    assert standard in ('SLT MANUAL STANDARD','PRINTED ALD FORMS')
+    assert standard in ('SLT MANUAL STANDARD','PRINTED ALD FORMS','MIXED MANUAL AND PRINTED ALD FORMS')
     symbols = f'OBSERVED NOTATION VARIANT {number:02}' if variant else standard
     power_text='; '.join(power) if power and role!='not_established' else 'NOT ESTABLISHED'
     power_heading='RESERVED SYSTEM CONTACTS: ' if authority.get('source_contact_role')=='reserved_system_contact_positions' else 'POWER: '
@@ -132,7 +180,8 @@ def render(spec, variant=None):
     for box in spec['boxes']:
         x, y, h = box['x'], box['top'], box['height']
         change = replacements.get(box['portion'], {})
-        assert set(change) <= {'function', 'port_triangles'}, 'A variant may not move geometry'
+        assert set(change) <= {'function', 'port_triangles', 'border_symbols', 'port_symbols'}, 'A variant may not move geometry'
+        displayed_ports = notation_ports(box, change)
         function = change.get('function', box['function'])
         assert isinstance(function, str) and 0 < len(function) <= 6
         if 'compact_termination' in box:
@@ -142,8 +191,9 @@ def render(spec, variant=None):
             assert len(label) <= compact['label_width'], 'Compact termination label exceeds its reserved space'
             triangles = change.get('port_triangles', {})
             assert set(triangles) <= {p['id'] for p in box['ports']}
-            port = box['ports'][0]
-            if triangles.get(port['id'], port['triangle']):
+            port = displayed_ports[0]
+            assert not port.get('border_symbol') and not any(port.get('pin_symbols', {}).values()), 'Compact R cannot hide source pin decorations'
+            if port['triangle']:
                 assert rows[yy][xx] == '└', 'Compact input decoration requires its terminal corner'
                 rows[yy][xx] = '◺'
             put(rows, xx + 1, yy, label.ljust(compact['label_width']))
@@ -158,11 +208,15 @@ def render(spec, variant=None):
         put(rows, x + 1, y + 4, spec['card_type'] + box['portion'])
         triangles = change.get('port_triangles', {})
         assert set(triangles) <= {p['id'] for p in box['ports']}
-        for port in box['ports']:
+        for port in displayed_ports:
             border = x if port['side'] == 'input' else x + 7
-            rows[port['row']][border] = '◺' if triangles.get(port['id'], port['triangle']) else '│'
+            triangle = port['triangle']
+            symbol = port.get('border_symbol')
+            assert symbol in (None, 'X'), 'Unsupported source border symbol'
+            assert not (symbol and triangle), 'A port cannot combine a triangle and X'
+            rows[port['row']][border] = ('K' if port.get('border_control')=='K' else symbol or ('◺' if triangle else '│'))
             if port['pin']:
-                put(rows, x - 3 if port['side'] == 'input' else x + 8, port['row'], port['pin'])
+                put_port_label(rows, box, port)
     for x,y,label in caption_locations(spec):put(rows,x,y,label)
     for pin in spec['exterior_pins']:
         put(rows, pin['x'], pin['row'], pin['pin'])
@@ -278,6 +332,12 @@ def validate(spec):
     grid_step = spec['canvas'].get('grid_step', 7)
     assert grid_step in [1, 7], 'Unsupported box row spacing'
     for b in boxes:
+        functions=[b['function']]+[v.get('box_overrides',{}).get(b['portion'],{}).get('function',b['function'])
+                                  for v in spec.get('variants',[])]
+        if any(str(label).strip().lstrip('✲*').split()[:1]==['AR'] for label in functions):
+            inputs={p['pin'] for p in b['ports'] if p['side']=='input' and p.get('pin')}
+            assert not any(p['side']=='output' and p.get('pin') in inputs for p in b['ports']), \
+                'AR repeated input contact must be input-only; remove the duplicate output port'
         assert b['height'] == max(7, len([p for p in b['ports'] if p['side'] == 'input']) + 2)
         assert (b['top'] - spec['canvas']['grid_origin']) % grid_step == 0
         assert len(b['circuit_identifier']) == 5
@@ -285,6 +345,9 @@ def validate(spec):
         assert all(p['side'] in ['input', 'output'] and b['top'] < p['row'] < b['top'] + b['height'] - 1 for p in b['ports'])
         for p in b['ports']:
             assert p['pin'] is None or PIN.fullmatch(p['pin']) and p['pin'] not in power
+            port_label(b, p)
+            assert p.get('border_symbol') in (None, 'X'), 'Unsupported source border symbol'
+            assert not (p.get('border_symbol') and p['triangle']), 'A port cannot combine a triangle and X'
         if 'compact_termination' in b:
             compact = b['compact_termination']
             assert set(compact) == {'point', 'label_width'}, 'Unsupported compact termination geometry'
@@ -315,12 +378,24 @@ def validate(spec):
         occupied |= area
     assert {p['pin'] for b in boxes for p in b['ports'] if p['pin']} == {p['pin'] for p in spec['exterior_pins']}, 'Exterior and block pin coverage differ'
     assert wiring_graph(spec) == spec['nets'], 'Wiring differs from reviewed terminal connections'
+    by_terminal={'PORT:'+b['portion']+':'+p['id']:p for b in boxes for p in b['ports']}
+    by_pin={p['pin']:p for p in spec['exterior_pins']}
+    for net in spec['nets']:
+        contacts=[by_terminal[t] for t in net if t in by_terminal]
+        if not any(p.get('contact_role')=='nonlogical_common' for p in contacts):continue
+        # Display direction is distinct from a Boolean gate-driver claim.
+        expected_side=exterior_display_side(contacts, next((t[4:] for t in net if t.startswith('PIN:')),None))
+        for terminal in net:
+            if terminal.startswith('PIN:'):
+                assert by_pin[terminal[4:]]['side']==expected_side, \
+                    'Nonlogical K exterior display direction differs from its isolated/shared contact context'
     base = render(spec)
     occupied |= {(x+i,y) for x,y,label in caption_locations(spec) for i in range(len(label))}
-    box_and_label = occupied | {(x, p['row']) for b in boxes if 'compact_termination' not in b for p in b['ports'] if p['pin']
-                                for x in range(b['x'] - 3, b['x']) if p['side'] == 'input'}
-    box_and_label |= {(x, p['row']) for b in boxes if 'compact_termination' not in b for p in b['ports'] if p['pin'] and p['side'] == 'output'
-                      for x in range(b['x'] + 8, b['x'] + 11)}
+    box_and_label = occupied | {(x, y) for b in boxes if 'compact_termination' not in b
+                                for pattern in [None] + spec['variants']
+                                for p in notation_ports(b, (pattern or {}).get('box_overrides', {}).get(b['portion'], {})) if p['pin']
+                                for start, y, text in [port_label(b, p)]
+                                for x in range(start, start + len(text))}
     vertical_by_row = defaultdict(set)
     for p in spec['wiring']['marks']:
         if p['symbol'] in '│┌┐└┘┼◇':

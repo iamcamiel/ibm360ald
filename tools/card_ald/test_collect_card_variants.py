@@ -10,7 +10,7 @@ C=importlib.util.module_from_spec(spec);spec.loader.exec_module(C)
 
 class CollectorTest(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[3]/"tmp");self.root=Path(self.temp.name);(self.root/'json/XX').mkdir(parents=True)
+        self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name);(self.root/'json/XX').mkdir(parents=True)
         self.definition=self.root/'definition.json'
         boxes=[]
         for portion,pin,out in [('A1','D04','B03'),('B1','B05','D02')]:

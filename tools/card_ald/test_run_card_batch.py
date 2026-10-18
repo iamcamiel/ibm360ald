@@ -162,6 +162,33 @@ class BatchTests(unittest.TestCase):
                 batch.run_batch(repo, base / "results", "0")
             self.assertFalse((base / "results").exists())
 
+    def test_all_prefix_selects_every_four_digit_catalogue_stem(self):
+        with tempfile.TemporaryDirectory() as temp:
+            repo=self.fixture(Path(temp))
+            batch.write(repo/'json/Card types current/report.json',{'card_type':'report'})
+            self.assertEqual(batch.select_cards(repo,'all'),['0141','0494','4191'])
+            self.assertEqual(batch.select_cards(repo,'0'),['0141','0494'])
+            for invalid in ('','ALL','all3','12345','-1'):
+                with self.assertRaises(ValueError):batch.select_cards(repo,invalid)
+
+    def test_all_prefix_preserves_exclusions_and_socket_coverage_guard(self):
+        with tempfile.TemporaryDirectory() as temp:
+            base=Path(temp);repo=self.fixture(base)
+            for card in ('1124','1457','1724'):
+                batch.write(repo/'json/Card types current'/(card+'.json'),{'card_type':card})
+            self.add_scope(repo)
+            uniform=repo/'json/Socket listings uniform/Socket listings.json';uniform.parent.mkdir(parents=True)
+            batch.write(uniform,{'records':[{'card_type':c}for c in ('0141','0494','1124','1457','1724','4191')]})
+            with patch.object(batch,'run_tool',side_effect=self.successful_execution),patch.object(batch,'recheck_sources',return_value={'current_checkpoint':True,'source_models':12}):
+                report=batch.run_batch(repo,base/'results','all')
+            self.assertEqual(report['cards'],['0141','0494','1124','4191'])
+            self.assertEqual(report['excluded_by_direct_human_instruction'],['1457','1724'])
+            self.assertTrue(report['all_cards_attempted'])
+            batch.write(uniform,{'records':[{'card_type':'9999'}]})
+            with patch.object(batch,'run_tool')as execute:
+                with self.assertRaisesRegex(ValueError,'missing socket-listed'):batch.run_batch(repo,base/'missing','all')
+            execute.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

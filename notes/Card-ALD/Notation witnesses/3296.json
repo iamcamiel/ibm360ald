@@ -1,0 +1,1615 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3296",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "8127d8d331d779e61ddac9c698c014b16ed58e8e3b316dec4543852e90f32c22"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "6d78eed767355a7570d5fb5a7355308cb2fd7eded05473480e071c793843875a"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 36,
+    "resolved_catalogue_observations": 36,
+    "source_observations": 36,
+    "exact_model_pointer_keys": 36,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "9c212f045d4029aeb9a1c3fc89d8aad26386c6733f9465d2708d7080f2a6fb28"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "94507a0d795046d27906212b7d43d5cf4e4b2808ec6781d91ca2424c1256c5ef"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "1825cbf208cd2dafb95433e1c9726b9447345c54ec404b59f626b553a03eac3b"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "455eff30a2e610073a3c0b109a0dc34faeaa0b14b8d9d955dded403145685d89"
+    }
+  ],
+  "counts": {
+    "occurrences": 36,
+    "pages": 6,
+    "page_socket_observations": 6,
+    "physical_card_sites": 5,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 5,
+    "complete_field_observation_witnesses": 1,
+    "partial_observation_witnesses": 4,
+    "distinct_observed_variants": 1,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 1,
+    "canonical_pattern_witnesses": 2,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 1
+  },
+  "model_bindings": [
+    {
+      "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+      "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+    },
+    {
+      "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+      "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+    },
+    {
+      "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+      "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+    },
+    {
+      "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+      "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+      "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "5d8758d88bff960a811a067cf3aab89dd95a0de290c88413b772bb17badb5b49",
+      "archive_relative": "BF 9020 Registers to Local Store/BF401 LS BUS PARITY GENERATION OR CHECK ON BITS 00-07.tif",
+      "role": "original source scan",
+      "scan_id": "428"
+    },
+    {
+      "sha256": "7358c244cbe6e1518fcaafc5a61264ff763a05b2f392e94ac93893303e0f81fa",
+      "archive_relative": "BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.tif",
+      "role": "original source scan",
+      "scan_id": "429"
+    },
+    {
+      "sha256": "5418bf32d68b27c9ad8caf58efee9b0cef027c8d39b76655d5a8d138e7eb48cb",
+      "archive_relative": "BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.tif",
+      "role": "original source scan",
+      "scan_id": "430"
+    },
+    {
+      "sha256": "3c24f053e97ce8744f420300d4896ff089027ea3162020c9030f43ad6e2fd28c",
+      "archive_relative": "BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.tif",
+      "role": "original source scan",
+      "scan_id": "431"
+    },
+    {
+      "sha256": "bc404734050c507c0fc5eaa3a297fece3fbf40d2829399d4e874775909a209ce",
+      "archive_relative": "MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.tif",
+      "role": "original source scan",
+      "scan_id": "1289"
+    },
+    {
+      "sha256": "f09a1e965a4332692f85826eca6a1775809158e6dd57849bea8c0499cd4d3c65",
+      "archive_relative": "MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.tif",
+      "role": "original source scan",
+      "scan_id": "1296"
+    }
+  ],
+  "canonical_pattern_witnesses": [
+    {
+      "page": null,
+      "source_pages": [
+        "MA245",
+        "MA265"
+      ],
+      "location": "02A-B4F5",
+      "source_locations": [
+        "02A-B4F5"
+      ],
+      "literal_locations": [
+        "A-B4F5"
+      ],
+      "models": [
+        {
+          "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+          "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+        },
+        {
+          "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+          "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "bc404734050c507c0fc5eaa3a297fece3fbf40d2829399d4e874775909a209ce",
+          "archive_relative": "MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.tif",
+          "role": "original source scan",
+          "scan_id": "1289"
+        },
+        {
+          "sha256": "f09a1e965a4332692f85826eca6a1775809158e6dd57849bea8c0499cd4d3c65",
+          "archive_relative": "MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.tif",
+          "role": "original source scan",
+          "scan_id": "1296"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "MA245",
+          "node": "AU",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+            "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA245",
+          "node": "AV",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+            "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA245",
+          "node": "AW",
+          "node_pointer": "/nodes/19",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+            "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AL",
+          "node_pointer": "/nodes/9",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AM",
+          "node_pointer": "/nodes/10",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AN",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AP",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AQ",
+          "node_pointer": "/nodes/13",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AR",
+          "node_pointer": "/nodes/14",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AS",
+          "node_pointer": "/nodes/15",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AT",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MA265",
+          "node": "AU",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+            "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 2,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "A3",
+        "B1",
+        "B2",
+        "B3",
+        "C1",
+        "C2",
+        "C3",
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C1": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D1": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": true
+    },
+    {
+      "page": "BF431",
+      "source_pages": [
+        "BF431"
+      ],
+      "location": "02A-D3K7",
+      "source_locations": [
+        "02A-D3K7"
+      ],
+      "literal_locations": [
+        "A-D3K7"
+      ],
+      "models": [
+        {
+          "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+          "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "3c24f053e97ce8744f420300d4896ff089027ea3162020c9030f43ad6e2fd28c",
+          "archive_relative": "BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.tif",
+          "role": "original source scan",
+          "scan_id": "431"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "BF431",
+          "node": "AU",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "BF431",
+          "node": "AV",
+          "node_pointer": "/nodes/13",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "BF431",
+          "node": "AW",
+          "node_pointer": "/nodes/14",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "BF431",
+          "node": "AK",
+          "node_pointer": "/nodes/15",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "BF431",
+          "node": "AL",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "BF431",
+          "node": "AJ",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/BF 9020 Registers to Local Store/BF431 LS BUS PARITY GENERATION OR CHECK ON BITS 24-31.json",
+            "sha256": "9e8c1ee34cf56b0ff10d48460ae73c6b6b2cba87d415eb0befbf37c4e6d17545"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "A3",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "C1",
+        "C2",
+        "C3",
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B3": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    }
+  ],
+  "profiles_left_uncertain": [],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A3": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "BF401",
+          "source_pages": [
+            "BF401"
+          ],
+          "location": "02A-D4K7",
+          "source_locations": [
+            "02A-D4K7"
+          ],
+          "literal_locations": [
+            "A-D4K7"
+          ],
+          "models": [
+            {
+              "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+              "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "5d8758d88bff960a811a067cf3aab89dd95a0de290c88413b772bb17badb5b49",
+              "archive_relative": "BF 9020 Registers to Local Store/BF401 LS BUS PARITY GENERATION OR CHECK ON BITS 00-07.tif",
+              "role": "original source scan",
+              "scan_id": "428"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "BF401",
+              "node": "AU",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF401",
+              "node": "AV",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF401",
+              "node": "AW",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF401",
+              "node": "AK",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF401",
+              "node": "AL",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF401",
+              "node": "AJ",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF401 LS Bus Parity Generation or Check on Bits 00-07.json",
+                "sha256": "cff2fa217e3fd3fe6bdf8748d370544ac76e3575c55c86e9907b0e458ea5cfc7"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "D3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "BF421",
+          "source_pages": [
+            "BF421"
+          ],
+          "location": "02A-E3K2",
+          "source_locations": [
+            "02A-E3K2"
+          ],
+          "literal_locations": [
+            "A-E3K2"
+          ],
+          "models": [
+            {
+              "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+              "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "5418bf32d68b27c9ad8caf58efee9b0cef027c8d39b76655d5a8d138e7eb48cb",
+              "archive_relative": "BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "430"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "BF421",
+              "node": "AU",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF421",
+              "node": "AV",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF421",
+              "node": "AW",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF421",
+              "node": "AK",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF421",
+              "node": "AL",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF421",
+              "node": "AJ",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF421 LS BUS PARITY GENERATION OR CHECK ON BITS 16-23.json",
+                "sha256": "898b7d1e3cadc9aace62f172bc8e57a5995d1aa790e1d1c4fd04770b50f8324f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "D3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "BF411",
+          "source_pages": [
+            "BF411"
+          ],
+          "location": "02A-E4K7",
+          "source_locations": [
+            "02A-E4K7"
+          ],
+          "literal_locations": [
+            "A-E4K7"
+          ],
+          "models": [
+            {
+              "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+              "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "7358c244cbe6e1518fcaafc5a61264ff763a05b2f392e94ac93893303e0f81fa",
+              "archive_relative": "BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.tif",
+              "role": "original source scan",
+              "scan_id": "429"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "BF411",
+              "node": "AU",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF411",
+              "node": "AV",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF411",
+              "node": "AW",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF411",
+              "node": "AK",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF411",
+              "node": "AL",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "BF411",
+              "node": "AJ",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/BF 9020 Registers to Local Store/BF411 LS BUS PARITY GENERATION OR CHECK ON BITS 08-15.json",
+                "sha256": "1fcf6857e31f6bfa6d9a7c49b01c74825597c2bc4b5a6dbf4da15f6e0b64b951"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "D2",
+            "D3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "BF401",
+        "BF411",
+        "BF421"
+      ],
+      "source_locations": [
+        "02A-D4K7",
+        "02A-E3K2",
+        "02A-E4K7"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 3
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "c8286eaa8e3e33dfefb828cd90aec4da07a371d54a0f60793b58d3bafe4c3904",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

@@ -12,6 +12,8 @@ import json
 from pathlib import Path
 
 from card_canvas import Canvas
+from card_source import logical_gate_terminal
+from display_direction import exterior_display_side
 
 DIRS = ((1, 0), (0, 1), (-1, 0), (0, -1))
 OPPOSITE = (2, 3, 0, 1)
@@ -54,6 +56,7 @@ class Router:
         self.clearance_obstacles = clearance_obstacles or set()
         self.crossing_penalty=crossing_penalty
         self.bend_penalty=bend_penalty
+        self.input_vertical_channels={}
         self.wires = defaultdict(dict)
         self.by_net = defaultdict(set)
         self.virtual_endpoint_directions = defaultdict(lambda: defaultdict(set))
@@ -135,6 +138,9 @@ class Router:
                               for n, ds in self.wires.get((xx, ny), {}).items()):
                     continue
                 step = 1 + (self.bend_penalty if direction >= 0 and direction != nd else 0) + (self.crossing_penalty if others else 0)
+                channel=self.input_vertical_channels.get(net)
+                if dy and channel and max(x,nx)>channel["right"]:
+                    step+=channel["penalty"]
                 new_cost = cost + step
                 ns = (nx, ny, nd)
                 if new_cost < costs.get(ns, 10**12):
@@ -205,6 +211,22 @@ def prepare(model):
                 options=[p for p in nodes[t]["_inputs"] if p["pin"] is None]
                 port=next((p for p in options if p.get("ref")==s),options[0] if options else {"pin":None,"triangle":False})
                 nets[key]["inputs"].append((t,dict(port)))
+        for fanout in model.get('input_contact_fanouts',[]):
+            key,t,ref=fanout['contact'],fanout['target'],fanout['input_ref']
+            assert key in nets and nets[key]['inputs'], 'Input-contact fanout has no physical input net'
+            if ref != 'PINLESS':
+                assert any(part==t and p.get('pin')==ref for part,p in nets[key]['inputs']), \
+                    'Numbered input-contact fanout is absent from its physical net'
+                continue
+            options=[p for p in nodes[t]['_inputs'] if p.get('pin') is None and p.get('ref')=='INPUT_CONTACT:'+key]
+            assert len(options)==1, 'Input-contact fanout needs one exact anonymous target port'
+            port=dict(options[0]);port['_port_key']=port.get('id') or 'INPUT_CONTACT:'+key
+            assert not any(part==t and p.get('_port_key')==port['_port_key'] for part,p in nets[key]['inputs']), \
+                'Duplicate anonymous input-contact fanout terminal'
+            nets[key]['inputs'].append((t,port))
+    channel_penalty=hints.get("input_channel_vertical_penalty",0)
+    if type(channel_penalty) is not int or channel_penalty<0:
+        raise ValueError("Input channel preference must be a nonnegative integer")
     inputs, outputs = defaultdict(list), defaultdict(list)
     for key, net in nets.items():
         for portion, p in net["inputs"]:
@@ -214,6 +236,9 @@ def prepare(model):
     positions = {}
     by_rank = defaultdict(list)
     bank_interval = hints.get("bank_interval", 48)
+    input_channel_extra=hints.get("input_channel_extra",0)
+    if type(input_channel_extra) is not int or input_channel_extra<0:
+        raise ValueError("Input routing channel growth must be a nonnegative integer")
     row_step = hints.get("row_step", 7)
     row_gap = hints.get("row_gap", 0)
     assert row_step in (1, 7) and row_gap in (0, 1)
@@ -248,7 +273,7 @@ def prepare(model):
                 # A caption occupies the preceding row and is an actual routing obstacle.
                 top=max(top,y+1)
                 top=((top+row_step-1)//row_step)*row_step
-            positions[p] = {"x": hints.get("first_bank_x",60) + rank*bank_interval, "top": top, "height": height}
+            positions[p] = {"x": hints.get("first_bank_x",60) + input_channel_extra + rank*bank_interval, "top": top, "height": height}
             y=max(y,top+((height+row_gap+row_step-1)//row_step)*row_step)
     width = max(max(p["x"] for p in positions.values()) + max(20,hints.get("right_margin",60)),hints.get("minimum_width",0))
     height = max(p["top"]+p["height"] for p in positions.values()) + 35
@@ -276,7 +301,8 @@ def prepare(model):
                     if pin:
                         blocked.update((xx, yy) for xx in range(x+8, x+11))
                 port_key=port.get("_port_key",key)
-                ports[(p, side, port_key)] = {"point": endpoint, "pin": pin, "triangle": port["triangle"],"net":key,"id":port.get("id")}
+                ports[(p, side, port_key)] = {"point": endpoint, "pin": pin, "triangle": port["triangle"],"net":key,"id":port.get("id"),
+                    **{k:port[k] for k in ('contact_role','border_control') if k in port}}
     exterior = {}
     endpoints = {}
     reserved = defaultdict(set)
@@ -295,7 +321,8 @@ def prepare(model):
             continue
         physical_pin=net.get("_external_pin",key if not key.startswith("INTERNAL:") else None)
         if physical_pin:
-            side = "output" if net["outputs"] else "input"
+            contacts=[dict(p,side=side) for side in ("input","output") for _,p in net[side+"s"]]
+            side = exterior_display_side(contacts, physical_pin)
             row = ends[0][1]
             while row in used_rows[side]:
                 row += 1
@@ -312,6 +339,10 @@ def prepare(model):
     vertical_forbidden = {(x+dx,y) for x,y in clearance_obstacles for dx in range(-2,3)}
     router = Router(width, height, blocked, reserved, vertical_forbidden, clearance_obstacles,
                     hints.get("crossing_penalty",4),hints.get("bend_penalty",5))
+    if channel_penalty:
+        for key,net in nets.items():
+            if net["inputs"] and not net["outputs"] and any(d["net"]==key and d["side"]=="input" for d in exterior.values()):
+                router.input_vertical_channels[key]={"right":min(positions[p]["x"] for p,_ in net["inputs"])-6,"penalty":channel_penalty}
     for (p, side, port_key), port in ports.items():
         router.virtual_endpoint_directions[port["point"]][port["net"]].add(0 if side == "input" else 2)
     for pin, data in exterior.items():
@@ -595,7 +626,7 @@ def optimize_fanout_trunks(model, geometry):
     for pin,original_data in sorted(geometry[2].items()):
         positions,ports,exterior,oldrouter=best
         data=exterior[pin];net=data["net"]
-        drivers=[(key,p) for key,p in ports.items() if p["net"]==net and key[1]=="output"]
+        drivers=[(key,p) for key,p in ports.items() if p["net"]==net and key[1]=="output" and logical_gate_terminal(p)]
         sinks=[(key,p) for key,p in ports.items() if p["net"]==net and key[1]=="input"]
         if data["side"]!="output" or len(drivers)!=1 or len(sinks)<2:continue
         source=drivers[0][1]["point"]

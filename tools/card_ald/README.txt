@@ -237,3 +237,29 @@ archive. Publication never commits, pushes or changes source ALD transcriptions.
 
 This verifies current source bindings, the use audit, default-builder roundtrip,
 receipt and rendered bytes without opening private candidate or review files.
+
+AR shared-contact rule: a numbered output stub repeating an input contact on
+the same primary AR block is input only. The source ALD retains its printed
+stub; card derivation, use auditing and rendering omit the duplicate output
+and never count it as a driver. Genuine distinct outputs remain outputs.
+
+Use --prefix all with run_card_batch.py to attempt all catalogued card types.
+Direct human scope exclusions still apply. A generated candidate is not an
+independently accepted or published universal pinout.
+
+A source K control identifies a nonlogical commoned contact. Keep its physical
+contact and actual source polarity, exclude it from Boolean gate truth and
+driver counts, and infer no connection solely from the K. A sole right-side K
+contact with no same-card peer is displayed at the exterior output side. This
+is a display direction, not a Boolean driver. Shared K nets keep the existing
+logical-driver rule. Distinct physical pin numbers remain distinct card nets
+unless independent evidence establishes an intrinsic connection. In particular,
+0507 A1 contacts B10 and K D10 remain separate physical nets.
+
+The optional input_channel_extra and input_channel_vertical_penalty layout
+hints widen or prefer input-side routing channels through the shared router;
+they do not alter electrical nets or add card-specific routing rules.
+
+Special-circuit symbol forms are independent of exact-card mechanics and power
+authority. Mixed cards retain manual symbols for their ordinary portions.
+Unknown power remains explicitly unknown; no supply connection is inferred.

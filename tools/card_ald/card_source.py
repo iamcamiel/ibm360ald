@@ -21,6 +21,7 @@ _NORMALIZATION = None
 _EPOCHS = {}
 _INDICES = {}
 _SCAN_BINDINGS = {}
+_NET_ORIGIN_CONTEXTS = {}
 
 
 def configure(root):
@@ -100,6 +101,8 @@ def _terminal(t):
     result['_terminal_id'] = t['terminal_id']
     result['_border_decorations'] = deepcopy(t['border_decorations'])
     result['_symbols'] = deepcopy(t['symbols'])
+    # Runtime authority is never imported from serialized source extensions.
+    result.pop('_occurrence_net_role',None)
     return result
 
 
@@ -447,9 +450,9 @@ def physical_readings(port):
     external fixtures retain strict printed/physical mirror comparison.
     """
     if '_pin_number_status' in port:
+        if any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred')):return {}
         if port['_pin_number_status']=='observed' and physical_contact(port.get('_pin_number')):
             return {'uniform_pin_number':physical_contact(port['_pin_number'])}
-        if any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred')):return {}
         fields=('physical_pin','physical_pin_candidate','pin')
     else:fields=('physical_pin','physical_pin_candidate','printed_pin','printed_label','pin')
     return {field:pin for field in fields if (pin:=physical_contact(port.get(field))) is not None}
@@ -458,6 +461,263 @@ def physical_readings(port):
 def terminal_contact(port):
     values=set(physical_readings(port).values())
     return next(iter(values)) if len(values)==1 else None
+
+
+def terminal_contact_role(port):
+    """Explicit K means a non-logical commoned contact, never a new gate.
+
+    The printed side and contact remain available for drawing/net tracing.
+    This role proves no connection to any other contact or block by itself.
+    """
+    explicit = any(port.get(k) == 'K' for k in
+        ('border_marker','border_control','border_qualifier','printed_qualifier','marker'))
+    explicit |= any(d.get('glyph') == 'K' and d.get('kind') != 'triangle'
+                    for d in port.get('_border_decorations',[]) if isinstance(d,dict))
+    declared=port.get('contact_role')
+    if declared not in (None,'logical','nonlogical_common'):
+        raise ValueError('Unknown terminal contact role')
+    if explicit and declared == 'logical':
+        raise ValueError('Explicit K contradicts declared logical contact role')
+    if declared == 'nonlogical_common' and not explicit:
+        raise ValueError('Nonlogical contact role requires an explicit K control')
+    # Card definitions carry the already source-proved role separately.
+    return 'nonlogical_common' if explicit else 'logical'
+
+
+def logical_gate_terminal(port):
+    return terminal_contact_role(port) != 'nonlogical_common'
+
+
+def _net_origin_epoch_current(value,root):
+    try:
+        checkpoint=value['source_checkpoint'];path=Path(checkpoint['path']).resolve()
+        if path!=root/'notes/Source status.json' or digest(path)!=checkpoint['sha256']:return False
+        for binding in (value['component_authority'],value['validator']):
+            target=Path(binding['path']);target=(target if target.is_absolute()else root/target).resolve()
+            if digest(target)!=binding['sha256']:return False
+        for binding in value.get('component_capability',{}).get('manual_evidence',[]):
+            target=Path(binding['path']);target=target if target.is_absolute()else root/target
+            if digest(target)!=binding['sha256']:return False
+        epoch=source_epoch(root)
+        for binding in [value['model_binding']]+[w['model_binding']for w in value.get('plain_same_portion_witnesses',[])]:
+            target=Path(binding['path']);target=(target if target.is_absolute()else root/target).resolve()
+            if (not target.is_relative_to(root/'json') or epoch['models'].get(target)!=binding['sha256']
+                    or digest(target)!=binding['sha256']):return False
+        return True
+    except (KeyError,TypeError,ValueError,OSError):return False
+
+
+def register_occurrence_net_role(proof,port,root):
+    """Seal a context already validated against current accepted page facts.
+
+    Only the component-context validator registers proofs. A source JSON field
+    alone cannot opt a K contact into another intrinsic nominal port role.
+    """
+    value=deepcopy(proof);value.pop('context_seal',None)
+    if (value.get('role')!='commoned_nonorigin' or value.get('side')!='output'
+            or not isinstance(value.get('pin'),str)
+            or physical_contact(value.get('pin'))!=value.get('pin')
+            or not isinstance(value.get('terminal_id'),str)):
+        raise ValueError('Invalid occurrence net-origin role proof')
+    seal=hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
+    root=Path(root).resolve()
+    if not _net_origin_epoch_current(value,root):raise ValueError('Occurrence context source epoch is stale')
+    if (value['side']!=port.get('side')or value['pin']!=terminal_contact(port)
+            or value['terminal_id']!=port.get('_terminal_id')or terminal_contact_role(port)!='nonlogical_common'):
+        raise ValueError('Occurrence context does not own this exact terminal')
+    # Keep the object itself, not only id(port), to prevent Python id reuse.
+    _NET_ORIGIN_CONTEXTS[id(port)]=(port,seal,root)
+    return {**value,'context_seal':seal}
+
+
+def occurrence_net_role(port):
+    proof=port.get('_occurrence_net_role')
+    if not isinstance(proof,dict):return None
+    value=deepcopy(proof);seal=value.pop('context_seal',None)
+    actual=hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
+    registered=_NET_ORIGIN_CONTEXTS.get(id(port))
+    if (seal!=actual or not registered or registered[0]is not port or registered[1]!=seal
+            or value.get('role')!='commoned_nonorigin'
+            or value.get('side')!=port.get('side') or value.get('pin')!=terminal_contact(port)
+            or value.get('terminal_id')!=port.get('_terminal_id')
+            or terminal_contact_role(port)!='nonlogical_common'
+            or not _net_origin_epoch_current(value,registered[2])):
+        return None
+    return proof
+
+
+def project_occurrence_net_role(source,target,*,page,node,model_binding):
+    """Retain authority only for an explicitly scoped in-process source clone."""
+    target.pop('_occurrence_net_role',None)
+    proof=occurrence_net_role(source)
+    if not proof or proof.get('page')!=page or proof.get('node')!=node or not isinstance(model_binding,dict):return
+    root=_NET_ORIGIN_CONTEXTS[id(source)][2]
+    def resolved(binding):
+        path=Path(binding['path']);return ((path if path.is_absolute()else root/path).resolve(),binding['sha256'])
+    try:
+        if resolved(model_binding)!=resolved(proof['model_binding']):return
+        target['_occurrence_net_role']=register_occurrence_net_role(proof,target,root)
+    except (ValueError,KeyError,TypeError,OSError):return
+
+
+def intrinsic_contact_role(port):
+    """Separate a proved page net-origin mark from the common source form.
+
+    The nominal direction of a passive component port establishes no Boolean
+    function or drive capability. K-only contacts retain their existing role.
+    """
+    return 'logical' if occurrence_net_role(port) else terminal_contact_role(port)
+
+
+def documentary_occurrence_net_role(port):
+    """Serialize a current owned proof as path-free documentation, never authority.
+
+    Runtime certificates remain attached only to the original validated ports.
+    This versioned record cannot be registered or used to change a port role.
+    """
+    proof=occurrence_net_role(port)
+    if proof is None:
+        if port.get('_occurrence_net_role')is not None:raise ValueError('Unowned or stale context cannot become documentary evidence')
+        return None
+    root=_NET_ORIGIN_CONTEXTS[id(port)][2]
+    registry_path=root/'notes/Card-ALD/Manual canonical circuit forms.json'
+    registry=json_read(registry_path)
+    if registry.get('schema')!='manual-canonical-circuit-forms-v1':raise ValueError('Unknown registered manual authority')
+    manual=Path(registry['manual']);manual=(manual if manual.is_absolute()else root/manual).resolve()
+    expected=registry['manual_sha256']
+    if manual.suffix.lower()!='.pdf' or digest(manual)!=expected:raise ValueError('Registered manual source is stale')
+    result=deepcopy(proof);result.pop('context_seal',None)
+    evidence=result.get('component_capability',{}).get('manual_evidence',[])
+    if not evidence:raise ValueError('Context has no registered manual documentary evidence')
+    references=[]
+    allowed={'path','sha256','pdf_page_1based','pdf_pages_1based','printed_page','figure','section'}
+    for item in evidence:
+        if not isinstance(item,dict)or set(item)-allowed:raise ValueError('Manual documentary reference contains unsupported fields')
+        path=Path(item['path']);path=(path if path.is_absolute()else root/path).resolve()
+        if path!=manual or item.get('sha256')!=expected or digest(path)!=expected:
+            raise ValueError('Manual documentary reference is not the exact registered source')
+        pages=item.get('pdf_pages_1based',[item['pdf_page_1based']]if 'pdf_page_1based'in item else[])
+        if not pages or any(type(page)is not int or page<1 for page in pages):raise ValueError('Invalid manual documentary page metadata')
+        references.append({'schema':'registered-manual-document-reference-v1','document':manual.name,
+                           **{key:deepcopy(value)for key,value in item.items()if key!='path'}})
+    result['component_capability']['manual_evidence']=references
+    def portable(value):
+        if isinstance(value,dict):
+            value=deepcopy(value)
+            if ('path'in value or'file'in value)and value.get('sha256'):
+                key='path'if'path'in value else'file';path=Path(value[key]);path=(path if path.is_absolute()else root/path).resolve()
+                if not path.is_relative_to(root):raise ValueError('Unregistered external dependency in documentary context')
+                value[key]=path.relative_to(root).as_posix()
+            return {key:portable(child)for key,child in value.items()}
+        if isinstance(value,list):return[portable(child)for child in value]
+        return value
+    result=portable(result)
+    result['schema']='documentary-passive-component-net-origin-v1'
+    result['manual_registry']={'path':registry_path.relative_to(root).as_posix(),'sha256':digest(registry_path)}
+    result['runtime_authority']=False
+    result['documentary_sha256']=hashlib.sha256(json.dumps(result,sort_keys=True,ensure_ascii=False,separators=(',',':')).encode('utf-8')).hexdigest()
+    return result
+
+
+def pinless_terminal(port):
+    """Anonymous port or an exact separately reviewed wire annotation."""
+    if any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred')):return False
+    if terminal_contact(port) is not None:return False
+    label=port.get('pin')
+    if label is None or str(label).strip()=='' or re.fullmatch(r'(?:IN|OUT)\d*|[AB]|(?:input|output)\d*',str(label),re.I):return True
+    proof=port.get('_reviewed_pinless_control',{})
+    return (proof.get('role')=='anonymous-input-wire-annotation' and port.get('side')=='input'
+            and proof.get('literal')==label and proof.get('terminal_id')==port.get('_terminal_id')
+            and isinstance(proof.get('model_binding'),dict))
+
+
+def attach_typed_terminals(occurrence,node):
+    """Attach current uniform fields only to the exact same literal terminals."""
+    for port,current in zip(occurrence.get('pins',[]),node.get('pins',[])):
+        if any(port.get(k)!=current.get(k) for k in ('side','pin','row','triangle')):continue
+        for key in ('_pin_number_status','_pin_number','_terminal_id','_border_decorations','_symbols','_reviewed_pinless_control'):
+            if key in current:port[key]=deepcopy(current[key])
+        if terminal_contact_role(current)=='nonlogical_common':
+            # Catalogue projections need not repeat every literal marker field.
+            # Consolidate only this exact current terminal's explicit K here.
+            port['border_control']='K'
+        project_occurrence_net_role(current,port,page=occurrence.get('page',occurrence.get('_source_page')),
+            node=occurrence.get('node',occurrence.get('id')),model_binding=occurrence.get('_model_binding',occurrence.get('_source_model_binding')))
+
+
+def terminal_border_symbol(port):
+    """An explicit uniform edge X, never guessed from a contact suffix."""
+    symbols={d.get('glyph') for d in port.get('_border_decorations',[])
+             if d.get('kind')!='triangle' and d.get('glyph') is not None}
+    if 'X' not in symbols:return None
+    if symbols!={'X'} or wedge(port) is True:
+        raise ValueError('Conflicting typed edge decorations at one terminal')
+    return 'X'
+
+
+def terminal_pin_symbols(port):
+    """Selected intrinsic open stars, separate from installation/edge marks.
+
+    Numeric controls, T and unplaced non-star annotations remain in _symbols;
+    they are not inferred to be intrinsic card contact decorations.
+    """
+    data=port.get('_symbols')
+    if data is None:return None
+    selected=data.get('selected_presentation')
+    if not isinstance(selected,dict):raise ValueError('No selected typed pin-symbol presentation')
+    groups={}
+    for side in ('prefix','suffix','unplaced'):
+        for group in data.get(side,[]):
+            key=group['mark_id']
+            if key in groups:raise ValueError('Ambiguous typed pin-symbol mark identity')
+            groups[key]=group['marks']
+    unplaced_stars=[g['mark_id'] for g in data.get('unplaced',[])
+                    if any(m.get('literal')=='✲' for m in g.get('marks',[]))]
+    if unplaced_stars:
+        # A separate annotation may merely repeat a fully printed D13✲.
+        # Accept only one corroborating star, with one consistent literal
+        # position; never place a star that appears solely as an annotation.
+        def star_sides(observation):
+            return [side for side in ('prefix','suffix')
+                    for key in observation.get(side+'_mark_ids',[])
+                    for mark in groups.get(key,[]) if mark.get('literal')=='✲']
+        ordered=star_sides(selected)
+        observations=data.get('observations',[])
+        references=[o for o in observations if any(k in unplaced_stars for k in o.get('unplaced_mark_ids',[]))]
+        def corroborating_annotation(group):
+            bare=[{'literal':'✲','meaning_status':'uninterpreted','order':0}]
+            if group==bare:return True
+            # Some source models retain the whole same printed contact label
+            # as an annotation. It corroborates only an exact ordered label;
+            # it cannot supply a contact, move a star, or add a second star.
+            if any(mark.get('order')!=i or mark.get('meaning_status')!='uninterpreted'
+                   or not isinstance(mark.get('literal'),str) or len(mark['literal'])!=1
+                   for i,mark in enumerate(group)):return False
+            label=''.join(mark['literal']for mark in group)
+            contact=port.get('_pin_number') or physical_contact(port.get('physical_pin')) or physical_contact(port.get('pin'))
+            if not isinstance(contact,str)or not re.fullmatch(r'[BDGJ](?:0[2-9]|1[0-3])',contact):return False
+            expected=contact+'✲'if ordered==['suffix']else'✲'+contact if ordered==['prefix']else None
+            # Consumers may replace pin with its normalized physical contact;
+            # the typed selected label and annotation remain the source proof.
+            return label==expected and ('printed_annotation'not in port or port['printed_annotation']==label)
+        corroborated=(len(unplaced_stars)==1 and corroborating_annotation(groups[unplaced_stars[0]])
+            and len(ordered)==1 and str(selected.get('observation_id','')).startswith('label:')
+            and references and all(str(o.get('observation_id','')).startswith('mark-field:') for o in references)
+            and all(not star_sides(o) or star_sides(o)==ordered for o in observations)
+            and not selected.get('unplaced_mark_ids'))
+        if not corroborated:raise ValueError('Observed intrinsic pin star has no established placement')
+    borders={d.get('glyph') for d in port.get('_border_decorations',[]) if d.get('kind')!='triangle'}
+    def literals(ids):
+        result=[]
+        for key in ids:
+            if key not in groups:raise ValueError('Selected typed pin symbol is missing')
+            for mark in groups[key]:
+                literal=mark.get('literal')
+                if not isinstance(literal,str) or not literal:raise ValueError('Typed pin symbol has no literal')
+                if literal not in borders and literal=='✲':result.append(literal)
+        return result
+    if literals(selected.get('unplaced_mark_ids',[])):raise ValueError('Selected pin symbol has no established placement')
+    return {side:literals(selected.get(side+'_mark_ids',[])) for side in ('prefix','suffix')}
 
 
 def wedge(port):
@@ -469,11 +729,44 @@ def wedge(port):
             value=decoration.get('observed_value')
             if decoration.get('kind')=='triangle' and type(value)is bool:marks.append(value)
             elif decoration.get('glyph')=='◺':marks.append(True)
+            elif decoration.get('glyph')=='│':marks.append(False)
         if marks:return marks[0] if len(set(marks))==1 else None
-    if port.get('border_marker')=='◺':return True
+    literal_marks=[glyph=='◺' for field in ('border_marker','border_glyph')
+                   if (glyph:=port.get(field)) in ('◺','│')]
+    if literal_marks:
+        if type(port.get('triangle'))is bool:literal_marks.append(port['triangle'])
+        return literal_marks[0] if len(set(literal_marks))==1 else None
     if 'triangle' in port and port['triangle'] is not None:return bool(port['triangle'])
     if 'border_marker' in port:return False
     return None
+
+def primary_function(node):
+    """The first printed function determines role; retain secondary labels literally."""
+    label = node.get('function', node.get('function_label', ''))
+    words = str(label or '').strip().lstrip('✲*').split()
+    return words[0] if words else ''
+
+
+def ar_input_only_aliases(node, pins=None):
+    """Return printed output indices that repeat an input of this exact AR block.
+
+    Source terminals are never changed. Conflicting/unknown physical readings do
+    not qualify. The result is a logical role projection, not a source correction.
+    """
+    if primary_function(node) != 'AR':
+        return {}
+    ports = node.get('pins', []) if pins is None else pins
+    inputs = {terminal_contact(p) for p in ports if p.get('side') == 'input'}
+    inputs.discard(None)
+    return {i: terminal_contact(p) for i,p in enumerate(ports)
+            if p.get('side') == 'output' and terminal_contact(p) in inputs}
+
+
+def logical_terminal_items(node):
+    """Original indices and unmodified terminals after input-only AR projection."""
+    aliases = ar_input_only_aliases(node)
+    return [(i,p) for i,p in enumerate(node.get('pins', [])) if i not in aliases]
+
 
 def resolve_net_port(node, endpoint, side, adapted_pins=None):
     """Resolve local terminal identity before its printed contact label.
@@ -495,6 +788,8 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
                    ("border_marker", "border_control", "border_qualifier", "printed_qualifier", "marker"))
 
     def contact_label(port, value):
+        if '_pin_number_status' in port and value==port.get('pin'):
+            return terminal_contact(port)
         contact = physical_contact(value)
         if contact is None and k_marked(port) and isinstance(value, str):
             match = re.fullmatch(r"K([BDGJ](?:0[2-9]|1[0-3]))[✲*]?", value.strip())
@@ -578,7 +873,8 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
     label = effective.get("pin")
     contact = contact_label(raw, label)
     raw_contact = contact_label(raw, raw.get("pin"))
-    mirrors = {contact_label(raw, raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")}
+    mirrors = (set(physical_readings(raw).values()) if '_pin_number_status' in raw else
+               {contact_label(raw, raw.get(k)) for k in ("physical_pin", "printed_pin", "printed_label")})
     mirrors.discard(None)
     semantic = bool(re.fullmatch(
         r"(?:(?:[A-Z][A-Z0-9]*_)?(?:IN|OUT)(?:[_-].*)?|INPUT|OUTPUT|TIE|TERMINAL|FEEDTHROUGH)", str(label), re.I))
@@ -589,9 +885,13 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
     if len(mirrors) > 1 or (raw_contact and mirrors and mirrors != {raw_contact}):
         return {**result, "status": "unresolved", "reason": "conflicting raw physical contact mirrors"}
     if contact:
-        return {**result, "status": "numbered"}
-    placeholder = label is None or str(label).strip() == "" or re.fullmatch(
-        r"(?:IN|OUT)\d*|[AB]|(?:input|output)\d*", str(label), re.I)
+        aliases = ar_input_only_aliases(node, adapted_pins)
+        if side == 'output' and index in aliases:
+            return {**result, "status": "numbered", "input_only_alias": True,
+                    "logical_side": "input", "role": "AR repeated input contact"}
+        role=terminal_contact_role(effective)
+        return {**result, "status": "numbered", **({'contact_role':role,'logical_side':None} if role!='logical' else {})}
+    placeholder = pinless_terminal(effective)
     if placeholder and not mirrors:
         return {**result, "status": "pinless"}
     return {**result, "status": "unresolved", "reason": "unreadable or unsupported printed contact label"}

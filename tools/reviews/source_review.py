@@ -280,8 +280,23 @@ def pointer_parts(pointer):
     return [x.replace('~1', '/').replace('~0', '~') for x in pointer[1:].split('/')]
 
 
+def declared_model(model, schema):
+    require(isinstance(model,dict), 'Unsupported JSON model: object required')
+    if schema=='ald-page-nodes-v1':
+        require(isinstance(model.get('nodes'),list), 'Declared ALD model requires nodes list')
+    elif schema=='ald-socket-listing-table-v1':
+        require('nodes' not in model and isinstance(model.get('records'),list)
+                and all(isinstance(row,dict)for row in model['records']),
+                'Declared socket table requires records list and no synthetic nodes')
+    else:raise ValueError('Unsupported declared page model schema')
+    return schema
+
+
 def patch_model(model, patches):
-    require(isinstance(model, dict) and isinstance(model.get('nodes'), list), 'Unsupported JSON model: nodes-list ALD model required')
+    require(isinstance(model, dict) and (isinstance(model.get('nodes'), list) or
+            'nodes' not in model and isinstance(model.get('records'),list) and
+            all(isinstance(row,dict)for row in model['records'])),
+            'Unsupported JSON model: nodes-list ALD or records-list socket table required')
     output = deepcopy(model)
     seen = []
     for patch in patches:
@@ -398,7 +413,7 @@ def create_stage(intent_path, stage_path):
         inputs[path] = raw
     for page in pages:
         require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,80}', page['page']), 'Unsafe page key')
-        require(page.get('model_schema') == 'ald-page-nodes-v1', 'Unsupported declared page model schema')
+        require(page.get('model_schema') in {'ald-page-nodes-v1','ald-socket-listing-table-v1'}, 'Unsupported declared page model schema')
         source, _ = checked(page['source'], intent_path.parent)
         require(source.suffix.lower() in {'.tif', '.tiff'}, 'Original TIFF binding required')
         protected.add(source)
@@ -412,6 +427,7 @@ def create_stage(intent_path, stage_path):
         after = dict((kind, raw) for kind, (path, raw) in prior.items())
         after['txt'] = patch_text(after['txt'], page.get('cell_edits', []), grid)
         model = json.loads(after['json'].decode('utf-8-sig'))
+        declared_model(model,page['model_schema'])
         updated = patch_model(model, page.get('json_patches', []))
         require(not validate_pin_edits(model, updated, page), 'Pin annotation/contact mirror guard rejected the declared changes: ' + json.dumps(validate_pin_edits(model, updated, page), ensure_ascii=False))
         if not json_equal(updated, model):
@@ -469,6 +485,7 @@ def create_stage(intent_path, stage_path):
             before_saved[kind], candidate[kind], prior_bindings[kind] = binding(before_path), binding(candidate_path), binding(target)
         manifest['records'].append({'page': page['page'], 'source': {'path': str(source), 'sha256': page['source']['sha256']}, 'prior_quartet': prior_bindings,
                                     'before_saved': before_saved, 'staged_quartet': candidate, 'grid': page['grid'],
+                                    'model_schema': page['model_schema'],
                                     'cell_edits': page.get('cell_edits', []), 'json_patches': page.get('json_patches', []),
                                     'notes_append': page.get('notes_append'), 'preview_config': preview,
                                     'evidence': page.get('evidence', [])})
@@ -540,6 +557,8 @@ def verify_stage(manifest_path, phase='either', acceptance=None):
         after_model = json.loads(candidate['json'][1].decode('utf-8-sig'))
         require(isinstance(before_model, dict) and isinstance(after_model, dict), 'Unsupported model snapshots')
         if schema == STAGE:
+            declared_model(before_model,record.get('model_schema','ald-page-nodes-v1'))
+            declared_model(after_model,record.get('model_schema','ald-page-nodes-v1'))
             require(json_equal(patch_model(before_model, record.get('json_patches', [])), after_model), 'Undeclared JSON change')
             require(not validate_pin_edits(before_model, after_model, record), 'Pin annotation/contact mirror guard rejected the staged model')
             require(append_note(before['notes'][1], record.get('notes_append')) == candidate['notes'][1], 'Undeclared notes change')

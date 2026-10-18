@@ -1,0 +1,1366 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "0274",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "8127d8d331d779e61ddac9c698c014b16ed58e8e3b316dec4543852e90f32c22"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "6d78eed767355a7570d5fb5a7355308cb2fd7eded05473480e071c793843875a"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 32,
+    "resolved_catalogue_observations": 32,
+    "source_observations": 32,
+    "exact_model_pointer_keys": 32,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "9c212f045d4029aeb9a1c3fc89d8aad26386c6733f9465d2708d7080f2a6fb28"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "94507a0d795046d27906212b7d43d5cf4e4b2808ec6781d91ca2424c1256c5ef"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "1825cbf208cd2dafb95433e1c9726b9447345c54ec404b59f626b553a03eac3b"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "455eff30a2e610073a3c0b109a0dc34faeaa0b14b8d9d955dded403145685d89"
+    }
+  ],
+  "counts": {
+    "occurrences": 32,
+    "pages": 4,
+    "page_socket_observations": 4,
+    "physical_card_sites": 4,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 4,
+    "complete_field_observation_witnesses": 0,
+    "partial_observation_witnesses": 4,
+    "distinct_observed_variants": 3,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 3,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 3
+  },
+  "model_bindings": [
+    {
+      "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+      "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+    },
+    {
+      "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+      "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+    },
+    {
+      "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+      "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+    },
+    {
+      "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+      "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "b3fb536a0c16dc086bbb4e6f938f42e2622c7ed0cfe92100d65e622f0bdca3df",
+      "archive_relative": "LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.tif",
+      "role": "original source scan",
+      "scan_id": "1239"
+    },
+    {
+      "sha256": "3ce8c57316c5a0142f41fb2cad39d63f05d44adc342b284bbd9fcd6255a1c158",
+      "archive_relative": "LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.tif",
+      "role": "original source scan",
+      "scan_id": "1243"
+    },
+    {
+      "sha256": "f22c5397c3198f1816104450271530149db86c7072832f2383bfdb0d51283aed",
+      "archive_relative": "LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.tif",
+      "role": "original source scan",
+      "scan_id": "1247"
+    },
+    {
+      "sha256": "053c84eaac89a8e0913d1fdc597f5832420d8658b5b1d053ca2f1002e03f90f1",
+      "archive_relative": "LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.tif",
+      "role": "original source scan",
+      "scan_id": "1251"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A2": {
+            "function": "N"
+          },
+          "B1": {
+            "function": "R T"
+          },
+          "C2": {
+            "function": "N"
+          },
+          "D1": {
+            "function": "R T"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "LS721",
+          "source_pages": [
+            "LS721"
+          ],
+          "location": "02A-D3L5",
+          "source_locations": [
+            "02A-D3L5"
+          ],
+          "literal_locations": [
+            "A-D3L5"
+          ],
+          "models": [
+            {
+              "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+              "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "053c84eaac89a8e0913d1fdc597f5832420d8658b5b1d053ca2f1002e03f90f1",
+              "archive_relative": "LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.tif",
+              "role": "original source scan",
+              "scan_id": "1251"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "LS721",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "AH",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "BB",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "BD",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "CB",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "CD",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "BC",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS721",
+              "node": "DA",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/LS LS Bus/LS721 LS INGATING ST56-63 TO LS REG 11-24.json",
+                "sha256": "af5b508cdbed936c3341968b891f77e8f128c1ea0cf47428b7891b67ac0ead0d"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "C1",
+            "C2",
+            "C3",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "B1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            },
+            "C1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "D1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "LS621",
+          "source_pages": [
+            "LS621"
+          ],
+          "location": "02A-E3B5",
+          "source_locations": [
+            "02A-E3B5"
+          ],
+          "literal_locations": [
+            "A-E3B5"
+          ],
+          "models": [
+            {
+              "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+              "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "f22c5397c3198f1816104450271530149db86c7072832f2383bfdb0d51283aed",
+              "archive_relative": "LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.tif",
+              "role": "original source scan",
+              "scan_id": "1247"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "LS621",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "AH",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "BB",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "BD",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "CB",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "CD",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "BC",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS621",
+              "node": "DA",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/LS LS Bus/LS621 LS INGATING ST48-55 LS REGS 11-28.json",
+                "sha256": "73bc1c6de15a88c32a4f6b7603d7132fb6bed2f6a1a77b72bdcc3906e448960b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "C1",
+            "C2",
+            "C3",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "B1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            },
+            "C1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "D1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "LS621",
+        "LS721"
+      ],
+      "source_locations": [
+        "02A-D3L5",
+        "02A-E3B5"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 2
+    },
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "A2": {
+            "function": "N"
+          },
+          "B1": {
+            "function": "R T"
+          },
+          "E2": {
+            "function": "N"
+          },
+          "F1": {
+            "function": "R T"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "LS521",
+          "source_pages": [
+            "LS521"
+          ],
+          "location": "02A-E4C3",
+          "source_locations": [
+            "02A-E4C3"
+          ],
+          "literal_locations": [
+            "A-E4C3"
+          ],
+          "models": [
+            {
+              "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+              "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "3ce8c57316c5a0142f41fb2cad39d63f05d44adc342b284bbd9fcd6255a1c158",
+              "archive_relative": "LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.tif",
+              "role": "original source scan",
+              "scan_id": "1243"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "LS521",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "AH",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "BB",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "BD",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "CB",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "CD",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "BC",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS521",
+              "node": "DA",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/LS LS Bus/LS521 LS INGATING ST40-47 LS REGS 11-28.json",
+                "sha256": "137ec1a97304b8e13414d1390c9e3a4db390ec8014ab5de0cfc940ef945547f2"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "B1",
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "C1",
+            "C2",
+            "C3",
+            "D1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "B1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            },
+            "E1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "F1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "LS521"
+      ],
+      "source_locations": [
+        "02A-E4C3"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 3,
+      "variant_definition": {
+        "number": 3,
+        "box_overrides": {
+          "C2": {
+            "function": "N"
+          },
+          "D1": {
+            "function": "R T"
+          },
+          "E2": {
+            "function": "N"
+          },
+          "F1": {
+            "function": "R T"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "LS421",
+          "source_pages": [
+            "LS421"
+          ],
+          "location": "02A-D4K3",
+          "source_locations": [
+            "02A-D4K3"
+          ],
+          "literal_locations": [
+            "A-D4K3"
+          ],
+          "models": [
+            {
+              "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+              "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "b3fb536a0c16dc086bbb4e6f938f42e2622c7ed0cfe92100d65e622f0bdca3df",
+              "archive_relative": "LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.tif",
+              "role": "original source scan",
+              "scan_id": "1239"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "LS421",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "AH",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "BB",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "BD",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "CB",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "CD",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "BC",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "LS421",
+              "node": "DA",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/LS LS Bus/LS421 LS INGATING ST32-39 FROM LS 11-28.json",
+                "sha256": "b25cd5ccc7870a88e335f0c832f55c037292a47ffba0440aee3ba57d3f11a582"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "C1",
+            "C2",
+            "C3",
+            "D1",
+            "E1",
+            "E2",
+            "E3",
+            "F1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "B1"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "C1": {
+              "function": "A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "D1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            },
+            "E1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E2": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "E3": {
+              "function": "N",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "output:2": false,
+              "pin_symbols:output:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:2": null,
+              "output:4": false,
+              "pin_symbols:output:4": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:4": null
+            },
+            "F1": {
+              "function": "R T",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "LS421"
+      ],
+      "source_locations": [
+        "02A-D4K3"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "17a565d54d1018a8b357d9545e6e98afc9d5c7267e33aa12fe77fe6975482d99",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

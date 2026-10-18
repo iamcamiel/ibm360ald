@@ -29,7 +29,7 @@ class RelayoutControlFlow(unittest.TestCase):
     def run_case(self,relayout,power=True,overlay=False,generic=None):
         if overlay:
             path=self.root/'json/Card-ALD/build-overrides/1234.json';path.parent.mkdir(parents=True)
-            path.write_text(json.dumps({'schema':'reviewed-card-build-overrides-v1','card_type':'1234','source_bindings':[]}))
+            path.write_text(json.dumps({'schema':'reviewed-card-build-overrides-v1','card_type':'1234','source_bindings':[],'layout':{},'reviewed_portions':{}}))
         self.generic_calls=[]
         def route(model,*args):
             self.generic_calls.append(deepcopy(model))

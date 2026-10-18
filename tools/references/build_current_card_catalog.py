@@ -173,13 +173,23 @@ def primary_function(raw):
 
 def pin_record(pin):
     label = pin.get("pin")
-    printed = pin.get("printed_pin", label)
+    printed = pin.get("printed_pin", pin.get("printed_label", label))
     exact = PIN.fullmatch(label) if isinstance(label, str) else None
     decorated = (PIN.fullmatch(label[:-1])
                  if isinstance(label, str) and label.endswith("✲") else None)
     candidate = label if exact else label[:-1] if decorated else None
     parse_status = ("exact" if exact else "asterisk suffix" if decorated
                     else "unlabeled" if label in (None, "") else "unparsed")
+    # Preserve the literal pin field. Some accepted source schemas store their
+    # physical contact explicitly and their printed spelling separately.
+    physical = pin.get("physical_pin")
+    if isinstance(physical,str) and PIN.fullmatch(physical):
+        printed_contact=(printed[:-1] if isinstance(printed,str) and printed.endswith("✲") else printed)
+        if ((candidate is not None and candidate != physical) or
+                (isinstance(printed_contact,str) and PIN.fullmatch(printed_contact) and printed_contact != physical)):
+            candidate=None;parse_status="conflicting physical contact fields"
+        elif candidate is None and "pin" not in pin:
+            candidate=physical;parse_status="explicit physical_pin"
     return {
         "side": pin.get("side"),
         "pin": label,
