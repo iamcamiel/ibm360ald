@@ -1,0 +1,2284 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3216",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "ef621771d752a368c5f9348e57e34a1969fa7347b0a9db3c0b2581462bfa95bb"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "38993f28fd2a6697d761a23b7136997cf8f8ee6152537cbbf6aa56bac31bb6cd"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 53,
+    "resolved_catalogue_observations": 53,
+    "source_observations": 53,
+    "exact_model_pointer_keys": 53,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "08212b8875594b146a292527a5a6e5a9de152ad086b87b741c1e62f4405bc503"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "a0bf9af70e09b8e996ec77ca239aba42162859af2a3a85bf157d6ffddba0f7e7"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "ecd40ea52a14b7c015a5af297e215bc4fb14267ee9713299d0025d99658aec7f"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "404d4a19bd2bea2709ba2116fa90756604ff3c50e45c8641f15a40af79249aea"
+    }
+  ],
+  "counts": {
+    "occurrences": 53,
+    "pages": 4,
+    "page_socket_observations": 5,
+    "physical_card_sites": 3,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 3,
+    "complete_field_observation_witnesses": 1,
+    "partial_observation_witnesses": 2,
+    "distinct_observed_variants": 3,
+    "variants_with_complete_witness": 1,
+    "variants_witnessed_only_partially": 2,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 1,
+    "excluded_partial_profiles": 2
+  },
+  "model_bindings": [
+    {
+      "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+      "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+    },
+    {
+      "path": "json/MC Storage Control/MC401 SELECT AND INHIBIT LTH RESET.json",
+      "sha256": "d7127efda958ca740e6a8bdeda4c28b8dfeedf54f7fbf4381cd69d19032f0242"
+    },
+    {
+      "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+      "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+    },
+    {
+      "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+      "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "d7e38abe4a428fd3122bc9db31428980faf1e8b665dd3dbc80497b1844b42b23",
+      "archive_relative": "FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.tif",
+      "role": "original source scan",
+      "scan_id": "733"
+    },
+    {
+      "sha256": "d2eb4b238353dcdde5a0f6281d61c939ce39ade5c213b47877e4b54632ae5af7",
+      "archive_relative": "MC Storage Control/MC401 SELECT AND INHIBIT LTH RESET.tif",
+      "role": "original source scan",
+      "scan_id": "1428"
+    },
+    {
+      "sha256": "a06b1284b128abc5c7bc0c49524e260bd91f26b9ae47794014ce35780184cf23",
+      "archive_relative": "MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.tif",
+      "role": "original source scan",
+      "scan_id": "1429"
+    },
+    {
+      "sha256": "0f96c719a717b58ea734904f0e1992d3613f0f3d18700837501d88c0bc64acae",
+      "archive_relative": "MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.tif",
+      "role": "original source scan",
+      "scan_id": "1430"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "function": "N"
+          },
+          "A2": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A3": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A4": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "A5": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A6": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A7": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "A8": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A9": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AA": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AB": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AC": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AD": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AE": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AF": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AG": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AH": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AJ": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AK": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AL": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AM": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AN": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AP": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AQ": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AS": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AT": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AU": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AV": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "FC341",
+          "source_pages": [
+            "FC341"
+          ],
+          "location": "02K-A1J4",
+          "source_locations": [
+            "02K-A1J4"
+          ],
+          "literal_locations": [
+            "K-A1J4"
+          ],
+          "models": [
+            {
+              "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+              "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "d7e38abe4a428fd3122bc9db31428980faf1e8b665dd3dbc80497b1844b42b23",
+              "archive_relative": "FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.tif",
+              "role": "original source scan",
+              "scan_id": "733"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "FC341",
+              "node": "AA",
+              "node_pointer": "/nodes/0",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AC",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AD",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AE",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AF",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AG",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AH",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AJ",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AK",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AL",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AS",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AT",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AU",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AV",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AW",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AX",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AY",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AZ",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AM",
+              "node_pointer": "/nodes/19",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AN",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AP",
+              "node_pointer": "/nodes/21",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AQ",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "AR",
+              "node_pointer": "/nodes/23",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "BA",
+              "node_pointer": "/nodes/24",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "BB",
+              "node_pointer": "/nodes/25",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "BC",
+              "node_pointer": "/nodes/26",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC341",
+              "node": "BD",
+              "node_pointer": "/nodes/27",
+              "model": {
+                "path": "json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json",
+                "sha256": "4eb5439f7d5da0b87ee5a840ab463c1ed3a54ceb20cf09961c31383d6c453b2b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "AA",
+            "AB",
+            "AC",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AH",
+            "AJ",
+            "AK",
+            "AL",
+            "AM",
+            "AN",
+            "AP",
+            "AQ",
+            "AS",
+            "AT",
+            "AU",
+            "AV"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A6": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A7": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A8": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A9": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AA": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AB": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AC": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AD": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AE": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AF": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AG": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AH": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AJ": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AK": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AL": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AM": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AN": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AP": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AQ": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AS": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AT": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AU": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AV": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "FC341"
+      ],
+      "source_locations": [
+        "02K-A1J4"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "A1": {
+            "function": "N"
+          },
+          "A2": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A3": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A4": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "A5": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A6": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A7": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "A8": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "A9": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AA": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AB": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AC": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AD": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AE": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AF": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AG": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AJ": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AL": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AM": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AN": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "AP": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AQ": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AS": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "MC401",
+            "MC411",
+            "MC421"
+          ],
+          "location": "02A-B1E4",
+          "source_locations": [
+            "02A-B1E4"
+          ],
+          "literal_locations": [
+            "A-B1E4"
+          ],
+          "models": [
+            {
+              "path": "json/MC Storage Control/MC401 SELECT AND INHIBIT LTH RESET.json",
+              "sha256": "d7127efda958ca740e6a8bdeda4c28b8dfeedf54f7fbf4381cd69d19032f0242"
+            },
+            {
+              "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+              "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+            },
+            {
+              "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+              "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "d2eb4b238353dcdde5a0f6281d61c939ce39ade5c213b47877e4b54632ae5af7",
+              "archive_relative": "MC Storage Control/MC401 SELECT AND INHIBIT LTH RESET.tif",
+              "role": "original source scan",
+              "scan_id": "1428"
+            },
+            {
+              "sha256": "a06b1284b128abc5c7bc0c49524e260bd91f26b9ae47794014ce35780184cf23",
+              "archive_relative": "MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.tif",
+              "role": "original source scan",
+              "scan_id": "1429"
+            },
+            {
+              "sha256": "0f96c719a717b58ea734904f0e1992d3613f0f3d18700837501d88c0bc64acae",
+              "archive_relative": "MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.tif",
+              "role": "original source scan",
+              "scan_id": "1430"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "MC401",
+              "node": "BF",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/MC Storage Control/MC401 SELECT AND INHIBIT LTH RESET.json",
+                "sha256": "d7127efda958ca740e6a8bdeda4c28b8dfeedf54f7fbf4381cd69d19032f0242"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AG",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AE",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AK",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AQ",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AP",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AV",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AX",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AW",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "BB",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AZ",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AY",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "BC",
+              "node_pointer": "/nodes/19",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AJ",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AH",
+              "node_pointer": "/nodes/23",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC411",
+              "node": "AN",
+              "node_pointer": "/nodes/24",
+              "model": {
+                "path": "json/MC Storage Control/MC411 SELECT PULSES FRAMES 1 TO 5.json",
+                "sha256": "8e2ae96ee002e328d0e9a07592e8713e7393b6a04699ded0e56d87e9d112ea13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AF",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AQ",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AP",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AV",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AX",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AW",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "BB",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 3,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "AA",
+            "AB",
+            "AC",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AJ",
+            "AL",
+            "AM",
+            "AN",
+            "AP",
+            "AQ",
+            "AS"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "AH",
+            "AK",
+            "AT",
+            "AU",
+            "AV"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "N",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A6": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A7": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A8": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A9": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AA": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AB": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AC": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AD": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AE": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AF": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AG": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AJ": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AL": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AM": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AN": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AP": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AQ": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AS": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "MC401",
+        "MC411",
+        "MC421"
+      ],
+      "source_locations": [
+        "02A-B1E4"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 3,
+      "variant_definition": {
+        "number": 3,
+        "box_overrides": {
+          "AH": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "output:3": true
+            }
+          },
+          "AK": {
+            "function": "A",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "MC421",
+          "source_pages": [
+            "MC421"
+          ],
+          "location": "02A-B1F4",
+          "source_locations": [
+            "02A-B1F4"
+          ],
+          "literal_locations": [
+            "A-B1F4"
+          ],
+          "models": [
+            {
+              "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+              "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "0f96c719a717b58ea734904f0e1992d3613f0f3d18700837501d88c0bc64acae",
+              "archive_relative": "MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.tif",
+              "role": "original source scan",
+              "scan_id": "1430"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "MC421",
+              "node": "AG",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MC421",
+              "node": "AK",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json",
+                "sha256": "5586af2783241b0de98f54282042c24d0acc15f41aea2dc1626e4b2077d146af"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "AH",
+            "AK"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
+            "AA",
+            "AB",
+            "AC",
+            "AD",
+            "AE",
+            "AF",
+            "AG",
+            "AJ",
+            "AL",
+            "AM",
+            "AN",
+            "AP",
+            "AQ",
+            "AS",
+            "AT",
+            "AU",
+            "AV"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "AH": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "AK": {
+              "function": "A",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "MC421"
+      ],
+      "source_locations": [
+        "02A-B1F4"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "655152df96eb93ebdbdf5f76cb5760d7c81e03b4a88d4ac55fd489f432fa4f78",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

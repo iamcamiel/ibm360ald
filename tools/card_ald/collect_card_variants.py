@@ -46,7 +46,7 @@ def port_observation(port,mark):
     return result
 
 
-def observed_form(node,box,power):
+def _observed_form_base(node,box,power):
     """Map only readable source fields onto stable common semantic port IDs."""
     function=str(node.get('function','')).strip()
     form={'function':box['function'],'port_triangles':{p['id']:p['triangle'] for p in box['ports']}}
@@ -129,6 +129,64 @@ def observed_form(node,box,power):
     return form,observed,unmapped,ignored
 
 
+class _AnonymousWitnessNode(dict):
+    # A source JSON key cannot create this private validated capability.
+    pass
+
+
+def observed_form(node,box,power):
+    result=_observed_form_base(node,box,power)
+    if not isinstance(node,_AnonymousWitnessNode):return result
+    if node.get('unit',node.get('circuit_identifier'))!=box['circuit_identifier']:return result
+    form,observed,missing,ignored=result
+    for index,port_id in node.anonymous_output_mapping.items():
+        source=node['pins'][index]
+        targets=[p for p in box['ports']if p['id']==port_id and p['side']=='output'and p.get('pin')is None]
+        if len(targets)!=1 or source.get('side')!='output' or not page_reader.pinless_terminal(source):continue
+        target=targets[0]
+        if len(set(physical_readings(source).values()))>1 or page_reader.intrinsic_contact_role(source)!=page_reader.intrinsic_contact_role(target):continue
+        mark=wedge(source)
+        if type(mark)is not bool:continue
+        try:detail=port_observation(source,mark)
+        except ValueError:continue
+        form['port_triangles'][port_id]=mark
+        observed[port_id]={**detail,'source_pin_index':index,'mapping':'complete_joint_anonymous_output_witness'}
+        missing[:]=[m for m in missing if not(m.get('field')=='output_decoration'and m.get('port_id')==port_id and m.get('reason')=='Source omission or ambiguous mapping; canonical decoration retained.')]
+    return form,observed,missing,ignored
+
+
+def prepare_anonymous_outputs(spec,documents,groups):
+    """Recompute complete current source proof before exposing any field map."""
+    for items in groups.values():
+        for item in items:
+            if isinstance(item['node'],_AnonymousWitnessNode):item['node']=dict(item['node'])
+    if not spec.get('anonymous_output_preservation'):return []
+    import anonymous_outputs
+    try:
+        models={entry['document']['page']:entry['document']for entry in documents.values()}
+        if len(models)!=len(documents):raise ValueError('Duplicate source-page identity')
+        mapping=anonymous_outputs.audit_mapping(spec['card_type'],spec,models,page_reader)
+        replacements=[];matched=set()
+        for context,items in groups.items():
+            page=context[0]
+            for item in items:
+                node=item['node'];slots={i:port_id for (p,n,i),port_id in mapping.items()if(p,n)==(page,node['id'])}
+                if not slots:continue
+                keys={(page,node['id'],i)for i in slots}
+                if matched&keys:raise ValueError('Collector groups repeat a proved source output occurrence')
+                matched.update(keys)
+                validated=_AnonymousWitnessNode(node)
+                validated.anonymous_output_mapping=slots
+                replacements.append((item,validated))
+        if matched!=set(mapping):raise ValueError('Collector groups omit a proved source output occurrence')
+    except (ValueError,KeyError,TypeError)as problem:
+        return [{'field':'anonymous_output_witness','reason':'Complete current source output mapping not established; no anonymous decoration inferred.','detail':str(problem)}]
+    for item,node in replacements:item['node']=node
+    return []
+
+
+
+
 def complete_k_context_hold(witness):
     """Do not downgrade an otherwise complete unsupported K form to partial."""
     missing=witness.get('fields_not_inferred',[])
@@ -142,6 +200,8 @@ def complete_k_context_hold(witness):
 def collect(card,definition,root=ROOT,grouping="physical-card",publication_policy="all-observed",component_authority_path=None):
     root=Path(root).resolve();definition=Path(definition).resolve();spec=read(definition)
     assert spec['card_type']==card
+    import multicircuit_variants as multi
+    multi.check_spec(spec,root)
     boxes={b['portion']:b for b in spec['boxes']};groups=defaultdict(list);model_bindings=[];occurrences=0
     source_bindings={};pages=set();unmatched=[];documents={};source_context=accepted_page_context(root);coverage_issues=[]
     # Only page models have nodes; generated card catalogs and archived note
@@ -149,6 +209,9 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
     for path,entry in page_reader.iter_documents(root,card):
         original=entry['document'];doc=identity_document(root,path,original,source_context)
         nodes=selected_source_nodes(doc,card)
+        for node in nodes:
+            node['_source_page']=doc.get('page')
+            node['_source_model_binding']={'path':path.relative_to(root).as_posix(),'sha256':binding(path)['sha256']}
         issues=source_identity_issues(doc,card)
         if not nodes and not issues:continue
         documents[path.resolve()]={'document':doc,'sha256':binding(path)['sha256'],'original':original}
@@ -180,6 +243,8 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             {entry['document'].get('page'):{'path':path.relative_to(root).as_posix(),'sha256':entry['sha256']}for path,entry in documents.items()},
             authority_path=component_authority_path)
         coverage_issues.extend({'field':'component_occurrence_net_origin','reason':'Current component page-net origin proof is unresolved.','detail':h}for h in net_context.get('holds',[]))
+    if spec.get('anonymous_output_preservation'):
+        coverage_issues.extend(prepare_anonymous_outputs(spec,documents,groups))
     # Compare only fields actually observed: omitted ports must not falsely
     # contradict an explicit mark from another page of the same physical card.
     def observed_signature(items):
@@ -189,7 +254,7 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             if portion not in boxes:continue
             form,observed,missing,ignored=observed_form(node,boxes[portion],spec['power_contacts'])
             for field,value in observed.items():
-                facts={field:value} if field=='function' else {field:value['triangle'],
+                facts={field:value} if field in ('function','circuit_identifier') else {field:value['triangle'],
                     **{attribute+':'+field:value[attribute] for attribute in ('pin_symbols','border_symbol','occurrence_net_role') if attribute in value}}
                 for name,reading in facts.items():
                     slot=(portion,name)
@@ -242,6 +307,7 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             box=boxes[portion];override={};known={field:value for (p,field),value in merged.items() if p==portion}
             witness['observed_fields'][portion]=known
             if 'function' in known and known['function']!=box['function']:override['function']=known['function']
+            if 'circuit_identifier' in known and known['circuit_identifier']!=box['circuit_identifier']:override['circuit_identifier']=known['circuit_identifier']
             triangles={p['id']:known[p['id']] for p in box['ports'] if p['id'] in known and known[p['id']]!=p['triangle']}
             if triangles:override['port_triangles']=triangles
             for attribute,override_key,default in [('pin_symbols','port_symbols',{'prefix':[],'suffix':[]}),('border_symbol','border_symbols',None)]:
@@ -278,6 +344,15 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             'witnesses':witnesses,'source_pages':sorted({p for w in witnesses for p in w['source_pages']}),
             'source_locations':sorted({w['location'] for w in witnesses}),'complete_witnesses':sum(w['complete_field_observation'] for w in witnesses),
             'partial_witnesses':sum(not w['complete_field_observation'] for w in witnesses)})
+    selected_circuit_variants=[];incomplete_circuit_variants=[]
+    for variant in variants:
+        variant_definition=variant['variant_definition']
+        if any('circuit_identifier' in c for c in variant_definition['box_overrides'].values()):
+            try:variant_definition['circuit_witness']=multi.witness_for_variant(spec,variant_definition,variant['witnesses'])
+            except AssertionError as error:
+                incomplete_circuit_variants.append({**variant,'held_reason':str(error)});continue
+        selected_circuit_variants.append(variant)
+    variants=selected_circuit_variants
     variants.sort(key=lambda v:v['number'])
     counts={'occurrences':occurrences,'pages':len(pages),'page_socket_observations':len(groups),'physical_card_sites':len(physical_groups),
             'conflicting_physical_card_sites':len(conflict_sites),'installation_witnesses':len(selected),
@@ -297,6 +372,9 @@ def collect(card,definition,root=ROOT,grouping="physical-card",publication_polic
             'counts':counts,'model_bindings':model_bindings,'source_bindings':list(source_bindings.values()),
             'canonical_pattern_witnesses':canonical,'profiles_left_uncertain':uncertain,
             'variants':variants,'source_or_repository_data_changes_applied':False}
+    if spec.get('multicircuit_preservation'):
+        report['multicircuit_runtime']=binding(Path(multi.__file__))
+        report['held_incomplete_circuit_variants']=incomplete_circuit_variants
     recheck_identity_context(source_context,documents)
     return apply_publication_policy(report, publication_policy)
 
@@ -340,6 +418,24 @@ def main():
     path=out/(card+' observed variant candidates.json')
     path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(json.dumps({'report':binding(path),'counts':report['counts']},indent=2))
+
+
+
+
+_single_circuit_observed_form=observed_form
+def observed_form(node,box,power):
+    import multicircuit_variants as multi
+    if not box.get('_multicircuit_preservation'):
+        return _single_circuit_observed_form(node,box,power)
+    if not multi.match_source(node,box):
+        form,observed,missing,ignored=_single_circuit_observed_form(node,box,power)
+        missing.append({'field':'circuit_identifier','reason':'Missing or stale exact multi-circuit occurrence proof.'})
+        return form,observed,missing,ignored
+    canonical_node=deepcopy(node);canonical_node['unit']=box['circuit_identifier']
+    form,observed,missing,ignored=_single_circuit_observed_form(canonical_node,box,power)
+    circuit=node.get('unit',node.get('circuit_identifier'))
+    form['circuit_identifier']=circuit;observed['circuit_identifier']=circuit
+    return form,observed,missing,ignored
 
 
 if __name__=='__main__':main()

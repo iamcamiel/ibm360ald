@@ -288,15 +288,24 @@ def declared_model(model, schema):
         require('nodes' not in model and isinstance(model.get('records'),list)
                 and all(isinstance(row,dict)for row in model['records']),
                 'Declared socket table requires records list and no synthetic nodes')
+    elif schema=='ald-socket-collection-page-v1':
+        require(_socket_collection(model),
+                'Declared socket collection requires sockets list of objects and no nodes/records')
     else:raise ValueError('Unsupported declared page model schema')
     return schema
+
+
+def _socket_collection(model):
+    return (isinstance(model,dict) and 'nodes' not in model and 'records' not in model
+            and isinstance(model.get('sockets'),list)
+            and all(isinstance(row,dict)for row in model['sockets']))
 
 
 def patch_model(model, patches):
     require(isinstance(model, dict) and (isinstance(model.get('nodes'), list) or
             'nodes' not in model and isinstance(model.get('records'),list) and
-            all(isinstance(row,dict)for row in model['records'])),
-            'Unsupported JSON model: nodes-list ALD or records-list socket table required')
+            all(isinstance(row,dict)for row in model['records']) or _socket_collection(model)),
+            'Unsupported JSON model: nodes-list ALD, records-list socket table or declared sockets collection required')
     output = deepcopy(model)
     seen = []
     for patch in patches:
@@ -413,7 +422,7 @@ def create_stage(intent_path, stage_path):
         inputs[path] = raw
     for page in pages:
         require(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,80}', page['page']), 'Unsafe page key')
-        require(page.get('model_schema') in {'ald-page-nodes-v1','ald-socket-listing-table-v1'}, 'Unsupported declared page model schema')
+        require(page.get('model_schema') in {'ald-page-nodes-v1','ald-socket-listing-table-v1','ald-socket-collection-page-v1'}, 'Unsupported declared page model schema')
         source, _ = checked(page['source'], intent_path.parent)
         require(source.suffix.lower() in {'.tif', '.tiff'}, 'Original TIFF binding required')
         protected.add(source)

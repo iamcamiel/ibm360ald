@@ -12,6 +12,7 @@ import hashlib
 import json
 import re
 import sys
+import pinless_alias as _unprinted_alias
 
 SCHEMA = 'ibm360-ald-page-v2'
 _CACHE = OrderedDict()
@@ -118,6 +119,8 @@ def _object(o):
         result['card_type'],result['portion'] = identity['card_type'],identity['portion']
     elif identity['parse_status'] == 'conflict':
         result['_identity_conflict'] = deepcopy(identity)
+    elif ordinary_slt_identity_issue(result, identity=identity):
+        result['_identity_unresolved'] = deepcopy(identity)
     for key,section,field in [('function','function','label'),('unit','circuit','identifier'),('location','site','label')]:
         if field in o[section]: result[key] = deepcopy(o[section][field])
     form = o['source_form']
@@ -134,7 +137,7 @@ def _object(o):
     # multiplicity is retained; only explicitly declared aliases are excluded.
     if 'pins' not in result:
         result['pins'] = [_terminal(t) for t in o['terminals'] if t['occurrence_kind']=='primary']
-    return result
+    return _unprinted_alias.decorate(result,o)
 
 
 def _net(n):
@@ -255,8 +258,36 @@ def iter_documents(root,card=None):
         yield path,{'document':deepcopy(entry['document']),'sha256':entry['sha256']}
 
 
+def ordinary_slt_identity_issue(node, card=None, identity=None):
+    """Report, never repair, an unresolved identity on a known U/T SLT block.
+
+    Two ASCII alphanumeric portion characters are the normalized identity
+    contract for these modules. Connector/non-U/T formats receive no new rule.
+    A damaged combined literal with independently resolved split fields stays
+    resolved under the existing normalizer policy. Aliases are never changed.
+    """
+    if not isinstance(node, dict) or node.get('_annotation_excluded') or any(
+            node.get(k) is True for k in ('symbol_only','annotation_only','annotation_block')):
+        return None
+    code = node.get('unit', node.get('circuit_identifier'))
+    selected_card = node.get('card_type', card)
+    if not (isinstance(code, str) and re.fullmatch(r'[UT][0-9]{2}[A-Z]{2}', code)
+            and isinstance(selected_card, str) and re.fullmatch(r'[0-9]{4}', selected_card)):
+        return None
+    if card is not None and selected_card != card:
+        return None
+    state = identity if isinstance(identity, dict) else node.get('_identity_unresolved', {})
+    status = state.get('parse_status') if isinstance(state, dict) else None
+    portion = node.get('portion')
+    if isinstance(portion, str) and re.fullmatch(r'[A-Z0-9]{2}', portion) and status != 'unresolved':
+        return None
+    return {'card_type': selected_card, 'portion': deepcopy(portion), 'circuit_identifier': code,
+            'normalized_identity_status': status, 'required_portion_format': 'two ASCII uppercase alphanumeric characters',
+            'reason': 'Ordinary SLT portion identity is unreadable, incomplete, or unresolved; no portion, merge, or alias is inferred.'}
+
+
 def card_nodes(document,card):
-    return [n for n in document.get('nodes',[]) if isinstance(n,dict) and n.get('card_type')==card and not n.get('_identity_conflict') and not n.get('_annotation_excluded')]
+    return [n for n in document.get('nodes',[]) if isinstance(n,dict) and n.get('card_type')==card and not n.get('_identity_conflict') and not n.get('_annotation_excluded') and ordinary_slt_identity_issue(n, card) is None]
 
 
 def find_node(document,identifier,card=None):
@@ -267,7 +298,7 @@ def find_node(document,identifier,card=None):
 
 def runtime_paths(root):
     configure(root)
-    return [Path(__file__).resolve()]+[_NORMALIZATION/p for p in ('pages.py','identity.py','terminals.py')]
+    return [Path(__file__).resolve(),Path(_unprinted_alias.__file__).resolve()]+[_NORMALIZATION/p for p in ('pages.py','identity.py','terminals.py')]
 
 
 def finding(status,field,observed,expected,reason,**extra):
@@ -364,6 +395,7 @@ def source_identity_issues(document,card):
     for node in document.get('nodes',[]):
         if not isinstance(node,dict)or node.get('_annotation_excluded')or not node_mentions_card(node,card):continue
         if node.get('_identity_conflict'):issues.append(dict(page=document.get('page'),block=node.get('id'),node_pointer=node.get('_source_pointer'),**finding('source_uncertainty','source_identity',node['_identity_conflict'],card,'Explicit source identity aliases disagree; no identity selected.')))
+        elif ordinary_slt_identity_issue(node, card):issues.append(dict(page=document.get('page'),block=node.get('id'),node_pointer=node.get('_source_pointer'),**finding('source_uncertainty','source_identity',ordinary_slt_identity_issue(node, card),card,'Ordinary SLT portion identity is unresolved; source repair is required before complete publication.')))
     return issues
 
 
@@ -377,7 +409,7 @@ def catalogue_source_coverage(root,catalog,documents):
         if not entry:
             issues.append(dict(page=obs.get('page'),block=obs.get('node'),node_pointer=obs.get('node_pointer'),**finding('source_uncertainty','catalog_coverage','catalog model absent',None,'Catalogue observation is not represented in the loaded current source models.')));continue
         node,pointer,problem=exact_source_node(entry['document'],obs)
-        if problem or node.get('_identity_conflict')or node.get('card_type')!=card or str(node.get('portion'))!=str(obs.get('portion')):
+        if problem or node.get('_identity_conflict')or ordinary_slt_identity_issue(node, card) or node.get('card_type')!=card or str(node.get('portion'))!=str(obs.get('portion')):
             issues.append(dict(page=obs.get('page'),block=obs.get('node'),node_pointer=obs.get('node_pointer'),**finding('source_uncertainty','catalog_coverage',obs,None,problem or 'Catalogue source pointer has a conflicting card/portion identity.')));continue
         expected[(str(p),pointer)]+=1
     live=Counter((str(p),n['_source_pointer'])for p,e in documents.items()for n in selected_source_nodes(e['document'],card))
@@ -625,6 +657,7 @@ def pinless_terminal(port):
     if terminal_contact(port) is not None:return False
     label=port.get('pin')
     if label is None or str(label).strip()=='' or re.fullmatch(r'(?:IN|OUT)\d*|[AB]|(?:input|output)\d*',str(label),re.I):return True
+    if _unprinted_alias.valid(port):return True
     proof=port.get('_reviewed_pinless_control',{})
     return (proof.get('role')=='anonymous-input-wire-annotation' and port.get('side')=='input'
             and proof.get('literal')==label and proof.get('terminal_id')==port.get('_terminal_id')
@@ -635,7 +668,7 @@ def attach_typed_terminals(occurrence,node):
     """Attach current uniform fields only to the exact same literal terminals."""
     for port,current in zip(occurrence.get('pins',[]),node.get('pins',[])):
         if any(port.get(k)!=current.get(k) for k in ('side','pin','row','triangle')):continue
-        for key in ('_pin_number_status','_pin_number','_terminal_id','_border_decorations','_symbols','_reviewed_pinless_control'):
+        for key in ('_pin_number_status','_pin_number','_terminal_id','_border_decorations','_symbols','_reviewed_pinless_control',_unprinted_alias.KEY):
             if key in current:port[key]=deepcopy(current[key])
         if terminal_contact_role(current)=='nonlogical_common':
             # Catalogue projections need not repeat every literal marker field.
@@ -696,9 +729,23 @@ def terminal_pin_symbols(port):
             label=''.join(mark['literal']for mark in group)
             contact=port.get('_pin_number') or physical_contact(port.get('physical_pin')) or physical_contact(port.get('pin'))
             if not isinstance(contact,str)or not re.fullmatch(r'[BDGJ](?:0[2-9]|1[0-3])',contact):return False
-            expected=contact+'✲'if ordered==['suffix']else'✲'+contact if ordered==['prefix']else None
-            # Consumers may replace pin with its normalized physical contact;
-            # the typed selected label and annotation remain the source proof.
+            def selected_text(side):
+                pieces=[]
+                for key in selected.get(side+'_mark_ids',[]):
+                    marks=groups.get(key)
+                    if not marks or any(mark.get('order')!=i
+                            or mark.get('meaning_status')!='uninterpreted'
+                            or not isinstance(mark.get('literal'),str)
+                            or len(mark['literal'])!=1 for i,mark in enumerate(marks)):
+                        return None
+                    pieces.extend(mark['literal']for mark in marks)
+                return ''.join(pieces)
+            prefix,suffix=selected_text('prefix'),selected_text('suffix')
+            if prefix is None or suffix is None:return False
+            expected=prefix+contact+suffix
+            # Exact duplicate full labels can include uninterpreted controls
+            # such as T. They confirm the already printed star placement;
+            # they do not make those other controls intrinsic pin symbols.
             return label==expected and ('printed_annotation'not in port or port['printed_annotation']==label)
         corroborated=(len(unplaced_stars)==1 and corroborating_annotation(groups[unplaced_stars[0]])
             and len(ordered)==1 and str(selected.get('observation_id','')).startswith('label:')
@@ -753,7 +800,7 @@ def ar_input_only_aliases(node, pins=None):
     Source terminals are never changed. Conflicting/unknown physical readings do
     not qualify. The result is a logical role projection, not a source correction.
     """
-    if primary_function(node) != 'AR':
+    if primary_function(node) not in ('AR','AR-LT'):
         return {}
     ports = node.get('pins', []) if pins is None else pins
     inputs = {terminal_contact(p) for p in ports if p.get('side') == 'input'}
@@ -861,6 +908,17 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
             elif suffix.lower() in ({"in", "input"} if side == "input" else {"out", "output"}):
                 matches = ports
                 basis = "single local side-specific generic endpoint"
+    # A K contact is a physical common contact, not a Boolean output.
+    # A source net may explicitly name its declared right-border alias as a
+    # target. Resolve only that exact identity after every existing side rule
+    # failed; neither a contact label nor the K mark infers a connection.
+    if not matches and side == "input":
+        declared = [(i, port) for i, port in enumerate(raw_ports)
+                    if endpoint in declared_aliases(port)]
+        if (len(declared) == 1 and declared[0][1].get("side") == "output"
+                and terminal_contact_role(declared[0][1]) == "nonlogical_common"):
+            matches = declared
+            basis = "exact source-declared nonlogical K contact target"
     if len(matches) != 1:
         return {"status": "unresolved", "reason": "ambiguous terminal alias" if matches else "terminal alias not found",
                 "candidate_indices": [i for i, _ in matches]}
@@ -870,6 +928,9 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
         if index >= len(adapted_pins) or any(adapted_pins[index].get(k) != raw.get(k) for k in ("side", "row")):
             return {"status": "unresolved", "reason": "adapted/raw port identity differs", "port_index": index}
         effective = adapted_pins[index]
+    if (basis == "exact source-declared nonlogical K contact target"
+            and terminal_contact_role(effective) != "nonlogical_common"):
+        return {"status": "unresolved", "reason": "adapted/raw nonlogical contact role differs", "port_index": index}
     label = effective.get("pin")
     contact = contact_label(raw, label)
     raw_contact = contact_label(raw, raw.get("pin"))
@@ -896,3 +957,8 @@ def resolve_net_port(node, endpoint, side, adapted_pins=None):
         return {**result, "status": "pinless"}
     return {**result, "status": "unresolved", "reason": "unreadable or unsupported printed contact label"}
 
+
+
+def explicit_unprinted_alias(port):
+    """Exact runtime source proof for an unprinted declared endpoint."""
+    return _unprinted_alias.valid(port)

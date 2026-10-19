@@ -72,7 +72,7 @@ def verify(repo,root):
     for item in content['files']:
         if item['role']!='Published page content model':continue
         relative=item['path'];need(relative.startswith('json/') and relative.endswith('.json'),'Invalid model path')
-        model=page_reader.read(checked(relative,item['sha256']));text='ALD/'+relative[5:-5]+'.txt'
+        model=page_reader.read(checked(relative,item['sha256']), semantic=True);text='ALD/'+relative[5:-5]+'.txt'
         need(text in accepted and text not in pages,'Missing/duplicate accepted model source')
         entry=accepted[text];checked(text,entry['text_sha256'])
         pages[text]={'page':model.get('page',entry['page']),'model':relative,'model_sha256':item['sha256'],

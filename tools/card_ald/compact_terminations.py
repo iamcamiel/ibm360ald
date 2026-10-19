@@ -242,6 +242,87 @@ def transform(spec):
     candidate.pop('layout_validation',None)
     return candidate,report
 
+
+def compact_two_contact_leaves(spec, unresolved):
+    """Trim only an existing two-contact leaf; preserve its retained wire prefix."""
+    candidate=deepcopy(spec);changes=[];resolved=set()
+    for item in unresolved:
+        box=next(b for b in candidate['boxes'] if b['portion']==item['portion'])
+        if box.get('compact_termination'):continue
+        if any(c['portion']==box['portion'] for c in candidate.get('box_captions',[])):continue
+        port=box['ports'][0];terminal='PORT:'+box['portion']+':'+port['id']
+        nets=[(i,n) for i,n in enumerate(candidate['nets']) if terminal in n]
+        if len(nets)!=1:continue
+        net,members=nets[0]
+        if len(members)!=2 or not all(t.startswith('PORT:') for t in members):continue
+        other=next(t for t in members if t!=terminal)
+        if other.split(':',2)[1]==box['portion']:continue
+        adjacency,terminals,layers,node_net=graph(candidate)
+        start=(box['x']-1,port['row'],'J')
+        if start not in adjacency or node_net[start]!=net:continue
+        path=[start];previous=None
+        while True:
+            node=path[-1]
+            if len(path)>1 and (len(adjacency[node])!=2 or terminals[node[:2]]):break
+            options=adjacency[node]-({previous} if previous else set())
+            if len(options)!=1:break
+            previous=node;path.append(next(iter(options)))
+        if terminals[path[-1][:2]]!={other}:continue
+        prefix=list(reversed(path));width=label_width(candidate,box)
+        hidden=deepcopy(candidate);hidden_box=next(b for b in hidden['boxes'] if b['portion']==box['portion'])
+        hidden_box['compact_termination']={'point':[-100,-100],'label_width':width}
+        obstacles=text_obstacles(hidden)
+        obstacles.update((x+i,y) for x,y,label in renderer.caption_locations(hidden) for i in range(len(label)))
+        choices=[]
+        for i in range(1,len(prefix)-1):
+            x,y,state=prefix[i];px,py,_=prefix[i-1]
+            if y!=py or abs(x-px)!=1:continue
+            if len(layers[x,y])!=1 or layers[x,y].get(net)!=set('EW'):continue
+            # Only retain old edges up to this cut; every other net layer survives.
+            remaining=deepcopy(layers)
+            for node in prefix[i+1:]:remaining[node[:2]].pop(net,None)
+            wires={xy for xy,ns in remaining.items() if ns}
+            vertical={xy for xy,ns in remaining.items() if any(set('NS')&a for a in ns.values())}
+            for dy in (1,-1):
+                row=y+dy;reserved={(xx,row) for xx in range(x,x+width+1)}
+                if x<3 or x+width>=candidate['canvas']['width']-3 or not 0<row<candidate['canvas']['height']:continue
+                if reserved&(obstacles|wires):continue
+                if any(abs(x-xx)<3 and yy in (y,row) for xx,yy in obstacles):continue
+                if any(abs(x-xx)<2 and yy in (y,row) for xx,yy in vertical):continue
+                if any(abs(xx-vx)<3 and vy==row for xx,yy in reserved if xx!=x for vx,vy in vertical):continue
+                # Prefer the shortest retained original stem, then below, then coordinates.
+                choices.append(((i,dy<0,y,x),i,dy,remaining))
+        if not choices:continue
+        _,i,dy,remaining=min(choices,key=lambda v:v[0]);x,y,_=prefix[i];px,py,_=prefix[i-1]
+        toward='W' if px<x else 'E'
+        remaining[x,y][net]={toward,'S' if dy==1 else 'N'}
+        remaining[x,y+dy][net]={'E','N' if dy==1 else 'S'}
+        trial=deepcopy(candidate);target=next(b for b in trial['boxes'] if b['portion']==box['portion'])
+        target['compact_termination']={'point':[x,y+dy],'label_width':width}
+        rewrite(trial,remaining)
+        assert renderer.wiring_graph(trial)==candidate['nets']
+        assert trial['nets']==candidate['nets'] and trial['power_contacts']==candidate['power_contacts']
+        changes.append({'portion':box['portion'],'net':net,'method':'existing-two-contact-leaf-prefix',
+                        'point':[x,y+dy],'label_width':width,'orientation':'below' if dy==1 else 'above',
+                        'original_leaf_steps':len(path)-1,'retained_leaf_steps':i,'new_terminal_stub_steps':1,
+                        'old_attachment':list(prefix[0][:2]),'cut':list(prefix[i][:2]),'invented_junctions':0})
+        resolved.add(box['portion']);candidate=trial
+    return candidate,changes,resolved
+
+
+_transform_branched_terminations=transform
+def transform(spec):
+    """Keep the established branch policy exact; try two-contact leaves only on failure."""
+    candidate,report=_transform_branched_terminations(spec)
+    if not report['unresolved']:return candidate,report
+    candidate,changes,resolved=compact_two_contact_leaves(candidate,report['unresolved'])
+    if not changes:return candidate,report
+    report['changes'].extend(changes)
+    report['unresolved']=[item for item in report['unresolved'] if item['portion'] not in resolved]
+    candidate['provenance']['compact_termination_preview']=deepcopy(report)
+    return candidate,report
+
+
 def layout_policy(spec, mode='auto'):
     """Universal metadata-based placement decision; never rank old grids by score."""
     if mode not in ('auto','force','keep'):raise ValueError('Unknown placement mode: '+mode)

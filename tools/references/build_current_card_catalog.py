@@ -152,7 +152,7 @@ def read_checked(path: Path, expected: str, page_model=False):
     actual = sha(raw)
     if actual != expected:
         raise ValueError(f"Changed source: {path}: {actual} != {expected}")
-    return page_reader.loads(raw) if page_model else json.loads(raw.decode("utf-8-sig"))
+    return page_reader.loads(raw, semantic=True) if page_model else json.loads(raw.decode("utf-8-sig"))
 
 
 def dump(path: Path, value):

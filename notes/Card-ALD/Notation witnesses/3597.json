@@ -1,0 +1,497 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3597",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "ef621771d752a368c5f9348e57e34a1969fa7347b0a9db3c0b2581462bfa95bb"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "38993f28fd2a6697d761a23b7136997cf8f8ee6152537cbbf6aa56bac31bb6cd"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 6,
+    "resolved_catalogue_observations": 6,
+    "source_observations": 6,
+    "exact_model_pointer_keys": 6,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "08212b8875594b146a292527a5a6e5a9de152ad086b87b741c1e62f4405bc503"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "a0bf9af70e09b8e996ec77ca239aba42162859af2a3a85bf157d6ffddba0f7e7"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "ecd40ea52a14b7c015a5af297e215bc4fb14267ee9713299d0025d99658aec7f"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "404d4a19bd2bea2709ba2116fa90756604ff3c50e45c8641f15a40af79249aea"
+    }
+  ],
+  "counts": {
+    "occurrences": 6,
+    "pages": 5,
+    "page_socket_observations": 5,
+    "physical_card_sites": 1,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 1,
+    "complete_field_observation_witnesses": 1,
+    "partial_observation_witnesses": 0,
+    "distinct_observed_variants": 1,
+    "variants_with_complete_witness": 1,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 1,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/KC Clock/KC031 RESETS AND FORCE ADDRESS.json",
+      "sha256": "41f5e79accd045791f0db329b107eefb4545b51bb307d14d9a9e2f0c5582e96a"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.json",
+      "sha256": "bb5cbb5c6f5bcb23aa578c8ff9f43fa3e7c31fa6e7d9fd5b2d8fac193740a75c"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW031 ADDRESS COMPARE STOP MANUAL TGR AND STOP TGR.json",
+      "sha256": "620b88262645802efe39589dabbe25d3029269b02855ab0db129a80acf5c3743"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW341 START SET IC FROM CE SC.json",
+      "sha256": "802b7fa2857abec587cedd6acd2a4692357217da042972c828a1783abf40cf13"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.json",
+      "sha256": "6a1dbc9f12b5df6c0ef732b29f37fc759b5d97ea97859997562109dcbf134ec1"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "dcd65299ba5825eca9371158a7ec93511aca06cc708c3c4fd7a0b4c984688ca7",
+      "archive_relative": "KC Clock/KC031 RESETS AND FORCE ADDRESS.tif",
+      "role": "original source scan",
+      "scan_id": "839"
+    },
+    {
+      "sha256": "d239ed6ddc29b70ad4d03a151a2d5b024effa82479f1a269748b10dfd8c77a99",
+      "archive_relative": "KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.tif",
+      "role": "original source scan",
+      "scan_id": "1117"
+    },
+    {
+      "sha256": "a50a0a83337428eb64a4edcb0ab5a6e69190ddef2998aebb7b9d8b069e9f6269",
+      "archive_relative": "KW CE Console Functions/KW031 ADDRESS COMPARE STOP MANUAL TGR AND STOP TGR.tif",
+      "role": "original source scan",
+      "scan_id": "1118"
+    },
+    {
+      "sha256": "382823e46c689fa3643b32b404afc3f415877abeaa81108ee2dcc7616ece6a22",
+      "archive_relative": "KW CE Console Functions/KW341 START SET IC FROM CE SC.tif",
+      "role": "original source scan",
+      "scan_id": "1131"
+    },
+    {
+      "sha256": "eb9d8ad3ad77fd52bb79709461b733ea2ee0eca15bbb4a7d1acc5e1b25baea40",
+      "archive_relative": "KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.tif",
+      "role": "original source scan",
+      "scan_id": "1135"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "C1": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            },
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          },
+          "D1": {
+            "function": "OR",
+            "port_triangles": {
+              "input:1": true,
+              "input:2": true,
+              "output:3": false
+            }
+          },
+          "G1": {
+            "port_triangles": {
+              "input:1": false,
+              "output:3": true
+            },
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          },
+          "H1": {
+            "port_triangles": {
+              "input:1": false,
+              "output:3": true
+            },
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "KC031",
+            "KW021",
+            "KW031",
+            "KW341",
+            "KW401"
+          ],
+          "location": "02E-E2C6",
+          "source_locations": [
+            "02E-E2C6"
+          ],
+          "literal_locations": [
+            "E-E2C6"
+          ],
+          "models": [
+            {
+              "path": "json/KC Clock/KC031 RESETS AND FORCE ADDRESS.json",
+              "sha256": "41f5e79accd045791f0db329b107eefb4545b51bb307d14d9a9e2f0c5582e96a"
+            },
+            {
+              "path": "json/KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.json",
+              "sha256": "bb5cbb5c6f5bcb23aa578c8ff9f43fa3e7c31fa6e7d9fd5b2d8fac193740a75c"
+            },
+            {
+              "path": "json/KW CE Console Functions/KW031 ADDRESS COMPARE STOP MANUAL TGR AND STOP TGR.json",
+              "sha256": "620b88262645802efe39589dabbe25d3029269b02855ab0db129a80acf5c3743"
+            },
+            {
+              "path": "json/KW CE Console Functions/KW341 START SET IC FROM CE SC.json",
+              "sha256": "802b7fa2857abec587cedd6acd2a4692357217da042972c828a1783abf40cf13"
+            },
+            {
+              "path": "json/KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.json",
+              "sha256": "6a1dbc9f12b5df6c0ef732b29f37fc759b5d97ea97859997562109dcbf134ec1"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "dcd65299ba5825eca9371158a7ec93511aca06cc708c3c4fd7a0b4c984688ca7",
+              "archive_relative": "KC Clock/KC031 RESETS AND FORCE ADDRESS.tif",
+              "role": "original source scan",
+              "scan_id": "839"
+            },
+            {
+              "sha256": "d239ed6ddc29b70ad4d03a151a2d5b024effa82479f1a269748b10dfd8c77a99",
+              "archive_relative": "KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.tif",
+              "role": "original source scan",
+              "scan_id": "1117"
+            },
+            {
+              "sha256": "a50a0a83337428eb64a4edcb0ab5a6e69190ddef2998aebb7b9d8b069e9f6269",
+              "archive_relative": "KW CE Console Functions/KW031 ADDRESS COMPARE STOP MANUAL TGR AND STOP TGR.tif",
+              "role": "original source scan",
+              "scan_id": "1118"
+            },
+            {
+              "sha256": "382823e46c689fa3643b32b404afc3f415877abeaa81108ee2dcc7616ece6a22",
+              "archive_relative": "KW CE Console Functions/KW341 START SET IC FROM CE SC.tif",
+              "role": "original source scan",
+              "scan_id": "1131"
+            },
+            {
+              "sha256": "eb9d8ad3ad77fd52bb79709461b733ea2ee0eca15bbb4a7d1acc5e1b25baea40",
+              "archive_relative": "KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.tif",
+              "role": "original source scan",
+              "scan_id": "1135"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "KC031",
+              "node": "AW",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/KC Clock/KC031 RESETS AND FORCE ADDRESS.json",
+                "sha256": "41f5e79accd045791f0db329b107eefb4545b51bb307d14d9a9e2f0c5582e96a"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KW021",
+              "node": "AB",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.json",
+                "sha256": "bb5cbb5c6f5bcb23aa578c8ff9f43fa3e7c31fa6e7d9fd5b2d8fac193740a75c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KW021",
+              "node": "AW",
+              "node_pointer": "/nodes/27",
+              "model": {
+                "path": "json/KW CE Console Functions/KW021 SINGLE CYCLE AND SINGLE INSTRUCTION.json",
+                "sha256": "bb5cbb5c6f5bcb23aa578c8ff9f43fa3e7c31fa6e7d9fd5b2d8fac193740a75c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KW031",
+              "node": "AR",
+              "node_pointer": "/nodes/33",
+              "model": {
+                "path": "json/KW CE Console Functions/KW031 ADDRESS COMPARE STOP MANUAL TGR AND STOP TGR.json",
+                "sha256": "620b88262645802efe39589dabbe25d3029269b02855ab0db129a80acf5c3743"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KW341",
+              "node": "BC",
+              "node_pointer": "/nodes/24",
+              "model": {
+                "path": "json/KW CE Console Functions/KW341 START SET IC FROM CE SC.json",
+                "sha256": "802b7fa2857abec587cedd6acd2a4692357217da042972c828a1783abf40cf13"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KW401",
+              "node": "AY",
+              "node_pointer": "/nodes/29",
+              "model": {
+                "path": "json/KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.json",
+                "sha256": "6a1dbc9f12b5df6c0ef732b29f37fc759b5d97ea97859997562109dcbf134ec1"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 5,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1",
+            "G1",
+            "H1"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "OR",
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "OR",
+              "input:1": true,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": true,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "G1": {
+              "function": "AR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "H1": {
+              "function": "AR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "KC031",
+        "KW021",
+        "KW031",
+        "KW341",
+        "KW401"
+      ],
+      "source_locations": [
+        "02E-E2C6"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "9d8d24f8281bcc1531199af59610a19ac79c5b7bdb03e00bcec5c433828d5821",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

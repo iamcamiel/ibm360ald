@@ -157,6 +157,10 @@ def load_evidence(card, overlay, component_authority_path=None):
             else: valid_corrections[key].append(item)
     observations, changes = [], []
     for original in catalog.get("diagram_occurrences", []):
+        identity_issue = page_reader.ordinary_slt_identity_issue(original, card)
+        if identity_issue:
+            uncertainties.append({"kind":"ordinary SLT portion identity unresolved", "page":original.get("page"), "node":original.get("node"), "identity":identity_issue})
+            continue
         if not original.get("source_reviewed"):
             uncertainties.append({"kind": "occurrence not independently source reviewed", "page": original.get("page"), "node": original.get("node")})
             continue
@@ -204,6 +208,11 @@ def load_evidence(card, overlay, component_authority_path=None):
         node, source_lookup = locate_catalog_node(models[page], raw)
         if node is None:
             uncertainties.append({"kind":"catalog node unresolved in current hash-bound model","page":page,"node":raw.get("node"),"source_lookup":source_lookup})
+            continue
+        portion_issue = page_reader.ordinary_slt_identity_issue(node, card)
+        if portion_issue:
+            uncertainties.append({"kind":"ordinary SLT portion identity unresolved", "page":page, "node":raw.get("node"), "identity":portion_issue})
+            observations[:] = [o for o in observations if not (o.get("page")==page and o.get("node")==raw.get("node") and o.get("node_pointer")==raw.get("node_pointer"))]
             continue
         identity_audit = node.get("_identity_conflict")
         if identity_audit:
@@ -352,10 +361,12 @@ def select_notation_baseline(node,occurrences,uncertainties):
             else:port.pop(key,None)
 
 
-def derive_semantics(card, catalog, observations, models, power, uncertainties):
+def _derive_semantics_base(card, catalog, observations, models, power, uncertainties):
     portions = defaultdict(list)
     by_page = defaultdict(dict)
     for o in observations:
+        if page_reader.ordinary_slt_identity_issue(o, card):
+            raise ValueError("Unresolved ordinary SLT portion identity cannot enter semantic grouping")
         portions[o["portion"]].append(o)
         by_page[o["page"]][o["node"]] = o
     contact_ports = defaultdict(lambda: defaultdict(set))
@@ -665,9 +676,28 @@ def derive_semantics(card, catalog, observations, models, power, uncertainties):
             "unobserved_contact_interpretation":"No connection observed; electrical disconnection is not established.",
             "listing_portions":sorted(listed),"listing_records":catalog.get("listing_records",[])}, manual_path
 
+def derive_semantics(card, catalog, observations, models, power, uncertainties):
+    model,manual_path=_derive_semantics_base(card,catalog,observations,models,power,uncertainties)
+    if any(n.get('_observed_pinless_counts',{}).get('output',0)>1 for n in model['portions'].values()):
+        import anonymous_outputs
+        try:
+            model=anonymous_outputs.preserve(model,models,page_reader,uncertainties)
+        except (ValueError,KeyError,TypeError) as problem:
+            uncertainties.append({'kind':'anonymous output joint witness incomplete','holds':[str(problem)]})
+    return model,manual_path
+
+
+
+
 def terminal_components(model):
     """Return logical port memberships independently of drawing coordinates."""
     nets = defaultdict(set)
+    if model.get('networks') is not None:
+        for network in model['networks']:
+            for side in ('input','output'):
+                for portion,port_id in network[side+'s']:
+                    nets[network['id']].add((portion,side,port_id))
+        return nets
     for portion,node in model["portions"].items():
         for side,key in (("input","_inputs"),("output","_outputs")):
             for p in node[key]:
@@ -838,13 +868,16 @@ def generic_definition(model, provenance, uncertainties, reviewed_overlay=None):
     copy_nonlogical_contacts(spec,model,reviewed_overlay)
     normalize_free_row_scene(spec)
     spec["nets"]=generate_card.wiring_graph(spec)
+    if model.get('anonymous_output_preservation'):
+        import anonymous_outputs
+        anonymous_outputs.attach(spec,model)
     if reviewed_overlay:
         expected=sorted(sorted(net["terminals"] if isinstance(net,dict) else net) for net in reviewed_overlay["reviewed_nets"])
         assert spec["nets"]==expected,"Relayout changed approved terminal connections"
     generate_card.validate(spec)
     return spec
 
-def reviewed_routing_model(overlay,observed_model):
+def _reviewed_routing_model_base(overlay,observed_model):
     """Recover exact reviewed networks while retaining stable semantic port IDs."""
     nodes={}
     by_terminal={}
@@ -897,7 +930,7 @@ def reviewed_header(overlay,model):
     return facts
 
 
-def reviewed_definition(card, overlay, model, provenance, uncertainties):
+def _reviewed_definition_base(card, overlay, model, provenance, uncertainties):
     """Combine independently derived facts with explicitly reviewed supplements."""
     reviewed=overlay["reviewed_portions"]
     layout=overlay["layout"]
@@ -963,6 +996,34 @@ def reviewed_definition(card, overlay, model, provenance, uncertainties):
     generate_card.validate(spec)
     return spec,comparisons
 
+def reviewed_routing_model(overlay,observed_model):
+    result=_reviewed_routing_model_base(overlay,observed_model)
+    if observed_model.get('anonymous_output_preservation'):
+        result['anonymous_output_preservation']=deepcopy(observed_model['anonymous_output_preservation'])
+    return result
+
+
+def reviewed_definition(card, overlay, model, provenance, uncertainties):
+    spec,comparisons=_reviewed_definition_base(card,overlay,model,provenance,uncertainties)
+    if model.get('anonymous_output_preservation'):
+        import anonymous_outputs
+        anonymous_outputs.attach(spec,model)
+    return spec,comparisons
+
+
+def _old_notation_overlay(overlay):
+    if not overlay:return overlay
+    result=deepcopy(overlay)
+    for variant in result.get('approved_variants',[]):
+        variant.pop('circuit_witness',None)
+        for change in variant.get('box_overrides',{}).values():change.pop('circuit_identifier',None)
+    return result
+
+
+
+
+
+
 def _build(card_type, overrides_path=None, relayout=False, component_authority_path=None):
     if not re.fullmatch(r"\d{4}",card_type):
         raise ValueError("Card type must be exactly four digits")
@@ -981,6 +1042,12 @@ def _build(card_type, overrides_path=None, relayout=False, component_authority_p
         raise ValueError('Reviewed geometry requires both layout and reviewed_portions')
     layout_overlay=overlay if 'layout' in overlay else None
     catalog,obs,models,power,bindings,changes,uncertainties=load_evidence(card_type,overlay,component_authority_path)
+    import multicircuit_variants as multi
+    choices=deepcopy(overlay.get('multicircuit_canonical_choices',{}))
+    persisted={b['portion']:deepcopy(b['_multicircuit_preservation']['choice']['choice'])
+               for b in overlay.get('layout',{}).get('boxes',[]) if '_multicircuit_preservation' in b}
+    if choices and persisted:assert choices==persisted,'Contradictory canonical circuit policies'
+    catalog['_explicit_multicircuit_choices']=choices or persisted
     if rejected_overlay:uncertainties.append({"kind":"reviewed supplement not applied",**rejected_overlay})
     model,manual_path=derive_semantics(card_type,catalog,obs,models,power,uncertainties)
     if manual_path.is_file():bindings.append(binding(manual_path))
@@ -1084,5 +1151,49 @@ def main():
     print(json.dumps({"card_type":args.card_type,"definition_generated":definition is not None,
                       "review_items":len(report["uncertainties"]),"reviewed_supplement_used":report["reviewed_supplement_used"],
                       "output_directory":str(out),"check_only":args.check},ensure_ascii=False))
+
+
+
+_single_circuit_derive_semantics=derive_semantics
+def derive_semantics(card, catalog, observations, models, power, uncertainties):
+    import multicircuit_variants as multi
+    choices=catalog.get('_explicit_multicircuit_choices',{})
+    if not choices:return _single_circuit_derive_semantics(card,catalog,observations,models,power,uncertainties)
+    plan=multi.make_plan(card,catalog,observations,choices,ROOT)
+    if plan is None:return _single_circuit_derive_semantics(card,catalog,observations,models,power,uncertainties)
+    canonical_observations=deepcopy(observations)
+    for o in canonical_observations:
+        if o['portion'] in plan['choices']:
+            o['circuit_identifier']=plan['choices'][o['portion']]['choice']['canonical_circuit_identifier']
+    model,manual_path=_single_circuit_derive_semantics(card,catalog,canonical_observations,models,power,uncertainties)
+    model['multicircuit_preservation']=plan
+    return model,manual_path
+
+
+_single_circuit_generic_definition=generic_definition
+def generic_definition(model,provenance,uncertainties,reviewed_overlay=None):
+    import multicircuit_variants as multi
+    if 'multicircuit_preservation' not in model:
+        return _single_circuit_generic_definition(model,provenance,uncertainties,reviewed_overlay)
+    result=_single_circuit_generic_definition(model,provenance,uncertainties,_old_notation_overlay(reviewed_overlay))
+    result=multi.attach(result,model['multicircuit_preservation'])
+    result['provenance']['multicircuit_runtime']=binding(Path(multi.__file__))
+    if reviewed_overlay:result['variants']=deepcopy(reviewed_overlay.get('approved_variants',[]))
+    generate_card.validate(result)
+    return result
+
+
+_single_circuit_reviewed_definition=reviewed_definition
+def reviewed_definition(card,overlay,model,provenance,uncertainties):
+    import multicircuit_variants as multi
+    if 'multicircuit_preservation' not in model:
+        return _single_circuit_reviewed_definition(card,overlay,model,provenance,uncertainties)
+    result,comparisons=_single_circuit_reviewed_definition(card,_old_notation_overlay(overlay),model,provenance,uncertainties)
+    result=multi.attach(result,model['multicircuit_preservation'])
+    result['provenance']['multicircuit_runtime']=binding(Path(multi.__file__))
+    result['variants']=deepcopy(overlay.get('approved_variants',[]))
+    generate_card.validate(result)
+    return result,comparisons
+
 
 if __name__=="__main__":main()

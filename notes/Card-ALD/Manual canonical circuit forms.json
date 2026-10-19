@@ -156,7 +156,7 @@
         "visible_inputs": 1,
         "visible_outputs": 2
       },
-      "inference_or_limit": "The illustration includes one pin-labeled output sharing the input contact and another pinless output. The user authorizes omitting the duplicate same-contact output, while retaining the separate pinless output."
+      "inference_or_limit": "The ALD illustration shows one B10-labeled input and two separate plain, pinless right-side output stubs. Their printed arity does not establish an electrical short, a physical output contact, or a hidden supply connection. Preserve independently traced source output stems; the existing input-only rule for an explicitly repeated numbered AR contact applies only where that same contact is actually printed."
     },
     "U61AC": {
       "manual_definition": "125 Ohm to +3V",
@@ -861,6 +861,148 @@
         "all_output_triangles": false
       },
       "inference_or_limit": "The illustrated OR with inverted inputs and plain output is DeMorgan-equivalent to canonical AND with plain inputs and inverted output. Figure79 describes loaded T03AJ; no pinout, card width, or power-contact union is inferred from the circuit symbol."
+    },
+    "T03AA": {
+      "manual_definition": "AND Invert No Load",
+      "definition_status": "index_definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 88,
+        "printed_page": 87,
+        "figure": null
+      },
+      "canonical_form": {
+        "primary_function": "A",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Written AND-inverter definition establishes AND with ordinary inputs and an inverting output, using the user-selected definition-based canonical convention."
+      },
+      "literal_manual_ALD_sample": null,
+      "inference_or_limit": "Signal pins and internal card wiring must still come from accepted card occurrences; no unseen card pinout or supply connection is inferred."
+    },
+    "T05AB": {
+      "manual_definition": "Inverter Direct Coupled - 350 Ohm Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 65,
+        "printed_page": 64,
+        "figure": 93
+      },
+      "canonical_form": {
+        "primary_function": "N",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Explicit inverter definition normalized to an ordinary single input and an inverting output. The illustrated input-wedge/plain-output form is retained as an equivalent source notation, not silently relabeled."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "N",
+        "all_input_triangles": true,
+        "all_output_triangles": false,
+        "visible_inputs": 1
+      },
+      "inference_or_limit": "Signal pins and internal card wiring must still come from accepted card occurrences; no unseen card pinout or supply connection is inferred."
+    },
+    "U55AD": {
+      "manual_definition": "15 ma Switch ID - 1K Load",
+      "definition_status": "definition_and_figure_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "pdf_page_1based": 71,
+        "printed_page": 70,
+        "figure": 110
+      },
+      "canonical_form": {
+        "primary_function": "AR",
+        "all_input_triangles": true,
+        "all_output_triangles": false,
+        "basis": "Use the actual Figure110 ALD symbol for this driver: AR, input wedge, ordinary output. Do not infer the form of U55AC or another driver identifier from this entry."
+      },
+      "literal_manual_ALD_sample": {
+        "function": "AR",
+        "all_input_triangles": true,
+        "all_output_triangles": false,
+        "visible_inputs": 1
+      },
+      "inference_or_limit": "Signal pins and internal card wiring must still come from accepted card occurrences; no unseen card pinout or supply connection is inferred."
+    },
+    "T15AE": {
+      "canonical_form": {
+        "all_input_triangles": true,
+        "all_output_triangles": false,
+        "basis": "Exact 5806194 manual sheet T15AE ALD sample N with input wedge and plain outputs; no majority-vote or prefix substitution.",
+        "primary_function": "N"
+      },
+      "definition_status": "definition_and_exact_card_figure_verified",
+      "inference_or_limit": "Current FX native N blocks use plain input/output wedge, a genuine source notation form after the nine false input wedges are repaired. Preserve native profiles separately. No unobserved D-group pinout is added.",
+      "literal_manual_ALD_sample": {
+        "all_input_triangles": true,
+        "all_output_triangles": false,
+        "function": "N"
+      },
+      "manual_definition": "High Power Driver - No Load",
+      "manual_evidence": [
+        {
+          "manual": "SLT_Card_Schematics_Jan67.pdf",
+          "manual_sha256": "32551f42c44f1a9f28cf6fd1d880412d84952712cbfb72b837586e84c54a8f5d",
+          "pdf_page_1based": 354
+        },
+        {
+          "manual": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+          "manual_sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+          "pdf_page_1based": 89
+        }
+      ],
+      "source": {
+        "engineering_change": "164996",
+        "exact_card_part": "5806194",
+        "manual": "SLT_Card_Schematics_Jan67.pdf",
+        "manual_sha256": "32551f42c44f1a9f28cf6fd1d880412d84952712cbfb72b837586e84c54a8f5d",
+        "pdf_page_1based": 354
+      }
+    },
+    "U03CU": {
+      "manual_definition": "OR-Inverter-Terminate with Load",
+      "definition_status": "definition_verified",
+      "source": {
+        "manual": "D:\\Reference Materials\\IBM 360\\Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+        "manual_sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+        "pdf_page_1based": 91,
+        "printed_page": 90,
+        "section": "Circuit number/title appendix",
+        "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-publication-current\\Complete remaining publication 20261018\\3362 U03CU authority review\\SLT manual page91.png"
+      },
+      "canonical_form": {
+        "primary_function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Exact U03CU written OR-inverter definition establishes OR with plain inputs and inverted output. Preserve the leading asterisk actually printed on U03CU source occurrences; no CU figure is claimed and no CN identity is substituted."
+      },
+      "literal_manual_ALD_sample": null,
+      "source_observed_form": {
+        "function": "✲OR",
+        "all_input_triangles": false,
+        "all_output_triangles": true,
+        "basis": "Current exact U03CU observations and separately viewed native KT801 BK/BM; arity and individual wires remain derived from each source, not this authority."
+      },
+      "notation_authority": {
+        "manual": "D:\\Reference Materials\\IBM 360\\SY22-2798-2_LogicBlocks_AutomatedLogicDiagrams_SLT,SLD,ASLT,MST_TO_Oct71.pdf",
+        "manual_sha256": "e3214d20d24a698beb464766df8acabcee20c5f4ea298c3e4b95407a455f84f7",
+        "logical_form": {
+          "pdf_page_1based": 21,
+          "printed_page": "2-1",
+          "figure": "2-6",
+          "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-publication-current\\Complete remaining publication 20261018\\3362 U03CU authority review\\General page21.png"
+        },
+        "leading_asterisk": {
+          "pdf_page_1based": 45,
+          "printed_page": "3-5",
+          "figure": "3-4",
+          "render": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\card-publication-current\\Complete remaining publication 20261018\\3362 U03CU authority review\\General-45.png",
+          "meaning": "Asterisk in first character signifies non-interchangeable inputs."
+        }
+      },
+      "inference_or_limit": "Definition verified from the exact CU appendix entry; no CU-specific figure or transistor topology established. Preserve each independently traced incoming group and source arity. The leading function asterisk denotes non-interchangeable inputs; it is not permission to short independent nets, add contacts, or infer hidden supply connections."
     }
   }
 }

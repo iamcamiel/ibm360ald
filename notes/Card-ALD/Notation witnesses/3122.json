@@ -1,0 +1,1166 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3122",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "ef621771d752a368c5f9348e57e34a1969fa7347b0a9db3c0b2581462bfa95bb"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "38993f28fd2a6697d761a23b7136997cf8f8ee6152537cbbf6aa56bac31bb6cd"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 24,
+    "resolved_catalogue_observations": 24,
+    "source_observations": 24,
+    "exact_model_pointer_keys": 24,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "08212b8875594b146a292527a5a6e5a9de152ad086b87b741c1e62f4405bc503"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "a0bf9af70e09b8e996ec77ca239aba42162859af2a3a85bf157d6ffddba0f7e7"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "ecd40ea52a14b7c015a5af297e215bc4fb14267ee9713299d0025d99658aec7f"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "404d4a19bd2bea2709ba2116fa90756604ff3c50e45c8641f15a40af79249aea"
+    }
+  ],
+  "counts": {
+    "occurrences": 24,
+    "pages": 3,
+    "page_socket_observations": 4,
+    "physical_card_sites": 2,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 2,
+    "complete_field_observation_witnesses": 2,
+    "partial_observation_witnesses": 0,
+    "distinct_observed_variants": 2,
+    "variants_with_complete_witness": 2,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 2,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/FA ATR Register/FA121 ATR GATING CONTROLS.json",
+      "sha256": "3d3bde0c7b3f038def9b3a0732192d538ee9e5a6a61448f7578b8eb459fdc5ee"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+      "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "4f7a59b9292694a706fe8c2d72680613ddbf3f3e252af9bf545f1ac0325e9b95",
+      "archive_relative": "FA ATR Register/FA121 ATR GATING CONTROLS.tif",
+      "role": "original source scan",
+      "scan_id": "707"
+    },
+    {
+      "sha256": "bc404734050c507c0fc5eaa3a297fece3fbf40d2829399d4e874775909a209ce",
+      "archive_relative": "MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.tif",
+      "role": "original source scan",
+      "scan_id": "1289"
+    },
+    {
+      "sha256": "f09a1e965a4332692f85826eca6a1775809158e6dd57849bea8c0499cd4d3c65",
+      "archive_relative": "MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.tif",
+      "role": "original source scan",
+      "scan_id": "1296"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "function": "AR T",
+            "port_triangles": {
+              "input:physical:D10": true,
+              "output:anonymous:1": true
+            }
+          },
+          "A2": {
+            "function": "N",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "output:physical:D12": false
+            }
+          },
+          "D1": {
+            "function": "OR",
+            "port_triangles": {
+              "input:physical:B08": true,
+              "input:physical:B09": true,
+              "input:physical:B10": true,
+              "input:physical:D05": true,
+              "input:physical:D06": true,
+              "output:physical:D09": false
+            }
+          },
+          "E2": {
+            "function": "R T0"
+          },
+          "E4": {
+            "function": "R T0"
+          },
+          "E5": {
+            "function": "OR",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:physical:D04": true,
+              "output:anonymous:1": true
+            }
+          },
+          "E6": {
+            "function": "OR",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:physical:B03": true,
+              "output:anonymous:1": true
+            }
+          },
+          "E7": {
+            "function": "A",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:anonymous:2": true,
+              "output:physical:D02": false
+            },
+            "port_symbols": {
+              "output:physical:D02": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "FA121",
+            "MA265"
+          ],
+          "location": "02A-B4F4",
+          "source_locations": [
+            "02A-B4F4"
+          ],
+          "literal_locations": [
+            "A-B4F4"
+          ],
+          "models": [
+            {
+              "path": "json/FA ATR Register/FA121 ATR GATING CONTROLS.json",
+              "sha256": "3d3bde0c7b3f038def9b3a0732192d538ee9e5a6a61448f7578b8eb459fdc5ee"
+            },
+            {
+              "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+              "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "4f7a59b9292694a706fe8c2d72680613ddbf3f3e252af9bf545f1ac0325e9b95",
+              "archive_relative": "FA ATR Register/FA121 ATR GATING CONTROLS.tif",
+              "role": "original source scan",
+              "scan_id": "707"
+            },
+            {
+              "sha256": "f09a1e965a4332692f85826eca6a1775809158e6dd57849bea8c0499cd4d3c65",
+              "archive_relative": "MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.tif",
+              "role": "original source scan",
+              "scan_id": "1296"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "FA121",
+              "node": "AS",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/FA ATR Register/FA121 ATR GATING CONTROLS.json",
+                "sha256": "3d3bde0c7b3f038def9b3a0732192d538ee9e5a6a61448f7578b8eb459fdc5ee"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FA121",
+              "node": "AU",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/FA ATR Register/FA121 ATR GATING CONTROLS.json",
+                "sha256": "3d3bde0c7b3f038def9b3a0732192d538ee9e5a6a61448f7578b8eb459fdc5ee"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AH",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AJ",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AW",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AX",
+              "node_pointer": "/nodes/19",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AY",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AZ",
+              "node_pointer": "/nodes/21",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BE",
+              "node_pointer": "/nodes/26",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BF",
+              "node_pointer": "/nodes/27",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BG",
+              "node_pointer": "/nodes/28",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 2,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "B1",
+            "C1",
+            "D1",
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "E5",
+            "E6",
+            "E7"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [
+            {
+              "portion": "A1",
+              "node": "AS",
+              "source_pin_index": 2,
+              "physical_pin": "D10",
+              "reason": "AR repeated input contact is input-only; printed output stub omitted."
+            }
+          ],
+          "observed_fields": {
+            "A1": {
+              "function": "AR T",
+              "input:physical:D10": true,
+              "pin_symbols:input:physical:D10": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D10": null,
+              "output:anonymous:1": true,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "A2": {
+              "function": "N",
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:physical:D12": false,
+              "pin_symbols:output:physical:D12": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D12": null
+            },
+            "B1": {
+              "function": "A",
+              "input:physical:B13": false,
+              "pin_symbols:input:physical:B13": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B13": null,
+              "input:physical:D13": false,
+              "pin_symbols:input:physical:D13": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D13": null,
+              "output:physical:D11": true,
+              "pin_symbols:output:physical:D11": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D11": null
+            },
+            "C1": {
+              "function": "A",
+              "input:physical:B04": false,
+              "pin_symbols:input:physical:B04": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B04": null,
+              "input:physical:B05": false,
+              "pin_symbols:input:physical:B05": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B05": null,
+              "output:physical:B02": true,
+              "pin_symbols:output:physical:B02": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:B02": null
+            },
+            "D1": {
+              "function": "OR",
+              "input:physical:D05": true,
+              "pin_symbols:input:physical:D05": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D05": null,
+              "input:physical:D06": true,
+              "pin_symbols:input:physical:D06": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D06": null,
+              "input:physical:B10": true,
+              "pin_symbols:input:physical:B10": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B10": null,
+              "input:physical:B09": true,
+              "pin_symbols:input:physical:B09": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B09": null,
+              "input:physical:B08": true,
+              "pin_symbols:input:physical:B08": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B08": null,
+              "output:physical:D09": false,
+              "pin_symbols:output:physical:D09": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D09": null
+            },
+            "E1": {
+              "function": "AR",
+              "input:physical:D07": false,
+              "pin_symbols:input:physical:D07": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D07": null,
+              "output:anonymous:2": false,
+              "pin_symbols:output:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:2": null,
+              "output:anonymous:1": false,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E2": {
+              "function": "R T0",
+              "input:anonymous:1": false,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null
+            },
+            "E3": {
+              "function": "AR",
+              "input:physical:B12": false,
+              "pin_symbols:input:physical:B12": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B12": null,
+              "output:anonymous:2": false,
+              "pin_symbols:output:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:2": null,
+              "output:anonymous:1": false,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E4": {
+              "function": "R T0",
+              "input:anonymous:1": false,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null
+            },
+            "E5": {
+              "function": "OR",
+              "input:physical:D04": true,
+              "pin_symbols:input:physical:D04": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D04": null,
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:anonymous:1": true,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E6": {
+              "function": "OR",
+              "input:physical:B03": true,
+              "pin_symbols:input:physical:B03": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B03": null,
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:anonymous:1": true,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E7": {
+              "function": "A",
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "input:anonymous:2": true,
+              "pin_symbols:input:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:2": null,
+              "output:physical:D02": false,
+              "pin_symbols:output:physical:D02": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:physical:D02": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "FA121",
+        "MA265"
+      ],
+      "source_locations": [
+        "02A-B4F4"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    },
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "A1": {
+            "function": "AR T"
+          },
+          "A2": {
+            "function": "N",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "output:physical:D12": false
+            }
+          },
+          "D1": {
+            "function": "OR",
+            "port_triangles": {
+              "input:physical:B08": true,
+              "input:physical:B09": true,
+              "input:physical:B10": true,
+              "input:physical:D05": true,
+              "input:physical:D06": true,
+              "output:physical:D09": false
+            }
+          },
+          "E2": {
+            "function": "R T0"
+          },
+          "E4": {
+            "function": "R T0"
+          },
+          "E5": {
+            "function": "OR",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:physical:D04": true,
+              "output:anonymous:1": true
+            }
+          },
+          "E6": {
+            "function": "OR",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:physical:B03": true,
+              "output:anonymous:1": true
+            }
+          },
+          "E7": {
+            "function": "A",
+            "port_triangles": {
+              "input:anonymous:1": true,
+              "input:anonymous:2": true,
+              "output:physical:D02": false
+            },
+            "port_symbols": {
+              "output:physical:D02": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "MA245",
+            "MA265"
+          ],
+          "location": "02A-B4E7",
+          "source_locations": [
+            "02A-B4E7"
+          ],
+          "literal_locations": [
+            "A-B4E7"
+          ],
+          "models": [
+            {
+              "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+              "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+            },
+            {
+              "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+              "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "bc404734050c507c0fc5eaa3a297fece3fbf40d2829399d4e874775909a209ce",
+              "archive_relative": "MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.tif",
+              "role": "original source scan",
+              "scan_id": "1289"
+            },
+            {
+              "sha256": "f09a1e965a4332692f85826eca6a1775809158e6dd57849bea8c0499cd4d3c65",
+              "archive_relative": "MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.tif",
+              "role": "original source scan",
+              "scan_id": "1296"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "MA245",
+              "node": "AT",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+                "sha256": "ba32bf22b7c5fab9b39941f58856645363bbf400b1c00dd5d53a79f3cb6fb26f"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AA",
+              "node_pointer": "/nodes/0",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AE",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AF",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "AK",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BA",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BB",
+              "node_pointer": "/nodes/23",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BC",
+              "node_pointer": "/nodes/24",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BD",
+              "node_pointer": "/nodes/25",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BH",
+              "node_pointer": "/nodes/29",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BJ",
+              "node_pointer": "/nodes/30",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "MA265",
+              "node": "BK",
+              "node_pointer": "/nodes/31",
+              "model": {
+                "path": "json/MA Storage Address Bus/MA265 SAB PARITY -01-05 AND SAB PARITY P00-07 GENERATION.json",
+                "sha256": "b6bdaa66c8974a192d8432610d56fa31043ae679ccaa92813f40b9e3af25dc7b"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 2,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "B1",
+            "C1",
+            "D1",
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "E5",
+            "E6",
+            "E7"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [
+            {
+              "portion": "A1",
+              "node": "AA",
+              "source_pin_index": 2,
+              "physical_pin": "D10",
+              "reason": "AR repeated input contact is input-only; printed output stub omitted."
+            }
+          ],
+          "observed_fields": {
+            "A1": {
+              "function": "AR T",
+              "input:physical:D10": false,
+              "pin_symbols:input:physical:D10": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D10": null,
+              "output:anonymous:1": false,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "A2": {
+              "function": "N",
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:physical:D12": false,
+              "pin_symbols:output:physical:D12": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D12": null
+            },
+            "B1": {
+              "function": "A",
+              "input:physical:B13": false,
+              "pin_symbols:input:physical:B13": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B13": null,
+              "input:physical:D13": false,
+              "pin_symbols:input:physical:D13": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D13": null,
+              "output:physical:D11": true,
+              "pin_symbols:output:physical:D11": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D11": null
+            },
+            "C1": {
+              "function": "A",
+              "input:physical:B04": false,
+              "pin_symbols:input:physical:B04": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B04": null,
+              "input:physical:B05": false,
+              "pin_symbols:input:physical:B05": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B05": null,
+              "output:physical:B02": true,
+              "pin_symbols:output:physical:B02": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:B02": null
+            },
+            "D1": {
+              "function": "OR",
+              "input:physical:D05": true,
+              "pin_symbols:input:physical:D05": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D05": null,
+              "input:physical:D06": true,
+              "pin_symbols:input:physical:D06": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D06": null,
+              "input:physical:B10": true,
+              "pin_symbols:input:physical:B10": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B10": null,
+              "input:physical:B09": true,
+              "pin_symbols:input:physical:B09": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B09": null,
+              "input:physical:B08": true,
+              "pin_symbols:input:physical:B08": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B08": null,
+              "output:physical:D09": false,
+              "pin_symbols:output:physical:D09": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:physical:D09": null
+            },
+            "E1": {
+              "function": "AR",
+              "input:physical:D07": false,
+              "pin_symbols:input:physical:D07": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D07": null,
+              "output:anonymous:2": false,
+              "pin_symbols:output:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:2": null,
+              "output:anonymous:1": false,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E2": {
+              "function": "R T0",
+              "input:anonymous:1": false,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null
+            },
+            "E3": {
+              "function": "AR",
+              "input:physical:B12": false,
+              "pin_symbols:input:physical:B12": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B12": null,
+              "output:anonymous:2": false,
+              "pin_symbols:output:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:2": null,
+              "output:anonymous:1": false,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E4": {
+              "function": "R T0",
+              "input:anonymous:1": false,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null
+            },
+            "E5": {
+              "function": "OR",
+              "input:physical:D04": true,
+              "pin_symbols:input:physical:D04": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:D04": null,
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:anonymous:1": true,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E6": {
+              "function": "OR",
+              "input:physical:B03": true,
+              "pin_symbols:input:physical:B03": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:physical:B03": null,
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "output:anonymous:1": true,
+              "pin_symbols:output:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:anonymous:1": null
+            },
+            "E7": {
+              "function": "A",
+              "input:anonymous:1": true,
+              "pin_symbols:input:anonymous:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:1": null,
+              "input:anonymous:2": true,
+              "pin_symbols:input:anonymous:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:anonymous:2": null,
+              "output:physical:D02": false,
+              "pin_symbols:output:physical:D02": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:physical:D02": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "MA245",
+        "MA265"
+      ],
+      "source_locations": [
+        "02A-B4E7"
+      ],
+      "complete_witnesses": 1,
+      "partial_witnesses": 0
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "9fda607d038bb344fda873cd76823dff20e56efab857cc11a008efb37aecf8d4",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

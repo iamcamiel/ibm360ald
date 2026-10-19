@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 import stat
 from display_direction import exterior_display_side
+from card_source import ordinary_slt_identity_issue
 
 ROOT = Path(__file__).resolve().parents[2]
 PIN = re.compile(r'[BDGJ](?:0[2-9]|1[0-3])\Z')
@@ -40,7 +41,7 @@ def put(rows, x, y, text):
 def termination_label(box, variant=None):
     change = (variant or {}).get('box_overrides', {}).get(box['portion'], {})
     return ' '.join([change.get('function', box['function']),
-                     box['circuit_identifier'], box['portion']])
+                     change.get('circuit_identifier',box['circuit_identifier']), box['portion']])
 
 
 def port_label(box, port):
@@ -90,7 +91,7 @@ def notation_ports(box, change):
     return result
 
 
-def header_lines(spec, variant=None):
+def _header_lines_v1(spec, variant=None):
     """Format every reviewed card and notation variant from the same factual fields."""
     facts = spec['header']
     assert facts['schema'] == 'card-ald-header-v1'
@@ -150,6 +151,79 @@ def header_lines(spec, variant=None):
     return lines
 
 
+def _header_lines_v2(spec, variant=None):
+    """Format every reviewed card and notation variant from the same factual fields."""
+    facts = spec['header']
+    assert facts['schema'] == 'card-ald-header-v2'
+    assert 'part_number' not in facts, 'V2 cannot also declare a scalar part number'
+    parts=facts['part_numbers']
+    assert isinstance(parts,list) and all(isinstance(p,str) and re.fullmatch(r'\d{7}',p) for p in parts), 'Only exact full part numbers may be listed'
+    assert len(parts)==len(set(parts)), 'Duplicate full part-number observations'
+    assert len(parts)!=1, 'Use the exact V1 schema for one full part number'
+    assert re.fullmatch(r'\d{4}',spec['card_type']), 'Card type identity is required'
+    part_text='PART NUMBER NOT ESTABLISHED' if not parts else 'PART NUMBERS '+', '.join(sorted(parts))
+    assert facts['card_width'] in ['SINGLE CARD', 'DOUBLE CARD']
+    assert spec['canvas']['header_rows'] == 7, 'The shared heading requires seven reserved lines'
+    for key in ['reviewed_occurrences', 'reviewed_pages']:
+        assert isinstance(facts[key], int) and facts[key] >= 0
+    assert facts['reviewed_pages'] <= facts['reviewed_occurrences']
+    banks = 'BD' if facts['card_width'] == 'SINGLE CARD' else 'BDGJ'
+    authority=spec.get('component_power_authority', {'role':'ordinary_slt'})
+    role=authority.get('role')
+    assert role in ('ordinary_slt','reviewed_special','not_established'), 'Unknown power authority'
+    if role=='ordinary_slt':assert {p[0] for p in spec['power_contacts']} == set(banks)
+    if role=='not_established':assert not spec['power_contacts'], 'Unknown rails must remain unassigned'
+    signal = {p['pin'] for p in spec['exterior_pins']}
+    possible = {f'{bank}{n:02}' for bank in banks for n in range(2, 14)}
+    unconnected = sorted(possible - set(spec['power_contacts']) - signal)
+    inputs = sum(p['side'] == 'input' for p in spec['exterior_pins'])
+    outputs = sum(p['side'] == 'output' for p in spec['exterior_pins'])
+    power = []
+    levels = ['GROUND', '+3V', '-3V', '+6V']
+    assert set(spec['power_contacts'].values()) <= set(levels)
+    for level in levels:
+        pins = sorted(p for p, value in spec['power_contacts'].items() if value == level)
+        if pins:
+            power.append(level + ' ' + ' '.join(pins))
+    boxes = {b['portion']: b for b in spec['boxes']}
+    provisional = defaultdict(list)
+    seen = set()
+    for entry in facts['provisional_forms']:
+        portion, circuit = entry['portion'], entry['circuit_identifier']
+        assert portion not in seen and boxes[portion]['circuit_identifier'] == circuit
+        seen.add(portion)
+        provisional[circuit].append(portion)
+    provisional_text = ', '.join('/'.join(sorted(portions)) + ' ' + circuit
+                                 for circuit, portions in sorted(provisional.items())) or 'NONE'
+    number = (variant or {}).get('number', 0)
+    identity = f'VARIANT {number:02}' if variant else 'CANONICAL'
+    standard=facts.get('symbol_standard','SLT MANUAL STANDARD')
+    assert standard in ('SLT MANUAL STANDARD','PRINTED ALD FORMS','MIXED MANUAL AND PRINTED ALD FORMS')
+    symbols = f'OBSERVED NOTATION VARIANT {number:02}' if variant else standard
+    power_text='; '.join(power) if power and role!='not_established' else 'NOT ESTABLISHED'
+    power_heading='RESERVED SYSTEM CONTACTS: ' if authority.get('source_contact_role')=='reserved_system_contact_positions' else 'POWER: '
+    contact_text=(', '.join(unconnected)+' (POSSIBLY UNUSED)' if unconnected else 'NONE')
+    if role!='ordinary_slt' and authority.get('contact_set_complete')is not True:contact_text='NOT ESTABLISHED'
+    lines = [
+        f"CARD-ALD {spec['card_type']}  {part_text}  {facts['card_width']}  {identity}",
+        f"PORTIONS: {len(boxes)}; SIGNAL CONTACTS: {len(signal)} ({inputs} INPUT, {outputs} OUTPUT)",
+        power_heading + power_text,
+        'UNCONNECTED SIGNAL CONTACTS: ' + contact_text,
+        'PROVISIONAL CIRCUIT FORMS: ' + provisional_text,
+        'SYMBOLS: ' + symbols,
+        f"SOURCE: {facts['reviewed_occurrences']} REVIEWED OCCURRENCES ON {facts['reviewed_pages']} PAGES",
+    ]
+    assert all(len(line) <= spec['canvas']['width'] for line in lines), 'Shared heading exceeds the reserved width'
+    return lines
+
+
+def header_lines(spec, variant=None):
+    """Keep the V1 format exact; V2 records absent or multiple exact identities."""
+    if spec['header'].get('schema')=='card-ald-header-v2':
+        return _header_lines_v2(spec,variant)
+    return _header_lines_v1(spec,variant)
+
+
 
 def caption_locations(spec):
     """Captions have one geometry shared by canonical and notation variants."""
@@ -175,12 +249,15 @@ def render(spec, variant=None):
     for point in spec['wiring']['marks']:
         assert point['symbol'] in ARMS and point['symbol'] != '─'
         put(rows, point['x'], point['y'], point['symbol'])
+    import multicircuit_variants as multi
+    multi.check_spec(spec)
+    if variant:multi.check_variant(spec,variant)
     replacements = (variant or {}).get('box_overrides', {})
     assert set(replacements) <= {b['portion'] for b in spec['boxes']}
     for box in spec['boxes']:
         x, y, h = box['x'], box['top'], box['height']
         change = replacements.get(box['portion'], {})
-        assert set(change) <= {'function', 'port_triangles', 'border_symbols', 'port_symbols'}, 'A variant may not move geometry'
+        assert set(change) <= {'function', 'port_triangles', 'border_symbols', 'port_symbols', 'circuit_identifier'}, 'A variant may not move geometry'
         displayed_ports = notation_ports(box, change)
         function = change.get('function', box['function'])
         assert isinstance(function, str) and 0 < len(function) <= 6
@@ -194,8 +271,8 @@ def render(spec, variant=None):
             port = displayed_ports[0]
             assert not port.get('border_symbol') and not any(port.get('pin_symbols', {}).values()), 'Compact R cannot hide source pin decorations'
             if port['triangle']:
-                assert rows[yy][xx] == '└', 'Compact input decoration requires its terminal corner'
-                rows[yy][xx] = '◺'
+                assert rows[yy][xx] in ('└','┌'), 'Compact input decoration requires its terminal corner'
+                rows[yy][xx] = '◺' if rows[yy][xx]=='└' else '◸'
             put(rows, xx + 1, yy, label.ljust(compact['label_width']))
             continue
         put(rows, x, y, '┌──────┐')
@@ -204,7 +281,7 @@ def render(spec, variant=None):
             put(rows, x, yy, '│')
             put(rows, x + 7, yy, '│')
         put(rows, x + 1, y + 1, function)
-        put(rows, x + 1, y + 3, box['circuit_identifier'])
+        put(rows, x + 1, y + 3, change.get('circuit_identifier',box['circuit_identifier']))
         put(rows, x + 1, y + 4, spec['card_type'] + box['portion'])
         triangles = change.get('port_triangles', {})
         assert set(triangles) <= {p['id'] for p in box['ports']}
@@ -317,6 +394,22 @@ def wiring_graph(spec):
     return sorted(components)
 
 
+def validate_compact_support(box, net, marks):
+    """A real branch junction, or an unbranched two-contact existing stem elbow."""
+    x,y=box['compact_termination']['point'];endpoint=marks.get((x,y),{}).get('symbol')
+    assert endpoint in ('└','┌'), 'Compact R endpoint must be a dangling corner'
+    dy=1 if endpoint=='└' else -1
+    support=marks.get((x,y-dy),{});symbol=support.get('symbol')
+    vertical='S' if dy==1 else 'N'
+    arms=set(support.get('arms','')) if symbol=='◇' else set(ARMS.get(symbol,''))
+    if symbol=='◇':
+        assert set('EW'+vertical)<=arms, 'Compact R junction lacks its reviewed trunk/stub directions'
+        return
+    terminal='PORT:'+box['portion']+':'+box['ports'][0]['id']
+    assert len(net)==2 and all(t.startswith('PORT:') for t in net) and terminal in net, 'Compact elbow requires exactly two block contacts'
+    assert symbol in ('┌','┐','└','┘') and len(arms)==2 and vertical in arms and len(arms&set('EW'))==1, 'Compact R must adjoin its existing stem elbow'
+
+
 def validate(spec):
     assert spec['schema'] == 'reviewed-card-render-definition-v1'
     assert re.fullmatch(r'\d{4}', spec['card_type'])
@@ -332,6 +425,7 @@ def validate(spec):
     grid_step = spec['canvas'].get('grid_step', 7)
     assert grid_step in [1, 7], 'Unsupported box row spacing'
     for b in boxes:
+        assert ordinary_slt_identity_issue({'card_type':spec['card_type'],'portion':b.get('portion'),'unit':b.get('circuit_identifier')}) is None, 'Unresolved ordinary SLT portion identity'
         functions=[b['function']]+[v.get('box_overrides',{}).get(b['portion'],{}).get('function',b['function'])
                                   for v in spec.get('variants',[])]
         if any(str(label).strip().lstrip('✲*').split()[:1]==['AR'] for label in functions):
@@ -367,9 +461,7 @@ def validate(spec):
             assert isinstance(compact['label_width'], int) and compact['label_width'] >= max(len(labels[0]) + 3, *map(len, labels)), 'Compact R needs three reserved variant characters'
             x, y = compact['point']
             assert isinstance(x, int) and isinstance(y, int)
-            assert marks.get((x, y), {}).get('symbol') == '└', 'Compact R endpoint must be a dangling corner'
-            above = marks.get((x, y - 1), {})
-            assert above.get('symbol') == '◇' and set('EWS') <= set(above.get('arms', '')), 'Compact R must hang directly below its net junction'
+            validate_compact_support(b, nets[0], marks)
             assert 0 <= x < x + compact['label_width'] < spec['canvas']['width'] and 0 < y < spec['canvas']['height']
             compact_labels[(x, y)] = {(xx, y) for xx in range(x + 1, x + 1 + compact['label_width'])}
             continue
@@ -408,7 +500,7 @@ def validate(spec):
     variants = spec['variants']
     assert len({v['number'] for v in variants}) == len(variants)
     for variant in variants:
-        assert set(variant) <= {'number', 'box_overrides', 'annotation_overrides', 'line_ending', 'predecessor_sha256'}, 'A variant cannot define geometry'
+        assert set(variant) <= {'number', 'box_overrides', 'annotation_overrides', 'line_ending', 'predecessor_sha256', 'circuit_witness'}, 'A variant cannot define geometry'
         render(spec, variant)
     return {'portions': len(boxes), 'exterior_signal_pins': len(spec['exterior_pins']),
             'nets': len(spec['nets']), 'variants': len(variants),

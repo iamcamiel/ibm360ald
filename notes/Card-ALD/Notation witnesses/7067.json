@@ -1,0 +1,226 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "7067",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "ef621771d752a368c5f9348e57e34a1969fa7347b0a9db3c0b2581462bfa95bb"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "38993f28fd2a6697d761a23b7136997cf8f8ee6152537cbbf6aa56bac31bb6cd"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "677e694a3ca454763cf609e7fca4e4658fab30a8344cc1bcf1a4ac46f0fb3f2d"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 2,
+    "resolved_catalogue_observations": 2,
+    "source_observations": 2,
+    "exact_model_pointer_keys": 2,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "08212b8875594b146a292527a5a6e5a9de152ad086b87b741c1e62f4405bc503"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "a0bf9af70e09b8e996ec77ca239aba42162859af2a3a85bf157d6ffddba0f7e7"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "ecd40ea52a14b7c015a5af297e215bc4fb14267ee9713299d0025d99658aec7f"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "404d4a19bd2bea2709ba2116fa90756604ff3c50e45c8641f15a40af79249aea"
+    }
+  ],
+  "counts": {
+    "occurrences": 2,
+    "pages": 1,
+    "page_socket_observations": 2,
+    "physical_card_sites": 2,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 2,
+    "complete_field_observation_witnesses": 2,
+    "partial_observation_witnesses": 0,
+    "distinct_observed_variants": 0,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 2,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.json",
+      "sha256": "649f0db7fadc19609cf8815767553df8b06d410e719d85e41f6d3fc6c7ed1c55"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "858bf3b95199c0273563eca0551eb06f9431059d4324fb918e19ab00f640a45a",
+      "archive_relative": "KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.tif",
+      "role": "original source scan",
+      "scan_id": "840"
+    }
+  ],
+  "canonical_pattern_witnesses": [
+    {
+      "page": "KC101",
+      "source_pages": [
+        "KC101"
+      ],
+      "location": "02E-D2H6",
+      "source_locations": [
+        "02E-D2H6"
+      ],
+      "literal_locations": [
+        "E-D2H6"
+      ],
+      "models": [
+        {
+          "path": "json/KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.json",
+          "sha256": "649f0db7fadc19609cf8815767553df8b06d410e719d85e41f6d3fc6c7ed1c55"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "858bf3b95199c0273563eca0551eb06f9431059d4324fb918e19ab00f640a45a",
+          "archive_relative": "KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.tif",
+          "role": "original source scan",
+          "scan_id": "840"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KC101",
+          "node": "AR",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.json",
+            "sha256": "649f0db7fadc19609cf8815767553df8b06d410e719d85e41f6d3fc6c7ed1c55"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "PWR",
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": true
+    },
+    {
+      "page": "KC101",
+      "source_pages": [
+        "KC101"
+      ],
+      "location": "02E-D2L6",
+      "source_locations": [
+        "02E-D2L6"
+      ],
+      "literal_locations": [
+        "E-D2L6"
+      ],
+      "models": [
+        {
+          "path": "json/KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.json",
+          "sha256": "649f0db7fadc19609cf8815767553df8b06d410e719d85e41f6d3fc6c7ed1c55"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "858bf3b95199c0273563eca0551eb06f9431059d4324fb918e19ab00f640a45a",
+          "archive_relative": "KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.tif",
+          "role": "original source scan",
+          "scan_id": "840"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KC101",
+          "node": "AN",
+          "node_pointer": "/nodes/2",
+          "model": {
+            "path": "json/KC Clock/KC101 DELAY LINE OSCILLATOR AND CONTROLS.json",
+            "sha256": "649f0db7fadc19609cf8815767553df8b06d410e719d85e41f6d3fc6c7ed1c55"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "PWR",
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": true
+    }
+  ],
+  "profiles_left_uncertain": [],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "6ec31c2d10e2d5cb03ed7da7f4611135ac58c7f5868ab99c38a3828e841b58fd",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}
