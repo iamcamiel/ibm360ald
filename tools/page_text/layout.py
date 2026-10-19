@@ -1,0 +1,346 @@
+"""Exact UTF-8 page presentation with explicit live JSON field bindings.
+
+Pure functions only. Literal glyphs preserve presentation, never connectivity.
+Only text_layout is excluded from the typed semantic remainder guard.
+"""
+from copy import deepcopy
+from hashlib import sha256
+import json
+import re
+
+SCHEMA = 'ibm360-ald-text-layout-v1'
+OBJECT_CONTAINERS = ('nodes', 'boxes', 'groups', 'CAS_boxes')
+OBJECT_FIELDS = ('function', 'unit', 'location', 'printed_card_portion', 'grid', 'id')
+
+def require(ok, message):
+    if not ok:
+        raise ValueError(message)
+
+def _exact(value):
+    try:
+        return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False)
+    except (TypeError, ValueError) as exc:
+        raise ValueError('JSON values required') from exc
+
+def rawview(document):
+    require(isinstance(document, dict), 'Page must be a JSON object')
+    if document.get('schema') == 'ibm360-ald-page-v2':
+        try:
+            from read_page import source_view
+            return source_view(document)
+        except ImportError as exc:
+            raise ValueError('The established normalization reader must be available for v2 input') from exc
+        except (KeyError, TypeError, IndexError, AssertionError) as exc:
+            raise ValueError('Invalid normalized page representation') from exc
+    require(not str(document.get('schema', '')).startswith('ibm360-ald-page-'), 'Unsupported normalized page schema')
+    return deepcopy(document)
+
+def _parts(pointer):
+    require(isinstance(pointer, str) and pointer.startswith('/') and pointer != '/', 'Nonempty scalar JSON pointer required')
+    require(re.search(r'~(?![01])', pointer) is None, 'Invalid JSON pointer escape')
+    parts = [part.replace('~1', '/').replace('~0', '~') for part in pointer[1:].split('/')]
+    require(parts[0] != 'text_layout', 'Bindings cannot address presentation internals')
+    return parts
+
+def _child(value, key):
+    if isinstance(value, list):
+        require(re.fullmatch(r'0|[1-9][0-9]*', key) is not None, 'Canonical array index required')
+        index = int(key)
+        require(index < len(value), 'Array index outside source')
+        return value[index]
+    require(isinstance(value, dict) and key in value, 'Pointer does not name an existing source member')
+    return value[key]
+
+def _get(document, pointer):
+    value = document
+    for key in _parts(pointer):
+        value = _child(value, key)
+    return value
+
+def _put(document, pointer, value):
+    parts = _parts(pointer)
+    parent = document
+    for key in parts[:-1]:
+        parent = _child(parent, key)
+    _child(parent, parts[-1])
+    key = int(parts[-1]) if isinstance(parent, list) else parts[-1]
+    parent[key] = deepcopy(value)
+
+def _split_bytes(utf8):
+    require(isinstance(utf8, bytes), 'UTF-8 bytes required')
+    bom = utf8.startswith(b'\xef\xbb\xbf')
+    try:
+        text = utf8[3 if bom else 0:].decode('utf-8')
+    except UnicodeError as exc:
+        raise ValueError('Invalid UTF-8 source text') from exc
+    lines = []
+    position = 0
+    # Only CR and LF separate rows. All other Unicode code points remain glyphs.
+    for match in re.finditer(r'\r\n|\r|\n', text):
+        lines.append((text[position:match.start()], match.group()))
+        position = match.end()
+    if position < len(text):
+        lines.append((text[position:], ''))
+    return bom, lines
+
+def _rows(rows):
+    require(isinstance(rows, list), 'Rows must be an array')
+    out = []
+    for row in rows:
+        if isinstance(row, str):
+            body, eol = row, ''
+        else:
+            require(isinstance(row, (tuple, list)) and len(row) == 2, 'Row body/EOL pair required')
+            body, eol = row
+        require(isinstance(body, str) and '\r' not in body and '\n' not in body and eol in ('', '\r', '\n', '\r\n'), 'Invalid explicit row')
+        out.append((body, eol))
+    return out
+
+def _binding_values(raw, bindings):
+    require(isinstance(bindings, list), 'Bindings must be an array')
+    pointers = {}
+    values = []
+    occupied = set()
+    for binding in bindings:
+        require(isinstance(binding, dict) and set(binding) == {'pointer', 'mirrors', 'row', 'column', 'width', 'format'}, 'Unknown or missing binding member')
+        require(binding['format'] == 'string-right-pad' and isinstance(binding['mirrors'], list), 'Unsupported binding format')
+        require(all(type(binding[k]) is int and binding[k] >= 0 for k in ('row', 'column', 'width')) and binding['width'] > 0, 'Invalid field geometry')
+        members = [binding['pointer']] + binding['mirrors']
+        require(all(isinstance(member, str) for member in members) and len(set(members)) == len(members), 'Duplicate pointers within a mirror group')
+        group_identity = tuple(members)
+        group = []
+        for pointer in members:
+            parts = _parts(pointer)
+            key = tuple(parts)
+            if key in pointers:
+                require(pointers[key] == group_identity, 'A repeated field must use the identical declared mirror group')
+            else:
+                require(not any(tuple(parts[:len(old)]) == old or old[:len(parts)] == tuple(parts) for old in pointers), 'Overlapping bound source pointers')
+                pointers[key] = group_identity
+            value = _get(raw, pointer)
+            require(type(value) is str and '\r' not in value and '\n' not in value, 'Bound fields must remain strings without CR/LF')
+            group.append(value)
+        require(all(value == group[0] for value in group), 'Declared presentation mirrors disagree')
+        require(len(group[0]) <= binding['width'], 'Field overflow requires an explicit layout update')
+        cells = {(binding['row'], column) for column in range(binding['column'], binding['column'] + binding['width'])}
+        require(not cells & occupied, 'Overlapping field claims')
+        occupied.update(cells)
+        values.append(group[0].ljust(binding['width']))
+    return values
+
+def _remainder(raw, bindings):
+    _binding_values(raw, bindings)
+    value = {key:deepcopy(child) for key, child in raw.items() if key != 'text_layout'}
+    for binding in bindings:
+        for pointer in [binding['pointer']] + binding['mirrors']:
+            # A string stays a string; container shape/member presence is retained.
+            _put(value, pointer, '\u0000text-layout-bound-string:' + pointer)
+    return sha256(_exact(value).encode('utf-8')).hexdigest()
+
+def discover(document, rows):
+    raw = rawview(document)
+    lines = _rows(rows)
+    proposals, held, boxes = [], [], []
+    def claim(pointer, row, column, category, owner):
+        value = _get(raw, pointer)
+        if not isinstance(value, str) or not value:
+            return
+        if type(row) is not int or type(column) is not int or not 0 <= row < len(lines) or column < 0 or lines[row][0][column:column+len(value)] != value:
+            held.append({'pointer':pointer, 'reason':'Declared geometry does not exactly match current text'})
+            return
+        proposals.append({'pointer':pointer, 'row':row, 'column':column, 'width':len(value), 'value':value, 'category':category, 'owner':owner})
+    for container in OBJECT_CONTAINERS:
+        nodes = raw.get(container, [])
+        if not isinstance(nodes, list):
+            held.append({'pointer':'/'+container, 'reason':'Unsupported object collection'})
+            continue
+        for index, node in enumerate(nodes):
+            if not isinstance(node, dict):
+                continue
+            base, owner = f'/{container}/{index}', f'{container}:{index}'
+            x, y = node.get('column'), node.get('row')
+            if type(x) is not int or type(y) is not int or not 0 <= y < len(lines) or x < 0:
+                held.append({'pointer':base, 'reason':'No absolute object geometry'})
+                continue
+            border = re.match('┌─+┐', lines[y][0][x:])
+            if not border:
+                held.append({'pointer':base, 'reason':'No exact anchored top border'})
+                continue
+            right = x + len(border.group()) - 1
+            footer = []
+            for row in range(y+1, min(len(lines), y+18)):
+                inner = lines[row][0][x+1:right]
+                if isinstance(node.get('grid'), str) and node['grid'] and isinstance(node.get('id'), str) and node['id'] and inner.startswith(node['grid']) and inner.endswith(node['id']) and lines[row][0][x:x+1] == lines[row][0][right:right+1] == '│':
+                    middle = inner[len(node['grid']):len(inner)-len(node['id'])]
+                    if set(middle) <= {'─', ' '}:
+                        footer.append(row)
+            # Geometry alone cannot establish semantic ownership. Every live
+            # object field requires its unique, exact own grid/id footer.
+            if len(footer) != 1:
+                held.append({'pointer':base, 'reason':'Exact own grid/id footer absent or ambiguous; semantic fields held'})
+                continue
+            bottom = footer[0]
+            height = node.get('height', node.get('height_rows'))
+            if height is not None:
+                boundary = y+height if type(height) is int and height > 0 else -1
+                closed = boundary == bottom+1 and boundary < len(lines) and re.fullmatch('└[─┴]+┘', lines[boundary][0][x:right+1]) is not None
+                if boundary != bottom and not closed:
+                    held.append({'pointer':base, 'reason':'Declared height contradicts exact own footer/bottom boundary'})
+                    continue
+            if any('┌' in lines[row][0][x:right+1] or re.match('└[─┴]+┘', lines[row][0][x:right+1]) for row in range(y+1, bottom)):
+                held.append({'pointer':base, 'reason':'Intervening drawn box boundary before own footer; semantic fields held'})
+                continue
+            boxes.append({'owner':owner, 'top':y, 'bottom':bottom, 'left':x, 'right':right})
+            for field in OBJECT_FIELDS:
+                value = node.get(field)
+                if not isinstance(value, str) or not value:
+                    continue
+                matches = []
+                for row in range(y+1, bottom+1):
+                    inner = lines[row][0][x+1:right]
+                    for match in re.finditer(re.escape(value), inner):
+                        start, end = match.span()
+                        if (start and inner[start-1].isalnum()) or (end < len(inner) and inner[end].isalnum()):
+                            continue
+                        matches.append((row, x+1+start))
+                if len(matches) == 1:
+                    claim(base+'/'+field, *matches[0], 'semantic', owner)
+                else:
+                    held.append({'pointer':base+'/'+field, 'reason':'Object-local exact placement absent or ambiguous'})
+            for pi, pin in enumerate(node.get('pins', []) if isinstance(node.get('pins', []), list) else []):
+                if not isinstance(pin, dict) or pin.get('side') not in ('input', 'output') or type(pin.get('row')) is not int:
+                    continue
+                pin_row = pin['row']
+                border_column = x if pin['side'] == 'input' else right
+                if not y < pin_row < bottom or lines[pin_row][0][border_column:border_column+1] not in ('│', '◺'):
+                    held.append({'pointer':base+f'/pins/{pi}', 'reason':'Pin is outside its verified own interior/side border'})
+                    continue
+                key = next((key for key in ('physical_pin', 'printed_pin', 'pin') if isinstance(pin.get(key), str) and pin[key]), None)
+                if key:
+                    claim(base+f'/pins/{pi}/'+key, pin_row, x-len(pin[key]) if pin['side'] == 'input' else right+1, 'semantic', owner)
+    labels = raw.get('printed_labels', [])
+    if isinstance(labels, list):
+        for index, label in enumerate(labels):
+            if isinstance(label, dict) and 'text' in label:
+                claim(f'/printed_labels/{index}/text', label.get('row'), label.get('column'), 'presentation', f'printed_labels:{index}')
+    # Mirror only one unique semantic owner plus one exact co-positioned label.
+    groups, consumed = [], set()
+    for index, proposal in enumerate(proposals):
+        if index in consumed:
+            continue
+        identical = [i for i, other in enumerate(proposals) if (other['row'], other['column'], other['width'], other['value']) == (proposal['row'], proposal['column'], proposal['width'], proposal['value'])]
+        semantic = [i for i in identical if proposals[i]['category'] == 'semantic']
+        presentation = [i for i in identical if proposals[i]['category'] == 'presentation']
+        if len(semantic) == len(presentation) == 1:
+            primary, mirror = proposals[semantic[0]], proposals[presentation[0]]
+            groups.append({**primary, 'mirrors':[mirror['pointer']]})
+            consumed.update(identical)
+        else:
+            groups.append({**proposal, 'mirrors':[]})
+            consumed.add(index)
+    ambiguous = set()
+    for i, first in enumerate(groups):
+        for j in range(i+1, len(groups)):
+            second = groups[j]
+            if first['row'] == second['row'] and max(first['column'], second['column']) < min(first['column']+first['width'], second['column']+second['width']):
+                ambiguous.update((i, j))
+    bindings = []
+    for index, group in enumerate(groups):
+        if index in ambiguous:
+            held.append({'pointer':group['pointer'], 'mirrors':group['mirrors'], 'reason':'Competing or partial-overlap ownership; all claims held'})
+        else:
+            bindings.append({key:group[key] for key in ('pointer','mirrors','row','column','width')} | {'format':'string-right-pad'})
+    bindings.sort(key=lambda b:(b['row'], b['column'], b['pointer']))
+    return {'bindings':bindings, 'held':held, 'object_boxes':boxes}
+
+def _literal_runs(text, column):
+    return [({'kind':'spaces','column':column+m.start(),'count':len(m.group())} if set(m.group()) == {' '} else {'kind':'glyphs','column':column+m.start(),'text':m.group()}) for m in re.finditer(' +|[^ ]+', text)]
+
+def build_layout(document, utf8, bindings=None):
+    raw = rawview(document)
+    require('text_layout' not in raw, 'Refusing to replace an existing text layout')
+    bom, lines = _split_bytes(utf8)
+    bindings = discover(raw, lines)['bindings'] if bindings is None else deepcopy(bindings)
+    values = _binding_values(raw, bindings)
+    for binding, value in zip(bindings, values):
+        require(binding['row'] < len(lines) and binding['column']+binding['width'] <= len(lines[binding['row']][0]), 'Field outside row extent')
+        require(lines[binding['row']][0][binding['column']:binding['column']+binding['width']] == value, 'Binding does not exactly match baseline glyphs')
+    rows = []
+    for index, (body, eol) in enumerate(lines):
+        runs, column = [], 0
+        for bi, binding in sorted(enumerate(bindings), key=lambda pair:pair[1]['column']):
+            if binding['row'] != index:
+                continue
+            runs += _literal_runs(body[column:binding['column']], column)
+            runs.append({'kind':'field','binding':bi,'column':binding['column'],'width':binding['width']})
+            column = binding['column']+binding['width']
+        runs += _literal_runs(body[column:], column)
+        rows.append({'width':len(body),'eol':eol,'runs':runs})
+    layout = {'schema':SCHEMA,'encoding':'utf-8','bom':bom,'rows':rows,'bindings':bindings,'semantic_remainder_sha256':_remainder(raw, bindings)}
+    require(render({**raw, 'text_layout':layout}) == utf8, 'Internal exact-byte layout construction failed')
+    return layout
+
+def render(document):
+    raw = rawview(document)
+    layout = raw.get('text_layout')
+    require(isinstance(layout, dict) and set(layout) == {'schema','encoding','bom','rows','bindings','semantic_remainder_sha256'}, 'Invalid layout members')
+    require(layout['schema'] == SCHEMA and layout['encoding'] == 'utf-8' and type(layout['bom']) is bool, 'Unsupported layout codec/schema')
+    require(isinstance(layout['rows'], list) and isinstance(layout['semantic_remainder_sha256'], str) and re.fullmatch('[0-9a-f]{64}', layout['semantic_remainder_sha256']) is not None, 'Malformed rows/remainder binding')
+    values = _binding_values(raw, layout['bindings'])
+    require(_remainder(raw, layout['bindings']) == layout['semantic_remainder_sha256'], 'Unmapped source change requires an explicit reviewed layout update')
+    output, seen = [], set()
+    for ri, row in enumerate(layout['rows']):
+        require(isinstance(row, dict) and set(row) == {'width','eol','runs'} and type(row['width']) is int and row['width'] >= 0 and isinstance(row['runs'], list) and row['eol'] in ('','\r','\n','\r\n'), 'Invalid row primitive')
+        require(ri == len(layout['rows'])-1 or row['eol'] != '', 'Only the final row may lack an EOL')
+        pieces, column = [], 0
+        for run in row['runs']:
+            require(isinstance(run, dict) and type(run.get('column')) is int and run['column'] == column, 'Run gap/overlap or invalid column')
+            if run.get('kind') == 'field':
+                require(set(run) == {'kind','binding','column','width'} and type(run['binding']) is int and 0 <= run['binding'] < len(values) and run['binding'] not in seen, 'Invalid, duplicate or dangling field run')
+                index = run['binding'];binding = layout['bindings'][index]
+                require((binding['row'],binding['column'],binding['width']) == (ri,column,run['width']) and type(run['width']) is int, 'Field run differs from exact bound claim')
+                seen.add(index);text = values[index]
+            elif run.get('kind') == 'spaces':
+                require(set(run) == {'kind','column','count'} and type(run['count']) is int and run['count'] > 0, 'Invalid space run')
+                text = ' '*run['count']
+            else:
+                require(run.get('kind') == 'glyphs' and set(run) == {'kind','column','text'} and isinstance(run['text'], str) and run['text'] != '', 'Invalid literal glyph run')
+                text = run['text']
+            require('\r' not in text and '\n' not in text, 'Line endings belong only to row EOL fields')
+            pieces.append(text);column += len(text)
+        require(column == row['width'], 'Rendered row width differs from exact declared extent')
+        output.append(''.join(pieces)+row['eol'])
+    require(seen == set(range(len(values))), 'A masked source field lacks exactly one rendering primitive')
+    try:
+        return (b'\xef\xbb\xbf' if layout['bom'] else b'') + ''.join(output).encode('utf-8')
+    except UnicodeError as exc:
+        raise ValueError('Invalid Unicode scalar in presentation') from exc
+
+def attach_layout(document, utf8, bindings=None):
+    raw = rawview(document)
+    raw['text_layout'] = build_layout(raw, utf8, bindings)
+    return raw
+
+def patch_and_render(document, edits):
+    raw = rawview(document)
+    render(raw)  # Validate mirror preimages, source remainder and all claims first.
+    require(isinstance(edits, list), 'JSON edits must be an array')
+    groups = {}
+    for binding in raw['text_layout']['bindings']:
+        members = [binding['pointer']] + binding['mirrors']
+        for pointer in members:
+            groups[pointer] = members
+    requested, paths = {}, []
+    for edit in edits:
+        require(isinstance(edit, dict) and set(edit) == {'pointer','before','after'}, 'Exact pointer/before/after edit required')
+        pointer = edit['pointer'];parts = _parts(pointer)
+        require(not any(parts[:len(old)] == old or old[:len(parts)] == parts for old in paths), 'Duplicate or overlapping JSON edits')
+        paths.append(parts)
+        require(_exact(_get(raw, pointer)) == _exact(edit['before']), 'Stale typed JSON edit preimage')
+        for member in groups.get(pointer, [pointer]):
+            require(member not in requested or _exact(requested[member]) == _exact(edit['after']), 'Conflicting edits to declared mirror group')
+            requested[member] = deepcopy(edit['after'])
+    result = deepcopy(raw)
+    for pointer, value in requested.items():
+        _put(result, pointer, value)
+    return result, render(result)
