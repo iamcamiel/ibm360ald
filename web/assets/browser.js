@@ -1,5 +1,6 @@
 import { FONT_SIZE, WEIGHTS, PAGE_TYPES, preferences, countGrid, geometry, anchoredScroll, resolvePage, clamp, sentenceCase, pageCaption, adjacentPage, pageGroup, groupedPages, pageGroups, pageCode, pageTitle } from './geometry.js';
 import { createInteractions, readSelection } from './interactions.js';
+import { readVerifiedText } from './text-integrity.js';
 
 const $ = id => document.getElementById(id);
 const catalogueSetting = document.querySelector('meta[name="ald-catalogue"]')?.content;
@@ -143,7 +144,8 @@ async function loadPage(page, historyMode = 'push', selection = null) {
   try {
     const [response] = await Promise.all([fetch(sourceURL(page), { signal: request.signal }), ensureFont(state.view.weight)]);
     if (!response.ok) throw new Error(`Page ${page.page} could not be loaded (${response.status}).`);
-    const text = new TextDecoder('utf-8', { fatal: true }).decode(await response.arrayBuffer());
+    const verified = await readVerifiedText(await response.arrayBuffer(), page.textSha256);
+    const text = verified.text;
     if (state.request !== request) return;
     // This is deliberately a text node: no SVG, bitmap, HTML interpretation,
     // per-character spans or changes to the ALD's spaces and Unicode glyphs.
@@ -175,8 +177,8 @@ async function loadPage(page, historyMode = 'push', selection = null) {
       if(selection)url.searchParams.set('selection',JSON.stringify(selection));else url.searchParams.delete('selection');
       history[historyMode === 'replace' ? 'replaceState' : 'pushState']({ page: page.id,selection }, '', url);
     }
-    await interactionView.load(page,text,selection);
-    if(state.request === request)notify('');
+    if (verified.interactionsAllowed) await interactionView.load(page,text,selection);
+    if(state.request === request)notify(verified.notice);
   } catch (error) {
     if (error.name !== 'AbortError' && state.request === request) {
       if (state.page) updatePageSelectors(state.page);
