@@ -1,0 +1,17 @@
+ALDbrowser
+
+Clone this repository into the PHP website's /ibm360ald directory and open
+/ibm360ald/. PHP 7.4 or newer is sufficient. No build, database, Python, Node.js
+or package installation is needed on the webserver. Keep index.php, catalogue.json,
+web/, ALD/, Card-ALD/ and json/ together. All URLs are relative to this directory.
+Apache uses the included .htaccess. On Nginx or another webserver, configure
+index.php as a directory index and deny HTTP access to the .git directory.
+
+The viewer reads the repository's existing TXT and JSON files directly.
+web/assets includes JuliaMono and its license; web/interactions contains the
+precomputed, exact-text-bound navigation and selection data. Catalogue download
+links retain the original filenames. Source files have not been transformed.
+
+Publication maintenance: after a changed, verified source publication, rebuild
+the standalone ALDbrowser catalogue and interactions, then run its repository
+publisher against this clone. Do not hand-edit generated catalogue entries.
