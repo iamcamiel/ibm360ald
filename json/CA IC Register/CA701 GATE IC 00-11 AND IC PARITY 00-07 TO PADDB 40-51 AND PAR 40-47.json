@@ -9012,9 +9012,9 @@
           "order": 0,
           "reference": {
             "kind": "terminal-reference",
-            "object_identifier": "AD",
+            "object_identifier": "AE",
             "terminal": {
-              "pin_number": "B05",
+              "pin_number": "B04",
               "pin_number_status": "observed",
               "symbols": {
                 "prefix": [],
@@ -9060,7 +9060,7 @@
       "source_literals": {
         "driver": "CA001BD4",
         "targets": [
-          "AD.B05"
+          "AE.B04"
         ],
         "id": "IC01"
       },
@@ -9101,9 +9101,9 @@
           "order": 0,
           "reference": {
             "kind": "terminal-reference",
-            "object_identifier": "AE",
+            "object_identifier": "AD",
             "terminal": {
-              "pin_number": "B04",
+              "pin_number": "B05",
               "pin_number_status": "observed",
               "symbols": {
                 "prefix": [],
@@ -9149,7 +9149,7 @@
       "source_literals": {
         "driver": "CA001AD4",
         "targets": [
-          "AE.B04"
+          "AD.B05"
         ],
         "id": "IC00"
       },
@@ -11599,28 +11599,28 @@
         "column": 1,
         "original_column": 9,
         "original_row": 8,
-        "row": 3,
+        "row": 2,
         "text": "+IC 01"
       },
       {
         "column": 32,
         "original_column": 41,
         "original_row": 8,
-        "row": 3,
+        "row": 2,
         "text": "CA001BD4"
       },
       {
         "column": 1,
         "original_column": 9,
         "original_row": 9,
-        "row": 4,
+        "row": 3,
         "text": "+IC 00"
       },
       {
         "column": 32,
         "original_column": 41,
         "original_row": 9,
-        "row": 4,
+        "row": 3,
         "text": "CA001AD4"
       },
       {
@@ -12889,6 +12889,24 @@
           "AC"
         ],
         "row": 84
+      },
+      {
+        "column": 161,
+        "joined": false,
+        "nets": [
+          "IC01",
+          "IC00"
+        ],
+        "row": 3
+      },
+      {
+        "column": 161,
+        "joined": false,
+        "nets": [
+          "IC01",
+          "BB"
+        ],
+        "row": 7
       }
     ],
     "validation": {
@@ -13253,12 +13271,16 @@
         "net": "IC01",
         "points": [
           [
-            0,
-            3
+            7,
+            2
           ],
           [
             161,
-            3
+            2
+          ],
+          [
+            161,
+            10
           ]
         ]
       },
@@ -13266,20 +13288,12 @@
         "net": "IC00",
         "points": [
           [
-            0,
-            4
-          ],
-          [
-            162,
-            4
-          ],
-          [
-            162,
-            10
+            7,
+            3
           ],
           [
             161,
-            10
+            3
           ]
         ]
       },
@@ -13725,7 +13739,34 @@
             {
               "kind": "spaces",
               "column": 0,
-              "count": 165
+              "count": 1
+            },
+            {
+              "kind": "field",
+              "binding": 1,
+              "column": 1,
+              "width": 6
+            },
+            {
+              "kind": "glyphs",
+              "column": 7,
+              "text": "─────────────────────────"
+            },
+            {
+              "kind": "field",
+              "binding": 2,
+              "column": 32,
+              "width": 8
+            },
+            {
+              "kind": "glyphs",
+              "column": 40,
+              "text": "─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐"
+            },
+            {
+              "kind": "spaces",
+              "column": 162,
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -13750,7 +13791,7 @@
             },
             {
               "kind": "field",
-              "binding": 1,
+              "binding": 5,
               "column": 1,
               "width": 6
             },
@@ -13761,14 +13802,14 @@
             },
             {
               "kind": "field",
-              "binding": 2,
+              "binding": 6,
               "column": 32,
               "width": 8
             },
             {
               "kind": "glyphs",
               "column": 40,
-              "text": "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────"
+              "text": "─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼"
             },
             {
               "kind": "field",
@@ -13811,34 +13852,17 @@
             {
               "kind": "spaces",
               "column": 0,
-              "count": 1
-            },
-            {
-              "kind": "field",
-              "binding": 5,
-              "column": 1,
-              "width": 6
+              "count": 161
             },
             {
               "kind": "glyphs",
-              "column": 7,
-              "text": "─────────────────────────"
-            },
-            {
-              "kind": "field",
-              "binding": 6,
-              "column": 32,
-              "width": 8
-            },
-            {
-              "kind": "glyphs",
-              "column": 40,
-              "text": "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐"
+              "column": 161,
+              "text": "│"
             },
             {
               "kind": "spaces",
-              "column": 163,
-              "count": 2
+              "column": 162,
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -13869,17 +13893,17 @@
             {
               "kind": "spaces",
               "column": 0,
-              "count": 162
+              "count": 161
             },
             {
               "kind": "glyphs",
-              "column": 162,
+              "column": 161,
               "text": "│"
             },
             {
               "kind": "spaces",
-              "column": 163,
-              "count": 2
+              "column": 162,
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -13951,17 +13975,17 @@
             {
               "kind": "spaces",
               "column": 0,
-              "count": 162
+              "count": 161
             },
             {
               "kind": "glyphs",
-              "column": 162,
+              "column": 161,
               "text": "│"
             },
             {
               "kind": "spaces",
-              "column": 163,
-              "count": 2
+              "column": 162,
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -13998,7 +14022,7 @@
             {
               "kind": "glyphs",
               "column": 160,
-              "text": "┌─"
+              "text": "┌┼"
             },
             {
               "kind": "field",
@@ -14041,22 +14065,12 @@
             {
               "kind": "glyphs",
               "column": 160,
-              "text": "│"
+              "text": "││"
             },
             {
               "kind": "spaces",
-              "column": 161,
-              "count": 1
-            },
-            {
-              "kind": "glyphs",
               "column": 162,
-              "text": "│"
-            },
-            {
-              "kind": "spaces",
-              "column": 163,
-              "count": 2
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -14124,22 +14138,12 @@
             {
               "kind": "glyphs",
               "column": 160,
-              "text": "│"
+              "text": "││"
             },
             {
               "kind": "spaces",
-              "column": 161,
-              "count": 1
-            },
-            {
-              "kind": "glyphs",
               "column": 162,
-              "text": "│"
-            },
-            {
-              "kind": "spaces",
-              "column": 163,
-              "count": 2
+              "count": 3
             },
             {
               "kind": "glyphs",
@@ -14211,7 +14215,7 @@
             {
               "kind": "glyphs",
               "column": 160,
-              "text": "│─"
+              "text": "│└"
             },
             {
               "kind": "field",
@@ -20629,7 +20633,7 @@
           "format": "string-right-pad",
           "mirrors": [],
           "pointer": "/printed_labels/9/text",
-          "row": 3,
+          "row": 2,
           "width": 6
         },
         {
@@ -20637,7 +20641,7 @@
           "format": "string-right-pad",
           "mirrors": [],
           "pointer": "/printed_labels/10/text",
-          "row": 3,
+          "row": 2,
           "width": 8
         },
         {
@@ -20663,7 +20667,7 @@
           "format": "string-right-pad",
           "mirrors": [],
           "pointer": "/printed_labels/11/text",
-          "row": 4,
+          "row": 3,
           "width": 6
         },
         {
@@ -20671,7 +20675,7 @@
           "format": "string-right-pad",
           "mirrors": [],
           "pointer": "/printed_labels/12/text",
-          "row": 4,
+          "row": 3,
           "width": 8
         },
         {
@@ -22827,7 +22831,7 @@
           "width": 25
         }
       ],
-      "semantic_remainder_sha256": "eb5f6bcc5fecbce81dc6165cb5c8e0477197b3f8b28d8cfa7332e7fd1c14176e"
+      "semantic_remainder_sha256": "a4564d75ba4a8e435f8ac271678829c56bb3b78bfd46ce549f241adda4c46836"
     }
   }
 }
