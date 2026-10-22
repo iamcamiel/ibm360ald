@@ -37,6 +37,8 @@ const inBox = (column,row,box) => box && column >= box[0] && column <= box[2] &&
 const inSpans = (column,row,spans) => spans?.some(s => row === s[0] && column >= s[1] && column < s[2]);
 
 export function hitEntities(data,column,row) {
+  const annotations=(data.nets || []).filter(net=>inSpans(column,row,net.spans));
+  if(annotations.length)return annotations.map(item=>({kind:'net',item}));
   const blocks = (data.blocks || []).filter(block => inBox(column,row,block.box));
   if (blocks.length) return blocks.map(item => ({kind:'block',item}));
   const portions = (data.portions || []).filter(item => inBox(column,row,item.box) || inSpans(column,row,item.spans));

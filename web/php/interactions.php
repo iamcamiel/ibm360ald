@@ -49,7 +49,7 @@ function references($v): array {
 function page_reference(string $s): ?array {
     // Some declared drivers contain the explicit page/output followed by the
     // signal caption. Its printed location (inline or dangling) is irrelevant.
-    return preg_match('/^(?:external[.:])?([A-Z]{2}\d{3})(?:[.-]?([A-Z]{2,3})(\d+))?(?:[ \t]+[+-][^\r\n]+)?$/D',$s,$m)?$m:null;
+    return preg_match('/^(?:(?i:external)(?:[.:][ \t]*|[ \t]+))?([A-Z]{2}\d{3})(?:[.-]?([A-Z]{2,3})(\d+))?(?:[ \t]+[+-][^\r\n]+)?$/D',$s,$m)?$m:null;
 }
 function driver_spans(array $net,array $record,array $rows): array {
     $driver=reference($record['driver']??null);$m=$driver?page_reference($driver):null;
@@ -71,6 +71,41 @@ function output_designations(array $node, ?string $terminal): array {
     if (($terminal===null||$terminal==='output'||$terminal==='out')&&count($pins)!==1) return [];
     $out=[];foreach ($pins as $p) if (isset($node['row'],$p['row'])&&is_int($node['row'])&&is_int($p['row'])&&$p['row']>=$node['row']) $out[]=$p['row']-$node['row']+1;
     return array_values(array_unique($out));
+}
+function annotate_nets(array &$nets,array $raw,array $rows): void {
+    // Extend only the display highlight, never the electrical graph. Walk
+    // outward from horizontal route ends through the actual printed text.
+    // Block interiors, other nets, vertical strokes and two spaces stop it.
+    $owners=[];$blocked=[];$characters=[];
+    foreach($nets as$id=>$net)foreach($net['segments']??[]as[$x1,$y1,$x2,$y2]){
+        for($y=min($y1,$y2);$y<=max($y1,$y2);$y++)for($x=min($x1,$x2);$x<=max($x1,$x2);$x++){
+            if(!isset($owners[$y][$x]))$owners[$y][$x]=(string)$id;
+            elseif($owners[$y][$x]!== (string)$id)$owners[$y][$x]=false;
+        }
+    }
+    foreach($raw['nodes']??[]as$node){
+        $box=gate_box($rows,$node);if(!$box)continue;
+        for($y=$box[1];$y<=$box[3];$y++)for($x=$box[0]+1;$x<$box[2];$x++)$blocked[$y][$x]=true;
+    }
+    foreach($nets as$id=>&$net){$spans=$net['spans']??[];
+        foreach($net['segments']??[]as[$x1,$y1,$x2,$y2]){
+            if($y1!==$y2||!isset($rows[$y1]))continue;
+            if(!isset($characters[$y1]))$characters[$y1]=preg_split('//u',$rows[$y1],-1,PREG_SPLIT_NO_EMPTY);
+            $chars=$characters[$y1];$length=count($chars);
+            foreach([[min($x1,$x2),-1],[max($x1,$x2),1]]as[$start,$step]){
+                $end=$start;$spaces=0;
+                for($x=$start+$step;$x>=0&&$x<$length;$x+=$step){
+                    $char=$chars[$x];
+                    if(isset($blocked[$y1][$x])||strpbrk($char,"\t\r\n")!==false||preg_match('/[│┃┌┐└┘┼┬┴├┤◇◊]/u',$char))break;
+                    if(isset($owners[$y1][$x])&&$owners[$y1][$x]!== (string)$id)break;
+                    if($char===' '){if(++$spaces>=2)break;continue;}
+                    $spaces=0;$end=$x;
+                }
+                if($end!==$start)$spans[]=[$y1,min($start+$step,$end),max($start+$step,$end)+1];
+            }
+        }
+        if($spans){$spans=array_values(array_unique(array_map('serialize',$spans)));$spans=array_map('unserialize',$spans);sort($spans);$net['spans']=$spans;}
+    }unset($net);
 }
 function gate_box(array $rows,array $node): ?array {
     $x=$node['column']??null;$y=$node['row']??null;
@@ -261,7 +296,7 @@ function interactions(Store $store,array $entry,array $catalogue): array {
             $targets=array_diff_key($dest[$literal]??[],$linked);ksort($targets,SORT_STRING);
             foreach($targets as$page=>$_){$ids=$pages[$page]??[];if(count($ids)===1)$links[]=['pageId'=>$ids[0],'selection'=>null,'label'=>$page,'direction'=>'destination','note'=>'Explicit page reference; target net is not uniquely located.'];else$net['notes'][]='Referenced page '.$page.' is unavailable or ambiguous.';}
             if($links)$net['links']=$links;if(!$net['segments'])unset($net['segments']);
-        }unset($net);if($nets)$payload['nets']=array_values($nets);
+        }unset($net);annotate_nets($nets,$raw,$rows);if($nets)$payload['nets']=array_values($nets);
         $socketIndex=ensure_sockets($store,$catalogue);$blocks=basic_blocks($store,$entry);$cardPortions=[];
         foreach($blocks as&$b){$links=[];$notes=[];$card=$b['cardType'];$portion=$b['portion'];
             if(isset($cards[$card])){$c=$cards[$card];if(!isset($cardPortions[$card]))$cardPortions[$card]=card_portions($c,$store->text($c));
