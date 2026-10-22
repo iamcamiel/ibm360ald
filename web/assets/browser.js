@@ -340,7 +340,7 @@ window.addEventListener('popstate', () => {
 async function start() {
   updateAppearanceControls();
   try {
-    const response = await fetch(catalogueURL);
+    const response = await fetch(catalogueURL, { cache: 'no-cache' });
     if (!response.ok) throw new Error(`The page catalogue could not be loaded (${response.status}).`);
     const catalogue = await response.json();
     if (!Array.isArray(catalogue.pages) || !catalogue.pages.length) throw new Error('The page catalogue is empty.');
