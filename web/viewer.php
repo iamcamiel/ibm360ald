@@ -3,6 +3,7 @@ declare(strict_types=1);
 $aldAssetPrefix = $aldAssetPrefix ?? 'assets/';
 $aldCatalogue = $aldCatalogue ?? 'data/catalogue.json';
 $aldAssetPrefixHtml = htmlspecialchars($aldAssetPrefix, ENT_QUOTES, 'UTF-8');
+$aldStyleVersion = hash_file('sha256', __DIR__ . '/assets/browser.css');
 header('Content-Type: text/html; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: strict-origin-when-cross-origin');
@@ -19,8 +20,8 @@ header('Cache-Control: no-cache');
   <meta name="ald-catalogue" content="<?= htmlspecialchars($aldCatalogue, ENT_QUOTES, 'UTF-8') ?>">
   <title>ALDbrowser · VAXBARN</title>
   <link rel="preload" href="<?= $aldAssetPrefixHtml ?>fonts/JuliaMono-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="<?= $aldAssetPrefixHtml ?>browser.css">
-  <script type="module" src="<?= $aldAssetPrefixHtml ?>browser.js"></script>
+  <link rel="stylesheet" href="<?= $aldAssetPrefixHtml ?>browser.css?v=<?= $aldStyleVersion ?>">
+  <script type="module" src="<?= $aldAssetPrefixHtml ?>module.php?file=browser.js"></script>
 </head>
 <body>
   <header class="ribbon">
@@ -60,7 +61,7 @@ header('Cache-Control: no-cache');
   <div class="page-context"><span id="current-section">IBM System/360</span><button id="clear-selection" class="selection-chip" hidden><span id="selection-name"></span><span aria-hidden="true"> ×</span></button><span class="context-rule"></span><span id="view-summary">JuliaMono ExtraBold</span></div>
   <main id="viewport" tabindex="0" aria-label="ALD page viewer; scroll to explore the page">
     <div id="stage">
-      <article id="sheet" aria-label="ALD text page" hidden><div id="sheet-inner"><div id="selection-overlay" aria-hidden="true"></div><pre id="ald-text" aria-label="Diagram text"></pre></div></article>
+      <article id="sheet" aria-label="ALD text page" hidden><div id="sheet-inner"><div id="selection-overlay" aria-hidden="true"></div><pre id="ald-text" translate="no" aria-label="Diagram text"></pre></div></article>
     </div>
     <div id="empty-state"><span class="empty-monogram" aria-hidden="true">ALD</span><p>Opening the diagram collection…</p></div>
   </main>

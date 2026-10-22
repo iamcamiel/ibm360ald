@@ -47,7 +47,21 @@ function references($v): array {
     $found=reference($v);return $found?[$found]:[];
 }
 function page_reference(string $s): ?array {
-    return preg_match('/^(?:external[.:])?([A-Z]{2}\d{3})(?:[.-]?([A-Z]{2,3})(\d+))?$/D',$s,$m)?$m:null;
+    // Some declared drivers contain the explicit page/output followed by the
+    // signal caption. Its printed location (inline or dangling) is irrelevant.
+    return preg_match('/^(?:external[.:])?([A-Z]{2}\d{3})(?:[.-]?([A-Z]{2,3})(\d+))?(?:[ \t]+[+-][^\r\n]+)?$/D',$s,$m)?$m:null;
+}
+function driver_spans(array $net,array $record,array $rows): array {
+    $driver=reference($record['driver']??null);$m=$driver?page_reference($driver):null;
+    if(!$m)return[];$token=$m[1].($m[2]??'').($m[3]??'');$out=[];
+    foreach($net['segments']??[]as[$x1,$y1,$x2,$y2]){
+        if($y1!==$y2||!isset($rows[$y1]))continue;
+        foreach(regex_spans('/(?<![A-Z0-9])'.preg_quote($token,'/').'(?![A-Z0-9])/u',$rows[$y1])as[$a,$b]){
+            if(max($x1,$x2)<$a-1||min($x1,$x2)>$b)continue;
+            $span=[$y1,$a,$b];if(!in_array($span,$out,true))$out[]=$span;
+        }
+    }
+    sort($out);return$out;
 }
 function output_designations(array $node, ?string $terminal): array {
     $pins=array_values(array_filter($node['pins']??[],static function($p){return is_array($p)&&($p['side']??null)==='output';}));
@@ -229,16 +243,16 @@ function interactions(Store $store,array $entry,array $catalogue): array {
         }unset($item);if($items)$payload['sockets']=$items;
     }elseif($entry['type']==='ald'){
         $raw=raw_model($store->document($entry));if(empty($raw['nodes'])&&empty($raw['wire_paths'])){$store->put($key,$payload);return$payload;}
-        ensure_graph($store,$catalogue);$graph=$store->get('graph-page-'.$catalogue['revision'].'-'.$entry['id']);$nets=[];$dest=[];
+        ensure_graph($store,$catalogue);$graph=$store->get('graph-page-'.$catalogue['revision'].'-'.$entry['id']);$nets=[];$dest=[];$records=[];$rows=lines($store->text($entry));
         foreach($raw['nets']??[]as$i=>$record){if(!is_array($record))continue;$literal=(string)($record['id']??$record['net_id']??'net-'.$i);
-            if(!isset($nets[$literal]))$nets[$literal]=['id'=>$literal,'label'=>(string)($record['label']??$record['name']??$literal),'segments'=>[]];
+            if(!isset($nets[$literal]))$nets[$literal]=['id'=>$literal,'label'=>(string)($record['label']??$record['name']??$literal),'segments'=>[]];$records[$literal]=$record;
             foreach(array_merge(references($record['external']??null),references($record['targets']??null))as$ref){$m=page_reference($ref);if($m)$dest[$literal][$m[1]]=true;}
         }
         foreach($raw['wire_paths']??[]as$i=>$path){if(!is_array($path)||($path['net']??'')==='title')continue;$literal=(string)($path['net']??'route-'.$i);
             if(!isset($nets[$literal]))$nets[$literal]=['id'=>$literal,'label'=>$literal,'segments'=>[]];$points=$path['points']??[];
             for($j=1;$j<count($points);$j++){[$a,$b]=[$points[$j-1],$points[$j]];if(count($a)!==2||count($b)!==2||$a===$b||!is_int($a[0])||!is_int($a[1])||!is_int($b[0])||!is_int($b[1])||($a[0]!==$b[0]&&$a[1]!==$b[1]))continue;$seg=[$a[0],$a[1],$b[0],$b[1]];if(!in_array($seg,$nets[$literal]['segments'],true))$nets[$literal]['segments'][]=$seg;}
         }
-        foreach($nets as$literal=>&$net){$links=[];$linked=[];
+        foreach($nets as$literal=>&$net){$links=[];$linked=[];$spans=driver_spans($net,$records[$literal]??[],$rows);if($spans)$net['spans']=$spans;
             if(isset($graph['components'][$literal]))foreach($store->get('component-'.$catalogue['revision'].'-'.$graph['components'][$literal])['items']as$other){
                 if($other['pageId']===$entry['id']&&$other['id']===(string)$literal)continue;
                 $links[]=['pageId'=>$other['pageId'],'selection'=>['kind'=>'net','id'=>$other['id']],'label'=>$other['label'],'direction'=>$other['direction']];$linked[$byId[$other['pageId']]['page']]=true;

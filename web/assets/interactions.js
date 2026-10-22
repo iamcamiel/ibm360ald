@@ -222,15 +222,19 @@ export function createInteractions({pre, viewport, inner, getMetrics, getPage, g
       try {
         const url=new URL(page.interactionURL,catalogueURL);
         const live=url.pathname===catalogueURL.pathname && url.searchParams.get('interaction')===page.id;
-        if(url.origin!==location.origin || !url.pathname.startsWith(new URL('.',catalogueURL).pathname) || (!url.pathname.endsWith('.json') && !live))return;
-        const response=await fetch(url,{signal:request.signal,cache:'no-cache'});if(!response.ok)return;
+        if(url.origin!==location.origin || !url.pathname.startsWith(new URL('.',catalogueURL).pathname) || (!url.pathname.endsWith('.json') && !live))throw new Error('Invalid page links URL.');
+        const response=await fetch(url,{signal:request.signal,cache:'no-cache'});
+        if(!response.ok)throw new Error(`Page links request failed (${response.status}).`);
         const loaded=await response.json();
-        if(current!==generation || loaded.textSha256!==page.textSha256 || loaded.schema!=='aldbrowser-interactions-v1')return;
+        if(current!==generation)return;
+        if(loaded.textSha256!==page.textSha256 || loaded.schema!=='aldbrowser-interactions-v1')throw new Error('Page links do not match the displayed text.');
         data=loaded;
         if(value && !select(value,{center:true,bookmark:false})) {
           label.textContent='The referenced net or portion is not located on this page.';clear.hidden=false;
         }
-      } catch(error) { if(error.name!=='AbortError')console.warn('Page links could not be loaded.'); }
+      } catch(error) {
+        if(error.name!=='AbortError' && current===generation)throw new Error('Wire and block selection could not be loaded. Try again to refresh the page links.',{cause:error});
+      }
     },
     reset() { generation++;request?.abort();data={};select(null,{bookmark:false}); },
   };
