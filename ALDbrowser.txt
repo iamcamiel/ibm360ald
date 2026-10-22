@@ -1,17 +1,21 @@
 ALDbrowser
 
-Clone this repository into the PHP website's /ibm360ald directory and open
-/ibm360ald/. PHP 7.4 or newer is sufficient. No build, database, Python, Node.js
-or package installation is needed on the webserver. Keep index.php, catalogue.json,
-web/, ALD/, Card-ALD/ and json/ together. All URLs are relative to this directory.
-Apache uses the included .htaccess. On Nginx or another webserver, configure
-index.php as a directory index and deny HTTP access to the .git directory.
+Clone into the PHP website's /ibm360ald directory and open /ibm360ald/.
+PHP 7.4+ with its standard JSON and hash support is sufficient. No Python,
+Node.js, database or catalogue build is needed on the webserver.
 
-The viewer reads the repository's existing TXT and JSON files directly.
-web/assets includes JuliaMono and its license; web/interactions contains the
-precomputed, exact-text-bound navigation and selection data. Catalogue download
-links retain the original filenames. Source files have not been transformed.
+catalogue.php derives the menus, fingerprints, wire selections and links from
+the current repository JSON/TXT files and notes/Source status.json. Each opened
+page is checked afresh; a version mismatch is retried once automatically.
+Page publication still means installing matching JSON, TXT and Source status.
+Neither the catalogue nor its cache grants a wiring review or user approval.
 
-Publication maintenance: after a changed, verified source publication, rebuild
-the standalone ALDbrowser catalogue and interactions, then run its repository
-publisher against this clone. Do not hand-edit generated catalogue entries.
+Generated caches live in the PHP system temporary directory, outside this clone.
+Optionally set ALDBROWSER_CACHE_DIR to a private writable cache directory.
+Its contents can be discarded; PHP rebuilds them automatically. First use on a
+cold clone is slower while the explicit cross-page reference index is generated.
+Read-only access to the repository is sufficient for the webserver.
+
+Keep index.php, catalogue.php, web/, ALD/, Card-ALD/, json/ and notes/ together.
+Use HTTPS so the browser can verify text bytes before enabling wire selection.
+Apache uses .htaccess; other servers should use index.php and deny .git access.

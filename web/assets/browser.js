@@ -1,6 +1,6 @@
 import { FONT_SIZE, WEIGHTS, PAGE_TYPES, preferences, countGrid, geometry, anchoredScroll, resolvePage, clamp, sentenceCase, pageCaption, adjacentPage, pageGroup, groupedPages, pageGroups, pageCode, pageTitle } from './geometry.js';
 import { createInteractions, readSelection } from './interactions.js';
-import { readVerifiedText } from './text-integrity.js';
+import { readCurrentPage } from './page-source.js';
 
 const $ = id => document.getElementById(id);
 const catalogueSetting = document.querySelector('meta[name="ald-catalogue"]')?.content;
@@ -94,12 +94,6 @@ function fit(mode) {
   layout({ reset: true });
 }
 
-function sourceURL(page) {
-  const url = new URL(page.url, catalogueURL);
-  if (url.origin !== location.origin || !url.pathname.startsWith(new URL('.', catalogueURL).pathname) || !url.pathname.endsWith('.txt')) throw new Error('The selected page has an invalid text URL.');
-  return url;
-}
-
 function bookmark(page) {
   return state.pages.filter(item => pageCode(item) === pageCode(page)).length === 1 ? pageCode(page) : page.id;
 }
@@ -142,11 +136,13 @@ async function loadPage(page, historyMode = 'push', selection = null) {
   $('choose-page').setAttribute('aria-busy', 'true');
   notify(`Opening ${page.page}…`);
   try {
-    const [response] = await Promise.all([fetch(sourceURL(page), { signal: request.signal }), ensureFont(state.view.weight)]);
-    if (!response.ok) throw new Error(`Page ${page.page} could not be loaded (${response.status}).`);
-    const verified = await readVerifiedText(await response.arrayBuffer(), page.textSha256);
+    const [loaded] = await Promise.all([readCurrentPage(page, {catalogueURL, signal:request.signal}), ensureFont(state.view.weight)]);
+    page = loaded.page;
+    const verified = loaded.verified;
     const text = verified.text;
     if (state.request !== request) return;
+    const pageIndex = state.pages.findIndex(item => item.id === page.id);
+    if (pageIndex >= 0) state.pages[pageIndex] = page;
     // This is deliberately a text node: no SVG, bitmap, HTML interpretation,
     // per-character spans or changes to the ALD's spaces and Unicode glyphs.
     $('ald-text').textContent = text;
@@ -177,7 +173,10 @@ async function loadPage(page, historyMode = 'push', selection = null) {
       if(selection)url.searchParams.set('selection',JSON.stringify(selection));else url.searchParams.delete('selection');
       history[historyMode === 'replace' ? 'replaceState' : 'pushState']({ page: page.id,selection }, '', url);
     }
-    if (verified.interactionsAllowed) await interactionView.load(page,text,selection);
+    if (verified.interactionsAllowed) {
+      if (page.interactionURL) notify('Loading page links…');
+      await interactionView.load(page,text,selection);
+    }
     if(state.request === request)notify(verified.notice);
   } catch (error) {
     if (error.name !== 'AbortError' && state.request === request) {

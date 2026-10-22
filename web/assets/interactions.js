@@ -221,8 +221,9 @@ export function createInteractions({pre, viewport, inner, getMetrics, getPage, g
       if(!page.interactionURL)return;
       try {
         const url=new URL(page.interactionURL,catalogueURL);
-        if(url.origin!==location.origin || !url.pathname.startsWith(new URL('.',catalogueURL).pathname) || !url.pathname.endsWith('.json'))return;
-        const response=await fetch(url,{signal:request.signal});if(!response.ok)return;
+        const live=url.pathname===catalogueURL.pathname && url.searchParams.get('interaction')===page.id;
+        if(url.origin!==location.origin || !url.pathname.startsWith(new URL('.',catalogueURL).pathname) || (!url.pathname.endsWith('.json') && !live))return;
+        const response=await fetch(url,{signal:request.signal,cache:'no-cache'});if(!response.ok)return;
         const loaded=await response.json();
         if(current!==generation || loaded.textSha256!==page.textSha256 || loaded.schema!=='aldbrowser-interactions-v1')return;
         data=loaded;
