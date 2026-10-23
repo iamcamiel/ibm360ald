@@ -177,6 +177,7 @@ def load_accepted_inputs(repo, expected_count=None):
         pages.append({'page_id': deepcopy(record.get('page')), 'model_relative': model_rel, 'text_relative': text_rel,
                       'model_path': loaded['json'][1], 'text_path': loaded['txt'][1],
                       'model_sha256': refs['json']['sha256'], 'text_sha256': refs['txt']['sha256'], 'model': model,
+                      'current_document': canonical_model if canonical_model.get('schema')=='ibm360-ald-page-v3' else None,
                       'source_scan_id': scan_id, 'source_relative': scan['relative_path'],
                       'scan_reference': deepcopy(scan), 'context': context})
     _need(selected == declared_models, 'Exact current published-model membership differs')

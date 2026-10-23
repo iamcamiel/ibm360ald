@@ -38,6 +38,7 @@ header('Cache-Control: no-cache');
       <label><span id="page-label">Page</span><select id="page-select" aria-labelledby="page-label" disabled><option>Loading…</option></select></label>
       <span id="current-page" hidden>Choose a page</span><span id="current-title" hidden></span>
     </div>
+    <span id="page-approved" class="approval-mark" hidden role="img" aria-label="Approved by you" title="Approved by you">✓</span>
     <div class="view-tools" aria-label="Page zoom">
       <button id="zoom-out" class="icon-button" title="Zoom out (−)" aria-label="Zoom out"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12"/></svg></button>
       <select id="zoom" aria-label="Zoom level">

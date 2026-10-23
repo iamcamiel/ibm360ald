@@ -1,14 +1,15 @@
 """Read current ALD models through one detached compatibility view.
 
-Canonical page JSON uses v2. Legacy models remain supported for external
+Canonical page JSON uses v3. Legacy models remain supported for external
 review stages and focused tests; no legacy copy is written to the repository.
 """
 from copy import deepcopy
 import json
 from pathlib import Path
 
-SCHEMA = "ibm360-ald-page-v2"
-RUNTIME_FILES = ("read_page.py", "pages.py", "identity.py", "terminals.py")
+SCHEMA = "ibm360-ald-page-v3"
+READ_SCHEMAS = (SCHEMA, "ibm360-ald-page-v2")
+RUNTIME_FILES = ("read_page.py", "pages.py", "printed_literals.py", "identity.py", "terminals.py", "legacy_v2.py", "notation.py", "review.py", "check_format.py", "Canonical vocabulary.json", "ALD page schema.json", "Format release.json")
 
 def _pairs(pairs):
     result = {}
@@ -22,14 +23,14 @@ def _constant(value):
     raise ValueError("Non-finite JSON constant: " + value)
 
 def is_uniform(document):
-    return isinstance(document, dict) and document.get("schema") == SCHEMA
+    return isinstance(document, dict) and document.get("schema") in READ_SCHEMAS
 
 def view(document):
     """Return a detached legacy consumer view; never mutate its input."""
     if not isinstance(document, dict):
         raise ValueError("Page model must be a JSON object")
     schema = document.get("schema")
-    if schema == SCHEMA:
+    if schema in READ_SCHEMAS:
         from pages import restore_page
         result = restore_page(document)
         if not isinstance(result, dict):

@@ -41,6 +41,32 @@ function source_url(string $relative, string $sha): string {
     return implode('/', array_map('rawurlencode', explode('/', str_replace('\\', '/', $relative)))) . '?v=' . $sha;
 }
 
+
+// Same typed canonical digest as tools/normalization/review.py. Objects and
+// arrays remain distinct, including empty values; no JSON re-encoding needed.
+function content_digest($document): string {
+    $context=hash_init('sha256');
+    $walk=function($value) use (&$walk,$context): void {
+        if ($value===null) hash_update($context,'N');
+        elseif (is_bool($value)) hash_update($context,$value?'B1':'B0');
+        elseif (is_int($value)) { $s=(string)$value;hash_update($context,'I'.strlen($s).':'.$s); }
+        elseif (is_float($value)) { if(!is_finite($value))throw new \RuntimeException('Nonfinite content');hash_update($context,'F'.pack('E',$value)); }
+        elseif (is_string($value)) hash_update($context,'S'.strlen($value).':'.$value);
+        elseif (is_array($value)) { hash_update($context,'A'.count($value).':');foreach($value as $item)$walk($item); }
+        elseif ($value instanceof \stdClass) { $items=get_object_vars($value);ksort($items,SORT_STRING);hash_update($context,'O'.count($items).':');foreach($items as $key=>$item){$walk($key);$walk($item);} }
+        else throw new \RuntimeException('Invalid content value');
+    };
+    $body=clone $document;unset($body->review);$walk($body);return hash_final($context);
+}
+function approved_content(string $bytes): bool {
+    try {
+        $document=json_decode($bytes,false,512,JSON_THROW_ON_ERROR);$review=$document->review??null;
+        return ($document->schema??'')==='ibm360-ald-page-v3' && ($review->user_approved??false)===true &&
+            ($review->status??'')==='approved' && is_string($review->approval_statement??null) && trim($review->approval_statement)!=='' &&
+            is_string($review->approved_at??null) && hash_equals($review->content_sha256??'',content_digest($document));
+    } catch (\Throwable $error) { return false; }
+}
+
 final class Store {
     public string $root;
     public string $cache;
@@ -150,6 +176,7 @@ final class Store {
         else { $e['displayPage']=$subpage!==null?$fileCode:$page;$e['displayTitle']=$displayTitle;$e['subpage']=$subpage; }
         if ($spec['model']) { $e['jsonURL']=source_url($spec['model'],$msha);$e['jsonSha256']=$msha;$e['jsonDownloadName']=$card!==null?$card.'.json':basename($spec['model']); }
         $e['_sourcePairCurrent']=$card!==null || ($spec['record']['repository']['json']['sha256']===$msha && $spec['record']['repository']['txt']['sha256']===$sha);
+        $e['userApproved']=$card===null && $e['_sourcePairCurrent'] && approved_content($modelBytes);
         return $e;
     }
     public function page(string $id, array $catalogue): array {

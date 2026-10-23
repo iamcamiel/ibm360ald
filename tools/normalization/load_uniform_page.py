@@ -1,9 +1,9 @@
 """Load current uniform data; never load historical sidecars or raw archives."""
 import json
 from pathlib import Path, PurePosixPath
-from pages import SCHEMA, restore_page
+from pages import SCHEMA, restore_page, validate_current_page
 
-ENVELOPE={'schema','document_id','page','source_status_ref','objects','nets','junctions','source_containers','current_extensions'}
+ENVELOPE={'schema','document_id','page','source_status_ref','objects','nets','junctions','source_containers','current_extensions','review'}
 
 
 def _pairs(items):
@@ -33,7 +33,7 @@ def validate_page(data):
     for key in ('objects','nets','junctions'):
         if not isinstance(data[key],list):raise ValueError('Expected current occurrence array')
     if not isinstance(data['source_containers'],dict) or not isinstance(data['current_extensions'],dict):raise ValueError('Invalid current field collection')
-    restore_page(data)
+    validate_current_page(data)
     return data
 
 

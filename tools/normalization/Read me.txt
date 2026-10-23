@@ -1,46 +1,29 @@
-CURRENT UNIFORM ALD PAGE DATA
+CURRENT CANONICAL ALD PAGE DATA, VERSION 3
 
-Every accepted page uses ibm360-ald-page-v2 at its existing json/family/page.json
-path. All share page, objects, nets, junctions and current_extensions sections.
-Unsupported table/CAS values remain explicit current data. Source container
-presence, array order, duplicate/anonymous object IDs, null and false survive.
+Read Canonical page format.txt at the repository root for the field definitions,
+review/approval rules and mandatory coordinated schema-change procedure.
+ALD page schema.json, Canonical vocabulary.json and Format release.json in this
+directory define and lock the current format. No unknown live field is accepted.
 
-Object identities, terminal observations and net claims use the independently
-reviewed identity.py and terminals.py pure mappers. pin_number, symbols and
-border_decorations are separate. Geometry is copied without coordinate changes;
-no driver, electrical connection or physical pin is inferred. Source status is
-one portable reference to notes/Source status.json and its scan ID.
+Use pages.restore_page for a detached, structurally checked editable view.
+Use pages.renormalize_page to rebuild both projections after an explicit edit;
+validate_current_page replays the semantic projection and rejects disagreement.
+All writes/publication require that full validation and canonical serialization.
+Readers check schema, vocabulary and the content-bound review digest without
+re-normalizing the whole dataset on every catalogue access.
 
-Net routes retain recorded coordinates; junctions retain explicit joined marks.
-Crossings are rendered from intersecting paths, not a second maintained list.
-Old literal crossing claims remain only in source_literals for exact current
-adapter compatibility. routing_status is recorded for explicit paths, partial
-for coordinate-only or damaged route claims, and not-recorded without routes.
-It does not certify a complete trace or create corners from logical incidence.
+normalize_page accepts canonical notation only. import_legacy_page is the
+explicit in-memory importer for historical v2 review copies. legacy_v2.py is
+quarantined compatibility code, not an alternate current writer.
+build_uniform_pages retains the review object when copying a current document.
+check_format.py checks every registered page and rejects unregistered page
+models, format aliases, unknown evidence names, stale approvals, duplicate keys,
+nonfinite numbers, serialization drift and mismatching JSON/TXT pairs.
 
-source_literals and source_form contain only CURRENT spellings, alias fields,
-collection membership and value representations needed by the temporary legacy
-reader. They are not previous versions, review histories or raw-byte archives.
-Unknown current facts are retained conservatively; no history-name wildcard is
-applied to already compacted source models. Significant explanatory page notes
-stay in the existing notes tree. No extra per-page provenance tree is written.
+No validation grants a new native or electrical review. User approval is explicit
+and separate from source transcription review and complete wiring clearance.
 
-normalize_page(raw, model_relative, source_scan_id,
-               source_status_ref='notes/Source status.json', context=None)
-returns {data, mapping}. The rich mapper mapping is TRANSIENT for independent
-verification only; the builder must never serialize it into the repository.
-restore_page(data) returns a detached exact current source-shaped dictionary
-for consumers awaiting migration. It fails on duplicate source occurrences or
-terminal memberships. It also reprojects that current representation and rejects
-disagreement with structured functions, contacts, decorations or endpoint facts,
-so a structured edit cannot be silently ignored by an older reader. This
-consistency check is not a fresh source acceptance. Geometry stored once is
-guarded by current page/checkpoint hashes. validate_current_page(data) exposes
-the same check. renormalize_page(raw, template, context=None) returns new
-uniform data with stable document/checkpoint identity for reviewed source edits.
-
-load_uniform_page.load_page(root, relative) loads the current common interface.
-It rejects duplicate JSON keys, malformed envelopes and escaping file paths.
-load_legacy_view is the temporary current-shape adapter. Neither loads history.
-Loading data does not grant a new visual or electrical acceptance; current
-source/checkpoint bindings are validated by the build/import/review workflows.
+printed_literals.py enforces complete numeric-prefixed printed_label strings.
+A border K is a decoration, not an inline numeric prefix. Historical split-v3
+review copies use the explicit import_review_page API; current read/write gates
+stay strict. The editor uses this import for saved copies without rewriting them.

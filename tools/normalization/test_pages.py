@@ -6,8 +6,12 @@ import unittest
 
 from identity import normalize_identity
 from terminals import collect_terminals, normalize_net
-from pages import SCHEMA, normalize_page, restore_page, renormalize_page, validate_current_page
-from load_uniform_page import load_page, validate_page
+from legacy_v2 import SCHEMA, normalize_page, restore_page, renormalize_page, validate_current_page
+from load_uniform_page import _path, _pairs
+def validate_page(data):
+    return validate_current_page(data)
+def load_page(root,relative):
+    return validate_page(json.loads(_path(root,relative).read_text(encoding='utf-8-sig'),object_pairs_hook=_pairs))
 
 
 def literal(value):

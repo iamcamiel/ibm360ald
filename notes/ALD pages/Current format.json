@@ -1,6 +1,6 @@
 {
   "schema": "ibm360-ald-uniform-current-v1",
-  "page_schema": "ibm360-ald-page-v2",
+  "page_schema": "ibm360-ald-page-v3",
   "source_status_ref": "notes/Source status.json",
   "counts": {
     "pages": 2304,
@@ -8,24 +8,20 @@
     "nets": 79500,
     "junctions": 33344,
     "terminals": 151111,
-    "objects_with_explicit_geometry": 52300,
-    "nets_with_explicit_route_claims": 15162,
-    "explicit_route_claims": 19130,
-    "explicit_junction_claims": 1538,
-    "page_kind:ald-diagram": 1831,
-    "page_kind:cas-layout": 1,
-    "page_kind:cas-control-diagram": 103,
-    "page_kind:annotation-table-or-layout": 129,
-    "page_kind:connector-routing": 11,
-    "page_kind:programmed-ground": 59,
+    "page_type:socket-listing": 170,
     "page_kind:socket-listing": 170,
-    "page_type:ald": 1816,
-    "page_type:cas": 104,
     "page_type:miscellaneous": 134,
+    "page_kind:annotation-table-or-layout": 129,
+    "page_type:cas": 104,
+    "page_kind:cas-layout": 1,
+    "page_type:ald": 1816,
+    "page_kind:ald-diagram": 1831,
+    "page_kind:cas-control-diagram": 103,
     "page_type:ros-listing": 80,
-    "page_type:socket-listing": 170
+    "page_kind:connector-routing": 11,
+    "page_kind:programmed-ground": 59
   },
-  "policy": "Current facts only. Existing canonical model paths retained. Pin numbers, extra symbols and border decorations are independent. Wire routes and joined junctions are retained; crossings are rendered from wire paths. No archives or historical sidecars. Each page has an explicit raw page_type, transported without conversion as current_extensions.page_type. Its stable values are ald, cas, socket-listing, ros-listing, and miscellaneous. The finer page.kind is retained. Requested entry/footer presentation shifts apply only to page_type ald; CAS and all other page types retain their original UTF8 presentation.",
+  "policy": "Closed canonical current notation and content-bound review metadata. All page types share one page schema. Historical v2 is explicit read-only import. No uncoordinated fields or per-page alias syntax.",
   "validation": {
     "exact_current_literal_preservation": true,
     "independent_semantic_review": true,
@@ -36,8 +32,12 @@
     "new_presentation_only_models": 112,
     "card_diagram_physical_facts_unchanged": true,
     "page_type_field_populated": 2304,
-    "semantic_source_objects_and_nets_unchanged": false
+    "semantic_source_objects_and_nets_unchanged": false,
+    "canonical_format_models": 2304,
+    "explicit_current_user_approvals": 44
   },
   "text_layout_schema": "ibm360-ald-text-layout-v1",
-  "updated_utc": "2026-10-22T15:51:51.286007+00:00"
+  "updated_utc": "2026-10-22T15:51:51.286007+00:00",
+  "format_definition": "Canonical page format.txt",
+  "format_release": "tools/normalization/Format release.json"
 }

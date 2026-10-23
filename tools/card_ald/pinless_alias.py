@@ -33,6 +33,11 @@ def declared_names(port,owner):
 def proof_for(node,terminal,typed_terminals):
     """Return evidence only for an explicit blank presentation, never a guess."""
     p=terminal.get('source_literals',{})
+    if isinstance(p,dict) and 'source_observations' in p:
+        live=p;p={o['field']:deepcopy(o['value']) for o in live['source_observations']}
+        old_alias=p.get('pin');p.update(live)
+        if live.get('pin') is None:p['pin']=old_alias
+        p['printed_pin']=live.get('printed_label')
     if not isinstance(p,dict) or p.get('source_reviewed') is not True:return None
     if 'printed_pin' not in p or p['printed_pin']!='':return None
     if any(p.get(k) not in (None,'') for k in PRINTED if k!='printed_pin'):return None

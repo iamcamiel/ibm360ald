@@ -1,6 +1,6 @@
 """One current-page interface for card construction, variants and audits.
 
-Current v2 identities and terminals are consumed directly. Current literal
+Current v3 identities and terminals are consumed directly. Current literal
 extensions retain named pinless endpoints, K contacts and source geometry;
 they are not alternate identity guesses. Legacy fixture inputs are normalized
 once here, never reconstructed by each card consumer. No files are written.
@@ -14,7 +14,8 @@ import re
 import sys
 import pinless_alias as _unprinted_alias
 
-SCHEMA = 'ibm360-ald-page-v2'
+SCHEMA = 'ibm360-ald-page-v3'
+READ_SCHEMAS = (SCHEMA, 'ibm360-ald-page-v2')
 _CACHE = OrderedDict()
 _CACHE_LIMIT = 12
 _CONTEXTS = {}
@@ -92,6 +93,16 @@ def _terminal(t):
     result = deepcopy(t['source_literals'])
     if isinstance(result,str):result={'pin':result}
     if not isinstance(result,dict): return result
+    if 'source_observations' in result:
+        # Historical annotation facts remain evidence. Canonical geometry and
+        # physical identity always override them.
+        observed={o['field']:deepcopy(o['value']) for o in result['source_observations']}
+        live=deepcopy(result)
+        result=observed
+        result.update(live)
+        if live.get('pin') is None and isinstance(observed.get('pin'),str) and not any(c.isdigit() for c in observed['pin']):
+            result['pin']=observed['pin']
+        if live.get('printed_label') is not None:result['printed_pin']=live['printed_label']
     result.update(deepcopy(t.get('extensions',{})))
     result.update(deepcopy(t['geometry']))
     if t.get('side') is not None: result['side'] = t['side']
@@ -153,10 +164,10 @@ def _net(n):
 def view(data,root=None):
     """Detached stable card view; normalized objects remain independently owned."""
     if not isinstance(data,dict): raise ValueError('Page must be an object')
-    if data.get('schema') != SCHEMA:
+    if data.get('schema') not in READ_SCHEMAS:
         if str(data.get('schema','')).startswith('ibm360-ald-page-'): raise ValueError('Unsupported page schema')
         configure(root or Path(__file__).resolve().parents[2])
-        from pages import normalize_page
+        from legacy_v2 import normalize_page
         data = normalize_page(data,'json/fixture.json','fixture')['data']
     result = deepcopy(data['current_extensions'])
     for k,v in data['page'].items():
@@ -177,14 +188,14 @@ def load(path,root=None,*,detached=True):
         raw=path.read_bytes()
         raw_sha=hashlib.sha256(raw).hexdigest()
         data=json_read(path)
-        if isinstance(data,dict) and data.get('schema')==SCHEMA:
+        if isinstance(data,dict) and data.get('schema') in READ_SCHEMAS:
             epoch=source_epoch(root) if root else None
             if epoch:
                 if epoch['models'].get(path)!=raw_sha:raise ValueError('Current normalized model differs from accepted source checkpoint: '+str(path))
             else:
                 from pages import validate_current_page
                 validate_current_page(data)
-        if not isinstance(data,dict) or not(data.get('schema')==SCHEMA or isinstance(data.get('nodes'),list)):
+        if not isinstance(data,dict) or not(data.get('schema') in READ_SCHEMAS or isinstance(data.get('nodes'),list)):
             return None
         document=view(data,root)
         cards={n.get('card_type') for n in document.get('nodes',[]) if isinstance(n,dict)}
@@ -222,7 +233,7 @@ def identity_index(root):
             if epoch and path not in epoch['models']:continue
             data=json_read(path)
             if not isinstance(data,dict):continue
-            if data.get('schema')==SCHEMA:
+            if data.get('schema') in READ_SCHEMAS:
                 if epoch and epoch['models'].get(path)!=digest(path):raise ValueError('Source index model is not current: '+str(path))
                 doc={'page':data['page'].get('page'),'nodes':[]}
                 for o in data['objects']:

@@ -24,7 +24,7 @@ def _exact(value):
 
 def rawview(document):
     require(isinstance(document, dict), 'Page must be a JSON object')
-    if document.get('schema') == 'ibm360-ald-page-v2':
+    if document.get('schema') in ('ibm360-ald-page-v2','ibm360-ald-page-v3'):
         try:
             from read_page import source_view
             return source_view(document)

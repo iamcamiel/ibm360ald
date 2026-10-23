@@ -114,7 +114,17 @@ def load_checkpoint(repo, path=None, *, inventory=None):
             artifact_raw=target.read_bytes()
             require(digest(artifact_raw)==expected,'Current source hash differs: '+rel)
             artifact_raw.decode('utf-8-sig')
-            if kind=='json':require(isinstance(read_json(artifact_raw),dict),'Current model must be a JSON object')
+            if kind=='json':
+                model=read_json(artifact_raw)
+                require(isinstance(model,dict),'Current model must be a JSON object')
+                import sys
+                sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'normalization'))
+                from pages import SCHEMA as PAGE_SCHEMA, validate_notation, _restore_page
+                from review import validate as validate_review
+                require(model.get('schema')==PAGE_SCHEMA,'Current canonical page format required: '+rel)
+                validate_notation(_restore_page(model));validate_review(model)
+                canonical=(json.dumps(model,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n').encode('utf8')
+                require(canonical==artifact_raw,'Canonical page serialization required: '+rel)
             if owned is not None:require(owned.get(rel)==expected,'Current source inventory differs: '+rel)
             guards[rel]=(expected,target)
         if 'json'in artifacts:

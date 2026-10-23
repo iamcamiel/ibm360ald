@@ -1,0 +1,108 @@
+CANONICAL ALD PAGE FORMAT, VERSION 3
+
+Authority
+tools/normalization/ALD page schema.json is the closed machine schema.
+Canonical vocabulary.json registers all current source fields and evidence names.
+Format release.json locks those two files by SHA256. pages.py implements the
+cross-field, physical-terminal and lossless source-projection checks.
+All 2,304 page models, including 1,816 ALD diagrams, use ibm360-ald-page-v3.
+Other document types (card definitions, fact tables, catalogue records) have
+their own named schemas; they are not alternate ALD page representations.
+
+Storage and coordinates
+UTF-8 without BOM, sorted keys, compact separators, finite JSON numbers, final
+LF, no duplicate keys. Every grid point is [column,row], zero based. Unknown
+coordinates are null. Native scan coordinates are evidence, never grid points.
+The JSON text_layout reproduces the published UTF-8 file byte for byte.
+The semantic envelope has exactly schema, document_id, page, source_status_ref,
+objects, nets, junctions, source_containers, current_extensions and review.
+Use restore_page to obtain the detached editable notation. Never edit both
+projections separately: renormalize_page rebuilds and validates the envelope.
+
+Objects and terminals
+Use one pins array per ordinary object, with side input/output/null. Do not use
+inputs, outputs, scalar input/output, physical_pin, printed_pin or absolute_row
+as alternate live fields. A pin record always has the complete fixed fieldset:
+pin, pin_status, printed_label, reference, references, side, row, column, point,
+label_column, border_point, triangle, border_marker, printed_prefix,
+printed_suffix, occurrence_kind, source_observations.
+pin is the resolved physical contact or null. printed_label is the exact native
+label, including an inline numeric prefix such as 8 or 2. A prefix is not a contact.
+Border decorations are separate: a K replacing the box border belongs in
+border_marker and is excluded from printed_label. Never concatenate a border
+control into a pin label merely because an old annotation calls it a prefix.
+reference and references retain exact named endpoint identities, including
+pinless endpoints and qualified names. Never infer a new electrical contact
+from a moved glyph. Null, false, absent evidence and unresolved conflicts stay
+distinct. occurrence_kind distinguishes primary and unresolved observations.
+Alternate terminal mirrors are terminal_observations, not extra contacts.
+height is footer-row minus top-row; unknown height is null. Do not use inclusive
+height or height_rows. Printed labels are records with column,row,text, not
+positional triples. Special CAS, programmed-ground pairs, listing and connector
+forms are explicitly registered types, not disguised ordinary SLT terminals.
+
+Electrical and presentation information
+Typed endpoint_claims retain physical/named roles and all declared members.
+Net targets are an array when declared; null explicitly records unknown members
+and is distinct from an empty array.
+Routing, junctions and unjoined crossings remain separate, explicit claims.
+A plain crossing never implies connection; a positional edit cannot infer a
+new net. Keep source direction uncertainty explicit. Wire paths use integer
+points; diamonds, pin decorations, markers, exact label bindings and alignment
+evidence are separate from electrical membership.
+source_observations retain registered literal evidence, including conflicting
+old spellings. Their payload is evidence, not a second live geometry or pin
+namespace. Readers must use the canonical fields. Legacy readers live only in
+the explicit v2 importer; new page writes must pass the v3 validator.
+
+Review and approval
+review has status, user_approved, content_sha256, source_status, wiring_status,
+approved_at and approval_statement. source_status records source transcription
+review; wiring_status is unreviewed, partial or checked. status is unreviewed,
+partial, wiring-checked, approved or needs-review. These are distinct from mere
+schema validation. Only the user's explicit approval sets user_approved=true.
+The approval applies to content_sha256, calculated by review.py over every
+field except root review. The editor clears approval and marks needs-review
+when content changes; undo restores the previous content and its review state.
+Schema migration can continue an existing approval only with a recorded exact
+representation-equivalence proof. It does not grant a fresh native review.
+review.approve requires the explicit statement, time and expected content hash.
+Publish the candidate together with Source status, inventory and review binding
+updates. A review-list flag alone must not create approval. ALDbrowser displays
+the green check only for an approved digest and the current JSON/TXT pair.
+
+Coordinated format changes (mandatory)
+1. Propose the missing fact/notation and an example outside current page JSON.
+   Review teams record a format-extension request in their batch Results and
+   hold that change; they do not invent a field or change the shared schema.
+2. The coordinator defines a new version, updates schema/vocabulary/release,
+   and supplies an explicit lossless migration for every affected current page.
+3. Update all readers, writers, editor, browser and dependency bindings together.
+   Preserve physical contacts, electrical declarations, exact text and saved
+   editor snapshots unless a separately reviewed factual change is authorized.
+4. Run negative tests, all-page format validation, exact rendering checks,
+   source/inventory verification and affected consumer tests. Refresh derived
+   catalogues and source-bound comparison/review identities before publication.
+5. Install the coordinated release as one guarded operation with rollback.
+   Only then resume teams using freshly frozen assignments. No ad hoc aliases,
+   silent fallback parser, per-page schema exception or unversioned extension.
+
+Required checks
+python tools/normalization/check_format.py --repo .
+python -m unittest discover -s tools/normalization -p test_format.py
+python tools/repository/verify_repository.py --repo .
+These checks fail on an old page schema, unknown live field, unregistered
+observation name, stale approval digest, divergent projections or noncanonical
+serialization. CI runs the same format gate. Historical v2 saved copies can be
+read only through import_legacy_page and save new v3 copies in a fresh folder.
+
+Existing v3 full-literal contract repair (2026-10-23)
+Numeric split prefix/label records are rejected by current reads and writes.
+label_column is the start of the full printed label when known; the electrical
+connection point remains separate. A pinless marker uses its already declared
+printed_labels position, not the empty physical-number slot beside a border.
+Historical review copies require explicit pages.import_review_page; this pure
+import preserves exact text and physical/electrical facts, leaves the old file
+intact, and invalidates its content-bound approval. Current source pages must
+already conform. Nonnumeric controls require native classification; the repair
+never infers a border K or a physical contact from concatenated characters.

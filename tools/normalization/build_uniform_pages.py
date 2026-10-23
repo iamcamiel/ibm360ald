@@ -45,9 +45,14 @@ def page_counts(data):
 
 def projection(page):
     from pages import normalize_page, restore_page, SCHEMA
-    raw = page['model']
+    from copy import deepcopy
+    raw = page.get('current_document') or page['model']
     if raw.get('schema') == SCHEMA:
-        raw = restore_page(raw)
+        from pages import validate_current_page
+        return deepcopy(validate_current_page(raw))
+    if raw.get('schema') == 'ibm360-ald-page-v2':
+        from pages import import_legacy_page
+        return import_legacy_page(raw)
     return normalize_page(raw, page['model_relative'], page['source_scan_id'], context=page['context'])['data']
 
 

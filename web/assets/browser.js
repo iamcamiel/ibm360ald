@@ -129,6 +129,7 @@ function updateDownloads(page) {
 
 async function loadPage(page, historyMode = 'push', selection = null) {
   state.request?.abort();
+  $('page-approved').hidden = true;
   interactionView.reset();
   updatePageSelectors(page);
   const request = new AbortController();
@@ -148,6 +149,7 @@ async function loadPage(page, historyMode = 'push', selection = null) {
     $('ald-text').textContent = text;
     const grid = countGrid(text);
     state.page = { ...page, ...grid };
+    $('page-approved').hidden = !(page.userApproved === true && verified.interactionsAllowed);
     state.metrics = null;
     $('sheet').hidden = false;
     $('sheet').setAttribute('aria-label', `${pageCode(page)} — ${page.title}`);

@@ -37,6 +37,14 @@ def main():
             result['current_source_status']=current_checkpoint.load_checkpoint(repo,inventory=manifest).report()
         except (ValueError,OSError,UnicodeError) as exc:
             failures.append({'path':'notes/Source status.json','problem':str(exc)})
+        sys.path[:0]=[str(repo/'tools/normalization'),str(repo/'tools/page_text')]
+        from check_format import check_file, loads
+        schema=loads((repo/'tools/normalization/ALD page schema.json').read_bytes())
+        for record in json.loads((repo/'notes/Source status.json').read_bytes())['records']:
+            if 'json' not in record['repository']:continue
+            rel=record['repository']['json']['path']
+            try:check_file(repo/rel,schema)
+            except (ValueError,OSError,KeyError,TypeError) as exc:failures.append({'path':rel,'problem':str(exc)})
         result['passed']=not failures
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0 if not failures else 1

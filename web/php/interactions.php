@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace ALDbrowser;
 
 function raw_model(array $model): array {
-    if (($model['schema']??'')!=='ibm360-ald-page-v2') return $model['current_extensions']??[];
+    if (!in_array(($model['schema']??''),['ibm360-ald-page-v2','ibm360-ald-page-v3'],true)) return $model['current_extensions']??[];
     $raw=$model['current_extensions'];unset($raw['text_layout'],$raw['printed_labels']);
     foreach (['objects','nets','junctions'] as $section) foreach ($model[$section]??[] as $record) {
         $form=$record['source_form'];$container=$form['container'];$ordinal=$form['ordinal'];
