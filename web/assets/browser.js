@@ -130,6 +130,7 @@ function updateDownloads(page) {
 async function loadPage(page, historyMode = 'push', selection = null) {
   state.request?.abort();
   $('page-approved').hidden = true;
+  $('page-format').hidden = true;
   interactionView.reset();
   updatePageSelectors(page);
   const request = new AbortController();
@@ -150,7 +151,7 @@ async function loadPage(page, historyMode = 'push', selection = null) {
     const grid = countGrid(text);
     state.page = { ...page, ...grid };
     $('page-approved').hidden = !(page.format !== 'v4' && page.userApproved === true && verified.interactionsAllowed);
-    $('page-format').hidden = page.format !== 'v4';
+    $('page-format').hidden = !(page.format === 'v4' && verified.interactionsAllowed);
     state.metrics = null;
     $('sheet').hidden = false;
     $('sheet').setAttribute('aria-label', `${pageCode(page)} — ${page.title}`);
@@ -182,6 +183,7 @@ async function loadPage(page, historyMode = 'push', selection = null) {
     }
     if(state.request === request)notify(verified.notice || (page.format === 'v4' ? `Functional v4 · Review: ${page.reviewStatus} · ${page.unresolvedCount} unresolved observations. No source approval inferred.` : ''));
   } catch (error) {
+    if (state.request === request) $('page-format').hidden = true;
     if (error.name !== 'AbortError' && state.request === request) {
       if (state.page) updatePageSelectors(state.page);
       $('empty-state').querySelector('p').textContent = 'Choose a page from the menu to begin.';

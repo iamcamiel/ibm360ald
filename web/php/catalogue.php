@@ -147,7 +147,7 @@ final class Store {
                 if (is_file($this->root . '/' . $candidate)) { $jp = $candidate; break; }
             }
             $id = hash('sha256', $tp); $sig = [$this->statKey($tp), $jp ? $this->statKey($jp) : null];
-            $sig[]=v4_review_signature(source_path($this->root,$jp));
+            $sig[]=$jp!==null?v4_review_signature(source_path($this->root,$jp)):null;
             $specs[$id] = ['id'=>$id, 'model'=>$jp, 'text'=>$tp, 'card'=>$m[1], 'variant'=>$m[2] ?? null, 'sig'=>$sig];
             $signatures[] = $sig;
         }
