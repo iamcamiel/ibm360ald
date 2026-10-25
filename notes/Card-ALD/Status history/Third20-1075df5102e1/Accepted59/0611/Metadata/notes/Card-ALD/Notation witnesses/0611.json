@@ -1,0 +1,3343 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "0611",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 31,
+    "resolved_catalogue_observations": 31,
+    "source_observations": 31,
+    "exact_model_pointer_keys": 31,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "counts": {
+    "occurrences": 31,
+    "pages": 5,
+    "page_socket_observations": 7,
+    "physical_card_sites": 6,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 6,
+    "complete_field_observation_witnesses": 0,
+    "partial_observation_witnesses": 6,
+    "distinct_observed_variants": 4,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 4,
+    "canonical_pattern_witnesses": 1,
+    "witnesses_with_unmapped_or_omitted_fields": 4,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 4
+  },
+  "model_bindings": [
+    {
+      "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+      "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+    },
+    {
+      "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+      "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+      "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+    },
+    {
+      "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+      "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+    },
+    {
+      "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+      "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "abae44de04c083c4d5ceeaae1706a22cf007fc0bb0ff4f3c7221cc62fc651e8e",
+      "archive_relative": "FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.tif",
+      "role": "original source scan",
+      "scan_id": "731"
+    },
+    {
+      "sha256": "b8d60047f87edc69b02013c89ac50f0ee6d5e2dad2988413bfb2cebbadf6859d",
+      "archive_relative": "KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.tif",
+      "role": "original source scan",
+      "scan_id": "914"
+    },
+    {
+      "sha256": "375c50812f19824b0d919a75c793ebde4e1e1a17c0c0f1684a9a835869426df5",
+      "archive_relative": "KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.tif",
+      "role": "original source scan",
+      "scan_id": "1129"
+    },
+    {
+      "sha256": "f26cea27ccfc1da055b420098957226d243dcc7d138495b1302196b72b92ad8f",
+      "archive_relative": "PX System Console/PX311 SC CE Select and Manual Control Gating.tif",
+      "role": "original source scan",
+      "scan_id": "1555"
+    },
+    {
+      "sha256": "840c5142136f0447c0f104280ace2a36d3233d672a47b43051d476dffc10b12c",
+      "archive_relative": "RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.tif",
+      "role": "original source scan",
+      "scan_id": "1856"
+    }
+  ],
+  "canonical_pattern_witnesses": [
+    {
+      "page": "RF701",
+      "source_pages": [
+        "RF701"
+      ],
+      "location": "02B-A4D3",
+      "source_locations": [
+        "02B-A4D3"
+      ],
+      "literal_locations": [
+        "B-A4D3"
+      ],
+      "models": [
+        {
+          "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+          "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "840c5142136f0447c0f104280ace2a36d3233d672a47b43051d476dffc10b12c",
+          "archive_relative": "RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.tif",
+          "role": "original source scan",
+          "scan_id": "1856"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "RF701",
+          "node": "AW",
+          "node_pointer": "/nodes/24",
+          "model": {
+            "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+            "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "RF701",
+          "node": "AX",
+          "node_pointer": "/nodes/25",
+          "model": {
+            "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+            "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "RF701",
+          "node": "AY",
+          "node_pointer": "/nodes/26",
+          "model": {
+            "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+            "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "D2",
+        "E1",
+        "E2"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2",
+        "D1"
+      ],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "D2": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": [
+              "✲"
+            ]
+          },
+          "border_symbol:output:3": null
+        },
+        "E1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": [
+              "✲"
+            ]
+          },
+          "border_symbol:output:3": null
+        },
+        "E2": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": [
+              "✲"
+            ]
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    }
+  ],
+  "profiles_left_uncertain": [
+    {
+      "page": "KR021",
+      "source_pages": [
+        "KR021"
+      ],
+      "location": "02A-A1D3",
+      "source_locations": [
+        "02A-A1D3"
+      ],
+      "literal_locations": [
+        "A-A1D3"
+      ],
+      "models": [
+        {
+          "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+          "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "b8d60047f87edc69b02013c89ac50f0ee6d5e2dad2988413bfb2cebbadf6859d",
+          "archive_relative": "KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.tif",
+          "role": "original source scan",
+          "scan_id": "914"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KR021",
+          "node": "AN",
+          "node_pointer": "/nodes/14",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AP",
+          "node_pointer": "/nodes/15",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AQ",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AR",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "E1",
+        "E2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "A1",
+          "node": "AN",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "B1",
+          "node": "AP",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "C1",
+          "node": "AQ",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "D1",
+          "node": "AR",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    },
+    {
+      "page": "KR021",
+      "source_pages": [
+        "KR021"
+      ],
+      "location": "02A-A1E3",
+      "source_locations": [
+        "02A-A1E3"
+      ],
+      "literal_locations": [
+        "A-A1E3"
+      ],
+      "models": [
+        {
+          "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+          "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "b8d60047f87edc69b02013c89ac50f0ee6d5e2dad2988413bfb2cebbadf6859d",
+          "archive_relative": "KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.tif",
+          "role": "original source scan",
+          "scan_id": "914"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KR021",
+          "node": "AD",
+          "node_pointer": "/nodes/6",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AE",
+          "node_pointer": "/nodes/7",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AF",
+          "node_pointer": "/nodes/8",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AG",
+          "node_pointer": "/nodes/9",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AH",
+          "node_pointer": "/nodes/10",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AJ",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AK",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KR021",
+          "node": "AL",
+          "node_pointer": "/nodes/13",
+          "model": {
+            "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+            "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2",
+        "D1",
+        "D2"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "E1",
+        "E2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "A1",
+          "node": "AD",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "B1",
+          "node": "AE",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "B1",
+          "node": "AE",
+          "field": "occurrence_net_role",
+          "port_id": "occurrence_net_role:output:3",
+          "profile_only": true,
+          "source_pin_index": 1,
+          "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+        },
+        {
+          "portion": "C1",
+          "node": "AF",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "C1",
+          "node": "AF",
+          "field": "occurrence_net_role",
+          "port_id": "occurrence_net_role:output:3",
+          "profile_only": true,
+          "source_pin_index": 1,
+          "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+        },
+        {
+          "portion": "D1",
+          "node": "AG",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "D1",
+          "node": "AG",
+          "field": "occurrence_net_role",
+          "port_id": "occurrence_net_role:output:3",
+          "profile_only": true,
+          "source_pin_index": 1,
+          "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+        },
+        {
+          "portion": "A2",
+          "node": "AH",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "B2",
+          "node": "AJ",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "C2",
+          "node": "AK",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "D2",
+          "node": "AL",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null,
+          "occurrence_net_role:output:3": {
+            "schema": "documentary-passive-component-net-origin-v1",
+            "role": "commoned_nonorigin",
+            "marker": "K",
+            "page": "KR021",
+            "node": "AE",
+            "node_pointer": "/nodes/7",
+            "portion": "B1",
+            "circuit_identifier": "S61AY",
+            "side": "output",
+            "pin": "B09",
+            "terminal_id": "nodes:7/t:1",
+            "physical_site": "A-A1E3",
+            "model_binding": {
+              "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+              "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+            },
+            "plain_same_portion_witnesses": [
+              {
+                "page": "FC321",
+                "node": "AS",
+                "node_pointer": "/nodes/16",
+                "terminal_id": "nodes:16/t:1",
+                "side": "output",
+                "pin": "B09",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                  "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                }
+              },
+              {
+                "page": "KR021",
+                "node": "AP",
+                "node_pointer": "/nodes/15",
+                "terminal_id": "nodes:15/t:1",
+                "side": "output",
+                "pin": "B09",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                }
+              },
+              {
+                "page": "PX311",
+                "node": "AL",
+                "node_pointer": "/nodes/17",
+                "terminal_id": "nodes:17/t:2",
+                "side": "output",
+                "pin": "B09",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+                  "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+                }
+              },
+              {
+                "page": "RF701",
+                "node": "AP",
+                "node_pointer": "/nodes/17",
+                "terminal_id": "nodes:17/t:2",
+                "side": "output",
+                "pin": "B09",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                  "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                }
+              }
+            ],
+            "page_net": {
+              "net_id": "own-input",
+              "named_origin": {
+                "reference": "AD.D13",
+                "node": "AD",
+                "terminal_id": "nodes:6/t:1",
+                "pin": "D13",
+                "side": "output",
+                "circuit_identifier": "S61AY",
+                "physical_site": "A-A1E3"
+              },
+              "commoned_reference": "AE.B09",
+              "additional_source_drivers": [
+                "AE.B09",
+                "AF.B08",
+                "AG.D06"
+              ],
+              "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+            },
+            "component_capability": {
+              "schema": "reviewed-passive-component-net-origin-v1",
+              "passive_component": true,
+              "component_class": "pluggable_switch",
+              "marker": "K",
+              "requires_plain_same_portion": true,
+              "requires_explicit_page_common_net": true,
+              "intrinsic_connection_inference_allowed": false,
+              "complete_K_variant_policy": "hold_until_renderer_support",
+              "manual_evidence": [
+                {
+                  "schema": "registered-manual-document-reference-v1",
+                  "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                  "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                  "pdf_pages_1based": [
+                    26,
+                    87
+                  ]
+                }
+              ]
+            },
+            "component_authority": {
+              "path": "json/Card-ALD/component-forms.json",
+              "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+            },
+            "validator": {
+              "path": "tools/card_ald/component_context.py",
+              "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+            },
+            "source_checkpoint": {
+              "path": "notes/Source status.json",
+              "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+            },
+            "intrinsic_connection_inference_applied": false,
+            "active_driver_inference_applied": false,
+            "rendered_K_variant_support": false,
+            "manual_registry": {
+              "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+              "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+            },
+            "runtime_authority": false,
+            "documentary_sha256": "581d3734b756baae28a0a3f1222fc48086da15d5625345869fcdcab13e73c387"
+          }
+        },
+        "B2": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null,
+          "occurrence_net_role:output:3": {
+            "schema": "documentary-passive-component-net-origin-v1",
+            "role": "commoned_nonorigin",
+            "marker": "K",
+            "page": "KR021",
+            "node": "AF",
+            "node_pointer": "/nodes/8",
+            "portion": "C1",
+            "circuit_identifier": "S61AY",
+            "side": "output",
+            "pin": "B08",
+            "terminal_id": "nodes:8/t:1",
+            "physical_site": "A-A1E3",
+            "model_binding": {
+              "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+              "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+            },
+            "plain_same_portion_witnesses": [
+              {
+                "page": "FC321",
+                "node": "AT",
+                "node_pointer": "/nodes/17",
+                "terminal_id": "nodes:17/t:1",
+                "side": "output",
+                "pin": "B08",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                  "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                }
+              },
+              {
+                "page": "KR021",
+                "node": "AQ",
+                "node_pointer": "/nodes/16",
+                "terminal_id": "nodes:16/t:1",
+                "side": "output",
+                "pin": "B08",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                }
+              },
+              {
+                "page": "KW321",
+                "node": "BM",
+                "node_pointer": "/nodes/6",
+                "terminal_id": "nodes:6/t:1",
+                "side": "output",
+                "pin": "B08",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+                  "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+                }
+              },
+              {
+                "page": "RF701",
+                "node": "AR",
+                "node_pointer": "/nodes/19",
+                "terminal_id": "nodes:19/t:2",
+                "side": "output",
+                "pin": "B08",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                  "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                }
+              }
+            ],
+            "page_net": {
+              "net_id": "own-input",
+              "named_origin": {
+                "reference": "AD.D13",
+                "node": "AD",
+                "terminal_id": "nodes:6/t:1",
+                "pin": "D13",
+                "side": "output",
+                "circuit_identifier": "S61AY",
+                "physical_site": "A-A1E3"
+              },
+              "commoned_reference": "AF.B08",
+              "additional_source_drivers": [
+                "AE.B09",
+                "AF.B08",
+                "AG.D06"
+              ],
+              "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+            },
+            "component_capability": {
+              "schema": "reviewed-passive-component-net-origin-v1",
+              "passive_component": true,
+              "component_class": "pluggable_switch",
+              "marker": "K",
+              "requires_plain_same_portion": true,
+              "requires_explicit_page_common_net": true,
+              "intrinsic_connection_inference_allowed": false,
+              "complete_K_variant_policy": "hold_until_renderer_support",
+              "manual_evidence": [
+                {
+                  "schema": "registered-manual-document-reference-v1",
+                  "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                  "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                  "pdf_pages_1based": [
+                    26,
+                    87
+                  ]
+                }
+              ]
+            },
+            "component_authority": {
+              "path": "json/Card-ALD/component-forms.json",
+              "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+            },
+            "validator": {
+              "path": "tools/card_ald/component_context.py",
+              "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+            },
+            "source_checkpoint": {
+              "path": "notes/Source status.json",
+              "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+            },
+            "intrinsic_connection_inference_applied": false,
+            "active_driver_inference_applied": false,
+            "rendered_K_variant_support": false,
+            "manual_registry": {
+              "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+              "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+            },
+            "runtime_authority": false,
+            "documentary_sha256": "de71712ea8ff264d1603a4b49863009ce41bdbcd07cfeec1ec30780fde9d6c75"
+          }
+        },
+        "C2": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null,
+          "occurrence_net_role:output:3": {
+            "schema": "documentary-passive-component-net-origin-v1",
+            "role": "commoned_nonorigin",
+            "marker": "K",
+            "page": "KR021",
+            "node": "AG",
+            "node_pointer": "/nodes/9",
+            "portion": "D1",
+            "circuit_identifier": "S61AY",
+            "side": "output",
+            "pin": "D06",
+            "terminal_id": "nodes:9/t:1",
+            "physical_site": "A-A1E3",
+            "model_binding": {
+              "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+              "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+            },
+            "plain_same_portion_witnesses": [
+              {
+                "page": "FC321",
+                "node": "AU",
+                "node_pointer": "/nodes/18",
+                "terminal_id": "nodes:18/t:1",
+                "side": "output",
+                "pin": "D06",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                  "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                }
+              },
+              {
+                "page": "KR021",
+                "node": "AR",
+                "node_pointer": "/nodes/17",
+                "terminal_id": "nodes:17/t:1",
+                "side": "output",
+                "pin": "D06",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                }
+              },
+              {
+                "page": "RF701",
+                "node": "AT",
+                "node_pointer": "/nodes/21",
+                "terminal_id": "nodes:21/t:2",
+                "side": "output",
+                "pin": "D06",
+                "circuit_identifier": "S61AY",
+                "model_binding": {
+                  "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                  "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                }
+              }
+            ],
+            "page_net": {
+              "net_id": "own-input",
+              "named_origin": {
+                "reference": "AD.D13",
+                "node": "AD",
+                "terminal_id": "nodes:6/t:1",
+                "pin": "D13",
+                "side": "output",
+                "circuit_identifier": "S61AY",
+                "physical_site": "A-A1E3"
+              },
+              "commoned_reference": "AG.D06",
+              "additional_source_drivers": [
+                "AE.B09",
+                "AF.B08",
+                "AG.D06"
+              ],
+              "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+            },
+            "component_capability": {
+              "schema": "reviewed-passive-component-net-origin-v1",
+              "passive_component": true,
+              "component_class": "pluggable_switch",
+              "marker": "K",
+              "requires_plain_same_portion": true,
+              "requires_explicit_page_common_net": true,
+              "intrinsic_connection_inference_allowed": false,
+              "complete_K_variant_policy": "hold_until_renderer_support",
+              "manual_evidence": [
+                {
+                  "schema": "registered-manual-document-reference-v1",
+                  "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                  "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                  "pdf_pages_1based": [
+                    26,
+                    87
+                  ]
+                }
+              ]
+            },
+            "component_authority": {
+              "path": "json/Card-ALD/component-forms.json",
+              "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+            },
+            "validator": {
+              "path": "tools/card_ald/component_context.py",
+              "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+            },
+            "source_checkpoint": {
+              "path": "notes/Source status.json",
+              "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+            },
+            "intrinsic_connection_inference_applied": false,
+            "active_driver_inference_applied": false,
+            "rendered_K_variant_support": false,
+            "manual_registry": {
+              "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+              "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+            },
+            "runtime_authority": false,
+            "documentary_sha256": "4faa5fcf4189a786d9d9969a61708c6194cb0857387fb2959e896d404054270a"
+          }
+        },
+        "D2": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    },
+    {
+      "page": null,
+      "source_pages": [
+        "KW321",
+        "PX311"
+      ],
+      "location": "02E-C1K7",
+      "source_locations": [
+        "02E-C1K7"
+      ],
+      "literal_locations": [
+        "E-C1K7"
+      ],
+      "models": [
+        {
+          "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+          "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+        },
+        {
+          "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+          "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "375c50812f19824b0d919a75c793ebde4e1e1a17c0c0f1684a9a835869426df5",
+          "archive_relative": "KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.tif",
+          "role": "original source scan",
+          "scan_id": "1129"
+        },
+        {
+          "sha256": "f26cea27ccfc1da055b420098957226d243dcc7d138495b1302196b72b92ad8f",
+          "archive_relative": "PX System Console/PX311 SC CE Select and Manual Control Gating.tif",
+          "role": "original source scan",
+          "scan_id": "1555"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KW321",
+          "node": "BM",
+          "node_pointer": "/nodes/6",
+          "model": {
+            "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+            "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "PX311",
+          "node": "AK",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+            "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "PX311",
+          "node": "AL",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+            "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 2,
+      "observed_portions": [
+        "A1",
+        "B1",
+        "C1"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A2",
+        "B2",
+        "C2",
+        "D1",
+        "D2",
+        "E1",
+        "E2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "C1",
+          "node": "BM",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "SW A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "SW A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    },
+    {
+      "page": "FC321",
+      "source_pages": [
+        "FC321"
+      ],
+      "location": "02K-A1H2",
+      "source_locations": [
+        "02K-A1H2"
+      ],
+      "literal_locations": [
+        "K-A1H2"
+      ],
+      "models": [
+        {
+          "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+          "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "abae44de04c083c4d5ceeaae1706a22cf007fc0bb0ff4f3c7221cc62fc651e8e",
+          "archive_relative": "FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.tif",
+          "role": "original source scan",
+          "scan_id": "731"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "FC321",
+          "node": "AR",
+          "node_pointer": "/nodes/15",
+          "model": {
+            "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+            "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "FC321",
+          "node": "AS",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+            "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "FC321",
+          "node": "AT",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+            "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "FC321",
+          "node": "AU",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+            "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "B1",
+        "C1",
+        "D1"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A2",
+        "B2",
+        "C2",
+        "D2",
+        "E1",
+        "E2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "A1",
+          "node": "AR",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "B1",
+          "node": "AS",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "C1",
+          "node": "AT",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "D1",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "C1": {
+          "function": "SW",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "D1": {
+          "function": "SW",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    }
+  ],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "function": "SW A"
+          },
+          "B1": {
+            "function": "SW A"
+          },
+          "C1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": null,
+          "source_pages": [
+            "KW321",
+            "PX311"
+          ],
+          "location": "02E-C1K7",
+          "source_locations": [
+            "02E-C1K7"
+          ],
+          "literal_locations": [
+            "E-C1K7"
+          ],
+          "models": [
+            {
+              "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+              "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+            },
+            {
+              "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+              "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "375c50812f19824b0d919a75c793ebde4e1e1a17c0c0f1684a9a835869426df5",
+              "archive_relative": "KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.tif",
+              "role": "original source scan",
+              "scan_id": "1129"
+            },
+            {
+              "sha256": "f26cea27ccfc1da055b420098957226d243dcc7d138495b1302196b72b92ad8f",
+              "archive_relative": "PX System Console/PX311 SC CE Select and Manual Control Gating.tif",
+              "role": "original source scan",
+              "scan_id": "1555"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "KW321",
+              "node": "BM",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+                "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX311",
+              "node": "AK",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+                "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX311",
+              "node": "AL",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+                "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 2,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A2",
+            "B2",
+            "C2",
+            "D1",
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "fields_not_inferred": [
+            {
+              "portion": "C1",
+              "node": "BM",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            }
+          ],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "SW A",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "SW A",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "KW321",
+        "PX311"
+      ],
+      "source_locations": [
+        "02E-C1K7"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "A1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          },
+          "B1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "RF701",
+          "source_pages": [
+            "RF701"
+          ],
+          "location": "02B-A4D2",
+          "source_locations": [
+            "02B-A4D2"
+          ],
+          "literal_locations": [
+            "B-A4D2"
+          ],
+          "models": [
+            {
+              "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+              "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "840c5142136f0447c0f104280ace2a36d3233d672a47b43051d476dffc10b12c",
+              "archive_relative": "RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.tif",
+              "role": "original source scan",
+              "scan_id": "1856"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "RF701",
+              "node": "AM",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AN",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AP",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AQ",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AR",
+              "node_pointer": "/nodes/19",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AS",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AT",
+              "node_pointer": "/nodes/21",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AU",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "RF701",
+              "node": "AV",
+              "node_pointer": "/nodes/23",
+              "model": {
+                "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "D1",
+            "D2",
+            "E1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "E2"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "C2": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "D2": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            },
+            "E1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": [
+                  "✲"
+                ]
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "RF701"
+      ],
+      "source_locations": [
+        "02B-A4D2"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 3,
+      "variant_definition": {
+        "number": 3,
+        "box_overrides": {
+          "A2": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "B2": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "C1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "C2": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "D1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "D2": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "KR021",
+          "source_pages": [
+            "KR021"
+          ],
+          "location": "02A-A1E3",
+          "source_locations": [
+            "02A-A1E3"
+          ],
+          "literal_locations": [
+            "A-A1E3"
+          ],
+          "models": [
+            {
+              "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+              "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "b8d60047f87edc69b02013c89ac50f0ee6d5e2dad2988413bfb2cebbadf6859d",
+              "archive_relative": "KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.tif",
+              "role": "original source scan",
+              "scan_id": "914"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "KR021",
+              "node": "AD",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AE",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AF",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AG",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AH",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AJ",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AK",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AL",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2",
+            "D1",
+            "D2"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "E1",
+            "E2"
+          ],
+          "fields_not_inferred": [
+            {
+              "portion": "A1",
+              "node": "AD",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "B1",
+              "node": "AE",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "B1",
+              "node": "AE",
+              "field": "occurrence_net_role",
+              "port_id": "occurrence_net_role:output:3",
+              "profile_only": true,
+              "source_pin_index": 1,
+              "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+            },
+            {
+              "portion": "C1",
+              "node": "AF",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "C1",
+              "node": "AF",
+              "field": "occurrence_net_role",
+              "port_id": "occurrence_net_role:output:3",
+              "profile_only": true,
+              "source_pin_index": 1,
+              "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+            },
+            {
+              "portion": "D1",
+              "node": "AG",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "D1",
+              "node": "AG",
+              "field": "occurrence_net_role",
+              "port_id": "occurrence_net_role:output:3",
+              "profile_only": true,
+              "source_pin_index": 1,
+              "reason": "Source net-origin K is retained only as page installation context. Complete fixed-layout K glyph variants are not yet supported; no intrinsic role or driver is synthesized."
+            },
+            {
+              "portion": "A2",
+              "node": "AH",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "B2",
+              "node": "AJ",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "C2",
+              "node": "AK",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "D2",
+              "node": "AL",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            }
+          ],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "occurrence_net_role:output:3": {
+                "schema": "documentary-passive-component-net-origin-v1",
+                "role": "commoned_nonorigin",
+                "marker": "K",
+                "page": "KR021",
+                "node": "AE",
+                "node_pointer": "/nodes/7",
+                "portion": "B1",
+                "circuit_identifier": "S61AY",
+                "side": "output",
+                "pin": "B09",
+                "terminal_id": "nodes:7/t:1",
+                "physical_site": "A-A1E3",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                },
+                "plain_same_portion_witnesses": [
+                  {
+                    "page": "FC321",
+                    "node": "AS",
+                    "node_pointer": "/nodes/16",
+                    "terminal_id": "nodes:16/t:1",
+                    "side": "output",
+                    "pin": "B09",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                      "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                    }
+                  },
+                  {
+                    "page": "KR021",
+                    "node": "AP",
+                    "node_pointer": "/nodes/15",
+                    "terminal_id": "nodes:15/t:1",
+                    "side": "output",
+                    "pin": "B09",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                      "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                    }
+                  },
+                  {
+                    "page": "PX311",
+                    "node": "AL",
+                    "node_pointer": "/nodes/17",
+                    "terminal_id": "nodes:17/t:2",
+                    "side": "output",
+                    "pin": "B09",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/PX System Console/PX311 SC CE SELECT AND MANUAL CONTROL GATING.json",
+                      "sha256": "fb662b467f3742b8bfaf2b6f599b3160435e6609c554899ed834da5dd53c3be9"
+                    }
+                  },
+                  {
+                    "page": "RF701",
+                    "node": "AP",
+                    "node_pointer": "/nodes/17",
+                    "terminal_id": "nodes:17/t:2",
+                    "side": "output",
+                    "pin": "B09",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                      "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                    }
+                  }
+                ],
+                "page_net": {
+                  "net_id": "own-input",
+                  "named_origin": {
+                    "reference": "AD.D13",
+                    "node": "AD",
+                    "terminal_id": "nodes:6/t:1",
+                    "pin": "D13",
+                    "side": "output",
+                    "circuit_identifier": "S61AY",
+                    "physical_site": "A-A1E3"
+                  },
+                  "commoned_reference": "AE.B09",
+                  "additional_source_drivers": [
+                    "AE.B09",
+                    "AF.B08",
+                    "AG.D06"
+                  ],
+                  "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+                },
+                "component_capability": {
+                  "schema": "reviewed-passive-component-net-origin-v1",
+                  "passive_component": true,
+                  "component_class": "pluggable_switch",
+                  "marker": "K",
+                  "requires_plain_same_portion": true,
+                  "requires_explicit_page_common_net": true,
+                  "intrinsic_connection_inference_allowed": false,
+                  "complete_K_variant_policy": "hold_until_renderer_support",
+                  "manual_evidence": [
+                    {
+                      "schema": "registered-manual-document-reference-v1",
+                      "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                      "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                      "pdf_pages_1based": [
+                        26,
+                        87
+                      ]
+                    }
+                  ]
+                },
+                "component_authority": {
+                  "path": "json/Card-ALD/component-forms.json",
+                  "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+                },
+                "validator": {
+                  "path": "tools/card_ald/component_context.py",
+                  "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+                },
+                "source_checkpoint": {
+                  "path": "notes/Source status.json",
+                  "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+                },
+                "intrinsic_connection_inference_applied": false,
+                "active_driver_inference_applied": false,
+                "rendered_K_variant_support": false,
+                "manual_registry": {
+                  "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+                  "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+                },
+                "runtime_authority": false,
+                "documentary_sha256": "581d3734b756baae28a0a3f1222fc48086da15d5625345869fcdcab13e73c387"
+              }
+            },
+            "B2": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "occurrence_net_role:output:3": {
+                "schema": "documentary-passive-component-net-origin-v1",
+                "role": "commoned_nonorigin",
+                "marker": "K",
+                "page": "KR021",
+                "node": "AF",
+                "node_pointer": "/nodes/8",
+                "portion": "C1",
+                "circuit_identifier": "S61AY",
+                "side": "output",
+                "pin": "B08",
+                "terminal_id": "nodes:8/t:1",
+                "physical_site": "A-A1E3",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                },
+                "plain_same_portion_witnesses": [
+                  {
+                    "page": "FC321",
+                    "node": "AT",
+                    "node_pointer": "/nodes/17",
+                    "terminal_id": "nodes:17/t:1",
+                    "side": "output",
+                    "pin": "B08",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                      "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                    }
+                  },
+                  {
+                    "page": "KR021",
+                    "node": "AQ",
+                    "node_pointer": "/nodes/16",
+                    "terminal_id": "nodes:16/t:1",
+                    "side": "output",
+                    "pin": "B08",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                      "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                    }
+                  },
+                  {
+                    "page": "KW321",
+                    "node": "BM",
+                    "node_pointer": "/nodes/6",
+                    "terminal_id": "nodes:6/t:1",
+                    "side": "output",
+                    "pin": "B08",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/KW CE Console Functions/KW321 SYSTEM AND SUBSYSTEM IPL AND PSW RESTART.json",
+                      "sha256": "5e4c7b67f66a1248c0a3cd7b73038e5e05adea5d103fa6486bdae897ee9515cf"
+                    }
+                  },
+                  {
+                    "page": "RF701",
+                    "node": "AR",
+                    "node_pointer": "/nodes/19",
+                    "terminal_id": "nodes:19/t:2",
+                    "side": "output",
+                    "pin": "B08",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                      "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                    }
+                  }
+                ],
+                "page_net": {
+                  "net_id": "own-input",
+                  "named_origin": {
+                    "reference": "AD.D13",
+                    "node": "AD",
+                    "terminal_id": "nodes:6/t:1",
+                    "pin": "D13",
+                    "side": "output",
+                    "circuit_identifier": "S61AY",
+                    "physical_site": "A-A1E3"
+                  },
+                  "commoned_reference": "AF.B08",
+                  "additional_source_drivers": [
+                    "AE.B09",
+                    "AF.B08",
+                    "AG.D06"
+                  ],
+                  "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+                },
+                "component_capability": {
+                  "schema": "reviewed-passive-component-net-origin-v1",
+                  "passive_component": true,
+                  "component_class": "pluggable_switch",
+                  "marker": "K",
+                  "requires_plain_same_portion": true,
+                  "requires_explicit_page_common_net": true,
+                  "intrinsic_connection_inference_allowed": false,
+                  "complete_K_variant_policy": "hold_until_renderer_support",
+                  "manual_evidence": [
+                    {
+                      "schema": "registered-manual-document-reference-v1",
+                      "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                      "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                      "pdf_pages_1based": [
+                        26,
+                        87
+                      ]
+                    }
+                  ]
+                },
+                "component_authority": {
+                  "path": "json/Card-ALD/component-forms.json",
+                  "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+                },
+                "validator": {
+                  "path": "tools/card_ald/component_context.py",
+                  "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+                },
+                "source_checkpoint": {
+                  "path": "notes/Source status.json",
+                  "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+                },
+                "intrinsic_connection_inference_applied": false,
+                "active_driver_inference_applied": false,
+                "rendered_K_variant_support": false,
+                "manual_registry": {
+                  "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+                  "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+                },
+                "runtime_authority": false,
+                "documentary_sha256": "de71712ea8ff264d1603a4b49863009ce41bdbcd07cfeec1ec30780fde9d6c75"
+              }
+            },
+            "C2": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null,
+              "occurrence_net_role:output:3": {
+                "schema": "documentary-passive-component-net-origin-v1",
+                "role": "commoned_nonorigin",
+                "marker": "K",
+                "page": "KR021",
+                "node": "AG",
+                "node_pointer": "/nodes/9",
+                "portion": "D1",
+                "circuit_identifier": "S61AY",
+                "side": "output",
+                "pin": "D06",
+                "terminal_id": "nodes:9/t:1",
+                "physical_site": "A-A1E3",
+                "model_binding": {
+                  "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                  "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                },
+                "plain_same_portion_witnesses": [
+                  {
+                    "page": "FC321",
+                    "node": "AU",
+                    "node_pointer": "/nodes/18",
+                    "terminal_id": "nodes:18/t:1",
+                    "side": "output",
+                    "pin": "D06",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                      "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+                    }
+                  },
+                  {
+                    "page": "KR021",
+                    "node": "AR",
+                    "node_pointer": "/nodes/17",
+                    "terminal_id": "nodes:17/t:1",
+                    "side": "output",
+                    "pin": "D06",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                      "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+                    }
+                  },
+                  {
+                    "page": "RF701",
+                    "node": "AT",
+                    "node_pointer": "/nodes/21",
+                    "terminal_id": "nodes:21/t:2",
+                    "side": "output",
+                    "pin": "D06",
+                    "circuit_identifier": "S61AY",
+                    "model_binding": {
+                      "path": "json/RF F Register/RF701 F REGISTER INPUT SWITCHCARDS.json",
+                      "sha256": "a44125d8a9601ac23353ed61a8d0811d1e90d02cb5e2cf9580324cf5e5ee4e2e"
+                    }
+                  }
+                ],
+                "page_net": {
+                  "net_id": "own-input",
+                  "named_origin": {
+                    "reference": "AD.D13",
+                    "node": "AD",
+                    "terminal_id": "nodes:6/t:1",
+                    "pin": "D13",
+                    "side": "output",
+                    "circuit_identifier": "S61AY",
+                    "physical_site": "A-A1E3"
+                  },
+                  "commoned_reference": "AG.D06",
+                  "additional_source_drivers": [
+                    "AE.B09",
+                    "AF.B08",
+                    "AG.D06"
+                  ],
+                  "installation_condition": "NOTE 1: plug one of four depending on own CE ID."
+                },
+                "component_capability": {
+                  "schema": "reviewed-passive-component-net-origin-v1",
+                  "passive_component": true,
+                  "component_class": "pluggable_switch",
+                  "marker": "K",
+                  "requires_plain_same_portion": true,
+                  "requires_explicit_page_common_net": true,
+                  "intrinsic_connection_inference_allowed": false,
+                  "complete_K_variant_policy": "hold_until_renderer_support",
+                  "manual_evidence": [
+                    {
+                      "schema": "registered-manual-document-reference-v1",
+                      "document": "Z22-2798-1_Solid_Logic_Technology_Component_Circuits.pdf",
+                      "sha256": "74ac2dc8b465c27deba94e4674674a927c44a9220b647f86c2bbabc8eb915623",
+                      "pdf_pages_1based": [
+                        26,
+                        87
+                      ]
+                    }
+                  ]
+                },
+                "component_authority": {
+                  "path": "json/Card-ALD/component-forms.json",
+                  "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+                },
+                "validator": {
+                  "path": "tools/card_ald/component_context.py",
+                  "sha256": "5de6411b163799b3cf810c7d28b751ed574791aeb17d7453ae298f1ac7462a5f"
+                },
+                "source_checkpoint": {
+                  "path": "notes/Source status.json",
+                  "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+                },
+                "intrinsic_connection_inference_applied": false,
+                "active_driver_inference_applied": false,
+                "rendered_K_variant_support": false,
+                "manual_registry": {
+                  "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+                  "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+                },
+                "runtime_authority": false,
+                "documentary_sha256": "4faa5fcf4189a786d9d9969a61708c6194cb0857387fb2959e896d404054270a"
+              }
+            },
+            "D2": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "KR021"
+      ],
+      "source_locations": [
+        "02A-A1E3"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 4,
+      "variant_definition": {
+        "number": 4,
+        "box_overrides": {
+          "C1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          },
+          "D1": {
+            "port_symbols": {
+              "output:3": {
+                "prefix": [],
+                "suffix": []
+              }
+            }
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "KR021",
+          "source_pages": [
+            "KR021"
+          ],
+          "location": "02A-A1D3",
+          "source_locations": [
+            "02A-A1D3"
+          ],
+          "literal_locations": [
+            "A-A1D3"
+          ],
+          "models": [
+            {
+              "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+              "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "b8d60047f87edc69b02013c89ac50f0ee6d5e2dad2988413bfb2cebbadf6859d",
+              "archive_relative": "KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.tif",
+              "role": "original source scan",
+              "scan_id": "914"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "KR021",
+              "node": "AN",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AP",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AQ",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "KR021",
+              "node": "AR",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/KR SCON, SATR, Reconfigure/KR021 SWITCH FOR SELF SELECT CONTROL.json",
+                "sha256": "0ae09e3665eeb7355231cff523c362554dfcc3d388e4f0f39f5eaef6b0e9df7c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A2",
+            "B2",
+            "C2",
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "fields_not_inferred": [
+            {
+              "portion": "A1",
+              "node": "AN",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "B1",
+              "node": "AP",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "C1",
+              "node": "AQ",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "D1",
+              "node": "AR",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            }
+          ],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "FC321",
+          "source_pages": [
+            "FC321"
+          ],
+          "location": "02K-A1H2",
+          "source_locations": [
+            "02K-A1H2"
+          ],
+          "literal_locations": [
+            "K-A1H2"
+          ],
+          "models": [
+            {
+              "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+              "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "abae44de04c083c4d5ceeaae1706a22cf007fc0bb0ff4f3c7221cc62fc651e8e",
+              "archive_relative": "FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.tif",
+              "role": "original source scan",
+              "scan_id": "731"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "FC321",
+              "node": "AR",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC321",
+              "node": "AS",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC321",
+              "node": "AT",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "FC321",
+              "node": "AU",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/FC CCR Register/FC321 CCR BITS 0 THRU 5 CONTROLS.json",
+                "sha256": "3b8f93b74aba9d39c00d563b1533f55544e7815709b1a2b68a2e1f18d68896f8"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "B1",
+            "C1",
+            "D1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A2",
+            "B2",
+            "C2",
+            "D2",
+            "E1",
+            "E2"
+          ],
+          "fields_not_inferred": [
+            {
+              "portion": "A1",
+              "node": "AR",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "B1",
+              "node": "AS",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "C1",
+              "node": "AT",
+              "field": "input_decoration",
+              "port_id": "input:2",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            },
+            {
+              "portion": "D1",
+              "node": "AU",
+              "field": "input_decoration",
+              "port_id": "input:1",
+              "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+            }
+          ],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "C1": {
+              "function": "SW",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "D1": {
+              "function": "SW",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": false,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "FC321",
+        "KR021"
+      ],
+      "source_locations": [
+        "02A-A1D3",
+        "02K-A1H2"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 2
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "ddba42ad220951906af33e18b9a025fa507da746f79526ecff658503fc01e2af",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

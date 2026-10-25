@@ -1,0 +1,30 @@
+{
+  "schema": "held-derived-card-audit-findings-v1",
+  "card_type": "3216",
+  "builder_evidence": {
+    "path": "notes/Card-ALD/Held evidence/Settled71-004/3216/Builder evidence.json",
+    "sha256": "8e15bbf11e6a3e13b24975dc7f6626b0bca0532a6db01da8c56189913eb486d9"
+  },
+  "source_audit": {
+    "path": "notes/Card-ALD/Held evidence/Settled71-004/3216/Source audit.json",
+    "sha256": "0c34a43dd6a4b46bd3db59805041c502dcd6a9936ad1241d88638532c8b785f1"
+  },
+  "findings": [
+    {
+      "kind": "builder_failure",
+      "detail": "Reviewed supplement source binding is stale or missing; refusing generic replacement: [{\"path\": \"json/Card types current/3216.json\", \"sha256\": \"90452250d9cdd67043b531a3b39a8efab4a9d0d1fa4116cd180a25ced6bc1c36\", \"actual_sha256\": \"a9003d43125b1eaa58f4ee172eaeb111a9b18a990505224f22745a23b60bcff7\", \"current\": false}, {\"path\": \"json/FC CCR Register/FC341 CCR BITS 08-16 CONTROLS FOR PSEUDO-SCON.json\", \"sha256\": \"3c53bcf596ed2b12f30b497cb97cd6ce3c629e3be006655e29ad90dcbd091048\", \"actual_sha256\": \"cb18ccce67d7db0b0d0004e735a29fade058099f32707e7f03eb753f706e8003\", \"current\": false}]"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"BA\",\"expected\":null,\"field\":\"pin_identity\",\"node_pointer\":\"/nodes/24\",\"observed\":{\"physical_contact\":null,\"status\":\"explicitly-unresolved\"},\"page\":\"FC341\",\"pin_index\":2,\"portion\":\"AK\",\"reason\":\"Physical contact identity is explicitly unresolved; this is not an anonymous terminal.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"BA\",\"expected\":{\"function\":\"OR\",\"ports\":[[\"input\",null,false],[\"input\",null,false],[\"output\",\"B07\",true]]},\"field\":\"function_and_decorations\",\"node_pointer\":\"/nodes/24\",\"observed\":{\"function\":\"A\",\"ports\":[[\"input\",null,true],[\"input\",null,true],[\"output\",null,false]]},\"page\":\"FC341\",\"portion\":\"AK\",\"reason\":\"Port identity cannot be uniquely matched; notation comparison remains uncertain.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"driver\":{\"card_key\":[\"02A-B1\",[\"E4\"]],\"contact_role\":\"logical\",\"endpoint_problem\":null,\"id\":\"AF\",\"input_only_alias\":false,\"label\":\"out\",\"location\":\"A-B1E4\",\"pin\":null,\"port_resolved\":true,\"portion\":\"AJ\",\"side\":\"output\",\"stable_port_id\":\"\"},\"expected\":null,\"field\":\"internal_wiring\",\"model\":\"json/MC Storage Control/MC421 SELECT PULSES FRAMES 6 TO 10.json\",\"net\":\"AF\",\"observed\":[\"AJ\",\"AK\"],\"page\":\"MC421\",\"reason\":\"Pinless endpoint appears across different or unreadable card locations; inspect identity and route.\",\"status\":\"source_uncertainty\",\"target\":{\"card_key\":null,\"contact_role\":\"logical\",\"endpoint_problem\":null,\"id\":\"AK\",\"input_only_alias\":false,\"label\":\"anon1\",\"location\":\"A-B1F4\",\"pin\":null,\"port_resolved\":true,\"portion\":\"AK\",\"side\":\"input\",\"stable_port_id\":\"\"}}"
+    }
+  ]
+}

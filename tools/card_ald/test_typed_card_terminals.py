@@ -26,7 +26,9 @@ class TypedCardTerminals(unittest.TestCase):
         current=self.typed('KD06','D06');occ={'pins':[{k:v for k,v in current.items() if not k.startswith('_')}]}
         before=deepcopy(occ);C.attach_typed_terminals(occ,{'pins':[current]})
         self.assertEqual(occ['pins'][0]['pin'],'KD06');self.assertEqual(occ['pins'][0]['_symbols'],current['_symbols'])
-        other=deepcopy(before);other['pins'][0]['row']=13;C.attach_typed_terminals(other,{'pins':[current]})
+        other=deepcopy(before);other['pins'][0]['row']=13
+        with self.assertRaises(ValueError):
+            C.attach_typed_terminals(other,{'pins':[current]})
         self.assertNotIn('_pin_number',other['pins'][0])
 
     def test_reviewed_wire_control_is_pinless_only_for_exact_literal_slot_and_side(self):

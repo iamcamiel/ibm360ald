@@ -5,6 +5,11 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import legacy_index_mutation_guard as index_guard
+index_guard.dependency_paths(index_guard.repository_root(__file__),__file__)
+import generate_card as guarded_renderer
+index_guard.require_guarded_renderer(guarded_renderer)
 
 from generate_card import ROOT, build, digest, read, write_protected
 
@@ -18,6 +23,7 @@ def write_json(path, data):
 
 
 def main():
+    index_guard.reject_held_index(ROOT,'publish_shared_generator.main')
     approval = read(REVIEW)
     assert approval['passed'] is True and not approval['failures']
     for binding in approval['candidate_bindings']:

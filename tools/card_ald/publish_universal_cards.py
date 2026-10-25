@@ -8,8 +8,11 @@ import json
 import re
 import shutil
 import stat
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import legacy_index_mutation_guard as index_guard
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = index_guard.repository_root(__file__)
 WORK = ROOT.parent / 'tmp/ald-text/ald/card-universal'
 NOTES = ROOT / 'notes/Card-ALD'
 CARDS = {'0141': WORK/'0141', '4191': WORK/'4191', '4633': WORK/'463x', '4634': WORK/'463x'}
@@ -24,12 +27,16 @@ def read(path):
 
 
 def write(path, value):
+    index_guard.guard_target(ROOT,path,'publish_universal_cards.write')
+    index_guard.guard_existing_ancestor_index(path,'publish_universal_cards.write')
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
 
 
 def replace_preserving_protection(source, destination):
     """Update an explicitly authorized diagram and restore its read-only flag."""
+    index_guard.guard_target(ROOT,destination,'publish_universal_cards.replace')
+    index_guard.guard_existing_ancestor_index(destination,'publish_universal_cards.replace')
     mode = destination.stat().st_mode if destination.exists() else None
     protected = mode is not None and not mode & stat.S_IWRITE
     if protected:
@@ -42,6 +49,7 @@ def replace_preserving_protection(source, destination):
 
 
 def main():
+    index_guard.reject_held_index(ROOT,'publish_universal_cards.main')
     history = NOTES/'history/Before universal composite views'
     prior = {c: digest(history/(c+'.txt') if (history/(c+'.txt')).exists()
                        else ROOT/f'Card-ALD/{c}.txt') for c in CARDS}

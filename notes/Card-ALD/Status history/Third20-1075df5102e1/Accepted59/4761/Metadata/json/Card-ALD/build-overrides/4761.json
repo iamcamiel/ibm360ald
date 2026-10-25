@@ -1,0 +1,402 @@
+{
+  "schema": "reviewed-card-build-overrides-v1",
+  "card_type": "4761",
+  "authority": "Current source-bound candidate prepared for independent review; this file does not grant acceptance.",
+  "source_bindings": [
+    {
+      "path": "ALD/A1 Socket Listing/A1553-02 SOCKET LISTING.txt",
+      "sha256": "90ababb0007a0fe94cbc83d5a4e7ad48bd5f2b51dab5b07f288b6007e9c6d590"
+    },
+    {
+      "path": "json/Card types current/4761.json",
+      "sha256": "ea53db12e84f05de43bf615e9876f05f7bace169efd9116f6d8a7b6a82cc6daa"
+    },
+    {
+      "path": "json/Card-ALD/component-forms.json",
+      "sha256": "bc9fff4b0c42cb44b694dec49032d7842866f6a56a7688e6395ecf29fdb198c8"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW005 BEGIN RESET AND ALLOW SWITCH SINGLE SHOT.json",
+      "sha256": "9cdf9dbf44bad42e777b9fe43e848f6ea1d9fb965566e9958ff1f251f6f9621f"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW401 SYSTEM AND SUBSYSTEM RESET GATING.json",
+      "sha256": "9eb39158a4a29db00ca64eb19e8bcc5581b8149381432e564a9e53223fdc1078"
+    },
+    {
+      "path": "notes/Card-ALD/Manual canonical circuit forms.json",
+      "sha256": "3048a0680a57a34d675c4a65e5d5a14a10ec336c64c34138acc085b49566eabe"
+    }
+  ],
+  "reviewed_portions": {
+    "A1": {
+      "unit": "S61WS",
+      "function": "OR",
+      "ports": [
+        {
+          "id": "input:1",
+          "side": "input",
+          "pin": "B05",
+          "triangle": true
+        },
+        {
+          "id": "output:3",
+          "side": "output",
+          "pin": "B10",
+          "triangle": true
+        }
+      ]
+    },
+    "A5": {
+      "unit": "S63EB",
+      "function": "RLY",
+      "ports": [
+        {
+          "id": "input:1",
+          "side": "input",
+          "pin": "B07",
+          "triangle": false
+        },
+        {
+          "id": "input:2",
+          "side": "input",
+          "pin": "D08",
+          "triangle": false
+        },
+        {
+          "id": "output:3",
+          "side": "output",
+          "pin": "B03",
+          "triangle": false,
+          "pin_symbols": {
+            "prefix": [],
+            "suffix": [
+              "✲"
+            ]
+          }
+        }
+      ]
+    },
+    "A2": {
+      "unit": "S63CL",
+      "function": "RLY",
+      "ports": [
+        {
+          "id": "input:1",
+          "side": "input",
+          "pin": "B10",
+          "triangle": true
+        },
+        {
+          "id": "output:3",
+          "side": "output",
+          "pin": "B11",
+          "triangle": false,
+          "contact_role": "nonlogical_common",
+          "border_control": "K"
+        },
+        {
+          "id": "output:2",
+          "side": "output",
+          "pin": "D13",
+          "triangle": false
+        }
+      ]
+    }
+  },
+  "reviewed_nets": [
+    [
+      "PIN:B03",
+      "PORT:A5:output:3"
+    ],
+    [
+      "PIN:B05",
+      "PORT:A1:input:1"
+    ],
+    [
+      "PIN:B07",
+      "PORT:A5:input:1"
+    ],
+    [
+      "PIN:B10",
+      "PORT:A1:output:3",
+      "PORT:A2:input:1"
+    ],
+    [
+      "PIN:B11",
+      "PORT:A2:output:3"
+    ],
+    [
+      "PIN:D08",
+      "PORT:A5:input:2"
+    ],
+    [
+      "PIN:D13",
+      "PORT:A2:output:2"
+    ]
+  ],
+  "power_contacts": {},
+  "layout": {
+    "canvas": {
+      "width": 90,
+      "height": 23,
+      "header_rows": 7,
+      "grid_origin": 0,
+      "grid_step": 1
+    },
+    "boxes": [
+      {
+        "portion": "A1",
+        "x": 18,
+        "top": 8,
+        "height": 7,
+        "ports": [
+          {
+            "id": "input:1",
+            "side": "input",
+            "pin": "B05",
+            "triangle": true,
+            "row": 9
+          },
+          {
+            "id": "output:3",
+            "side": "output",
+            "pin": "B10",
+            "triangle": true,
+            "row": 11
+          }
+        ]
+      },
+      {
+        "portion": "A5",
+        "x": 18,
+        "top": 16,
+        "height": 7,
+        "ports": [
+          {
+            "id": "input:1",
+            "side": "input",
+            "pin": "B07",
+            "triangle": false,
+            "row": 17
+          },
+          {
+            "id": "input:2",
+            "side": "input",
+            "pin": "D08",
+            "triangle": false,
+            "row": 18
+          },
+          {
+            "id": "output:3",
+            "side": "output",
+            "pin": "B03",
+            "triangle": false,
+            "row": 19,
+            "pin_symbols": {
+              "prefix": [],
+              "suffix": [
+                "✲"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "portion": "A2",
+        "x": 54,
+        "top": 8,
+        "height": 7,
+        "ports": [
+          {
+            "id": "input:1",
+            "side": "input",
+            "pin": "B10",
+            "triangle": true,
+            "row": 9
+          },
+          {
+            "id": "output:3",
+            "side": "output",
+            "pin": "B11",
+            "triangle": false,
+            "row": 11,
+            "contact_role": "nonlogical_common",
+            "border_control": "K"
+          },
+          {
+            "id": "output:2",
+            "side": "output",
+            "pin": "D13",
+            "triangle": false,
+            "row": 10
+          }
+        ]
+      }
+    ],
+    "wiring": {
+      "horizontal_segments": [
+        {
+          "x1": 3,
+          "x2": 14,
+          "y": 9
+        },
+        {
+          "x1": 49,
+          "x2": 50,
+          "y": 9
+        },
+        {
+          "x1": 65,
+          "x2": 86,
+          "y": 10
+        },
+        {
+          "x1": 29,
+          "x2": 47,
+          "y": 11
+        },
+        {
+          "x1": 65,
+          "x2": 86,
+          "y": 11
+        },
+        {
+          "x1": 49,
+          "x2": 86,
+          "y": 15
+        },
+        {
+          "x1": 3,
+          "x2": 14,
+          "y": 17
+        },
+        {
+          "x1": 3,
+          "x2": 14,
+          "y": 18
+        },
+        {
+          "x1": 29,
+          "x2": 86,
+          "y": 19
+        }
+      ],
+      "marks": [
+        {
+          "x": 48,
+          "y": 9,
+          "symbol": "┌"
+        },
+        {
+          "x": 48,
+          "y": 10,
+          "symbol": "│"
+        },
+        {
+          "x": 48,
+          "y": 11,
+          "symbol": "◇",
+          "arms": "NSW"
+        },
+        {
+          "x": 48,
+          "y": 12,
+          "symbol": "│"
+        },
+        {
+          "x": 48,
+          "y": 13,
+          "symbol": "│"
+        },
+        {
+          "x": 48,
+          "y": 14,
+          "symbol": "│"
+        },
+        {
+          "x": 48,
+          "y": 15,
+          "symbol": "└"
+        }
+      ]
+    },
+    "exterior_pins": [
+      {
+        "pin": "B03",
+        "side": "output",
+        "x": 87,
+        "row": 19
+      },
+      {
+        "pin": "B05",
+        "side": "input",
+        "x": 0,
+        "row": 9
+      },
+      {
+        "pin": "B07",
+        "side": "input",
+        "x": 0,
+        "row": 17
+      },
+      {
+        "pin": "B10",
+        "side": "output",
+        "x": 87,
+        "row": 15
+      },
+      {
+        "pin": "B11",
+        "side": "output",
+        "x": 87,
+        "row": 11
+      },
+      {
+        "pin": "D08",
+        "side": "input",
+        "x": 0,
+        "row": 18
+      },
+      {
+        "pin": "D13",
+        "side": "output",
+        "x": 87,
+        "row": 10
+      }
+    ],
+    "annotations": []
+  },
+  "canonical_line_ending": "LF",
+  "approved_variants": [
+    {
+      "number": 1,
+      "box_overrides": {
+        "A2": {
+          "function": "RLY P"
+        },
+        "A5": {
+          "function": "RLY PT"
+        }
+      },
+      "annotation_overrides": [],
+      "line_ending": "LF"
+    }
+  ],
+  "header": {
+    "schema": "card-ald-header-v1",
+    "part_number": "5804761",
+    "card_width": "SINGLE CARD",
+    "reviewed_occurrences": 3,
+    "reviewed_pages": 2,
+    "provisional_forms": [],
+    "symbol_standard": "PRINTED ALD FORMS"
+  },
+  "component_power_authority": {
+    "role": "not_established",
+    "source_contact_role": "not_established",
+    "contact_set_complete": false,
+    "internal_supply_wiring_inferred": false
+  },
+  "symbol_standard": "PRINTED ALD FORMS"
+}

@@ -18,10 +18,15 @@ import re
 import stat
 import sys
 import tempfile
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import legacy_index_mutation_guard as index_guard
+import typed_current_status_gate
+index_guard.dependency_paths(index_guard.repository_root(__file__),__file__)
 
 import audit_card_uses
 import build_card_data
 import generate_card as renderer
+index_guard.require_guarded_renderer(renderer)
 
 ROOT = renderer.ROOT
 AUDIT_KEYS = ("catalog", "source_bindings", "occurrences", "coverage_limitations",
@@ -50,6 +55,7 @@ def state(path):
 
 
 def remove_protected(path):
+    index_guard.guard_existing_ancestor_index(path,'publish_card_candidate.remove_protected')
     mode = path.stat().st_mode
     try:
         path.chmod(mode | stat.S_IWRITE)
@@ -71,6 +77,7 @@ def checked_target(root, path):
 
 
 def atomic_install(path, raw, expected, mode=None):
+    index_guard.guard_existing_ancestor_index(path,'publish_card_candidate.atomic_install')
     """Install exact bytes only while the immediate predecessor still agrees."""
     require(state(path) == expected, "Concurrent change before target write: " + str(path))
     if raw is None:
@@ -220,6 +227,7 @@ def make_index(raw, card, outputs, witness_index):
 
 def inventory_refresh(root, before, payload):
     """Prepare an established exact allowlist; the outer transaction installs it."""
+    index_guard.reject_held_index(root,'publish_card_candidate.inventory_refresh')
     sys.path.insert(0, str(root / "tools/repository"))
     import refresh_inventory
     manifest = root / "notes/Repository records manifest.json"
@@ -364,6 +372,7 @@ def prepare(card, definition, overrides, audit, review, root):
 
 
 def publish(card, definition, overrides, audit, review, root=ROOT, check_only=False, refresh_inventory=True):
+    if not check_only:index_guard.reject_held_index(root,'publish_card_candidate.publish')
     root, payload, before, guards, outputs, report = prepare(card, definition, overrides, audit, review, root)
     if check_only:
         return report
@@ -445,6 +454,7 @@ def verify_current(card, root=ROOT):
     """Verify a published current record without opening any private review files."""
     require(re.fullmatch(r"[0-9]{4}", str(card)), "Use exactly four ASCII digits")
     root = Path(root).resolve()
+    status_guards = typed_current_status_gate.current_status_guards(card, root)
     receipt = read(root / f"notes/Card-ALD/Generation/{card}.json")
     portable_bindings(root, receipt)
     require(receipt.get("schema") == "card-ald-current-publication-v1" and receipt.get("card_type") == card,
@@ -452,7 +462,7 @@ def verify_current(card, root=ROOT):
     require(receipt.get("independent_review", {}).get("passed") is True and
             re.fullmatch(r"[0-9a-f]{64}", receipt["independent_review"].get("sha256", "")),
             "Current record lacks accepted independent review identity")
-    guards = {}
+    guards = dict(status_guards)
     for key in ("definition", "overrides", "source_audit"):
         verify_binding(root, receipt[key], guards)
     spec = read(root / receipt["definition"]["path"])

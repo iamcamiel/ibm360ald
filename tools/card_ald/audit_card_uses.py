@@ -99,6 +99,7 @@ def port_mapping(ports,form):
     """Match physical contacts; pinless equivalent inputs may exchange rows."""
     available={p['id']:p for p in form['ports']};pairs=[]
     for observed in sorted(ports,key=lambda p:(physical(p) is None,p.get('row',0))):
+        if page_reader.unresolved_physical_terminal(observed):return None
         pin=physical(observed);side=observed['side']
         candidates=[p for p in available.values() if p['side']==side and p.get('pin')==pin]
         if not candidates:return None
@@ -211,6 +212,10 @@ def compare_occurrence(node,box,forms,power,ground_context=None):
         if side not in ('input','output'):
             findings.append(finding('source_uncertainty','pin_direction',side,['input','output'],'Port has no usable direction.',pin_index=index));continue
         readings=page_reader.physical_readings(port)
+        if page_reader.unresolved_physical_terminal(port):
+            findings.append(finding('source_uncertainty','pin_identity',
+                {'physical_contact':pin,'status':port.get('_pin_number_status',port.get('pin_status'))},None,
+                'Physical contact identity is explicitly unresolved; this is not an anonymous terminal.',pin_index=index))
         if len(set(readings.values()))>1:
             findings.append(finding('source_uncertainty','pin_identity',readings,None,'Active physical contact observations disagree.',pin_index=index));continue
         if triangle(port) is None:
@@ -349,7 +354,9 @@ def _endpoint_base(node,label,side):
             if ordinal<=len(ports):exact=[sorted(ports,key=lambda p:p.get('row',0))[ordinal-1]]
     generic=label in ('input','output','IN','OUT','input1','output1')
     if not exact and len(ports)==1 and generic:exact=ports
-    problem=None if exact else 'Explicit endpoint label/ID has no matching modeled port.'
+    unknown=len(exact)==1 and page_reader.unresolved_physical_terminal(exact[0])
+    problem=('Physical contact identity is explicitly unresolved; no anonymous endpoint or common link is certified.'
+             if unknown else None if exact else 'Explicit endpoint label/ID has no matching modeled port.')
     listing=node.get('socket_listing_evidence') or {}
     if isinstance(listing,list):
         candidates=[p for p in listing if isinstance(p,dict) and p.get('board') and p.get('sockets')]
@@ -361,7 +368,8 @@ def _endpoint_base(node,label,side):
     input_only_alias=(len(exact)==1 and side=='output' and any(p is exact[0] for i,p in enumerate(node.get('pins',[])) if i in page_reader.ar_input_only_aliases(node)))
     return {'portion':str(node.get('portion')),'pin':physical(exact[0]) if len(exact)==1 else None,
             'input_only_alias':input_only_alias,'contact_role':page_reader.terminal_contact_role(exact[0]) if len(exact)==1 else None,
-            'side':'input' if input_only_alias else side,'label':label,'id':node['id'],'location':location,'card_key':key,'port_resolved':len(exact)==1,'stable_port_id':stable_id,'endpoint_problem':problem}
+            'side':'input' if input_only_alias else side,'label':label,'id':node['id'],'location':location,'card_key':key,'port_resolved':len(exact)==1 and not unknown,'stable_port_id':stable_id,'endpoint_problem':problem,
+            **({'physical_identity_unresolved':True}if unknown else {})}
 
 
 class _WitnessNode(dict):
@@ -470,9 +478,13 @@ def _audit_wiring_base(card,spec,documents):
                     for sink in references(target,page,'input'):
                         context={'page':page,'net':net.get('id'),'driver':driver,'target':sink,'model':str(path)}
                         if driver['endpoint_problem'] or sink['endpoint_problem']:
-                            wrong_contact=bool(driver['endpoint_problem'] and physical(driver['label']) or sink['endpoint_problem'] and physical(sink['label']))
+                            wrong_contact=bool(driver.get('physical_identity_unresolved') or sink.get('physical_identity_unresolved')
+                                or driver['endpoint_problem'] and physical(driver['label']) or sink['endpoint_problem'] and physical(sink['label']))
                             findings.append(dict(context,**finding('source_uncertainty','wire_endpoint_identity' if wrong_contact else 'stale_wire_endpoint',
-                                [driver['label'],sink['label']],None,'Explicit wire endpoint contradicts current modeled ports; no common link is certified.')));continue
+                                [driver['label'],sink['label']],None,
+                                'Physical contact identity is explicitly unresolved; no anonymous endpoint or common link is certified.'
+                                if driver.get('physical_identity_unresolved') or sink.get('physical_identity_unresolved')
+                                else 'Explicit wire endpoint contradicts current modeled ports; no common link is certified.')));continue
                         same=(driver['card_key'] is not None and driver['card_key']==sink['card_key']) or (driver['location']==sink['location'] and bool(driver['location']) and '�' not in driver['location'])
                         pair=(driver['portion'],sink['portion'])
                         if not same:

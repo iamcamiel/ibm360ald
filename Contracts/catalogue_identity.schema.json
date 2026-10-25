@@ -1,0 +1,824 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ibm360:auxiliary-catalogue-identity:v1",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/unresolved_document"
+    },
+    {
+      "$ref": "#/$defs/build_manifest"
+    }
+  ],
+  "$defs": {
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ]
+    },
+    "partition_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_model": {
+          "type": "string"
+        },
+        "node_pointer": {
+          "type": "string",
+          "pattern": "^/nodes/[0-9]+$"
+        },
+        "bucket": {
+          "enum": [
+            "resolved",
+            "unresolved_identity",
+            "annotation",
+            "no_card_type"
+          ]
+        },
+        "card_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "source_model",
+        "node_pointer",
+        "bucket",
+        "card_type"
+      ]
+    },
+    "unresolved_occurrence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "node": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "node_pointer": {
+          "type": "string",
+          "pattern": "^/nodes/[0-9]+$"
+        },
+        "source_model": {
+          "type": "string"
+        },
+        "source_model_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_text": {
+          "type": "string"
+        },
+        "text_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "identity_status": {
+          "const": "unresolved_identity"
+        },
+        "reason_codes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "card_identity_conflict",
+              "circuit_identity_conflict",
+              "identity_alias_conflict"
+            ]
+          }
+        },
+        "source_fields": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "card_type": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "portion": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "card": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "part": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "printed_card_portion": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "unit": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "card_type",
+            "portion",
+            "card",
+            "part",
+            "printed_card_portion",
+            "unit"
+          ]
+        },
+        "canonical_identity_parse_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_circuit_parse_status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_node_json": {
+          "type": "string"
+        },
+        "annotation_flags": {
+          "const": []
+        },
+        "profile_eligible": {
+          "const": false
+        },
+        "selected_identity": {
+          "const": null
+        }
+      },
+      "required": [
+        "page",
+        "node",
+        "node_pointer",
+        "source_model",
+        "source_model_sha256",
+        "source_text",
+        "text_sha256",
+        "identity_status",
+        "reason_codes",
+        "source_fields",
+        "canonical_identity_parse_status",
+        "canonical_circuit_parse_status",
+        "source_node_json",
+        "annotation_flags",
+        "profile_eligible",
+        "selected_identity"
+      ]
+    },
+    "unresolved_document": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "current-card-catalog-unresolved-identities-v1"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "policy": {
+          "const": "Conflicting source identity is retained without choosing a card portion; excluded from resolved occurrences and profiles, never reclassified as annotation."
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unresolved_occurrence"
+          }
+        },
+        "family_index": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/family_link"
+          }
+        }
+      },
+      "required": [
+        "schema",
+        "count",
+        "policy",
+        "observations",
+        "family_index"
+      ]
+    },
+    "source_page": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": "string"
+        },
+        "model_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "text_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_scan_id": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "source_relative": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "page",
+        "model",
+        "model_sha256",
+        "text_sha256",
+        "source_scan_id",
+        "source_relative"
+      ]
+    },
+    "uniform_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "manifest": {
+          "$ref": "#/$defs/binding"
+        },
+        "dataset": {
+          "$ref": "#/$defs/binding"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "logical_records": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "physical_card_records": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "typed_card_records": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unclassified_card_records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "card_type_literal": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "listing_record": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "record_id": {
+                    "type": "string"
+                  },
+                  "page": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "record_pointer": {
+                    "type": "string"
+                  },
+                  "source_text": {
+                    "type": "string"
+                  },
+                  "source_text_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "source_model": {
+                    "type": "string"
+                  },
+                  "source_model_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "board": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "sockets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "physical_sockets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "kind": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "kind_normalized": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "kind_literal": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "part_number": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "references": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "page": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "portions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "source_spans": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "page": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "scan_id": {
+                                "type": [
+                                  "string",
+                                  "integer"
+                                ]
+                              },
+                              "row": {
+                                "type": "integer",
+                                "minimum": 0
+                              },
+                              "column": {
+                                "type": "integer",
+                                "minimum": 0
+                              },
+                              "literal": {
+                                "type": "string"
+                              },
+                              "end_column": {
+                                "type": "integer",
+                                "minimum": 0
+                              },
+                              "socket_column": {
+                                "type": "integer",
+                                "minimum": 0
+                              }
+                            },
+                            "required": [
+                              "page",
+                              "scan_id",
+                              "row",
+                              "column",
+                              "literal"
+                            ]
+                          }
+                        },
+                        "printed_portions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "portions",
+                        "source_spans",
+                        "printed_portions"
+                      ]
+                    }
+                  },
+                  "unused_portions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "header_source": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "page": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "scan_id": {
+                        "type": [
+                          "string",
+                          "integer"
+                        ]
+                      },
+                      "row": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "literal": {
+                        "type": "string"
+                      },
+                      "end_column": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "socket_column": {
+                        "type": "integer",
+                        "minimum": 0
+                      }
+                    },
+                    "required": [
+                      "page",
+                      "scan_id",
+                      "row",
+                      "column",
+                      "literal"
+                    ]
+                  },
+                  "source_spans": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "page": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "scan_id": {
+                          "type": [
+                            "string",
+                            "integer"
+                          ]
+                        },
+                        "row": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "column": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "literal": {
+                          "type": "string"
+                        },
+                        "end_column": {
+                          "type": "integer",
+                          "minimum": 0
+                        },
+                        "socket_column": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "scan_id",
+                        "row",
+                        "column",
+                        "literal"
+                      ]
+                    }
+                  },
+                  "source_reviewed": {
+                    "const": true
+                  },
+                  "source_review_basis": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "record_id",
+                  "page",
+                  "record_pointer",
+                  "source_text",
+                  "source_text_sha256",
+                  "source_model",
+                  "source_model_sha256",
+                  "board",
+                  "sockets",
+                  "physical_sockets",
+                  "kind",
+                  "kind_normalized",
+                  "kind_literal",
+                  "part_number",
+                  "references",
+                  "unused_portions",
+                  "header_source",
+                  "source_spans",
+                  "source_reviewed",
+                  "source_review_basis"
+                ]
+              }
+            },
+            "required": [
+              "card_type_literal",
+              "listing_record"
+            ]
+          }
+        }
+      },
+      "required": [
+        "manifest",
+        "dataset",
+        "inputs",
+        "logical_records",
+        "physical_card_records",
+        "typed_card_records",
+        "unclassified_card_records"
+      ]
+    },
+    "build_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schema": {
+          "const": "current-card-catalog-build-v2"
+        },
+        "source_binding": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "reviewed_export_provenance_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "content_data_manifest_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "uniform_manifest_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "uniform_dataset_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "reviewed_export_provenance_sha256",
+            "content_data_manifest_sha256",
+            "uniform_manifest_sha256",
+            "uniform_dataset_sha256"
+          ]
+        },
+        "uniform_listing_authority": {
+          "$ref": "#/$defs/uniform_authority"
+        },
+        "source_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "models": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "diagram_nodes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "card_occurrences": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "nodes_without_card_type": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "annotation_nodes_excluded": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "listing_records": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "physical_card_records": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unclassified_listing_records": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unresolved_identity_occurrences": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "models",
+            "diagram_nodes",
+            "card_occurrences",
+            "nodes_without_card_type",
+            "annotation_nodes_excluded",
+            "listing_records",
+            "physical_card_records",
+            "unclassified_listing_records",
+            "unresolved_identity_occurrences"
+          ]
+        },
+        "card_types": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "portion_profiles": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_pages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/source_page"
+          }
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/binding"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unresolved_identity_occurrences": {
+          "$ref": "#/$defs/binding"
+        },
+        "node_partition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/partition_entry"
+          }
+        },
+        "contracts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "catalogue_identity_schema": {
+              "$ref": "#/$defs/binding"
+            },
+            "auxiliary_catalogue_contracts": {
+              "$ref": "#/$defs/binding"
+            }
+          },
+          "required": [
+            "catalogue_identity_schema",
+            "auxiliary_catalogue_contracts"
+          ]
+        }
+      },
+      "required": [
+        "schema",
+        "source_binding",
+        "uniform_listing_authority",
+        "source_inputs",
+        "counts",
+        "card_types",
+        "portion_profiles",
+        "source_pages",
+        "files",
+        "limitations",
+        "unresolved_identity_occurrences",
+        "node_partition",
+        "contracts"
+      ]
+    },
+    "family_link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "card_type",
+        "occurrences"
+      ],
+      "properties": {
+        "card_type": {
+          "type": "string",
+          "pattern": "^[0-9]{4}$"
+        },
+        "occurrences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_model",
+              "node_pointer"
+            ],
+            "properties": {
+              "source_model": {
+                "type": "string"
+              },
+              "node_pointer": {
+                "type": "string",
+                "pattern": "^/nodes/[0-9]+$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

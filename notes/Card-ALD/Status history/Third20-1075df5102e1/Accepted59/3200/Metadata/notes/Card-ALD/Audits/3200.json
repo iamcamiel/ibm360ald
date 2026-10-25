@@ -1,0 +1,546 @@
+{
+  "schema": "card-use-audit-v1",
+  "card_type": "3200",
+  "read_only": true,
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "catalog": {
+    "path": "json/Card types current/3200.json",
+    "sha256": "6027f758e8cd9a8785f268f1048c24520bef55b845581b49d2fcb59111a34dc5"
+  },
+  "summary": {
+    "pages": 3,
+    "occurrences": 7,
+    "occurrence_statuses": {
+      "equivalent": 7
+    },
+    "needs_review": 0,
+    "new_discrepancies": 0,
+    "source_uncertainties": 0,
+    "known_reviewed_source_corrections": 0,
+    "coverage_limitations": 1,
+    "coverage_limitation_categories": {
+      "unresolved_wire_endpoint": 1
+    },
+    "wiring_observations": {
+      "common_internal_link_equivalent_input_order": 4
+    }
+  },
+  "identity_coverage": {
+    "catalogue_observations": 7,
+    "resolved_catalogue_observations": 7,
+    "source_observations": 7,
+    "exact_model_pointer_keys": 7,
+    "catalogue_coverage_issues": 0
+  },
+  "identity_adapter": {
+    "path": "tools/card_ald/card_source.py",
+    "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+  },
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "review": [],
+  "coverage_limitations": [
+    {
+      "page": "MA245",
+      "net": "SAB_PARITY",
+      "status": "source_uncertainty",
+      "field": "unresolved_wire_endpoint",
+      "observed": "reference.AR4",
+      "expected": null,
+      "reason": "Local wire references a block missing from this source model.",
+      "endpoint_role": "target"
+    }
+  ],
+  "occurrences": [
+    {
+      "page": "MA051",
+      "block": "BB",
+      "portion": "C1",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA051 LAB BIT 5 AND SAB BIT 05 ATR SLOT 5 DECODER.json",
+      "model_sha256": "dc9047292a478b92713034cbe19fabe1f5d12dae7f6a73b6e26d5ade841daa16",
+      "node_pointer": "/nodes/10",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "N",
+          "expected": "A",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0,
+          "source_notation_witness": {
+            "page": "MA051",
+            "node": "BB",
+            "node_pointer": "/nodes/10",
+            "model_binding": {
+              "path": "json/MA Storage Address Bus/MA051 LAB BIT 5 AND SAB BIT 05 ATR SLOT 5 DECODER.json",
+              "sha256": "dc9047292a478b92713034cbe19fabe1f5d12dae7f6a73b6e26d5ade841daa16"
+            },
+            "ports": [
+              {
+                "side": "input",
+                "pin": "D13",
+                "pin_symbols": {
+                  "prefix": [],
+                  "suffix": []
+                },
+                "border_symbol": null
+              },
+              {
+                "side": "output",
+                "pin": "D10",
+                "pin_symbols": {
+                  "prefix": [],
+                  "suffix": [
+                    "✲"
+                  ]
+                },
+                "border_symbol": null
+              }
+            ],
+            "complete_portion_contacts": true,
+            "all_symbol_bearing_contacts_observed": true,
+            "conflicting_source_fields": false
+          }
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA111",
+      "block": "AT",
+      "portion": "D1",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "model_sha256": "13dc5e358eb11e869eb6236db22e0f6f3a1d41e800bba06c307388d72c8fb536",
+      "node_pointer": "/nodes/7",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "OR",
+          "expected": "A",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA111",
+      "block": "AU",
+      "portion": "D2",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "model_sha256": "13dc5e358eb11e869eb6236db22e0f6f3a1d41e800bba06c307388d72c8fb536",
+      "node_pointer": "/nodes/8",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "OR",
+          "expected": "A",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA111",
+      "block": "AR",
+      "portion": "D3",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "model_sha256": "13dc5e358eb11e869eb6236db22e0f6f3a1d41e800bba06c307388d72c8fb536",
+      "node_pointer": "/nodes/9",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "A",
+          "expected": "OR",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0,
+          "source_notation_witness": {
+            "page": "MA111",
+            "node": "AR",
+            "node_pointer": "/nodes/9",
+            "model_binding": {
+              "path": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+              "sha256": "13dc5e358eb11e869eb6236db22e0f6f3a1d41e800bba06c307388d72c8fb536"
+            },
+            "ports": [
+              {
+                "side": "output",
+                "pin": "D02",
+                "pin_symbols": {
+                  "prefix": [],
+                  "suffix": [
+                    "✲"
+                  ]
+                },
+                "border_symbol": null
+              }
+            ],
+            "complete_portion_contacts": true,
+            "all_symbol_bearing_contacts_observed": true,
+            "conflicting_source_fields": false
+          }
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA245",
+      "block": "AP",
+      "portion": "E1",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "model_sha256": "82350efbc83f1e13ab70fe5f87bc54272e99ebfef559d02ea55c4f82defba893",
+      "node_pointer": "/nodes/14",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "OR",
+          "expected": "A",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA245",
+      "block": "AQ",
+      "portion": "E2",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "model_sha256": "82350efbc83f1e13ab70fe5f87bc54272e99ebfef559d02ea55c4f82defba893",
+      "node_pointer": "/nodes/15",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "OR",
+          "expected": "A",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0
+        }
+      ],
+      "status": "equivalent"
+    },
+    {
+      "page": "MA245",
+      "block": "AR",
+      "portion": "E3",
+      "location": "A-B4D7",
+      "model": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "model_sha256": "82350efbc83f1e13ab70fe5f87bc54272e99ebfef559d02ea55c4f82defba893",
+      "node_pointer": "/nodes/16",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "equivalent",
+          "field": "function_and_decorations",
+          "observed": "A",
+          "expected": "OR",
+          "reason": "AND/OR polarity presentation has the same truth table on the visible used inputs; no pin or circuit inference was made.",
+          "variant_number": 0,
+          "source_notation_witness": {
+            "page": "MA245",
+            "node": "AR",
+            "node_pointer": "/nodes/16",
+            "model_binding": {
+              "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+              "sha256": "82350efbc83f1e13ab70fe5f87bc54272e99ebfef559d02ea55c4f82defba893"
+            },
+            "ports": [
+              {
+                "side": "output",
+                "pin": "B10",
+                "pin_symbols": {
+                  "prefix": [],
+                  "suffix": [
+                    "✲"
+                  ]
+                },
+                "border_symbol": null
+              }
+            ],
+            "complete_portion_contacts": true,
+            "all_symbol_bearing_contacts_observed": true,
+            "conflicting_source_fields": false
+          }
+        }
+      ],
+      "status": "equivalent"
+    }
+  ],
+  "known_reviewed_source_corrections": [],
+  "wiring_observations": [
+    {
+      "page": "MA111",
+      "net": "AT to SAB",
+      "driver": {
+        "portion": "D1",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "output",
+        "label": "output.unlabelled",
+        "id": "AT",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "target": {
+        "portion": "D3",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "input",
+        "label": "input.upper",
+        "id": "AR",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "model": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "classification": "common_internal_link_equivalent_input_order"
+    },
+    {
+      "page": "MA111",
+      "net": "AU to SAB",
+      "driver": {
+        "portion": "D2",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "output",
+        "label": "output.unlabelled",
+        "id": "AU",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "target": {
+        "portion": "D3",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "input",
+        "label": "input.lower",
+        "id": "AR",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "model": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "classification": "common_internal_link_equivalent_input_order"
+    },
+    {
+      "page": "MA245",
+      "net": "AP_AR",
+      "driver": {
+        "portion": "E1",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "output",
+        "label": "output.out",
+        "id": "AP",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "target": {
+        "portion": "E3",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "input",
+        "label": "input.in0",
+        "id": "AR",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "model": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "classification": "common_internal_link_equivalent_input_order"
+    },
+    {
+      "page": "MA245",
+      "net": "AQ_AR",
+      "driver": {
+        "portion": "E2",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "output",
+        "label": "output.out",
+        "id": "AQ",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "target": {
+        "portion": "E3",
+        "pin": null,
+        "input_only_alias": false,
+        "contact_role": "logical",
+        "side": "input",
+        "label": "input.in1",
+        "id": "AR",
+        "location": "A-B4D7",
+        "card_key": [
+          "02A-B4",
+          [
+            "D7"
+          ]
+        ],
+        "port_resolved": true,
+        "stable_port_id": "",
+        "endpoint_problem": null
+      },
+      "model": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "classification": "common_internal_link_equivalent_input_order"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": "json/MA Storage Address Bus/MA051 LAB BIT 5 AND SAB BIT 05 ATR SLOT 5 DECODER.json",
+      "sha256": "dc9047292a478b92713034cbe19fabe1f5d12dae7f6a73b6e26d5ade841daa16"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA111 LAB BIT 11 AND SAB BIT 11.json",
+      "sha256": "13dc5e358eb11e869eb6236db22e0f6f3a1d41e800bba06c307388d72c8fb536"
+    },
+    {
+      "path": "json/MA Storage Address Bus/MA245 LOGICAL ADDRESS BUS BIT P08-15 STORAGE ADDRESS BUS BIT P08-15.json",
+      "sha256": "82350efbc83f1e13ab70fe5f87bc54272e99ebfef559d02ea55c4f82defba893"
+    }
+  ],
+  "interpretation": [
+    "A report identifies source/model differences; it does not assert every flagged item is a transcription error.",
+    "Available unused inputs may be absent; power input annotations remain page-level ties.",
+    "Common-graph internal links are checked when the source model actually represents them; omitted source links are not invented or flagged.",
+    "AND/OR equivalence requires matching opposite input/output inversions, not merely interchangeable labels.",
+    "Scoped reviewed corrections affect this audit memory only, and require current model hashes."
+  ],
+  "definition": {
+    "path": "json/Card-ALD/definitions/3200.json",
+    "sha256": "5b92a981d021e11920fb4617988223b3ca818bcd141eef76e38ef1c41d40a474"
+  },
+  "overrides": {
+    "path": "json/Card-ALD/build-overrides/3200.json",
+    "sha256": "ba68978eca95bc90940e56c430619cbcd75a7a9b81004abc35f5544c94adc981"
+  }
+}

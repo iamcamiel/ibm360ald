@@ -1,0 +1,38 @@
+{
+  "schema": "held-derived-card-audit-findings-v1",
+  "card_type": "3243",
+  "builder_evidence": {
+    "path": "notes/Card-ALD/Held evidence/Settled71-004/3243/Builder evidence.json",
+    "sha256": "c41d94435e30a1dd9ba660f3fe9716d095e7bacada0132f5378f94f4484f8673"
+  },
+  "source_audit": {
+    "path": "notes/Card-ALD/Held evidence/Settled71-004/3243/Source audit.json",
+    "sha256": "6e9d16aff84527c6a4ecd7579c429f5b78f4daffec713c6c50459bcaae43dc76"
+  },
+  "findings": [
+    {
+      "kind": "builder_failure",
+      "detail": "Reviewed supplement source binding is stale or missing; refusing generic replacement: [{\"path\": \"json/Card types current/3243.json\", \"sha256\": \"9175c4ce2c09a6c1706ad35745a26d051e7af5d54e604a7e2f2335c57c38f24f\", \"actual_sha256\": \"3240f07325dcae063355820bb22d8713f4685dcddc0166828d5c2e99a0d6894c\", \"current\": false}, {\"path\": \"json/KK ROS Control, Address Decode/KK101 ROS QUARTER PLANE WORD ADDRESS DECODE FIRST LEVEL CD.json\", \"sha256\": \"f2009ef989ccb47ae079d3304c06bf6091e08ae413e580a315933831fc8475e0\", \"actual_sha256\": \"8a8f8f22b88a7effd10f73612e1914bd0373f1d9f993e1982b39dfb048362d8e\", \"current\": false}, {\"path\": \"json/KK ROS Control, Address Decode/KK201 READ ONLY STORAGE CONTROL.json\", \"sha256\": \"f61a8f9e06a76e217199102f15445a38d6eea4dbe1e4a2b1b4292b7ce8cfac41\", \"actual_sha256\": \"a3df4381396546c330be61ad17dadc7efd6f9bdccd06e660b2f1706f18abdba2\", \"current\": false}]"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"KK\",\"expected\":null,\"field\":\"pin_identity\",\"node_pointer\":\"/nodes/9\",\"observed\":{\"physical_contact\":null,\"status\":\"explicitly-unresolved\"},\"page\":\"KK101\",\"pin_index\":3,\"portion\":\"A1\",\"reason\":\"Physical contact identity is explicitly unresolved; this is not an anonymous terminal.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"KK\",\"expected\":{\"function\":\"A\",\"ports\":[[\"input\",\"B07\",false],[\"input\",\"B12\",false],[\"input\",\"D06\",false],[\"input\",\"D12\",false],[\"output\",\"D02\",true]]},\"field\":\"function_and_decorations\",\"node_pointer\":\"/nodes/9\",\"observed\":{\"function\":\"A\",\"ports\":[[\"input\",\"D06\",false],[\"input\",\"B07\",false],[\"input\",\"B12\",false],[\"input\",null,false],[\"output\",\"D02\",true]]},\"page\":\"KK101\",\"portion\":\"A1\",\"reason\":\"Port identity cannot be uniquely matched; notation comparison remains uncertain.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"RR\",\"expected\":null,\"field\":\"pin_identity\",\"node_pointer\":\"/nodes/15\",\"observed\":{\"physical_contact\":null,\"status\":\"explicitly-unresolved\"},\"page\":\"KK101\",\"pin_index\":3,\"portion\":\"A7\",\"reason\":\"Physical contact identity is explicitly unresolved; this is not an anonymous terminal.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"block\":\"RR\",\"expected\":{\"function\":\"A\",\"ports\":[[\"input\",\"B08\",false],[\"input\",\"B10\",false],[\"input\",\"B12\",false],[\"input\",\"D13\",false],[\"output\",\"B13\",true]]},\"field\":\"function_and_decorations\",\"node_pointer\":\"/nodes/15\",\"observed\":{\"function\":\"A\",\"ports\":[[\"input\",\"D13\",false],[\"input\",\"B10\",false],[\"input\",\"B08\",false],[\"input\",null,false],[\"output\",\"B13\",true]]},\"page\":\"KK101\",\"portion\":\"A7\",\"reason\":\"Port identity cannot be uniquely matched; notation comparison remains uncertain.\",\"status\":\"source_uncertainty\"}"
+    },
+    {
+      "kind": "source_audit",
+      "detail": "{\"driver\":{\"card_key\":[\"02C-D3\",[\"H3\"]],\"contact_role\":\"logical\",\"endpoint_problem\":null,\"id\":\"DW\",\"input_only_alias\":false,\"label\":\"output54\",\"location\":\"C-D3H3\",\"pin\":\"B02\",\"port_resolved\":true,\"portion\":\"B1\",\"remote_page\":\"KK201\",\"side\":\"output\",\"stable_port_id\":\"\"},\"expected\":null,\"field\":\"wire_endpoint_identity\",\"model\":\"json/KK ROS Control, Address Decode/KK101 ROS QUARTER PLANE WORD ADDRESS DECODE FIRST LEVEL CD.json\",\"net\":\"GATE\",\"observed\":[\"output54\",\"D12\"],\"page\":\"KK101\",\"reason\":\"Physical contact identity is explicitly unresolved; no anonymous endpoint or common link is certified.\",\"status\":\"source_uncertainty\",\"target\":{\"card_key\":[\"02C-D3\",[\"H3\"]],\"contact_role\":\"logical\",\"endpoint_problem\":\"Physical contact identity is explicitly unresolved; no anonymous endpoint or common link is certified.\",\"id\":\"KK\",\"input_only_alias\":false,\"label\":\"D12\",\"location\":\"C-D3H3\",\"physical_identity_unresolved\":true,\"pin\":null,\"port_resolved\":false,\"portion\":\"A1\",\"side\":\"input\",\"stable_port_id\":\"\"}}"
+    }
+  ]
+}

@@ -1,0 +1,1299 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "0499",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 11,
+    "resolved_catalogue_observations": 11,
+    "source_observations": 11,
+    "exact_model_pointer_keys": 11,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "counts": {
+    "occurrences": 11,
+    "pages": 2,
+    "page_socket_observations": 2,
+    "physical_card_sites": 2,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 2,
+    "complete_field_observation_witnesses": 0,
+    "partial_observation_witnesses": 2,
+    "distinct_observed_variants": 0,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 2,
+    "witnesses_with_unmapped_or_omitted_fields": 2,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+      "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+    },
+    {
+      "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+      "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "567cef3558786e23956bf355c714522722ba0a62f4c1503580081b9d037a27fa",
+      "archive_relative": "DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.tif",
+      "role": "original source scan",
+      "scan_id": "537"
+    },
+    {
+      "sha256": "bb1def201a37e29c7fe32d8889ac3e088d77b7547900b9e390f4a225a56cb49e",
+      "archive_relative": "KW CE Console Functions/KW061 PULSE MODE.tif",
+      "role": "original source scan",
+      "scan_id": "1121"
+    }
+  ],
+  "canonical_pattern_witnesses": [
+    {
+      "page": "DR171",
+      "source_pages": [
+        "DR171"
+      ],
+      "location": "02C-C4F2",
+      "source_locations": [
+        "02C-C4F2"
+      ],
+      "literal_locations": [
+        "C-C4F2"
+      ],
+      "models": [
+        {
+          "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+          "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "567cef3558786e23956bf355c714522722ba0a62f4c1503580081b9d037a27fa",
+          "archive_relative": "DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.tif",
+          "role": "original source scan",
+          "scan_id": "537"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "DR171",
+          "node": "BF",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AN",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "BM",
+          "node_pointer": "/nodes/14",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AU",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AQ",
+          "node_pointer": "/nodes/19",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:3",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:4",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:5",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A4": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A5": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A6": {
+          "function": "OR",
+          "output:2": true,
+          "pin_symbols:output:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    },
+    {
+      "page": "KW061",
+      "source_pages": [
+        "KW061"
+      ],
+      "location": "02E-E2F5",
+      "source_locations": [
+        "02E-E2F5"
+      ],
+      "literal_locations": [
+        "E-E2F5"
+      ],
+      "models": [
+        {
+          "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+          "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "bb1def201a37e29c7fe32d8889ac3e088d77b7547900b9e390f4a225a56cb49e",
+          "archive_relative": "KW CE Console Functions/KW061 PULSE MODE.tif",
+          "role": "original source scan",
+          "scan_id": "1121"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KW061",
+          "node": "AJ",
+          "node_pointer": "/nodes/9",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AK",
+          "node_pointer": "/nodes/10",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AL",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AM",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AN",
+          "node_pointer": "/nodes/13",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AQ",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [
+        {
+          "portion": "A5",
+          "node": "AK",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [
+        {
+          "portion": "A5",
+          "node": "AK",
+          "source_pin_index": 0,
+          "physical_pin": "D08",
+          "reason": "Supply tie is not an extra card signal input."
+        }
+      ],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A4": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A5": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A6": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "output:2": true,
+          "pin_symbols:output:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": false
+    }
+  ],
+  "profiles_left_uncertain": [
+    {
+      "page": "DR171",
+      "source_pages": [
+        "DR171"
+      ],
+      "location": "02C-C4F2",
+      "source_locations": [
+        "02C-C4F2"
+      ],
+      "literal_locations": [
+        "C-C4F2"
+      ],
+      "models": [
+        {
+          "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+          "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "567cef3558786e23956bf355c714522722ba0a62f4c1503580081b9d037a27fa",
+          "archive_relative": "DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.tif",
+          "role": "original source scan",
+          "scan_id": "537"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "DR171",
+          "node": "BF",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AN",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "BM",
+          "node_pointer": "/nodes/14",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AU",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "DR171",
+          "node": "AQ",
+          "node_pointer": "/nodes/19",
+          "model": {
+            "path": "json/DR ROS Decoder/DR171 ROS DECODER FIELD 38 TO 42 I FETCH GATES TO LAR.json",
+            "sha256": "c9e104b15402c2b19f6c524b1c0070b82da0e103374f7adf5dff79ca1e6d703a"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "unobserved_portions_kept_canonical": [
+        "A2"
+      ],
+      "fields_not_inferred": [
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:2",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:3",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:4",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        },
+        {
+          "portion": "A6",
+          "node": "AU",
+          "field": "input_decoration",
+          "port_id": "input:5",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A4": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A5": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A6": {
+          "function": "OR",
+          "output:2": true,
+          "pin_symbols:output:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": false,
+      "complete_field_observation": false
+    },
+    {
+      "page": "KW061",
+      "source_pages": [
+        "KW061"
+      ],
+      "location": "02E-E2F5",
+      "source_locations": [
+        "02E-E2F5"
+      ],
+      "literal_locations": [
+        "E-E2F5"
+      ],
+      "models": [
+        {
+          "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+          "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "bb1def201a37e29c7fe32d8889ac3e088d77b7547900b9e390f4a225a56cb49e",
+          "archive_relative": "KW CE Console Functions/KW061 PULSE MODE.tif",
+          "role": "original source scan",
+          "scan_id": "1121"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "KW061",
+          "node": "AJ",
+          "node_pointer": "/nodes/9",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AK",
+          "node_pointer": "/nodes/10",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AL",
+          "node_pointer": "/nodes/11",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AM",
+          "node_pointer": "/nodes/12",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AN",
+          "node_pointer": "/nodes/13",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "KW061",
+          "node": "AQ",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/KW CE Console Functions/KW061 PULSE MODE.json",
+            "sha256": "4f989508c7b00595e39dd34b690c41831a46428474938e60b1d353ccbf061576"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 1,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [
+        {
+          "portion": "A5",
+          "node": "AK",
+          "field": "input_decoration",
+          "port_id": "input:1",
+          "reason": "Source omission or ambiguous mapping; canonical decoration retained."
+        }
+      ],
+      "ignored_supply_ties": [
+        {
+          "portion": "A5",
+          "node": "AK",
+          "source_pin_index": 0,
+          "physical_pin": "D08",
+          "reason": "Supply tie is not an extra card signal input."
+        }
+      ],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A4": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A5": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A6": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:5": false,
+          "pin_symbols:input:5": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:5": null,
+          "output:2": true,
+          "pin_symbols:output:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": false
+    }
+  ],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "d64baca01e0294c1461badc0f6b0052468291f37bbc076143af413599fd64374",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

@@ -1,0 +1,3571 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3737",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 72,
+    "resolved_catalogue_observations": 72,
+    "source_observations": 72,
+    "exact_model_pointer_keys": 72,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "counts": {
+    "occurrences": 72,
+    "pages": 4,
+    "page_socket_observations": 17,
+    "physical_card_sites": 17,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 17,
+    "complete_field_observation_witnesses": 2,
+    "partial_observation_witnesses": 15,
+    "distinct_observed_variants": 9,
+    "variants_with_complete_witness": 1,
+    "variants_witnessed_only_partially": 8,
+    "canonical_pattern_witnesses": 0,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 1,
+    "excluded_partial_profiles": 8
+  },
+  "model_bindings": [
+    {
+      "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+      "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+    },
+    {
+      "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+      "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+    },
+    {
+      "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+      "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+    },
+    {
+      "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+      "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "39eff3c19cb6cbedae144c467100d3f676f82ccf51836fc56ef8d9cf4bd08ff8",
+      "archive_relative": "PX System Console/PX155 Data Keys to ST32-39.tif",
+      "role": "original source scan",
+      "scan_id": "1544"
+    },
+    {
+      "sha256": "57bb9df53b6afe0c7c98c29c8027fb02a49348e383666833aa976e5cbd2c325a",
+      "archive_relative": "PX System Console/PX221 Address and Data Keys to D Reg Pos 00-07.tif",
+      "role": "original source scan",
+      "scan_id": "1551"
+    },
+    {
+      "sha256": "d892ab3ab0b5b18603e8c50f53545f37fe23b548ed38166faf8534965a2cbff4",
+      "archive_relative": "PX System Console/PX231 Address and Data Keys to D Reg Pos 08-15.tif",
+      "role": "original source scan",
+      "scan_id": "1552"
+    },
+    {
+      "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+      "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+      "role": "original source scan",
+      "scan_id": "1553"
+    }
+  ],
+  "canonical_pattern_witnesses": [],
+  "profiles_left_uncertain": [],
+  "variants": [
+    {
+      "number": 1,
+      "variant_definition": {
+        "number": 1,
+        "box_overrides": {
+          "A1": {
+            "function": "A OR"
+          },
+          "A2": {
+            "function": "A OR"
+          },
+          "A3": {
+            "function": "A OR"
+          },
+          "A4": {
+            "function": "A OR"
+          },
+          "A5": {
+            "function": "A OR"
+          },
+          "B1": {
+            "function": "A OR"
+          },
+          "B2": {
+            "function": "A OR"
+          },
+          "B3": {
+            "function": "A OR"
+          },
+          "B4": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX221",
+          "source_pages": [
+            "PX221"
+          ],
+          "location": "02E-C1G2",
+          "source_locations": [
+            "02E-C1G2"
+          ],
+          "literal_locations": [
+            "E-C1G2"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+              "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "57bb9df53b6afe0c7c98c29c8027fb02a49348e383666833aa976e5cbd2c325a",
+              "archive_relative": "PX System Console/PX221 Address and Data Keys to D Reg Pos 00-07.tif",
+              "role": "original source scan",
+              "scan_id": "1551"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX221",
+              "node": "AA",
+              "node_pointer": "/nodes/0",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AC",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AD",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AE",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AG",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AJ",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AL",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AN",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        },
+        {
+          "page": "PX231",
+          "source_pages": [
+            "PX231"
+          ],
+          "location": "02E-C1G4",
+          "source_locations": [
+            "02E-C1G4"
+          ],
+          "literal_locations": [
+            "E-C1G4"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+              "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "d892ab3ab0b5b18603e8c50f53545f37fe23b548ed38166faf8534965a2cbff4",
+              "archive_relative": "PX System Console/PX231 Address and Data Keys to D Reg Pos 08-15.tif",
+              "role": "original source scan",
+              "scan_id": "1552"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX231",
+              "node": "AA",
+              "node_pointer": "/nodes/0",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AC",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AD",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AE",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AG",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AJ",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AL",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AN",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": true,
+          "complete_field_observation": true
+        }
+      ],
+      "source_pages": [
+        "PX221",
+        "PX231"
+      ],
+      "source_locations": [
+        "02E-C1G2",
+        "02E-C1G4"
+      ],
+      "complete_witnesses": 2,
+      "partial_witnesses": 0
+    }
+  ],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [
+    {
+      "number": 2,
+      "variant_definition": {
+        "number": 2,
+        "box_overrides": {
+          "A1": {
+            "function": "A OR"
+          },
+          "A2": {
+            "function": "A OR"
+          },
+          "A3": {
+            "function": "A OR"
+          },
+          "A4": {
+            "function": "A OR"
+          },
+          "A5": {
+            "function": "A OR"
+          },
+          "B1": {
+            "function": "A OR"
+          },
+          "B2": {
+            "function": "A OR"
+          },
+          "B3": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX221",
+          "source_pages": [
+            "PX221"
+          ],
+          "location": "02E-C1G3",
+          "source_locations": [
+            "02E-C1G3"
+          ],
+          "literal_locations": [
+            "E-C1G3"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+              "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "57bb9df53b6afe0c7c98c29c8027fb02a49348e383666833aa976e5cbd2c325a",
+              "archive_relative": "PX System Console/PX221 Address and Data Keys to D Reg Pos 00-07.tif",
+              "role": "original source scan",
+              "scan_id": "1551"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX221",
+              "node": "AH",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AK",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AM",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AP",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AQ",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AR",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AS",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX221",
+              "node": "AT",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX231",
+          "source_pages": [
+            "PX231"
+          ],
+          "location": "02E-C1G5",
+          "source_locations": [
+            "02E-C1G5"
+          ],
+          "literal_locations": [
+            "E-C1G5"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+              "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "d892ab3ab0b5b18603e8c50f53545f37fe23b548ed38166faf8534965a2cbff4",
+              "archive_relative": "PX System Console/PX231 Address and Data Keys to D Reg Pos 08-15.tif",
+              "role": "original source scan",
+              "scan_id": "1552"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX231",
+              "node": "AH",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AK",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AM",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AP",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AQ",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AR",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AS",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX231",
+              "node": "AT",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX155",
+          "source_pages": [
+            "PX155"
+          ],
+          "location": "02E-D2F2",
+          "source_locations": [
+            "02E-D2F2"
+          ],
+          "literal_locations": [
+            "E-D2F2"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+              "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "39eff3c19cb6cbedae144c467100d3f676f82ccf51836fc56ef8d9cf4bd08ff8",
+              "archive_relative": "PX System Console/PX155 Data Keys to ST32-39.tif",
+              "role": "original source scan",
+              "scan_id": "1544"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX155",
+              "node": "AU",
+              "node_pointer": "/nodes/18",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "AV",
+              "node_pointer": "/nodes/19",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "AW",
+              "node_pointer": "/nodes/20",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "AX",
+              "node_pointer": "/nodes/21",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "AY",
+              "node_pointer": "/nodes/22",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "AZ",
+              "node_pointer": "/nodes/23",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BA",
+              "node_pointer": "/nodes/24",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BB",
+              "node_pointer": "/nodes/25",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX155",
+          "source_pages": [
+            "PX155"
+          ],
+          "location": "02E-D2F3",
+          "source_locations": [
+            "02E-D2F3"
+          ],
+          "literal_locations": [
+            "E-D2F3"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+              "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "39eff3c19cb6cbedae144c467100d3f676f82ccf51836fc56ef8d9cf4bd08ff8",
+              "archive_relative": "PX System Console/PX155 Data Keys to ST32-39.tif",
+              "role": "original source scan",
+              "scan_id": "1544"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX155",
+              "node": "BD",
+              "node_pointer": "/nodes/27",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BE",
+              "node_pointer": "/nodes/28",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BF",
+              "node_pointer": "/nodes/29",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BG",
+              "node_pointer": "/nodes/30",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BH",
+              "node_pointer": "/nodes/31",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BJ",
+              "node_pointer": "/nodes/32",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BK",
+              "node_pointer": "/nodes/33",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX155",
+              "node": "BL",
+              "node_pointer": "/nodes/34",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX155",
+        "PX221",
+        "PX231"
+      ],
+      "source_locations": [
+        "02E-C1G3",
+        "02E-C1G5",
+        "02E-D2F2",
+        "02E-D2F3"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 4
+    },
+    {
+      "number": 3,
+      "variant_definition": {
+        "number": 3,
+        "box_overrides": {
+          "A1": {
+            "function": "A OR"
+          },
+          "A2": {
+            "function": "A OR"
+          },
+          "A4": {
+            "function": "A OR"
+          },
+          "A5": {
+            "function": "A OR"
+          },
+          "B1": {
+            "function": "A OR"
+          },
+          "B2": {
+            "function": "A OR"
+          },
+          "B3": {
+            "function": "A OR"
+          },
+          "B4": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "02E-C1G6",
+          "source_locations": [
+            "02E-C1G6"
+          ],
+          "literal_locations": [
+            "E-C1G6"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AA",
+              "node_pointer": "/nodes/0",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AB",
+              "node_pointer": "/nodes/1",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AC",
+              "node_pointer": "/nodes/2",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AD",
+              "node_pointer": "/nodes/3",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AE",
+              "node_pointer": "/nodes/4",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AG",
+              "node_pointer": "/nodes/6",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AL",
+              "node_pointer": "/nodes/10",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AN",
+              "node_pointer": "/nodes/12",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A2",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "02E-C1G6"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 4,
+      "variant_definition": {
+        "number": 4,
+        "box_overrides": {
+          "A1": {
+            "function": "A OR"
+          },
+          "A3": {
+            "function": "A OR"
+          },
+          "A4": {
+            "function": "A OR"
+          },
+          "A5": {
+            "function": "A OR"
+          },
+          "B2": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "02E-C1G7",
+          "source_locations": [
+            "02E-C1G7"
+          ],
+          "literal_locations": [
+            "E-C1G7"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AK",
+              "node_pointer": "/nodes/9",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AQ",
+              "node_pointer": "/nodes/14",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AR",
+              "node_pointer": "/nodes/15",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AS",
+              "node_pointer": "/nodes/16",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            },
+            {
+              "page": "PX241",
+              "node": "AT",
+              "node_pointer": "/nodes/17",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A1",
+            "A3",
+            "A4",
+            "A5",
+            "B2"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A2",
+            "B1",
+            "B3",
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A1": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A4": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "A5": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            },
+            "B2": {
+              "function": "A OR",
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "02E-C1G7"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 5,
+      "variant_definition": {
+        "number": 5,
+        "box_overrides": {
+          "A2": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "F-C1G7|NODE:AH",
+          "source_locations": [
+            "F-C1G7|NODE:AH"
+          ],
+          "literal_locations": [
+            "F-C1G7"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AH",
+              "node_pointer": "/nodes/7",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A2"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A2": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "F-C1G7|NODE:AH"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 6,
+      "variant_definition": {
+        "number": 6,
+        "box_overrides": {
+          "A3": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "F-C1G6|NODE:AJ",
+          "source_locations": [
+            "F-C1G6|NODE:AJ"
+          ],
+          "literal_locations": [
+            "F-C1G6"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AJ",
+              "node_pointer": "/nodes/8",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "A3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "A3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "F-C1G6|NODE:AJ"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 7,
+      "variant_definition": {
+        "number": 7,
+        "box_overrides": {
+          "B1": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "F-C1G7|NODE:AM",
+          "source_locations": [
+            "F-C1G7|NODE:AM"
+          ],
+          "literal_locations": [
+            "F-C1G7"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AM",
+              "node_pointer": "/nodes/11",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B1"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B2",
+            "B3",
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B1": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "F-C1G7|NODE:AM"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 8,
+      "variant_definition": {
+        "number": 8,
+        "box_overrides": {
+          "B3": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "F-C1G7|NODE:AP",
+          "source_locations": [
+            "F-C1G7|NODE:AP"
+          ],
+          "literal_locations": [
+            "F-C1G7"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AP",
+              "node_pointer": "/nodes/13",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B3"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B4"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B3": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX241"
+      ],
+      "source_locations": [
+        "F-C1G7|NODE:AP"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 1
+    },
+    {
+      "number": 9,
+      "variant_definition": {
+        "number": 9,
+        "box_overrides": {
+          "B4": {
+            "function": "A OR"
+          }
+        },
+        "annotation_overrides": [],
+        "line_ending": "LF"
+      },
+      "witnesses": [
+        {
+          "page": "PX221",
+          "source_pages": [
+            "PX221"
+          ],
+          "location": "F-C1G3|NODE:AF",
+          "source_locations": [
+            "F-C1G3|NODE:AF"
+          ],
+          "literal_locations": [
+            "F-C1G3"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+              "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "57bb9df53b6afe0c7c98c29c8027fb02a49348e383666833aa976e5cbd2c325a",
+              "archive_relative": "PX System Console/PX221 Address and Data Keys to D Reg Pos 00-07.tif",
+              "role": "original source scan",
+              "scan_id": "1551"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX221",
+              "node": "AF",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/PX System Console/PX221 ADDRESS AND DATA KEYS TO D REG POS 00-07.json",
+                "sha256": "ff4a0034413753ba75b8125531cdda7d4ecf10954320a68a6a525381bf8ee40e"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX231",
+          "source_pages": [
+            "PX231"
+          ],
+          "location": "F-C1G5|NODE:AF",
+          "source_locations": [
+            "F-C1G5|NODE:AF"
+          ],
+          "literal_locations": [
+            "F-C1G5"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+              "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "d892ab3ab0b5b18603e8c50f53545f37fe23b548ed38166faf8534965a2cbff4",
+              "archive_relative": "PX System Console/PX231 Address and Data Keys to D Reg Pos 08-15.tif",
+              "role": "original source scan",
+              "scan_id": "1552"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX231",
+              "node": "AF",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/PX System Console/PX231 ADDRESS AND DATA KEYS TO D REG POS 08-15.json",
+                "sha256": "434f9a024b63b879227d80c5510f5725ec62707445616e78134e75489fc68707"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX241",
+          "source_pages": [
+            "PX241"
+          ],
+          "location": "F-C1G7|NODE:AF",
+          "source_locations": [
+            "F-C1G7|NODE:AF"
+          ],
+          "literal_locations": [
+            "F-C1G7"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+              "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "ff076057a6cae050dae3053131317efbbd126f686518cf8876918de89bc613ba",
+              "archive_relative": "PX System Console/PX241 Address and Data Keys to D Reg Pos 16-23.tif",
+              "role": "original source scan",
+              "scan_id": "1553"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX241",
+              "node": "AF",
+              "node_pointer": "/nodes/5",
+              "model": {
+                "path": "json/PX System Console/PX241 ADDRESS AND DATA KEYS TO D REG POS 16-23.json",
+                "sha256": "228f4dd9b37752aad46f640e6a2d18bcd02f7de956f0374c3c16985e1e9cbe1c"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX155",
+          "source_pages": [
+            "PX155"
+          ],
+          "location": "F-D2F2|NODE:BC",
+          "source_locations": [
+            "F-D2F2|NODE:BC"
+          ],
+          "literal_locations": [
+            "F-D2F2"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+              "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "39eff3c19cb6cbedae144c467100d3f676f82ccf51836fc56ef8d9cf4bd08ff8",
+              "archive_relative": "PX System Console/PX155 Data Keys to ST32-39.tif",
+              "role": "original source scan",
+              "scan_id": "1544"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX155",
+              "node": "BC",
+              "node_pointer": "/nodes/26",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        },
+        {
+          "page": "PX155",
+          "source_pages": [
+            "PX155"
+          ],
+          "location": "F-D2F3|NODE:BM",
+          "source_locations": [
+            "F-D2F3|NODE:BM"
+          ],
+          "literal_locations": [
+            "F-D2F3"
+          ],
+          "models": [
+            {
+              "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+              "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+            }
+          ],
+          "sources": [
+            {
+              "sha256": "39eff3c19cb6cbedae144c467100d3f676f82ccf51836fc56ef8d9cf4bd08ff8",
+              "archive_relative": "PX System Console/PX155 Data Keys to ST32-39.tif",
+              "role": "original source scan",
+              "scan_id": "1544"
+            }
+          ],
+          "nodes": [
+            {
+              "page": "PX155",
+              "node": "BM",
+              "node_pointer": "/nodes/35",
+              "model": {
+                "path": "json/PX System Console/PX155 DATA KEYS TO ST32-39.json",
+                "sha256": "6872d4400b106309e79415099cdbfa25cd523fe2fbd0db433f1d9e51407b8858"
+              },
+              "source_reviewed": true,
+              "identity_adaptation": null
+            }
+          ],
+          "page_socket_contexts": 1,
+          "observed_portions": [
+            "B4"
+          ],
+          "unobserved_portions_kept_canonical": [
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "B1",
+            "B2",
+            "B3"
+          ],
+          "fields_not_inferred": [],
+          "ignored_supply_ties": [],
+          "observed_fields": {
+            "B4": {
+              "function": "A OR",
+              "input:2": false,
+              "pin_symbols:input:2": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:2": null,
+              "input:1": false,
+              "pin_symbols:input:1": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:input:1": null,
+              "output:3": true,
+              "pin_symbols:output:3": {
+                "prefix": [],
+                "suffix": []
+              },
+              "border_symbol:output:3": null
+            }
+          },
+          "complete_portion_observation": false,
+          "complete_field_observation": false
+        }
+      ],
+      "source_pages": [
+        "PX155",
+        "PX221",
+        "PX231",
+        "PX241"
+      ],
+      "source_locations": [
+        "F-C1G3|NODE:AF",
+        "F-C1G5|NODE:AF",
+        "F-C1G7|NODE:AF",
+        "F-D2F2|NODE:BC",
+        "F-D2F3|NODE:BM"
+      ],
+      "complete_witnesses": 0,
+      "partial_witnesses": 5
+    }
+  ],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "8564568690faee1befa4984907f5efe9d28e6a475dba78fd46e97b717300f12f",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

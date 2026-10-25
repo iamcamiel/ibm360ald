@@ -12,10 +12,15 @@ import json
 from pathlib import Path
 import re
 import stat
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import legacy_index_mutation_guard as index_guard
+ROOT=index_guard.repository_root(__file__)
+index_guard.dependency_paths(ROOT,__file__)
+LEGACY_INDEX_GUARD_VERSION=index_guard.GUARD_VERSION
 from display_direction import exterior_display_side
 from card_source import ordinary_slt_identity_issue
 
-ROOT = Path(__file__).resolve().parents[2]
 PIN = re.compile(r'[BDGJ](?:0[2-9]|1[0-3])\Z')
 DIRS = {'E': (1, 0), 'S': (0, 1), 'W': (-1, 0), 'N': (0, -1)}
 OPPOSITE = {'E': 'W', 'W': 'E', 'N': 'S', 'S': 'N'}
@@ -524,6 +529,8 @@ def build(spec):
 
 
 def write_protected(path, raw):
+    index_guard.guard_target(ROOT,path,'generate_card.write_protected')
+    index_guard.guard_existing_ancestor_index(path,'generate_card.write_protected')
     path.parent.mkdir(parents=True, exist_ok=True)
     old_mode = path.stat().st_mode if path.exists() else None
     try:
@@ -536,6 +543,7 @@ def write_protected(path, raw):
 
 
 def record_generation(spec, path, outputs, checks):
+    index_guard.reject_held_index(ROOT,'generate_card.record_generation')
     card = spec['card_type']
     witness_path = ROOT/f'notes/Card-ALD/Notation witnesses/{card}.json'
     witness_index = read(witness_path) if witness_path.exists() else None
@@ -638,6 +646,7 @@ def main():
     parser.add_argument('--definitions', type=Path, default=ROOT/'json/Card-ALD/definitions')
     parser.add_argument('--output-dir', type=Path, help='Private build directory; default publishes to Card-ALD')
     parser.add_argument('--check', action='store_true', help='Validate definition without writing files')
+    parser.add_argument('--root',type=Path,default=ROOT,help='Explicit private/installed repository root')
     args = parser.parse_args()
     if not re.fullmatch(r'\d{4}', args.card_type):
         parser.error('Use a four-digit card type, for example 0141 or 4191.')
@@ -649,6 +658,8 @@ def main():
     outputs, checks = build(spec)
     if not args.check:
         target = args.output_dir or ROOT/'Card-ALD'
+        if args.output_dir is None:index_guard.reject_held_index(ROOT,'generate_card CLI publication')
+        else:index_guard.guard_target(ROOT,target,'generate_card CLI output')
         stale = [p.name for p in target.glob(args.card_type+'-[0-9]*.txt')
                  if re.fullmatch(args.card_type+r'-\d+\.txt', p.name) and p.name not in outputs]
         assert not stale, 'Unlisted older variants require review before replacement: '+', '.join(stale)

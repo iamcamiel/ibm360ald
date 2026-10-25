@@ -1,0 +1,472 @@
+{
+  "schema": "card-ald-observed-variant-candidates-v1",
+  "card_type": "3316",
+  "collector": {
+    "path": "tools/card_ald/collect_card_variants.py",
+    "sha256": "7b229ae17a03a8b5e6249a5f59734e2283971ddbb0ccd0d581c5c48329ce2aef"
+  },
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "grouping": "physical-card",
+  "conflicting_physical_card_sites": [],
+  "rules": [
+    "Combine only compatible observations at the same normalized physical card identity; conflicting sites retain separate page contexts.",
+    "Unobserved portions and unmapped fields retain canonical symbols and are identified in each witness.",
+    "Only function text and mapped triangle, intrinsic pin-star or edge-X notation may change; all pins, circuits, geometry and nets remain canonical.",
+    "Preserve complete readable secondary function labels; supply ties are excluded from card signal ports.",
+    "Distinguish completely witnessed full-card profiles from partial observations with canonical fill."
+  ],
+  "identity_coverage": {
+    "catalogue_observations": 8,
+    "resolved_catalogue_observations": 8,
+    "source_observations": 8,
+    "exact_model_pointer_keys": 8,
+    "catalogue_coverage_issues": 0
+  },
+  "coverage_issues": [],
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "counts": {
+    "occurrences": 8,
+    "pages": 2,
+    "page_socket_observations": 2,
+    "physical_card_sites": 1,
+    "conflicting_physical_card_sites": 0,
+    "installation_witnesses": 1,
+    "complete_field_observation_witnesses": 1,
+    "partial_observation_witnesses": 0,
+    "distinct_observed_variants": 0,
+    "variants_with_complete_witness": 0,
+    "variants_witnessed_only_partially": 0,
+    "canonical_pattern_witnesses": 1,
+    "witnesses_with_unmapped_or_omitted_fields": 0,
+    "selected_publication_variants": 0,
+    "excluded_partial_profiles": 0
+  },
+  "model_bindings": [
+    {
+      "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+      "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+    },
+    {
+      "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+      "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+    }
+  ],
+  "source_bindings": [
+    {
+      "sha256": "581e3f11e8123580ca575b8e611f1701b3fdff910c988485b789b1fc07779033",
+      "archive_relative": "MC Storage Control/MC071 3 CYCLE TGRS.tif",
+      "role": "original source scan",
+      "scan_id": "1408"
+    },
+    {
+      "sha256": "0e56da768434468dfad045bb3eddfbd895d4a8d05fb282b691bf073119ceba5a",
+      "archive_relative": "MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.tif",
+      "role": "original source scan",
+      "scan_id": "1431"
+    }
+  ],
+  "canonical_pattern_witnesses": [
+    {
+      "page": null,
+      "source_pages": [
+        "MC071",
+        "MC431"
+      ],
+      "location": "02A-B2C5",
+      "source_locations": [
+        "02A-B2C5"
+      ],
+      "literal_locations": [
+        "A-B2C5"
+      ],
+      "models": [
+        {
+          "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+          "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+        },
+        {
+          "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+          "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+        }
+      ],
+      "sources": [
+        {
+          "sha256": "581e3f11e8123580ca575b8e611f1701b3fdff910c988485b789b1fc07779033",
+          "archive_relative": "MC Storage Control/MC071 3 CYCLE TGRS.tif",
+          "role": "original source scan",
+          "scan_id": "1408"
+        },
+        {
+          "sha256": "0e56da768434468dfad045bb3eddfbd895d4a8d05fb282b691bf073119ceba5a",
+          "archive_relative": "MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.tif",
+          "role": "original source scan",
+          "scan_id": "1431"
+        }
+      ],
+      "nodes": [
+        {
+          "page": "MC071",
+          "node": "AE",
+          "node_pointer": "/nodes/15",
+          "model": {
+            "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+            "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC071",
+          "node": "AA",
+          "node_pointer": "/nodes/16",
+          "model": {
+            "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+            "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC071",
+          "node": "AB",
+          "node_pointer": "/nodes/17",
+          "model": {
+            "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+            "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC071",
+          "node": "AC",
+          "node_pointer": "/nodes/18",
+          "model": {
+            "path": "json/MC Storage Control/MC071 3 CYCLE TGRS.json",
+            "sha256": "450f9b2d530f3a37969ec659d8686de9ac2f42c694693ef93faa9502bb67c4f1"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC431",
+          "node": "AC",
+          "node_pointer": "/nodes/3",
+          "model": {
+            "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+            "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC431",
+          "node": "AD",
+          "node_pointer": "/nodes/4",
+          "model": {
+            "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+            "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC431",
+          "node": "AE",
+          "node_pointer": "/nodes/5",
+          "model": {
+            "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+            "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        },
+        {
+          "page": "MC431",
+          "node": "AG",
+          "node_pointer": "/nodes/6",
+          "model": {
+            "path": "json/MC Storage Control/MC431 GO TO ALT ON PSA REQUEST.json",
+            "sha256": "7ac5b0221607037b663803d57b6f7442df474216694947c7768a7826c7de9837"
+          },
+          "source_reviewed": true,
+          "identity_adaptation": null
+        }
+      ],
+      "page_socket_contexts": 2,
+      "observed_portions": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "unobserved_portions_kept_canonical": [],
+      "fields_not_inferred": [],
+      "ignored_supply_ties": [],
+      "observed_fields": {
+        "A1": {
+          "function": "A",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A2": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A3": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "A4": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B1": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:4": false,
+          "pin_symbols:input:4": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:4": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B2": {
+          "function": "A",
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B3": {
+          "function": "A",
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "output:3": false,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        },
+        "B4": {
+          "function": "OR",
+          "input:1": false,
+          "pin_symbols:input:1": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:1": null,
+          "input:2": false,
+          "pin_symbols:input:2": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:2": null,
+          "input:3": false,
+          "pin_symbols:input:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:input:3": null,
+          "output:3": true,
+          "pin_symbols:output:3": {
+            "prefix": [],
+            "suffix": []
+          },
+          "border_symbol:output:3": null
+        }
+      },
+      "complete_portion_observation": true,
+      "complete_field_observation": true
+    }
+  ],
+  "profiles_left_uncertain": [],
+  "variants": [],
+  "source_or_repository_data_changes_applied": false,
+  "publication_policy": "complete-witnesses",
+  "excluded_partial_profiles": [],
+  "publication_interpretation": "Each selected full-card profile has at least one complete physical-card field witness; partial-only profiles remain evidence and are not published.",
+  "definition_sha256": "6325e567942504a508294f149d6ed1f2bbf1ca7a77b4afb100621eb222b5a254",
+  "definition_binding_policy": "Exact candidate digest; the current accepted definition and supplement are linked by the publication receipt."
+}

@@ -4,6 +4,12 @@ from copy import deepcopy
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import legacy_index_mutation_guard as index_guard
+index_guard.dependency_paths(index_guard.repository_root(__file__),__file__)
+import generate_card as guarded_renderer
+index_guard.require_guarded_renderer(guarded_renderer)
 
 import build_card_data
 from generate_card import ROOT, build, digest, read, record_generation, write_protected
@@ -35,6 +41,7 @@ def checked_review(path):
 
 
 def adopt(candidates, review_path):
+    index_guard.reject_held_index(ROOT,'adopt_card_layout.adopt')
     bindings = checked_review(review_path)
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     batch = stamp+'-'+digest(review_path.read_bytes())[:12]
@@ -156,6 +163,7 @@ def main():
     source.add_argument('--definition', type=Path, help='One independently reviewed definition')
     source.add_argument('--definitions', type=Path, help='Batch root containing CARD.json or CARD/CARD.json')
     parser.add_argument('--review', type=Path, required=True)
+    parser.add_argument('--root',type=Path,default=ROOT,help='Explicit private/installed repository root')
     args = parser.parse_args()
     if len(args.card_type) != len(set(args.card_type)):
         parser.error('Each card type may occur once')

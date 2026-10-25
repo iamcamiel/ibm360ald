@@ -1,60 +1,166 @@
-CARD-ALD COMPOSITE PINOUTS
+CARD-ALD PUBLICATION STATUS
 
-NNNN.txt is the canonical circuit-symbol form. Numbered variants retain
-reviewed notation with identical geometry. Provisional circuit forms remain
-explicit in their headers.
+Authority: notes/Card-ALD/Universal card diagrams publication.json
+64 published families; all300 drawing variants preserved.
+30 current;29 held;5 legacy proof only. Held/legacy cards are not usable as current.
+Independent derivation review grants no physical or human approval.
+Earlier all-catalogue/raw processing results are retained under notes/Card-ALD/Status history/Third20-1075df5102e1/Old status.
 
-40 canonical card types and 259 TXT diagrams are published.
-35 families (56 TXT files) are accepted and current-verified.
-5 older families (203 TXT files) remain retained: 0141, 3308, 4191, 4633, 4634.
+0000: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0006: current; current=true; usable_as_current=true; current strict verification passed.
+0141: legacy-proof-only; current=false; usable_as_current=false; no new approval.
+  Reason: Historical generation has no recorded accepted review or source audit; retained as proof only, with no current seal.
+0157: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0274: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0413: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0471: current; current=true; usable_as_current=true; current strict verification passed.
+0499: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0507: current; current=true; usable_as_current=true; current strict verification passed.
+0515: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0529: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0536: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0537: current; current=true; usable_as_current=true; current strict verification passed.
+0551: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0611: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+0709: current; current=true; usable_as_current=true; current strict verification passed.
+1124: current; current=true; usable_as_current=true; current strict verification passed.
+1125: current; current=true; usable_as_current=true; current strict verification passed.
+1126: current; current=true; usable_as_current=true; current strict verification passed.
+1524: current; current=true; usable_as_current=true; current strict verification passed.
+3055: current; current=true; usable_as_current=true; current strict verification passed.
+3121: current; current=true; usable_as_current=true; current strict verification passed.
+3122: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3127: current; current=true; usable_as_current=true; current strict verification passed.
+3129: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3147: current; current=true; usable_as_current=true; current strict verification passed.
+3161: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3200: current; current=true; usable_as_current=true; current strict verification passed.
+3216: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3243: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3294: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3296: current; current=true; usable_as_current=true; current strict verification passed.
+3307: current; current=true; usable_as_current=true; current strict verification passed.
+3308: legacy-proof-only; current=false; usable_as_current=false; no new approval.
+  Reason: Historical generation has no recorded accepted review or source audit; retained as proof only, with no current seal.
+3313: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3315: current; current=true; usable_as_current=true; current strict verification passed.
+3316: current; current=true; usable_as_current=true; current strict verification passed.
+3321: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3339: current; current=true; usable_as_current=true; current strict verification passed.
+3343: current; current=true; usable_as_current=true; current strict verification passed.
+3361: current; current=true; usable_as_current=true; current strict verification passed.
+3362: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3367: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3369: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+3371: current; current=true; usable_as_current=true; current strict verification passed.
+3374: current; current=true; usable_as_current=true; current strict verification passed.
+3379: current; current=true; usable_as_current=true; current strict verification passed.
+3383: current; current=true; usable_as_current=true; current strict verification passed.
+3597: current; current=true; usable_as_current=true; current strict verification passed.
+3737: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+4005: current; current=true; usable_as_current=true; current strict verification passed.
+4059: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+4072: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+4191: legacy-proof-only; current=false; usable_as_current=false; no new approval.
+  Reason: Historical generation has no recorded accepted review or source audit; retained as proof only, with no current seal.
+4633: legacy-proof-only; current=false; usable_as_current=false; no new approval.
+  Reason: Historical generation has no recorded accepted review or source audit; retained as proof only, with no current seal.
+4634: legacy-proof-only; current=false; usable_as_current=false; no new approval.
+  Reason: Historical generation has no recorded accepted review or source audit; retained as proof only, with no current seal.
+4761: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+6194: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+7054: current; current=true; usable_as_current=true; current strict verification passed.
+7063: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+7064: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+7067: current; current=true; usable_as_current=true; current strict verification passed.
+7081: HELD; current=false; usable_as_current=false; approval=false.
+  Reason: Held: strict004 default-builder/source audit has unresolved measured findings; see exact audit findings.
+  Physical review evidence: not-recorded
+  Drawing variants retained as immutable historical evidence only.
+8005: current; current=true; usable_as_current=true; current strict verification passed.
 
-The catalogue has 190 types and 188 in scope. Only 1457 and 1724 are excluded.
-The completed pre-visual run of 153 families and 459 actual CLI phase attempts
-remains historical evidence. After 31 reviewed reading/classification changes
-on 21 objects across 18 pages, only 13 directly corrected families have new
-build/audit/render CLI runs: 39 actual phase attempts. The 35 accepted families
-were separately replayed, imported and current-verified.
-
-The other 140 raw-family results retain the preceding source epoch. The 26
-page-only source/catalogue semantic checks do not constitute new CLI runs.
-This update does not claim all 188 families were rechecked at the new source
-epoch. Latest 13 phase outcomes: {"audit": {"blocked": 5, "passed": 8}, "build": {"passed": 13}, "render": {"blocked": 5, "passed": 8}}
-Blocked downstream phases remain separate from failed executions.
-
-RT381-02 E3 is applied. No manual answer is pending in this review wave; this
-does not claim that every older workbook question is closed. 4072 remains an
-older clean candidate awaiting independent review, not an accepted card.
-All 259 published TXT diagrams and their geometry are unchanged. Graphviz
-comparisons are private previews. No new card diagram is published here.
-
-Current definitions: json/Card-ALD/definitions/NNNN.json.
-All-card processing and holds: notes/Card-ALD/Current processing status.json.
-One-row-per-card table: csv/Card-ALD/Current processing status.csv.
-Current publication receipts: notes/Card-ALD/Generation/NNNN.json.
-Current notation witnesses: notes/Card-ALD/Notation witnesses.
-No predecessor or raw-evidence copy tree is required; Git retains older states.
-
-REBUILD FROM THE REPOSITORY DIRECTORY
-
-    python tools/card_ald/generate_card.py CARD
-
-Use all four digits, including a leading zero. One shared renderer consumes
-the reviewed definitions; no per-card Python builder is required.
-
-BUILD AND AUDIT PRIVATE CANDIDATES
-
-    python tools/card_ald/run_card_batch.py --prefix all --output-dir PATH
-    python tools/card_ald/build_card_data.py CARD --render --output-dir PATH
-    python tools/card_ald/audit_card_uses.py CARD --definition DEFINITION
-
-The builder, auditor and notation collector share the unified page-JSON reader.
-The batch command attempts every selected card, preserves explicit failures,
-and checks that source bytes did not change. Candidate output is not published
-until source, connectivity, physical contacts and notation have been reviewed.
-Current source-bound accepted AR pass-through aliases are inputs only. Explicit
-K contacts retain their physical role without inventing card-internal unions.
-
-Seven-character-high boxes may start on any line. Placement, interchangeable
-input ordering, wire routing and short shared-net R labels use universal rules.
-Power contacts are listed separately. Numbered variants share canonical geometry.
-Details and publication commands: tools/card_ald/README.txt.
+Counts: {"current": 30, "families": 64, "held": 29, "legacy_proof_only": 5}

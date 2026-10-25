@@ -15,10 +15,30 @@ from copy import deepcopy
 from collections import Counter, defaultdict
 from pathlib import Path
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "normalization"))
+_normalization=Path(__file__).resolve().parents[1]/'normalization'
+if '--repo' in sys.argv:_normalization=Path(sys.argv[sys.argv.index('--repo')+1]).resolve()/'tools/normalization'
+sys.path.insert(0,str(_normalization))
 import read_page as page_reader
 
 from current_card_identity import catalogue_identity
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'Contracts'))
+import auxiliary_catalogue_contracts as catalogue_contracts
+_PAGE_CONTEXTS={}
+CANDIDATE_RUNTIME_PATHS=frozenset(('tools/references/build_current_card_catalog.py','tools/references/verify_current_card_catalog.py','tools/references/current_card_identity.py','tools/references/verify_uniform_socket_listings.py','Contracts/catalogue_identity.schema.json','Contracts/auxiliary_catalogue_contracts.py'))
+def source_input_path(repo,tools_root,relative):
+    if relative in CANDIDATE_RUNTIME_PATHS:return relative_path(tools_root,relative)
+    if relative.startswith('Contracts/'):raise ValueError('Unregistered candidate runtime input: '+relative)
+    return relative_path(repo,relative)
+def unresolved_reasons(literal,obj):
+    reasons=[]
+    if obj and obj['card_identity']['parse_status']=='conflict':reasons.append('card_identity_conflict')
+    if obj and obj['circuit']['parse_status']=='conflict':reasons.append('circuit_identity_conflict')
+    if catalogue_identity(literal)[1]['status']=='conflict':reasons.append('identity_alias_conflict')
+    return sorted(reasons)
+def unresolved_record(literal,obj,reasons,*,page,model,text,model_sha,text_sha,index):
+    result={'page':page,'node':literal.get('id'),'node_pointer':f'/nodes/{index}','source_model':model,'source_model_sha256':model_sha,'source_text':text,'text_sha256':text_sha,'identity_status':'unresolved_identity','reason_codes':reasons,'source_fields':{k:literal.get(k)for k in ('card_type','portion','card','part','printed_card_portion','unit')},'canonical_identity_parse_status':obj['card_identity']['parse_status']if obj else None,'canonical_circuit_parse_status':obj['circuit']['parse_status']if obj else None,'source_node_json':json.dumps(literal,ensure_ascii=False,sort_keys=True,separators=(',',':')),'annotation_flags':[],'profile_eligible':False,'selected_identity':None}
+    catalogue_contracts.validate_unresolved_occurrence(result);return result
+
 
 
 CARD = re.compile(r"[0-9]{4}\Z")
@@ -147,12 +167,72 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def catalogue_page_view(document, *, source_view=None):
+    """Read canonical node facts without changing the lossless source view.
+
+    Consumers of card facts must use the normalized semantic fields. The
+    default view remains a literal reconstruction for source-review tools.
+    """
+    result = deepcopy(source_view) if source_view is not None else page_reader.view(document)
+    if not page_reader.is_uniform(document):
+        return result
+    for obj in document['objects']:
+        form = obj['source_form']
+        if form['container'] != 'nodes' or form['value_type'] != 'object':
+            continue
+        node = result['nodes'][form['ordinal']]
+        identity = obj['card_identity']
+        if any(node.get(key) is True for key in ('symbol_only', 'annotation_only', 'annotation_block')):
+            continue
+        if identity['parse_status'] == 'conflict':
+            continue
+        if identity['parse_status'] != 'resolved':
+            continue
+        if obj['circuit']['parse_status'] == 'conflict':
+            continue
+        if identity['parse_status'] == 'resolved':
+            node['card_type'] = identity['card_type']
+            node['portion'] = identity['portion']
+        for key, section, field in [('function', 'function', 'label'),
+                                    ('unit', 'circuit', 'identifier'),
+                                    ('location', 'site', 'label')]:
+            if field in obj[section]:
+                node[key] = deepcopy(obj[section][field])
+        if obj['site'].get('grid_label') is not None:
+            node['grid'] = deepcopy(obj['site']['grid_label'])
+        if 'pins' not in node:
+            pins = []
+            for terminal in obj['terminals']:
+                if terminal['occurrence_kind'] != 'primary':
+                    continue
+                pin = deepcopy(terminal['source_literals'])
+                if not isinstance(pin, dict):
+                    pin = {'pin': pin}
+                pin.update(deepcopy(terminal.get('extensions', {})))
+                pin.update(deepcopy(terminal['geometry']))
+                side = terminal.get('side') or terminal.get('declared_container_role')
+                if side is not None:
+                    pin['side'] = side
+                for decoration in terminal['border_decorations']:
+                    if decoration.get('kind') == 'triangle':
+                        pin['triangle'] = decoration.get('observed_value')
+                pins.append(pin)
+            node['pins'] = pins
+    return result
+
+
 def read_checked(path: Path, expected: str, page_model=False):
     raw = path.read_bytes()
     actual = sha(raw)
     if actual != expected:
         raise ValueError(f"Changed source: {path}: {actual} != {expected}")
-    return page_reader.loads(raw, semantic=True) if page_model else json.loads(raw.decode("utf-8-sig"))
+    document=json.loads(raw.decode('utf-8-sig'),object_pairs_hook=page_reader._pairs,parse_constant=page_reader._constant)
+    if not page_model:return document
+    # Preserve the unaltered source-node projection and semantic parse statuses in process only.
+    literal=page_reader.view(document)
+    objects={o['source_form']['ordinal']:o for o in document.get('objects',[])if o['source_form']['container']=='nodes'and o['source_form']['value_type']=='object'}
+    _PAGE_CONTEXTS[str(path.resolve())]={'literal_nodes':literal.get('nodes',[]),'objects':objects}
+    return catalogue_page_view(document,source_view=literal)
 
 
 def dump(path: Path, value):
@@ -208,8 +288,15 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--repo", type=Path, required=True)
     ap.add_argument("--output", type=Path, required=True)
+    ap.add_argument("--tools-root",type=Path,default=Path(__file__).resolve().parents[2],help="Explicit candidate runtime tree; only registered tool/contract logical paths resolve here")
     args = ap.parse_args()
     repo, output = args.repo.resolve(), args.output.resolve()
+    tools_root=args.tools_root.resolve()
+    if Path(__file__).resolve()!=tools_root/'tools/references/build_current_card_catalog.py':raise ValueError('tools-root does not name the executing candidate builder')
+    if Path(catalogue_contracts.__file__).resolve()!=tools_root/'Contracts/auxiliary_catalogue_contracts.py':raise ValueError('Candidate contract import differs from tools-root')
+    runtime_start={rel:sha(source_input_path(repo,tools_root,rel).read_bytes())for rel in sorted(CANDIDATE_RUNTIME_PATHS)}
+    if output.exists():raise ValueError('Fresh private output required')
+    if output.is_relative_to(repo):raise ValueError('Output must be outside the source repository')
     if output == repo or repo in output.parents and output == repo / "ALD":
         raise ValueError("Output would overwrite canonical ALD pages")
 
@@ -230,7 +317,9 @@ def main():
     source_pages = {}
     unclassified = []
     excluded_annotations = []
-    count = Counter()
+    unresolved_identities=[]
+    node_partition=[]
+    count = Counter({k:0 for k in catalogue_contracts.COUNT_KEYS})
     for entry in content["files"]:
         if entry["role"] != "Published page content model":
             continue
@@ -266,13 +355,23 @@ def main():
                     "card_type_literal": node.get("card_type"), "circuit_identifier": node.get("unit"),
                     "function_literal": node.get("function"), "explicit_flags": flags})
                 count["annotation_nodes_excluded"] += 1
+                node_partition.append({"source_model":model_rel,"node_pointer":f"/nodes/{index}","bucket":"annotation","card_type":None})
+                continue
+            context=_PAGE_CONTEXTS[str(relative_path(repo,model_rel))]
+            literal=context['literal_nodes'][index];obj=context['objects'].get(index)
+            reasons=unresolved_reasons(literal,obj)
+            if reasons:
+                unresolved_identities.append(unresolved_record(literal,obj,reasons,page=model.get('page',text_entry['page']),model=model_rel,text=text_rel,model_sha=entry['sha256'],text_sha=text_entry['text_sha256'],index=index))
+                node_partition.append({'source_model':model_rel,'node_pointer':f'/nodes/{index}','bucket':'unresolved_identity','card_type':None})
+                count['unresolved_identity_occurrences']+=1
+                # Inventory every explicit numeric family claim, without selecting a portion or contributing a profile.
+                for link in catalogue_contracts.family_index_for_observations([unresolved_identities[-1]]):cards[link['card_type']]
                 continue
             node, identity_audit = catalogue_identity(node)
-            if identity_audit["status"] == "conflict":
-                raise ValueError(f"Conflicting source identity: {text_rel} /nodes/{index}")
             card = node.get("card_type")
             if not isinstance(card, str) or not CARD.fullmatch(card):
                 count["nodes_without_card_type"] += 1
+                node_partition.append({"source_model":model_rel,"node_pointer":f"/nodes/{index}","bucket":"no_card_type","card_type":None})
                 if isinstance(card, str) and card:
                     unclassified.append({"page": model.get("page", text_entry["page"]),
                         "node": node.get("id"), "source_text": text_rel,
@@ -315,6 +414,9 @@ def main():
                    if "source_reviewed" not in node and model.get("source_reviewed") is True else {}),
             })
             count["card_occurrences"] += 1
+            node_partition.append({"source_model":model_rel,"node_pointer":f"/nodes/{index}","bucket":"resolved","card_type":card})
+
+        _PAGE_CONTEXTS.pop(str(relative_path(repo,model_rel)),None)
 
     uniform_listings, listing_authority = load_uniform_listings(repo)
     for card, listings in uniform_listings.items():
@@ -429,6 +531,10 @@ def main():
         "count": len(excluded_annotations),
         "policy": "Only explicit true symbol_only, annotation_only or annotation_block flags exclude a node; card type 0000 alone does not.",
         "observations": sorted(excluded_annotations, key=lambda x: (x["source_text"], x["node_pointer"]))})
+    unresolved_document={'schema':'current-card-catalog-unresolved-identities-v1','count':len(unresolved_identities),'policy':catalogue_contracts.UNRESOLVED_POLICY,'observations':sorted(unresolved_identities,key=lambda x:(x['source_text'],x['node_pointer'])),'family_index':catalogue_contracts.family_index_for_observations(unresolved_identities)}
+    catalogue_contracts.validate_document(unresolved_document)
+    dump(notes_dir/'Unresolved identity occurrences.json',unresolved_document)
+    catalogue_contracts.validate_partition(node_partition,dict(count))
     (notes_dir / "README.txt").write_text(
         "CURRENT CARD-TYPE CATALOG\n"
         "Rebuild with tools/references/build_current_card_catalog.py from the reviewed export and content-data manifests.\n"
@@ -466,13 +572,14 @@ def main():
         source_inputs[binding["model"]] = binding["model_sha256"]
     for name in ("build_current_card_catalog.py", "verify_current_card_catalog.py", "verify_uniform_socket_listings.py", "current_card_identity.py"):
         relative = "tools/references/" + name
-        source_inputs[relative] = sha((repo / relative).read_bytes())
+        source_inputs[relative] = runtime_start[relative]
     for path in page_reader.runtime_paths(repo):
         source_inputs[path.relative_to(repo).as_posix()] = sha(path.read_bytes())
+    source_inputs.update(runtime_start)
     for relative, expected in source_inputs.items():
-        if sha(relative_path(repo, relative).read_bytes()) != expected:
+        if sha(source_input_path(repo,tools_root,relative).read_bytes()) != expected:
             raise ValueError("Catalogue source changed during build: " + relative)
-    report = {"schema": "current-card-catalog-build-v1", "source_binding": {
+    report = {"schema": "current-card-catalog-build-v2", "source_binding": {
         "reviewed_export_provenance_sha256": sha(provenance_raw),
         "content_data_manifest_sha256": sha(content_raw),
         "uniform_manifest_sha256": listing_authority["manifest"]["sha256"],
@@ -485,6 +592,8 @@ def main():
             "Visible port counts are not full card pinouts; unused inputs can be omitted.",
             "A1 part numbers and card widths are observed facts, not inferred from card-type digits.",
             "Current source references and review status are retained; Git holds version history."]}
+    report.update({'unresolved_identity_occurrences':{'path':'notes/Card types current/Unresolved identity occurrences.json','sha256':sha((notes_dir/'Unresolved identity occurrences.json').read_bytes())},'node_partition':sorted(node_partition,key=lambda x:(x['source_model'],x['node_pointer'])),'contracts':{'catalogue_identity_schema':{'path':'Contracts/catalogue_identity.schema.json','sha256':runtime_start['Contracts/catalogue_identity.schema.json']},'auxiliary_catalogue_contracts':{'path':'Contracts/auxiliary_catalogue_contracts.py','sha256':runtime_start['Contracts/auxiliary_catalogue_contracts.py']}}})
+    catalogue_contracts.validate_document(report)
     dump(notes_dir / "Build manifest.json", report)
     print(json.dumps({"card_types": len(cards), "counts": dict(count), "profiles": len(profiles_csv),
         "output": str(output)}, ensure_ascii=False))

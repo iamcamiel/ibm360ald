@@ -1,0 +1,151 @@
+{
+  "schema": "card-use-audit-v1",
+  "card_type": "0709",
+  "read_only": true,
+  "page_reader_tools": [
+    {
+      "path": "tools/card_ald/card_source.py",
+      "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+    },
+    {
+      "path": "tools/card_ald/pinless_alias.py",
+      "sha256": "806863390b039fe0a1e005366648e1df26991d1818fba1c7233305e4fa797aa0"
+    },
+    {
+      "path": "tools/normalization/pages.py",
+      "sha256": "c0889b45de15e009a35156bdbee524e29a777a127d89c82bac463afb530f1937"
+    },
+    {
+      "path": "tools/normalization/identity.py",
+      "sha256": "8a5c6a3965a8ea8a4544c4f7778ed31db61b8b6231141fe05a238381e4e25314"
+    },
+    {
+      "path": "tools/normalization/terminals.py",
+      "sha256": "9a914b0fc8970378510e18e7ca563054fa28741b61da929b0dd0967b32803f32"
+    }
+  ],
+  "catalog": {
+    "path": "json/Card types current/0709.json",
+    "sha256": "6c69f4e70fd6d17464ab5d0aaff9b872c521bfb474882b8a814f2dc43842a7ed"
+  },
+  "summary": {
+    "pages": 2,
+    "occurrences": 2,
+    "occurrence_statuses": {
+      "match": 2
+    },
+    "needs_review": 0,
+    "new_discrepancies": 0,
+    "source_uncertainties": 0,
+    "known_reviewed_source_corrections": 0,
+    "coverage_limitations": 0,
+    "coverage_limitation_categories": {},
+    "wiring_observations": {}
+  },
+  "identity_coverage": {
+    "catalogue_observations": 2,
+    "resolved_catalogue_observations": 2,
+    "source_observations": 2,
+    "exact_model_pointer_keys": 2,
+    "catalogue_coverage_issues": 0
+  },
+  "identity_adapter": {
+    "path": "tools/card_ald/card_source.py",
+    "sha256": "30e19b1f540f482bf378e2a501338cfc5bde5c74e54fe8bcd545fc7c8b2d779d"
+  },
+  "source_review_bindings": [
+    {
+      "path": "notes/Card types current/Build manifest.json",
+      "sha256": "e4ccd4115cc11a77328f98fdd123cb8c1da94d3e5e811ad4113ffaa93e504ed2"
+    },
+    {
+      "path": "notes/Reviewed export provenance.json",
+      "sha256": "d8082263c210c4568341224558732fb8d70d500bc3f5ceee5de3ff062346c0e4"
+    },
+    {
+      "path": "notes/Content data manifest.json",
+      "sha256": "bb2e9b3f0beff36553e2be9d1c9f5fcda62e74c62a4b9df696a0d6c0db16f059"
+    },
+    {
+      "path": "notes/Source status.json",
+      "sha256": "b2492356a0e9a0f58ed2af32998be8f0d021a2882db1484e12a6c2b79d12b88c"
+    }
+  ],
+  "review": [],
+  "coverage_limitations": [],
+  "occurrences": [
+    {
+      "page": "ED021",
+      "block": "DM",
+      "portion": "A1",
+      "location": "C-A2G6",
+      "model": "json/ED ROS Diagrams, Drivers/ED021 SELECT BUS BASE DRIVERS 00-04.json",
+      "model_sha256": "c75a1e8b67c63119cc721b1067eb7ae0ae308ba01f5b7bf71068571a6c7a3b5a",
+      "node_pointer": "/nodes/0",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "match",
+          "field": "function_and_decorations",
+          "observed": "PWR",
+          "expected": "PWR",
+          "reason": "Visible used-port function/polarity matches a declared complete notation form.",
+          "variant_number": 0
+        }
+      ],
+      "status": "match"
+    },
+    {
+      "page": "ED061",
+      "block": "DM",
+      "portion": "A1",
+      "location": "D-D2G6",
+      "model": "json/ED ROS Diagrams, Drivers/ED061 SELECT BUS BASE DRIVERS 00-04.json",
+      "model_sha256": "726b1b60aaa11dbbdb7dee67553d8946a699327f81fd39c4c8b94a6a9af45cbe",
+      "node_pointer": "/nodes/0",
+      "identity_adaptation": null,
+      "source_reviewed": true,
+      "source_review_inherited": false,
+      "findings": [
+        {
+          "status": "match",
+          "field": "function_and_decorations",
+          "observed": "PWR",
+          "expected": "PWR",
+          "reason": "Visible used-port function/polarity matches a declared complete notation form.",
+          "variant_number": 0
+        }
+      ],
+      "status": "match"
+    }
+  ],
+  "known_reviewed_source_corrections": [],
+  "wiring_observations": [],
+  "source_bindings": [
+    {
+      "path": "json/ED ROS Diagrams, Drivers/ED021 SELECT BUS BASE DRIVERS 00-04.json",
+      "sha256": "c75a1e8b67c63119cc721b1067eb7ae0ae308ba01f5b7bf71068571a6c7a3b5a"
+    },
+    {
+      "path": "json/ED ROS Diagrams, Drivers/ED061 SELECT BUS BASE DRIVERS 00-04.json",
+      "sha256": "726b1b60aaa11dbbdb7dee67553d8946a699327f81fd39c4c8b94a6a9af45cbe"
+    }
+  ],
+  "interpretation": [
+    "A report identifies source/model differences; it does not assert every flagged item is a transcription error.",
+    "Available unused inputs may be absent; power input annotations remain page-level ties.",
+    "Common-graph internal links are checked when the source model actually represents them; omitted source links are not invented or flagged.",
+    "AND/OR equivalence requires matching opposite input/output inversions, not merely interchangeable labels.",
+    "Scoped reviewed corrections affect this audit memory only, and require current model hashes."
+  ],
+  "definition": {
+    "path": "json/Card-ALD/definitions/0709.json",
+    "sha256": "08073134826f82444c0c3655bde5560556d7666aaf90b492c7eaeb586471a15f"
+  },
+  "overrides": {
+    "path": "json/Card-ALD/build-overrides/0709.json",
+    "sha256": "2cec28b7696b0fb9fa801bc98b4e7a7822dad4b895910ae664e8b812f86033ba"
+  }
+}

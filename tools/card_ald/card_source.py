@@ -484,6 +484,17 @@ def physical_contact(raw):
     return match.group("pin") if match else None
 
 
+def unresolved_physical_terminal(port):
+    """Explicit source uncertainty is neither a contact nor an anonymous port.
+
+    This uses declared/canonical status only; printed spelling and aliases do
+    not establish a physical identity or an anonymous-terminal role.
+    """
+    return (any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred'))
+            or any(port.get(k)=='explicitly-unresolved' for k in
+                   ('_pin_number_status','pin_status','physical_pin_status')))
+
+
 def physical_readings(port):
     """Current physical contact separately from preserved printed symbols.
 
@@ -492,8 +503,8 @@ def physical_readings(port):
     Conflicting active physical fields still return all candidates. Legacy
     external fixtures retain strict printed/physical mirror comparison.
     """
+    if unresolved_physical_terminal(port):return {}
     if '_pin_number_status' in port:
-        if any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred')):return {}
         if port['_pin_number_status']=='observed' and physical_contact(port.get('_pin_number')):
             return {'uniform_pin_number':physical_contact(port['_pin_number'])}
         fields=('physical_pin','physical_pin_candidate','pin')
@@ -664,7 +675,7 @@ def documentary_occurrence_net_role(port):
 
 def pinless_terminal(port):
     """Anonymous port or an exact separately reviewed wire annotation."""
-    if any(port.get(k) is True for k in ('source_unknown_pin','pin_inferred')):return False
+    if unresolved_physical_terminal(port):return False
     if terminal_contact(port) is not None:return False
     label=port.get('pin')
     if label is None or str(label).strip()=='' or re.fullmatch(r'(?:IN|OUT)\d*|[AB]|(?:input|output)\d*',str(label),re.I):return True
@@ -677,8 +688,27 @@ def pinless_terminal(port):
 
 def attach_typed_terminals(occurrence,node):
     """Attach current uniform fields only to the exact same literal terminals."""
+    for target_key,source_key in (('node_pointer','_source_pointer'),('_source_pointer','_source_pointer')):
+        if occurrence.get(target_key) is not None and node.get(source_key) is not None and occurrence[target_key]!=node[source_key]:
+            raise ValueError('Typed terminal association differs from exact source node pointer')
+    target_node=occurrence.get('node',occurrence.get('id'))
+    if target_node is not None and node.get('id') is not None and target_node!=node['id']:
+        raise ValueError('Typed terminal association differs from exact source node ID')
+    if len(occurrence.get('pins',[]))!=len(node.get('pins',[])):
+        raise ValueError('Typed terminal association requires the complete ordered source terminal list')
     for port,current in zip(occurrence.get('pins',[]),node.get('pins',[])):
-        if any(port.get(k)!=current.get(k) for k in ('side','pin','row','triangle')):continue
+        if any(port.get(k)!=current.get(k) for k in ('side','pin','row','triangle')):
+            raise ValueError('Typed terminal association contradicts exact ordered literal source slot')
+        if port.get('_terminal_id') is not None and current.get('_terminal_id') is not None and port['_terminal_id']!=current['_terminal_id']:
+            raise ValueError('Typed terminal association contradicts canonical terminal ID')
+        if port.get('printed_pin') is not None and current.get('printed_pin') is not None and port['printed_pin']!=current['printed_pin']:
+            raise ValueError('Typed terminal association contradicts exact ordered printed literal')
+        # These source statuses must survive a catalogue projection. Copy by
+        # exact ordered source slot, including multiple null terminals; never
+        # group null ports or interpret the printed glyph as a contact.
+        for key in ('source_unknown_pin','pin_inferred','pin_status','physical_pin_status'):
+            if key in current:port[key]=deepcopy(current[key])
+            else:port.pop(key,None)
         for key in ('_pin_number_status','_pin_number','_terminal_id','_border_decorations','_symbols','_reviewed_pinless_control',_unprinted_alias.KEY):
             if key in current:port[key]=deepcopy(current[key])
         if terminal_contact_role(current)=='nonlogical_common':
