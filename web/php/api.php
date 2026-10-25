@@ -11,12 +11,14 @@ if (function_exists('set_time_limit')) @set_time_limit(180);
 try {
     $root = $aldRepositoryRoot ?? dirname(__DIR__, 2);
     $store = new \ALDbrowser\Store($root);
-    $id = $_GET['entry'] ?? $_GET['interaction'] ?? null;
+    $id = $_GET['entry'] ?? $_GET['interaction'] ?? $_GET['text'] ?? null;
     if ($id !== null && (!is_string($id) || !preg_match('/^[a-f0-9]{64}$/D', $id))) {
         http_response_code(400); throw new InvalidArgumentException('Invalid page identity.');
     }
     $catalogue = $store->catalogue($id);
-    if (isset($_GET['interaction'])) $response = \ALDbrowser\interactions($store, $store->page($id, $catalogue), $catalogue);
+    if (isset($_GET['text'])) {
+        $text=$store->text($store->page($id,$catalogue));header('Content-Type: text/plain; charset=utf-8');echo $text;exit;
+    } elseif (isset($_GET['interaction'])) $response = \ALDbrowser\interactions($store, $store->page($id, $catalogue), $catalogue);
     elseif ($id !== null) $response = \ALDbrowser\public_entry($store->page($id, $catalogue));
     else {
         $response = $catalogue; unset($response['signature']);

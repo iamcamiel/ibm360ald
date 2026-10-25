@@ -17,7 +17,7 @@ export async function readCurrentPage(initial, {catalogueURL, signal, fetcher = 
   let page = await metadata(initial);
   for (let attempt = 0; attempt < 2; attempt++) {
     const url = new URL(page.url, catalogueURL);
-    if (url.origin !== catalogueURL.origin || !url.pathname.startsWith(base.pathname) || !url.pathname.endsWith('.txt')) throw new Error('The selected page has an invalid text URL.');
+    if (url.origin !== catalogueURL.origin || !url.pathname.startsWith(base.pathname) || !(url.pathname.endsWith('.txt') || (url.pathname === catalogueURL.pathname && url.searchParams.get('text') === page.id))) throw new Error('The selected page has an invalid text URL.');
     const response = await fetcher(url, {signal, cache:attempt ? 'reload':'default'});
     if (!response.ok) throw new Error(`Page ${page.page} could not be loaded (${response.status}).`);
     const verified = await readVerifiedText(await response.arrayBuffer(), page.textSha256, crypto);

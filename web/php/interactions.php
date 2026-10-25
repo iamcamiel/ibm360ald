@@ -223,6 +223,13 @@ function ensure_graph(Store $store,array $catalogue): void {
         $outputs=[];$pending=[];$labels=[];$pageCodes=[];
         foreach($catalogue['pages']as$entry){
             $pageCodes[$entry['id']]=$entry['displayPage']??$entry['page'];if($entry['type']!=='ald')continue;
+            if(isset($entry['_v4'])){
+                $doc=$store->document($entry);$native=$entry['_v4'];
+                foreach($native['nets']as$n){$key=graph_key($entry['id'],$n['id']);$labels[$key]=$n['label'];}
+                foreach($doc['outputs']as$o){$m=page_reference($o['net number']);if($m&&isset($m[2]))$outputs[$m[1].'.'.$m[2].'.'.(int)$m[3]][graph_key($entry['id'],$o['net number'])]=true;}
+                foreach($native['nets']as$n)if(count($n['sourceReferences'])===1)$pending[graph_key($entry['id'],$n['id'])]=$n['sourceReferences'][0];
+                continue;
+            }
             $raw=raw_model($store->document($entry));if(empty($raw['nodes'])&&empty($raw['wire_paths']))continue;
             $nodes=[];foreach($raw['nodes']??[]as$n)if(is_array($n))$nodes[(string)($n['id']??'')]=$n;
             foreach($raw['nets']??[]as$i=>$record){
@@ -263,8 +270,30 @@ function basic_blocks(Store $store,array $entry): array {
         $blocks[]=['id'=>(string)$n['id'],'label'=>(string)$n['id'].' · '.(string)($n['function']??''),'cardType'=>(string)($n['card_type']??''),'portion'=>(string)($n['portion']??''),'site'=>$loc,'box'=>$box,'_board'=>$board,'_sockets'=>$sockets];}
     return$blocks;
 }
+
+function native_interactions(Store $store,array $entry,array $catalogue): array {
+    // Validate the current model AND sidecar before using the rendered cache.
+    $store->text($entry); ensure_graph($store,$catalogue);
+    $graph=$store->get('graph-page-'.$catalogue['revision'].'-'.$entry['id']);
+    $byId=[];$pages=[];foreach($catalogue['pages']as$e){$byId[$e['id']]=$e;$pages[$e['page']][]=$e['id'];}
+    $nets=$entry['_v4']['nets'];
+    foreach($nets as&$net){$links=[];$linked=[];
+        if(isset($graph['components'][$net['id']]))foreach($store->get('component-'.$catalogue['revision'].'-'.$graph['components'][$net['id']])['items']as$other){
+            if($other['pageId']===$entry['id']&&$other['id']===$net['id'])continue;
+            $links[]=['pageId'=>$other['pageId'],'selection'=>['kind'=>'net','id'=>$other['id']],'label'=>$other['label'],'direction'=>$other['direction']];$linked[$byId[$other['pageId']]['page']]=true;
+        }
+        if(isset($graph['unresolved'][$net['id']])){$ref=$graph['unresolved'][$net['id']];$net['notes'][]='Source reference '.$ref.' has no unique published driving net.';$m=page_reference($ref);if($m)$net['destinationPages'][]=$m[1];}
+        foreach(array_unique($net['destinationPages'])as$page){if(isset($linked[$page]))continue;$ids=$pages[$page]??[];
+            if(count($ids)===1)$links[]=['pageId'=>$ids[0],'selection'=>null,'label'=>$page,'direction'=>'destination','note'=>'Explicit page reference; target net is not uniquely located.'];
+            else$net['notes'][]='Referenced page '.$page.' is unavailable or ambiguous.';
+        }
+        unset($net['identity'],$net['destinationPages'],$net['sourceReferences']);if($links)$net['links']=$links;
+    }unset($net);
+    return ['schema'=>'aldbrowser-interactions-v1','format'=>'v4','textSha256'=>$entry['textSha256'],'modelSha256'=>$entry['modelSha256'],'nets'=>$nets,'blocks'=>$entry['_v4']['blocks']];
+}
 function interactions(Store $store,array $entry,array $catalogue): array {
     if (!$entry['_sourcePairCurrent']) throw new \RuntimeException('The page JSON/text publication is incomplete. Retry after both files and Source status are published.');
+    if(isset($entry['_v4']))return native_interactions($store,$entry,$catalogue);
     $key='payload-'.$catalogue['revision'].'-'.$entry['id'];$cached=$store->get($key);if($cached!==null)return$cached;
     $payload=['schema'=>'aldbrowser-interactions-v1','textSha256'=>$entry['textSha256']];$byId=[];$pages=[];$cards=[];
     foreach($catalogue['pages']as$e){$byId[$e['id']]=$e;if($e['type']==='card-ald'){if($e['variant']===null)$cards[$e['cardType']]=$e;}else$pages[$e['page']][]=$e['id'];}

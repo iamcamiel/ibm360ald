@@ -118,7 +118,7 @@ function updateDownloads(page) {
   for (const [kind,relative,name] of [['txt',page.url,page.txtDownloadName],['json',page.jsonURL,page.jsonDownloadName]]) {
     const link=$(`download-${kind}`);
     const url=relative ? new URL(relative,catalogueURL) : null;
-    const valid=url && url.origin===location.origin && url.pathname.startsWith(new URL('.',catalogueURL).pathname) && url.pathname.endsWith(`.${kind}`);
+    const valid=url && url.origin===location.origin && url.pathname.startsWith(new URL('.',catalogueURL).pathname) && (url.pathname.endsWith(`.${kind}`) || (kind === 'txt' && url.pathname === catalogueURL.pathname && url.searchParams.get('text') === page.id));
     link.setAttribute('aria-disabled',String(!valid));link.tabIndex=valid?0:-1;
     if(valid) {
       link.href=url.href;link.download=name || `${pageCode(page)}.${kind}`;
@@ -149,7 +149,8 @@ async function loadPage(page, historyMode = 'push', selection = null) {
     $('ald-text').textContent = text;
     const grid = countGrid(text);
     state.page = { ...page, ...grid };
-    $('page-approved').hidden = !(page.userApproved === true && verified.interactionsAllowed);
+    $('page-approved').hidden = !(page.format !== 'v4' && page.userApproved === true && verified.interactionsAllowed);
+    $('page-format').hidden = page.format !== 'v4';
     state.metrics = null;
     $('sheet').hidden = false;
     $('sheet').setAttribute('aria-label', `${pageCode(page)} — ${page.title}`);
@@ -179,7 +180,7 @@ async function loadPage(page, historyMode = 'push', selection = null) {
       if (page.interactionURL) notify('Loading page links…');
       await interactionView.load(page,text,selection);
     }
-    if(state.request === request)notify(verified.notice);
+    if(state.request === request)notify(verified.notice || (page.format === 'v4' ? `Functional v4 · Review: ${page.reviewStatus} · ${page.unresolvedCount} unresolved observations. No source approval inferred.` : ''));
   } catch (error) {
     if (error.name !== 'AbortError' && state.request === request) {
       if (state.page) updatePageSelectors(state.page);

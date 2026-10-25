@@ -2,10 +2,11 @@
 declare(strict_types=1);
 
 namespace ALDbrowser;
+require_once __DIR__.'/strict-json.php';
 
 // The repository files are authoritative. These caches live outside the clone.
 function json_read(string $file): array {
-    $value = json_decode((string)file_get_contents($file), true, 512, JSON_THROW_ON_ERROR);
+    $value = strict_json_decode((string)file_get_contents($file),true);
     if (!is_array($value)) throw new \RuntimeException('Expected JSON data.');
     return $value;
 }
@@ -60,13 +61,38 @@ function content_digest($document): string {
 }
 function approved_content(string $bytes): bool {
     try {
-        $document=json_decode($bytes,false,512,JSON_THROW_ON_ERROR);$review=$document->review??null;
+        $document=strict_json_decode($bytes,false);$review=$document->review??null;
         return ($document->schema??'')==='ibm360-ald-page-v3' && ($review->user_approved??false)===true &&
             ($review->status??'')==='approved' && is_string($review->approval_statement??null) && trim($review->approval_statement)!=='' &&
             is_string($review->approved_at??null) && hash_equals($review->content_sha256??'',content_digest($document));
     } catch (\Throwable $error) { return false; }
 }
 
+
+const V4_SCHEMA = 'https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json';
+function is_v4(array $model): bool { return ($model['$schema']??null)===V4_SCHEMA; }
+function v4_review_signature(string $path): array {
+    $model=json_read($path); if(!is_v4($model))return [];
+    $ref=$model['review']['details']??null;
+    if($ref===null)return [hash_file('sha256',$path),null];
+    if(!is_string($ref)||!preg_match('~^(?!/)(?!.*(?:^|/)\.{1,2}(?:/|$))[^\\\\:\x00]+$~D',$ref))throw new \RuntimeException('Unsafe review details path.');
+    $target=realpath(dirname($path).'/'.$ref);$base=realpath(dirname($path));
+    if($target===false||!is_file($target)||strpos($target,$base.DIRECTORY_SEPARATOR)!==0)throw new \RuntimeException('Review details are missing or outside the page directory.');
+    return [hash_file('sha256',$path),hash_file('sha256',$target)];
+}
+function v4_renderer_path(): string { return getenv('ALDBROWSER_V4_RENDERER')?:dirname(__DIR__,2).'/tools/ald_render.py'; }
+function native_v4_view(string $path): array {
+    $python=getenv('ALDBROWSER_PYTHON')?:(PHP_OS_FAMILY==='Windows'?'python':'python3');
+    $renderer=v4_renderer_path();
+    if(!is_file($renderer)||@hash_file('sha256',$renderer)===false)throw new \RuntimeException('Configure ALDBROWSER_V4_RENDERER to the qualified standalone renderer.');
+    $pipes=[];$process=proc_open([$python,'-B','-X','utf8',__DIR__.'/v4_view.py',$path,$renderer],[0=>['pipe','r'],1=>['pipe','w'],2=>['pipe','w']],$pipes);
+    if(!is_resource($process))throw new \RuntimeException('Could not start the functional page renderer.');
+    fclose($pipes[0]);$result=stream_get_contents($pipes[1]);fclose($pipes[1]);$error=stream_get_contents($pipes[2]);fclose($pipes[2]);$code=proc_close($process);
+    if($code!==0){error_log($error);throw new \RuntimeException('Functional page or content-bound review is invalid.');}
+    $value=json_decode($result,true,512,JSON_THROW_ON_ERROR);
+    if(($value['format']??null)!=='v4'||!is_string($value['text']??null))throw new \RuntimeException('Invalid functional renderer response.');
+    return $value;
+}
 final class Store {
     public string $root;
     public string $cache;
@@ -74,7 +100,7 @@ final class Store {
     public function __construct(string $root, ?string $cache = null) {
         $this->root = (string)realpath($root);
         if ($this->root === '') throw new \RuntimeException('Repository is unavailable.');
-        $this->engine = hash('sha256', file_get_contents(__FILE__) . file_get_contents(__DIR__ . '/interactions.php'));
+        $this->engine = hash('sha256', file_get_contents(__FILE__) . file_get_contents(__DIR__ . '/interactions.php') . file_get_contents(__DIR__.'/v4_view.py') . file_get_contents(__DIR__.'/strict-json.php') . (is_file(v4_renderer_path())?(@hash_file('sha256',v4_renderer_path())?:'renderer-unavailable'):'renderer-unavailable'));
         $this->cache = $cache ?? (getenv('ALDBROWSER_CACHE_DIR') ?: sys_get_temp_dir() . '/aldbrowser-' . substr(hash('sha256', $this->root), 0, 24));
         if (!is_dir($this->cache) && !@mkdir($this->cache, 0700, true) && !is_dir($this->cache)) {
             throw new \RuntimeException('ALDbrowser needs a writable temporary cache directory.');
@@ -109,6 +135,7 @@ final class Store {
             $tp = str_replace('\\', '/', $record['repository']['txt']['path']);
             if (strpos($jp, 'json/') !== 0 || substr($jp, -5) !== '.json' || strpos($tp, 'ALD/') !== 0 || substr($tp, -4) !== '.txt' || isset($specs[hash('sha256',$jp)])) throw new \RuntimeException('Invalid or repeated published page identity.');
             $id = hash('sha256', $jp); $sig = [$this->statKey($jp), $this->statKey($tp), $record['page'], $record['repository']['json']['sha256'], $record['repository']['txt']['sha256']];
+            $sig[]=v4_review_signature(source_path($this->root,$jp));
             $specs[$id] = ['id'=>$id, 'model'=>$jp, 'text'=>$tp, 'record'=>$record, 'sig'=>$sig];
             $signatures[] = $sig;
         }
@@ -120,6 +147,7 @@ final class Store {
                 if (is_file($this->root . '/' . $candidate)) { $jp = $candidate; break; }
             }
             $id = hash('sha256', $tp); $sig = [$this->statKey($tp), $jp ? $this->statKey($jp) : null];
+            $sig[]=v4_review_signature(source_path($this->root,$jp));
             $specs[$id] = ['id'=>$id, 'model'=>$jp, 'text'=>$tp, 'card'=>$m[1], 'variant'=>$m[2] ?? null, 'sig'=>$sig];
             $signatures[] = $sig;
         }
@@ -157,26 +185,35 @@ final class Store {
     private function entry(array $spec): array {
         $text = file_get_contents(source_path($this->root,$spec['text'])); $rows = lines($text); $sha = hash('sha256',$text);
         $modelBytes = $spec['model'] ? file_get_contents(source_path($this->root,$spec['model'])) : null;
-        $model = $modelBytes !== null ? json_decode($modelBytes, true, 512, JSON_THROW_ON_ERROR) : [];
+        $model = $modelBytes !== null ? strict_json_decode($modelBytes,true) : [];
+        if(array_key_exists('$schema',$model)&&!is_v4($model))throw new \RuntimeException('Unsupported functional page schema.');
         $msha = $modelBytes !== null ? hash('sha256',$modelBytes) : null;
+        $reviewBefore=is_v4($model)?v4_review_signature(source_path($this->root,$spec['model'])):null;
+        $v4=is_v4($model)?native_v4_view(source_path($this->root,$spec['model'])):null;
+        if($v4!==null&&($v4['modelSha256']!==$msha||$reviewBefore!==v4_review_signature(source_path($this->root,$spec['model']))))throw new \RuntimeException('Page or review changed while rendering. Retry.');
+        $publishedSha=$sha;
+        if($v4!==null){$text=$v4['text'];$rows=lines($text);$sha=$v4['textSha256'];}
         $fileCode = explode(' ',pathinfo($spec['text'],PATHINFO_FILENAME),2)[0]; $card = $spec['card'] ?? null;
         $page = $card !== null ? pathinfo($spec['text'],PATHINFO_FILENAME) : $spec['record']['page'];
+        if($v4!==null&&$v4['page']!==$page)throw new \RuntimeException('Functional page identity does not match the catalogue.');
         $title = $card !== null ? ($spec['variant']!==null ? 'Symbol variant '.$spec['variant'] : 'Canonical pinout') :
             ($model['page']['title'] ?? $model['current_extensions']['title'] ?? (explode(' ',pathinfo($spec['text'],PATHINFO_FILENAME),2)[1] ?? pathinfo($spec['text'],PATHINFO_FILENAME)));
+        if(is_array($title))$title=implode(' ',$title);
         $subpage = null; if ($card===null && preg_match('/^'.preg_quote($page,'/').'-(\d+)$/D',$fileCode,$m)) $subpage=$m[1];
         $displayTitle = $title;
         if ($subpage!==null && !preg_match('/\bpage\s*0*'.(int)$subpage.'\b/i',$title)) $displayTitle.=' page '.$subpage;
         $parts=explode('/',$spec['text']); $section=$card!==null?'Card ALD':implode('/',array_slice($parts,1,-1));
-        $e=['id'=>$spec['id'],'page'=>$page,'title'=>$title,'section'=>$section,'type'=>$card!==null?'card-ald':$model['current_extensions']['page_type'],
-            'rows'=>count($rows),'columns'=>$rows ? max(array_map(__NAMESPACE__.'\\ulen',$rows)):0,'url'=>source_url($spec['text'],$sha),
+        $e=['id'=>$spec['id'],'page'=>$page,'title'=>$title,'section'=>$section,'type'=>$card!==null?'card-ald':($v4!==null?'ald':($model['current_extensions']['page_type']??'ald')),
+            'rows'=>count($rows),'columns'=>$rows ? max(array_map(__NAMESPACE__.'\\ulen',$rows)):0,'url'=>$v4!==null?'catalogue.php?text='.$spec['id'].'&v='.$sha:source_url($spec['text'],$sha),
             'textSha256'=>$sha,'modelSha256'=>$card!==null?null:$msha,'grid'=>['columnPitch'=>20,'rowPitch'=>30],
             'originalScan'=>null,'txtDownloadName'=>basename($spec['text']),'entryURL'=>'catalogue.php?entry='.$spec['id'],
             '_text'=>$spec['text'],'_model'=>$spec['model']];
         if ($card!==null) { $e['cardType']=$card;$e['variant']=$spec['variant']; }
         else { $e['displayPage']=$subpage!==null?$fileCode:$page;$e['displayTitle']=$displayTitle;$e['subpage']=$subpage; }
         if ($spec['model']) { $e['jsonURL']=source_url($spec['model'],$msha);$e['jsonSha256']=$msha;$e['jsonDownloadName']=$card!==null?$card.'.json':basename($spec['model']); }
-        $e['_sourcePairCurrent']=$card!==null || ($spec['record']['repository']['json']['sha256']===$msha && $spec['record']['repository']['txt']['sha256']===$sha);
-        $e['userApproved']=$card===null && $e['_sourcePairCurrent'] && approved_content($modelBytes);
+        $e['_sourcePairCurrent']=$card!==null || ($spec['record']['repository']['json']['sha256']===$msha && $spec['record']['repository']['txt']['sha256']===$publishedSha);
+        if($v4!==null){$e['format']='v4';$e['reviewStatus']=$v4['reviewStatus'];$e['reviewBound']=$v4['reviewBound'];$e['unresolvedCount']=$v4['unresolvedCount'];$e['_v4']=$v4;$e['_reviewSignature']=v4_review_signature(source_path($this->root,$spec['model']));}
+        $e['userApproved']=$v4===null && $card===null && $e['_sourcePairCurrent'] && approved_content($modelBytes);
         return $e;
     }
     public function page(string $id, array $catalogue): array {
@@ -187,9 +224,14 @@ final class Store {
         if (!$entry['_model']) return [];
         $p=source_path($this->root,$entry['_model']);$data=file_get_contents($p);
         if (hash('sha256',$data)!==$entry['jsonSha256']) throw new \RuntimeException('Page changed while loading. Please retry.');
-        return json_decode($data,true,512,JSON_THROW_ON_ERROR);
+        return strict_json_decode($data,true);
     }
     public function text(array $entry): string {
+        if(isset($entry['_v4'])){
+            $this->document($entry);
+            if(v4_review_signature(source_path($this->root,$entry['_model']))!==$entry['_reviewSignature'])throw new \RuntimeException('Review changed while loading. Please retry.');
+            return $entry['_v4']['text'];
+        }
         $data=file_get_contents(source_path($this->root,$entry['_text']));
         if (hash('sha256',$data)!==$entry['textSha256']) throw new \RuntimeException('Page changed while loading. Please retry.');
         return $data;
