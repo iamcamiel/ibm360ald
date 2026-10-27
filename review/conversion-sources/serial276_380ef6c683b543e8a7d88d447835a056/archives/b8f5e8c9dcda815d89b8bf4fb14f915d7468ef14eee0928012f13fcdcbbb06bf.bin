@@ -1,0 +1,4809 @@
+{
+  "$defs": {
+    "card_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "card_type": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "parse_status": {
+          "type": "string"
+        },
+        "portion": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "unparsed_identity_labels": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "parse_status"
+      ],
+      "type": "object"
+    },
+    "circuit": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "parse_status": {
+          "type": "string"
+        },
+        "unparsed_technology": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parse_status"
+      ],
+      "type": "object"
+    },
+    "current_crossing": {
+      "additionalProperties": false,
+      "properties": {
+        "column": {
+          "type": "integer"
+        },
+        "joined": {
+          "type": "boolean"
+        },
+        "nets": {
+          "type": "array"
+        },
+        "row": {
+          "type": "integer"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "current_junction": {
+      "additionalProperties": false,
+      "properties": {
+        "atlas": {
+          "type": "string"
+        },
+        "candidate": {
+          "type": "string"
+        },
+        "column": {
+          "type": "integer"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "glyph": {
+          "type": "string"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "native_classifier_score": {
+          "type": "number"
+        },
+        "neighbors": {
+          "type": "array"
+        },
+        "net": {
+          "type": "string"
+        },
+        "nets": {
+          "type": "array"
+        },
+        "point": {
+          "type": "array"
+        },
+        "printed_symbol": {
+          "type": "string"
+        },
+        "review": {
+          "type": "string"
+        },
+        "row": {
+          "type": "integer"
+        },
+        "source_evidence": {
+          "type": "string"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "source_role": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uncertain_junction": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "current_label": {
+      "additionalProperties": false,
+      "properties": {
+        "column": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "duplicate_of": {
+          "type": "string"
+        },
+        "final_id": {
+          "type": "string"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "grid": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "native_fragment": {
+          "type": "string"
+        },
+        "native_hanging": {
+          "type": "boolean"
+        },
+        "original_column": {
+          "type": "integer"
+        },
+        "original_row": {
+          "type": "integer"
+        },
+        "physical_legibility": {
+          "type": "string"
+        },
+        "physical_legibility_asserted": {
+          "type": "boolean"
+        },
+        "physical_source_fragment": {
+          "type": "string"
+        },
+        "physical_source_fragments": {
+          "type": "array"
+        },
+        "pin_label": {
+          "type": "boolean"
+        },
+        "pin_reference": {
+          "type": "string"
+        },
+        "printed_reference_stub": {
+          "type": "boolean"
+        },
+        "reading_provenance": {
+          "type": "string"
+        },
+        "reference": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "row": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "source_derived_recoveries": {
+          "type": "array"
+        },
+        "source_derived_recovery_id": {
+          "type": "string"
+        },
+        "source_evidence": {
+          "type": "string"
+        },
+        "source_literal_diamond_separators": {
+          "type": "boolean"
+        },
+        "source_observations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "field": {
+                "enum": [
+                  "$value",
+                  "column",
+                  "duplicate_of",
+                  "final_id",
+                  "fixed",
+                  "grid",
+                  "kind",
+                  "literal",
+                  "name",
+                  "native_fragment",
+                  "native_hanging",
+                  "original_column",
+                  "original_row",
+                  "physical_legibility",
+                  "physical_legibility_asserted",
+                  "physical_source_fragment",
+                  "physical_source_fragments",
+                  "pin_label",
+                  "pin_reference",
+                  "printed_reference_stub",
+                  "reading_provenance",
+                  "reference",
+                  "role",
+                  "row",
+                  "source_derived_recoveries",
+                  "source_derived_recovery_id",
+                  "source_evidence",
+                  "source_literal_diamond_separators",
+                  "source_output_name_separator",
+                  "source_reviewed",
+                  "status",
+                  "text"
+                ]
+              },
+              "value": {}
+            },
+            "required": [
+              "field",
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "source_output_name_separator": {
+          "type": "boolean"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "current_net": {
+      "additionalProperties": false,
+      "properties": {
+        "K_endpoint_relationship": {
+          "type": "string"
+        },
+        "additional_driver_outputs": {
+          "type": "array"
+        },
+        "additional_driver_pins": {
+          "type": "array"
+        },
+        "additional_driver_ports": {
+          "type": "array"
+        },
+        "additional_driver_sources": {
+          "type": "array"
+        },
+        "additional_drivers": {
+          "type": "array"
+        },
+        "additional_external_source_references": {
+          "type": "array"
+        },
+        "additional_external_sources": {
+          "type": "array"
+        },
+        "additional_physical_driver_ports": {
+          "type": "array"
+        },
+        "additional_printed_driver": {
+          "type": "string"
+        },
+        "additional_printed_origin": {
+          "type": "string"
+        },
+        "additional_printed_origins": {
+          "type": "array"
+        },
+        "additional_printed_output_coordinates": {
+          "type": "object"
+        },
+        "additional_printed_outputs": {
+          "type": "array"
+        },
+        "additional_printed_source": {
+          "type": "object"
+        },
+        "additional_same_block_drivers": {
+          "type": "array"
+        },
+        "additional_source_drivers": {
+          "type": "array"
+        },
+        "additional_source_labels": {
+          "type": "array"
+        },
+        "association_kind": {
+          "type": "string"
+        },
+        "audit_status": {
+          "type": "string"
+        },
+        "bit": {
+          "type": "string"
+        },
+        "bottom_connector": {
+          "type": "string"
+        },
+        "bottom_row": {
+          "type": "integer"
+        },
+        "bottom_source_reference": {
+          "type": "string"
+        },
+        "bounds": {
+          "type": "array"
+        },
+        "bus_column": {
+          "type": "integer"
+        },
+        "bus_number": {
+          "type": "integer"
+        },
+        "candidate_driver": {
+          "type": "string"
+        },
+        "candidate_edges": {
+          "type": "array"
+        },
+        "candidate_edges_including_uncertainties": {
+          "type": "array"
+        },
+        "candidate_fragment_association": {
+          "type": "object"
+        },
+        "candidate_fragment_associations": {
+          "type": "array"
+        },
+        "candidate_origins": {
+          "type": "array"
+        },
+        "ce": {
+          "type": "integer"
+        },
+        "cells": {
+          "type": "integer"
+        },
+        "classification": {
+          "type": "string"
+        },
+        "co_drivers": {
+          "type": "array"
+        },
+        "common_same_block_outputs": {
+          "type": "boolean"
+        },
+        "commoned_nonlogical_ports": {
+          "type": "array"
+        },
+        "commoned_output_drivers": {
+          "type": "array"
+        },
+        "commoned_output_owner": {
+          "type": "string"
+        },
+        "commoned_output_ports": {
+          "type": "array"
+        },
+        "commoned_outputs": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "commoned_outputs_evidence": {
+          "type": "string"
+        },
+        "commoning_evidence": {
+          "type": "string"
+        },
+        "connected": {
+          "type": "boolean"
+        },
+        "connected_role_unresolved_ports": {
+          "type": "array"
+        },
+        "connection_kind": {
+          "type": "string"
+        },
+        "connectivity_certified": {
+          "type": "boolean"
+        },
+        "connectivity_verified": {
+          "type": "boolean"
+        },
+        "connector": {
+          "type": "string"
+        },
+        "connector_pin": {
+          "type": "string"
+        },
+        "connectors": {
+          "type": "array"
+        },
+        "declared_physical_output_drivers": {
+          "type": "array"
+        },
+        "designation": {
+          "type": "string"
+        },
+        "destination": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "destination_ce": {
+          "type": "integer"
+        },
+        "destination_id": {
+          "type": "string"
+        },
+        "destination_identity_note": {
+          "type": "string"
+        },
+        "destination_label": {
+          "type": "string"
+        },
+        "destination_page": {
+          "type": "string"
+        },
+        "destination_pin": {
+          "type": "string"
+        },
+        "destination_reference": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "destinations": {
+          "type": "array"
+        },
+        "detached_fanout_count_columns": {
+          "type": "array"
+        },
+        "diagram_row": {
+          "type": "integer"
+        },
+        "direction": {
+          "type": "string"
+        },
+        "documented_exception": {
+          "type": "string"
+        },
+        "documented_local_jumper": {
+          "type": "boolean"
+        },
+        "documented_unused_local_jumper": {
+          "type": "boolean"
+        },
+        "downstream_status": {
+          "type": "string"
+        },
+        "drawn": {
+          "type": "boolean"
+        },
+        "driver": {
+          "type": [
+            "null",
+            "object",
+            "string"
+          ]
+        },
+        "driver_aliases": {
+          "type": "array"
+        },
+        "driver_condition": {
+          "type": "string"
+        },
+        "driver_coordinate": {
+          "type": "array"
+        },
+        "driver_exemption": {
+          "type": "string"
+        },
+        "driver_interpretation": {
+          "type": "string"
+        },
+        "driver_label_verified": {
+          "type": "boolean"
+        },
+        "driver_note": {
+          "type": "string"
+        },
+        "driver_ownership": {
+          "type": "string"
+        },
+        "driver_physical_legibility_asserted": {
+          "type": "boolean"
+        },
+        "driver_reading_provenance": {
+          "type": "string"
+        },
+        "driver_role": {
+          "type": "string"
+        },
+        "driver_scope": {
+          "type": "string"
+        },
+        "driver_source_derived_recovery": {
+          "type": "boolean"
+        },
+        "drivers": {
+          "type": "array"
+        },
+        "edges": {
+          "type": "array"
+        },
+        "electrical_continuity_verified": {
+          "type": "boolean"
+        },
+        "electrical_driver_status": {
+          "type": "string"
+        },
+        "electrical_driver_unresolved": {
+          "type": "boolean"
+        },
+        "electrical_role_verified": {
+          "type": "boolean"
+        },
+        "entry_pin": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "string"
+        },
+        "exception": {
+          "type": "string"
+        },
+        "external": {
+          "type": [
+            "array",
+            "null",
+            "object",
+            "string"
+          ]
+        },
+        "external_aliases": {
+          "type": "array"
+        },
+        "external_continuation": {
+          "type": "string"
+        },
+        "external_destinations": {
+          "type": "array"
+        },
+        "external_input": {
+          "type": "object"
+        },
+        "external_left": {
+          "type": "array"
+        },
+        "external_origin_point": {
+          "type": "array"
+        },
+        "external_origin_references": {
+          "type": "array"
+        },
+        "external_output_only": {
+          "type": "boolean"
+        },
+        "external_outputs": {
+          "type": "array"
+        },
+        "external_points": {
+          "type": "array"
+        },
+        "external_references": {
+          "type": "array"
+        },
+        "external_right": {
+          "type": "array"
+        },
+        "external_source_drivers": {
+          "type": "array"
+        },
+        "external_source_signal": {
+          "type": "string"
+        },
+        "fanout_column": {
+          "type": "integer"
+        },
+        "floating_input_jumper": {
+          "type": "boolean"
+        },
+        "fragment_ownership": {
+          "type": "string"
+        },
+        "from_reference": {
+          "type": "string"
+        },
+        "from_signal": {
+          "type": "string"
+        },
+        "geometric_connectivity": {
+          "type": "string"
+        },
+        "geometric_label_bridges": {
+          "type": "array"
+        },
+        "grounded_pins": {
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "independent_root_source_confirmation": {
+          "type": "boolean"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "input_ownership_verified": {
+          "type": "boolean"
+        },
+        "input_pin": {
+          "type": "string"
+        },
+        "input_row": {
+          "type": "integer"
+        },
+        "input_signal": {
+          "type": "string"
+        },
+        "interpretation": {
+          "type": "string"
+        },
+        "isolated_native_segment": {
+          "type": "boolean"
+        },
+        "isolated_terminal": {
+          "type": "boolean"
+        },
+        "join_column": {
+          "type": "integer"
+        },
+        "joined_diamonds": {
+          "type": "array"
+        },
+        "jumper_terminals": {
+          "type": "array"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "literal_copy": {
+          "type": "integer"
+        },
+        "literal_forward_pin": {
+          "type": "string"
+        },
+        "local_configuration_tie": {
+          "type": "string"
+        },
+        "local_jumper": {
+          "type": "boolean"
+        },
+        "lower_connector": {
+          "type": "string"
+        },
+        "lower_row": {
+          "type": "integer"
+        },
+        "lower_source_reference": {
+          "type": "string"
+        },
+        "native_commoned_output_drivers": {
+          "type": "array"
+        },
+        "native_evidence": {
+          "type": "string"
+        },
+        "native_external_drivers": {
+          "type": "array"
+        },
+        "native_geometric_origin": {
+          "type": "string"
+        },
+        "native_isolated_port_pair": {
+          "type": "object"
+        },
+        "native_multiple_driver_exception": {
+          "type": "boolean"
+        },
+        "native_origin_reference_readable": {
+          "type": "boolean"
+        },
+        "native_route_evidence": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "native_wired_OR": {
+          "type": "boolean"
+        },
+        "net_kind": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array"
+        },
+        "origin_direction": {
+          "type": "string"
+        },
+        "origin_reference_recovery_method": {
+          "type": "string"
+        },
+        "output_designation": {
+          "type": "string"
+        },
+        "output_pin": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "output_reference": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "output_row": {
+          "type": "integer"
+        },
+        "output_rows": {
+          "type": "array"
+        },
+        "output_signal": {
+          "type": "string"
+        },
+        "ownership_note": {
+          "type": "string"
+        },
+        "ownership_verified": {
+          "type": "boolean"
+        },
+        "parallel_outputs": {
+          "type": "array"
+        },
+        "passive": {
+          "type": "boolean"
+        },
+        "passive_connection": {
+          "type": "boolean"
+        },
+        "passive_entry_feeds": {
+          "type": "array"
+        },
+        "passive_local_jumper": {
+          "type": "boolean"
+        },
+        "passive_output_explanation": {
+          "type": "string"
+        },
+        "passive_outputs": {
+          "type": "array"
+        },
+        "passive_same_block_jumper": {
+          "type": "boolean"
+        },
+        "passive_terminals": {
+          "type": "array"
+        },
+        "paths": {
+          "type": "array"
+        },
+        "physical_commoning_evidence": {
+          "type": "string"
+        },
+        "physical_driver_contacts": {
+          "type": "array"
+        },
+        "physical_driver_fragment": {
+          "type": "string"
+        },
+        "physical_drivers": {
+          "type": "array"
+        },
+        "physical_output_ports": {
+          "type": "array"
+        },
+        "pin": {
+          "type": "string"
+        },
+        "pins": {
+          "type": "array"
+        },
+        "ports": {
+          "type": "array"
+        },
+        "primary_reference_row": {
+          "type": "integer"
+        },
+        "printed_aliases": {
+          "type": "array"
+        },
+        "printed_alternate_source": {
+          "type": "string"
+        },
+        "printed_alternative_source_reference": {
+          "type": "string"
+        },
+        "printed_collector_continuation": {
+          "type": "string"
+        },
+        "printed_destination": {
+          "type": "string"
+        },
+        "printed_destination_reference_groups": {
+          "type": "array"
+        },
+        "printed_detached_reference_markers": {
+          "type": "array"
+        },
+        "printed_driver_reference": {
+          "type": "string"
+        },
+        "printed_external_origin_layout": {
+          "type": "string"
+        },
+        "printed_external_reference": {
+          "type": "string"
+        },
+        "printed_gap": {
+          "type": "object"
+        },
+        "printed_input_signal": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "printed_origin": {
+          "type": "string"
+        },
+        "printed_output_signal": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "printed_signal_name": {
+          "type": "string"
+        },
+        "printed_source_labels": {
+          "type": "object"
+        },
+        "printed_source_limitation": {
+          "type": "string"
+        },
+        "printed_source_origins": {
+          "type": "array"
+        },
+        "rendered_edges_including_uncertain_fragments": {
+          "type": "array"
+        },
+        "right_continuations": {
+          "type": "array"
+        },
+        "role": {
+          "type": "string"
+        },
+        "route_owners": {
+          "type": "array"
+        },
+        "route_provenance": {
+          "type": "string"
+        },
+        "row": {
+          "type": "integer"
+        },
+        "same_block_commoned_outputs": {
+          "type": [
+            "array",
+            "boolean"
+          ]
+        },
+        "same_block_drivers": {
+          "type": "array"
+        },
+        "same_block_output_connection": {
+          "type": "boolean"
+        },
+        "same_block_output_drivers": {
+          "type": "array"
+        },
+        "same_block_output_join": {
+          "type": "string"
+        },
+        "same_block_output_owner": {
+          "type": "string"
+        },
+        "same_block_output_ports": {
+          "type": "array"
+        },
+        "same_block_physical_outputs_joined": {
+          "type": "boolean"
+        },
+        "same_signal_alternative_sources": {
+          "type": "array"
+        },
+        "scan_gap_uncertainties": {
+          "type": "array"
+        },
+        "secondary_offpage_reference": {
+          "type": "string"
+        },
+        "secondary_reference_row": {
+          "type": "integer"
+        },
+        "semantic_driver": {
+          "type": "string"
+        },
+        "separate_from": {
+          "type": "string"
+        },
+        "signal": {
+          "type": "string"
+        },
+        "signal_name": {
+          "type": "string"
+        },
+        "source": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "source_anomaly": {
+          "type": "string"
+        },
+        "source_damage": {
+          "type": "string"
+        },
+        "source_derived_recovery_id": {
+          "type": "string"
+        },
+        "source_derived_reference_recovered": {
+          "type": "boolean"
+        },
+        "source_diamond_at": {
+          "type": "array"
+        },
+        "source_driver": {
+          "type": "object"
+        },
+        "source_driver_not_printed": {
+          "type": "boolean"
+        },
+        "source_driver_printed": {
+          "type": "boolean"
+        },
+        "source_driver_unresolved": {
+          "type": "boolean"
+        },
+        "source_electrical_verified": {
+          "type": "boolean"
+        },
+        "source_evidence": {
+          "type": "string"
+        },
+        "source_exception": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "source_gap_exception": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "source_join_evidence": {
+          "type": "array"
+        },
+        "source_joined_mechanical_contacts": {
+          "type": "boolean"
+        },
+        "source_label_status": {
+          "type": "string"
+        },
+        "source_note": {
+          "type": "string"
+        },
+        "source_observation": {
+          "type": "string"
+        },
+        "source_open": {
+          "type": "boolean"
+        },
+        "source_open_reason": {
+          "type": "string"
+        },
+        "source_page": {
+          "type": "string"
+        },
+        "source_pin": {
+          "type": "string"
+        },
+        "source_reference": {
+          "type": "string"
+        },
+        "source_review_basis": {
+          "type": "string"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "source_signal": {
+          "type": "string"
+        },
+        "source_supported_local_jumper": {
+          "type": "boolean"
+        },
+        "source_supported_passive_pullup": {
+          "type": "boolean"
+        },
+        "source_supported_shared_physical_card": {
+          "type": "object"
+        },
+        "source_undriven": {
+          "type": "boolean"
+        },
+        "source_visible": {
+          "type": "boolean"
+        },
+        "source_wire_status": {
+          "type": "string"
+        },
+        "t_bus_bit": {
+          "type": "string"
+        },
+        "t_bus_reference": {
+          "type": "string"
+        },
+        "t_bus_row": {
+          "type": "integer"
+        },
+        "target_coordinates": {
+          "type": "object"
+        },
+        "targets": {
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "terminals": {
+          "type": "array"
+        },
+        "through_port": {
+          "type": "string"
+        },
+        "to_reference": {
+          "type": "string"
+        },
+        "to_signal": {
+          "type": "string"
+        },
+        "top_connector": {
+          "type": "string"
+        },
+        "top_row": {
+          "type": "integer"
+        },
+        "top_source_reference": {
+          "type": "string"
+        },
+        "transfer_column": {
+          "type": "integer"
+        },
+        "trunk_column": {
+          "type": "integer"
+        },
+        "uncertain_corresponding_fragments": {
+          "type": "array"
+        },
+        "uncertain_edges": {
+          "type": "array"
+        },
+        "uncertain_external_correspondence": {
+          "type": "array"
+        },
+        "uncertain_rendered_edges": {
+          "type": "array"
+        },
+        "undriven_kind": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "undriven_native_receiver_network": {
+          "type": "boolean"
+        },
+        "unjoined_crosses": {
+          "type": "array"
+        },
+        "unresolved_source_association": {
+          "type": "boolean"
+        },
+        "unused_jumper": {
+          "type": "boolean"
+        },
+        "upper_connector": {
+          "type": "string"
+        },
+        "upper_row": {
+          "type": "integer"
+        },
+        "upper_source_reference": {
+          "type": "string"
+        },
+        "vertical_column": {
+          "type": "integer"
+        },
+        "wire_cells": {
+          "type": "array"
+        },
+        "wired_output_evidence": {
+          "type": "string"
+        },
+        "wiring_certification": {
+          "type": "string"
+        },
+        "zero_length_source_stub": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "current_node": {
+      "additionalProperties": false,
+      "properties": {
+        "A1": {
+          "type": "object"
+        },
+        "A1_card_portion_applicable": {
+          "type": "boolean"
+        },
+        "A1_check": {
+          "type": "string"
+        },
+        "A1_check_scope": {
+          "type": "string"
+        },
+        "A1_conflict_listing_board": {
+          "type": "string"
+        },
+        "A1_connector_pin_evidence": {
+          "type": "array"
+        },
+        "A1_connector_pin_nonmatching_source_location": {
+          "type": "array"
+        },
+        "A1_connector_pin_verified": {
+          "type": "boolean"
+        },
+        "A1_damaged_portion_note": {
+          "type": "string"
+        },
+        "A1_exemption": {
+          "type": "string"
+        },
+        "A1_expected": {
+          "type": "boolean"
+        },
+        "A1_indexed_page": {
+          "type": "string"
+        },
+        "A1_literal_conflict": {
+          "type": "object"
+        },
+        "A1_match_status": {
+          "type": "string"
+        },
+        "A1_native_discrepancy": {
+          "type": "boolean"
+        },
+        "A1_native_discrepancy_evidence": {
+          "type": "object"
+        },
+        "A1_native_page": {
+          "type": "string"
+        },
+        "A1_native_print_contradiction": {
+          "type": "string"
+        },
+        "A1_native_source_exception": {
+          "type": "object"
+        },
+        "A1_not_applicable": {
+          "type": "string"
+        },
+        "A1_page_assignment_discrepancy": {
+          "type": "object"
+        },
+        "A1_page_key_discrepancy": {
+          "type": "boolean"
+        },
+        "A1_page_key_limitation": {
+          "type": "string"
+        },
+        "A1_resolution": {
+          "type": "string"
+        },
+        "A1_source_override": {
+          "type": "object"
+        },
+        "A1_status": {
+          "type": "string"
+        },
+        "A1_supported_location": {
+          "type": "string"
+        },
+        "A1_uncertainty": {
+          "type": "string"
+        },
+        "CAS_box": {
+          "type": "string"
+        },
+        "QZ_address_present": {
+          "type": "boolean"
+        },
+        "QZ_box": {
+          "type": "string"
+        },
+        "QZ_controls": {
+          "type": "object"
+        },
+        "QZ_next_base": {
+          "type": "string"
+        },
+        "QZ_page": {
+          "type": "string"
+        },
+        "QZ_verification": {
+          "type": "object"
+        },
+        "a1_corresponding_location": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "annotation_block": {
+          "type": "boolean"
+        },
+        "annotation_class": {
+          "type": "string"
+        },
+        "array_plane": {
+          "type": "string"
+        },
+        "auxiliary_field": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "bank": {
+          "type": "integer"
+        },
+        "board": {
+          "type": "null"
+        },
+        "board_glyph_review": {
+          "type": "string"
+        },
+        "board_location": {
+          "type": "string"
+        },
+        "body": {
+          "type": [
+            "array",
+            "object"
+          ]
+        },
+        "body_bottom_offset": {
+          "type": "integer"
+        },
+        "body_fields": {
+          "type": "array"
+        },
+        "body_lines": {
+          "type": "array"
+        },
+        "border_markers": {
+          "type": "array"
+        },
+        "border_qualifiers": {
+          "type": "array"
+        },
+        "bottom_open": {
+          "type": "boolean"
+        },
+        "bottom_row": {
+          "type": "integer"
+        },
+        "box_location": {
+          "type": "array"
+        },
+        "branch": {
+          "type": "array"
+        },
+        "cable_end": {
+          "type": "string"
+        },
+        "cable_interface": {
+          "type": "boolean"
+        },
+        "calibrated_grid_position": {
+          "type": "string"
+        },
+        "candidate_card_portion": {
+          "type": "string"
+        },
+        "card": {
+          "type": "string"
+        },
+        "card_candidates_from_source_context": {
+          "type": "array"
+        },
+        "card_control_marker": {
+          "type": "string"
+        },
+        "card_portion_printed": {
+          "type": "boolean"
+        },
+        "card_portion_reading_provenance": {
+          "type": "object"
+        },
+        "card_suffix": {
+          "type": "string"
+        },
+        "card_type": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "card_type_corroboration": {
+          "type": "string"
+        },
+        "card_type_source_readable": {
+          "type": "boolean"
+        },
+        "card_unreadable_source_proof": {
+          "type": "string"
+        },
+        "cardless_dot_gate": {
+          "type": "boolean"
+        },
+        "ce": {
+          "type": "integer"
+        },
+        "classification": {
+          "type": "string"
+        },
+        "column": {
+          "type": "integer"
+        },
+        "comparison_page_id": {
+          "type": "string"
+        },
+        "component_kind": {
+          "type": "string"
+        },
+        "component_type": {
+          "type": "string"
+        },
+        "connector_location": {
+          "type": "string"
+        },
+        "connector_location_index": {
+          "type": "array"
+        },
+        "contextual_socket_location_proposal": {
+          "type": "string"
+        },
+        "control": {
+          "type": "string"
+        },
+        "control_field_differences": {
+          "type": "object"
+        },
+        "control_fields": {
+          "type": "array"
+        },
+        "custom_fields": {
+          "type": "array"
+        },
+        "destination_reference": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "destination_references": {
+          "type": "array"
+        },
+        "device_kind": {
+          "type": "string"
+        },
+        "diamonds": {
+          "type": "array"
+        },
+        "documented_A1_discrepancy": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "documented_source_disagreement": {
+          "type": "boolean"
+        },
+        "documented_unused_output": {
+          "type": "string"
+        },
+        "dot": {
+          "type": "boolean"
+        },
+        "duplicated_printed_pin": {
+          "type": "string"
+        },
+        "electrical_role": {
+          "type": "string"
+        },
+        "entry_block": {
+          "type": "boolean"
+        },
+        "entry_model": {
+          "type": "string"
+        },
+        "external_input": {
+          "type": "object"
+        },
+        "external_output": {
+          "type": "object"
+        },
+        "field_lines": {
+          "type": "array"
+        },
+        "field_offsets": {
+          "type": "array"
+        },
+        "fields": {
+          "type": "null"
+        },
+        "first_row": {
+          "type": "integer"
+        },
+        "function": {
+          "type": "string"
+        },
+        "function_column": {
+          "type": "integer"
+        },
+        "function_column_offset": {
+          "type": "integer"
+        },
+        "function_indent": {
+          "type": "integer"
+        },
+        "function_layout": {
+          "type": "object"
+        },
+        "function_offset": {
+          "type": "integer"
+        },
+        "grid": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "grid_row_offset": {
+          "type": "integer"
+        },
+        "grounded_pin_loops": {
+          "type": "array"
+        },
+        "header": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "height": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "human_literal_policy": {
+          "type": "string"
+        },
+        "human_physical_copy_evidence": {
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "id_candidate_from_A1": {
+          "type": "string"
+        },
+        "id_offset": {
+          "type": "integer"
+        },
+        "independently_verified_socket_listing_evidence": {
+          "type": "object"
+        },
+        "indicator_label": {
+          "type": "string"
+        },
+        "input_controls": {
+          "type": "array"
+        },
+        "input_signals": {
+          "type": "array"
+        },
+        "ins": {
+          "type": "array"
+        },
+        "internal_id_note": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "lamp_label": {
+          "type": "string"
+        },
+        "last_row": {
+          "type": "integer"
+        },
+        "left_pin_rows": {
+          "type": "array"
+        },
+        "legacy_QZ_verification": {
+          "type": "object"
+        },
+        "listing_exempt": {
+          "type": "boolean"
+        },
+        "literal": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "location_candidate_from_A1": {
+          "type": "string"
+        },
+        "lower": {
+          "type": "string"
+        },
+        "lower_edge_native_proof": {
+          "type": "string"
+        },
+        "lower_triangle": {
+          "type": "boolean"
+        },
+        "mechanical_type": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "named_ports": {
+          "type": "object"
+        },
+        "native_A1_difference": {
+          "type": "string"
+        },
+        "native_A1_discrepancy": {
+          "type": "object"
+        },
+        "native_A1_exception": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "native_border_markers": {
+          "type": "object"
+        },
+        "native_box_xy": {
+          "type": "array"
+        },
+        "native_fields_reviewed": {
+          "type": "boolean"
+        },
+        "native_gate_grid": {
+          "type": "string"
+        },
+        "native_inspection_proof": {
+          "type": "string"
+        },
+        "native_location_exception": {
+          "type": "string"
+        },
+        "native_output_absence": {
+          "type": "object"
+        },
+        "native_printed_card_portion": {
+          "type": "string"
+        },
+        "native_printed_location": {
+          "type": "string"
+        },
+        "native_proof": {
+          "type": "string"
+        },
+        "native_socket_discrepancy": {
+          "type": "string"
+        },
+        "native_virtual_logic_block": {
+          "type": "boolean"
+        },
+        "native_xy": {
+          "type": "array"
+        },
+        "navigation_id": {
+          "type": "string"
+        },
+        "no_printed_card_portion": {
+          "type": "boolean"
+        },
+        "node_kind": {
+          "type": "string"
+        },
+        "non_card_connector": {
+          "type": "boolean"
+        },
+        "non_card_evidence": {
+          "type": "string"
+        },
+        "non_card_source_block": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "non_card_symbol": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "nonphysical_connector": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": [
+            "integer",
+            "null",
+            "string"
+          ]
+        },
+        "numeric_qualifier": {
+          "type": "object"
+        },
+        "old_grid": {
+          "type": "array"
+        },
+        "open_bottom": {
+          "type": "boolean"
+        },
+        "output_ids": {
+          "type": "array"
+        },
+        "output_signals": {
+          "type": "array"
+        },
+        "output_triangle": {
+          "type": "boolean"
+        },
+        "owner_review_status": {
+          "type": "string"
+        },
+        "pairs": {
+          "type": "array"
+        },
+        "part": {
+          "type": "string"
+        },
+        "passive_block": {
+          "type": "boolean"
+        },
+        "physical_card": {
+          "type": "boolean"
+        },
+        "physical_classification": {
+          "type": "string"
+        },
+        "physical_copy_card_confirmation": {
+          "type": "object"
+        },
+        "physical_copy_confirmed": {
+          "type": "object"
+        },
+        "physical_copy_verified": {
+          "type": "boolean"
+        },
+        "physical_destination": {
+          "type": "string"
+        },
+        "physical_grid": {
+          "type": "string"
+        },
+        "physical_kind": {
+          "type": "string"
+        },
+        "physical_legibility_asserted": {
+          "type": "boolean"
+        },
+        "physical_location": {
+          "type": "string"
+        },
+        "physical_origin": {
+          "type": "string"
+        },
+        "physical_print_uncertainty": {
+          "type": "object"
+        },
+        "physical_scan_neighbors": {
+          "type": "object"
+        },
+        "physical_source_fragment": {
+          "type": "string"
+        },
+        "physical_source_fragments": {
+          "type": "object"
+        },
+        "pins": {
+          "type": "array"
+        },
+        "portion": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "portion_evidence": {
+          "type": "string"
+        },
+        "portion_source_readable": {
+          "type": "boolean"
+        },
+        "position": {
+          "type": "string"
+        },
+        "possible_card_portion": {
+          "type": "string"
+        },
+        "possible_unit": {
+          "type": "string"
+        },
+        "power_label": {
+          "type": "string"
+        },
+        "primitive_without_card": {
+          "type": "boolean"
+        },
+        "printed_address": {
+          "type": "string"
+        },
+        "printed_border_controls": {
+          "type": "array"
+        },
+        "printed_card_portion": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "printed_connector_type": {
+          "type": "string"
+        },
+        "printed_control": {
+          "type": "string"
+        },
+        "printed_device_code": {
+          "type": "string"
+        },
+        "printed_function": {
+          "type": "string"
+        },
+        "printed_grid": {
+          "type": "string"
+        },
+        "printed_grid_ID_row": {
+          "type": "string"
+        },
+        "printed_grid_and_id": {
+          "type": "string"
+        },
+        "printed_grid_id": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "printed_grid_label": {
+          "type": "string"
+        },
+        "printed_ground": {
+          "type": "string"
+        },
+        "printed_header": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "printed_header_asterisk": {
+          "type": "boolean"
+        },
+        "printed_id": {
+          "type": "string"
+        },
+        "printed_id_duplicate_of": {
+          "type": "string"
+        },
+        "printed_id_native_proof": {
+          "type": "string"
+        },
+        "printed_identifier": {
+          "type": "string"
+        },
+        "printed_identifier_source_conflict": {
+          "type": "object"
+        },
+        "printed_leg": {
+          "type": "string"
+        },
+        "printed_lines": {
+          "type": "array"
+        },
+        "printed_location": {
+          "type": "string"
+        },
+        "printed_location_uncertainty": {
+          "type": "string"
+        },
+        "printed_passive_input_only": {
+          "type": "boolean"
+        },
+        "printed_pin_discrepancies": {
+          "type": "array"
+        },
+        "printed_socket": {
+          "type": "string"
+        },
+        "printed_unit": {
+          "type": "string"
+        },
+        "quadrant": {
+          "type": "string"
+        },
+        "rail_verticals": {
+          "type": "array"
+        },
+        "raw_card_and_border_annotation": {
+          "type": "string"
+        },
+        "raw_printed_card_portion": {
+          "type": "string"
+        },
+        "resolved_socket_listing_source_anomaly": {
+          "type": "object"
+        },
+        "role": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array"
+        },
+        "row": {
+          "type": "integer"
+        },
+        "row_count": {
+          "type": "integer"
+        },
+        "service_element": {
+          "type": "boolean"
+        },
+        "signal": {
+          "type": "string"
+        },
+        "skip_A1_card_check": {
+          "type": "boolean"
+        },
+        "socket": {
+          "type": "string"
+        },
+        "socket_listing_ALD_reference_disagreement": {
+          "type": "object"
+        },
+        "socket_listing_agrees_with_printed_location": {
+          "type": "boolean"
+        },
+        "socket_listing_card_type": {
+          "type": "string"
+        },
+        "socket_listing_conflict": {
+          "type": "object"
+        },
+        "socket_listing_conflict_evidence": {
+          "type": "array"
+        },
+        "socket_listing_contradiction": {
+          "type": "string"
+        },
+        "socket_listing_disagreement": {
+          "type": "object"
+        },
+        "socket_listing_discrepancy": {
+          "type": "string"
+        },
+        "socket_listing_evidence": {
+          "type": [
+            "array",
+            "null",
+            "object"
+          ]
+        },
+        "socket_listing_evidence_basis": {
+          "type": "string"
+        },
+        "socket_listing_evidence_indexed_page": {
+          "type": "string"
+        },
+        "socket_listing_evidence_page": {
+          "type": "string"
+        },
+        "socket_listing_evidence_partial": {
+          "type": "object"
+        },
+        "socket_listing_fallback_evidence": {
+          "type": "array"
+        },
+        "socket_listing_fallback_page": {
+          "type": "string"
+        },
+        "socket_listing_fallback_pages": {
+          "type": "array"
+        },
+        "socket_listing_location": {
+          "type": "string"
+        },
+        "socket_listing_match_scope": {
+          "type": "string"
+        },
+        "socket_listing_match_status": {
+          "type": "string"
+        },
+        "socket_listing_matches": {
+          "type": "array"
+        },
+        "socket_listing_page": {
+          "type": "string"
+        },
+        "socket_listing_page_key_uncertain": {
+          "type": "array"
+        },
+        "socket_listing_portion": {
+          "type": "string"
+        },
+        "socket_listing_source_anomaly": {
+          "type": "object"
+        },
+        "socket_listing_source_discrepancy": {
+          "type": "object"
+        },
+        "socket_listing_status": {
+          "type": "string"
+        },
+        "source_A1_conflict": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "source_DOT_primitive": {
+          "type": "boolean"
+        },
+        "source_QZ_location_discrepancy": {
+          "type": "string"
+        },
+        "source_address_correction": {
+          "type": "string"
+        },
+        "source_border_controls": {
+          "type": "array"
+        },
+        "source_card_evidence": {
+          "type": "string"
+        },
+        "source_crop": {
+          "type": "string"
+        },
+        "source_crops": {
+          "type": "array"
+        },
+        "source_derived_card_identity": {
+          "type": "object"
+        },
+        "source_derived_card_recovery": {
+          "type": "boolean"
+        },
+        "source_derived_fields": {
+          "type": "object"
+        },
+        "source_derived_location": {
+          "type": "object"
+        },
+        "source_derived_recoveries": {
+          "type": "array"
+        },
+        "source_evidenced_A1_exception": {
+          "type": "string"
+        },
+        "source_extended_height": {
+          "type": "string"
+        },
+        "source_field_and_border_audited": {
+          "type": "boolean"
+        },
+        "source_grid_discrepancy": {
+          "type": "object"
+        },
+        "source_literal_duplicate_id": {
+          "type": "string"
+        },
+        "source_local_configuration": {
+          "type": "string"
+        },
+        "source_location_uncertain": {
+          "type": "boolean"
+        },
+        "source_note": {
+          "type": "string"
+        },
+        "source_observations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "field": {
+                "enum": [
+                  "$value",
+                  "A1",
+                  "A1_card_portion_applicable",
+                  "A1_check",
+                  "A1_check_scope",
+                  "A1_conflict_listing_board",
+                  "A1_connector_pin_evidence",
+                  "A1_connector_pin_nonmatching_source_location",
+                  "A1_connector_pin_verified",
+                  "A1_damaged_portion_note",
+                  "A1_exemption",
+                  "A1_expected",
+                  "A1_indexed_page",
+                  "A1_literal_conflict",
+                  "A1_match_status",
+                  "A1_native_discrepancy",
+                  "A1_native_discrepancy_evidence",
+                  "A1_native_page",
+                  "A1_native_print_contradiction",
+                  "A1_native_source_exception",
+                  "A1_not_applicable",
+                  "A1_page_assignment_discrepancy",
+                  "A1_page_key_discrepancy",
+                  "A1_page_key_limitation",
+                  "A1_resolution",
+                  "A1_source_override",
+                  "A1_status",
+                  "A1_supported_location",
+                  "A1_uncertainty",
+                  "CAS_box",
+                  "QZ_address_present",
+                  "QZ_box",
+                  "QZ_controls",
+                  "QZ_next_base",
+                  "QZ_page",
+                  "QZ_verification",
+                  "a1_corresponding_location",
+                  "address",
+                  "annotation_block",
+                  "annotation_class",
+                  "array_plane",
+                  "auxiliary_field",
+                  "bank",
+                  "board",
+                  "board_glyph_review",
+                  "board_location",
+                  "body",
+                  "body_bottom_offset",
+                  "body_fields",
+                  "body_lines",
+                  "border_markers",
+                  "border_qualifiers",
+                  "bottom_open",
+                  "bottom_row",
+                  "box_height",
+                  "box_location",
+                  "branch",
+                  "cable_end",
+                  "cable_interface",
+                  "calibrated_grid_position",
+                  "candidate_card_portion",
+                  "card",
+                  "card_candidates_from_source_context",
+                  "card_control_marker",
+                  "card_portion_printed",
+                  "card_portion_reading_provenance",
+                  "card_suffix",
+                  "card_type",
+                  "card_type_corroboration",
+                  "card_type_source_readable",
+                  "card_unreadable_source_proof",
+                  "cardless_dot_gate",
+                  "ce",
+                  "classification",
+                  "column",
+                  "comparison_page_id",
+                  "component_kind",
+                  "component_type",
+                  "connector_location",
+                  "connector_location_index",
+                  "contextual_socket_location_proposal",
+                  "control",
+                  "control_field_differences",
+                  "control_fields",
+                  "custom_fields",
+                  "destination_reference",
+                  "destination_references",
+                  "device_kind",
+                  "diamonds",
+                  "documented_A1_discrepancy",
+                  "documented_source_disagreement",
+                  "documented_unused_output",
+                  "dot",
+                  "duplicated_printed_pin",
+                  "electrical_role",
+                  "entry_block",
+                  "entry_model",
+                  "external_input",
+                  "external_output",
+                  "field_lines",
+                  "field_offsets",
+                  "fields",
+                  "first_row",
+                  "function",
+                  "function_column",
+                  "function_column_offset",
+                  "function_indent",
+                  "function_layout",
+                  "function_offset",
+                  "grid",
+                  "grid_row_offset",
+                  "grounded_pin_loops",
+                  "header",
+                  "height",
+                  "height_including_edges",
+                  "height_rows",
+                  "human_literal_policy",
+                  "human_physical_copy_evidence",
+                  "id",
+                  "id_candidate_from_A1",
+                  "id_offset",
+                  "independently_verified_socket_listing_evidence",
+                  "indicator_label",
+                  "input_controls",
+                  "input_pin",
+                  "input_pins",
+                  "input_signals",
+                  "ins",
+                  "internal_id_note",
+                  "kind",
+                  "lamp_label",
+                  "last_row",
+                  "left_pin_rows",
+                  "legacy_QZ_verification",
+                  "listing_exempt",
+                  "literal",
+                  "location",
+                  "location_candidate_from_A1",
+                  "lower",
+                  "lower_edge_native_proof",
+                  "lower_triangle",
+                  "mechanical_type",
+                  "named_ports",
+                  "native_A1_difference",
+                  "native_A1_discrepancy",
+                  "native_A1_exception",
+                  "native_border_markers",
+                  "native_box_xy",
+                  "native_fields_reviewed",
+                  "native_gate_grid",
+                  "native_inspection_proof",
+                  "native_location_exception",
+                  "native_output_absence",
+                  "native_printed_card_portion",
+                  "native_printed_location",
+                  "native_proof",
+                  "native_socket_discrepancy",
+                  "native_virtual_logic_block",
+                  "native_xy",
+                  "navigation_id",
+                  "no_printed_card_portion",
+                  "node_kind",
+                  "non_card_connector",
+                  "non_card_evidence",
+                  "non_card_source_block",
+                  "non_card_symbol",
+                  "nonphysical_connector",
+                  "note",
+                  "numeric_qualifier",
+                  "old_grid",
+                  "open_bottom",
+                  "output",
+                  "output_ids",
+                  "output_pin",
+                  "output_pins",
+                  "output_signals",
+                  "output_triangle",
+                  "owner_review_status",
+                  "pairs",
+                  "part",
+                  "passive_block",
+                  "physical_card",
+                  "physical_classification",
+                  "physical_copy_card_confirmation",
+                  "physical_copy_confirmed",
+                  "physical_copy_verified",
+                  "physical_destination",
+                  "physical_grid",
+                  "physical_kind",
+                  "physical_legibility_asserted",
+                  "physical_location",
+                  "physical_origin",
+                  "physical_print_uncertainty",
+                  "physical_scan_neighbors",
+                  "physical_source_fragment",
+                  "physical_source_fragments",
+                  "pins",
+                  "portion",
+                  "portion_evidence",
+                  "portion_source_readable",
+                  "position",
+                  "possible_card_portion",
+                  "possible_unit",
+                  "power_label",
+                  "primitive_without_card",
+                  "printed_address",
+                  "printed_border_controls",
+                  "printed_card_portion",
+                  "printed_connector_type",
+                  "printed_control",
+                  "printed_device_code",
+                  "printed_function",
+                  "printed_grid",
+                  "printed_grid_ID_row",
+                  "printed_grid_and_id",
+                  "printed_grid_id",
+                  "printed_grid_label",
+                  "printed_ground",
+                  "printed_header",
+                  "printed_header_asterisk",
+                  "printed_id",
+                  "printed_id_duplicate_of",
+                  "printed_id_native_proof",
+                  "printed_identifier",
+                  "printed_identifier_source_conflict",
+                  "printed_inputs",
+                  "printed_leg",
+                  "printed_lines",
+                  "printed_location",
+                  "printed_location_uncertainty",
+                  "printed_outputs",
+                  "printed_passive_input_only",
+                  "printed_pin_discrepancies",
+                  "printed_socket",
+                  "printed_unit",
+                  "quadrant",
+                  "rail_verticals",
+                  "raw_card_and_border_annotation",
+                  "raw_printed_card_portion",
+                  "resolved_socket_listing_source_anomaly",
+                  "role",
+                  "routes",
+                  "row",
+                  "row_count",
+                  "service_element",
+                  "signal",
+                  "skip_A1_card_check",
+                  "socket",
+                  "socket_listing_ALD_reference_disagreement",
+                  "socket_listing_agrees_with_printed_location",
+                  "socket_listing_card_type",
+                  "socket_listing_conflict",
+                  "socket_listing_conflict_evidence",
+                  "socket_listing_contradiction",
+                  "socket_listing_disagreement",
+                  "socket_listing_discrepancy",
+                  "socket_listing_evidence",
+                  "socket_listing_evidence_basis",
+                  "socket_listing_evidence_indexed_page",
+                  "socket_listing_evidence_page",
+                  "socket_listing_evidence_partial",
+                  "socket_listing_fallback_evidence",
+                  "socket_listing_fallback_page",
+                  "socket_listing_fallback_pages",
+                  "socket_listing_location",
+                  "socket_listing_match_scope",
+                  "socket_listing_match_status",
+                  "socket_listing_matches",
+                  "socket_listing_page",
+                  "socket_listing_page_key_uncertain",
+                  "socket_listing_portion",
+                  "socket_listing_source_anomaly",
+                  "socket_listing_source_discrepancy",
+                  "socket_listing_status",
+                  "source_A1_conflict",
+                  "source_DOT_primitive",
+                  "source_QZ_location_discrepancy",
+                  "source_address_correction",
+                  "source_border_controls",
+                  "source_card_evidence",
+                  "source_crop",
+                  "source_crops",
+                  "source_derived_card_identity",
+                  "source_derived_card_recovery",
+                  "source_derived_fields",
+                  "source_derived_location",
+                  "source_derived_recoveries",
+                  "source_evidenced_A1_exception",
+                  "source_extended_height",
+                  "source_field_and_border_audited",
+                  "source_grid_discrepancy",
+                  "source_literal_duplicate_id",
+                  "source_local_configuration",
+                  "source_location_uncertain",
+                  "source_note",
+                  "source_only_documented",
+                  "source_open_bottom",
+                  "source_output_literal",
+                  "source_pin_label",
+                  "source_pin_uncertainty",
+                  "source_primitive",
+                  "source_references",
+                  "source_reviewed",
+                  "source_role",
+                  "source_top_border",
+                  "source_uncertainty",
+                  "source_virtual_function",
+                  "specialized_printed_component",
+                  "stub_pairs",
+                  "supplemental_socket_listing_evidence",
+                  "symbol_only",
+                  "technology",
+                  "terminal_markers",
+                  "top_border_text",
+                  "top_grid",
+                  "top_row",
+                  "total_rows",
+                  "unit",
+                  "unit_role",
+                  "unreadable_source_proof",
+                  "upper",
+                  "upper_triangle",
+                  "virtual",
+                  "virtual_printed_logic",
+                  "width",
+                  "wire_annotation",
+                  "workbook_confirmed_location"
+                ]
+              },
+              "value": {}
+            },
+            "required": [
+              "field",
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "source_only_documented": {
+          "type": "string"
+        },
+        "source_open_bottom": {
+          "type": "boolean"
+        },
+        "source_output_literal": {
+          "type": "object"
+        },
+        "source_pin_label": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "source_pin_uncertainty": {
+          "type": "object"
+        },
+        "source_primitive": {
+          "type": "string"
+        },
+        "source_references": {
+          "type": "array"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "source_role": {
+          "type": "string"
+        },
+        "source_top_border": {
+          "type": "array"
+        },
+        "source_uncertainty": {
+          "type": "object"
+        },
+        "source_virtual_function": {
+          "type": "string"
+        },
+        "specialized_printed_component": {
+          "type": "string"
+        },
+        "stub_pairs": {
+          "type": "array"
+        },
+        "supplemental_socket_listing_evidence": {
+          "type": "object"
+        },
+        "symbol_only": {
+          "type": "boolean"
+        },
+        "technology": {
+          "type": "string"
+        },
+        "terminal_markers": {
+          "type": "array"
+        },
+        "terminal_observations": {
+          "type": "array"
+        },
+        "top_border_text": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "top_grid": {
+          "type": "string"
+        },
+        "top_row": {
+          "type": "integer"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "unit_role": {
+          "type": "string"
+        },
+        "unreadable_source_proof": {
+          "type": "string"
+        },
+        "upper": {
+          "type": "string"
+        },
+        "upper_triangle": {
+          "type": "boolean"
+        },
+        "virtual": {
+          "type": "boolean"
+        },
+        "virtual_printed_logic": {
+          "type": "boolean"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "wire_annotation": {
+          "type": "string"
+        },
+        "workbook_confirmed_location": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "current_page": {
+      "additionalProperties": false,
+      "properties": {
+        "A1": {
+          "type": "object"
+        },
+        "A1_connector_evidence": {
+          "type": "array"
+        },
+        "A1_cross_check": {
+          "type": "object"
+        },
+        "A1_evidence": {
+          "type": "object"
+        },
+        "A1_literal_conflicts": {
+          "type": "array"
+        },
+        "ALD_page": {
+          "type": "string"
+        },
+        "CAS_boxes": {
+          "type": "integer"
+        },
+        "EF_socket_corroboration": {
+          "type": "object"
+        },
+        "abstract_logic_boxes": {
+          "type": "array"
+        },
+        "accepted_readings": {
+          "type": "array"
+        },
+        "accepted_source_artifact_marker_count": {
+          "type": "integer"
+        },
+        "accepted_source_readings": {
+          "type": "array"
+        },
+        "address_reconstruction": {
+          "type": "object"
+        },
+        "annotation_alignment_review": {
+          "type": "object"
+        },
+        "annotation_collisions": {
+          "type": "array"
+        },
+        "annotation_semantics": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "array"
+        },
+        "annotations_before_footer_v2": {
+          "type": "array"
+        },
+        "annotations_semantics": {
+          "type": "string"
+        },
+        "approved_bank_columns": {
+          "type": "array"
+        },
+        "approved_characters_only": {
+          "type": "boolean"
+        },
+        "bank_columns": {
+          "type": "array"
+        },
+        "blank_output_cards": {
+          "type": "array"
+        },
+        "board": {
+          "type": "string"
+        },
+        "border_only_observations": {
+          "type": "array"
+        },
+        "boxes": {
+          "type": "array"
+        },
+        "calibration": {
+          "type": "object"
+        },
+        "candidate_version": {
+          "type": "integer"
+        },
+        "canonical_index_modified": {
+          "type": "boolean"
+        },
+        "canonical_rebuild": {
+          "type": "string"
+        },
+        "canonical_socket_corroboration": {
+          "type": "object"
+        },
+        "canvas": {
+          "type": "object"
+        },
+        "canvas_columns": {
+          "type": "integer"
+        },
+        "canvas_rows": {
+          "type": "integer"
+        },
+        "caption_reference_positions": {
+          "type": "array"
+        },
+        "card_3308_native_and_human_review_v1": {
+          "type": "object"
+        },
+        "card_type_human_confirmations": {
+          "type": "array"
+        },
+        "character_grid": {
+          "type": "object"
+        },
+        "columns": {
+          "type": "integer"
+        },
+        "confirmed_wire_paths": {
+          "type": "array"
+        },
+        "connector_columns": {
+          "type": "array"
+        },
+        "connector_table": {
+          "type": "array"
+        },
+        "connector_table_evidence": {
+          "type": "array"
+        },
+        "connectors": {
+          "type": "array"
+        },
+        "coordinate_convention": {
+          "type": "string"
+        },
+        "corroborated_references": {
+          "type": "array"
+        },
+        "current_cell_annotation_semantics": {
+          "type": "string"
+        },
+        "current_cell_annotations": {
+          "type": "array"
+        },
+        "current_source_filename_page": {
+          "type": "string"
+        },
+        "delivery_status": {
+          "type": "string"
+        },
+        "discarded_extraction_fragments": {
+          "type": "array"
+        },
+        "electrical_ownership_limitations": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "export_override": {
+          "type": "object"
+        },
+        "external_ports": {
+          "type": "array"
+        },
+        "external_reference_policy": {
+          "type": "string"
+        },
+        "extraction_method": {
+          "type": "string"
+        },
+        "fanout": {
+          "type": "object"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "filename_stem": {
+          "type": "string"
+        },
+        "final_artifact_audit": {
+          "type": "object"
+        },
+        "final_placement_audit": {
+          "type": "string"
+        },
+        "final_reviewed_utc": {
+          "type": "string"
+        },
+        "final_visual_review": {
+          "type": "object"
+        },
+        "footer": {
+          "type": "object"
+        },
+        "footer_annotations_before_physical_copy_confirmation": {
+          "type": "array"
+        },
+        "footer_connection_table": {
+          "type": "array"
+        },
+        "footer_geometry": {
+          "type": "object"
+        },
+        "footer_index": {
+          "type": "array"
+        },
+        "footer_lines": {
+          "type": "array"
+        },
+        "footer_policy": {
+          "type": "string"
+        },
+        "footer_policy_validation": {
+          "type": "object"
+        },
+        "footer_v2_review": {
+          "type": "object"
+        },
+        "freeze_review": {
+          "type": "object"
+        },
+        "full_diamond_joins": {
+          "type": "array"
+        },
+        "geometry_height_semantics": {
+          "type": "string"
+        },
+        "grid_columns": {
+          "type": "integer"
+        },
+        "grid_migration": {
+          "type": "object"
+        },
+        "grid_rows": {
+          "type": "integer"
+        },
+        "groups": {
+          "type": "array"
+        },
+        "handwriting": {
+          "type": "string"
+        },
+        "header_text": {
+          "type": "string"
+        },
+        "human_source_dispositions": {
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "independent_A1_availability": {
+          "type": "object"
+        },
+        "independent_A1_corroboration": {
+          "type": "object"
+        },
+        "independent_root_native_evidence": {
+          "type": "object"
+        },
+        "input_references": {
+          "type": "array"
+        },
+        "input_sources": {
+          "type": "array"
+        },
+        "joined_diamonds": {
+          "type": "array"
+        },
+        "junctions": {
+          "type": "array"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array"
+        },
+        "layout": {
+          "type": "object"
+        },
+        "layout_calibration_status": {
+          "type": "string"
+        },
+        "layout_final": {
+          "type": "boolean"
+        },
+        "layout_migration": {
+          "type": "object"
+        },
+        "layout_note": {
+          "type": "string"
+        },
+        "layout_notes": {
+          "type": "string"
+        },
+        "layout_pending_exact_printer_grid": {
+          "type": "boolean"
+        },
+        "layout_status": {
+          "type": "string"
+        },
+        "legacy_annotations": {
+          "type": "array"
+        },
+        "listing_page": {
+          "type": "string"
+        },
+        "literal_control_annotations": {
+          "type": "array"
+        },
+        "literal_field_checks": {
+          "type": "object"
+        },
+        "local_jumper_objects": {
+          "type": "array"
+        },
+        "local_service_policy": {
+          "type": "string"
+        },
+        "local_unused_jumpers": {
+          "type": "array"
+        },
+        "manual_check_complete": {
+          "type": "boolean"
+        },
+        "manual_check_resolved": {
+          "type": "boolean"
+        },
+        "manual_owner_checks": {
+          "type": "object"
+        },
+        "manual_source_input_traces": {
+          "type": "array"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "missing_continuation": {
+          "type": "boolean"
+        },
+        "missing_plug_list": {
+          "type": "boolean"
+        },
+        "native_calibration": {
+          "type": "object"
+        },
+        "native_column_geometry": {
+          "type": "array"
+        },
+        "native_configuration": {
+          "type": "object"
+        },
+        "native_fit": {
+          "type": "object"
+        },
+        "native_footer_calibration": {
+          "type": "object"
+        },
+        "native_function_glyph_audit": {
+          "type": [
+            "array",
+            "null",
+            "object"
+          ]
+        },
+        "native_grid": {
+          "type": "object"
+        },
+        "native_grid_fit": {
+          "type": "object"
+        },
+        "native_header_anchors": {
+          "type": "object"
+        },
+        "native_image_dimensions": {
+          "type": "array"
+        },
+        "native_lattice_calibration": {
+          "type": "object"
+        },
+        "native_output_anchor_audit": {
+          "type": "object"
+        },
+        "native_output_commoning": {
+          "type": "array"
+        },
+        "native_reviewed_sections": {
+          "type": "array"
+        },
+        "native_roof_calibration": {
+          "type": "object"
+        },
+        "native_row_calibration": {
+          "type": "object"
+        },
+        "native_row_measurements": {
+          "type": "object"
+        },
+        "native_scan_print_uncertainty": {
+          "type": "boolean"
+        },
+        "native_separate_return_evidence": {
+          "type": "array"
+        },
+        "native_source_repair": {
+          "type": "object"
+        },
+        "native_source_sha256": {
+          "type": "string"
+        },
+        "native_subcell_wire_interruptions": {
+          "type": "array"
+        },
+        "native_table_columns": {
+          "type": "integer"
+        },
+        "nets": {
+          "type": "array"
+        },
+        "newly_approved_symbols": {
+          "type": "array"
+        },
+        "nodes": {
+          "type": "array"
+        },
+        "non_wire_symbols": {
+          "type": "array"
+        },
+        "normalized_visible_continuity_previously_reported": {
+          "type": "boolean"
+        },
+        "noted_connections": {
+          "type": "array"
+        },
+        "open_rail_wedges": {
+          "type": "array"
+        },
+        "original_filename_title": {
+          "type": "string"
+        },
+        "original_scan_context": {
+          "type": "object"
+        },
+        "original_scan_order": {
+          "type": "object"
+        },
+        "original_wire_shapes": {
+          "type": "object"
+        },
+        "output_aliases": {
+          "type": "array"
+        },
+        "output_labels": {
+          "type": "array"
+        },
+        "output_reference_branches": {
+          "type": "array"
+        },
+        "output_references": {
+          "type": "array"
+        },
+        "overwritten_annotations": {
+          "type": "array"
+        },
+        "page": {
+          "type": "string"
+        },
+        "page_identifier": {
+          "type": "string"
+        },
+        "page_type": {
+          "type": "string"
+        },
+        "partial_source_footer_restoration": {
+          "type": "object"
+        },
+        "pending_manual_checks": {
+          "type": "array"
+        },
+        "physical_copy_confirmation": {
+          "type": "object"
+        },
+        "physical_legibility_asserted": {
+          "type": "boolean"
+        },
+        "physical_pin_feedthroughs": {
+          "type": "array"
+        },
+        "physical_print_uncertainty": {
+          "type": "object"
+        },
+        "physical_print_uncertainty_history": {
+          "type": "array"
+        },
+        "physical_source_uncertainties": {
+          "type": "array"
+        },
+        "physical_source_uncertainty": {
+          "type": "array"
+        },
+        "pin_row_convention": {
+          "type": "string"
+        },
+        "pin_terminals": {
+          "type": "array"
+        },
+        "placement_issues": {
+          "type": "array"
+        },
+        "placement_review_status": {
+          "type": "string"
+        },
+        "plug_list": {
+          "type": "array"
+        },
+        "plug_list_source_column": {
+          "type": "integer"
+        },
+        "plug_reconciliation": {
+          "type": "array"
+        },
+        "plug_validation": {
+          "type": "string"
+        },
+        "presentation_only": {
+          "type": "boolean"
+        },
+        "preview": {
+          "type": "object"
+        },
+        "preview_review": {
+          "type": "object"
+        },
+        "print_recovered": {
+          "type": "boolean"
+        },
+        "printed_ALD_page": {
+          "type": "string"
+        },
+        "printed_annotations": {
+          "type": "array"
+        },
+        "printed_cap_and_gap_records": {
+          "type": "array"
+        },
+        "printed_external_outputs": {
+          "type": "array"
+        },
+        "printed_footer": {
+          "type": "object"
+        },
+        "printed_header_page": {
+          "type": "string"
+        },
+        "printed_join_diamonds": {
+          "type": "array"
+        },
+        "printed_labels": {
+          "type": [
+            "array",
+            "object"
+          ]
+        },
+        "printed_open_wire_markers": {
+          "type": "array"
+        },
+        "printed_output_name_column": {
+          "type": "integer"
+        },
+        "printed_output_separator_column": {
+          "type": "integer"
+        },
+        "printed_page": {
+          "type": "string"
+        },
+        "printed_page_identity": {
+          "type": "object"
+        },
+        "printed_page_identity_review": {
+          "type": "object"
+        },
+        "printed_parity_annotations": {
+          "type": "array"
+        },
+        "printed_plug_list": {
+          "type": "array"
+        },
+        "printed_reference_groups": {
+          "type": "array"
+        },
+        "printed_subpage": {
+          "type": "string"
+        },
+        "printed_title": {
+          "type": "string"
+        },
+        "printed_title_lines": {
+          "type": "array"
+        },
+        "printed_wire_gaps": {
+          "type": "array"
+        },
+        "printer_bank_lefts": {
+          "type": "array"
+        },
+        "printer_grid": {
+          "type": "object"
+        },
+        "printer_grid_audit": {
+          "type": "object"
+        },
+        "printer_grid_canvas": {
+          "type": "object"
+        },
+        "printer_grid_exceptions": {
+          "type": "array"
+        },
+        "printer_grid_fit": {
+          "type": "object"
+        },
+        "printer_grid_source_review": {
+          "type": "object"
+        },
+        "printer_grid_specification": {
+          "type": "string"
+        },
+        "px511_bb_physical_circuit_confirmation_v1": {
+          "type": "object"
+        },
+        "reachability_changes": {
+          "type": "object"
+        },
+        "records": {
+          "type": "array"
+        },
+        "recoveries": {
+          "type": "array"
+        },
+        "recovery_candidate": {
+          "type": "object"
+        },
+        "recovery_staging_status": {
+          "type": "string"
+        },
+        "recovery_v2_review_status": {
+          "type": "string"
+        },
+        "recovery_v3_review_status": {
+          "type": "string"
+        },
+        "reference_PDF_pages": {
+          "type": "array"
+        },
+        "reference_entries": {
+          "type": "array"
+        },
+        "reference_hooks": {
+          "type": "array"
+        },
+        "reference_printed_pages": {
+          "type": "array"
+        },
+        "reference_review": {
+          "type": "object"
+        },
+        "rendered_preview_compared_to_native": {
+          "type": "boolean"
+        },
+        "rendered_source_annotations_before_exact_cell_rebuild": {
+          "type": "array"
+        },
+        "review_history_source_derived_v2": {
+          "type": "object"
+        },
+        "review_status": {
+          "type": "string"
+        },
+        "revision_notes": {
+          "type": "array"
+        },
+        "root_final_verification": {
+          "type": "string"
+        },
+        "root_metadata_evidence": {
+          "type": "array"
+        },
+        "rows": {
+          "type": "integer"
+        },
+        "scan_order": {
+          "type": "object"
+        },
+        "scan_variant": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "sections": {
+          "type": "array"
+        },
+        "self_review_checks": {
+          "type": "object"
+        },
+        "semantic_net_ownership": {
+          "type": "string"
+        },
+        "semantic_wire_paths": {
+          "type": "array"
+        },
+        "socket_listing_cross_page_bookkeeping": {
+          "type": "object"
+        },
+        "sockets": {
+          "type": "array"
+        },
+        "source": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "source_classification": {
+          "type": "string"
+        },
+        "source_complete": {
+          "type": "boolean"
+        },
+        "source_completion": {
+          "type": "object"
+        },
+        "source_completion_counts": {
+          "type": "object"
+        },
+        "source_coverage": {
+          "type": [
+            "array",
+            "object"
+          ]
+        },
+        "source_derived_reference_recovered": {
+          "type": "boolean"
+        },
+        "source_derived_semantic_aliases": {
+          "type": "array"
+        },
+        "source_derived_semantic_references": {
+          "type": "array"
+        },
+        "source_derived_supporting_A1_reference": {
+          "type": "object"
+        },
+        "source_derived_v2": {
+          "type": "object"
+        },
+        "source_derived_v3_current_A1_compatibility": {
+          "type": "array"
+        },
+        "source_dimensions": {
+          "type": "array"
+        },
+        "source_discrepancies": {
+          "type": "array"
+        },
+        "source_electrical_continuity_verified": {
+          "type": "boolean"
+        },
+        "source_electrical_verified": {
+          "type": "boolean"
+        },
+        "source_exceptions": {
+          "type": "array"
+        },
+        "source_field_review": {
+          "type": "object"
+        },
+        "source_format": {
+          "type": "string"
+        },
+        "source_frame": {
+          "type": "string"
+        },
+        "source_gaps": {
+          "type": "array"
+        },
+        "source_identity_audit_pending": {
+          "type": "boolean"
+        },
+        "source_integrity": {
+          "type": "object"
+        },
+        "source_layout_repairs": {
+          "type": "array"
+        },
+        "source_limitations": {
+          "type": "array"
+        },
+        "source_objects": {
+          "type": "array"
+        },
+        "source_open_wire_objects": {
+          "type": "array"
+        },
+        "source_partial_wire_gaps": {
+          "type": "array"
+        },
+        "source_reference": {
+          "type": "string"
+        },
+        "source_review_audit": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "source_route_audit": {
+          "type": "object"
+        },
+        "source_scan_uncertainty": {
+          "type": "object"
+        },
+        "source_sha256": {
+          "type": "string"
+        },
+        "source_spec": {
+          "type": "string"
+        },
+        "source_subcell_caps": {
+          "type": "array"
+        },
+        "source_title": {
+          "type": "string"
+        },
+        "source_uncertain_junctions": {
+          "type": "array"
+        },
+        "source_unit": {
+          "type": "string"
+        },
+        "source_unreadable_cells": {
+          "type": "array"
+        },
+        "source_wire_gaps": {
+          "type": "array"
+        },
+        "special_boxes": {
+          "type": "array"
+        },
+        "standalone_printed_rail_markers": {
+          "type": "array"
+        },
+        "status": {
+          "type": "string"
+        },
+        "symbols_notes": {
+          "type": "string"
+        },
+        "table_entries": {
+          "type": "array"
+        },
+        "table_render": {
+          "type": "object"
+        },
+        "takeover_generator": {
+          "type": "string"
+        },
+        "terminal_connections": {
+          "type": "array"
+        },
+        "terminal_inventory": {
+          "type": "array"
+        },
+        "terminal_marker_policy": {
+          "type": "string"
+        },
+        "terminal_text_caps": {
+          "type": "array"
+        },
+        "text_layout": {
+          "type": "object"
+        },
+        "title": {
+          "type": "string"
+        },
+        "uncertain_connections": {
+          "type": "array"
+        },
+        "uncertainties": {
+          "type": "array"
+        },
+        "unjoined_crosses": {
+          "type": "array"
+        },
+        "unjoined_crossing_count": {
+          "type": "integer"
+        },
+        "unjoined_crossings": {
+          "type": "array"
+        },
+        "unknown_fields": {
+          "type": "array"
+        },
+        "unknown_locations": {
+          "type": "array"
+        },
+        "unknowns": {
+          "type": "array"
+        },
+        "unreadable_character": {
+          "type": "string"
+        },
+        "unreadable_entries": {
+          "type": "array"
+        },
+        "unreadable_markers": {
+          "type": "array"
+        },
+        "unresolved": {
+          "type": "array"
+        },
+        "unresolved_print": {
+          "type": "array"
+        },
+        "utf8": {
+          "type": "boolean"
+        },
+        "validation": {
+          "type": "object"
+        },
+        "verification_note": {
+          "type": "string"
+        },
+        "visible_electrical_continuity_verified": {
+          "type": "boolean"
+        },
+        "wire_intersections": {
+          "type": "array"
+        },
+        "wire_markers": {
+          "type": "array"
+        },
+        "wire_paths": {
+          "type": "array"
+        },
+        "wire_shapes": {
+          "type": "object"
+        },
+        "wire_text_overlays": {
+          "type": "object"
+        },
+        "wiring_verification_passed": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "current_path": {
+      "additionalProperties": false,
+      "properties": {
+        "capped_source": {
+          "type": "string"
+        },
+        "cells": {
+          "type": "array"
+        },
+        "end": {
+          "type": "array"
+        },
+        "evidence_file": {
+          "type": "string"
+        },
+        "external_output": {
+          "type": "boolean"
+        },
+        "fixed": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "string"
+        },
+        "isolated_target": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "net": {
+          "type": "string"
+        },
+        "points": {
+          "type": "array"
+        },
+        "role": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_group": {
+          "type": "string"
+        },
+        "source_isolated_corner": {
+          "type": "object"
+        },
+        "source_reviewed": {
+          "type": "boolean"
+        },
+        "start": {
+          "type": "array"
+        },
+        "target": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "virtual_text": {
+          "type": "boolean"
+        },
+        "visible_source_segment": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "current_pin": {
+      "additionalProperties": false,
+      "properties": {
+        "border_marker": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "border_point": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          ]
+        },
+        "column": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "label_column": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "occurrence_kind": {
+          "enum": [
+            "primary",
+            "alternate-unresolved-observation"
+          ]
+        },
+        "pin": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pin_status": {
+          "type": "string"
+        },
+        "point": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "maxItems": 2,
+              "minItems": 2,
+              "type": "array"
+            }
+          ]
+        },
+        "printed_label": {
+          "type": "string"
+        },
+        "printed_prefix": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "printed_suffix": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "reference": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "references": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "row": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "side": {
+          "enum": [
+            "input",
+            "output",
+            null
+          ]
+        },
+        "source_observations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "field": {
+                "enum": [
+                  "$value",
+                  "absolute_row",
+                  "asterisk",
+                  "asterisk_column",
+                  "attachment_exemption",
+                  "border_annotation",
+                  "border_control",
+                  "border_corner",
+                  "border_glyph",
+                  "border_glyph_candidates",
+                  "border_literal",
+                  "border_marker",
+                  "border_only_label",
+                  "border_operator",
+                  "border_point",
+                  "border_qualifier",
+                  "border_side",
+                  "box_border_point",
+                  "capped_native_output",
+                  "classification",
+                  "column",
+                  "connection_kind",
+                  "control",
+                  "control_column",
+                  "control_marker",
+                  "control_prefix",
+                  "control_qualifier",
+                  "control_suffix",
+                  "designation",
+                  "diagram_side",
+                  "diamond",
+                  "direction_review",
+                  "display_pin",
+                  "drawn_wire",
+                  "edge",
+                  "electrical_direction",
+                  "electrical_role",
+                  "electrical_status",
+                  "fanout_count",
+                  "floating_wire_qualifier",
+                  "floating_wire_qualifier_column",
+                  "geometric_side",
+                  "grounded",
+                  "inline_marker",
+                  "inline_numeric_controls",
+                  "internal_key",
+                  "isolated_native_receiver",
+                  "key",
+                  "label",
+                  "label_column",
+                  "label_role",
+                  "layout_side",
+                  "logical_direction",
+                  "logical_role",
+                  "marker",
+                  "marker_column",
+                  "mirrored_control_input",
+                  "native_auxiliary_strap",
+                  "native_border_qualifier",
+                  "native_commoned_contact",
+                  "native_control_role_unresolved",
+                  "native_physical_side",
+                  "native_printed_qualifiers",
+                  "native_role",
+                  "native_side",
+                  "native_wedge_shape",
+                  "net",
+                  "nets",
+                  "note",
+                  "numeric_control_prefix",
+                  "numeric_qualifier",
+                  "open_wedge",
+                  "operator_position",
+                  "owner",
+                  "passive_terminal",
+                  "passive_termination",
+                  "physical_border",
+                  "physical_border_column",
+                  "physical_pin",
+                  "physical_pin_candidate",
+                  "physical_pin_label",
+                  "physical_pin_status",
+                  "physical_port_kind",
+                  "physical_role",
+                  "physical_side",
+                  "physical_terminal",
+                  "pin",
+                  "pin_inferred",
+                  "pin_qualifier",
+                  "point",
+                  "prefix_column",
+                  "prefix_is_standalone_marker",
+                  "printed_K_border_contact",
+                  "printed_annotation",
+                  "printed_asterisk",
+                  "printed_border_glyph",
+                  "printed_border_marker",
+                  "printed_border_override",
+                  "printed_combined_label",
+                  "printed_connection_marker",
+                  "printed_control",
+                  "printed_control_column",
+                  "printed_control_prefix",
+                  "printed_control_qualifier",
+                  "printed_control_suffix",
+                  "printed_direction",
+                  "printed_fanout_count",
+                  "printed_input_qualifier",
+                  "printed_label",
+                  "printed_label_column",
+                  "printed_local_qualifier",
+                  "printed_marker_placement",
+                  "printed_marker_position",
+                  "printed_numeric_control_qualifier",
+                  "printed_numeric_prefix",
+                  "printed_numeric_qualifier",
+                  "printed_numeric_suffix",
+                  "printed_open_star",
+                  "printed_operator",
+                  "printed_operator_column",
+                  "printed_operator_replaces_border",
+                  "printed_output_marker",
+                  "printed_output_marker_position",
+                  "printed_output_pin_padding",
+                  "printed_output_qualifier",
+                  "printed_output_suffix",
+                  "printed_pin",
+                  "printed_pin_column",
+                  "printed_pin_in_border",
+                  "printed_pin_label",
+                  "printed_prefix",
+                  "printed_qualifier",
+                  "printed_reference",
+                  "printed_reference_column",
+                  "printed_suffix",
+                  "printed_terminal_annotation",
+                  "printed_terminal_asterisk",
+                  "printed_terminal_mark",
+                  "printed_terminal_suffix",
+                  "printed_trailing_annotation",
+                  "printed_unconnected",
+                  "printed_wire_qualifier",
+                  "qualifier",
+                  "qualifier_column",
+                  "qualifier_meaning",
+                  "raw_printed_pin_field",
+                  "reference",
+                  "role",
+                  "role_evidence",
+                  "row",
+                  "row_offset",
+                  "semantic_direction",
+                  "semantic_direction_status",
+                  "semantic_owner",
+                  "semantic_role",
+                  "side",
+                  "signal",
+                  "source_border_symbol",
+                  "source_control_annotation",
+                  "source_evidence",
+                  "source_isolated_readable_port",
+                  "source_label_kind",
+                  "source_mark_classification",
+                  "source_note",
+                  "source_pin_print_overstrike",
+                  "source_position",
+                  "source_printed_role",
+                  "source_reference",
+                  "source_review_note",
+                  "source_reviewed",
+                  "source_right_border",
+                  "source_right_hand_sink",
+                  "source_side",
+                  "source_supported_unused",
+                  "source_symbol",
+                  "source_terminal_marker",
+                  "source_terminal_role",
+                  "source_top_border_port",
+                  "source_top_corner",
+                  "source_unknown_border_wedge",
+                  "source_unknown_numeric_prefix",
+                  "source_unknown_pin",
+                  "source_unlabelled",
+                  "source_unused",
+                  "source_unused_reason",
+                  "star_column",
+                  "star_qualifier",
+                  "terminal_id",
+                  "terminal_identity",
+                  "terminal_pin",
+                  "text_column",
+                  "triangle",
+                  "triangle_border_point",
+                  "triangle_in_border",
+                  "triangle_on_border",
+                  "triangle_placement",
+                  "unjoined_endpoint_crossing",
+                  "unlabeled",
+                  "wedge_status",
+                  "wire_annotation",
+                  "wire_qualifier"
+                ]
+              },
+              "value": {}
+            },
+            "required": [
+              "field",
+              "value"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "triangle": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "border_marker",
+        "border_point",
+        "column",
+        "label_column",
+        "occurrence_kind",
+        "pin",
+        "pin_status",
+        "point",
+        "printed_label",
+        "printed_prefix",
+        "printed_suffix",
+        "reference",
+        "references",
+        "row",
+        "side",
+        "source_observations",
+        "triangle"
+      ],
+      "type": "object"
+    },
+    "decoration": {
+      "additionalProperties": false,
+      "properties": {
+        "edge": {
+          "type": [
+            "boolean",
+            "null",
+            "string"
+          ]
+        },
+        "edge_status": {
+          "type": "string"
+        },
+        "glyph": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "kind": {
+          "type": "string"
+        },
+        "observed_value": {
+          "type": [
+            "array",
+            "boolean",
+            "null",
+            "string"
+          ]
+        },
+        "position_observations": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "edge",
+        "edge_status",
+        "glyph",
+        "kind",
+        "observed_value",
+        "position_observations"
+      ],
+      "type": "object"
+    },
+    "display_label": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "value": {
+          "type": [
+            "array",
+            "null",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "role",
+        "value"
+      ],
+      "type": "object"
+    },
+    "endpoint_claim": {
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "reference": {
+          "type": "object"
+        },
+        "relationship": {
+          "type": "string"
+        },
+        "resolution_status": {
+          "type": "string"
+        },
+        "role_category": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "order",
+        "reference",
+        "relationship",
+        "resolution_status",
+        "role_category"
+      ],
+      "type": "object"
+    },
+    "function": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "parse_status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parse_status"
+      ],
+      "type": "object"
+    },
+    "identifiers": {
+      "additionalProperties": false,
+      "properties": {
+        "CAS_box": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "grid": {
+          "type": [
+            "array",
+            "string"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "printed_grid": {
+          "type": "string"
+        },
+        "printed_id": {
+          "type": "string"
+        },
+        "printed_identifier": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "network": {
+      "additionalProperties": false,
+      "properties": {
+        "connectivity_inference_applied": {
+          "type": "boolean"
+        },
+        "current_issues": {
+          "type": "array"
+        },
+        "endpoint_claims": {
+          "items": {
+            "$ref": "#/$defs/endpoint_claim"
+          },
+          "type": "array"
+        },
+        "endpoint_collections": {
+          "type": "array"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "junctions": {
+          "type": "array"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "literal_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "network_id": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array"
+        },
+        "routing_status": {
+          "type": "string"
+        },
+        "source_form": {
+          "$ref": "#/$defs/source_form"
+        },
+        "source_literals": {
+          "type": "object"
+        },
+        "unresolved_current_claims": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "connectivity_inference_applied",
+        "current_issues",
+        "endpoint_claims",
+        "endpoint_collections",
+        "extensions",
+        "junctions",
+        "kind",
+        "literal_id",
+        "network_id",
+        "routes",
+        "routing_status",
+        "source_form",
+        "source_literals",
+        "unresolved_current_claims"
+      ],
+      "type": "object"
+    },
+    "object": {
+      "additionalProperties": false,
+      "properties": {
+        "alias_relationships": {
+          "type": "array"
+        },
+        "card_identity": {
+          "$ref": "#/$defs/card_identity"
+        },
+        "circuit": {
+          "$ref": "#/$defs/circuit"
+        },
+        "current_extensions": {
+          "type": "object"
+        },
+        "current_issues": {
+          "type": "object"
+        },
+        "display_labels": {
+          "items": {
+            "$ref": "#/$defs/display_label"
+          },
+          "type": "array"
+        },
+        "function": {
+          "$ref": "#/$defs/function"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "group_memberships": {
+          "type": "array"
+        },
+        "identifiers": {
+          "$ref": "#/$defs/identifiers"
+        },
+        "kind": {
+          "enum": [
+            "card-or-special-block",
+            "cas-control-box",
+            "connector-group",
+            "diagram-object",
+            "programmed-ground-box"
+          ]
+        },
+        "object_id": {
+          "type": "string"
+        },
+        "site": {
+          "$ref": "#/$defs/site"
+        },
+        "source_form": {
+          "$ref": "#/$defs/object_form"
+        },
+        "source_group_fields": {
+          "type": "object"
+        },
+        "source_literals": {
+          "type": "object"
+        },
+        "terminal_pairs": {
+          "type": "array"
+        },
+        "terminals": {
+          "items": {
+            "$ref": "#/$defs/terminal"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "alias_relationships",
+        "card_identity",
+        "circuit",
+        "current_extensions",
+        "current_issues",
+        "display_labels",
+        "function",
+        "geometry",
+        "group_memberships",
+        "identifiers",
+        "kind",
+        "object_id",
+        "site",
+        "source_form",
+        "source_group_fields",
+        "source_literals",
+        "terminal_pairs",
+        "terminals"
+      ],
+      "type": "object"
+    },
+    "object_form": {
+      "additionalProperties": false,
+      "properties": {
+        "container": {
+          "type": "string"
+        },
+        "ordinal": {
+          "type": "integer"
+        },
+        "terminal_collections": {
+          "type": "array"
+        },
+        "value_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "container",
+        "ordinal",
+        "terminal_collections",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "page_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "ald-diagram",
+            "annotation-table-or-layout",
+            "cas-control-diagram",
+            "cas-layout",
+            "connector-routing",
+            "programmed-ground",
+            "socket-listing"
+          ]
+        },
+        "page": {
+          "type": "string"
+        },
+        "page_identifier": {
+          "type": "string"
+        },
+        "printed_page": {
+          "type": "string"
+        },
+        "printed_page_identity": {
+          "type": "object"
+        },
+        "printed_title": {
+          "type": "string"
+        },
+        "scan_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "scan_id"
+      ],
+      "type": "object"
+    },
+    "review": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_statement": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "source_status": {
+          "enum": [
+            "reviewed",
+            "unreviewed",
+            "needs-review"
+          ]
+        },
+        "status": {
+          "enum": [
+            "unreviewed",
+            "partial",
+            "wiring-checked",
+            "approved",
+            "needs-review"
+          ]
+        },
+        "user_approved": {
+          "type": "boolean"
+        },
+        "wiring_status": {
+          "enum": [
+            "unreviewed",
+            "partial",
+            "checked"
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "user_approved",
+        "content_sha256",
+        "source_status",
+        "wiring_status",
+        "approved_at",
+        "approval_statement"
+      ],
+      "type": "object"
+    },
+    "site": {
+      "additionalProperties": false,
+      "properties": {
+        "board": {
+          "type": "null"
+        },
+        "board_location": {
+          "type": "string"
+        },
+        "connector_location": {
+          "type": "string"
+        },
+        "grid_label": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "parse_status": {
+          "type": "string"
+        },
+        "physical_location": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "socket": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parse_status"
+      ],
+      "type": "object"
+    },
+    "source_form": {
+      "additionalProperties": false,
+      "properties": {
+        "container": {
+          "enum": [
+            "nodes",
+            "boxes",
+            "groups",
+            "CAS_boxes",
+            "nets",
+            "junctions"
+          ]
+        },
+        "ordinal": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "terminal_collections": {
+          "type": "array"
+        },
+        "value_type": {
+          "enum": [
+            "null",
+            "boolean",
+            "integer",
+            "number",
+            "string",
+            "array",
+            "object"
+          ]
+        }
+      },
+      "required": [
+        "container",
+        "ordinal",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "symbols": {
+      "additionalProperties": false,
+      "properties": {
+        "observations": {
+          "type": "array"
+        },
+        "prefix": {
+          "type": "array"
+        },
+        "selected_presentation": {
+          "type": "object"
+        },
+        "sequence_status": {
+          "type": "string"
+        },
+        "suffix": {
+          "type": "array"
+        },
+        "unplaced": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "observations",
+        "prefix",
+        "selected_presentation",
+        "sequence_status",
+        "suffix",
+        "unplaced"
+      ],
+      "type": "object"
+    },
+    "terminal": {
+      "additionalProperties": false,
+      "properties": {
+        "border_decorations": {
+          "items": {
+            "$ref": "#/$defs/decoration"
+          },
+          "type": "array"
+        },
+        "current_unparsed_label_observations": {
+          "type": "array"
+        },
+        "declared_container_role": {
+          "type": "null"
+        },
+        "endpoint_aliases": {
+          "type": "array"
+        },
+        "extensions": {
+          "type": "object"
+        },
+        "geometry": {
+          "type": "object"
+        },
+        "occurrence_kind": {
+          "enum": [
+            "primary",
+            "alternate-unresolved-observation"
+          ]
+        },
+        "pin_number": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "pin_number_status": {
+          "enum": [
+            "conflicting-observations",
+            "explicit-none",
+            "explicitly-unresolved",
+            "missing",
+            "observed",
+            "unlabeled",
+            "unparsed-or-control",
+            "unreadable",
+            "unsupported-scalar"
+          ]
+        },
+        "role": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "role_observations": {
+          "type": "array"
+        },
+        "side": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "source_form": {
+          "$ref": "#/$defs/terminal_form"
+        },
+        "source_literals": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "symbols": {
+          "$ref": "#/$defs/symbols"
+        },
+        "terminal_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "border_decorations",
+        "declared_container_role",
+        "endpoint_aliases",
+        "extensions",
+        "geometry",
+        "occurrence_kind",
+        "pin_number",
+        "pin_number_status",
+        "role",
+        "role_observations",
+        "side",
+        "source_form",
+        "source_literals",
+        "symbols",
+        "terminal_id"
+      ],
+      "type": "object"
+    },
+    "terminal_form": {
+      "additionalProperties": false,
+      "properties": {
+        "value_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value_type"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:ibm360:ald-page:v3",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "current_extensions": {
+      "type": "object"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "junctions": {
+      "items": {
+        "$ref": "#/$defs/network"
+      },
+      "type": "array"
+    },
+    "nets": {
+      "items": {
+        "$ref": "#/$defs/network"
+      },
+      "type": "array"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/object"
+      },
+      "type": "array"
+    },
+    "page": {
+      "$ref": "#/$defs/page_identity"
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "schema": {
+      "const": "ibm360-ald-page-v3"
+    },
+    "source_containers": {
+      "additionalProperties": false,
+      "properties": {
+        "CAS_boxes": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        },
+        "boxes": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        },
+        "groups": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        },
+        "junctions": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        },
+        "nets": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        },
+        "nodes": {
+          "additionalProperties": false,
+          "properties": {
+            "projected": {
+              "type": "boolean"
+            },
+            "value_type": {
+              "enum": [
+                "null",
+                "boolean",
+                "integer",
+                "number",
+                "string",
+                "array",
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "value_type",
+            "projected"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "source_status_ref": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "const": "notes/Source status.json"
+        },
+        "scan_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "scan_id"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "document_id",
+    "page",
+    "source_status_ref",
+    "objects",
+    "nets",
+    "junctions",
+    "source_containers",
+    "current_extensions",
+    "review"
+  ],
+  "title": "Canonical IBM System/360 page v3",
+  "type": "object"
+}

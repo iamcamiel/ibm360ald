@@ -1,0 +1,67 @@
+"""Root-owned strict caller proposal. No integrate/publication calls or state writes.
+Only nonce is a future production input; paths/manifests/trust are fixed by Root.
+"""
+from pathlib import Path
+import json,hashlib,stat,types,sys
+POLICY_BINDING={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root owned strict reader receiver bootstrap proposal348\\Root fixed receiver343 bootstrap policy348.json', 'sha256': '5ddc7332c50f6a7beb46fc389c1a0c11eb75e47d1ff4ac945b2c0b51cac30813'}
+
+def strict_raw(path):
+    p=Path(path)
+    if not p.is_absolute() or p.resolve()!=p.absolute(): raise ValueError('Absolute nonaliased path required')
+    for a in [p,*p.parents]:
+        if a.exists() and (a.is_symlink() or getattr(a.lstat(),'st_file_attributes',0)&1024): raise ValueError('Reparse path')
+    a=p.stat()
+    if not stat.S_ISREG(a.st_mode) or a.st_nlink!=1: raise ValueError('Regular single-link file required')
+    data=p.read_bytes();z=p.stat()
+    if (a.st_size,a.st_mtime_ns,a.st_ino)!=(z.st_size,z.st_mtime_ns,z.st_ino): raise ValueError('Changed during read')
+    return data
+
+def checked(binding,raw=strict_raw):
+    data=raw(binding['path'])
+    if hashlib.sha256(data).hexdigest()!=binding['sha256']: raise ValueError('Exact binding drift')
+    return data
+
+def fixed_context():
+    policy=json.loads(checked(POLICY_BINDING).decode('utf-8',errors='strict'))
+    base_binding=policy['Root_strict_reader_base'];source=checked(base_binding)
+    # Fresh, exact same-buffer Root base, not importlib/path cache or caller callback.
+    base=types.ModuleType('_Root_fixed_strict_base348');base.__file__=base_binding['path']
+    exec(compile(source,base_binding['path'],'exec',dont_inherit=True),base.__dict__)
+    if str(base.WP)!=policy['work_state'] or str(base.SP)!=policy['resume_state']: raise ValueError('Root base state paths differ')
+    wb=base.raw(policy['work_state']);work=json.loads(wb)
+    resume=json.loads(base.raw(policy['resume_state']))
+    if base.checked(resume['canonical_v3_completed_batch_intake']['active_integration_work_state'])!=wb: raise ValueError('Root Work/resume drift')
+    if work.get('all_ALD_root_receiver343_bootstrap_policy348')!=POLICY_BINDING: raise ValueError('Root did not bind this fixed policy')
+    return policy,base,work
+
+def load_fixed(policy,base):
+    source=base.checked(policy['loader'])
+    loader=types.ModuleType('_Root_fixed_receiver_loader348');loader.__file__=policy['loader']['path']
+    exec(compile(source,policy['loader']['path'],'exec',dont_inherit=True),loader.__dict__)
+    module=loader.load_receiver343(policy['receiver_manifest'],base.raw)
+    if module.__compiled_input_sha256__!=policy['receiver']['sha256']: raise ValueError('Receiver compile input differs')
+    if module.__trusted_manifest343__!=policy['receiver_manifest']: raise ValueError('Receiver manifest differs')
+    return module
+
+def qualification_load_only():
+    policy,base,work=fixed_context();module=load_fixed(policy,base)
+    return dict(purpose='READONLY_QUALIFICATION_LOAD_ONLY',receiver_manifest=policy['receiver_manifest'],compiled_receiver_sha256=module.__compiled_input_sha256__,strict_reader_base=policy['Root_strict_reader_base'],actual_guarded_Root_state_and_same_buffer_load=True,production_activation=False,integrate_calls=0,publisher_calls=0,state_writes=0)
+
+def trusted_capability_for_nonce(nonce):
+    if not isinstance(nonce,str) or not nonce: raise ValueError('Exact nonce required')
+    policy,base,work=fixed_context()
+    records=work.get(policy['future_Root_nonce_record_field'],{})
+    if nonce not in records: raise ValueError('No actual Root-qualified nonce record')
+    binding=records[nonce]
+    if not Path(binding['path']).is_relative_to(Path(policy['future_record_allowed_root'])): raise ValueError('Root record outside approved root')
+    record=json.loads(base.checked(binding).decode('utf-8',errors='strict'))
+    if record.get('activated')is not True or record.get('nonce')!=nonce: raise ValueError('Root record inactive or nonce mismatch')
+    if record.get('receiver_manifest')!=policy['receiver_manifest'] or record.get('publisher_manifest')!=policy['publisher_manifest']: raise ValueError('Root record subject mismatch')
+    # Receiver.select_branch subsequently validates full actual external evidence,
+    # exact process/Gate/contracts. No receipt/spec/caller supplies this capability.
+    module=load_fixed(policy,base)
+    return module,dict(record_binding=binding,record=record,receiver_manifest=policy['receiver_manifest'])
+
+if __name__=='__main__':
+    if sys.argv[1:]!=['--qualification-load']: raise SystemExit('Only --qualification-load is available; no live integrate entry')
+    print(json.dumps(qualification_load_only(),ensure_ascii=False))

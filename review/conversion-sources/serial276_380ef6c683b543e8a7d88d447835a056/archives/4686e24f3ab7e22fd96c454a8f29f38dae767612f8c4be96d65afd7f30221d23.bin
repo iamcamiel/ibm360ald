@@ -1,0 +1,34 @@
+"""Standalone isolated private321 launcher. Probe is read-only; production needs Root activation."""
+from pathlib import Path
+import sys,hashlib,stat,types,json,argparse
+EXPECTED_RUNNER_SHA256='679ce1f15637a3056a9ca1d3c7c3a8c4ad12c8cf53fe4c09e8aab61926e28970'
+EXPECTED_INTERPRETER_PATH='C:\\Users\\camie\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe'
+EXPECTED_INTERPRETER_SHA256='7a4102b91959bb234507850ea584e1d31d300a6831b171e4aadc59ff592f0234'
+
+def guarded(path):
+    for q in (path,*path.parents):
+        st=q.lstat()
+        if stat.S_ISLNK(st.st_mode) or getattr(st,'st_file_attributes',0)&0x400: raise RuntimeError('reparse forbidden')
+    st=path.stat()
+    if not stat.S_ISREG(st.st_mode) or st.st_nlink!=1: raise RuntimeError('single regular file required')
+    return path.read_bytes()
+def sha(data): return hashlib.sha256(data).hexdigest()
+if not (sys.flags.isolated and sys.flags.no_site and sys.flags.dont_write_bytecode): raise RuntimeError('invoke exact -I -S -B')
+if str(Path(sys.executable))!=EXPECTED_INTERPRETER_PATH or sha(guarded(Path(sys.executable)))!=EXPECTED_INTERPRETER_SHA256: raise RuntimeError('interpreter identity mismatch')
+path=Path(__file__).parent/'guarded_publisher276.py'
+source=guarded(path)
+if sha(source)!=EXPECTED_RUNNER_SHA256: raise RuntimeError('publisher bytes changed')
+m=types.ModuleType('_finite321_verified_runner');m.__file__=str(path);sys.modules[m.__name__]=m
+exec(compile(source,str(path),'exec',dont_inherit=True),m.__dict__)
+ap=argparse.ArgumentParser();ap.add_argument('--probe',action='store_true');ap.add_argument('--release');ap.add_argument('--sha');args=ap.parse_args()
+if args.probe:
+    helper,evidence=m.load_source_amendment_helper()
+    origins={}
+    for name,mod in sorted(sys.modules.items()):
+        file=getattr(mod,'__file__',None)
+        if file and Path(file).is_file():
+            origins[name]={'path':str(Path(file).resolve()),'sha256':sha(guarded(Path(file)))}
+    print(json.dumps({'isolated':sys.flags.isolated,'no_site':sys.flags.no_site,'dont_write_bytecode':sys.flags.dont_write_bytecode,'interpreter':{'path':sys.executable,'sha256':EXPECTED_INTERPRETER_SHA256},'publisher':{'path':str(path),'sha256':sha(source)},'helper_execution':evidence,'sys_path':sys.path,'loaded_file_origins':origins,'limits':['file hashes measured after module imports; no transitive DLL identity or in-memory isolation claim','inherited jsonschema includes existing native rpds','probe invokes no transaction or real gate']}))
+else:
+    if not args.release or not args.sha: ap.error('--release and --sha required')
+    result=m.run(args.release,args.sha);print(json.dumps(result));sys.exit(0 if result['success'] else 2)

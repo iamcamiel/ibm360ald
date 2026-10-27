@@ -1,0 +1,208 @@
+"""Root complete caller proposal. Fixed code/state, no caller trust or import cache.
+Production integration requires actual Root-owned per-nonce record AND spec binding.
+Until external qualification/adoption, only qualification-load/missing-record probes.
+"""
+from pathlib import Path
+import json,hashlib,stat,types,sys,importlib.util,importlib.machinery
+BOOTSTRAP_BINDING={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root owned strict reader receiver bootstrap proposal348\\Root fixed strict caller receiver bootstrap348.py', 'sha256': '87e0806cea525bc14344b1d4e45c72c2ff8b7153dc8e8ffdf9a0c3d2a34e31b9'}
+ENTRY_FIELD='all_ALD_root_full_receiver_entry352'
+SPEC_FIELD='all_ALD_receiver343_admitted_specs_by_nonce352'
+DEPENDENCY_INVENTORY_BINDING={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One actual caller354 HOLD corrective357\\Implementation\\Approved dependency and source inventory357.json', 'sha256': '3797134e8a7f554d063aa056b6d07e0255a050801722359e6d560c6a26846350'}
+def approved_dependency_inventory():
+    raw=strict_raw(DEPENDENCY_INVENTORY_BINDING['path'])
+    if hashlib.sha256(raw).hexdigest()!=DEPENDENCY_INVENTORY_BINDING['sha256']:raise ValueError('Approved dependency inventory drift')
+    inventory=json.loads(raw.decode('utf-8',errors='strict'))
+    for binding in inventory['source_bindings']+[inventory['interpreter']]:
+        if hashlib.sha256(strict_raw(binding['path'])).hexdigest()!=binding['sha256']:raise ValueError('Approved source/interpreter drift')
+    if Path(sys.executable).resolve()!=Path(inventory['interpreter']['path']).resolve():raise ValueError('Unapproved interpreter')
+    verify_dependency_inventory(inventory)
+    return inventory
+
+def verify_dependency_inventory(inventory):
+    root=Path(inventory['root'])
+    observed={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and '__pycache__'not in p.parts and p.suffix not in ('.pyc','.pyo')}
+    if observed!=set(inventory['files']):raise ValueError('Approved dependency file set drift')
+    for relative,digest in inventory['files'].items():
+        path=root/relative
+        if not path.is_relative_to(root) or hashlib.sha256(strict_raw(path)).hexdigest()!=digest:raise ValueError('Approved dependency byte drift')
+
+class ApprovedDependencyGuard357:
+    # Dependency Python modules use authenticated same-buffer compile, never pyc.
+    # Native rpds retains CPython's existing extension loader: disk bytes/origin
+    # are checked; transitive DLL and hostile in-memory changes are out of scope.
+    def __init__(self,inventory):
+        self.inventory=inventory
+        self.root=Path(inventory['root'])
+        self.loaded={}
+        self.validator=None
+    def owns(self,name):
+        return name.split('.')[0]in self.inventory['prefixes']
+    def find_spec(self,fullname,path=None,target=None):
+        if not self.owns(fullname):return None
+        relative=fullname.replace('.','/')
+        choices=[relative+'/__init__.py',relative+'.py']
+        choices.extend(relative+suffix for suffix in importlib.machinery.EXTENSION_SUFFIXES)
+        for item in choices:
+            if item not in self.inventory['files']:continue
+            origin=str(self.root/item)
+            loader=ApprovedDependencyLoader357(self,fullname,item)
+            return importlib.util.spec_from_file_location(fullname,origin,loader=loader,submodule_search_locations=[str((self.root/item).parent)] if item.endswith('/__init__.py') else None)
+        raise ModuleNotFoundError('Dependency module outside finite inventory: '+fullname)
+    def verify(self):
+        verify_dependency_inventory(self.inventory)
+        names={name for name in sys.modules if self.owns(name)}
+        if names!=set(self.loaded):raise ValueError('Untracked dependency module/cache')
+        trace=[]
+        for name,(module,loader,relative) in sorted(self.loaded.items()):
+            origin=str(self.root/relative)
+            if sys.modules.get(name)is not module or module.__file__!=origin or module.__spec__.origin!=origin or module.__spec__.loader is not loader or module.__loader__ is not loader:raise ValueError('Dependency module origin/identity drift')
+            if loader.guard is not self or loader.name!=name or loader.relative!=relative:raise ValueError('Dependency loader identity drift')
+            trace.append(dict(name=name,path=origin,sha256=self.inventory['files'][relative],kind='existing-native-extension' if loader.native else 'same-buffer-python-source'))
+        if self.validator is not None:
+            module=self.loaded.get('jsonschema.validators',(None,))[0]
+            if module is None or module.Draft202012Validator is not self.validator or sys.modules['jsonschema'].Draft202012Validator is not self.validator:raise ValueError('Validator object identity drift')
+        return trace
+
+class ApprovedDependencyLoader357:
+    def __init__(self,guard,name,relative):
+        self.guard=guard;self.name=name;self.relative=relative
+        self.native=not relative.endswith('.py')
+        self.native_loader=importlib.machinery.ExtensionFileLoader(name,str(guard.root/relative)) if self.native else None
+    def checked(self):
+        raw=strict_raw(self.guard.root/self.relative)
+        if hashlib.sha256(raw).hexdigest()!=self.guard.inventory['files'][self.relative]:raise ValueError('Dependency compile/load byte drift')
+        return raw
+    def create_module(self,spec):
+        self.checked()
+        if self.native:return self.native_loader.create_module(spec)
+        return None
+    def exec_module(self,module):
+        raw=self.checked()
+        if self.native:self.native_loader.exec_module(module)
+        else:exec(compile(raw,module.__file__,'exec',dont_inherit=True,optimize=0),module.__dict__)
+        self.guard.loaded[self.name]=(module,self,self.relative)
+    def get_resource_reader(self,fullname):
+        # Resources are separately inventoried and rechecked before handoff;
+        # use only this exact package directory, never ambient sys.path.
+        from importlib.resources.readers import FileReader
+        return FileReader(self)
+    def get_filename(self,fullname):return str(self.guard.root/self.relative)
+    @property
+    def path(self):return str(self.guard.root/self.relative)
+
+def load_approved_validator(inventory):
+    guard=ApprovedDependencyGuard357(inventory)
+    if any(guard.owns(name)for name in sys.modules):raise ValueError('Dependency cache present before fixed load')
+    verify_dependency_inventory(inventory)
+    # Dependency resolution belongs to the finite finder; remove arbitrary
+    # filesystem/third-party finders and ambient tmp paths while importing.
+    oldpath=sys.path[:];oldmeta=sys.meta_path[:]
+    runtime=Path(sys.base_prefix)
+    if not sys.flags.isolated or not sys.flags.no_site or not sys.dont_write_bytecode or sys.flags.optimize!=0:raise ValueError('Fresh unoptimized isolated -I -S -B process required')
+    stdlib=[str(runtime/('python'+str(sys.version_info.major)+str(sys.version_info.minor)+'.zip')),str(runtime/'DLLs'),str(runtime/'Lib')]
+    sys.path[:]=[str(guard.root)]+stdlib
+    sys.meta_path[:]=[guard,importlib.machinery.BuiltinImporter,importlib.machinery.FrozenImporter,importlib.machinery.PathFinder]
+    try:
+        from jsonschema import Draft202012Validator
+        guard.validator=Draft202012Validator
+        guard.verify()
+    finally:
+        sys.path[:]=oldpath
+        sys.meta_path[:]=oldmeta
+    # Keep exact finder first for any later lazy imports in approved families.
+    # It rejects unlisted modules and bypasses all filesystem/pyc resolution.
+    sys.meta_path.insert(0,guard)
+    return Draft202012Validator,guard
+
+
+def strict_raw(path):
+    p=Path(path)
+    if not p.is_absolute() or p.resolve()!=p.absolute(): raise ValueError('Absolute nonaliased path required')
+    for a in [p,*p.parents]:
+        if a.exists() and (a.is_symlink() or getattr(a.lstat(),'st_file_attributes',0)&1024): raise ValueError('Reparse path')
+    a=p.stat()
+    if not stat.S_ISREG(a.st_mode) or a.st_nlink!=1: raise ValueError('Regular single-link file required')
+    data=p.read_bytes();z=p.stat()
+    if (a.st_size,a.st_mtime_ns,a.st_ino)!=(z.st_size,z.st_mtime_ns,z.st_ino): raise ValueError('Changed during read')
+    return data
+
+def fixed_context():
+    if not(sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode and sys.flags.optimize==0): raise ValueError('Fresh unoptimized isolated -I -S -B process required')
+    source=strict_raw(BOOTSTRAP_BINDING['path'])
+    if hashlib.sha256(source).hexdigest()!=BOOTSTRAP_BINDING['sha256']: raise ValueError('Fixed bootstrap drift')
+    boot=types.ModuleType('_Root_fixed_bootstrap352');boot.__file__=BOOTSTRAP_BINDING['path']
+    exec(compile(source,boot.__file__,'exec',dont_inherit=True,optimize=0),boot.__dict__)
+    policy,base,work=boot.fixed_context()
+    if Path.cwd()!=base.W: raise ValueError('Fixed Root workspace cwd required')
+    entry=work.get(ENTRY_FIELD)
+    if not entry or entry['path']!=str(Path(__file__).absolute()) or hashlib.sha256(strict_raw(__file__)).hexdigest()!=entry['sha256']: raise ValueError('Root entry not independently bound')
+    return boot,policy,base,work
+
+def load_full_receiver(policy,base):
+    inventory=approved_dependency_inventory()
+    validator,guard=load_approved_validator(inventory)
+    source=base.checked(policy['full_receiver'])
+    module=types.ModuleType('_Root_fixed_full_receiver357');module.__file__=policy['full_receiver']['path']
+    name='prepare_concurrent_team2_team4_native_batches_root20261024'
+    old=sys.modules.get(name)
+    if old is not None: raise ValueError('Root base import cache present')
+    sys.modules[name]=base
+    try:
+        module.B=base
+        module.G=base.CD/'All ALD six Luna conversion blocker analysis001'
+        module.Draft202012Validator=validator
+        exec(compile(source,module.__file__,'exec',dont_inherit=True,optimize=0),module.__dict__)
+    finally:
+        sys.modules.pop(name,None)
+    if module.B is not base or module.integrate.__globals__['B']is not base or module.G!=base.CD/'All ALD six Luna conversion blocker analysis001': raise ValueError('Root strict reader or namespace injection differs')
+    if module.Draft202012Validator is not validator: raise ValueError('Schema validator identity differs')
+    module.__dependency_guard357__=guard
+    module.__dependency_trace357__=guard.verify()
+    module.__compiled_full_receiver_sha256__=hashlib.sha256(source).hexdigest()
+    return module
+
+def qualification_load_full_only():
+    boot,policy,base,work=fixed_context()
+    helper=boot.load_fixed(policy,base);full=load_full_receiver(policy,base)
+    return dict(purpose='READONLY_COMPLETE_ROOT_CALLER_QUALIFICATION_LOAD',pure_receiver_sha256=helper.__compiled_input_sha256__,full_receiver_sha256=full.__compiled_full_receiver_sha256__,strict_Base_B=policy['Root_strict_reader_base'],same_buffer_fresh_base_loader_pure_and_full_receiver=True,actual_strict_B_raw_injected=True,validator_module=full.Draft202012Validator.__module__,dependency_trace=full.__dependency_trace357__,integrate_calls=0,publisher_calls=0,canonical_or_state_writes=0,production_activation=False)
+
+def authenticated_work_snapshot(policy,base):
+    wb=base.raw(policy['work_state'])
+    work=json.loads(wb.decode('utf-8',errors='strict'))
+    resume=json.loads(base.raw(policy['resume_state']).decode('utf-8',errors='strict'))
+    if base.checked(resume['canonical_v3_completed_batch_intake']['active_integration_work_state'])!=wb: raise ValueError('Root Work/resume drift')
+    return wb,work
+
+def integrate_qualified_nonce(nonce):
+    if not isinstance(nonce,str)or not nonce:raise ValueError('Exact nonce required')
+    boot,policy,base,initial_work=fixed_context()
+    wb,work=authenticated_work_snapshot(policy,base)
+    if work!=initial_work:raise ValueError('Root context/snapshot changed')
+    binding=work.get(SPEC_FIELD,{}).get(nonce)
+    if binding is None:raise ValueError('No actual Root-admitted intake spec for nonce')
+    if not Path(binding['path']).is_relative_to(Path(policy['future_record_allowed_root'])):raise ValueError('Root intake spec outside approved root')
+    spec_bytes=base.checked(binding)
+    spec=json.loads(spec_bytes.decode('utf-8',errors='strict'))
+    if spec.get('nonce')!=nonce:raise ValueError('Root spec nonce mismatch')
+    helper,capability=boot.trusted_capability_for_nonce(nonce)
+    record_binding=work.get(policy['future_Root_nonce_record_field'],{}).get(nonce)
+    if record_binding is None or capability.get('record_binding')!=record_binding:raise ValueError('Root capability/snapshot binding mismatch')
+    record_bytes=base.checked(record_binding)
+    record=json.loads(record_bytes.decode('utf-8',errors='strict'))
+    if capability.get('record')!=record or record.get('activated')is not True or record.get('nonce')!=nonce:raise ValueError('Root capability/snapshot record mismatch')
+    if record.get('receiver_manifest')!=policy['receiver_manifest'] or record.get('publisher_manifest')!=policy['publisher_manifest'] or capability.get('receiver_manifest')!=policy['receiver_manifest']:raise ValueError('Root capability/snapshot subject mismatch')
+    process=spec.get('process')
+    if not isinstance(process,dict) or not isinstance(process.get('path'),str) or not process['path'] or not isinstance(process.get('sha256'),str) or len(process['sha256'])!=64 or any(c not in '0123456789abcdef'for c in process['sha256']) or record.get('process')!=process:raise ValueError('Root record/spec process mismatch')
+    current_bytes,current_work=authenticated_work_snapshot(policy,base)
+    if current_bytes!=wb:raise ValueError('Root capability/spec state changed')
+    full=load_full_receiver(policy,base)
+    full.__dependency_guard357__.verify()
+    if base.checked(binding)!=spec_bytes or base.checked(record_binding)!=record_bytes:raise ValueError('Root spec/record changed')
+    current_bytes,current_work=authenticated_work_snapshot(policy,base)
+    if current_bytes!=wb:raise ValueError('Root capability/spec state changed before handoff')
+    return full.integrate(spec,trusted_root_state=capability,receiver343=helper)
+
+if __name__=='__main__':
+    if sys.argv[1:]==['--qualification-load-full']:print(json.dumps(qualification_load_full_only()))
+    elif len(sys.argv)==3 and sys.argv[1]=='--qualified-nonce':print(json.dumps(integrate_qualified_nonce(sys.argv[2])))
+    else:raise SystemExit('Use --qualification-load-full or --qualified-nonce with actual Root-admitted record/spec')

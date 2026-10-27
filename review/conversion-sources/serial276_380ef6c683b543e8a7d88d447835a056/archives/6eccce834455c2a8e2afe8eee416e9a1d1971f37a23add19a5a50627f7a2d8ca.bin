@@ -1,0 +1,451 @@
+"""PRIVATE receiver343 C004 proposal; trusted records remain future Root assumptions."""
+import json,hashlib,copy,stat
+"""Finite321 public byte-bound source/tool admission. No signing or actor isolation."""
+from pathlib import Path
+KNOWN_LOSS_SUPPLEMENT325={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root actual current source map and DN111 known loss supplement325\\Root exact DN111 actual320 missing opaque output known loss supplement325.json', 'sha256': '769fb0b84266020f744817cc4ec36c26950af81e02c601f707f534dae134fb79'}
+DN111_KNOWN_LOSS_SUMMARY='DN111 current320 known loss: source label168 F�161 at205,89 omitted as five wire characters; DN111BD4 sinks empty; unresolved'
+MATRIX_SHA256='48d7b16a60e496f07790978e58730e981c14870ab480a94a9ba6160159082eda'
+PRIVATE_ROOT=Path(__file__).parent.parent.parent
+
+def private_test(p,b):
+    target=p.absolute(b['path'])
+    p.require(p.within(target,PRIVATE_ROOT) and 'Tests' in target.relative_to(PRIVATE_ROOT).parts,'synthetic input outside private Tests')
+    return target
+
+def at(p,value,pointer):
+    p.require(pointer=='' or pointer.startswith('/'),'invalid JSON pointer')
+    if pointer=='': return value
+    for bit in pointer[1:].split('/'):
+        p.require('~' not in bit.replace('~0','').replace('~1',''),'invalid pointer escape')
+        bit=bit.replace('~1','/').replace('~0','~')
+        if isinstance(value,list):
+            p.require(bit=='0' or (bit.isdigit() and not bit.startswith('0')),'noncanonical array pointer')
+            value=value[int(bit)]
+        else: value=value[bit]
+    return value
+
+def resolve_binding(p,binding,document,pointer,matrix):
+    """A relative binding requires all six frozen projection fields on every use."""
+    value=at(p,p.load(p.checked(document)),pointer)
+    p.require(value==binding,'document/pointer/literal correspondence mismatch')
+    if Path(binding['path']).is_absolute():
+        p.checked(binding); return {k:binding[k] for k in ('path','sha256')}
+    rows=[x for x in matrix['binding_resolutions'] if x['document']==document and x['json_pointer']==pointer]
+    p.require(len(rows)==1,'relative binding lacks unique exact projection: '+document['path']+' '+pointer)
+    row=rows[0]
+    p.require(set(row)=={'document','json_pointer','literal_binding','approved_root','canonical_binding'} and row['literal_binding']==binding,'projection literal mismatch')
+    root=p.absolute(row['approved_root']); target=p.absolute(row['canonical_binding']['path'])
+    literal=Path(binding['path'])
+    p.require(not literal.drive and not literal.root and '..' not in literal.parts,'relative projection escape')
+    p.require(root/literal==target and p.within(target,root) and row['canonical_binding']['sha256']==binding['sha256'],'projection root/canonical/hash mismatch')
+    p.guard(root); p.checked(row['canonical_binding'])
+    return dict(row['canonical_binding'])
+
+def load_matrix(p,binding,synthetic=False):
+    if synthetic: private_test(p,binding)
+    else: p.require(binding==p.PRODUCTION_BINDINGS['matrix'] and binding['sha256']==MATRIX_SHA256,'untrusted claimed Root matrix')
+    matrix=p.load(p.checked(binding))
+    p.require(matrix['format']=='Root-exact-ten-source-tool-admission321-v1','matrix format mismatch')
+    names=[x['page'] for x in matrix['records']]
+    p.require(len(names)==len(set(names)) and 1<=len(names)<=10,'matrix page partition invalid')
+    if not synthetic: p.require(len(names)==10 and len(matrix['binding_resolutions'])==129,'exact ten/129 matrix required')
+    for row in matrix['binding_resolutions']:
+        resolve_binding(p,row['literal_binding'],row['document'],row['json_pointer'],matrix)
+    return matrix
+
+def canonical_tools(p,matrix,record):
+    doc=record['actual_current_key']
+    return {k:resolve_binding(p,b,doc,'/tools/'+k,matrix) for k,b in record['exact_tools'].items()}
+
+def archive_closure(p,matrix,record,observations=None):
+    """No metadata rewrite. Return exact document and approved canonical archive bindings."""
+    result=[]; visited=set()
+    def add(b,follow=False):
+        if b not in result: result.append(b)
+        token=(b['path'],b['sha256'])
+        if not follow or token in visited: return
+        visited.add(token)
+        if Path(b['path']).suffix.lower()=='.json':
+            value=p.load(p.checked(b))
+            if isinstance(value,(dict,list)): walk(value,b)
+    def walk(value,doc,pointer=''):
+        if isinstance(value,dict):
+            if {'path','sha256'}<=set(value):
+                # Frozen historical whole-SourceStatus observations are not current drift predicates.
+                # Their exact containing metadata remains archived. No snapshot is invented.
+                historical_status=Path(value['path'])==Path('D:/Github/IBM360/ibm360ald/notes/Source status.json')
+                if historical_status:
+                    if observations is not None: observations.append({'document':doc,'json_pointer':pointer,'binding':value,'status':'UNKNOWN historical global snapshot; containing metadata retained; not a live page preimage'})
+                    return
+                # Deeper historical metadata can contain observations whose document/pointer was
+                # never Root-approved for resolution. Retain that document, expose UNKNOWN,
+                # and never infer a canonical target. Current key/selection never use this path.
+                primary=[record.get(k) for k in ('actual_current_key','source_selection','original_source_review','named_tool_qualification')]
+                projected=any(x['document']==doc and x['json_pointer']==pointer for x in matrix['binding_resolutions'])
+                if not Path(value['path']).is_absolute() and doc not in primary and not projected:
+                    if observations is not None: observations.append({'document':doc,'json_pointer':pointer,'binding':value,'status':'UNKNOWN unresolved historical relative claim; exact metadata retained; no approved projection or inferred target'})
+                    return
+                canonical=resolve_binding(p,value,doc,pointer,matrix)
+                label=(pointer.rsplit('/',1)[-1]+'/'+Path(value['path']).name).lower()
+                follow=any(word in label for word in ('proposal','withdrawn','contradict','approval history','history.json','source_review','source review','source claims'))
+                if any(word in Path(value['path']).name.lower() for word in ('manifest','queue','registry','allocation')): follow=False
+                # A global qualification/allocation manifest is archived as bytes, not expanded into unrelated pages.
+                add(canonical,follow)
+                for k,v in value.items():
+                    if k not in ('path','sha256'): walk(v,doc,pointer+'/'+k.replace('~','~0').replace('/','~1'))
+                return
+            for k,v in value.items(): walk(v,doc,pointer+'/'+k.replace('~','~0').replace('/','~1'))
+        elif isinstance(value,list):
+            for i,v in enumerate(value): walk(v,doc,pointer+'/'+str(i))
+    for name in ('actual_current_key','source_selection','original_source_review','named_tool_qualification'):
+        doc=record.get(name)
+        if doc:
+            add(doc); walk(p.load(p.checked(doc)),doc)
+    for b in record['original276_record']['source'].values(): add(b)
+    for b in p.required_issue_reports(record['original276_record']): add(b)
+    for role in ('actual_saved_data','actual_saved_review','actual_saved_TXT','actual_process'): add(record[role])
+    return result
+
+
+def declared_issue_bindings(p,bindings,matrix,record,contexts=None):
+    """Resolve all exact approved contexts; never resolve relative claims from cwd."""
+    result=[]
+    primary=[record.get(k) for k in ('actual_current_key','source_selection','original_source_review','named_tool_qualification')]
+    for b in bindings:
+        if Path(b['path']).is_absolute():
+            p.checked(b); canonical=dict(b)
+        else:
+            rows=[x for x in matrix['binding_resolutions'] if x['document'] in primary and x['literal_binding']==b]
+            p.require(bool(rows),'declared relative issue lacks exact Root context')
+            context_keys=[(x['document']['path'],x['document']['sha256'],x['json_pointer']) for x in rows]
+            p.require(len(context_keys)==len(set(context_keys)),'duplicate issue projection context')
+            resolved=[resolve_binding(p,b,x['document'],x['json_pointer'],matrix) for x in rows]
+            canonical=resolved[0]
+            p.require(all(x==canonical for x in resolved) and all(x['approved_root']==rows[0]['approved_root'] for x in rows),'ambiguous declared issue projections')
+            if contexts is not None: contexts.extend(dict(x) for x in rows)
+        if canonical not in result: result.append(canonical)
+    return result
+
+def require_declared_issue_archives(p,bindings,archive_sources):
+    for b in bindings:
+        p.checked(b)
+        p.require(b in archive_sources,'declared issue missing no-overwrite archive write')
+
+def validate_saved_argv(p,process,q,page_name,expected_source_review=None):
+    argv=process['argv']; tool=process['tools']['converter']['path']
+    p.require(isinstance(argv,list) and argv.count(tool)==1,'actual converter argv missing/ambiguous')
+    tail=[process['source']['model']['path'],'--text',process['source']['text']['path']]
+    if page_name=='AP157':
+        p.require(isinstance(expected_source_review,dict) and process.get('source_review')==expected_source_review,'actual AP157 source review binding mismatch')
+        p.checked(expected_source_review)
+        tail+=['--source-review',expected_source_review['path'],'--source-review-sha256',expected_source_review['sha256']]
+    else:
+        p.require(expected_source_review is None and 'source_review' not in process,'unlisted source-review process option')
+    tail+=['--render','--output',str(p.absolute(q['emitted_data']['path']).parent),'--report',q['conversion_report']['path']]
+    p.require(argv[argv.index(tool)+1:]==tail,'actual converter argv subject/flags mismatch')
+
+
+def admit(p,r,manifest,synthetic_gate=None):
+    p.require('root_source_amendments' in r,'finite321 ledger required')
+    trusted=synthetic_gate if synthetic_gate is not None else r.get('root_source_amendment_gate')
+    p.require(trusted is not None,'exact Root gate absent')
+    if synthetic_gate is not None:
+        p.require('root_source_amendment_gate' not in r,'synthetic gate cannot override production gate')
+        private_test(p,trusted); private_test(p,r['root_source_amendments'])
+    gate=p.load(p.checked(trusted))
+    fields={'format','subject','ledger','authority','policy','manifest','matrix'}
+    p.require(set(gate)==fields or (synthetic_gate is not None and set(gate)==fields|{'known_loss_supplements'}),'invalid finite gate fields')
+    if 'known_loss_supplements' in gate: p.require(isinstance(gate['known_loss_supplements'],dict) and set(gate['known_loss_supplements'])<={'DN111'},'outside finite synthetic supplement scope')
+    p.require(gate['format']=='root-source-tool-gate321-v1' and gate['subject']==p.candidate_subject(),'stale exact amendment subject')
+    p.require(gate['ledger']==r['root_source_amendments'],'ledger not gate-bound')
+    matrix=load_matrix(p,gate['matrix'],synthetic_gate is not None)
+    for role in ('authority','policy','manifest','matrix'):
+        p.require(gate[role]==r[role],'gate standing binding mismatch: '+role)
+    p.require(matrix['authority']==r['authority'] and matrix['policy']==r['policy'] and matrix['original_manifest']==r['manifest'],'matrix authority/policy/original manifest mismatch')
+    ledger=p.load(p.checked(gate['ledger']))
+    p.require(set(ledger)=={'format','nonce','authority','policy','manifest','matrix','records'} and ledger['format']=='root-source-tool-ledger321-v1' and ledger['nonce']==r['nonce'],'ledger fields/format/nonce mismatch')
+    for role in ('authority','policy','manifest','matrix'): p.require(ledger[role]==gate[role],'ledger binding mismatch: '+role)
+    entries=ledger['records']; indexed={e['page']:e for e in entries}
+    pages={x['page']:x for x in r['pages']}; allowed={x['page']:x for x in matrix['records']}
+    p.require(1<=len(entries)<=10 and len(indexed)==len(entries) and set(indexed)==set(pages) and set(indexed)<=set(allowed),'unlisted/duplicate/incomplete finite pages')
+    originals={x['page']:x for x in manifest['records']}
+    archive_sources=[w['source'] for w in r['writes'] if w['purpose']=='archive' and w['before'] is None]
+    for name,e in indexed.items():
+        fields={'page','original_record','selection','current_keys','required_archives','known_issues','page_sha256','historical_observations'}
+        if name=='DN111': fields.add('known_loss')
+        p.require(set(e)==fields,'invalid amendment record fields')
+        a=allowed[name]; page=pages[name]; q=page['qualification']; key=a['actual_current_key']; current=p.load(p.checked(key))
+        selection=a['source_selection'] or key
+        p.require(e['selection']==selection and e['current_keys']==key and e['original_record']==a['original276_record']==originals.get(name),'original/selection/key tuple mismatch')
+        p.require(e['page_sha256']==p.sha(p.encoded(page)),'exact release page mismatch')
+        p.require(current['page']==name and current['source']==a['selected_source']==page['source'] and q['source_selection']==selection,'source tuple mismatch')
+        tools=canonical_tools(p,matrix,a)
+        p.require(q['tools']==tools and page['schema']==tools['schema'] and current['tools']==a['exact_tools'],'named exact tool tuple mismatch')
+        for field,expected in (('semantic_key',q['source_key']),('format_decisions',q['format_decisions']),('process',q['process']),('report',q['conversion_report']),('data',q['emitted_data']),('review',page['original_review']),('TXT',page['txt'])):
+            p.require(current.get(field)==expected,'current key tuple mismatch: '+field)
+        for field,expected in (('actual_saved_data',q['emitted_data']),('actual_saved_review',page['original_review']),('actual_saved_TXT',page['txt']),('actual_process',q['process']),('format_decisions',q['format_decisions']),('semantic_key',q['source_key'])):
+            p.require(a[field]==expected,'Root matrix tuple mismatch: '+field)
+        counts=current['counts']; p.require(current.get('emitted_V4') is True and counts.get('blocked')==0 and counts.get('converted',0)+counts.get('converted with findings',0)==1,'nonemitting current key')
+        p.require(isinstance(e['known_issues'],list) and e['known_issues'] and q['known_issues']==e['known_issues'] and page['unresolved_discrepancies'] is True,'known findings must remain unresolved')
+        known_loss=None; loss_required=[]
+        if name=='DN111':
+            known_loss=KNOWN_LOSS_SUPPLEMENT325 if synthetic_gate is None else gate.get('known_loss_supplements',{}).get('DN111')
+            p.require(isinstance(known_loss,dict) and e['known_loss']==known_loss,'mandatory DN111 known-loss supplement absent/replaced')
+            if synthetic_gate is not None: private_test(p,known_loss)
+            loss=p.load(p.checked(known_loss))
+            p.require(loss.get('page')=='DN111' and loss.get('current_key')==current,'known-loss exact current-key mismatch')
+            p.require(loss.get('original_private_matrix')==gate['matrix'] and loss.get('original_private_policy')==r['policy'],'known-loss matrix/policy mismatch')
+            p.require(loss.get('source_label_index')==168 and loss.get('source_literal')=='F�161' and loss.get('source_at')==[205,89],'known-loss source literal mismatch')
+            p.require(loss.get('observed_five_source_glyphs_omitted') is True and loss.get('source_or_wiring_approval') is False and loss.get('required_approval') is False and loss.get('required_unresolved_discrepancies') is True,'known-loss unresolved false-approval contract missing')
+            p.require(DN111_KNOWN_LOSS_SUMMARY in q['known_issues'] and known_loss in q['retained_issue_reports'],'explicit DN111 known loss absent from retained issues')
+            loss_required=loss.get('required_archival_bindings')
+            expected=[*current['source'].values(),*[current[k] for k in ('data','review','TXT','process','report')]]
+            p.require(isinstance(loss_required,list) and all(b in loss_required for b in expected),'known-loss required current evidence omitted')
+            loss_required=[known_loss,*loss_required]
+        observations=[]
+        required=archive_closure(p,matrix,a,observations)+[gate['matrix'],r['policy'],r['authority'],r['manifest'],key,selection]
+        p.require(e['historical_observations']==observations,'historical UNKNOWN observation disclosure mismatch')
+        required.extend(matrix.get('actual_saved_DATA_reviews',{}).values())
+        required.extend(loss_required)
+        issue_contexts=[]
+        declared=declared_issue_bindings(p,q['retained_issue_reports'],matrix,a,issue_contexts)
+        e['retained_issue_contexts']=issue_contexts
+        required.extend(declared)
+        require_declared_issue_archives(p,declared,archive_sources)
+        e['retained_issue_bindings']=declared
+        e['source_review']=a['original_source_review'] if name=='AP157' else None
+        selected=p.load(p.checked(selection))
+        p.require(all(b in q['retained_issue_reports'] for b in p.required_issue_reports(selected)),'selected source report/history omitted from retained issues')
+        p.require(all(b in e['required_archives'] for b in required),'omitted complete archive closure/metadata')
+        for b in e['required_archives']:
+            p.checked(b); p.require(b in archive_sources,'archive missing no-overwrite write')
+        review=p.load(p.checked(page['final_review']))
+        provenance=review.get('publication provenance',{})
+        if name=='DN111': p.require(provenance.get('known_loss')==known_loss,'known-loss review provenance absent/changed')
+        p.require(provenance.get('historical_observations',[])==observations,'historical UNKNOWN review provenance mismatch')
+        if observations: p.require(any('UNKNOWN' in x for x in q['known_issues']),'historical UNKNOWN must remain a known unresolved issue')
+        p.require(review.get('publication provenance',{}).get('source_amendment')=={'selection':selection,'current_keys':key,'matrix':gate['matrix']},'source/tool provenance mismatch')
+        e['tools']=tools
+    return indexed
+
+
+
+
+
+PUBLISHER_MANIFEST={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root actual frozen encoding-only004 private relay external review341\\Retained actual frozen encoding-only004 manifest339.json', 'sha256': '9926971f4b99ea52f797744b2a2140f77bcb4a271a39e92ae714f410c60a6698'}
+SUBJECT={'guarded_publisher276.py': '679ce1f15637a3056a9ca1d3c7c3a8c4ad12c8cf53fe4c09e8aab61926e28970', 'source_amendment321.py': '5538f120dd3d8ba0ace9c592c8b036747add7a30c1d63e946913518a2c020a51', 'release-plan.schema.json': '0c039817a58ad00929a08fce72127a84f7963a59d225ef2e6274730554e4a783', 'Exact release format276.md': 'be87eeefd416dd60f0eb203fcc18ce58854a4c3cbf22cd0d6827897996f5c0c4', 'Source tool protocol321.json': 'f87f976aa600654117ee6d856addef4531610d90e475c82497d122a3e0b842f5', 'launch321.py': '8902cf625c4fcfcc130c309f73f302558bc9f6881724ee5028ba42483aee584c'}
+CONTRACTS={'matrix': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact ten emitted source tool public admission matrix private publisher321\\Root exact ten public source named tool admission matrix321.json', 'sha256': '48d7b16a60e496f07790978e58730e981c14870ab480a94a9ba6160159082eda'}, 'original_policy': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact ten emitted source tool public admission matrix private publisher321\\Root finite source and named tool amendment policy321.json', 'sha256': 'a2b8bfc15282bba26f9c922dba9c44fd96cb8cffebd9643b0e88a9db981cf91e'}, 'effective323': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root explicit inherited schema validation clarification and delivery322 checkpoint323\\Root effective policy321 inherited fullDraft jsonschema referencing rpds clarification323.json', 'sha256': '16a14ee2b2c3bd34f0ad98c6ada937580f7d69a87fd6349024171c10345c4010'}, 'mandatory_DN111_loss325': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root actual current source map and DN111 known loss supplement325\\Root exact DN111 actual320 missing opaque output known loss supplement325.json', 'sha256': '769fb0b84266020f744817cc4ec36c26950af81e02c601f707f534dae134fb79'}, 'DATA322': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team5 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\Six actual emitted SOURCE320 saved DATA322\\Final immutable six actual emitted SOURCE320 saved DATA322 reviews.json', 'sha256': '6f2a4b22a39b219bb6971acec75b6a1fe16946d309666dacf8c5c3565237f2c7'}, 'external_CODE_task': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root actual frozen encoding-only004 private relay external review341\\Exact Team3 external encoding-only004 CODE341.json', 'sha256': '83802e597b602e43ac83d18ea9720b881cae46e54fe9042ad20e78280f6007e2'}}
+PUBLISHER_FILES=[{'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\guarded_publisher276.py', 'sha256': '679ce1f15637a3056a9ca1d3c7c3a8c4ad12c8cf53fe4c09e8aab61926e28970'}, {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\source_amendment321.py', 'sha256': '5538f120dd3d8ba0ace9c592c8b036747add7a30c1d63e946913518a2c020a51'}, {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\release-plan.schema.json', 'sha256': '0c039817a58ad00929a08fce72127a84f7963a59d225ef2e6274730554e4a783'}, {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\Exact release format276.md', 'sha256': 'be87eeefd416dd60f0eb203fcc18ce58854a4c3cbf22cd0d6827897996f5c0c4'}, {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\Source tool protocol321.json', 'sha256': 'f87f976aa600654117ee6d856addef4531610d90e475c82497d122a3e0b842f5'}, {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\One encoding-only publisher candidate004339\\Implementation\\Candidate004\\launch321.py', 'sha256': '8902cf625c4fcfcc130c309f73f302558bc9f6881724ee5028ba42483aee584c'}]
+
+OLD_RUNNER='efc2e2fbdbab44024a276f340b84f3a06f0402c653ddb0bc6a2df032a1ae4ac9'
+OLD_GATE='50882a16d89306a35fbee6733a66709bc8fd2928a20a232efc99805e3073c767'
+INTERPRETER={'path':r'C:\Users\camie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe','sha256':'7a4102b91959bb234507850ea584e1d31d300a6831b171e4aadc59ff592f0234'}
+
+def require(value,message):
+    if not value: raise AssertionError(message)
+
+def sha(data): return hashlib.sha256(data).hexdigest()
+def encoded(value): return (json.dumps(value,ensure_ascii=False,sort_keys=True,indent=2,allow_nan=False)+'\n').encode('utf8')
+def load(data):
+    def pairs(items):
+        result={}
+        for key,value in items:
+            require(key not in result,'duplicate JSON member'); result[key]=value
+        return result
+    def bad(value): raise ValueError('nonfinite JSON '+value)
+    return json.loads(data.decode('utf-8',errors='strict') if isinstance(data,bytes) else data,object_pairs_hook=pairs,parse_constant=bad)
+
+def required_issue_reports(record):
+    result=[]
+    def visit(value,trail=()):
+        if isinstance(value,dict):
+            if set(value)=={'path','sha256'}:
+                if any(any(word in k.lower() for word in ('report','hold','review')) for k in trail) and value not in result: result.append(copy.deepcopy(value))
+            else:
+                for k,v in value.items(): visit(v,trail+(k,))
+        elif isinstance(value,list):
+            for v in value: visit(v,trail)
+    visit(record); return result
+
+def historical_bytes(binding,plan,before,root,raw):
+    """Strict319: raw path guard errors propagate BEFORE considering hash drift."""
+    data=raw(binding['path'])
+    if sha(data)==binding['sha256']: return data
+    replacements=[w for w in plan['writes'] if w['purpose'] in ('canonical_json','canonical_txt','external_review') and w['before']==binding and w['target']==binding['path']]
+    require(len(replacements)==1,'unexplained historical binding drift')
+    relative=Path(binding['path']).relative_to(root).as_posix()
+    require(before[relative]==binding['sha256'],'historical beforemap mismatch')
+    archives=[w for w in plan['writes'] if w['purpose']=='archive' and w['before'] is None and w['source']['sha256']==binding['sha256']]
+    require(bool(archives),'missing exact archived historical preimage')
+    for w in archives:
+        require(sha(raw(w['source']['path']))==binding['sha256'],'archive source drift')
+        archived=raw(w['target']); require(sha(archived)==binding['sha256'],'archive target drift')
+    return archived
+
+def select_branch(process,trusted_root_state,checked):
+    """Unknown/321 identifiers cannot enter the old legacy-process fallback."""
+    new=process.get('runner_sha256')==SUBJECT['guarded_publisher276.py'] or any(k in process for k in ('publisher_subject','launcher_sha256'))
+    if not new:
+        require(process.get('runner_sha256',OLD_RUNNER)==OLD_RUNNER,'unknown runner')
+        require(process.get('Gate_sha256',OLD_GATE)==OLD_GATE,'unknown/mixed Gate')
+        return None
+    require('transaction_success' in process,'321 cannot use legacy success fallback')
+    require(isinstance(trusted_root_state,dict),'missing external Root trust capability')
+    require(set(trusted_root_state)=={'record_binding','record','receiver_manifest'},'invalid external Root trust capability')
+    q=load(checked(trusted_root_state['record_binding']))
+    require(q==trusted_root_state['record'],'Root qualification differs from trusted snapshot')
+    require(q['format']=='PROPOSED-Root-external-receiver-qualification343-v1' and q['activated'] is True and q['local_only'] is False,'not activated external qualification')
+    require(q['fresh_different_team_qualification'] is True and q['qualification_team']!=q['implementation_team'],'fresh different-team qualification absent')
+    require(q['publisher_subject']==SUBJECT==process['publisher_subject'],'exact321C004 subject mismatch')
+    require(q['receiver_manifest']==trusted_root_state['receiver_manifest'],'receiver proposal mismatch')
+    checked(q['receiver_manifest'])
+    require(q['publisher_manifest']==PUBLISHER_MANIFEST,'publisher manifest mismatch')
+    checked(PUBLISHER_MANIFEST)
+    require(q['contracts']==CONTRACTS,'matrix/policy/323/325/DATA322 mismatch')
+    for b in CONTRACTS.values(): checked(b)
+    for b in PUBLISHER_FILES: checked(b)
+    for role in ('independent_CODE','independent_DATA'):
+        evidence=load(checked(q[role]))
+        require(evidence==q['qualified_evidence'][role],'qualification evidence differs from Root authenticated snapshot')
+        require(evidence['subject']==SUBJECT and evidence['receiver_manifest']==q['receiver_manifest'] and evidence['local_only'] is False and evidence['qualified'] is True,'local-only or wrong-subject qualification evidence')
+        require(evidence['team']!=q['implementation_team'],'same-team qualification')
+    require(process['runner_sha256']==SUBJECT['guarded_publisher276.py'] and process['launcher_sha256']==SUBJECT['launch321.py'],'runner/launcher drift')
+    require(process['interpreter']==q['interpreter']==INTERPRETER and process['interpreter_flags']==['-I','-S','-B'],'launcher runtime mismatch')
+    checked(INTERPRETER)
+    gate=load(checked(q['Gate']))
+    require(process['Gate_sha256']==q['Gate']['sha256'] and gate['subject']==SUBJECT,'Gate mismatch')
+    for role,key in (('matrix','matrix'),('policy','original_policy')): require(gate[role]==CONTRACTS[key],'Gate contract mismatch')
+    return q
+
+class Evidence:
+    """Read-only adapter. raw and guard MUST be strict original Root guards in integration.
+    DATA may inject private fixture readers explicitly; no production test override exists.
+    """
+    require=staticmethod(require); sha=staticmethod(sha); load=staticmethod(load); encoded=staticmethod(encoded)
+    required_issue_reports=staticmethod(required_issue_reports)
+    def __init__(self,plan,before,root,raw,guard):
+        self.plan=plan; self.before=before; self.root=Path(root); self.raw=raw; self.guard=guard
+        self.PRODUCTION_BINDINGS={'matrix':CONTRACTS['matrix']}
+    def checked(self,b): return historical_bytes(b,self.plan,self.before,self.root,self.raw)
+    def absolute(self,p):
+        p=Path(p); require(p.is_absolute(),'absolute path required'); return p
+    def within(self,p,root): return p.is_relative_to(root)
+    def candidate_subject(self): return dict(SUBJECT)
+
+def verify_page_evidence(p,page,entry):
+    """Check exact actual saved process once, emitted DATA/TXT, original/current preimages."""
+    q=page['qualification']; proc=p.load(p.checked(q['process']))
+    require(type(proc.get('exit_code')) is int and proc['exit_code']==0 and proc['execution_count']==1 and proc['retried'] is False,'actual saved process failed/retried')
+    current=p.load(p.checked(entry['current_keys']))
+    for role in ('model','text'):
+        require(proc['source'][role]['sha256']==page['source'][role]['sha256'],'actual process source drift')
+    if 'raw' in page['source']: require(proc['source'].get('raw',proc['source'].get('restored_raw',{})).get('sha256')==page['source']['raw']['sha256'],'actual process raw drift')
+    archives=[w for w in p.plan['writes'] if w['purpose']=='archive' and w['before'] is None]
+    for b in proc['source'].values():
+        p.checked(b); require(any(w['source']['sha256']==b['sha256'] for w in archives),'process source archive absent')
+    for role in ('converter','renderer','schema'):
+        require(proc['tools'][role]==current['tools'][role] and proc['tools'][role]['sha256']==q['tools'][role]['sha256'],'actual process tool literal drift')
+        p.checked(q['tools'][role])
+    validate_saved_argv(p,proc,q,page['page'],entry['source_review'])
+    exact={'format':'successful-conversion276-v1','page':page['page'],'exit_code':0,'emitted':True,'source':page['source'],'data':q['emitted_data'],'txt':page['txt'],'original_review':page['original_review'],'tools':q['tools'],'format_decisions':q['format_decisions'],'process':q['process'],'conversion_report':q['conversion_report']}
+    require(p.load(p.checked(q['execution']))==exact,'normalized execution mismatch')
+    require({k:v for k,v in p.load(p.checked(page['data'])).items() if k!='review'}=={k:v for k,v in p.load(p.checked(q['emitted_data'])).items() if k!='review'},'saved emitted functional DATA changed')
+    for role in ('stdout','stderr'):
+        if role in proc and isinstance(proc[role],dict):
+            p.checked(proc[role]); require(any(w['source']==proc[role] for w in archives),'process capture archive absent')
+    subject={k:page[k] for k in ('source','data','txt','original_review','final_review','schema')}
+    subject.update({k:q[k] for k in ('source_key','source_selection','tools','format_decisions','dual_consumers')})
+    require(q['subject']==subject and q['dual_consumers']==p.plan['dual_consumers'],'qualification exact subject/consumers mismatch')
+    report=p.load(p.checked(q['conversion_report']))
+    require(report.get('dry run') is False and report.get('source writes')==0 and report.get('counts',{}).get('blocked')==0,'dry/nonemitting conversion report')
+    rows=report.get('pages',[])
+    require(len(rows)==1 and rows[0].get('page')==page['page'] and rows[0].get('status') in ('converted','converted with findings'),'successful report page/status missing')
+    require(rows[0].get('source')==proc['source']['model']['path'] and rows[0].get('output')==q['emitted_data']['path'],'report source/output mismatch')
+    for b in (q['process'],q['conversion_report'],q['emitted_data']): require(any(w['source']['sha256']==b['sha256'] for w in archives),'actual process/report/DATA archive missing')
+    original=entry['original_record']
+    for target,purpose,binding in ((page['canonical_json'],'canonical_json',original['canonical_preimage']['json']),(page['canonical_txt'],'canonical_txt',original['canonical_preimage']['text'])):
+        writes=[w for w in p.plan['writes'] if w['target']==target and w['purpose']==purpose]
+        require(len(writes)==1 and writes[0]['before']==binding,'original canonical V3 preimage drift')
+        p.checked(binding)
+    for b in [*original['source'].values(),*page['source'].values(),page['original_review'],*required_issue_reports(original)]:
+        p.checked(b); require(any(w['source']['sha256']==b['sha256'] for w in archives),'original/selected archive absent')
+    require(all(b in q['retained_issue_reports'] for b in required_issue_reports(original)),'original issue/history omitted')
+    for binding in entry['retained_issue_bindings']:
+        p.checked(binding); require(any(w['source']==binding for w in archives),'declared retained issue archive missing')
+    # 343 additive DATA322 obligation applies to every new321 page; no altered321 publisher.
+    data=CONTRACTS['DATA322']; final=p.load(p.checked(page['final_review'])); provenance=final['publication provenance']
+    require(data in q['retained_issue_reports'] and data in entry['required_archives'],'DATA322 issue/ledger evidence missing')
+    require(provenance.get('actual_DATA322')==data,'DATA322 final review provenance missing')
+    require(any(w['source']==data for w in archives),'DATA322 no-overwrite archive missing')
+    require(page['unresolved_discrepancies'] is True,'unreviewed flag cleared')
+
+def validate_new321(plan,receipt,process,qualification,*,raw,guard,root,manifest,before,schema_validator):
+    p=Evidence(plan,before,root,raw,guard)
+    require(plan['root_source_amendment_gate']==qualification['Gate'],'release Gate not trusted Root Gate')
+    require(plan['matrix']==CONTRACTS['matrix'] and plan['policy']==CONTRACTS['original_policy'],'release matrix/policy drift')
+    require(qualification['release']==receipt['release'],'Root exact release mismatch')
+    require(plan['nonce']==receipt['nonce']==qualification['nonce'],'Root nonce mismatch')
+    entries=admit(p,copy.deepcopy(plan),manifest)
+    executions=receipt['helper_execution']; require(isinstance(executions,list) and executions,'helper execution absent')
+    for e in executions:
+        for role in ('expected_sha256','authenticated_sha256','compiled_input_sha256'): require(e[role]==SUBJECT['source_amendment321.py'],'helper buffer drift')
+        require(e['resolved_path']==e['code_filename']==e['admit_code_filename']==PUBLISHER_FILES[1]['path'],'helper path drift')
+        require(e['admit_module']==e['module_name']=='_publisher321_authenticated_helper_'+SUBJECT['source_amendment321.py'],'helper identity drift')
+    require(receipt['pages']==[page['page'] for page in plan['pages']] and receipt['qualification']==[page['qualification'] for page in plan['pages']],'receipt page qualification mismatch')
+    expected={'format':'mechanical-qualification276-v1','nonce':plan['nonce'],'authority':plan['authority'],'policy':plan['policy'],'delegation':plan['delegation'],'pages':[{'page':page['page'],'qualification':page['qualification']} for page in plan['pages']]}
+    require(p.load(p.checked(plan['qualification']))==expected,'mechanical qualification mismatch')
+    require(sorted((b['path'],b['sha256']) for b in receipt['actual_afterimages'])==sorted((w['target'],w['source']['sha256']) for w in plan['writes']),'actual afterimage subjects mismatch')
+    expected_archives=sorted((w['target'],w['source']['sha256']) for w in plan['writes'] if w['purpose']=='archive')
+    require(sorted((a['path'],a['sha256']) for a in receipt['archive_verification'] if a['verified'] is True)==expected_archives,'archive verification subjects mismatch')
+    for w in plan['writes']:
+        if w['purpose']=='archive': require(sha(raw(w['target']))==w['source']['sha256'],'archive target bytes drift')
+    for page in plan['pages']:
+        verify_page_evidence(p,page,entries[page['page']])
+        verify_saved_models(p,page,entries[page['page']],schema_validator)
+    return entries
+
+
+def strict_directory_guard(path):
+    p=Path(path)
+    require(p.is_absolute() and p.resolve()==p.absolute(),'aliased directory path')
+    for a in (p,*p.parents):
+        st=a.lstat()
+        require(not stat.S_ISLNK(st.st_mode) and not(getattr(st,'st_file_attributes',0)&1024),'reparse directory path')
+    require(p.is_dir(),'directory required')
+    return p
+
+def verify_saved_models(p,page,entry,schema_validator):
+    """Pure JSON checks; caller supplies actual full Draft202012Validator class."""
+    model=p.load(p.checked(page['data'])); emitted=p.load(p.checked(page['qualification']['emitted_data']))
+    schema=p.load(p.checked(page['schema'])); original=p.load(p.checked(page['original_review'])); final=p.load(p.checked(page['final_review']))
+    def refs(value):
+        if isinstance(value,dict):
+            for key,v in value.items():
+                if key in ('$ref','$dynamicRef'): require(isinstance(v,str) and v.startswith('#'),'external schema ref unsupported')
+                refs(v)
+        elif isinstance(value,list):
+            for v in value: refs(v)
+    refs(schema); schema_validator.check_schema(schema)
+    schema_validator(schema).validate(model); schema_validator(schema).validate(emitted)
+    require(model['$schema']=='https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json' and model['page']['page']==page['page'],'saved V4 identity mismatch')
+    require(model['review']['approved'] is False and model['review']['unresolved discrepancies'] is page['unresolved_discrepancies'] is True,'saved review flags changed')
+    require({k:v for k,v in model.items() if k!='review'}=={k:v for k,v in emitted.items() if k!='review'},'emitted functional content changed')
+    digest=sha(json.dumps({k:v for k,v in model.items() if k!='review'},ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf8'))
+    require(digest==original['content sha256']==final['content sha256'],'saved content digest drift')
+    old=p.load(p.checked(entry['original_record']['canonical_preimage']['json'])); selected=p.load(p.checked(page['source']['model']))
+    require(old['schema']==selected['schema']=='ibm360-ald-page-v3' and old['page']['page']==selected['page']['page']==page['page'],'original/selected V3 identity drift')
+    require(original.get('inherited review')==selected['review'],'selected inherited review changed')
+    require('publication provenance' not in original,'original review already published')
+    adjusted=copy.deepcopy(original); seen=set()
+    for delta in page['review_delta']:
+        require(delta['pointer']=='/reviewer' and delta['pointer'] not in seen,'review finding edits forbidden')
+        seen.add(delta['pointer']); require(adjusted['reviewer']==delta['before'] and isinstance(delta['after'],str),'review delta preimage mismatch')
+        adjusted['reviewer']=delta['after']
+    adjusted['publication provenance']=final['publication provenance']
+    require(adjusted==final,'full review inverse changed')
+    provenance=final['publication provenance']; q=page['qualification']
+    require(provenance.get('original_canonical_review')==old['review'] and provenance.get('selected_source_review')==selected['review'],'canonical/selected approval history changed')
+    require(provenance.get('contract')=='successful-current-conversion276-unreviewed' and provenance.get('manifest_record')==entry['original_record'],'complete original276 history changed')
+    require(provenance.get('known_issues')==q['known_issues'] and provenance.get('retained_issue_reports')==q['retained_issue_reports'],'known issue provenance changed')
+    require(provenance.get('approved') is False and provenance.get('source_approval') is False and provenance.get('local_only') is True,'false approval provenance')
+    require(provenance.get('unreviewed') is True and provenance.get('SOURCE_DATA_PASS') is False and provenance.get('no_known_loss_claim') is False,'false clean attestation')

@@ -1,0 +1,231 @@
+"""Finite321 public byte-bound source/tool admission. No signing or actor isolation."""
+from pathlib import Path
+KNOWN_LOSS_SUPPLEMENT325={'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root actual current source map and DN111 known loss supplement325\\Root exact DN111 actual320 missing opaque output known loss supplement325.json', 'sha256': '769fb0b84266020f744817cc4ec36c26950af81e02c601f707f534dae134fb79'}
+DN111_KNOWN_LOSS_SUMMARY='DN111 current320 known loss: source label168 F�161 at205,89 omitted as five wire characters; DN111BD4 sinks empty; unresolved'
+MATRIX_SHA256='48d7b16a60e496f07790978e58730e981c14870ab480a94a9ba6160159082eda'
+PRIVATE_ROOT=Path(__file__).parent.parent.parent
+
+def private_test(p,b):
+    target=p.absolute(b['path'])
+    p.require(p.within(target,PRIVATE_ROOT) and 'Tests' in target.relative_to(PRIVATE_ROOT).parts,'synthetic input outside private Tests')
+    return target
+
+def at(p,value,pointer):
+    p.require(pointer=='' or pointer.startswith('/'),'invalid JSON pointer')
+    if pointer=='': return value
+    for bit in pointer[1:].split('/'):
+        p.require('~' not in bit.replace('~0','').replace('~1',''),'invalid pointer escape')
+        bit=bit.replace('~1','/').replace('~0','~')
+        if isinstance(value,list):
+            p.require(bit=='0' or (bit.isdigit() and not bit.startswith('0')),'noncanonical array pointer')
+            value=value[int(bit)]
+        else: value=value[bit]
+    return value
+
+def resolve_binding(p,binding,document,pointer,matrix):
+    """A relative binding requires all six frozen projection fields on every use."""
+    value=at(p,p.load(p.checked(document)),pointer)
+    p.require(value==binding,'document/pointer/literal correspondence mismatch')
+    if Path(binding['path']).is_absolute():
+        p.checked(binding); return {k:binding[k] for k in ('path','sha256')}
+    rows=[x for x in matrix['binding_resolutions'] if x['document']==document and x['json_pointer']==pointer]
+    p.require(len(rows)==1,'relative binding lacks unique exact projection: '+document['path']+' '+pointer)
+    row=rows[0]
+    p.require(set(row)=={'document','json_pointer','literal_binding','approved_root','canonical_binding'} and row['literal_binding']==binding,'projection literal mismatch')
+    root=p.absolute(row['approved_root']); target=p.absolute(row['canonical_binding']['path'])
+    literal=Path(binding['path'])
+    p.require(not literal.drive and not literal.root and '..' not in literal.parts,'relative projection escape')
+    p.require(root/literal==target and p.within(target,root) and row['canonical_binding']['sha256']==binding['sha256'],'projection root/canonical/hash mismatch')
+    p.guard(root); p.checked(row['canonical_binding'])
+    return dict(row['canonical_binding'])
+
+def load_matrix(p,binding,synthetic=False):
+    if synthetic: private_test(p,binding)
+    else: p.require(binding==p.PRODUCTION_BINDINGS['matrix'] and binding['sha256']==MATRIX_SHA256,'untrusted claimed Root matrix')
+    matrix=p.load(p.checked(binding))
+    p.require(matrix['format']=='Root-exact-ten-source-tool-admission321-v1','matrix format mismatch')
+    names=[x['page'] for x in matrix['records']]
+    p.require(len(names)==len(set(names)) and 1<=len(names)<=10,'matrix page partition invalid')
+    if not synthetic: p.require(len(names)==10 and len(matrix['binding_resolutions'])==129,'exact ten/129 matrix required')
+    for row in matrix['binding_resolutions']:
+        resolve_binding(p,row['literal_binding'],row['document'],row['json_pointer'],matrix)
+    return matrix
+
+def canonical_tools(p,matrix,record):
+    doc=record['actual_current_key']
+    return {k:resolve_binding(p,b,doc,'/tools/'+k,matrix) for k,b in record['exact_tools'].items()}
+
+def archive_closure(p,matrix,record,observations=None):
+    """No metadata rewrite. Return exact document and approved canonical archive bindings."""
+    result=[]; visited=set()
+    def add(b,follow=False):
+        if b not in result: result.append(b)
+        token=(b['path'],b['sha256'])
+        if not follow or token in visited: return
+        visited.add(token)
+        if Path(b['path']).suffix.lower()=='.json':
+            value=p.load(p.checked(b))
+            if isinstance(value,(dict,list)): walk(value,b)
+    def walk(value,doc,pointer=''):
+        if isinstance(value,dict):
+            if {'path','sha256'}<=set(value):
+                # Frozen historical whole-SourceStatus observations are not current drift predicates.
+                # Their exact containing metadata remains archived. No snapshot is invented.
+                historical_status=Path(value['path'])==Path('D:/Github/IBM360/ibm360ald/notes/Source status.json')
+                if historical_status:
+                    if observations is not None: observations.append({'document':doc,'json_pointer':pointer,'binding':value,'status':'UNKNOWN historical global snapshot; containing metadata retained; not a live page preimage'})
+                    return
+                # Deeper historical metadata can contain observations whose document/pointer was
+                # never Root-approved for resolution. Retain that document, expose UNKNOWN,
+                # and never infer a canonical target. Current key/selection never use this path.
+                primary=[record.get(k) for k in ('actual_current_key','source_selection','original_source_review','named_tool_qualification')]
+                projected=any(x['document']==doc and x['json_pointer']==pointer for x in matrix['binding_resolutions'])
+                if not Path(value['path']).is_absolute() and doc not in primary and not projected:
+                    if observations is not None: observations.append({'document':doc,'json_pointer':pointer,'binding':value,'status':'UNKNOWN unresolved historical relative claim; exact metadata retained; no approved projection or inferred target'})
+                    return
+                canonical=resolve_binding(p,value,doc,pointer,matrix)
+                label=(pointer.rsplit('/',1)[-1]+'/'+Path(value['path']).name).lower()
+                follow=any(word in label for word in ('proposal','withdrawn','contradict','approval history','history.json','source_review','source review','source claims'))
+                if any(word in Path(value['path']).name.lower() for word in ('manifest','queue','registry','allocation')): follow=False
+                # A global qualification/allocation manifest is archived as bytes, not expanded into unrelated pages.
+                add(canonical,follow)
+                for k,v in value.items():
+                    if k not in ('path','sha256'): walk(v,doc,pointer+'/'+k.replace('~','~0').replace('/','~1'))
+                return
+            for k,v in value.items(): walk(v,doc,pointer+'/'+k.replace('~','~0').replace('/','~1'))
+        elif isinstance(value,list):
+            for i,v in enumerate(value): walk(v,doc,pointer+'/'+str(i))
+    for name in ('actual_current_key','source_selection','original_source_review','named_tool_qualification'):
+        doc=record.get(name)
+        if doc:
+            add(doc); walk(p.load(p.checked(doc)),doc)
+    for b in record['original276_record']['source'].values(): add(b)
+    for b in p.required_issue_reports(record['original276_record']): add(b)
+    for role in ('actual_saved_data','actual_saved_review','actual_saved_TXT','actual_process'): add(record[role])
+    return result
+
+
+def declared_issue_bindings(p,bindings,matrix,record,contexts=None):
+    """Resolve all exact approved contexts; never resolve relative claims from cwd."""
+    result=[]
+    primary=[record.get(k) for k in ('actual_current_key','source_selection','original_source_review','named_tool_qualification')]
+    for b in bindings:
+        if Path(b['path']).is_absolute():
+            p.checked(b); canonical=dict(b)
+        else:
+            rows=[x for x in matrix['binding_resolutions'] if x['document'] in primary and x['literal_binding']==b]
+            p.require(bool(rows),'declared relative issue lacks exact Root context')
+            context_keys=[(x['document']['path'],x['document']['sha256'],x['json_pointer']) for x in rows]
+            p.require(len(context_keys)==len(set(context_keys)),'duplicate issue projection context')
+            resolved=[resolve_binding(p,b,x['document'],x['json_pointer'],matrix) for x in rows]
+            canonical=resolved[0]
+            p.require(all(x==canonical for x in resolved) and all(x['approved_root']==rows[0]['approved_root'] for x in rows),'ambiguous declared issue projections')
+            if contexts is not None: contexts.extend(dict(x) for x in rows)
+        if canonical not in result: result.append(canonical)
+    return result
+
+def require_declared_issue_archives(p,bindings,archive_sources):
+    for b in bindings:
+        p.checked(b)
+        p.require(b in archive_sources,'declared issue missing no-overwrite archive write')
+
+def validate_saved_argv(p,process,q,page_name,expected_source_review=None):
+    argv=process['argv']; tool=process['tools']['converter']['path']
+    p.require(isinstance(argv,list) and argv.count(tool)==1,'actual converter argv missing/ambiguous')
+    tail=[process['source']['model']['path'],'--text',process['source']['text']['path']]
+    if page_name=='AP157':
+        p.require(isinstance(expected_source_review,dict) and process.get('source_review')==expected_source_review,'actual AP157 source review binding mismatch')
+        p.checked(expected_source_review)
+        tail+=['--source-review',expected_source_review['path'],'--source-review-sha256',expected_source_review['sha256']]
+    else:
+        p.require(expected_source_review is None and 'source_review' not in process,'unlisted source-review process option')
+    tail+=['--render','--output',str(p.absolute(q['emitted_data']['path']).parent),'--report',q['conversion_report']['path']]
+    p.require(argv[argv.index(tool)+1:]==tail,'actual converter argv subject/flags mismatch')
+
+
+def admit(p,r,manifest,synthetic_gate=None):
+    p.require('root_source_amendments' in r,'finite321 ledger required')
+    trusted=synthetic_gate if synthetic_gate is not None else r.get('root_source_amendment_gate')
+    p.require(trusted is not None,'exact Root gate absent')
+    if synthetic_gate is not None:
+        p.require('root_source_amendment_gate' not in r,'synthetic gate cannot override production gate')
+        private_test(p,trusted); private_test(p,r['root_source_amendments'])
+    gate=p.load(p.checked(trusted))
+    fields={'format','subject','ledger','authority','policy','manifest','matrix'}
+    p.require(set(gate)==fields or (synthetic_gate is not None and set(gate)==fields|{'known_loss_supplements'}),'invalid finite gate fields')
+    if 'known_loss_supplements' in gate: p.require(isinstance(gate['known_loss_supplements'],dict) and set(gate['known_loss_supplements'])<={'DN111'},'outside finite synthetic supplement scope')
+    p.require(gate['format']=='root-source-tool-gate321-v1' and gate['subject']==p.candidate_subject(),'stale exact amendment subject')
+    p.require(gate['ledger']==r['root_source_amendments'],'ledger not gate-bound')
+    matrix=load_matrix(p,gate['matrix'],synthetic_gate is not None)
+    for role in ('authority','policy','manifest','matrix'):
+        p.require(gate[role]==r[role],'gate standing binding mismatch: '+role)
+    p.require(matrix['authority']==r['authority'] and matrix['policy']==r['policy'] and matrix['original_manifest']==r['manifest'],'matrix authority/policy/original manifest mismatch')
+    ledger=p.load(p.checked(gate['ledger']))
+    p.require(set(ledger)=={'format','nonce','authority','policy','manifest','matrix','records'} and ledger['format']=='root-source-tool-ledger321-v1' and ledger['nonce']==r['nonce'],'ledger fields/format/nonce mismatch')
+    for role in ('authority','policy','manifest','matrix'): p.require(ledger[role]==gate[role],'ledger binding mismatch: '+role)
+    entries=ledger['records']; indexed={e['page']:e for e in entries}
+    pages={x['page']:x for x in r['pages']}; allowed={x['page']:x for x in matrix['records']}
+    p.require(1<=len(entries)<=10 and len(indexed)==len(entries) and set(indexed)==set(pages) and set(indexed)<=set(allowed),'unlisted/duplicate/incomplete finite pages')
+    originals={x['page']:x for x in manifest['records']}
+    archive_sources=[w['source'] for w in r['writes'] if w['purpose']=='archive' and w['before'] is None]
+    for name,e in indexed.items():
+        fields={'page','original_record','selection','current_keys','required_archives','known_issues','page_sha256','historical_observations'}
+        if name=='DN111': fields.add('known_loss')
+        p.require(set(e)==fields,'invalid amendment record fields')
+        a=allowed[name]; page=pages[name]; q=page['qualification']; key=a['actual_current_key']; current=p.load(p.checked(key))
+        selection=a['source_selection'] or key
+        p.require(e['selection']==selection and e['current_keys']==key and e['original_record']==a['original276_record']==originals.get(name),'original/selection/key tuple mismatch')
+        p.require(e['page_sha256']==p.sha(p.encoded(page)),'exact release page mismatch')
+        p.require(current['page']==name and current['source']==a['selected_source']==page['source'] and q['source_selection']==selection,'source tuple mismatch')
+        tools=canonical_tools(p,matrix,a)
+        p.require(q['tools']==tools and page['schema']==tools['schema'] and current['tools']==a['exact_tools'],'named exact tool tuple mismatch')
+        for field,expected in (('semantic_key',q['source_key']),('format_decisions',q['format_decisions']),('process',q['process']),('report',q['conversion_report']),('data',q['emitted_data']),('review',page['original_review']),('TXT',page['txt'])):
+            p.require(current.get(field)==expected,'current key tuple mismatch: '+field)
+        for field,expected in (('actual_saved_data',q['emitted_data']),('actual_saved_review',page['original_review']),('actual_saved_TXT',page['txt']),('actual_process',q['process']),('format_decisions',q['format_decisions']),('semantic_key',q['source_key'])):
+            p.require(a[field]==expected,'Root matrix tuple mismatch: '+field)
+        counts=current['counts']; p.require(current.get('emitted_V4') is True and counts.get('blocked')==0 and counts.get('converted',0)+counts.get('converted with findings',0)==1,'nonemitting current key')
+        p.require(isinstance(e['known_issues'],list) and e['known_issues'] and q['known_issues']==e['known_issues'] and page['unresolved_discrepancies'] is True,'known findings must remain unresolved')
+        known_loss=None; loss_required=[]
+        if name=='DN111':
+            known_loss=KNOWN_LOSS_SUPPLEMENT325 if synthetic_gate is None else gate.get('known_loss_supplements',{}).get('DN111')
+            p.require(isinstance(known_loss,dict) and e['known_loss']==known_loss,'mandatory DN111 known-loss supplement absent/replaced')
+            if synthetic_gate is not None: private_test(p,known_loss)
+            loss=p.load(p.checked(known_loss))
+            p.require(loss.get('page')=='DN111' and loss.get('current_key')==current,'known-loss exact current-key mismatch')
+            p.require(loss.get('original_private_matrix')==gate['matrix'] and loss.get('original_private_policy')==r['policy'],'known-loss matrix/policy mismatch')
+            p.require(loss.get('source_label_index')==168 and loss.get('source_literal')=='F�161' and loss.get('source_at')==[205,89],'known-loss source literal mismatch')
+            p.require(loss.get('observed_five_source_glyphs_omitted') is True and loss.get('source_or_wiring_approval') is False and loss.get('required_approval') is False and loss.get('required_unresolved_discrepancies') is True,'known-loss unresolved false-approval contract missing')
+            p.require(DN111_KNOWN_LOSS_SUMMARY in q['known_issues'] and known_loss in q['retained_issue_reports'],'explicit DN111 known loss absent from retained issues')
+            loss_required=loss.get('required_archival_bindings')
+            expected=[*current['source'].values(),*[current[k] for k in ('data','review','TXT','process','report')]]
+            p.require(isinstance(loss_required,list) and all(b in loss_required for b in expected),'known-loss required current evidence omitted')
+            loss_required=[known_loss,*loss_required]
+        observations=[]
+        required=archive_closure(p,matrix,a,observations)+[gate['matrix'],r['policy'],r['authority'],r['manifest'],key,selection]
+        p.require(e['historical_observations']==observations,'historical UNKNOWN observation disclosure mismatch')
+        required.extend(matrix.get('actual_saved_DATA_reviews',{}).values())
+        required.extend(loss_required)
+        issue_contexts=[]
+        declared=declared_issue_bindings(p,q['retained_issue_reports'],matrix,a,issue_contexts)
+        e['retained_issue_contexts']=issue_contexts
+        required.extend(declared)
+        require_declared_issue_archives(p,declared,archive_sources)
+        e['retained_issue_bindings']=declared
+        e['source_review']=a['original_source_review'] if name=='AP157' else None
+        selected=p.load(p.checked(selection))
+        p.require(all(b in q['retained_issue_reports'] for b in p.required_issue_reports(selected)),'selected source report/history omitted from retained issues')
+        p.require(all(b in e['required_archives'] for b in required),'omitted complete archive closure/metadata')
+        for b in e['required_archives']:
+            p.checked(b); p.require(b in archive_sources,'archive missing no-overwrite write')
+        review=p.load(p.checked(page['final_review']))
+        provenance=review.get('publication provenance',{})
+        if name=='DN111': p.require(provenance.get('known_loss')==known_loss,'known-loss review provenance absent/changed')
+        p.require(provenance.get('historical_observations',[])==observations,'historical UNKNOWN review provenance mismatch')
+        if observations: p.require(any('UNKNOWN' in x for x in q['known_issues']),'historical UNKNOWN must remain a known unresolved issue')
+        p.require(review.get('publication provenance',{}).get('source_amendment')=={'selection':selection,'current_keys':key,'matrix':gate['matrix']},'source/tool provenance mismatch')
+        e['tools']=tools
+    return indexed
+
+
+
+

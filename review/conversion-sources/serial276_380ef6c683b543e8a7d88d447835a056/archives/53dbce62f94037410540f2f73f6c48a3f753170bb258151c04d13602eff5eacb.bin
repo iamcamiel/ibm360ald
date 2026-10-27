@@ -1,0 +1,549 @@
+"""PRIVATE finite publisher276. No converter, native pipeline, Git or remote execution.
+Standing finite authority supplies exact serial release hashes. Never import untrusted Python.
+"""
+from pathlib import Path
+import argparse, copy, ctypes, hashlib, json, os, re, stat, sys, types
+from datetime import datetime, timezone
+# Inherited full Draft202012 validator includes existing native rpds (Root clarification323).
+# Standalone launcher requires -I -S -B; inherited fixed dependency path is retained.
+try:
+    from jsonschema import Draft202012Validator
+except ImportError:
+    sys.path.insert(0, str(Path('D:/Github/IBM360/tmp/v4-schema-validation-dependencies')))
+    from jsonschema import Draft202012Validator
+
+class Rejected(RuntimeError): pass
+
+def require(value, message):
+    if not value: raise Rejected(message)
+def sha(data): return hashlib.sha256(data).hexdigest()
+def load(data):
+    def pairs(items):
+        result = {}
+        for k,v in items:
+            require(k not in result, 'duplicate JSON member: '+k); result[k]=v
+        return result
+    return json.loads(data, object_pairs_hook=pairs, parse_constant=lambda x: (_ for _ in ()).throw(Rejected('nonfinite JSON')))
+def encoded(value): return (json.dumps(value,ensure_ascii=False,sort_keys=True,indent=2,allow_nan=False)+'\n').encode('utf8')
+def absolute(value):
+    p=Path(value)
+    require(not str(p).startswith(chr(92)*2) and re.fullmatch(r'[A-Za-z]:',p.drive) is not None,'canonical drive path required')
+    require(p.is_absolute() and '..' not in p.parts, 'absolute lexical path required')
+    require(not any(':' in x or x.endswith((' ','.')) for x in p.parts[1:]), 'unsafe Windows path component')
+    require(not any(re.fullmatch(r'(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\..*)?',x,re.I) for x in p.parts[1:]),'reserved DOS device path')
+    return p
+
+def guard(p, missing=False):
+    p=absolute(str(p))
+    for q in reversed((p,)+tuple(p.parents)):
+        try: s=q.lstat()
+        except FileNotFoundError:
+            require(missing, 'missing path: '+str(q)); continue
+        require(not stat.S_ISLNK(s.st_mode) and not (getattr(s,'st_file_attributes',0)&0x400), 'symlink/reparse forbidden: '+str(q))
+        if q==p and not stat.S_ISDIR(s.st_mode):
+            require(stat.S_ISREG(s.st_mode) and s.st_nlink==1, 'single-link regular file required: '+str(q))
+    return p
+
+def readpath(p):
+    guard(p); return Path(p).read_bytes()
+def checked(binding):
+    data=readpath(absolute(binding['path']))
+    require(sha(data)==binding['sha256'], 'stale binding: '+binding['path']); return data
+
+def within(p,root):
+    return p==root or p.is_relative_to(root)
+def key(p): return os.path.normcase(str(p))
+def digest(model):
+    return sha(json.dumps({k:v for k,v in model.items() if k!='review'},ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf8'))
+def maprepo(root):
+    guard(root); result={}
+    for parent,dirs,files in os.walk(root,followlinks=False):
+        dirs[:]=sorted(d for d in dirs if d not in {'.git','.vs'})
+        for d in dirs: guard(Path(parent)/d)
+        for name in sorted(files):
+            p=Path(parent)/name; result[p.relative_to(root).as_posix()]=sha(readpath(p))
+    return result
+
+def exclusive_new(path,data):
+    guard(path,True)
+    fd=os.open(str(path), os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+    try:
+        with os.fdopen(fd,'wb') as f: f.write(data); f.flush(); os.fsync(f.fileno())
+    except BaseException: raise
+
+def transition(path,before,after,temporary):
+    """Atomic replacement under cooperative lease; no CAS claim against hostile rename.
+    Exact temporary is Root-granted, absent, single-link and in the same directory.
+    """
+    guard(path,before is None); guard(temporary,True)
+    require(not temporary.exists(),'temporary already exists')
+    exclusive_new(temporary,after)
+    try:
+        require(readpath(temporary)==after,'temporary afterimage differs')
+        if before is None:
+            # Windows rename without replacement fails atomically if another file appears.
+            require(os.name=='nt','Windows atomic no-replace rename required')
+            os.rename(temporary,path)
+        else:
+            require(os.name=='nt','existing-target transition requires Windows')
+            import msvcrt
+            kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+            create=kernel.CreateFileW
+            create.argtypes=[ctypes.c_wchar_p,ctypes.c_uint32,ctypes.c_uint32,ctypes.c_void_p,ctypes.c_uint32,ctypes.c_uint32,ctypes.c_void_p]
+            create.restype=ctypes.c_void_p
+            h=create(str(path),0x80000000,4,None,3,0x80|0x00200000,None)
+            require(h not in (None,ctypes.c_void_p(-1).value),'exclusive preimage handle failed: '+str(path))
+            fd=msvcrt.open_osfhandle(h,os.O_RDONLY|os.O_BINARY)
+            with os.fdopen(fd,'rb') as f:
+                st=os.fstat(f.fileno())
+                require(stat.S_ISREG(st.st_mode) and st.st_nlink==1,'preimage handle not single regular')
+                require(f.read()==before,'preimage changed: '+str(path))
+                guard(path); guard(temporary)
+                live=path.stat()
+                require((live.st_dev,live.st_ino)==(st.st_dev,st.st_ino),'target renamed before replacement')
+            # Windows denies replacement while this preimage handle remains open.
+            # Close it, recheck bytes immediately, then atomically replace under publisher lease.
+            require(readpath(path)==before,'preimage changed immediately before atomic replace')
+            live=path.stat()
+            require((live.st_dev,live.st_ino)==(st.st_dev,st.st_ino),'preimage identity changed before atomic replace')
+            os.replace(temporary,path)
+    finally:
+        if temporary.exists():
+            # A failed write can leave a partial owned temporary: only full own bytes may be removed.
+            if readpath(temporary)==after: remove_own(temporary,after)
+
+def remove_own(path,expected):
+    # Keep exclusive Windows handle until delete disposition is set; no name-based unlink race.
+    require(os.name=='nt','rollback deletion requires Windows exclusive handles')
+    import msvcrt
+    kernel=ctypes.WinDLL('kernel32',use_last_error=True)
+    create=kernel.CreateFileW; create.argtypes=[ctypes.c_wchar_p,ctypes.c_uint32,ctypes.c_uint32,ctypes.c_void_p,ctypes.c_uint32,ctypes.c_uint32,ctypes.c_void_p]; create.restype=ctypes.c_void_p
+    guard(path); h=create(str(path),0x80000000|0x00010000,0,None,3,0x80|0x00200000,None)
+    require(h not in (None,ctypes.c_void_p(-1).value),'rollback exclusive open failed')
+    fd=msvcrt.open_osfhandle(h,os.O_RDONLY|os.O_BINARY)
+    with os.fdopen(fd,'rb') as f:
+        require(os.fstat(f.fileno()).st_nlink==1 and f.read()==expected,'competing afterimage preserved')
+        flag=ctypes.c_int(1)
+        require(kernel.SetFileInformationByHandle(ctypes.c_void_p(h),4,ctypes.byref(flag),ctypes.sizeof(flag))!=0,'delete disposition failed')
+
+
+def normalize_record(record):
+    """No aliases inferred: all 12 manifest selection kinds use these frozen fields.
+    Source has model,text and optional raw. Missing raw is absence, never native evidence.
+    Complete record is retained verbatim as provenance, including all issue/hold history.
+    """
+    require(set(record['source']) in ({'model','text'},{'model','text','raw'}),'unsupported frozen source roles')
+    selection=record['Root_source_selection']
+    if set(selection)=={'path','sha256'}: binding=selection
+    else:
+        require(set(selection)=={'baseline','method'} and isinstance(selection['method'],str) and selection['method'].strip(),'unsupported frozen selection authority shape')
+        binding=selection['baseline']; require(set(binding)=={'path','sha256'},'invalid baseline selection binding')
+    return {'source':copy.deepcopy(record['source']),'canonical_preimage':copy.deepcopy(record['canonical_preimage']),'source_selection':copy.deepcopy(binding)}
+
+def required_issue_reports(record):
+    """Conservative exact report/hold references; opaque reports retained without invented PASS."""
+    result=[]
+    def visit(value,trail=()):
+        if isinstance(value,dict):
+            if set(value)=={'path','sha256'}:
+                if any(any(word in k.lower() for word in ('report','hold','review')) for k in trail) and value not in result: result.append(copy.deepcopy(value))
+            else:
+                for k,v in value.items(): visit(v,trail+(k,))
+        elif isinstance(value,list):
+            for v in value: visit(v,trail)
+    visit(record)
+    return result
+
+# Acyclic subject: helper is frozen first; Root qualifies final exact subject later.
+EXPECTED_HELPER_SHA256 = '5538f120dd3d8ba0ace9c592c8b036747add7a30c1d63e946913518a2c020a51'
+
+
+def load_source_amendment_helper():
+    """Authenticate sibling source, compile that exact buffer, execute a fresh module.
+    Uses inherited path checks; no stronger OS race/CAS guarantee is claimed.
+    No helper import resolution, sys.modules reuse/insertion, or bytecode fallback.
+    compiled_input_sha256 identifies source bytes, not a code-object serialization.
+    """
+    path=absolute(str(Path(__file__).parent/'source_amendment321.py'))
+    source=readpath(path)
+    measured=sha(source)
+    require(measured==EXPECTED_HELPER_SHA256,'authenticated helper SHA256 mismatch')
+    resolved=str(path.resolve(strict=True))
+    module_name='_publisher321_authenticated_helper_'+EXPECTED_HELPER_SHA256
+    code=compile(source,resolved,'exec',dont_inherit=True)
+    helper=types.ModuleType(module_name)
+    helper.__file__=resolved
+    helper.__package__=''
+    exec(code,helper.__dict__)
+    require(callable(helper.admit) and helper.admit.__module__==module_name and helper.admit.__code__.co_filename==resolved,'authenticated helper callable identity mismatch')
+    evidence={'module_name':module_name,'resolved_path':resolved,'expected_sha256':EXPECTED_HELPER_SHA256,'authenticated_sha256':measured,'compiled_input_sha256':sha(source),'code_filename':code.co_filename,'admit_module':helper.admit.__module__,'admit_code_filename':helper.admit.__code__.co_filename}
+    return helper,evidence
+
+
+def candidate_subject():
+    base=Path(__file__).parent
+    return {n:sha(readpath(base/n)) for n in ('guarded_publisher276.py','release-plan.schema.json','Exact release format276.md','source_amendment321.py','Source tool protocol321.json','launch321.py')}
+
+def qualification_gate():
+    gate=load(readpath(Path(__file__).with_name('Gate276.json')))
+    require(set(gate)=={'CODE','tests'},'one-time gate requires CODE and tests')
+    actors=[]
+    for kind in ('CODE','tests'):
+        receipt=load(checked(gate[kind]))
+        require(receipt.get('passed') is True and receipt.get('kind')==kind and receipt.get('subject')==candidate_subject(),'one-time exact candidate qualification absent/stale')
+        actor=receipt.get('actor'); require(isinstance(actor,str) and actor.strip() and actor!='publisher276','independent qualification actor required'); actors.append(actor)
+    require(actors[0]!=actors[1],'CODE and tests must have different actors')
+
+PRODUCTION_BINDINGS={'authority': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact628 successful conversion delegated publication276\\Direct human exact628 conditional publication authority276.json', 'sha256': 'd8f333b50515707612215a2440de10c6182abc98f9a55747a940bceaa9c664cb'}, 'policy': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact ten emitted source tool public admission matrix private publisher321\\Root finite source and named tool amendment policy321.json', 'sha256': 'a2b8bfc15282bba26f9c922dba9c44fd96cb8cffebd9643b0e88a9db981cf91e'}, 'manifest': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact628 successful conversion delegated publication276\\Exact628 finite publication queue with frozen current source preimages276.json', 'sha256': 'a698fbd95b7f8c4590756cb702d2fc67068c876015364339e00f49c6c362ce3f'}, 'stable_global_lease': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact AS074 delegated publication staging257\\Exact stable global cooperative publisher lease binding257.json', 'sha256': '03a8505e24c6eb132a62e2077e387f7b60dda1562611a40411cc7c59181ab578'}, 'dual_consumers': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\BF001 native V4 registered scan restoration001\\Actual qualified BF001 V4 scan editor restoration.json', 'sha256': '1ed282eaa07a60038e727fc3bd7a5d8a03b9b011e14e087b47495ea848ac79e2'}, 'delegation': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact628 successful conversion delegated publication276\\Exact Team4 publish628 successful current conversions serial task276.json', 'sha256': '5440c30eac2fd505e3bd6a65f35fa2984e741898b5a8ebcf1f0f47035acec397'}, 'matrix': {'path': 'D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact ten emitted source tool public admission matrix private publisher321\\Root exact ten public source named tool admission matrix321.json', 'sha256': '48d7b16a60e496f07790978e58730e981c14870ab480a94a9ba6160159082eda'}}
+
+def validate_authority(r,root,logs,lease,test_only):
+    if not test_only:
+        qualification_gate()
+        for k,b in PRODUCTION_BINDINGS.items(): require(r[k]==b,'finite standing binding mismatch: '+k)
+        require(root==absolute('D:/Github/IBM360/ibm360ald'),'exact real repository root required')
+    manifest=load(checked(r['manifest'])); task=load(checked(r['delegation']))
+    require(r['authority']==task['authority']==manifest['authority'] and load(checked(r['policy']))['prior_publication_policy']==task['policy'] and r['manifest']==task['manifest'],'task authority/manifest/policy mismatch')
+    require(r['stable_global_lease']==task['stable_global_lease'] and r['dual_consumers']==task['dual_consumers'],'task stable lease/consumer mismatch')
+    stable=load(checked(r['stable_global_lease']))
+    require(str(logs)==stable['log_root'] and str(lease)==stable['lease_path'],'stable global lease mismatch')
+    require(stable['root_and_all_publishing_actors_must_honor'] is True and stable['no_other_repository_target_writers_expected'] is True and stable['stale_or_foreign_lock_auto_break'] is False,'stable cooperative lease assumptions missing')
+    require([p['page'] for p in r['pages']]==r['serial_grant']['pages'],'serial grant page mismatch')
+    require(set(x['page'] for x in r['pages']).issubset(manifest['pages']),'serial grant outside manifest')
+    require(r['serial_grant']['manifest']==r['manifest'],'serial grant manifest mismatch')
+    for b in manifest['tools'].values(): checked(b)
+    checked(manifest['format_decisions'])
+    validate_consumers(r)
+
+def validate_consumers(r):
+    receipt=load(checked(r['dual_consumers']))
+    files=receipt.get('installed_files')
+    require(receipt.get('passed') is True and isinstance(files,list) and len(files)==19,'exact qualified19 consumer inventory required')
+    require(len({key(absolute(b['path'])) for b in files})==19,'duplicate qualified consumer path')
+    for binding in files:
+        require(set(binding)=={'path','sha256'},'invalid qualified consumer binding'); checked(binding)
+    return files
+
+def observe_consumers(r):
+    try:
+        receipt=load(checked(r['dual_consumers'])); files=receipt['installed_files']
+        observations=[{'expected':binding,'observation':observe(binding['path'])} for binding in files]
+        return {'verified':receipt.get('passed') is True and len(files)==19 and len({key(absolute(b['path'])) for b in files})==19 and all(x['observation'].get('sha256')==x['expected']['sha256'] for x in observations),'files':observations}
+    except Exception as exc:
+        return {'verified':False,'files':[],'error':type(exc).__name__+': '+str(exc)}
+
+def create_parents(r,root):
+    """Only exact missing required target ancestors; durable intent precedes these mkdirs.
+    Empty directories survive errors, are explicitly reconciled, and never auto-deleted.
+    No full repository map is observed until creation completes under the sole lease.
+    """
+    needed=set()
+    for w in r['writes']:
+        target=absolute(w['target']); require(within(target,root) and target!=root,'parent target outside repository')
+        parent=target.parent
+        while not parent.exists():
+            require(w['before'] is None and w['purpose'] in ('archive','external_review'),'new parent only for archive/review')
+            require(within(parent,root/'review'/'v3') or within(parent,root/'review'/'conversion-sources') or (w['purpose']=='external_review' and within(parent,root/'json')),'parent outside authorized history roots')
+            needed.add(str(parent)); parent=parent.parent
+        guard(parent)
+    ordered=sorted(needed,key=lambda x:(len(Path(x).parts),x.casefold()))
+    require(r['required_parents']==ordered,'exact missing parents list mismatch')
+    for name in ordered:
+        p=absolute(name); guard(p,True); require(not p.exists(),'parent appeared concurrently'); guard(p.parent)
+        os.mkdir(p); guard(p); require(p.is_dir(),'new parent is not directory')
+
+def _validate(releasepath,expectedsha,test_only=False):
+    releasebytes=readpath(absolute(str(releasepath))); require(sha(releasebytes)==expectedsha,'serial release SHA mismatch')
+    r=load(releasebytes)
+    schema=load(readpath(Path(__file__).with_name('release-plan.schema.json')))
+    Draft202012Validator(schema).validate(r)
+    root=guard(absolute(r['repository_root'])); logs=guard(absolute(r['log_root'])); lease=absolute(r['lease_path'])
+    require(root.is_dir() and logs.is_dir(),'repository and logs must be directories')
+    require(not within(logs,root) and not within(lease,root),'logs/lease must be outside R')
+    require(lease.parent==logs,'lease must be direct child of log_root')
+    require(r['serial_grant']=={'nonce':r['nonce'],'lease_path':str(lease),'log_root':str(logs),'targets':[w['target'] for w in r['writes']],'temporaries':[w['temporary'] for w in r['writes']],'pages':[p['page'] for p in r['pages']],'manifest':r['manifest']},'exact serial grant mismatch')
+    # Release SHA is external and cannot self-embed itself; grant uses the released nonce and a separate release binding.
+    validate_authority(r,root,logs,lease,test_only)
+    return r,root,logs,lease
+
+def validate_pages(r,root,check_map=True,allow_missing_parents=False,amendment_gate=None,helper_execution=None):
+    """Exact normalized successful conversion and retained history; no SOURCE/DATA PASS."""
+    for k in ('authority','policy','delegation','manifest','matrix','stable_global_lease','dual_consumers'): checked(r[k])
+    manifest=load(checked(r['manifest']))
+    records={x['page']:x for x in manifest['records']}
+    require(len(records)==len(manifest['records']) and len(set(manifest['pages']))==len(manifest['pages']) and set(records)==set(manifest['pages']),'manifest page partition invalid')
+    helper,execution=load_source_amendment_helper()
+    if helper_execution is not None: helper_execution.append(execution)
+    amendments=helper.admit(sys.modules[__name__],r,manifest,amendment_gate)
+    normalized={'format':'mechanical-qualification276-v1','nonce':r['nonce'],'authority':r['authority'],'policy':r['policy'],'delegation':r['delegation'],'pages':[{'page':p['page'],'qualification':p['qualification']} for p in r['pages']]}
+    require(load(checked(r['qualification']))==normalized,'separate mechanical qualification mismatch')
+    writes=r['writes']; targets={}; temporaries=set()
+    for w in writes:
+        p=absolute(w['target']); t=absolute(w['temporary'])
+        require(within(p,root) and p!=root,'target outside R')
+        require(key(p) not in targets,'duplicate/case-colliding target'); targets[key(p)]=w
+        require(t.parent==p.parent and t.name==p.name+'.publisher276-'+r['nonce']+'.tmp','temporary exact nonce sibling required')
+        require(key(t) not in temporaries,'duplicate temporary'); temporaries.add(key(t))
+        guard(p,w['before'] is None); guard(t,True); require(not t.exists(),'temporary exists')
+        require(p.parent.is_dir() or (allow_missing_parents and str(p.parent) in r['required_parents']),'target parent must already exist or be exactly declared')
+        if w['before'] is not None:
+            require(key(absolute(w['before']['path']))==key(p),'preimage binding must name exact live target')
+            checked(w['before'])
+        else: require(not p.exists(),'create target already exists')
+        checked(w['source'])
+    require(not temporaries.intersection(targets),'temporary/target alias')
+    require(len({p['page'] for p in r['pages']})==len(r['pages']),'duplicate page')
+    consumed=set(); all_archive_hashes=set()
+    def write_for(path,purpose,binding=None):
+        w=targets.get(key(absolute(path))); require(w is not None and w['purpose']==purpose,'missing/wrong write purpose '+str(path))
+        if binding is not None: require(w['source']==binding,'write source differs from qualified subject')
+        consumed.add(key(absolute(path))); return w
+    archive_writes=[]
+    for w in writes:
+        if w['purpose']=='archive':
+            p=absolute(w['target'])
+            require(within(p,root/'review'/'v3') or within(p,root/'review'/'conversion-sources'),'archive path forbidden')
+            require(w['before'] is None,'archive overwrite forbidden')
+            consumed.add(key(p)); archive_writes.append(w); all_archive_hashes.add(w['source']['sha256'])
+    for p in r['pages']:
+        j=absolute(p['canonical_json']); t=absolute(p['canonical_txt']); rv=absolute(p['external_review'])
+        require(within(j,root/'json') and j.suffix=='.json','canonical JSON path forbidden')
+        require(within(t,root/'ALD') and t.suffix=='.txt','canonical TXT path forbidden')
+        require(j.relative_to(root/'json').with_suffix('.txt')==t.relative_to(root/'ALD'),'JSON/TXT relative identity mismatch')
+        jw=write_for(str(j),'canonical_json',p['data']); tw=write_for(str(t),'canonical_txt',p['txt']); rw=write_for(str(rv),'external_review',p['final_review'])
+        require(jw['before'] is not None and tw['before'] is not None and rw['before'] is None,'canonical requires V3 preimages and new review')
+        old=load(checked(jw['before'])); selected=load(checked(p['source']['model'])); model=load(checked(p['data']))
+        original=load(checked(p['original_review'])); final=load(checked(p['final_review']))
+        require(old.get('schema')=='ibm360-ald-page-v3' and selected.get('schema')=='ibm360-ald-page-v3','existing V4/reinstall or selected nonV3 forbidden')
+        require(model.get('$schema')=='https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json','qualified V4 schema URI required')
+        require(model.get('page',{}).get('page')==p['page'] and old.get('page',{}).get('page')==p['page'] and selected.get('page',{}).get('page')==p['page'],'page identity mismatch')
+        require(model['review']['approved'] is False,'approved must be false')
+        require(model['review']['unresolved discrepancies'] is p['unresolved_discrepancies'],'unresolved flag mismatch')
+        details=Path(model['review']['details']); require(not details.is_absolute() and '..' not in details.parts and key(j.parent/details)==key(rv),'review details target mismatch')
+        require(within(rv,j.parent/'review') and rv.suffix=='.json','external review path forbidden')
+        require(digest(model)==original['content sha256']==final['content sha256'],'canonical review content digest mismatch')
+        require(original.get('inherited review')==selected['review'],'selected inherited review mismatch')
+        schema=load(checked(p['schema'])); Draft202012Validator.check_schema(schema)
+        # Never retrieve remote refs while validating untrusted schemas.
+        def refs(x):
+            if isinstance(x,dict):
+                for k,v in x.items():
+                    if k in ('$ref','$dynamicRef'): require(isinstance(v,str) and v.startswith('#'),'external schema ref unsupported')
+                    refs(v)
+            elif isinstance(x,list):
+                for v in x: refs(v)
+        refs(schema); Draft202012Validator(schema).validate(model)
+        adjusted=copy.deepcopy(original)
+        seen=set()
+        for d in p['review_delta']:
+            ptr=d['pointer']; require(ptr not in seen,'duplicate review delta'); seen.add(ptr)
+            require(ptr=='/reviewer','finding detail edits forbidden; only reviewer attribution may change')
+            bits=ptr.split('/')[1:]; node=adjusted
+            for bit in bits[:-1]: node=node[int(bit)] if isinstance(node,list) else node[bit]
+            last=int(bits[-1]) if isinstance(node,list) else bits[-1]
+            require(node[last]==d['before'] and isinstance(d['after'],str),'review delta preimage/type mismatch'); node[last]=d['after']
+        provenance=final.get('publication provenance'); require(isinstance(provenance,dict),'publication provenance missing')
+        require(provenance.get('original_canonical_review')==old['review'] and provenance.get('selected_source_review')==selected['review'],'approval history provenance mismatch')
+        for k in ('approved','source_approval'): require(provenance.get(k) is False,'provenance approval false required')
+        require(provenance.get('local_only') is True,'local-only provenance required')
+        require('publication provenance' not in original,'original already has publication provenance')
+        adjusted['publication provenance']=provenance; require(adjusted==final,'undeclared review/findings change')
+        findings=bool(final.get('uncertainties') or final.get('format questions') or final.get('warnings') or final.get('render comparison',{}).get('different cells',0))
+        require(p['unresolved_discrepancies'] is True,'unreviewed276 must retain unresolved indication')
+        for b in p['source'].values(): checked(b)
+        required=[jw['before'],tw['before'],*p['source'].values(),p['original_review']]
+        # Existing canonical review sidecars are history too, if the V3 points to one.
+        olddetails=old.get('review',{}).get('details')
+        if isinstance(olddetails,str) and olddetails:
+            require(not Path(olddetails).is_absolute() and '..' not in Path(olddetails).parts,'old review path invalid')
+            hp=j.parent/olddetails
+            require(within(hp,root),'old review history outside R')
+            if hp.exists(): required.append({'path':str(hp),'sha256':sha(readpath(hp))})
+        require(all(b['sha256'] in all_archive_hashes for b in required),'missing original/selected/raw/TXT/review archive')
+        # Original canonical archives have deterministic locations; selected sources are hash-bound.
+        for dest,b in ((root/'review'/'v3'/j.relative_to(root/'json'),jw['before']),(root/'review'/'v3'/t.relative_to(root/'ALD'),tw['before'])):
+            aw=write_for(str(dest),'archive'); require(aw['source']['sha256']==b['sha256'],'canonical archive identity mismatch')
+        q=p['qualification']; require(q['source_key'].strip(),'empty source/decision key')
+        require(p['page'] in records,'page outside finite manifest')
+        record=records[p['page']]; norm=normalize_record(record)
+        if p['page'] in amendments:
+            norm['source']=copy.deepcopy(p['source']); norm['source_selection']=copy.deepcopy(amendments[p['page']]['selection'])
+        require(p['source']==norm['source'] and q['source_selection']==norm['source_selection'],'frozen selected source mismatch')
+        require(jw['before']==norm['canonical_preimage']['json'] and tw['before']==norm['canonical_preimage']['text'],'frozen canonical preimage mismatch')
+        require((q['tools']==manifest['tools'] and p['schema']==manifest['tools']['schema'] if p['page'] not in amendments else q['tools']==amendments[p['page']]['tools'] and p['schema']==q['tools']['schema']) and q['format_decisions']==manifest['format_decisions'],'current frozen tool/decision mismatch')
+        for binding in q['tools'].values(): checked(binding)
+        checked(q['format_decisions']); checked(q['source_selection'])
+        require(q['dual_consumers']==r['dual_consumers'],'dual consumer qualification mismatch')
+        for binding in amendments[p['page']]['retained_issue_bindings']: checked(binding)
+        subject={k:p[k] for k in ('source','data','txt','original_review','final_review','schema')}
+        subject.update({k:q[k] for k in ('source_key','source_selection','tools','format_decisions','dual_consumers')})
+        require(q['subject']==subject,'qualification not bound to exact final subject')
+        execution=load(checked(q['execution']))
+        exact={'format':'successful-conversion276-v1','page':p['page'],'exit_code':0,'emitted':True,'source':p['source'],'data':q['emitted_data'],'txt':p['txt'],'original_review':p['original_review'],'tools':q['tools'],'format_decisions':q['format_decisions'],'process':q['process'],'conversion_report':q['conversion_report']}
+        require(execution==exact,'successful saved execution subject mismatch')
+        # Operator-normalized receipt binds original actual process capture, never treats historical status as execution.
+        process=load(checked(q['process']))
+        require(process.get('exit_code')==0 and type(process.get('exit_code')) is int,'actual process failed or missing exit')
+        for role in ('model','text'):
+            require(process['source'][role]['sha256']==p['source'][role]['sha256'],'actual process selected input hash mismatch')
+        if 'raw' in p['source']:
+            require(process['source'].get('raw',process['source'].get('restored_raw',{})).get('sha256')==p['source']['raw']['sha256'],'actual process raw hash mismatch')
+        for binding in process['source'].values():
+            checked(binding); require(binding['sha256'] in all_archive_hashes,'actual process source/raw archive missing')
+        for role in ('converter','renderer','schema'):
+            require(process['tools'][role]['sha256']==q['tools'][role]['sha256'],'actual process tool content mismatch')
+            if p['page'] in amendments:
+                current=load(checked(amendments[p['page']]['current_keys']))
+                require(process['tools'][role]==current['tools'][role],'actual process/current-key tool literal mismatch')
+                checked(q['tools'][role])  # projection was authenticated at current-key document/pointer
+            else: checked(process['tools'][role])
+        helper.validate_saved_argv(sys.modules[__name__],process,q,p['page'],amendments[p['page']]['source_review'])
+        for name in ('stdout','stderr'):
+            if name in process:
+                captured=process[name]
+                if isinstance(captured,str): pass  # exact text is authenticated and archived within original process bytes
+                else:
+                    require(isinstance(captured,dict) and set(captured)=={'path','sha256'},'unsupported captured log shape')
+                    checked(captured)
+        report=load(checked(q['conversion_report']))
+        require(report.get('dry run') is False and report.get('source writes')==0 and report.get('counts',{}).get('blocked')==0,'dry/nonemitting/blocked conversion report')
+        rows=report.get('pages',[])
+        require(len(rows)==1 and rows[0].get('page')==p['page'] and rows[0].get('status') in ('converted','converted with findings'),'exact successful conversion report page/status required')
+        require(rows[0].get('source')==process['source']['model']['path'] and rows[0].get('output')==q['emitted_data']['path'],'actual report source/output path mismatch')
+        require(q['process']['sha256'] in all_archive_hashes and q['conversion_report']['sha256'] in all_archive_hashes,'actual process/report archives missing')
+        if required_issue_reports(record): require(bool(q['known_issues']),'known issue summary cannot be erased')
+        emitted=load(checked(q['emitted_data'])); Draft202012Validator(schema).validate(emitted)
+        require({k:v for k,v in emitted.items() if k!='review'}=={k:v for k,v in model.items() if k!='review'},'saved emitted DATA differs from final functional content')
+        require(q['emitted_data']['sha256'] in all_archive_hashes,'original emitted V4 must be archived')
+        for binding in required_issue_reports(record): require(binding in q['retained_issue_reports'],'frozen issue/history report omitted')
+        require(provenance.get('contract')=='successful-current-conversion276-unreviewed' and provenance.get('manifest_record')==record,'complete frozen manifest history missing')
+        require(provenance.get('known_issues')==q['known_issues'] and provenance.get('retained_issue_reports')==q['retained_issue_reports'],'retained issues provenance mismatch')
+        require(provenance.get('unreviewed') is True and provenance.get('SOURCE_DATA_PASS') is False and provenance.get('no_known_loss_claim') is False,'false clean/review attestation forbidden')
+    st=r['status']; sp=absolute(st['target']); require(sp==root/'notes'/'Source status.json','only exact Source status path allowed')
+    sw=write_for(str(sp),'source_status',st['after']); require(sw['before']==st['before'],'status preimage mismatch')
+    oldstatus=load(checked(st['before'])); newstatus=load(checked(st['after'])); inverse=copy.deepcopy(newstatus)
+    for p in r['pages']:
+        a=[x for x in oldstatus['records'] if x['page']==p['page']]; b=[x for x in inverse['records'] if x['page']==p['page']]
+        require(len(a)==len(b)==1,'exact page status record required')
+        for role,path,binding in (('json',p['canonical_json'],p['data']),('txt',p['canonical_txt'],p['txt'])):
+            require(a[0]['repository'][role]['path']==absolute(path).relative_to(root).as_posix(),'status path mismatch')
+            require(a[0]['repository'][role]['sha256']==targets[key(absolute(path))]['before']['sha256'],'status old hash mismatch')
+            require(b[0]['repository'][role]['sha256']==binding['sha256'],'status new hash mismatch')
+            b[0]['repository'][role]['sha256']=a[0]['repository'][role]['sha256']
+    require(inverse==oldstatus,'status change is not hash-only')
+    pub=absolute(r['publication_record']); require(pub.parent==root/'review' and pub.suffix=='.json','publication record path forbidden')
+    pw=write_for(str(pub),'publication_record'); require(pw['before'] is None,'publication record overwrite forbidden')
+    pd=load(checked(pw['source'])); require(pd.get('pages')==[p['page'] for p in r['pages']],'publication record pages mismatch')
+    require(pd.get('approved') is False and pd.get('source_approval') is False and pd.get('local_only') is True,'publication record flags mismatch')
+    require(consumed==set(targets),'unclassified extra repository target')
+    before=load(checked(r['repository_before_map'])); protected=load(checked(r['protected_installed_map']))
+    require(isinstance(before,dict) and isinstance(protected,dict),'repository maps must be objects')
+    for rel,h in {**before,**protected}.items():
+        rp=Path(rel); require(not rp.is_absolute() and '..' not in rp.parts and rp.as_posix()==rel and re.fullmatch('[0-9a-f]{64}',h),'invalid map entry')
+        require(not any(x.casefold() in ('.git','.vs') for x in rp.parts[:-1]),'excluded directory in map')
+        absolute(str(root/rp))
+    require(all(before.get(k)==v for k,v in protected.items()),'protected installed map mismatch')
+    mutable={absolute(w['target']).relative_to(root).as_posix() for w in writes}
+    require(protected=={rel:h for rel,h in before.items() if rel not in mutable},'protected map must include every untouched repository file')
+    require(len({k.casefold() for k in before})==len(before) and len({k.casefold() for k in protected})==len(protected),'case-colliding repository map keys')
+    protectedkeys={k.casefold() for k in protected}
+    require(all(absolute(w['target']).relative_to(root).as_posix().casefold() not in protectedkeys for w in writes),'protected installed target forbidden')
+    if check_map: require(maprepo(root)==before,'complete repository preimage map mismatch')
+    return before,protected
+
+
+def observe(path):
+    try: return {'path':str(path),'sha256':sha(readpath(absolute(str(path))))}
+    except Exception as exc: return {'path':str(path),'error':type(exc).__name__+': '+str(exc)}
+
+def _run(releasepath,expectedsha,after_write=None,test_only=False,amendment_gate=None):
+    require(amendment_gate is None or test_only,'synthetic amendment gate requires test-only API')
+    require(after_write is None or test_only,'production callback forbidden')
+    require(re.fullmatch('[0-9a-f]{64}',expectedsha) is not None,'lowercase release SHA required')
+    r,root,logs,lease=_validate(releasepath,expectedsha,test_only)
+    testroot=Path('D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team1 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\Exact ten public matrix source tool private publisher successor321')
+    require(not test_only or (within(root,testroot) and within(logs,testroot) and within(absolute(str(releasepath)),testroot) and all('Tests' in x.relative_to(testroot).parts for x in (root,logs,absolute(str(releasepath))))),'test hook requires repository, logs and release under private Tests')
+    # Reject unsafe subjects before acquiring the global lease or creating any R parent.
+    # Complete file map observation waits until serialized exact parent creation.
+    helper_execution=[]
+    validate_pages(r,root,check_map=False,allow_missing_parents=True,amendment_gate=amendment_gate,helper_execution=helper_execution)
+    before=None; protected={}
+    intentpath=logs/(r['nonce']+'.intent.json'); receiptpath=logs/(r['nonce']+'.completed.json')
+    require(not intentpath.exists() and not receiptpath.exists(),'nonreplayable nonce already used')
+    leasebytes=encoded({'release':{'path':str(absolute(str(releasepath))),'sha256':expectedsha},'nonce':r['nonce'],'operator':'Team4','test_only':test_only})
+    exclusive_new(lease,leasebytes)
+    applied=[]; failure=None; rolled=[]; reconciliation=[]
+    try:
+        # The intent is durable/exclusive before any R mutation (including temporaries).
+        intent={'release':{'path':str(absolute(str(releasepath))),'sha256':expectedsha},'nonce':r['nonce'],'lease_sha256':sha(leasebytes),'qualification':[p['qualification'] for p in r['pages']],'before_map_binding':r['repository_before_map'],'protected_map_binding':r['protected_installed_map'],'required_parents':r['required_parents'],'writes':r['writes'],'test_only':test_only}
+        exclusive_new(intentpath,encoded(intent))
+        # Authenticate all bindings again while holding the single publisher lease.
+        require(sha(readpath(absolute(str(releasepath))))==expectedsha,'release changed while acquiring lease')
+        validate_authority(r,root,logs,lease,test_only)
+        create_parents(r,root)
+        before,protected=validate_pages(r,root,amendment_gate=amendment_gate,helper_execution=helper_execution)
+        for index,w in enumerate(r['writes']):
+            p=absolute(w['target']); data=checked(w['source']); old=checked(w['before']) if w['before'] else None
+            transition(p,old,data,absolute(w['temporary'])); applied.append((w,old,data))
+            require(readpath(p)==data,'actual afterimage mismatch')
+            if after_write is not None: after_write(index,str(p))
+        expected=dict(before)
+        for w in r['writes']: expected[absolute(w['target']).relative_to(root).as_posix()]=w['source']['sha256']
+        after=maprepo(root); require(after==expected,'unexpected repository delta')
+        validate_consumers(r)  # all19 actual files, including external ald_editor paths, before commit credit
+        for p in r['pages']:
+            model=load(readpath(absolute(p['canonical_json']))); review=load(readpath(absolute(p['external_review'])))
+            require(digest(model)==review['content sha256'],'actual canonical review digest mismatch')
+            require(model['review']['approved'] is False and model['review']['unresolved discrepancies']==p['unresolved_discrepancies'],'actual flags mismatch')
+    except Exception as exc:
+        failure=type(exc).__name__+': '+str(exc)
+        for w,old,data in reversed(applied):
+            p=absolute(w['target'])
+            try:
+                require(readpath(p)==data,'competing target change')
+                if old is None: remove_own(p,data)
+                else: transition(p,data,old,absolute(w['temporary']))
+                rolled.append(str(p))
+            except Exception as rollbackerror:
+                reconciliation.append({'path':str(p),'reason':str(rollbackerror)})
+        if observe(intentpath).get('sha256')!=sha(encoded(intent)): reconciliation.append({'path':str(intentpath),'reason':'intent missing, partial or changed; preserve lease'})
+        for w in r['writes']:
+            temporary=absolute(w['temporary'])
+            if temporary.exists(): reconciliation.append({'path':str(temporary),'reason':'temporary remains; preserve for Root reconciliation'})
+        try:
+            live=maprepo(root)
+            for rel,h in (before or {}).items():
+                if live.get(rel)!=h and not any(x['path']==str(root/rel) for x in reconciliation): reconciliation.append({'path':str(root/rel),'reason':'repository differs from preimage after failure'})
+            if before is None:
+                reconciliation.append({'path':str(root),'reason':'newness unknown: complete before-map unavailable; live map retained without preexisting/new classification'})
+            else:
+                for rel in live.keys()-before.keys():
+                    if not any(x['path']==str(root/rel) for x in reconciliation): reconciliation.append({'path':str(root/rel),'reason':'new path remains after failure'})
+        except Exception as maperror:
+            live=None; reconciliation.append({'path':str(root),'reason':'cannot map: '+str(maperror)})
+    else: live=after
+    consumer_verification=observe_consumers(r)
+    postcommit_uncredited=failure is None and not consumer_verification['verified']
+    if postcommit_uncredited:
+        failure='POSTCOMMIT-UNCREDITED: final consumer observation drift or unavailable after primary verification; writes may be installed; no automatic retry'
+    if not consumer_verification['verified']:
+        reconciliation.append({'path':r['dual_consumers']['path'],'reason':'qualified actual consumer file drift or unavailable; external observations retained','consumer_verification':consumer_verification})
+    if before is None: reconciliation.append({'path':str(root),'reason':'pre-map failure; inspect durable parent intent and exact created directories; no automatic replay'})
+    receipt={'format':'guarded-publication276-receipt-v1','helper_execution':helper_execution,'atomicity_limit':'Atomic per-file replace under cooperative stable lease; no OS CAS against uncooperative writer/ancestor rename race; no crash recovery or automatic replay','release':{'path':str(absolute(str(releasepath))),'sha256':expectedsha},'nonce':r['nonce'],'intent':observe(intentpath),'intended_intent_sha256':sha(encoded(intent)),'success':failure is None,'test_only':test_only,'pagecount':len(r['pages']) if failure is None else 0,'pagecount_semantics':'credited successful batch count only; failure zero is not proof of zero installed pages','credited_successful_batch_pagecount':len(r['pages']) if failure is None else 0,'commit_credit_status':'POSTCOMMIT-UNCREDITED' if postcommit_uncredited else ('CREDITED' if failure is None else 'FAILED-UNCREDITED'),'actual_installation_state':('postcommit uncredited; writes may be installed; inspect actual observations and maps; no automatic retry' if postcommit_uncredited else ('fully verified committed batch' if failure is None else 'not credited; actual partial installation remains possible; inspect observations and maps')),'consumer_verification':consumer_verification,'pages':[p['page'] for p in r['pages']],'qualification':[p['qualification'] for p in r['pages']],'required_parents':r['required_parents'],'actual_afterimages':[observe(w['target']) for w,_,_ in applied],'repository_before_map':before,'repository_after_map':live,'protected_history_verified':before is not None and live is not None and consumer_verification['verified'] and all(live.get(k)==v for k,v in protected.items()),'protected_history_status':'unavailable-before-complete-map' if before is None else ('verified' if live is not None and consumer_verification['verified'] and all(live.get(k)==v for k,v in protected.items()) else 'drift-or-unavailable'),'archive_verification':[{'path':w['target'],'sha256':w['source']['sha256'],'verified':observe(w['target']).get('sha256')==w['source']['sha256'],'observation':observe(w['target'])} for w in r['writes'] if w['purpose']=='archive'],'failure':failure,'rolled_back':rolled,'reconciliation':reconciliation,'remainder':[w['target'] for w in r['writes'][len(applied):]],'approved':False,'source_approval':False,'local_only':True,'completed_utc':datetime.now(timezone.utc).isoformat()}
+    exclusive_new(receiptpath,encoded(receipt)); os.chmod(receiptpath,stat.S_IREAD)
+    # Keep lease on reconciliation; Root must resolve it explicitly. No stale reclamation.
+    if not reconciliation: remove_own(lease,leasebytes)
+    return receipt
+
+
+def run(releasepath,expectedsha): return _run(releasepath,expectedsha)
+def run_test_only(releasepath,expectedsha,after_write,amendment_gate=None):
+    """Explicit harness fault injection; no environment switches or production bypass."""
+    return _run(releasepath,expectedsha,after_write=after_write,test_only=True,amendment_gate=amendment_gate)
+
+if __name__=='__main__':
+    ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--release',required=True); ap.add_argument('--sha',required=True)
+    args=ap.parse_args()
+    try:
+        receipt=run(args.release,args.sha); print(json.dumps(receipt,ensure_ascii=False)); sys.exit(0 if receipt['success'] else 2)
+    except Exception as exc:
+        print(type(exc).__name__+': '+str(exc),file=sys.stderr); sys.exit(2)

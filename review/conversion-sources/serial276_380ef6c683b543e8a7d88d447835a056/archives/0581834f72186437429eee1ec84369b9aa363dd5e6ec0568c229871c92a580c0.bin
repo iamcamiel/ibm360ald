@@ -1,0 +1,142 @@
+"""PRIVATE full receiver343 body. Inject explicit isolated B, G and Draft202012Validator. No live imports."""
+from pathlib import Path
+import json,copy,hashlib
+
+def load(data):
+ def pairs(xs):
+  d={}
+  for k,v in xs:
+   assert k not in d,('Duplicate JSON member',k);d[k]=v
+  return d
+ def bad(v):raise ValueError('Nonfinite JSON: '+v)
+ return json.loads(data,object_pairs_hook=pairs,parse_constant=bad)
+def checked(b):return load(B.checked(b))
+def digest(d):return hashlib.sha256(json.dumps({k:v for k,v in d.items()if k!='review'},ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode('utf8')).hexdigest()
+
+def historical_issue_binding(b,plan,before):
+ """A publication may replace the very V3 bytes named by a historical report."""
+ data=B.raw(b['path'])
+ if B.sha(data)==b['sha256']:return None
+ else:
+  replacements=[x for x in plan['writes']if x['purpose']in ['canonical_json','canonical_txt','external_review']and x['before']==b and x['target']==b['path']]
+  assert len(replacements)==1,('Unexplained retained issue binding drift',b)
+  relative=Path(b['path']).relative_to(B.R).as_posix()
+  assert before[relative]==b['sha256']
+  archives=[x for x in plan['writes']if x['purpose']=='archive'and x['before']is None and x['source']['sha256']==b['sha256']]
+  assert archives,('Missing exact archived historical issue preimage',b)
+  for x in archives:
+   B.checked(x['source']);B.checked(dict(path=x['target'],sha256=b['sha256']))
+  return dict(original_binding=b,exact_transaction_preimage_verified=True,archived_exact_bytes=[dict(path=x['target'],sha256=b['sha256'])for x in archives],live_path_is_authorized_successor=True)
+def integrate(spec, *, trusted_root_state=None,receiver343=None):
+ wb,sb=B.raw(B.WP),B.raw(B.SP);w,s=load(wb),load(sb)
+ assert B.checked(s['canonical_v3_completed_batch_intake']['active_integration_work_state'])==wb
+ initial=w['all_ALD_actual_first6_bulk276_publication290']
+ head=w.get('all_ALD_actual_publication_current_head',initial);hd=checked(head)
+ previous=checked(hd['actual_durable_receipt']);oldcensusref=hd['census'];oldcensus=checked(oldcensusref)
+ assert oldcensus['count']==w['all_ALD_actual_installed_V4_count']
+ history=w.get('all_ALD_bulk276_integrated_publications',[initial])
+ nonce=spec['nonce'];assert nonce.startswith('serial276_')and all(c.isalnum()or c=='_'for c in nonce)
+ oldnonces=w.get('all_ALD_bulk276_integrated_nonces',[checked(checked(initial)['actual_durable_receipt'])['nonce']])
+ if nonce in oldnonces:return dict(nonce=nonce,already_integrated=True,new_installs=0)
+ r=checked(spec['receipt']);process=checked(spec['process']);checked(spec['operator_final'])
+ qualification343=None
+ new343=process.get('runner_sha256','efc2e2fbdbab44024a276f340b84f3a06f0402c653ddb0bc6a2df032a1ae4ac9')!='efc2e2fbdbab44024a276f340b84f3a06f0402c653ddb0bc6a2df032a1ae4ac9' or any(k in process for k in ('publisher_subject','launcher_sha256'))
+ if new343:
+  # Root supplies both capabilities independently of spec. Exact same-buffer loader is private proposal.
+  assert trusted_root_state is not None and receiver343 is not None
+  assert receiver343.__trusted_manifest343__==trusted_root_state['receiver_manifest']
+  qualification343=receiver343.select_branch(process,trusted_root_state,B.checked)
+  assert qualification343 is not None
+ else:
+  assert process.get('Gate_sha256','50882a16d89306a35fbee6733a66709bc8fd2928a20a232efc99805e3073c767')=='50882a16d89306a35fbee6733a66709bc8fd2928a20a232efc99805e3073c767'
+ assert r['nonce']==nonce and Path(spec['receipt']['path']).name==nonce+'.completed.json'
+ assert r['format']=='guarded-publication276-receipt-v1'and r['success']is True and r['test_only']is False
+ assert r['commit_credit_status']=='CREDITED'and r['actual_installation_state']=='fully verified committed batch'
+ assert r['protected_history_verified']is True and r['consumer_verification']['verified']is True
+ assert r['failure']is None and not r['rolled_back']and not r['reconciliation']and not r['remainder']
+ n=r['credited_successful_batch_pagecount'];assert n==r['pagecount']==len(r['pages'])and 1<=n<=20
+ assert process['execution_count']==1 and process['retried']is False
+ if 'transaction_success'in process:
+  assert process['transaction_success']is True and process['operator_acceptance_success']is True
+  assert process['invocation_error']is None and process['operator_acceptance_error']is None and process['credited_new_pages']==n
+  assert process['actual_receipt']['sha256']==spec['receipt']['sha256']and process['actual_consumers_independently_rehashed']==19
+  assert process['actual_afterimages_independently_rehashed']==len(r['actual_afterimages'])and process['qualified_publisher_actual_full_map_verified']is True
+  if qualification343 is None:
+   assert process['runner_sha256']=='efc2e2fbdbab44024a276f340b84f3a06f0402c653ddb0bc6a2df032a1ae4ac9'and process['Gate_sha256']=='50882a16d89306a35fbee6733a66709bc8fd2928a20a232efc99805e3073c767'
+ else:
+  assert qualification343 is None
+  assert process['success']is True and process['error']is None and process['credited_count']==n
+ plan=checked(r['release']);assert len(plan['pages'])==n and len(plan['writes'])<=250
+ assert plan['manifest']==w['all_ALD_exact628_publication_manifest276']and plan['authority']==w['all_ALD_exact628_human_publication_authority276']
+ if qualification343 is None:assert plan['policy']==w['all_ALD_exact628_publication_policy276']
+ else:assert plan['policy']==receiver343.CONTRACTS['original_policy']
+ manifest=checked(plan['manifest']);selection={x['page']:x for x in manifest['records']}
+ names=[p['page']for p in plan['pages']];assert len(set(names))==n and set(names)<=set(manifest['pages'])
+ before=checked(plan['repository_before_map']);assert before==previous['repository_after_map'],('Noncontiguous receipt chain',nonce)
+ if qualification343 is not None:
+  assert qualification343['process']==spec['process']
+  amendments343=receiver343.validate_new321(plan,r,process,qualification343,raw=B.raw,guard=receiver343.strict_directory_guard,root=B.R,manifest=manifest,before=before,schema_validator=Draft202012Validator)
+ after=dict(before)
+ for x in plan['writes']:
+  target=Path(x['target']);assert target.is_relative_to(B.R);B.checked(x['source'])
+  after[target.relative_to(B.R).as_posix()]=x['source']['sha256']
+ assert r['repository_before_map']==before and r['repository_after_map']==after
+ protected=checked(plan['protected_installed_map']);assert all(after[k]==v for k,v in protected.items())
+ assert len(r['actual_afterimages'])==len(plan['writes'])and all(x['verified']for x in r['archive_verification'])
+ assert len(r['archive_verification'])==sum(x['purpose']=='archive'for x in plan['writes'])
+ for b in r['actual_afterimages']:
+  if Path(b['path'])!=B.R/'notes/Source status.json':B.checked(b)
+ prevplan=checked(previous['release']);beforestatus=prevplan['status']['after'];assert beforestatus['sha256']==plan['status']['before']['sha256']
+ oldstatus,newstatus=checked(beforestatus),checked(plan['status']['after']);inverse=copy.deepcopy(newstatus)
+ assert len(oldstatus['records'])==len(newstatus['records'])
+ for i,(a,b)in enumerate(zip(oldstatus['records'],newstatus['records'])):
+  assert a['page']==b['page']
+  if a['page']in names:
+   for k in ['json','txt']:inverse['records'][i]['repository'][k]['sha256']=a['repository'][k]['sha256']
+ assert inverse==oldstatus
+ live=load(B.raw(B.R/'notes/Source status.json'))
+ for row in newstatus['records']:
+  if row['page']in names:assert [x for x in live['records']if x['page']==row['page']]==[row]
+ consumers=checked(w['current_qualified_installed_dual_consumers'])['installed_files'];assert len(consumers)==19
+ for b in consumers:B.checked(b)
+ flow=checked(w['conversion_workflow']);schema=checked(flow['current_qualified_standalone_tools']['schema'])
+ for b in flow['current_qualified_standalone_tools'].values():B.checked(b)
+ rows=oldcensus['pages'][:];known={x['page']for x in rows};historical_issue_resolutions=[]
+ for row in rows:assert after[row['path']]==row['sha256'];B.checked(dict(path=str(B.R/row['path']),sha256=row['sha256']))
+ for p in plan['pages']:
+  assert p['page']not in known and Path(p['canonical_json'])==Path(selection[p['page']]['canonical_preimage']['json']['path'])and Path(p['canonical_txt'])==Path(selection[p['page']]['canonical_preimage']['text']['path'])
+  if qualification343 is None:
+   for k in ['model','text']:assert p['source'][k]['sha256']==selection[p['page']]['source'][k]['sha256'];B.checked(p['source'][k])
+   for k in ['raw','restored_raw']:
+    if k in selection[p['page']]['source']:assert p['source']['raw']['sha256']==selection[p['page']]['source'][k]['sha256']
+  else:
+   schema=checked(p['schema'])
+  model=load(B.raw(Path(p['canonical_json'])));review=load(B.raw(Path(p['external_review'])))
+  assert model['$schema']=='https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json'and model['page']['page']==p['page']
+  assert digest(model)==review['content sha256']and model['review']['approved']is False and model['review']['unresolved discrepancies']is p['unresolved_discrepancies']
+  errors=list(Draft202012Validator(schema).iter_errors(model));assert not errors,[dict(path=list(e.absolute_path),message=e.message)for e in errors[:5]]
+  issues343=p['qualification']['retained_issue_reports'] if qualification343 is None else amendments343[p['page']]['retained_issue_bindings']
+  for b in issues343:
+   resolution=historical_issue_binding(b,plan,before)
+   if resolution:historical_issue_resolutions.append(resolution)
+  original=checked(p['original_review']);final=checked(p['final_review']);back=copy.deepcopy(final);back.pop('publication provenance')
+  for delta in p['review_delta']:
+   tokens=[x.replace('~1','/').replace('~0','~')for x in delta['pointer'].strip('/').split('/')];parent=back
+   for token in tokens[:-1]:parent=parent[int(token)]if isinstance(parent,list)else parent[token]
+   key=int(tokens[-1])if isinstance(parent,list)else tokens[-1];assert parent[key]==delta['after'];parent[key]=delta['before']
+  assert back==original
+  path=Path(p['canonical_json']).relative_to(B.R).as_posix();rows.append(dict(page=p['page'],path=path,sha256=after[path]))
+ count=w['all_ALD_actual_installed_V4_count']+n;assert len(rows)==len({x['page']for x in rows})==count
+ D=G/'Root authenticated automatic bulk276 receipt intake292'/nonce;assert not D.exists();D.mkdir(parents=True)
+ retained=B.save(D/'Actual durable receipt.json',B.checked(spec['receipt']))
+ if historical_issue_resolutions:B.save(D/'Historical issue references authenticated against exact archived transaction preimages.json',dict(resolutions=historical_issue_resolutions,no_original_binding_rewritten=True,no_publication_replay=True))
+ census=B.save(D/'Actual verified installed V4 census.json',dict(count=count,pages=sorted(rows,key=lambda x:x['page']),prior_census=oldcensusref,actual_release=r['release'],method='Authenticated contiguous completed before/after-map chain and exact target/archive/live canonical hashes, full saved V4 schema/digest/review inverse, immutable whole-status inverse/live affected-page projection, all prior canonical hashes and19consumer files independently checked. Autonomous later transactions may already follow; no obsolete intermediate entire-live-map equality claim.'))
+ out=B.save(D/'Root actual verified local publication.json',dict(pages=names,actual_durable_receipt=retained,actual_process=spec['process'],actual_parent_independent_acceptance=spec['operator_final'],exact_release=r['release'],credited_installs=n,total_verified_installed_V4=count,census=census,actual_writes=len(plan['writes']),actual_archives=len(r['archive_verification']),exact_complete_map_chain_and_protected_history_PASS=True,actual_afterimages_except_later_mutable_status_rehashed=True,immutable_whole_status_inverse_and_live_page_projection_PASS=True,all_current_canonical_and19consumer_hashes_PASS=True,actual_saved_schema_digest_and_review_inverse_PASS=True,all_findings_and_known_source_DATA_issues_retained_unreviewed=True,mechanical_success_not_source_approval=True,source_approval=False,approved=False,local_only=True,Git_push_or_remote_deploy=False,production_calls=1,no_old_key_or_installation_replay=True))
+ totalbulk=w['all_ALD_exact628_actual_published_count']+n
+ reg=checked(w['all_ALD_six_Sol_blocker_registry']);reg['teams']['4'].update(last_Root_integrated_actual_bulk_publication=out,current_phase='AUTONOMOUS_BULK276_ACTUAL_RECEIPTS_CONTINUING')
+ reg['exact628_delegated_publication276'].update(actual_published=totalbulk,unpublished_including_blocked=628-totalbulk,last_actual_publication=out)
+ rn=B.save(D/'Registry actual credited batch integrated.json',reg)
+ cp=B.save(D/'Root actual batch integrated checkpoint.json',dict(prior_checkpoint=w['latest_selected_checkpoint'],actual_publication=out,census=census,registry=rn,actual_verified_installed_V4=count,exact628_actual_published=totalbulk,exact628_unpublished_including_held=628-totalbulk,Root_ack_or_per_batch_permission_not_required=True,followup_required=True))
+ for z in [w,s]:z.update(all_ALD_actual_publication_current_head=out,all_ALD_bulk276_integrated_publications=history+[out],all_ALD_bulk276_integrated_nonces=oldnonces+[nonce],all_ALD_actual_installed_V4_count=count,all_ALD_actual_installed_V4_census_current=census,all_ALD_exact628_actual_published_count=totalbulk,all_ALD_six_Sol_blocker_registry=rn,all_ALD_six_Luna_blocker_registry=rn,latest_selected_checkpoint=cp,latest_Root_continuation_checkpoint=cp,all_ALD_readiness158_latest_progress=cp)
+ B.replace_progress(B.WP,wb,w);s['canonical_v3_completed_batch_intake']['active_integration_work_state']=B.bind(B.WP);B.replace_progress(B.SP,sb,s)
+ return dict(nonce=nonce,new_installs=n,verified_installed=count,actual_published_of628=totalbulk,checkpoint=cp)

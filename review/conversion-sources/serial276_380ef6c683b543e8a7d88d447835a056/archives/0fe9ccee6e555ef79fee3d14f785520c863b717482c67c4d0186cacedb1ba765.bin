@@ -1,0 +1,19 @@
+"""PRIVATE proposed same-buffer loader. Root supplies trusted manifest binding externally.
+No module/path cache reuse. The trusted manifest is never taken from receipt/spec.
+"""
+import json,hashlib,types
+from pathlib import Path
+
+def load_receiver343(trusted_manifest_binding,raw):
+    data=raw(trusted_manifest_binding['path'])
+    if hashlib.sha256(data).hexdigest()!=trusted_manifest_binding['sha256']: raise AssertionError('trusted receiver manifest drift')
+    manifest=json.loads(data.decode('utf-8',errors='strict'))
+    rows=[b for b in manifest['files'] if Path(b['path']).name=='receiver_proposal001343.py']
+    if len(rows)!=1: raise AssertionError('receiver source manifest ambiguous')
+    binding=rows[0]; source=raw(binding['path']); measured=hashlib.sha256(source).hexdigest()
+    if measured!=binding['sha256']: raise AssertionError('trusted receiver source drift')
+    module=types.ModuleType('_Root_private_receiver343_'+measured); module.__file__=binding['path']
+    exec(compile(source,binding['path'],'exec',dont_inherit=True),module.__dict__)
+    module.__trusted_manifest343__=dict(trusted_manifest_binding)
+    module.__compiled_input_sha256__=measured
+    return module
