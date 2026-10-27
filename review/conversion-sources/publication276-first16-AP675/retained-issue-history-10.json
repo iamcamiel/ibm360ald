@@ -1,0 +1,645 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json",
+  "title": "IBM System/360 functional ALD page, version 4",
+  "description": "Human-readable functional ALD page records. Closed objects prevent accidental format sprawl; uncertainty and detailed review evidence live in a linked external JSON file.",
+  "$comment": "This schema checks structure, not source truth or publication readiness. Semantic checks must enforce ascending unique block serials, unique net IDs, valid terminal and bend references, exactly-one-net membership, output-origin naming, orthogonal routes, auxiliary non-driving roles and external review hash/evidence integrity. Defaults document omission rules; JSON Schema does not insert them. Other proposed page-type values do not imply non-ALD layout support.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "page",
+    "review",
+    "blocks",
+    "inputs",
+    "outputs",
+    "nets"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json"
+    },
+    "page": {
+      "$ref": "#/$defs/page"
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/block"
+      },
+      "description": "Ascending block serial order."
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/input"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/output"
+      }
+    },
+    "nets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/net"
+      }
+    },
+    "note": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Footer note lines; group origin normalizes to column 4."
+    },
+    "column deviations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/column deviation"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "nets": {
+            "contains": {
+              "type": "object",
+              "required": [
+                "net number"
+              ],
+              "properties": {
+                "net number": {
+                  "type": "string",
+                  "pattern": "-no-source$"
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "unresolved discrepancies": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "page",
+        "page-type",
+        "origin",
+        "title",
+        "date",
+        "machine",
+        "log",
+        "frame",
+        "p/n",
+        "ibm division",
+        "next block"
+      ],
+      "properties": {
+        "page": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}[0-9]{3}$",
+          "description": "Printed page identifier, for example AP001."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]{3}$",
+          "default": "000",
+          "description": "Printed page version. Omit the default 000."
+        },
+        "subpage": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Subpage identifier, only when needed."
+        },
+        "page-type": {
+          "type": "string",
+          "enum": [
+            "ALD",
+            "CAS",
+            "Card-ALD",
+            "Socket Listing",
+            "ROS Listing",
+            "Text"
+          ],
+          "description": "Original proposal page categories. This schema defines the functional ALD records; an enum value does not imply converter support for another document layout."
+        },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "scan",
+            "reconstructed",
+            "vaxbarn"
+          ]
+        },
+        "title": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 2,
+          "description": "Printed title lines, in order. Empty when no title is established."
+        },
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Printed page date, normally MM-DD-YY; null retains an unresolved reading externally."
+        },
+        "machine": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "log": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "frame": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "p/n": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ibm division": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Printed letters after IBM CORP.; do not expand or infer their meaning."
+        },
+        "next block": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Printed BLK. value."
+        },
+        "revisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/revision"
+          }
+        }
+      }
+    },
+    "revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "num"
+      ],
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "num": {
+          "type": "string",
+          "description": "Printed revision number; a string preserves leading zeroes."
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "approved",
+        "unresolved discrepancies",
+        "details"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Brief review status. Detailed findings belong in the external review file."
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Human approval status. Conversion alone must leave this false."
+        },
+        "unresolved discrepancies": {
+          "type": "boolean",
+          "description": "True while unresolved source, transcription or conversion discrepancies remain."
+        },
+        "details": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Relative link to an external, content-hash-bound review JSON file, normally review/<page prefix>/<page>.json."
+        }
+      }
+    },
+    "offset": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        }
+      ],
+      "items": false,
+      "description": "Signed [column, row] displacement in character cells."
+    },
+    "point": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 244
+        },
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 102
+        }
+      ],
+      "items": false,
+      "description": "Zero-based [column, row] on the 245 by 103 character page."
+    },
+    "net number": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|gnd|\\+3v|no-source))$",
+      "description": "Ordinary ID: driving page + block serial + output-line reference (AP011BJ5). The printed suffix 0 is legitimate and denotes output row 10, as in WA641AA0; it is not terminal line zero. Local exception: page + lowest-serial driven block + L + its first attached input line + -strap, -unused, -gnd, -+3v or -no-source. Terminal line numbers remain one-based. Choosing the correct anchor requires semantic validation."
+    },
+    "node": {
+      "type": "string",
+      "pattern": "^(?:blocks/[A-Z]{2}/pins/[LR]/[1-9][0-9]*|(?:inputs|outputs)/[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|gnd|\\+3v|no-source)))$",
+      "description": "Existing terminal or page-port reference. Membership must be checked against this page."
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "serial",
+        "grid position",
+        "function",
+        "circuit",
+        "pins"
+      ],
+      "properties": {
+        "serial": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Block serial used by references. A damaged printed serial remains an external uncertainty over the retained opaque ID."
+        },
+        "grid position": {
+          "type": "string",
+          "pattern": "^[1-7][A-HJ-N]$",
+          "description": "Printed block grid position, such as 1C. Page character coordinates are independently zero-based."
+        },
+        "function": {
+          "type": "string",
+          "description": "Printed function."
+        },
+        "function offset": {
+          "type": "integer",
+          "default": 0,
+          "description": "Horizontal character displacement of the function. Omit zero."
+        },
+        "circuit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Circuit identifier. Unresolved source text stays in the external review."
+        },
+        "card": {
+          "type": "string"
+        },
+        "portion": {
+          "type": "string"
+        },
+        "socket": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Full socket location, including the frame prefix; omit when not applicable."
+        },
+        "board": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Board location for a block with no card/socket, such as the approved wired OR/DOT case."
+        },
+        "pins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pin"
+          }
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 6,
+          "default": 6,
+          "description": "Block height in character rows. Omit the standard height 6."
+        },
+        "annotation": {
+          "type": "string",
+          "description": "Printed annotation above the block unless annotation offset says otherwise."
+        },
+        "annotation offset": {
+          "$ref": "#/$defs/offset",
+          "default": [
+            0,
+            -1
+          ]
+        }
+      }
+    },
+    "pin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "side",
+        "line"
+      ],
+      "properties": {
+        "side": {
+          "type": "string",
+          "enum": [
+            "L",
+            "R"
+          ],
+          "description": "Drawn side, not a signal direction. Ordinary left contacts are inputs and right contacts outputs; K/aux contacts are nondirectional output modifiers."
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "One-based line within the block, counting its top border as line 1."
+        },
+        "pin": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Printed physical pin number. Omit if no number is printed; null means an unresolved printed identity with evidence in external review. Net annotations are separate."
+        },
+        "edge": {
+          "type": "string",
+          "enum": [
+            "negative",
+            "extension",
+            "aux",
+            "non-logic"
+          ],
+          "description": "Border mark: wedge, E, K or X. K/aux is not a signal input, output or net driver."
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "net number",
+        "name",
+        "line"
+      ],
+      "properties": {
+        "net number": {
+          "$ref": "#/$defs/net number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 92,
+          "description": "Zero-based page row."
+        },
+        "reference style": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "hanging"
+          ],
+          "default": "inline",
+          "description": "Omit the default inline style."
+        },
+        "real net number": {
+          "$ref": "#/$defs/net number",
+          "description": "Underlying reference for indirect input, only when different from net number."
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "net number",
+        "name",
+        "line",
+        "sinks"
+      ],
+      "properties": {
+        "net number": {
+          "$ref": "#/$defs/net number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 92,
+          "description": "Zero-based page row."
+        },
+        "sinks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Destination page labels in printed order. One sink is inline; multiple sinks hang below the wire."
+        },
+        "hanging wire length": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 1,
+          "description": "First-column horizontal hanging lead length. Omit 1; zero is valid. Applies to multiple sinks."
+        }
+      }
+    },
+    "net": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "net number",
+        "nodes",
+        "routing"
+      ],
+      "properties": {
+        "net number": {
+          "$ref": "#/$defs/net number"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "uniqueItems": true,
+          "description": "Each page port and block terminal belongs to exactly one net; check this across all net records."
+        },
+        "routing": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/point"
+            },
+            "minItems": 2
+          },
+          "description": "Polylines of endpoints and bends only. Segments must be orthogonal. Corners, crossings and junction diamonds are inferred from same-net connectivity; crossing different nets must not join them."
+        },
+        "annotations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/annotation"
+          }
+        },
+        "connectors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Printed connector entries, owned by this net and in printed order. Preserve unresolved/opaque location text without guessing an identity. Table layout normalizes to row 94."
+        }
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "at",
+        "text"
+      ],
+      "properties": {
+        "at": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/node"
+            },
+            {
+              "$ref": "#/$defs/route point"
+            }
+          ],
+          "description": "Use a terminal reference where possible, otherwise a point of this net's routing."
+        },
+        "offset": {
+          "$ref": "#/$defs/offset",
+          "default": [
+            0,
+            0
+          ],
+          "description": "Displacement from the referenced bend; terminal label side determines the ordinary pin annotation placement."
+        },
+        "text": {
+          "type": "string",
+          "description": "Printed annotation, including a star or other modifier; never part of the physical pin identity."
+        }
+      }
+    },
+    "route point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "polyline",
+        "point"
+      ],
+      "properties": {
+        "polyline": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "point": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "description": "Zero-based indices into the containing net's routing. The referenced point must exist."
+    },
+    "column deviation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "num",
+            "deviation"
+          ],
+          "properties": {
+            "type": {
+              "const": "block"
+            },
+            "num": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "deviation": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "deviation"
+          ],
+          "properties": {
+            "type": {
+              "const": "entry-reference"
+            },
+            "deviation": {
+              "type": "integer"
+            }
+          }
+        }
+      ],
+      "description": "Explicit departure from the ordinary printed column layout; omit when not needed."
+    }
+  }
+}
