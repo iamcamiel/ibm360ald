@@ -216,17 +216,35 @@ function graph_find(array &$parent,string $k): string {
     if (!isset($parent[$k])) $parent[$k]=$k;
     $p=$parent[$k];if ($p!==$k) $parent[$k]=graph_find($parent,$p);return $parent[$k];
 }
+function graph_ready(Store $store,array $catalogue): bool {
+    $revision=$catalogue['revision'];
+    if(!$store->get('graph-ready-'.$revision))return false;
+    $tokens=[];
+    foreach($catalogue['pages']as$entry)if($entry['type']==='ald'){
+        $page=$store->get('graph-page-'.$revision.'-'.$entry['id']);
+        if(!is_array($page['components']??null)||!is_array($page['unresolved']??null))return false;
+        foreach($page['components']as$token){if(!is_string($token))return false;$tokens[$token]=true;}
+    }
+    foreach($tokens as$token=>$_){
+        $component=$store->get('component-'.$revision.'-'.$token);
+        if(!is_array($component['items']??null)||!$component['items']||hash('sha256',json_bytes($component['items']))!==$token)return false;
+    }
+    return true;
+}
 function ensure_graph(Store $store,array $catalogue): void {
-    $revision=$catalogue['revision'];if ($store->get('graph-ready-'.$revision)) return;
+    $store->assertGraphGeneration($catalogue);
+    $revision=$catalogue['revision'];if(graph_ready($store,$catalogue)){$store->assertGraphGeneration($catalogue);return;}
     $store->locked('graph-'.$revision,function()use($store,$catalogue,$revision){
-        if($store->get('graph-ready-'.$revision))return;
+        $store->assertGraphGeneration($catalogue);
+        if(graph_ready($store,$catalogue)){$store->assertGraphGeneration($catalogue);return;}
+        $store->prepareGraphDescriptors($catalogue);
         $outputs=[];$pending=[];$labels=[];$pageCodes=[];
         foreach($catalogue['pages']as$entry){
             $pageCodes[$entry['id']]=$entry['displayPage']??$entry['page'];if($entry['type']!=='ald')continue;
-            if(isset($entry['_v4'])){
-                $doc=$store->document($entry);$native=$entry['_v4'];
+            if(($entry['format']??null)==='v4'||isset($entry['_v4'])){
+                $native=$store->graphDescriptor($entry);
                 foreach($native['nets']as$n){$key=graph_key($entry['id'],$n['id']);$labels[$key]=$n['label'];}
-                foreach($doc['outputs']as$o){$m=page_reference($o['net number']);if($m&&isset($m[2]))$outputs[$m[1].'.'.$m[2].'.'.(int)$m[3]][graph_key($entry['id'],$o['net number'])]=true;}
+                foreach($native['outputs']as$number){$m=page_reference($number);if($m&&isset($m[2]))$outputs[$m[1].'.'.$m[2].'.'.(int)$m[3]][graph_key($entry['id'],$number)]=true;}
                 foreach($native['nets']as$n)if(count($n['sourceReferences'])===1)$pending[graph_key($entry['id'],$n['id'])]=$n['sourceReferences'][0];
                 continue;
             }
@@ -252,6 +270,7 @@ function ensure_graph(Store $store,array $catalogue): void {
             $token=hash('sha256',json_bytes($items));$store->put('component-'.$revision.'-'.$token,['items'=>$items]);foreach($members as$key)$byPage[substr($key,0,64)][substr($key,65)]=$token;
         }
         foreach($catalogue['pages']as$e)if($e['type']==='ald')$store->put('graph-page-'.$revision.'-'.$e['id'],['components'=>$byPage[$e['id']]??[],'unresolved'=>$unresolved[$e['id']]??[]]);
+        $store->assertGraphGeneration($catalogue);
         $store->put('graph-ready-'.$revision,['ready'=>true]);
     });
 }
@@ -293,7 +312,7 @@ function native_interactions(Store $store,array $entry,array $catalogue): array 
 }
 function interactions(Store $store,array $entry,array $catalogue): array {
     if (!$entry['_sourcePairCurrent']) throw new \RuntimeException('The page JSON/text publication is incomplete. Retry after both files and Source status are published.');
-    if(isset($entry['_v4']))return native_interactions($store,$entry,$catalogue);
+    if(($entry['format']??null)==='v4'||isset($entry['_v4']))return native_interactions($store,$entry,$catalogue);
     $key='payload-'.$catalogue['revision'].'-'.$entry['id'];$cached=$store->get($key);if($cached!==null)return$cached;
     $payload=['schema'=>'aldbrowser-interactions-v1','textSha256'=>$entry['textSha256']];$byId=[];$pages=[];$cards=[];
     foreach($catalogue['pages']as$e){$byId[$e['id']]=$e;if($e['type']==='card-ald'){if($e['variant']===null)$cards[$e['cardType']]=$e;}else$pages[$e['page']][]=$e['id'];}

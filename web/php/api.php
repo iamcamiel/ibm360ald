@@ -15,7 +15,7 @@ try {
     if ($id !== null && (!is_string($id) || !preg_match('/^[a-f0-9]{64}$/D', $id))) {
         http_response_code(400); throw new InvalidArgumentException('Invalid page identity.');
     }
-    $catalogue = $store->catalogue($id);
+    $catalogue = $store->catalogue();
     if (isset($_GET['text'])) {
         $text=$store->text($store->page($id,$catalogue));header('Content-Type: text/plain; charset=utf-8');echo $text;exit;
     } elseif (isset($_GET['interaction'])) $response = \ALDbrowser\interactions($store, $store->page($id, $catalogue), $catalogue);
