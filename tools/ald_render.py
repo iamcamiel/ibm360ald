@@ -89,6 +89,7 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
     def local_location(value):
         return value[2:] if value and len(value)>=2 and value[:2].isdigit() else value
     grid = [[' '] * PAGE_COLUMNS for _ in range(PAGE_ROWS)]
+    inline_annotations = []
 
     def put(column, row, text):
         if not (0 <= row < PAGE_ROWS and 0 <= column <= column + len(text) <= PAGE_COLUMNS):
@@ -241,6 +242,17 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
         style = entry.get('reference style', 'inline')
         if style == 'inline':
             put(32+reference_offset, row, reference)
+            real = entry.get('real net number', identity)
+            if real != identity:
+                if (type(row) is not int or not 0 <= row+1 < 93):
+                    raise ValueError('Inline real reference must remain inside the page body')
+                if (not isinstance(real, str) or not real or real != real.strip()
+                        or not all(character.isprintable() for character in real)):
+                    raise ValueError('Inline real reference must be a printable nonempty string')
+                token = '✲' + real
+                if 1 + len(token) >= PAGE_COLUMNS:
+                    raise ValueError('Inline real reference and separator must fit the page width')
+                inline_annotations.append((row+1, token))
         elif style == 'hanging':
             put(1, row+1, '✲' + entry.get('real net number', identity))
             put(32+reference_offset, row+1, reference)
@@ -287,6 +299,12 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
             point=net['routing'][at['polyline']][at['point']]
             offset=annotation.get('offset',[0,0])
             put(point[0]+offset[0],point[1]+offset[1],annotation['text'])
+
+    # Check after every body overlay so later captions/annotations cannot erase R.
+    for row, token in inline_annotations:
+        if any(character != ' ' for character in grid[row][1:len(token)+2]):
+            raise ValueError('Inline real reference overlaps existing page content')
+        put(1, row, token)
 
     put(235, 0, page.get('version', '000') + '  ' + page['page'])
     for index, character in enumerate(page['page']):

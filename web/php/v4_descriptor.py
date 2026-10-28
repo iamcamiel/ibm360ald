@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from v4_view import QUALIFIED_RENDERER_SHA256, load, strict_json
+from v4_view import QUALIFIED_RENDERER_SHA256, input_source_reference, load, strict_json
 
 BATCH_SCHEMA = 'aldbrowser-v4-graph-batch-v1'
 DESCRIPTOR_SCHEMA = 'aldbrowser-v4-graph-descriptor-v1'
@@ -68,7 +68,7 @@ def descriptor(item, generation):
         source_refs = []
         for identity, inp in inputs.items():
             if 'inputs/' + identity in net['nodes']:
-                source_refs.append(inp.get('real net number', identity))
+                source_refs.append(input_source_reference(inp))
         nets.append({'id': number, 'label': number, 'sourceReferences': list(dict.fromkeys(source_refs))})
     result = {'schema': DESCRIPTOR_SCHEMA, 'generation': generation, 'id': item['id'],
               'modelSha256': model_hash, 'reviewSha256': review_hash, 'page': data['page']['page'],

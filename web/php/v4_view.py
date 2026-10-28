@@ -2,7 +2,7 @@
 import argparse, hashlib, importlib.util, json, math, os, re
 from pathlib import Path
 SCHEMA='https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json'
-QUALIFIED_RENDERER_SHA256='a657f24174374a4cba8f3c47ea61be88e98e6fa9a25e5c5cd91aefd868dfb736'
+QUALIFIED_RENDERER_SHA256='265369551ac722e5199053318ef780d26c7c998dab9d99c764c70c34039f9bc6'
 def strict_json(text):
     def pairs(items):
         value={}
@@ -35,6 +35,12 @@ def load(path):
     elif review.get('unresolved discrepancies') is True:
         raise ValueError('Unresolved page requires content-bound review details')
     return data,details
+
+def input_source_reference(entry):
+    style = entry.get('reference style', 'inline')
+    if style not in ('inline', 'hanging'):
+        raise ValueError('Unknown input reference style')
+    return entry.get('real net number', entry['net number']) if style == 'hanging' else entry['net number']
 
 def view(path,renderer_path):
     data,details=load(path)
@@ -79,10 +85,12 @@ def view(path,renderer_path):
         for inp in member_inputs:
             row=inp['line'];offset=sum(d['deviation'] for d in data.get('column deviations',[]) if d['type']=='entry-reference')
             spans.append([row,1,1+len(inp['name'])])
-            identity=inp['net number'];source_refs.append(inp.get('real net number',identity))
+            identity=inp['net number'];source_refs.append(input_source_reference(inp))
             refrow=row+(inp.get('reference style','inline')=='hanging')
             spans.append([refrow,32+offset,32+offset+len(renderer.input_reference_display(identity,details))])
             if refrow!=row:spans.append([refrow,1,2+len(inp.get('real net number',identity))])
+            elif inp.get('real net number',identity)!=identity:
+                spans.append([row+1,1,2+len(inp['real net number'])])
         targets=[]
         if out:
             row=out['line'];spans.append([row,211,242+len(number)-len(data['page']['page'])])
