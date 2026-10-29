@@ -295,12 +295,12 @@
     },
     "net number": {
       "type": "string",
-      "pattern": "^[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|gnd|\\+3v|no-source))$",
-      "description": "Ordinary ID: driving page + block serial + output-line reference (AP011BJ5). The printed suffix 0 is legitimate and denotes output row 10, as in WA641AA0; it is not terminal line zero. Local exception: page + lowest-serial driven block + L + its first attached input line + -strap, -unused, -gnd, -+3v or -no-source. Terminal line numbers remain one-based. Choosing the correct anchor requires semantic validation."
+      "pattern": "^[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|spare|gnd|\\+3v|no-source))$",
+      "description": "Ordinary ID: driving page + block serial + output-line reference (AP011BJ5). The printed suffix 0 is legitimate and denotes output row 10, as in WA641AA0; it is not terminal line zero. Local exception: page + lowest-serial driven block + L + its first attached input line + -strap, -unused, -spare, -gnd, -+3v or -no-source. Terminal line numbers remain one-based. Choosing the correct anchor requires semantic validation."
     },
     "node": {
       "type": "string",
-      "pattern": "^(?:blocks/[A-Z]{2}/pins/[LR]/[1-9][0-9]*|(?:inputs|outputs)/[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|gnd|\\+3v|no-source)))$",
+      "pattern": "^(?:blocks/[A-Z]{2}/pins/[LR]/[1-9][0-9]*|(?:inputs|outputs)/[A-Z]{2}[0-9]{3}[A-Z]{2}(?:0|[1-9][0-9]*|L[1-9][0-9]*-(?:strap|unused|spare|gnd|\\+3v|no-source)))$",
       "description": "Existing terminal or page-port reference. Membership must be checked against this page."
     },
     "block": {
