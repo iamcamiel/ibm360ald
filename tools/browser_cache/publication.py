@@ -239,6 +239,16 @@ class Publication:
             except FileExistsError:
                 if target.read_bytes() != data:
                     raise BuildError('Content-addressed asset collision')
+            except PermissionError:
+                if os.name != 'nt':
+                    raise
+                # Windows rename is atomic and fails if the target already exists.
+                try:
+                    os.rename(temporary, target)
+                    self.written += 1
+                except FileExistsError:
+                    if target.read_bytes() != data:
+                        raise BuildError('Content-addressed asset collision')
         finally:
             temporary.unlink(missing_ok=True)
         return relative

@@ -342,6 +342,7 @@ final class Store {
             $rows=lines($view['text']);$entry['rows']=count($rows);$entry['columns']=$rows?max(array_map(__NAMESPACE__.'\\ulen',$rows)):0;
             $entry['textSha256']=$view['textSha256'];$entry['url']='catalogue.php?text='.$entry['id'].'&v='.$view['textSha256'];
             $entry['reviewStatus']=$view['reviewStatus'];$entry['reviewBound']=$view['reviewBound'];$entry['unresolvedCount']=$view['unresolvedCount'];
+            $entry['publicationIssues']=$view['publicationIssues']??null;
             $entry['renderVerified']=true;$entry['nativeViewPending']=false;$entry['userApproved']=false;$entry['_v4']=$view;
             $this->assertGeneration($generation);
             return $entry;

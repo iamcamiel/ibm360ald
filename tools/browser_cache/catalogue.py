@@ -19,7 +19,7 @@ from .publication import no_symlinks
 
 V4_SCHEMA = 'https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json'
 QUALIFIED_RENDERER_SHA256 = '265369551ac722e5199053318ef780d26c7c998dab9d99c764c70c34039f9bc6'
-QUALIFIED_ADAPTER_SHA256 = '5a51090ab3d8e2ef64341a54f8f704b0845e32cf21cfe90d892a1ef8c2f74ea8'
+QUALIFIED_ADAPTER_SHA256 = '908e8c2487e1c971080cf1c5deeec68fecde7dd9ad2db6779e4b23a529524ea3'
 CARD_FILE = re.compile(r'([0-9]{4})(?:-([0-9]+))?\.txt\Z')
 
 
@@ -297,6 +297,7 @@ def collect(root, snapshot, put_asset):
             entry.update(format='v4', rows=rows, columns=columns,
                          textSha256=view['textSha256'], reviewStatus=view['reviewStatus'],
                          reviewBound=view['reviewBound'], unresolvedCount=view['unresolvedCount'],
+                         publicationIssues=view.get('publicationIssues'),
                          renderVerified=True, nativeViewPending=False, userApproved=False,
                          _reviewSignature=[model_sha, review_sha])
             native[identity] = view

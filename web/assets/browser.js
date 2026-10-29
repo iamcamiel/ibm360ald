@@ -181,7 +181,11 @@ async function loadPage(page, historyMode = 'push', selection = null) {
       if (page.interactionURL) notify('Loading page links…');
       await interactionView.load(page,text,selection);
     }
-    if(state.request === request)notify(verified.notice || (page.format === 'v4' ? `Functional v4 · Review: ${page.reviewStatus} · ${page.unresolvedCount} unresolved observations. No source approval inferred.` : ''));
+    const issues = page.publicationIssues;
+    const issueStatus = typeof issues?.status === 'string' ? issues.status : '';
+    const issueSummary = typeof issues?.summary === 'string' ? issues.summary : '';
+    const issueNotice = issueStatus || issueSummary ? ` · Publication issues${issueStatus ? ` (${issueStatus})` : ''}: ${issueSummary || 'Summary not provided.'}` : '';
+    if(state.request === request)notify(verified.notice || (page.format === 'v4' ? `Functional v4 · Review: ${page.reviewStatus} · ${page.unresolvedCount} unresolved uncertainty entries${issueNotice}. No source approval inferred.` : ''));
   } catch (error) {
     if (state.request === request) $('page-format').hidden = true;
     if (error.name !== 'AbortError' && state.request === request) {

@@ -36,6 +36,20 @@ def load(path):
         raise ValueError('Unresolved page requires content-bound review details')
     return data,details
 
+def publication_issues(details):
+    issues = (details or {}).get('publication issues')
+    if not isinstance(issues, dict):
+        return None
+    result = {}
+    for key, limit in (('status', 64), ('summary', 1200)):
+        value = issues.get(key)
+        if isinstance(value, str):
+            value = ' '.join(value.split())
+            if value:
+                result[key] = value if len(value) <= limit else value[:limit - 1] + '…'
+    return result or None
+
+
 def input_source_reference(entry):
     style = entry.get('reference style', 'inline')
     if style not in ('inline', 'hanging'):
@@ -102,7 +116,7 @@ def view(path,renderer_path):
                 m=re.match(r'^([A-Z]{2}\d{3})',sink)
                 if m and m[1] not in targets:targets.append(m[1])
         nets.append({'id':number,'identity':number,'label':number,'segments':segments,'spans':spans,'destinationPages':targets,'sourceReferences':list(dict.fromkeys(source_refs))})
-    return {'modelSha256':hashlib.sha256(Path(path).read_bytes()).hexdigest(),'format':'v4','page':data['page']['page'],'title':' '.join(data['page'].get('title',[])), 'text':text,'textSha256':hashlib.sha256(text.encode()).hexdigest(),'userApproved':False,'reviewStatus':data.get('review',{}).get('status','unreviewed'),'reviewBound':details is not None,'unresolvedCount':sum(u.get('status')=='unresolved' for u in (details or {}).get('uncertainties',[])),'blocks':blocks,'nets':nets}
+    return {'modelSha256':hashlib.sha256(Path(path).read_bytes()).hexdigest(),'format':'v4','page':data['page']['page'],'title':' '.join(data['page'].get('title',[])), 'text':text,'textSha256':hashlib.sha256(text.encode()).hexdigest(),'userApproved':False,'reviewStatus':data.get('review',{}).get('status','unreviewed'),'reviewBound':details is not None,'publicationIssues':publication_issues(details),'unresolvedCount':sum(u.get('status')=='unresolved' for u in (details or {}).get('uncertainties',[])),'blocks':blocks,'nets':nets}
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('page');p.add_argument('renderer');a=p.parse_args()
     print(json.dumps(view(a.page,a.renderer),ensure_ascii=False,separators=(',',':')))
