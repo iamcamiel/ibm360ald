@@ -178,15 +178,16 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
             if node in terminal_points:
                 x, y = terminal_points[node]
                 union[x, y].add((x + terminal_directions[node], y))
+    # T-shaped wire forms use the approved diamond glyph.
     corners = {
         frozenset(((1, 0), (0, 1))): '┌',
         frozenset(((-1, 0), (0, 1))): '┐',
         frozenset(((1, 0), (0, -1))): '└',
         frozenset(((-1, 0), (0, -1))): '┘',
-        frozenset(((1,0),(0,1),(0,-1))): '├',
-        frozenset(((-1,0),(0,1),(0,-1))): '┤',
-        frozenset(((1,0),(-1,0),(0,1))): '┬',
-        frozenset(((1,0),(-1,0),(0,-1))): '┴',
+        frozenset(((1,0),(0,1),(0,-1))): '◇',
+        frozenset(((-1,0),(0,1),(0,-1))): '◇',
+        frozenset(((1,0),(-1,0),(0,1))): '◇',
+        frozenset(((1,0),(-1,0),(0,-1))): '◇',
     }
     for (x, y), neighbors in union.items():
         directions = frozenset((nx-x, ny-y) for nx, ny in neighbors)
@@ -325,7 +326,9 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
     put(211, 102, 'IBM CORP.   ' + display('page/ibm division',page['ibm division']).ljust(3) + ' BLK.' + display('page/next block',page['next block']).rjust(10))
     lines=[''.join(row) for row in grid]
     if trim_trailing_spaces:lines=[line.rstrip() for line in lines]
-    return (line_ending.join(lines) + line_ending).encode('utf-8')
+    # Literal annotations and labels follow the same approved wire-glyph rule.
+    return (line_ending.join(lines) + line_ending).translate(
+        str.maketrans('├┤┬┴', '◇◇◇◇')).encode('utf-8')
 
 
 def load_page(path):

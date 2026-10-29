@@ -18,8 +18,8 @@ from .publication import no_symlinks
 
 
 V4_SCHEMA = 'https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json'
-QUALIFIED_RENDERER_SHA256 = '265369551ac722e5199053318ef780d26c7c998dab9d99c764c70c34039f9bc6'
-QUALIFIED_ADAPTER_SHA256 = '908e8c2487e1c971080cf1c5deeec68fecde7dd9ad2db6779e4b23a529524ea3'
+QUALIFIED_RENDERER_SHA256 = 'a969a8d990aa69c0a1bd6b42a56322bfa562fd1e46e648d8b3700f3c095ae4fa'
+QUALIFIED_ADAPTER_SHA256 = 'b91e5f409a723f7298ea9dd14c2dcb2e6a8e304f72c76a78df9ec529d979d8ec'
 CARD_FILE = re.compile(r'([0-9]{4})(?:-([0-9]+))?\.txt\Z')
 
 

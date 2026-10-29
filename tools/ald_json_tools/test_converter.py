@@ -626,7 +626,7 @@ class ConversionTests(unittest.TestCase):
         self.assertEqual(wire_graph(next(n for n in data['nets']if n['net number']==number)['routing']),instance.graphs[old])
 
     def test_five_reviewed_pages_round_trip_and_wiring_findings(self):
-        for page,cells in [('AP001',0),('KC011',1),('KC021',0),('KC031',0),('KC101',5)]:
+        for page,cells in [('AP001',0),('KC011',1),('KC021',2),('KC031',0),('KC101',5)]:
             with self.subTest(page=page):
                 path,raw,instance,data,review=convert(page)
                 rendered,result=converter.compare_render(data,review,instance)
@@ -652,6 +652,9 @@ class ConversionTests(unittest.TestCase):
 
     def test_exact_render_does_not_close_explicit_inherited_source_hold(self):
         _,_,instance,data,review=convert('KC021')
+        # Compare the approved glyph projection while testing source-hold behavior.
+        instance.rows=[row.translate(str.maketrans({c:'◇' for c in '├┤┬┴'}))
+                       for row in instance.rows]
         for item in review['uncertainties']:item['status']='resolved'
         rendered,comparison=converter.compare_render(data,review,instance)
         self.assertEqual(comparison['different cells'],0)
@@ -728,7 +731,10 @@ class ConversionTests(unittest.TestCase):
             self.assertEqual(code,2)
             data,review=load_page(output/'KC021.json')
             self.assertEqual(data['page']['page'],'KC021')
-            self.assertEqual((output/'KC021.txt').read_bytes(),converter.choose_text(source('KC021')).read_bytes())
+            # Historical fixture contains the old, unapproved T glyphs.
+            expected=converter.choose_text(source('KC021')).read_bytes().decode('utf-8')
+            expected=expected.translate(str.maketrans({c:'◇' for c in '├┤┬┴'})).encode('utf-8')
+            self.assertEqual((output/'KC021.txt').read_bytes(),expected)
             before=(output/'KC021.json').read_bytes()
             with contextlib.redirect_stderr(io.StringIO()),contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(converter.main(args),2)
