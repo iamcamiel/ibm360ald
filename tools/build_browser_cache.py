@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 
 from browser_cache.publication import BuildError, Publication, Snapshot, digest, no_symlinks
+from build_progress import Progress
 
 
 def has_findings(review, details):
@@ -54,10 +55,12 @@ def read_review(entry, root, snapshot):
     return review, strict_json(snapshot.read(model_path.parent / reference))
 
 
-def page_statistics(pages, review_reader):
+def page_statistics(pages, review_reader, progress=None):
     kinds = Counter(entry['type'] for entry in pages)
     v3 = clean = findings = 0
-    for entry in pages:
+    for completed, entry in enumerate(pages, 1):
+        if progress is not None:
+            progress(completed, len(pages))
         if entry['type'] != 'ald':
             continue
         if entry.get('format') != 'v4':
@@ -99,7 +102,7 @@ def build(source_root, output=None):
         # verification or rendering is required when serving the finished cache.
         tools = Path(__file__).resolve().parent
         snapshot.read_code(tools / 'build_browser_cache.py', '@builder/build_browser_cache.py')
-        for name in ('render_all_json.py', 'page_maintenance.py', 'ald_render.py'):
+        for name in ('render_all_json.py', 'page_maintenance.py', 'ald_render.py', 'build_progress.py'):
             snapshot.read_code(tools / name, '@builder/' + name)
         for folder in ('normalization', 'page_text'):
             snapshot.track_code_directory(tools / folder, '@builder/' + folder)
@@ -111,25 +114,30 @@ def build(source_root, output=None):
         from browser_cache.catalogue import collect
         from browser_cache.interactions import enrich_interactions
         catalogue, models, texts, views = collect(root, snapshot, publication.put_asset)
-        statistics = page_statistics(catalogue['pages'],
-                                     lambda entry: read_review(entry, root, snapshot))
+        with Progress('Reading page statistics') as progress:
+            statistics = page_statistics(catalogue['pages'],
+                                         lambda entry: read_review(entry, root, snapshot), progress.update)
         outputs = catalogue.pop('_nativeOutputsById', {})
-        interaction_assets = enrich_interactions(catalogue['pages'], models, texts, views,
-                                                 native_outputs_by_id=outputs)
-        for entry in catalogue['pages']:
-            old_url = entry.get('interactionURL')
-            if old_url not in interaction_assets:
-                raise BuildError('Missing static interaction payload: ' + entry['id'])
-            data = interaction_assets[old_url]
-            entry['interactionURL'] = publication.put_asset(data, '.json')
-            entry['interactionSha256'] = digest(data)
-            for key in list(entry):
-                if key.startswith('_') or key == 'entryURL':
-                    del entry[key]
+        with Progress('Building cross-page index') as progress:
+            interaction_assets = enrich_interactions(catalogue['pages'], models, texts, views,
+                                                     native_outputs_by_id=outputs, progress=progress.update)
+        with Progress('Writing cross-page assets') as progress:
+            for completed, entry in enumerate(catalogue['pages'], 1):
+                old_url = entry.get('interactionURL')
+                if old_url not in interaction_assets:
+                    raise BuildError('Missing static interaction payload: ' + entry['id'])
+                data = interaction_assets[old_url]
+                entry['interactionURL'] = publication.put_asset(data, '.json')
+                entry['interactionSha256'] = digest(data)
+                for key in list(entry):
+                    if key.startswith('_') or key == 'entryURL':
+                        del entry[key]
+                progress.update(completed, len(catalogue['pages']))
         catalogue['signature'] = snapshot.signature()
         catalogue['revision'] = catalogue['signature']
         catalogue['delivery'] = 'static-cache-v1'
-        changed, sha = publication.publish(catalogue, snapshot)
+        with Progress('Verifying inputs and publishing cache') as progress:
+            changed, sha = publication.publish(catalogue, snapshot, progress.update)
         return {**statistics, 'renderedPages': sum(rendering['rendered'].values()),
                 'textFilesRegenerated': rendering['textFilesChanged'], 'catalogueChanged': changed,
                 'assetsWritten': publication.written, 'catalogueSha256': sha,

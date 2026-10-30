@@ -142,19 +142,29 @@ class Snapshot:
         self.directories[key] = members
         return members
 
-    def verify(self):
+    def verify(self, progress=None):
+        total = len(self.files) + len(self.directories) + len(self.code_directories)
+        completed = 0
+        def advance():
+            nonlocal completed
+            completed += 1
+            if progress is not None:
+                progress(completed, total)
         for path, expected in self.files.items():
             no_symlinks(path)
             actual = digest(path.read_bytes()) if path.exists() else None
             if actual != expected:
                 raise BuildError('Input changed during build: ' + str(path))
+            advance()
         for (path, pattern), expected in self.directories.items():
             if self._members(path, pattern) != expected:
                 raise BuildError('Directory changed during build: ' + str(path))
+            advance()
         for path, (_, expected) in self.code_directories.items():
             no_symlinks(path)
             if tuple(sorted(p.name for p in path.glob('*.py'))) != expected:
                 raise BuildError('Builder code set changed during build: ' + str(path))
+            advance()
 
     def signature(self):
         files = sorted((self.code_labels[p] if p in self.code_labels else p.relative_to(self.root).as_posix(), sha)
@@ -253,19 +263,19 @@ class Publication:
             temporary.unlink(missing_ok=True)
         return relative
 
-    def publish(self, catalogue, snapshot):
+    def publish(self, catalogue, snapshot, progress=None):
         payload = (json.dumps(catalogue, ensure_ascii=False, sort_keys=True,
                               indent=2, allow_nan=False) + '\n').encode('utf-8')
         target = self.output / 'catalogue.json'
         no_symlinks(target)
         if self._existing_catalogue() != self.previous_catalogue:
             raise BuildError('Published catalogue changed during build')
-        snapshot.verify()
+        snapshot.verify((lambda done, total: progress(done, total * 2)) if progress else None)
         if target.exists() and target.read_bytes() == payload:
             return False, digest(payload)
         temporary = self._temporary(self.output, payload)
         try:
-            snapshot.verify()
+            snapshot.verify((lambda done, total: progress(total + done, total * 2)) if progress else None)
             os.replace(temporary, target)
         finally:
             temporary.unlink(missing_ok=True)

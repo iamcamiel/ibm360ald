@@ -12,7 +12,8 @@ import math
 from pathlib import Path
 import re
 import struct
-import sys
+
+from build_progress import Progress
 
 from .publication import no_symlinks
 
@@ -176,8 +177,6 @@ def collect(root, snapshot, put_asset):
     binds matching membership. The caller must verify the snapshot immediately
     before publishing the final catalogue and derive its generation afterward.
     """
-    from .interactions import extract_legacy
-
     root = no_symlinks(root).resolve(strict=True)
     status_path, _ = source_path(root, 'notes/Source status.json')
     status_bytes = snapshot.read(status_path)
@@ -224,6 +223,13 @@ def collect(root, snapshot, put_asset):
         identities.add(identity)
         specs.append(dict(id=identity, model=jp, text=tp, model_path=model_path,
                           text_path=text_path, card=card, variant=variant))
+
+    with Progress(f'Building browser cache for {len(specs)} pages') as progress:
+        return _collect_pages(root, snapshot, put_asset, specs, status_bytes, progress)
+
+
+def _collect_pages(root, snapshot, put_asset, specs, status_bytes, progress):
+    from .interactions import extract_legacy
 
     entries, legacy, texts, native, native_outputs = [], {}, {}, {}, {}
     adapter = None
@@ -307,8 +313,7 @@ def collect(root, snapshot, put_asset):
         texts[identity] = text
         entry['url'] = put_asset(text.encode('utf-8') if functional else published, '.txt')
         entries.append(entry)
-        if completed % 100 == 0 or completed == len(specs):
-            print(f'Building browser cache: {completed}/{len(specs)} pages', file=sys.stderr, flush=True)
+        progress.update(completed, len(specs))
 
     def order(entry):
         card = entry['type'] == 'card-ald'

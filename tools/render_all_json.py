@@ -11,6 +11,7 @@ import sys
 
 from page_maintenance import (apply_changes, encode, models, review, safe,
                               strict_json, writer_lock)
+from build_progress import Progress
 
 
 def render(document, details=None):
@@ -38,21 +39,30 @@ def run(root, check=False, backup_root=None):
         status = strict_json((root / 'notes/Source status.json').read_bytes())
         pairs = {r['repository']['json']['path']: r['repository']['txt']['path'] for r in status['records']}
         changes, pages, failures, counts = [], [], [], {'v4': 0, 'layout': 0}
-        for path, before, document, kind in models(root):
-            counts[kind] += 1
-            try:
-                _, _, details = review(root, path, document) if kind == 'v4' else (None, None, None)
-                text = render(document, details)
-                relative = pairs.get(path.relative_to(root).as_posix())
-                target = safe(root, root / relative if relative else root / 'ALD' / path.relative_to(root / 'json').with_suffix('.txt'))
-                old = target.read_bytes()
-                if path.read_bytes() != before:
-                    raise ValueError('Model changed while rendering')
-                if text != old:
-                    changes.append((target, old, text))
-                    pages.append({'model': str(path), 'text': str(target)})
-            except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError) as error:
-                failures.append({'path': str(path), 'error': str(error)})
+        # Keep only paths, not thousands of parsed models, while counting the
+        # actual renderable pages (card definitions are not diagram layouts).
+        paths = [(path, kind) for path, _, _, kind in models(root)]
+        with Progress(f'Generating {len(paths)} UTF-8 pages') as progress:
+            for completed, (path, kind) in enumerate(paths, 1):
+                before = path.read_bytes()
+                document = strict_json(before)
+                counts[kind] += 1
+                try:
+                    _, _, details = review(root, path, document) if kind == 'v4' else (None, None, None)
+                    text = render(document, details)
+                    relative = pairs.get(path.relative_to(root).as_posix())
+                    target = safe(root, root / relative if relative else root / 'ALD' / path.relative_to(root / 'json').with_suffix('.txt'))
+                    old = target.read_bytes()
+                    if path.read_bytes() != before:
+                        raise ValueError('Model changed while rendering')
+                    if text != old:
+                        changes.append((target, old, text))
+                        pages.append({'model': str(path), 'text': str(target)})
+                except (OSError, ValueError, KeyError, TypeError, IndexError, AssertionError) as error:
+                    failures.append({'path': str(path), 'error': str(error)})
+                progress.update(completed, len(paths))
+            # Retain the batch's existing failure report; don't announce success.
+            progress.failed = bool(failures)
         report = {'rendered': counts, 'textFilesChanged': len(changes), 'pages': pages,
                   'failures': failures, 'applied': not check}
         # A rendering failure leaves the complete batch untouched.

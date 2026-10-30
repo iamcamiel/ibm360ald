@@ -322,7 +322,7 @@ def _socket_payload(entry, model, lines):
 
 
 def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
-                        native_outputs_by_id=None):
+                        native_outputs_by_id=None, progress=None):
     """Emit every page's typed payload and mutate its interaction asset fields.
 
     Inputs are validated compact legacy source views and exact installed v4_view
@@ -331,18 +331,27 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
     All assets are relative; the static builder may remap them after hashing.
     """
     native_outputs_by_id = native_outputs_by_id or {}
+    # Eight ordered passes. Each pass advances by its actual records, rather
+    # than a timer; phase sizes become known as the index is constructed.
+    def advance(phase, completed=0, total=0):
+        if progress is not None:
+            progress(phase + (completed / total if total else 0), 8)
+
+    advance(0)
     by_id = {e['id']: e for e in entries}
     if len(by_id) != len(entries):
         raise ValueError('Duplicate catalogue identity')
     pages = defaultdict(list)
-    for entry in entries:
+    for completed, entry in enumerate(entries, 1):
         # Native installed lookup includes every page; legacy excludes cards.
         pages[entry.get('page')].append(entry['id'])
+        advance(0, completed, len(entries))
     payloads, raws, nodes_by_page, nets_by_key = {}, {}, {}, {}
     socket_index, card_index, output_index = defaultdict(list), {}, defaultdict(set)
     destinations, pending, source_edges = defaultdict(list), {}, set()
     graph_labels = {}
-    for entry in entries:
+    advance(1)
+    for completed, entry in enumerate(entries, 1):
         eid = entry['id']
         if entry.get('_sourcePairCurrent') is False:
             raise ValueError('The page JSON/text publication is incomplete: ' + eid)
@@ -384,10 +393,12 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
                 raws[eid] = raw
                 nodes_by_page[eid] = {_display(n.get('id')): n for n in raw.get('nodes', []) if isinstance(n, dict)}
         payloads[eid] = payload
+        advance(1, completed, len(entries))
 
     # Build local legacy nets and register the same output/pending graph used by
     # native pages. Duplicate records retain installed last-record driver rules.
-    for eid, raw in raws.items():
+    advance(2)
+    for completed, (eid, raw) in enumerate(raws.items(), 1):
         nets = {}
         records = {}
         for ordinal, record in enumerate(raw.get('nets', [])):
@@ -429,6 +440,7 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
                         net['segments'].append(segment)
         if nets:
             payloads[eid]['nets'] = list(nets.values())
+        advance(2, completed, len(raws))
 
     parent = {}
     def find(key):
@@ -436,7 +448,8 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
         if parent[key] != key:
             parent[key] = find(parent[key])
         return parent[key]
-    for key, ref in pending.items():
+    advance(3)
+    for completed, (key, ref) in enumerate(pending.items(), 1):
         match = PAGE_REF.fullmatch(ref)
         candidates = output_index.get((match[1], match[2], int(match[3])), set()) if match and match[2] else set()
         if len(candidates) == 1:
@@ -453,11 +466,13 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
             net.setdefault('notes', []).append('Source reference ' + ref + ' has no unique published driving net.')
             if match and match[1] not in destinations[key]:
                 destinations[key].append(match[1])
+        advance(3, completed, len(pending))
     components = defaultdict(list)
     for key in parent:
         components[find(key)].append(key)
     roots = {source for source, target in source_edges}
-    for key, (net, record) in nets_by_key.items():
+    advance(4)
+    for completed, (key, (net, record)) in enumerate(nets_by_key.items(), 1):
         native = key[0] in native_views_by_id
         if not native:
             spans = _driver_spans(net, record, _lines(text_by_id[key[0]]))
@@ -493,9 +508,11 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
                 net.pop(field, None)
         elif not net.get('segments'):
             net.pop('segments', None)
+        advance(4, completed, len(nets_by_key))
 
     block_sites = {}
-    for eid, raw in raws.items():
+    advance(5)
+    for completed, (eid, raw) in enumerate(raws.items(), 1):
         rows = _lines(text_by_id[eid])
         _annotate_nets(payloads[eid].get('nets', []), raw, rows)
         blocks = []
@@ -534,10 +551,12 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
             block_sites[eid].append((block, board, sockets))
         if blocks:
             payloads[eid]['blocks'] = blocks
+        advance(5, completed, len(raws))
 
     # Match installed socket-listing traversal order: printed references choose
     # candidate pages before their basic legacy blocks are considered.
-    for payload in payloads.values():
+    advance(6)
+    for completed, payload in enumerate(payloads.values(), 1):
         items = payload.get('sockets', [])
         candidates = {}
         for item in items:
@@ -553,12 +572,16 @@ def enrich_interactions(entries, models_by_id, text_by_id, native_views_by_id,
                     for portion in item.get('portions', []):
                         if portion['portion'] == block['portion'] and portion['page'] == by_id[eid]['page']:
                             item.setdefault('links', []).append({'pageId': eid, 'selection': {'kind': 'block', 'id': block['id']}, 'label': portion['page'] + ' · ' + portion['portion']})
+        advance(6, completed, len(payloads))
     assets = {}
-    for entry in entries:
+    advance(7)
+    for completed, entry in enumerate(entries, 1):
         payload = payloads[entry['id']]
         data = (json.dumps(payload, ensure_ascii=False, separators=(',', ':'), allow_nan=False) + '\n').encode('utf-8')
         sha = hashlib.sha256(data).hexdigest()
         url = 'interactions/page-' + entry['id'] + '-' + sha + '.json'
         assets[url] = data
         entry['interactionURL'], entry['interactionSha256'] = url, sha
+        advance(7, completed, len(entries))
+    advance(8)
     return assets
