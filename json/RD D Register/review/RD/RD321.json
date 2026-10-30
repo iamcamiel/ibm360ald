@@ -2,7 +2,7 @@
   "page": "RD321",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "91bf4880d3716945b59f021b655ece3dd5acc5e6732b5a411ee7b1f1934e55f2",
+  "content sha256": "821f5746c74f3e5fe91105cfe52790d4b0620c324d0ea0ba01211bf18cba21e7",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RD321\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RD D Register\\RD321 NEW PAGE ADDRESS D 16-20 AND P.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "RD321AN4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "RD321AP4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -664,6 +646,234 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RD321AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "RD321AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RD321AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/R/4",
+              "net": "RD321AN4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                12
+              ],
+              "after": [
+                153,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  16
+                ],
+                [
+                  241,
+                  16
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  12
+                ],
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  16
+                ],
+                [
+                  241,
+                  16
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "RD321AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/R/4",
+              "net": "RD321AP4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                26
+              ],
+              "after": [
+                153,
+                26
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  26
+                ],
+                [
+                  154,
+                  30
+                ],
+                [
+                  241,
+                  30
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  26
+                ],
+                [
+                  154,
+                  26
+                ],
+                [
+                  154,
+                  30
+                ],
+                [
+                  241,
+                  30
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RD321AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              16
+            ],
+            [
+              241,
+              16
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              16
+            ],
+            [
+              241,
+              16
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "RD321AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            26
+          ],
+          "after": [
+            153,
+            26
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              26
+            ],
+            [
+              154,
+              30
+            ],
+            [
+              241,
+              30
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              26
+            ],
+            [
+              154,
+              26
+            ],
+            [
+              154,
+              30
+            ],
+            [
+              241,
+              30
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

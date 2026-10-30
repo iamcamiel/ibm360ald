@@ -2,7 +2,7 @@
   "page": "XM014",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d01089469fa2c8056a6d674f898c65ef72adfbd388983172949b366e34e4fb86",
+  "content sha256": "7d4d09d2fc0357f9d7f60261b49df1c416ccc6f837ca073f2e75cb92d2bbb9d0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XM014\\Source model.json",
@@ -105,11 +105,6 @@
           "terminal": "blocks/AJ/pins/R/4",
           "net": "XM014AJ4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AL/pins/L/2",
-          "net": "XM014AE4",
-          "reason": "The changed lead interval is occupied by another net"
         },
         {
           "terminal": "blocks/AX/pins/R/4",
@@ -3046,6 +3041,58 @@
               25
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "XM014AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "XM014AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AL/pins/L/2",
+              "net": "XM014AE4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                118,
+                24
+              ],
+              "after": [
+                115,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "XM014AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            24
+          ],
+          "after": [
+            115,
+            24
+          ],
+          "annotation offsets": []
         }
       ]
     }

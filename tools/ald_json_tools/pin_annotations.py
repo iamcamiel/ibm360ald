@@ -2,8 +2,10 @@
 
 The slot is the physical pin label or a three-character wire for null/omitted
 identities. Annotations do not change its attachment coordinate. Only an
-existing unique horizontal terminal endpoint is adjusted; other geometry or
-competing route claims remain explicit holds requiring layout review.
+existing terminal endpoint is adjusted. An annotated vertical endpoint can
+retain its position with a short horizontal leg to the normal contact. A
+crossing at that contact and existing same-net branches are valid; crossings
+elsewhere in the changed interval remain explicit layout holds.
 """
 MARKERS = ('2', '3', '8', 'L')
 LETTERS = 'ABCDEFGHJKLMN'
@@ -64,19 +66,29 @@ def normalize_annotation_leads(data, details=None, only_terminals=None):
                     if (route[j] == old and route[neighbor][1] == row
                             and (old[0] - route[neighbor][0]) * direction > 0):
                         candidates.append((i, j))
+            # A pin annotation used to widen the label slot. Preserve the
+            # external vertical route, adding only the missing horizontal leg.
+            vertical = False
+            if not candidates and mark and (new[0] - old[0]) * direction > 0:
+                for i, route in enumerate(net['routing']):
+                    if len(route) < 2:
+                        continue
+                    for j, neighbor in ((0, 1), (len(route) - 1, len(route) - 2)):
+                        if (route[j] == old and route[neighbor][0] == old[0]
+                                and route[neighbor][1] != row):
+                            candidates.append((i, j))
+                vertical = bool(candidates)
             boundary = (len(candidates) == 1 and
+                        not vertical and
                         net['routing'][candidates[0][0]][1 if candidates[0][1] == 0 else -2] == new)
             reason = None
             swept = [[x,row] for x in range(min(old[0],new[0]),max(old[0],new[0])+1)]
             if len(candidates) != 1:
                 reason = 'No unique horizontal endpoint at the old terminal presentation boundary'
-            elif not boundary and (new[0]-net['routing'][candidates[0][0]][1 if candidates[0][1]==0 else -2][0])*direction < 0:
+            elif not boundary and not vertical and (new[0]-net['routing'][candidates[0][0]][1 if candidates[0][1]==0 else -2][0])*direction < 0:
                 reason = 'A bend lies inside the fixed three-character pin slot; moving it requires separate layout review'
-            elif not boundary and any(other is not net and any(covers(other,p) for p in swept if p!=old) for other in data['nets']):
+            elif not boundary and any(other is not net and any(covers(other,p) for p in swept if p not in (old,new)) for other in data['nets']):
                 reason = 'The changed lead interval is occupied by another net'
-            elif not boundary and any(covers({'routing':[route]},p) for k,route in enumerate(net['routing'])
-                     if k!=candidates[0][0] for p in swept if p!=new):
-                reason = 'Another same-net route intersects the changed lead interval'
             if reason:
                 holds.append({'terminal': node, 'net': net['net number'], 'reason': reason})
                 continue
@@ -90,6 +102,8 @@ def normalize_annotation_leads(data, details=None, only_terminals=None):
             before_route = [p[:] for p in route]
             if boundary:
                 del route[j]
+            elif vertical:
+                route.insert(0, new) if j == 0 else route.append(new)
             else:
                 route[j] = new
             adjusted = []
@@ -99,6 +113,8 @@ def normalize_annotation_leads(data, details=None, only_terminals=None):
                     continue
                 point = at['point']
                 replacement_point = (max(0, point - 1) if j == 0 else min(point, len(route) - 1)) if boundary else point
+                if vertical and j == 0:
+                    replacement_point = point + 1
                 old_anchor, new_anchor = before_route[point], route[replacement_point]
                 prior = annotation.get('offset', [0, 0])
                 replacement = [prior[0] + old_anchor[0] - new_anchor[0],
@@ -114,6 +130,9 @@ def normalize_annotation_leads(data, details=None, only_terminals=None):
                       'point': j, 'before': old, 'after': new, 'annotation offsets': adjusted}
             if boundary:
                 change.update({'removed redundant endpoint': True,
+                               'before routing': before_route, 'after routing': [p[:] for p in route]})
+            if vertical:
+                change.update({'added horizontal annotation contact': True,
                                'before routing': before_route, 'after routing': [p[:] for p in route]})
             changes.append(change)
     return changes, holds

@@ -2,7 +2,7 @@
   "page": "AP321",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "02c74c4d3eabab87481c55912235cd7facc0368c98b83ad723158c6810347f82",
+  "content sha256": "a483b1aa3ee271d1a554a86d4ab2be93a8d80cd4672e8cbea6463bcd9f91e376",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\ALD batch647\\AP321 independent reconstruction647\\AL junction candidate\\AP321.json",
@@ -93,28 +93,6 @@
         54
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "AP321AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AZ/pins/R/4",
-          "net": "AP321AZ4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "AP321BE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -5483,6 +5461,224 @@
             [
               162,
               74
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP321AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP321AZ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "AP321BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP321AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/4",
+              "net": "AP321AE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP321AZ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/R/4",
+              "net": "AP321AZ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                151,
+                75
+              ],
+              "after": [
+                154,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "AP321BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/R/4",
+              "net": "AP321BE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                201,
+                75
+              ],
+              "after": [
+                200,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  201,
+                  75
+                ],
+                [
+                  201,
+                  89
+                ],
+                [
+                  139,
+                  89
+                ],
+                [
+                  139,
+                  84
+                ]
+              ],
+              "after routing": [
+                [
+                  200,
+                  75
+                ],
+                [
+                  201,
+                  75
+                ],
+                [
+                  201,
+                  89
+                ],
+                [
+                  139,
+                  89
+                ],
+                [
+                  139,
+                  84
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP321AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP321AZ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            151,
+            75
+          ],
+          "after": [
+            154,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "AP321BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            201,
+            75
+          ],
+          "after": [
+            200,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              201,
+              75
+            ],
+            [
+              201,
+              89
+            ],
+            [
+              139,
+              89
+            ],
+            [
+              139,
+              84
+            ]
+          ],
+          "after routing": [
+            [
+              200,
+              75
+            ],
+            [
+              201,
+              75
+            ],
+            [
+              201,
+              89
+            ],
+            [
+              139,
+              89
+            ],
+            [
+              139,
+              84
             ]
           ]
         }

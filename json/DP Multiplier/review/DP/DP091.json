@@ -2,7 +2,7 @@
   "page": "DP091",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "36bf0ec97980c7de581dc1193145eba0cf1c49c80a35cd940445e76f4612122d",
+  "content sha256": "d06324ca66c6010eeef0f394b134aa013429d4317dc0db088acbd0ba10e7c9c2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\DP091\\Source model.json",
@@ -33,20 +33,7 @@
       "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/L/4",
-          "net": "DP071AK4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -5195,6 +5182,110 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "DP071AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/L/4",
+              "net": "DP071AK4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                68,
+                82
+              ],
+              "after": [
+                69,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  68
+                ],
+                [
+                  68,
+                  82
+                ]
+              ],
+              "after routing": [
+                [
+                  68,
+                  68
+                ],
+                [
+                  68,
+                  82
+                ],
+                [
+                  69,
+                  82
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "DP071AK4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            68,
+            82
+          ],
+          "after": [
+            69,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              68,
+              68
+            ],
+            [
+              68,
+              82
+            ]
+          ],
+          "after routing": [
+            [
+              68,
+              68
+            ],
+            [
+              68,
+              82
+            ],
+            [
+              69,
+              82
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

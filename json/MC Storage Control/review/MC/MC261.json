@@ -2,7 +2,7 @@
   "page": "MC261",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "532fa8c6c68ca055439ec4f81a110da8b32c86bfc9f4512f8984ea24a84d5459",
+  "content sha256": "b7dc78c29a013bd062425eacf563aead483b5eea600d89770d09d6e72af33206",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MC261\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC261 ACCEPT REJECT LTHS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AX/pins/R/4",
-          "net": "MC261AX4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CE/pins/R/4",
-          "net": "MC261CE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2018,6 +2000,264 @@
             [
               115,
               33
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC261AX4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "MC261CE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC261AX4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/R/4",
+              "net": "MC261AX4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                200,
+                33
+              ],
+              "after": [
+                199,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  200,
+                  33
+                ],
+                [
+                  200,
+                  43
+                ],
+                [
+                  114,
+                  43
+                ],
+                [
+                  114,
+                  26
+                ],
+                [
+                  115,
+                  26
+                ]
+              ],
+              "after routing": [
+                [
+                  199,
+                  33
+                ],
+                [
+                  200,
+                  33
+                ],
+                [
+                  200,
+                  43
+                ],
+                [
+                  114,
+                  43
+                ],
+                [
+                  114,
+                  26
+                ],
+                [
+                  115,
+                  26
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "MC261CE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CE/pins/R/4",
+              "net": "MC261CE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                12
+              ],
+              "after": [
+                153,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  12
+                ],
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC261AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            33
+          ],
+          "after": [
+            199,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              200,
+              33
+            ],
+            [
+              200,
+              43
+            ],
+            [
+              114,
+              43
+            ],
+            [
+              114,
+              26
+            ],
+            [
+              115,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              33
+            ],
+            [
+              200,
+              33
+            ],
+            [
+              200,
+              43
+            ],
+            [
+              114,
+              43
+            ],
+            [
+              114,
+              26
+            ],
+            [
+              115,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "MC261CE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              2
+            ],
+            [
+              242,
+              2
             ]
           ]
         }

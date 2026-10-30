@@ -2,7 +2,7 @@
   "page": "EF181",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6f4b80c530a54a5a9c6bf9e460caf14a33c7e359a64de9be5c159d5b7eaf20c5",
+  "content sha256": "8e249948d960c8053ff9c08515ff1149888669dffaba0cea5f81987327f1b22a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team11\\ALD batch888\\EF181 independent reconstruction888\\Inputs\\Baseline model.json",
@@ -144,30 +144,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/L/6",
-          "net": "EF181AL4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AJ/pins/L/6",
-          "net": "EF181AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/CG/pins/L/6",
-          "net": "EF181CK4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -9986,6 +9963,142 @@
               77
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "EF181AL4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "EF181AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/CG/pins/L/6",
+          "net": "EF181CK4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "EF181AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/L/6",
+              "net": "EF181AL4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                14
+              ],
+              "after": [
+                92,
+                14
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "EF181AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/L/6",
+              "net": "EF181AE4",
+              "polyline": 0,
+              "point": 4,
+              "before": [
+                95,
+                21
+              ],
+              "after": [
+                92,
+                21
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CG/pins/L/6",
+          "net": "EF181CK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CG/pins/L/6",
+              "net": "EF181CK4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                49
+              ],
+              "after": [
+                92,
+                49
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "EF181AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            14
+          ],
+          "after": [
+            92,
+            14
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "EF181AE4",
+          "polyline": 0,
+          "point": 4,
+          "before": [
+            95,
+            21
+          ],
+          "after": [
+            92,
+            21
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CG/pins/L/6",
+          "net": "EF181CK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            49
+          ],
+          "after": [
+            92,
+            49
+          ],
+          "annotation offsets": []
         }
       ]
     }

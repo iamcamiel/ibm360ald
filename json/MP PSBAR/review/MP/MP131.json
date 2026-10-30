@@ -2,7 +2,7 @@
   "page": "MP131",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "113070f91d14b0217db86b95dbbb5e8c9c0684d4ee2bb7488d04cb4fba85ca76",
+  "content sha256": "36e1650f179aa5aab4306e235fcd02a8d2d209f995eb4b0b00f3014774d300e5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\MP131\\Source model.json",
@@ -24,40 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MP PSBAR\\MP131 PHYSICAL PSBAR P PTY.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "MP131AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "MP131AD4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/4",
-          "net": "MP131AN4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AR/pins/L/2",
-          "net": "MP131AQ4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AR/pins/L/6",
-          "net": "MP131AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -827,6 +794,324 @@
               45
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP131AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP131AD4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MP131AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MP131AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "MP131AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP131AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/4",
+              "net": "MP131AC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                54
+              ],
+              "after": [
+                130,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  54
+                ],
+                [
+                  131,
+                  38
+                ],
+                [
+                  90,
+                  38
+                ],
+                [
+                  90,
+                  17
+                ],
+                [
+                  92,
+                  17
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  54
+                ],
+                [
+                  131,
+                  54
+                ],
+                [
+                  131,
+                  38
+                ],
+                [
+                  90,
+                  38
+                ],
+                [
+                  90,
+                  17
+                ],
+                [
+                  92,
+                  17
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP131AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "MP131AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                54
+              ],
+              "after": [
+                107,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MP131AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/4",
+              "net": "MP131AN4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                72,
+                33
+              ],
+              "after": [
+                69,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MP131AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AR/pins/L/2",
+              "net": "MP131AQ4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                72,
+                45
+              ],
+              "after": [
+                69,
+                45
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "MP131AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AR/pins/L/6",
+              "net": "MP131AG4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                72,
+                49
+              ],
+              "after": [
+                69,
+                49
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP131AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              54
+            ],
+            [
+              131,
+              38
+            ],
+            [
+              90,
+              38
+            ],
+            [
+              90,
+              17
+            ],
+            [
+              92,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              54
+            ],
+            [
+              131,
+              54
+            ],
+            [
+              131,
+              38
+            ],
+            [
+              90,
+              38
+            ],
+            [
+              90,
+              17
+            ],
+            [
+              92,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP131AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MP131AN4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            33
+          ],
+          "after": [
+            69,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MP131AQ4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            72,
+            45
+          ],
+          "after": [
+            69,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "MP131AG4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            72,
+            49
+          ],
+          "after": [
+            69,
+            49
+          ],
+          "annotation offsets": []
         }
       ]
     }

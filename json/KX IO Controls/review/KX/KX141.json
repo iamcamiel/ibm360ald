@@ -2,7 +2,7 @@
   "page": "KX141",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "934c561caeff069d6e6f2e20efb3a377632661fed9a143253dfcbea4639b358c",
+  "content sha256": "a0d07984388892d1ca95493d9086d7e690075f60f82a066365a73db123c97050",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round015\\Inputs\\KX141\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KX IO Controls\\KX141 IOCE SIMPLEX DRIVERS TO IOCE 2.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BR/pins/L/4",
-          "net": "KX141BK4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1446,6 +1433,58 @@
               12
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BR/pins/L/4",
+          "net": "KX141BK4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BR/pins/L/4",
+          "net": "KX141BK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BR/pins/L/4",
+              "net": "KX141BK4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                72,
+                26
+              ],
+              "after": [
+                69,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BR/pins/L/4",
+          "net": "KX141BK4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": []
         }
       ]
     }

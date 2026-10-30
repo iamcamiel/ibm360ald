@@ -2,7 +2,7 @@
   "page": "RT801",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2cb45495bbf2fdf273a6d780959c734590e8b22698150b6902724fbdf6d36588",
+  "content sha256": "bf8da3142ad79d7e7b8144f2d1a732e03adc558054e440a305bede7aa8534b73",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT801\\Source model.json",
@@ -46,16 +46,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AA/pins/L/4",
-          "net": "RT801AG2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RT801AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
           "terminal": "blocks/AC/pins/L/4",
           "net": "RT801AJ2",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
@@ -64,21 +54,6 @@
           "terminal": "blocks/BC/pins/L/4",
           "net": "RT801BJ2",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BM/pins/R/2",
-          "net": "RT801BM2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BN/pins/R/2",
-          "net": "RT801BN2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BP/pins/R/2",
-          "net": "RT801BP2",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -3389,6 +3364,292 @@
               56
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "RT801AG2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT801AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BM/pins/R/2",
+          "net": "RT801BM2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BN/pins/R/2",
+          "net": "RT801BN2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BP/pins/R/2",
+          "net": "RT801BP2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "RT801AG2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/L/4",
+              "net": "RT801AG2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                12
+              ],
+              "after": [
+                138,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT801AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RT801AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                12
+              ],
+              "after": [
+                153,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  12
+                ],
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BM/pins/R/2",
+          "net": "RT801BM2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BM/pins/R/2",
+              "net": "RT801BM2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                10
+              ],
+              "after": [
+                61,
+                10
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BN/pins/R/2",
+          "net": "RT801BN2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BN/pins/R/2",
+              "net": "RT801BN2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                45
+              ],
+              "after": [
+                61,
+                45
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BP/pins/R/2",
+          "net": "RT801BP2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BP/pins/R/2",
+              "net": "RT801BP2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                52
+              ],
+              "after": [
+                61,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "RT801AG2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            12
+          ],
+          "after": [
+            138,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT801AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              1
+            ],
+            [
+              241,
+              1
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              1
+            ],
+            [
+              241,
+              1
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BM/pins/R/2",
+          "net": "RT801BM2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BN/pins/R/2",
+          "net": "RT801BN2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            45
+          ],
+          "after": [
+            61,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BP/pins/R/2",
+          "net": "RT801BP2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            52
+          ],
+          "after": [
+            61,
+            52
+          ],
+          "annotation offsets": []
         }
       ]
     }

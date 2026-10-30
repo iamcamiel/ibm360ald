@@ -2,7 +2,7 @@
   "page": "AP635",
   "review date": "2026-10-26",
   "reviewer": "data245-group-c-7ff923c5-5c69-472b-b4c2-c145e2ad7f46",
-  "content sha256": "b03a236a0a3fd914f0cf6a3e85476945e4f46812d39f3cbbe4cb33d02c19ac97",
+  "content sha256": "1bbc51cee03f32071547817daa9eec1eec3df7902676cb86c80db3d8e5aad6fd",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP635\\Exact source model.json",
@@ -54,16 +54,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "AP635AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AG/pins/L/6",
-          "net": "AP001BC4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
           "terminal": "blocks/AH/pins/L/6",
           "net": "AP001BC4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -82,16 +72,6 @@
           "terminal": "blocks/AL/pins/L/6",
           "net": "AP001BC4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/6",
-          "net": "AP001BC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "AP635AM4",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -4053,6 +4033,300 @@
               45
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "AP635AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/L/6",
+          "net": "AP001BC4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP001BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "AP635AM4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "AP635AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "AP635AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                47
+              ],
+              "after": [
+                84,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  46
+                ],
+                [
+                  92,
+                  46
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  47
+                ],
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  46
+                ],
+                [
+                  92,
+                  46
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/L/6",
+          "net": "AP001BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AG/pins/L/6",
+              "net": "AP001BC4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                91,
+                21
+              ],
+              "after": [
+                92,
+                21
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP001BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/6",
+              "net": "AP001BC4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                91,
+                56
+              ],
+              "after": [
+                92,
+                56
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  21
+                ],
+                [
+                  91,
+                  56
+                ]
+              ],
+              "after routing": [
+                [
+                  91,
+                  21
+                ],
+                [
+                  91,
+                  56
+                ],
+                [
+                  92,
+                  56
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "AP635AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/4",
+              "net": "AP635AM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                54
+              ],
+              "after": [
+                107,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "AP635AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            47
+          ],
+          "after": [
+            84,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              46
+            ],
+            [
+              92,
+              46
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              47
+            ],
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              46
+            ],
+            [
+              92,
+              46
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/L/6",
+          "net": "AP001BC4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            91,
+            21
+          ],
+          "after": [
+            92,
+            21
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP001BC4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            91,
+            56
+          ],
+          "after": [
+            92,
+            56
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              91,
+              21
+            ],
+            [
+              91,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              91,
+              21
+            ],
+            [
+              91,
+              56
+            ],
+            [
+              92,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "AP635AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

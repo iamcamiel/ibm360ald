@@ -2,7 +2,7 @@
   "page": "MA241",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b6bdbba30bd233966cfedff1bb71a9fac0f151d5cd6db28cadb84dd05943580e",
+  "content sha256": "54b2b08bd30074825ea552a598cb6a1c042bf231a7ef9faa8854c47c4066d127",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA241\\Source model.json",
@@ -53,20 +53,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "MA241AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1664,6 +1651,58 @@
               23
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA241AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA241AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "MA241AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                33
+              ],
+              "after": [
+                84,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA241AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            33
+          ],
+          "after": [
+            84,
+            33
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "FC371",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "44a41548f186afaf096c21a8f48ecce888bef0ed526782b708d0f62b640eb095",
+  "content sha256": "59ee4601eb12e9f14344a899d7bfa7716fb104a55653815e832e959922dbcfe4",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team10\\ALD batch948\\FC371 independent reconstruction948\\Inputs\\Baseline model.json",
@@ -60,18 +60,6 @@
         26
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "FC371AH4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
     }
   ],
   "warnings": [],
@@ -69112,6 +69100,58 @@
               45
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "FC371AH4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "FC371AH4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/R/4",
+              "net": "FC371AH4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                54
+              ],
+              "after": [
+                107,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "FC371AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

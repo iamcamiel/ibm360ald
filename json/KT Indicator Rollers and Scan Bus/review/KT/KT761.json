@@ -2,7 +2,7 @@
   "page": "KT761",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8858fbc8c4731b8f157a6b5c01ab59bd5f32b9c8c228be86dca0f2e40aba6298",
+  "content sha256": "836fb831a23c6bdb4da681e4378bc60009003068f456fc5f2ace001b56c147ee",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KT761\\Source model.json",
@@ -47,20 +47,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AX/pins/R/4",
-          "net": "KT761AX4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -59741,6 +59728,124 @@
             [
               115,
               12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KT761AX4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KT761AX4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/R/4",
+              "net": "KT761AX4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                40
+              ],
+              "after": [
+                130,
+                40
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  52
+                ],
+                [
+                  241,
+                  52
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  40
+                ],
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  52
+                ],
+                [
+                  241,
+                  52
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KT761AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            40
+          ],
+          "after": [
+            130,
+            40
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              52
+            ],
+            [
+              241,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              40
+            ],
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              52
+            ],
+            [
+              241,
+              52
             ]
           ]
         }

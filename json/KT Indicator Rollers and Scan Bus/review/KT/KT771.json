@@ -2,7 +2,7 @@
   "page": "KT771",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "92976831700c0201083eb92c378294ccaca1a59009fbb0ecc65bea04987f62a2",
+  "content sha256": "0d686951dc8bda6cda1822925879fe077a76ea56439dc91efbbc2a17c77ed8ee",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT771\\Source model.json",
@@ -46,20 +46,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "KT771AB4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -92248,6 +92235,58 @@
               7
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KT771AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KT771AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "KT771AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KT771AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": []
         }
       ]
     }

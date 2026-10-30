@@ -2,7 +2,7 @@
   "page": "RG051",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3750315b1e429aa8c1bbef7e2e99eb770cb489409d7aa06ad78640369481e38e",
+  "content sha256": "059f848f13c601f4faaf2e272c91fb53e0a3c44f71e163e348d892ab98321e6e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\ALD batch1233\\RG051 independent reconstruction1233\\Inputs\\Baseline model.json",
@@ -42,18 +42,6 @@
         8
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/L/2",
-          "net": "RG051BC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -176598,6 +176586,140 @@
             [
               69,
               14
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RG051BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RG051BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/L/2",
+              "net": "RG051BC4",
+              "polyline": 1,
+              "point": 3,
+              "before": [
+                45,
+                10
+              ],
+              "after": [
+                46,
+                10
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  84,
+                  26
+                ],
+                [
+                  84,
+                  19
+                ],
+                [
+                  45,
+                  19
+                ],
+                [
+                  45,
+                  10
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  26
+                ],
+                [
+                  84,
+                  19
+                ],
+                [
+                  45,
+                  19
+                ],
+                [
+                  45,
+                  10
+                ],
+                [
+                  46,
+                  10
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RG051BC4",
+          "polyline": 1,
+          "point": 3,
+          "before": [
+            45,
+            10
+          ],
+          "after": [
+            46,
+            10
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              19
+            ],
+            [
+              45,
+              19
+            ],
+            [
+              45,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              19
+            ],
+            [
+              45,
+              19
+            ],
+            [
+              45,
+              10
+            ],
+            [
+              46,
+              10
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "KT991",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d9dda7b4b1a60acc93201b6a471f319c6809fa896edda577d907b291d80ec07c",
+  "content sha256": "3925626c96772a395bf0b65812287a6dd24d3f5c33af6b142c71dfa947ed319b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch1126\\KT991 independent reconstruction1126\\Inputs\\Baseline model.json",
@@ -20,30 +20,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT991 SCAN OUT BUS PARITY POSITIONS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "KT991AD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BK/pins/L/4",
-          "net": "KT991AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BP/pins/L/4",
-          "net": "KT991AW4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -5018,6 +4995,208 @@
               75
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KT991AD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "KT991AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BP/pins/L/4",
+          "net": "KT991AW4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KT991AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "KT991AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                82
+              ],
+              "after": [
+                130,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  82
+                ],
+                [
+                  131,
+                  86
+                ],
+                [
+                  241,
+                  86
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  82
+                ],
+                [
+                  131,
+                  82
+                ],
+                [
+                  131,
+                  86
+                ],
+                [
+                  241,
+                  86
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "KT991AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BK/pins/L/4",
+              "net": "KT991AE4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                33
+              ],
+              "after": [
+                161,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BP/pins/L/4",
+          "net": "KT991AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BP/pins/L/4",
+              "net": "KT991AW4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                54
+              ],
+              "after": [
+                92,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KT991AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              82
+            ],
+            [
+              131,
+              86
+            ],
+            [
+              241,
+              86
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              82
+            ],
+            [
+              131,
+              82
+            ],
+            [
+              131,
+              86
+            ],
+            [
+              241,
+              86
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "KT991AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            33
+          ],
+          "after": [
+            161,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BP/pins/L/4",
+          "net": "KT991AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            54
+          ],
+          "after": [
+            92,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

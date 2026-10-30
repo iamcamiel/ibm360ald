@@ -2,7 +2,7 @@
   "page": "KS071",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e3f4294601a95431601134dd002d006de77f0f25fb22aac500725e5d356ad819",
+  "content sha256": "e0ebc6f928cc25891c3d7e5f39f4ced1d0a51721cb24b3b3029fefbc21ed955e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KS071\\Source model.json",
@@ -144,11 +144,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AH/pins/L/6",
-          "net": "KS201AT4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
           "terminal": "blocks/AK/pins/L/2",
           "net": "KS071AG4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -156,16 +151,6 @@
         {
           "terminal": "blocks/AL/pins/L/6",
           "net": "KS201AT4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/6",
-          "net": "KS201AT4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/2",
-          "net": "KS151BJ4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
@@ -2890,6 +2875,258 @@
             [
               138,
               52
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "KS201AT4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "KS201AT4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KS151BJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "KS201AT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/L/6",
+              "net": "KS201AT4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                114,
+                28
+              ],
+              "after": [
+                115,
+                28
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "KS201AT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/6",
+              "net": "KS201AT4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                114,
+                56
+              ],
+              "after": [
+                115,
+                56
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  114,
+                  28
+                ],
+                [
+                  114,
+                  56
+                ]
+              ],
+              "after routing": [
+                [
+                  114,
+                  28
+                ],
+                [
+                  114,
+                  56
+                ],
+                [
+                  115,
+                  56
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KS151BJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/L/2",
+              "net": "KS151BJ4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                114,
+                59
+              ],
+              "after": [
+                115,
+                59
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  16,
+                  65
+                ],
+                [
+                  114,
+                  65
+                ],
+                [
+                  114,
+                  59
+                ]
+              ],
+              "after routing": [
+                [
+                  16,
+                  65
+                ],
+                [
+                  114,
+                  65
+                ],
+                [
+                  114,
+                  59
+                ],
+                [
+                  115,
+                  59
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "KS201AT4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            114,
+            28
+          ],
+          "after": [
+            115,
+            28
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "KS201AT4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            114,
+            56
+          ],
+          "after": [
+            115,
+            56
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              114,
+              28
+            ],
+            [
+              114,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              114,
+              28
+            ],
+            [
+              114,
+              56
+            ],
+            [
+              115,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KS151BJ4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            114,
+            59
+          ],
+          "after": [
+            115,
+            59
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              16,
+              65
+            ],
+            [
+              114,
+              65
+            ],
+            [
+              114,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              16,
+              65
+            ],
+            [
+              114,
+              65
+            ],
+            [
+              114,
+              59
+            ],
+            [
+              115,
+              59
             ]
           ]
         }

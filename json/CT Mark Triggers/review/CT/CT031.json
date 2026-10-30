@@ -2,7 +2,7 @@
   "page": "CT031",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1aa624b09f15d6ec05cafb9eb11335376d4d33723e4540e4ce346ce85af6ead1",
+  "content sha256": "1a45ccb1e8bfd4a442e18d04b0abe61c09735854889efcab201f90752bea414b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root fourth twenty findings publication qualification266\\Inputs\\CT031\\Exact source model.json",
@@ -36,55 +36,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/L/4",
-          "net": "CT041BT4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "CT031AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AK/pins/R/4",
-          "net": "CT031AK4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/4",
-          "net": "CT041BT4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AQ/pins/L/2",
-          "net": "CT031AL4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "CT031AS4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BF/pins/R/4",
-          "net": "CT031BF4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BM/pins/R/4",
-          "net": "CT031BM4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3766,6 +3718,592 @@
               84
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "CT041BT4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CT031AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CT031AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "CT041BT4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "CT031AL4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CT031AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "CT031BF4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BM/pins/R/4",
+          "net": "CT031BM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "CT041BT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/L/4",
+              "net": "CT041BT4",
+              "polyline": 1,
+              "point": 0,
+              "before": [
+                91,
+                19
+              ],
+              "after": [
+                92,
+                19
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  19
+                ],
+                [
+                  91,
+                  68
+                ]
+              ],
+              "after routing": [
+                [
+                  92,
+                  19
+                ],
+                [
+                  91,
+                  19
+                ],
+                [
+                  91,
+                  68
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CT031AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "CT031AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                26
+              ],
+              "after": [
+                107,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CT031AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/R/4",
+              "net": "CT031AK4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                12
+              ],
+              "after": [
+                153,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  8
+                ],
+                [
+                  205,
+                  8
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  12
+                ],
+                [
+                  154,
+                  12
+                ],
+                [
+                  154,
+                  8
+                ],
+                [
+                  205,
+                  8
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "CT041BT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/4",
+              "net": "CT041BT4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                91,
+                68
+              ],
+              "after": [
+                92,
+                68
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  19
+                ],
+                [
+                  91,
+                  68
+                ]
+              ],
+              "after routing": [
+                [
+                  91,
+                  19
+                ],
+                [
+                  91,
+                  68
+                ],
+                [
+                  92,
+                  68
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "CT031AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/2",
+              "net": "CT031AL4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                118,
+                73
+              ],
+              "after": [
+                115,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CT031AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/R/4",
+              "net": "CT031AS4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                61
+              ],
+              "after": [
+                153,
+                61
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  61
+                ],
+                [
+                  154,
+                  57
+                ],
+                [
+                  205,
+                  57
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  61
+                ],
+                [
+                  154,
+                  61
+                ],
+                [
+                  154,
+                  57
+                ],
+                [
+                  205,
+                  57
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "CT031BF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BF/pins/R/4",
+              "net": "CT031BF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                26
+              ],
+              "after": [
+                176,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BM/pins/R/4",
+          "net": "CT031BM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BM/pins/R/4",
+              "net": "CT031BM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                82
+              ],
+              "after": [
+                176,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "CT041BT4",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            91,
+            19
+          ],
+          "after": [
+            92,
+            19
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              91,
+              19
+            ],
+            [
+              91,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              92,
+              19
+            ],
+            [
+              91,
+              19
+            ],
+            [
+              91,
+              68
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CT031AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            26
+          ],
+          "after": [
+            107,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CT031AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              8
+            ],
+            [
+              205,
+              8
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              154,
+              12
+            ],
+            [
+              154,
+              8
+            ],
+            [
+              205,
+              8
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "CT041BT4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            91,
+            68
+          ],
+          "after": [
+            92,
+            68
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              92,
+              19
+            ],
+            [
+              91,
+              19
+            ],
+            [
+              91,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              92,
+              19
+            ],
+            [
+              91,
+              19
+            ],
+            [
+              91,
+              68
+            ],
+            [
+              92,
+              68
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "CT031AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            73
+          ],
+          "after": [
+            115,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CT031AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            61
+          ],
+          "after": [
+            153,
+            61
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              61
+            ],
+            [
+              154,
+              57
+            ],
+            [
+              205,
+              57
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              154,
+              61
+            ],
+            [
+              154,
+              57
+            ],
+            [
+              205,
+              57
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "CT031BF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            26
+          ],
+          "after": [
+            176,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BM/pins/R/4",
+          "net": "CT031BM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            82
+          ],
+          "after": [
+            176,
+            82
+          ],
+          "annotation offsets": []
         }
       ]
     }

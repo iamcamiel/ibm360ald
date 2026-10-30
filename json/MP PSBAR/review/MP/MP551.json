@@ -2,7 +2,7 @@
   "page": "MP551",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ae5139edd97b116767fa7efb069989504d53f16a210c796d7ecc9c697e0d0630",
+  "content sha256": "bb23602e0974efab6ebb1d337a09a6b3d49419fcaa92c27a711c5378230c3f87",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round007\\MP551\\Currentness successor001\\Current model.json",
@@ -101,20 +101,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "MP551AK4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3436,6 +3423,124 @@
             [
               161,
               84
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "MP551AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "MP551AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BJ/pins/R/4",
+              "net": "MP551AK4",
+              "polyline": 3,
+              "point": 0,
+              "before": [
+                131,
+                40
+              ],
+              "after": [
+                130,
+                40
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  36
+                ],
+                [
+                  133,
+                  36
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  40
+                ],
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  36
+                ],
+                [
+                  133,
+                  36
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "MP551AK4",
+          "polyline": 3,
+          "point": 0,
+          "before": [
+            131,
+            40
+          ],
+          "after": [
+            130,
+            40
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              36
+            ],
+            [
+              133,
+              36
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              40
+            ],
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              36
+            ],
+            [
+              133,
+              36
             ]
           ]
         }

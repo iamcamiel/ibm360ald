@@ -2,7 +2,7 @@
   "page": "MC141",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c20a7989d4c516a89571771a35be5da26bdcc7d6b015cefd1a80b66fd7986e77",
+  "content sha256": "e72541b7483838642b047063ee2b00b671df0a25d76ad8f67925eabc4637d22c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC141\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC141 CPU SEQUENCERS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "MC141AW4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1354,6 +1341,140 @@
             [
               161,
               73
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "MC141AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "MC141AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/4",
+              "net": "MC141AW4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                200,
+                75
+              ],
+              "after": [
+                199,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  200,
+                  75
+                ],
+                [
+                  200,
+                  89
+                ],
+                [
+                  138,
+                  89
+                ],
+                [
+                  138,
+                  84
+                ]
+              ],
+              "after routing": [
+                [
+                  199,
+                  75
+                ],
+                [
+                  200,
+                  75
+                ],
+                [
+                  200,
+                  89
+                ],
+                [
+                  138,
+                  89
+                ],
+                [
+                  138,
+                  84
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "MC141AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            75
+          ],
+          "after": [
+            199,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              200,
+              75
+            ],
+            [
+              200,
+              89
+            ],
+            [
+              138,
+              89
+            ],
+            [
+              138,
+              84
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              75
+            ],
+            [
+              200,
+              75
+            ],
+            [
+              200,
+              89
+            ],
+            [
+              138,
+              89
+            ],
+            [
+              138,
+              84
             ]
           ]
         }

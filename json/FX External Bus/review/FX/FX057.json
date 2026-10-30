@@ -2,7 +2,7 @@
   "page": "FX057",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "07c46f1c492a264aca8ce70c85714dbeec3e131e5e4e5a19df4b696f93875142",
+  "content sha256": "918eb3fe8c8978912cb422ee53a0f0f412b55974202c992330a77fcfbe253a53",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FX057\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FX External Bus\\FX057 SCU SIMPLEX SIGNALS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/R/6",
-          "net": "FX057AJ6",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -5002,6 +4989,108 @@
             [
               69,
               89
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/R/6",
+          "net": "FX057AJ6",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/R/6",
+          "net": "FX057AJ6",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/6",
+              "net": "FX057AJ6",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                28
+              ],
+              "after": [
+                130,
+                28
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  28
+                ],
+                [
+                  131,
+                  30
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  28
+                ],
+                [
+                  131,
+                  28
+                ],
+                [
+                  131,
+                  30
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/R/6",
+          "net": "FX057AJ6",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            28
+          ],
+          "after": [
+            130,
+            28
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              28
+            ],
+            [
+              131,
+              30
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              28
+            ],
+            [
+              131,
+              28
+            ],
+            [
+              131,
+              30
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "AS051",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8dda59769642850d374db65aa36e2ffc76c4c6317f470c7b0f4b13100d711d3e",
+  "content sha256": "b0ba1305bf3be74048da12d1817be4bbc0cd0f1a6edca7bb1872ad0a6e976947",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch750\\AS051 independent reconstruction750\\Inputs\\Baseline model.json",
@@ -39,35 +39,7 @@
       "detail": "K is an auxiliary edge mark, but the source retains an ordinary output role or driver claim. Preserve the source net claims and review the role; no neutral membership or driver change is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "AS051AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "AS051AF4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "AS051AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BM/pins/L/6",
-          "net": "AS201AY4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -58315,6 +58287,266 @@
             [
               161,
               87
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AS051AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "AS051AF4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "AS051AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BM/pins/L/6",
+          "net": "AS201AY4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AS051AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/2",
+              "net": "AS051AG4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                73
+              ],
+              "after": [
+                161,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "AS051AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "AS051AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                47
+              ],
+              "after": [
+                153,
+                47
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "AS051AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/R/4",
+              "net": "AS051AS4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                54
+              ],
+              "after": [
+                130,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BM/pins/L/6",
+          "net": "AS201AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BM/pins/L/6",
+              "net": "AS201AY4",
+              "polyline": 5,
+              "point": 3,
+              "before": [
+                160,
+                63
+              ],
+              "after": [
+                161,
+                63
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  136,
+                  63
+                ],
+                [
+                  136,
+                  53
+                ],
+                [
+                  160,
+                  53
+                ],
+                [
+                  160,
+                  63
+                ]
+              ],
+              "after routing": [
+                [
+                  136,
+                  63
+                ],
+                [
+                  136,
+                  53
+                ],
+                [
+                  160,
+                  53
+                ],
+                [
+                  160,
+                  63
+                ],
+                [
+                  161,
+                  63
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AS051AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            73
+          ],
+          "after": [
+            161,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "AS051AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            47
+          ],
+          "after": [
+            153,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "AS051AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BM/pins/L/6",
+          "net": "AS201AY4",
+          "polyline": 5,
+          "point": 3,
+          "before": [
+            160,
+            63
+          ],
+          "after": [
+            161,
+            63
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              136,
+              63
+            ],
+            [
+              136,
+              53
+            ],
+            [
+              160,
+              53
+            ],
+            [
+              160,
+              63
+            ]
+          ],
+          "after routing": [
+            [
+              136,
+              63
+            ],
+            [
+              136,
+              53
+            ],
+            [
+              160,
+              53
+            ],
+            [
+              160,
+              63
+            ],
+            [
+              161,
+              63
             ]
           ]
         }

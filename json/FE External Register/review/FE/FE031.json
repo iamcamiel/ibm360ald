@@ -2,7 +2,7 @@
   "page": "FE031",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "56055bfe285a23c04a7f69bbeb23a964b7299443320537b3571f97a913c3aef1",
+  "content sha256": "0a6b2e460f684e83988cd63502f2da212c40711e1a2ddbb4d24a62c070d00b64",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch977\\FE031 independent reconstruction977\\Inputs\\Baseline model.json",
@@ -33,43 +33,6 @@
         68
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/2",
-          "net": "FE031AA2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AC/pins/R/2",
-          "net": "FE031AC2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AE/pins/R/2",
-          "net": "FE031AE2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "FE321AG4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AQ/pins/L/2",
-          "net": "FE321AG4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AT/pins/L/2",
-          "net": "FE321AG4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -6698,6 +6661,376 @@
             [
               138,
               73
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "FE031AA2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "FE031AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AE/pins/R/2",
+          "net": "FE031AE2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "FE321AG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "FE321AG4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "FE321AG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "FE031AA2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/2",
+              "net": "FE031AA2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                10
+              ],
+              "after": [
+                61,
+                10
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "FE031AC2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/2",
+              "net": "FE031AC2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                38
+              ],
+              "after": [
+                61,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AE/pins/R/2",
+          "net": "FE031AE2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/2",
+              "net": "FE031AE2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                66
+              ],
+              "after": [
+                61,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "FE321AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/2",
+              "net": "FE321AG4",
+              "polyline": 1,
+              "point": 0,
+              "before": [
+                114,
+                24
+              ],
+              "after": [
+                115,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  114,
+                  24
+                ],
+                [
+                  114,
+                  80
+                ]
+              ],
+              "after routing": [
+                [
+                  115,
+                  24
+                ],
+                [
+                  114,
+                  24
+                ],
+                [
+                  114,
+                  80
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "FE321AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/2",
+              "net": "FE321AG4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                114,
+                52
+              ],
+              "after": [
+                115,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "FE321AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AT/pins/L/2",
+              "net": "FE321AG4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                114,
+                80
+              ],
+              "after": [
+                115,
+                80
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  114,
+                  24
+                ],
+                [
+                  114,
+                  80
+                ]
+              ],
+              "after routing": [
+                [
+                  114,
+                  24
+                ],
+                [
+                  114,
+                  80
+                ],
+                [
+                  115,
+                  80
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "FE031AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "FE031AC2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            38
+          ],
+          "after": [
+            61,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/2",
+          "net": "FE031AE2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            66
+          ],
+          "after": [
+            61,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "FE321AG4",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            114,
+            24
+          ],
+          "after": [
+            115,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              114,
+              24
+            ],
+            [
+              114,
+              80
+            ]
+          ],
+          "after routing": [
+            [
+              115,
+              24
+            ],
+            [
+              114,
+              24
+            ],
+            [
+              114,
+              80
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "FE321AG4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            114,
+            52
+          ],
+          "after": [
+            115,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "FE321AG4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            114,
+            80
+          ],
+          "after": [
+            115,
+            80
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              115,
+              24
+            ],
+            [
+              114,
+              24
+            ],
+            [
+              114,
+              80
+            ]
+          ],
+          "after routing": [
+            [
+              115,
+              24
+            ],
+            [
+              114,
+              24
+            ],
+            [
+              114,
+              80
+            ],
+            [
+              115,
+              80
             ]
           ]
         }

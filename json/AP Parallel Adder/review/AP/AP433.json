@@ -2,7 +2,7 @@
   "page": "AP433",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2d991f33d4834ca2ee3d89e6c39c54f39783bc27b261179cf2267299c3b366c8",
+  "content sha256": "644441f45f514e982981ca5bf80b84690c3d5ea84fabae4f7f2d40468b5e6446",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch658\\AP433 independent reconstruction658\\Inputs\\Baseline model.json",
@@ -54,30 +54,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "AP433AC4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AU/pins/L/2",
-          "net": "AP433AW4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BC/pins/R/4",
-          "net": "AP433BC4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4767,6 +4744,142 @@
               77
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP433AC4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "AP433AW4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "AP433BC4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP433AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/4",
+              "net": "AP433AC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                26
+              ],
+              "after": [
+                61,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "AP433AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AU/pins/L/2",
+              "net": "AP433AW4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                187,
+                45
+              ],
+              "after": [
+                184,
+                45
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "AP433BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BC/pins/R/4",
+              "net": "AP433BC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                173,
+                82
+              ],
+              "after": [
+                176,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP433AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "AP433AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            45
+          ],
+          "after": [
+            184,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "AP433BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            82
+          ],
+          "after": [
+            176,
+            82
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "MC063",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c41201fcd0c37857e1f160d0e84375aeeb0fa73fbdb198410421ccf4d39fc554",
+  "content sha256": "75f9fccc73646e79b8f9aef56e7aa14d59025ae314f279ca86cd109efc484e4c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round009\\MC063\\Repair candidate003\\Current model.json",
@@ -55,25 +55,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "MC063AM4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BN/pins/R/4",
-          "net": "MC063BN4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4118,6 +4100,248 @@
             [
               69,
               84
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "MC063AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "MC063BN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "MC063AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/4",
+              "net": "MC063AM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                82
+              ],
+              "after": [
+                153,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  82
+                ],
+                [
+                  154,
+                  87
+                ],
+                [
+                  242,
+                  87
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  82
+                ],
+                [
+                  154,
+                  82
+                ],
+                [
+                  154,
+                  87
+                ],
+                [
+                  242,
+                  87
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "MC063BN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BN/pins/R/4",
+              "net": "MC063BN4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                54
+              ],
+              "after": [
+                84,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  54
+                ],
+                [
+                  85,
+                  61
+                ],
+                [
+                  184,
+                  61
+                ],
+                [
+                  184,
+                  68
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  54
+                ],
+                [
+                  85,
+                  54
+                ],
+                [
+                  85,
+                  61
+                ],
+                [
+                  184,
+                  61
+                ],
+                [
+                  184,
+                  68
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "MC063AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            82
+          ],
+          "after": [
+            153,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              82
+            ],
+            [
+              154,
+              87
+            ],
+            [
+              242,
+              87
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              82
+            ],
+            [
+              154,
+              82
+            ],
+            [
+              154,
+              87
+            ],
+            [
+              242,
+              87
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "MC063BN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            54
+          ],
+          "after": [
+            84,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              54
+            ],
+            [
+              85,
+              61
+            ],
+            [
+              184,
+              61
+            ],
+            [
+              184,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              54
+            ],
+            [
+              85,
+              54
+            ],
+            [
+              85,
+              61
+            ],
+            [
+              184,
+              61
+            ],
+            [
+              184,
+              68
             ]
           ]
         }

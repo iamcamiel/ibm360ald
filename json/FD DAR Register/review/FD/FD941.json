@@ -2,7 +2,7 @@
   "page": "FD941",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e36714851d387fed2d23a834de30cb6f4cd83b3f21ecb2870db10c30c0c1d46a",
+  "content sha256": "fc7d69dbbbfab86a5b3875c500fefdb02390247d448dbea3a38a2f8b8e4bfa40",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FD941\\Source model.json",
@@ -53,30 +53,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "FD941AC4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "FD941AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "FD941AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -3625,6 +3602,142 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FD941AC4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FD941AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "FD941AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FD941AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/4",
+              "net": "FD941AC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                19
+              ],
+              "after": [
+                61,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FD941AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "FD941AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                68
+              ],
+              "after": [
+                61,
+                68
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "FD941AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AG/pins/R/4",
+              "net": "FD941AG4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                75
+              ],
+              "after": [
+                61,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FD941AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FD941AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            68
+          ],
+          "after": [
+            61,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "FD941AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            75
+          ],
+          "after": [
+            61,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

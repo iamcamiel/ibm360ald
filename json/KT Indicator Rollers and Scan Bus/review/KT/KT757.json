@@ -2,7 +2,7 @@
   "page": "KT757",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "205ceb8b62843f730a5fa42b6e722da93d419b8bc0f549b5dae6f62b60a8a8de",
+  "content sha256": "b2cd35558996a76dbbecd42f3a4e40960cb47d203c2769ff3cd81a8fa8447c58",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT757\\Source model.json",
@@ -32,20 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "KT757AP4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2292,6 +2279,140 @@
             [
               138,
               77
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KT757AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KT757AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/R/4",
+              "net": "KT757AP4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                5
+              ],
+              "after": [
+                61,
+                5
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  9
+                ],
+                [
+                  115,
+                  9
+                ],
+                [
+                  115,
+                  31
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  5
+                ],
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  9
+                ],
+                [
+                  115,
+                  9
+                ],
+                [
+                  115,
+                  31
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KT757AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              9
+            ],
+            [
+              115,
+              9
+            ],
+            [
+              115,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              5
+            ],
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              9
+            ],
+            [
+              115,
+              9
+            ],
+            [
+              115,
+              31
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "FD951",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6a918e6dd1bfcf333a5860b44ca9fd1f27b4edfd9af34f2c1351394eeae08b9c",
+  "content sha256": "8fade63b8603e16e4f3ef4ae588fd47ecfa554c9e88ff19c8fd4c4b5d9c5b768",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FD951\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FD DAR Register\\FD951 DAR CONTROLS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BT/pins/L/4",
-          "net": "KU331CC4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1456,6 +1443,58 @@
               42
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BT/pins/L/4",
+          "net": "KU331CC4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BT/pins/L/4",
+          "net": "KU331CC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BT/pins/L/4",
+              "net": "KU331CC4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                45,
+                5
+              ],
+              "after": [
+                46,
+                5
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BT/pins/L/4",
+          "net": "KU331CC4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            45,
+            5
+          ],
+          "after": [
+            46,
+            5
+          ],
+          "annotation offsets": []
         }
       ]
     }

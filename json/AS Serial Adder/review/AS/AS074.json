@@ -2,7 +2,7 @@
   "page": "AS074",
   "review date": "2026-10-26",
   "reviewer": "Independent saved V4 DATA review: Team3 /root/as074_data253 (GPT61 Sol medium); source qualification: Team5 SOURCE248; source approval remains false.",
-  "content sha256": "580f155fe08cc30f67585adde232d5d7d2a4fc6a8ed5dcb262f39846ee3f143d",
+  "content sha256": "f1afe605c11f60fc91eb3f58288742c19544a3f4301577b698cdca31f88490d4",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root AS074 qualified five glyph source and current key252\\Selected model.json",
@@ -39,25 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BB/pins/L/2",
-          "net": "AS074AY4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BB/pins/L/6",
-          "net": "AS074BA4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -74050,6 +74032,102 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "AS074AY4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/6",
+          "net": "AS074BA4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "AS074AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/L/2",
+              "net": "AS074AY4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                80
+              ],
+              "after": [
+                69,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/6",
+          "net": "AS074BA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/L/6",
+              "net": "AS074BA4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                84
+              ],
+              "after": [
+                69,
+                84
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "AS074AY4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            80
+          ],
+          "after": [
+            69,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/L/6",
+          "net": "AS074BA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            84
+          ],
+          "after": [
+            69,
+            84
+          ],
+          "annotation offsets": []
+        }
+      ]
     }
   ]
 }

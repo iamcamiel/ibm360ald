@@ -2,7 +2,7 @@
   "page": "MA253",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2e8d88ba025f9db82299b52f836c8275beb2ebe247ca52acc0e97b08591d49f9",
+  "content sha256": "66abcbe7e0e3a82db64f992d48a08b1fe710077d8ce99a8d51b303a00be1eaa5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-3\\Results\\Continuous integration assist20261025-Round014\\Producer C\\MA253\\V3 successor001\\Current model.json",
@@ -40,40 +40,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA253 STG ADDRESS BUS PARITY 16-20.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/FE/pins/R/4",
-          "net": "MA253FE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/FH/pins/L/6",
-          "net": "MA253FF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/FJ/pins/L/2",
-          "net": "MA253FF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/FK/pins/L/6",
-          "net": "MA253FG4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/FL/pins/L/2",
-          "net": "MA253FG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1594,6 +1561,292 @@
               56
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/FE/pins/R/4",
+          "net": "MA253FE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/FH/pins/L/6",
+          "net": "MA253FF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/FJ/pins/L/2",
+          "net": "MA253FF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/FK/pins/L/6",
+          "net": "MA253FG4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/FL/pins/L/2",
+          "net": "MA253FG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/FE/pins/R/4",
+          "net": "MA253FE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/FE/pins/R/4",
+              "net": "MA253FE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                12
+              ],
+              "after": [
+                176,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  12
+                ],
+                [
+                  177,
+                  41
+                ],
+                [
+                  242,
+                  41
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  12
+                ],
+                [
+                  177,
+                  12
+                ],
+                [
+                  177,
+                  41
+                ],
+                [
+                  242,
+                  41
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/FH/pins/L/6",
+          "net": "MA253FF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/FH/pins/L/6",
+              "net": "MA253FF4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                35
+              ],
+              "after": [
+                69,
+                35
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/FJ/pins/L/2",
+          "net": "MA253FF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/FJ/pins/L/2",
+              "net": "MA253FF4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                38
+              ],
+              "after": [
+                69,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/FK/pins/L/6",
+          "net": "MA253FG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/FK/pins/L/6",
+              "net": "MA253FG4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                49
+              ],
+              "after": [
+                69,
+                49
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/FL/pins/L/2",
+          "net": "MA253FG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/FL/pins/L/2",
+              "net": "MA253FG4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                52
+              ],
+              "after": [
+                69,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/FE/pins/R/4",
+          "net": "MA253FE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              12
+            ],
+            [
+              177,
+              41
+            ],
+            [
+              242,
+              41
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              12
+            ],
+            [
+              177,
+              12
+            ],
+            [
+              177,
+              41
+            ],
+            [
+              242,
+              41
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/FH/pins/L/6",
+          "net": "MA253FF4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            35
+          ],
+          "after": [
+            69,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FJ/pins/L/2",
+          "net": "MA253FF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            38
+          ],
+          "after": [
+            69,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FK/pins/L/6",
+          "net": "MA253FG4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            49
+          ],
+          "after": [
+            69,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FL/pins/L/2",
+          "net": "MA253FG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            52
+          ],
+          "after": [
+            69,
+            52
+          ],
+          "annotation offsets": []
         }
       ]
     }

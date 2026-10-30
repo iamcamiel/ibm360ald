@@ -2,7 +2,7 @@
   "page": "MA191",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d16760c3ce411f5473f45aaf3906b060552ef3a7b2a8c6171ecff0c7a2406d0e",
+  "content sha256": "5c2e11036633f6371066e64704a1c0d870afaf8a01e14ff81f841d433a599b42",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-3\\Results\\Continuous integration assist20261025-Round014\\Producer C\\MA191\\V3 successor003\\Current model.json",
@@ -40,20 +40,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA191 STORAGE ADDRESS BUS BIT 19.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "MA191AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -900,6 +887,58 @@
               19
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA191AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA191AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "MA191AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                33
+              ],
+              "after": [
+                84,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA191AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            33
+          ],
+          "after": [
+            84,
+            33
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "RS161",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "46577fb740cc61b1ac290bc5181bd73a463285e517dcc29ce8971e5cf5627292",
+  "content sha256": "ef60788423ba6dcff6c307df9d8b538e4f075fab7e8f8cc2b69d1e5f9b2c23de",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team8\\ALD batch1256\\RS161 independent reconstruction1256\\Inputs\\Baseline model.json",
@@ -73,11 +73,6 @@
           "terminal": "blocks/AE/pins/L/2",
           "net": "RS161AG4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AQ/pins/R/2",
-          "net": "RS161AQ2",
-          "reason": "The changed lead interval is occupied by another net"
         },
         {
           "terminal": "blocks/BB/pins/L/2",
@@ -76870,6 +76865,58 @@
               72
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AQ/pins/R/2",
+          "net": "RS161AQ2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AQ/pins/R/2",
+          "net": "RS161AQ2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/R/2",
+              "net": "RS161AQ2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                24
+              ],
+              "after": [
+                61,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AQ/pins/R/2",
+          "net": "RS161AQ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            24
+          ],
+          "after": [
+            61,
+            24
+          ],
+          "annotation offsets": []
         }
       ]
     }

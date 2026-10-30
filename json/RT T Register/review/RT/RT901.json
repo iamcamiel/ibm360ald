@@ -2,7 +2,7 @@
   "page": "RT901",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3cccb2286399bbbe36c5efb53f7a0b148c42eb0555735d67cc50b909f14fd939",
+  "content sha256": "eb50659d05f06c8753baf6cfbd428c4da5d997f9a8a8f239b4745b752521d503",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT901\\Source model.json",
@@ -32,25 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/L/6",
-          "net": "RT921AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BH/pins/L/6",
-          "net": "RT921AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2663,6 +2645,202 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "RT921AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BH/pins/L/6",
+          "net": "RT921AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "RT921AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/L/6",
+              "net": "RT921AC4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                160,
+                35
+              ],
+              "after": [
+                161,
+                35
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  160,
+                  37
+                ],
+                [
+                  160,
+                  35
+                ]
+              ],
+              "after routing": [
+                [
+                  160,
+                  37
+                ],
+                [
+                  160,
+                  35
+                ],
+                [
+                  161,
+                  35
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BH/pins/L/6",
+          "net": "RT921AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BH/pins/L/6",
+              "net": "RT921AC4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                160,
+                77
+              ],
+              "after": [
+                161,
+                77
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  160,
+                  37
+                ],
+                [
+                  160,
+                  77
+                ]
+              ],
+              "after routing": [
+                [
+                  160,
+                  37
+                ],
+                [
+                  160,
+                  77
+                ],
+                [
+                  161,
+                  77
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "RT921AC4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            160,
+            35
+          ],
+          "after": [
+            161,
+            35
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              160,
+              37
+            ],
+            [
+              160,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              160,
+              37
+            ],
+            [
+              160,
+              35
+            ],
+            [
+              161,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BH/pins/L/6",
+          "net": "RT921AC4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            160,
+            77
+          ],
+          "after": [
+            161,
+            77
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              160,
+              37
+            ],
+            [
+              160,
+              77
+            ]
+          ],
+          "after routing": [
+            [
+              160,
+              37
+            ],
+            [
+              160,
+              77
+            ],
+            [
+              161,
+              77
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

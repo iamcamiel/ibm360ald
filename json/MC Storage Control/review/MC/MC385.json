@@ -2,7 +2,7 @@
   "page": "MC385",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f9c44a28040949d57110f1e8ede82660eafd884c720b6ba35c3dc85079b0bde9",
+  "content sha256": "5821bb87a7bb4e6972a0aaa95063bcf333d36cea7aa831cfdf2e3334921d6cbc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MC385\\Source model.json",
@@ -66,16 +66,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "MC385AD4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "MC385AJ4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
         {
           "terminal": "blocks/AR/pins/R/4",
           "net": "MC385AR4",
@@ -2636,6 +2626,100 @@
               80
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MC385AD4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MC385AJ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MC385AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "MC385AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                26
+              ],
+              "after": [
+                61,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MC385AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/4",
+              "net": "MC385AJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MC385AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MC385AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "AP479",
   "review date": "2026-10-26",
   "reviewer": "/root/data245_b independent DATA245 review; original producer: Functional ALD format converter",
-  "content sha256": "2584bcfe125af29e5ab9d6686a7ab36b4cdebc4e42224e20d1eb9937968572e9",
+  "content sha256": "686b1e7276df1e55c9cbbc738505ad1de79ff2457c4dbc0b1504364dfb024649",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP479\\Exact source model.json",
@@ -64,25 +64,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "AP479AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AY/pins/R/4",
-          "net": "AP479AY4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3385,6 +3367,100 @@
               21
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP479AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP479AY4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP479AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/4",
+              "net": "AP479AE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                26
+              ],
+              "after": [
+                84,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP479AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AY/pins/R/4",
+              "net": "AP479AY4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                173,
+                54
+              ],
+              "after": [
+                176,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP479AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP479AY4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            54
+          ],
+          "after": [
+            176,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

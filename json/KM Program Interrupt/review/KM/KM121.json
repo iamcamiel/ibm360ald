@@ -2,7 +2,7 @@
   "page": "KM121",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "7c337e451bd37ae7df5dfe36c6d1289282cddac4a0701c5fe39c73ab2ed4f3a3",
+  "content sha256": "e892cfa2e275964ad99580628950b5020301292c9497b5c631fa7fcafc5ba6f6",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\ALD batch1025\\KM121 independent reconstruction1025\\Inputs\\Baseline model.json",
@@ -69,28 +69,6 @@
         75
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/L/6",
-          "net": "KM181AG4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "KM121AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/CM/pins/L/6",
-          "net": "KM181AG4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -3527,6 +3505,192 @@
               24
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM181AG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KM121AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/CM/pins/L/6",
+          "net": "KM181AG4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM181AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/L/6",
+              "net": "KM181AG4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                91,
+                28
+              ],
+              "after": [
+                92,
+                28
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  14
+                ],
+                [
+                  91,
+                  28
+                ]
+              ],
+              "after routing": [
+                [
+                  91,
+                  14
+                ],
+                [
+                  91,
+                  28
+                ],
+                [
+                  92,
+                  28
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KM121AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "KM121AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                33
+              ],
+              "after": [
+                107,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CM/pins/L/6",
+          "net": "KM181AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CM/pins/L/6",
+              "net": "KM181AG4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                91,
+                14
+              ],
+              "after": [
+                92,
+                14
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM181AG4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            91,
+            28
+          ],
+          "after": [
+            92,
+            28
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              91,
+              14
+            ],
+            [
+              91,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              91,
+              14
+            ],
+            [
+              91,
+              28
+            ],
+            [
+              92,
+              28
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KM121AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CM/pins/L/6",
+          "net": "KM181AG4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            91,
+            14
+          ],
+          "after": [
+            92,
+            14
+          ],
+          "annotation offsets": []
         }
       ]
     }

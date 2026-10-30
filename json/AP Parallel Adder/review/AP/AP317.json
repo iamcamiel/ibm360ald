@@ -2,7 +2,7 @@
   "page": "AP317",
   "review date": "2026-10-26",
   "reviewer": "Independent DATA reviewer /root/data245_a (gpt-6.1-sol); original producer: Functional ALD format converter",
-  "content sha256": "27a73467c43bbb8ea03cad0bf2620c5b3c2a873790303883771299a5c14da502",
+  "content sha256": "e660fedca28f86688a6004651e1b612c6b6b77fddba5e566c64b3515afef1c63",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP317\\Exact source model.json",
@@ -32,30 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "AP317AD4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "AP317AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "AP317AW4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3787,6 +3764,142 @@
               66
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP317AD4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP317AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP317AW4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP317AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "AP317AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                26
+              ],
+              "after": [
+                61,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP317AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/2",
+              "net": "AP317AF4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                73
+              ],
+              "after": [
+                69,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP317AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/4",
+              "net": "AP317AW4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                75
+              ],
+              "after": [
+                153,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP317AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP317AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            73
+          ],
+          "after": [
+            69,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP317AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

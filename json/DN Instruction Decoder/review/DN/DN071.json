@@ -2,7 +2,7 @@
   "page": "DN071",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "9150277f45e85c24537fb03e3745d0c1642f71c9405bb79df64b4d4dfc3f6bc7",
+  "content sha256": "645d6dc30dde88c05615532934b33abe67b4ddeee6156d7f3cba5b018e0b0032",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\DN071\\Source model.json",
@@ -61,20 +61,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BC/pins/R/4",
-          "net": "DN071BC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2979,6 +2966,124 @@
             [
               115,
               17
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DN071BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DN071BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BC/pins/R/4",
+              "net": "DN071BC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                61
+              ],
+              "after": [
+                107,
+                61
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  108,
+                  61
+                ],
+                [
+                  108,
+                  52
+                ],
+                [
+                  205,
+                  52
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  61
+                ],
+                [
+                  108,
+                  61
+                ],
+                [
+                  108,
+                  52
+                ],
+                [
+                  205,
+                  52
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DN071BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            61
+          ],
+          "after": [
+            107,
+            61
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              108,
+              61
+            ],
+            [
+              108,
+              52
+            ],
+            [
+              205,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              61
+            ],
+            [
+              108,
+              61
+            ],
+            [
+              108,
+              52
+            ],
+            [
+              205,
+              52
             ]
           ]
         }

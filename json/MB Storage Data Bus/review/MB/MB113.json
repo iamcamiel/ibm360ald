@@ -2,7 +2,7 @@
   "page": "MB113",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "10b44a4136f76ad560fcd96c96fe9bca3cead79108bec5209f64b1b813e824dc",
+  "content sha256": "737d21d0bac53b96f075ce542ec498e58cd9954d973fc5d9b6e0f9636f5b0acb",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-3\\Results\\Continuous integration assist20261025-Round002\\Pages\\MB113\\Successor001\\Current model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MB Storage Data Bus\\MB113 XY BYTE 24-31 TO SDBI.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "MB113AD4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2453,6 +2440,58 @@
               68
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MB113AD4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MB113AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "MB113AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                61
+              ],
+              "after": [
+                84,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MB113AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            61
+          ],
+          "after": [
+            84,
+            61
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "KM181",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e7a7670c00f35f44baa24fbdb773eed8c464ff29350c43bfb66aff0aa1787f1d",
+  "content sha256": "d58983ea8d6f4fc649eaeb59a9751386c759e5f701210b427171adbd819cedbc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch1026\\KM181 independent reconstruction1026\\Inputs\\Baseline model.json",
@@ -33,23 +33,6 @@
         40
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AT/pins/L/6",
-          "net": "KM861BE4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AU/pins/L/2",
-          "net": "KM861BE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -3259,6 +3242,150 @@
             [
               92,
               12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "KM861BE4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "KM861BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "KM861BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AT/pins/L/6",
+              "net": "KM861BE4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                91,
+                63
+              ],
+              "after": [
+                92,
+                63
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "KM861BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AU/pins/L/2",
+              "net": "KM861BE4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                91,
+                66
+              ],
+              "after": [
+                92,
+                66
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  63
+                ],
+                [
+                  91,
+                  66
+                ]
+              ],
+              "after routing": [
+                [
+                  91,
+                  63
+                ],
+                [
+                  91,
+                  66
+                ],
+                [
+                  92,
+                  66
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "KM861BE4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            91,
+            63
+          ],
+          "after": [
+            92,
+            63
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "KM861BE4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            91,
+            66
+          ],
+          "after": [
+            92,
+            66
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              91,
+              63
+            ],
+            [
+              91,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              91,
+              63
+            ],
+            [
+              91,
+              66
+            ],
+            [
+              92,
+              66
             ]
           ]
         }

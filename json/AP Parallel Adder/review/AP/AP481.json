@@ -2,7 +2,7 @@
   "page": "AP481",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f619b3127dd2bf9cea0f05eee521e1bca437e49e1b001b15c17715ef41f9ccff",
+  "content sha256": "94e70468078eef180d8111b47b71dd583838202091830d5a38bebd3a9e39744b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch658\\AP481 independent reconstruction658\\Inputs\\Baseline model.json",
@@ -71,11 +71,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "AP481AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
         {
           "terminal": "blocks/AZ/pins/R/4",
           "net": "AP481AZ4",
@@ -7622,6 +7617,58 @@
               74
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP481AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP481AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/4",
+              "net": "AP481AE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP481AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
         }
       ]
     }

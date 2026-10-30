@@ -2,7 +2,7 @@
   "page": "PX431",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "643353308b776ad4a3a77e3c49a8a55fd8250b6ea7488d92ae8b8f34fc79404b",
+  "content sha256": "a1d0a2e1c6e576cf4f4da2e28f66ed82b90078811f68c5f5cca92708c435010a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch013\\Results\\PX431\\Producer revision002\\Current model.json",
@@ -36,25 +36,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "PX431AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BU/pins/L/4",
-          "net": "PX431BR4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -4636,6 +4618,166 @@
               89
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "PX431AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BU/pins/L/4",
+          "net": "PX431BR4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "PX431AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/4",
+              "net": "PX431AC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                47
+              ],
+              "after": [
+                61,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  47
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  47
+                ],
+                [
+                  62,
+                  47
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BU/pins/L/4",
+          "net": "PX431BR4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BU/pins/L/4",
+              "net": "PX431BR4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                54
+              ],
+              "after": [
+                138,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "PX431AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              47
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              47
+            ],
+            [
+              62,
+              47
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BU/pins/L/4",
+          "net": "PX431BR4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            54
+          ],
+          "after": [
+            138,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "RS241",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f17deac697aff261e6fa122a8e51c85bd5eab05a7dee851725df58c5df00c510",
+  "content sha256": "a1b20c563a0a86a5113c7145ddc0c97cdc6e8535fa05f5a4b8a0f00d64742a6f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RS241\\Source model.json",
@@ -60,20 +60,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BR/pins/R/2",
-          "net": "RS241BR2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -74945,6 +74932,58 @@
               66
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BR/pins/R/2",
+          "net": "RS241BR2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BR/pins/R/2",
+          "net": "RS241BR2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BR/pins/R/2",
+              "net": "RS241BR2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                73
+              ],
+              "after": [
+                61,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BR/pins/R/2",
+          "net": "RS241BR2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            73
+          ],
+          "after": [
+            61,
+            73
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "LS721",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a3045fbc6cb745ca337dbfbcb8a987b9c753dad5298aaf57494ebd117ddb6c50",
+  "content sha256": "a59bbf7decf005708f4be27a248746ea1809a500b9ddb0b85a163337c2ff9482",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team6\\LS721 independent reconstruction596\\Final V3\\LS721.model.json",
@@ -71,16 +71,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "LS721AA4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "LS721AB4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
         {
           "terminal": "blocks/CA/pins/L/4",
           "net": "LS721BA4",
@@ -3410,6 +3400,102 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "LS721AA4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "LS721AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "LS721AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "LS721AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                5
+              ],
+              "after": [
+                61,
+                5
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "LS721AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "LS721AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "LS721AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "LS721AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": []
+        }
+      ]
     }
   ]
 }

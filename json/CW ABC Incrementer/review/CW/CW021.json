@@ -2,7 +2,7 @@
   "page": "CW021",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "9ccee020aa67624077aef0221f1f39371d0e4e5d8797dc341c88f5d3d07b8bef",
+  "content sha256": "67a84f21db08528c380ada8f717e712fb4023c65a8ddf30d2bb213aae7cc4622",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch822\\CW021 independent reconstruction822\\Inputs\\Baseline model.json",
@@ -69,20 +69,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "CW021AW4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3192,6 +3179,124 @@
             [
               161,
               49
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CW021AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CW021AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/4",
+              "net": "CW021AW4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                54
+              ],
+              "after": [
+                61,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  54
+                ],
+                [
+                  62,
+                  37
+                ],
+                [
+                  241,
+                  37
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  54
+                ],
+                [
+                  62,
+                  54
+                ],
+                [
+                  62,
+                  37
+                ],
+                [
+                  241,
+                  37
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CW021AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              54
+            ],
+            [
+              62,
+              37
+            ],
+            [
+              241,
+              37
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              54
+            ],
+            [
+              62,
+              54
+            ],
+            [
+              62,
+              37
+            ],
+            [
+              241,
+              37
             ]
           ]
         }

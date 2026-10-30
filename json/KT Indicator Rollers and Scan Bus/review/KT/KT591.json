@@ -2,7 +2,7 @@
   "page": "KT591",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "471ac76a0f1d0174892ee47810752855b5eea4bd2ff16dd9d52d36a08354deae",
+  "content sha256": "f3281ac8ea80b919fd8ba82bb67da5113b244d40baa4491546848eee99d3fb92",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KT591\\Source model.json",
@@ -32,30 +32,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AK/pins/R/2",
-          "net": "KT591AK2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AL/pins/R/2",
-          "net": "KT591AL2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/2",
-          "net": "KT591AM2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -111103,6 +111080,142 @@
               45
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KT591AK2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/2",
+          "net": "KT591AL2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "KT591AM2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KT591AK2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/R/2",
+              "net": "KT591AK2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                24
+              ],
+              "after": [
+                107,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AL/pins/R/2",
+          "net": "KT591AL2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AL/pins/R/2",
+              "net": "KT591AL2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                66
+              ],
+              "after": [
+                107,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "KT591AM2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/2",
+              "net": "KT591AM2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                80
+              ],
+              "after": [
+                107,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KT591AK2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            24
+          ],
+          "after": [
+            107,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/2",
+          "net": "KT591AL2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            66
+          ],
+          "after": [
+            107,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "KT591AM2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            80
+          ],
+          "after": [
+            107,
+            80
+          ],
+          "annotation offsets": []
         }
       ]
     }

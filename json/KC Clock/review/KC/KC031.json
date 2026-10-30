@@ -2,7 +2,7 @@
   "page": "KC031",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "13fa494eb52f645debb946d9a099d9c9575bbe655102c8a3956082e60f65153d",
+  "content sha256": "a6b0779e367b28baf50d02788096a3e23b5bb9402ad883ad55e91db03e29319a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KC031\\Source model.json",
@@ -31,23 +31,8 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AN/pins/L/4",
-          "net": "KU591AK4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "KC031BE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
           "terminal": "blocks/CA/pins/L/2",
           "net": "KC031AL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CU/pins/L/6",
-          "net": "KC011BN4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         }
       ]
@@ -5477,6 +5462,258 @@
             [
               92,
               17
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KU591AK4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KC031BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CU/pins/L/6",
+          "net": "KC011BN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KU591AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/L/4",
+              "net": "KU591AK4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                114,
+                5
+              ],
+              "after": [
+                115,
+                5
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KC031BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/R/4",
+              "net": "KC031BE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                19
+              ],
+              "after": [
+                130,
+                19
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  19
+                ],
+                [
+                  131,
+                  73
+                ],
+                [
+                  204,
+                  73
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  19
+                ],
+                [
+                  131,
+                  19
+                ],
+                [
+                  131,
+                  73
+                ],
+                [
+                  204,
+                  73
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CU/pins/L/6",
+          "net": "KC011BN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CU/pins/L/6",
+              "net": "KC011BN4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                45,
+                28
+              ],
+              "after": [
+                46,
+                28
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  45,
+                  64
+                ],
+                [
+                  45,
+                  28
+                ]
+              ],
+              "after routing": [
+                [
+                  45,
+                  64
+                ],
+                [
+                  45,
+                  28
+                ],
+                [
+                  46,
+                  28
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KU591AK4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            114,
+            5
+          ],
+          "after": [
+            115,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KC031BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            19
+          ],
+          "after": [
+            130,
+            19
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              19
+            ],
+            [
+              131,
+              73
+            ],
+            [
+              204,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              19
+            ],
+            [
+              131,
+              19
+            ],
+            [
+              131,
+              73
+            ],
+            [
+              204,
+              73
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CU/pins/L/6",
+          "net": "KC011BN4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            45,
+            28
+          ],
+          "after": [
+            46,
+            28
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              45,
+              64
+            ],
+            [
+              45,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              45,
+              64
+            ],
+            [
+              45,
+              28
+            ],
+            [
+              46,
+              28
             ]
           ]
         }

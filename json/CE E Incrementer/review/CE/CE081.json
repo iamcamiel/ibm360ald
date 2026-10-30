@@ -2,7 +2,7 @@
   "page": "CE081",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "22abe2c0cca9602b3da84d1512deb14066958ff54f236e60d6e11deb759188d7",
+  "content sha256": "073ab04d03e62c1a540fb52bcef5ca9e26a54c5c41bd079cd4ec113fc141fb09",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Inputs\\CE081\\Exact source model.json",
@@ -64,11 +64,6 @@
           "terminal": "blocks/AT/pins/L/6",
           "net": "CE081AK4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AY/pins/R/4",
-          "net": "CE081AY4",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -4391,6 +4386,58 @@
               17
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "CE081AY4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "CE081AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AY/pins/R/4",
+              "net": "CE081AY4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                173,
+                26
+              ],
+              "after": [
+                176,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "CE081AY4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            26
+          ],
+          "after": [
+            176,
+            26
+          ],
+          "annotation offsets": []
         }
       ]
     }

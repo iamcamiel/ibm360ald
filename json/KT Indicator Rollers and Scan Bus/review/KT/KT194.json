@@ -2,7 +2,7 @@
   "page": "KT194",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e532127808c1127a7d266d286d4eb3113e8edaf333c72b268bce94a4f37acfe4",
+  "content sha256": "eb0435a01aa35c0d63043358ae8e07d95f871d8fa1bb7edaa92aa01cbf52b2b8",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team9\\ALD batch1090\\KT194 independent reconstruction1090\\Inputs\\Baseline model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT194 INDICATOR GATES FOR X OR K.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/2",
-          "net": "KT194AW2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AX/pins/R/2",
-          "net": "KT194AX2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4246,6 +4228,100 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT194AW2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT194AX2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT194AW2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/2",
+              "net": "KT194AW2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                66
+              ],
+              "after": [
+                153,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT194AX2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/R/2",
+              "net": "KT194AX2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                80
+              ],
+              "after": [
+                153,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT194AW2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            66
+          ],
+          "after": [
+            153,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT194AX2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            80
+          ],
+          "after": [
+            153,
+            80
+          ],
+          "annotation offsets": []
         }
       ]
     }

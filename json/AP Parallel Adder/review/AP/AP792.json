@@ -2,7 +2,7 @@
   "page": "AP792",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4b67f07dc594a9f6302468ac086176623ebfcee949bb9f4435657e29ff7d5c18",
+  "content sha256": "9cfb8de21a7fb74210a0f91367bb4ff724005d2c9ed8d8a4612e590fb307ef03",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch730\\AP792 independent reconstruction730\\Inputs\\Baseline model.json",
@@ -24,30 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AP Parallel Adder\\AP792 PADDER HALF SUM PRE CHECK BITS 04-07.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "AP792AA4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AF/pins/L/2",
-          "net": "AP792AB4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "AP792AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -3472,6 +3449,142 @@
               70
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AP792AA4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "AP792AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP792AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AP792AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/2",
+              "net": "AP792AA4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                24
+              ],
+              "after": [
+                69,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "AP792AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/2",
+              "net": "AP792AB4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                38
+              ],
+              "after": [
+                69,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP792AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/2",
+              "net": "AP792AG4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                66
+              ],
+              "after": [
+                69,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "AP792AA4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            24
+          ],
+          "after": [
+            69,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "AP792AB4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            38
+          ],
+          "after": [
+            69,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "AP792AG4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            66
+          ],
+          "after": [
+            69,
+            66
+          ],
+          "annotation offsets": []
         }
       ]
     }

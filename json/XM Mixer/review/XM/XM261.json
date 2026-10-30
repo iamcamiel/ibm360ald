@@ -2,7 +2,7 @@
   "page": "XM261",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "286566ef0194e719b9bfca87495959016862b9c42ab30b82cf305917be51175d",
+  "content sha256": "b7a3800e3db2ca8a77b0d5c899df66791133dcfd7bee06020927d98b5a79e553",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team12\\ALD batch1302\\XM261 independent reconstruction1302\\Inputs\\Baseline model.json",
@@ -43,20 +43,7 @@
       "output row": 58
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "XM261AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2182,6 +2169,124 @@
             [
               161,
               10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XM261AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XM261AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "XM261AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  12
+                ],
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XM261AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              1
+            ],
+            [
+              241,
+              1
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              1
+            ],
+            [
+              241,
+              1
             ]
           ]
         }

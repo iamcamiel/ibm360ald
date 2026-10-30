@@ -2,7 +2,7 @@
   "page": "KM391",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2f2d0119eaa18247c20e14091bc999de763472e34ef3fba9c69c96965dacb940",
+  "content sha256": "7e471e973244293a2f0abae9ae91d8448224ae2f25049162585992bf2bd2c48a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KM391\\Source model.json",
@@ -38,11 +38,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AF/pins/L/2",
-          "net": "KM391AY2",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
         {
           "terminal": "blocks/AM/pins/L/4",
           "net": "KM391AG4",
@@ -2837,6 +2832,124 @@
             [
               115,
               66
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "KM391AY2",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "KM391AY2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/2",
+              "net": "KM391AY2",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                91,
+                10
+              ],
+              "after": [
+                92,
+                10
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  61,
+                  3
+                ],
+                [
+                  91,
+                  3
+                ],
+                [
+                  91,
+                  10
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  3
+                ],
+                [
+                  91,
+                  3
+                ],
+                [
+                  91,
+                  10
+                ],
+                [
+                  92,
+                  10
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "KM391AY2",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            91,
+            10
+          ],
+          "after": [
+            92,
+            10
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              61,
+              3
+            ],
+            [
+              91,
+              3
+            ],
+            [
+              91,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              3
+            ],
+            [
+              91,
+              3
+            ],
+            [
+              91,
+              10
+            ],
+            [
+              92,
+              10
             ]
           ]
         }

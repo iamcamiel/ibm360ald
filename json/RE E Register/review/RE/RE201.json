@@ -2,7 +2,7 @@
   "page": "RE201",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "dafc94c558751a0f413d198c76ded676bdb5cc5d1364f783afec6f07759604f1",
+  "content sha256": "a41da8ba52c44e9414f74e531d449136b44033959e8766290d93090421ce626d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact remaining clean candidate qualification215\\Inputs\\RE201\\Selected exact source model.json",
@@ -24,30 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RE E Register\\RE201 E REG 08-15 TO DIRECT CONTROL AND GATE TO EXT REG.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BD/pins/L/2",
-          "net": "RE201BJ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BE/pins/L/6",
-          "net": "RE201BD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "RE201BE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1605,6 +1582,342 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RE201BJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "RE201BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "RE201BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RE201BJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BD/pins/L/2",
+              "net": "RE201BJ4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                137,
+                80
+              ],
+              "after": [
+                138,
+                80
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  84,
+                  75
+                ],
+                [
+                  137,
+                  75
+                ],
+                [
+                  137,
+                  80
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  75
+                ],
+                [
+                  137,
+                  75
+                ],
+                [
+                  137,
+                  80
+                ],
+                [
+                  138,
+                  80
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "RE201BD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/L/6",
+              "net": "RE201BD4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                160,
+                84
+              ],
+              "after": [
+                161,
+                84
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  153,
+                  82
+                ],
+                [
+                  160,
+                  82
+                ],
+                [
+                  160,
+                  84
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  82
+                ],
+                [
+                  160,
+                  82
+                ],
+                [
+                  160,
+                  84
+                ],
+                [
+                  161,
+                  84
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "RE201BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/R/4",
+              "net": "RE201BE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                82
+              ],
+              "after": [
+                176,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  82
+                ],
+                [
+                  177,
+                  90
+                ],
+                [
+                  204,
+                  90
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  82
+                ],
+                [
+                  177,
+                  82
+                ],
+                [
+                  177,
+                  90
+                ],
+                [
+                  204,
+                  90
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RE201BJ4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            137,
+            80
+          ],
+          "after": [
+            138,
+            80
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              84,
+              75
+            ],
+            [
+              137,
+              75
+            ],
+            [
+              137,
+              80
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              75
+            ],
+            [
+              137,
+              75
+            ],
+            [
+              137,
+              80
+            ],
+            [
+              138,
+              80
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "RE201BD4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            160,
+            84
+          ],
+          "after": [
+            161,
+            84
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              153,
+              82
+            ],
+            [
+              160,
+              82
+            ],
+            [
+              160,
+              84
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              82
+            ],
+            [
+              160,
+              82
+            ],
+            [
+              160,
+              84
+            ],
+            [
+              161,
+              84
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "RE201BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            82
+          ],
+          "after": [
+            176,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              82
+            ],
+            [
+              177,
+              90
+            ],
+            [
+              204,
+              90
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              82
+            ],
+            [
+              177,
+              82
+            ],
+            [
+              177,
+              90
+            ],
+            [
+              204,
+              90
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

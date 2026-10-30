@@ -2,7 +2,7 @@
   "page": "DR151",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ae6302030e43de7ba07b46e463fe475e992ca039c918ce128b11dc713d8b154f",
+  "content sha256": "128f6bcb0e038ac4c2f9cef28698ebab374b37e9996c26101923fd532b4d74cf",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\DR151\\Source model.json",
@@ -48,20 +48,7 @@
       "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/CD/pins/R/4",
-          "net": "DR151CD4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4445,6 +4432,58 @@
               70
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "DR151CD4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "DR151CD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CD/pins/R/4",
+              "net": "DR151CD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                75
+              ],
+              "after": [
+                130,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "DR151CD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

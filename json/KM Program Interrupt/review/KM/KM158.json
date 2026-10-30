@@ -2,7 +2,7 @@
   "page": "KM158",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "797f98b66b2ceae2467ed865b7548e9454763a314812dcc12191ba2aa7f2b5e8",
+  "content sha256": "0513f74fcc89e729a7622ea75411abf049dda5076ce4fc8570bbbb49d618a1d0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KM158\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KM Program Interrupt\\KM158 PGM INT CODES 64 AND 128.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AK/pins/L/2",
-          "net": "KM158AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1971,6 +1958,124 @@
             [
               138,
               70
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/L/2",
+          "net": "KM158AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/L/2",
+          "net": "KM158AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/L/2",
+              "net": "KM158AC4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                160,
+                24
+              ],
+              "after": [
+                161,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  130,
+                  19
+                ],
+                [
+                  160,
+                  19
+                ],
+                [
+                  160,
+                  24
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  19
+                ],
+                [
+                  160,
+                  19
+                ],
+                [
+                  160,
+                  24
+                ],
+                [
+                  161,
+                  24
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/L/2",
+          "net": "KM158AC4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            160,
+            24
+          ],
+          "after": [
+            161,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              130,
+              19
+            ],
+            [
+              160,
+              19
+            ],
+            [
+              160,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              19
+            ],
+            [
+              160,
+              19
+            ],
+            [
+              160,
+              24
+            ],
+            [
+              161,
+              24
             ]
           ]
         }

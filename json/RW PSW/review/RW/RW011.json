@@ -2,7 +2,7 @@
   "page": "RW011",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "32c5435e08c9ed0a013a0255c3ab92d4199bfa5b3a5f446abf05d0eb3a822282",
+  "content sha256": "95fd0177c04ea7928317526e7113a1f497629dc1490c4c1b185b68673ffc1dc8",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RW011\\Source model.json",
@@ -32,25 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RW011AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "RW011AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2867,6 +2849,232 @@
             [
               115,
               73
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RW011AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RW011AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RW011AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RW011AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  205,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  12
+                ],
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  205,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RW011AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "RW011AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                40
+              ],
+              "after": [
+                61,
+                40
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  40
+                ],
+                [
+                  62,
+                  30
+                ],
+                [
+                  205,
+                  30
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  40
+                ],
+                [
+                  62,
+                  40
+                ],
+                [
+                  62,
+                  30
+                ],
+                [
+                  205,
+                  30
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RW011AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              205,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              205,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RW011AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            40
+          ],
+          "after": [
+            61,
+            40
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              40
+            ],
+            [
+              62,
+              30
+            ],
+            [
+              205,
+              30
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              40
+            ],
+            [
+              62,
+              40
+            ],
+            [
+              62,
+              30
+            ],
+            [
+              205,
+              30
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "BF021",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6b83b0eea4eaa08b323c7e0cb67836ded8cf981c52a21a5aaaf0b0aaef23c5ae",
+  "content sha256": "6460b6cbcf2376a45d11a9cb0d222a8be3f5b4554615124fb2e33e829a7e0602",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\BF021\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\BF 9020 Registers to Local Store\\BF021 9020 REGISTERS GATED TO LOCAL STORE BUS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AK/pins/R/4",
-          "net": "BF021AK4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "BF021AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -120353,6 +120335,100 @@
               40
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF021AK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF021AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF021AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/R/4",
+              "net": "BF021AK4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                82
+              ],
+              "after": [
+                84,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF021AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/2",
+              "net": "BF021AG4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                73
+              ],
+              "after": [
+                92,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF021AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            82
+          ],
+          "after": [
+            84,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF021AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            73
+          ],
+          "after": [
+            92,
+            73
+          ],
+          "annotation offsets": []
         }
       ]
     }

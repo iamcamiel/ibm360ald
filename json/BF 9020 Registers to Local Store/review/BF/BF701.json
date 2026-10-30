@@ -2,7 +2,7 @@
   "page": "BF701",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c5b81a06fb04b696bc2abbb6ad541fd3eef5c0c8a7120fc9f90fef8834c05a0b",
+  "content sha256": "09ada3bcfd1cf35f1a68848e1fe5be67c95d86c5253e49dc5d8c61a53992b532",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch808\\BF701 independent reconstruction808\\Inputs\\Baseline model.json",
@@ -313,18 +313,6 @@
         85
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "BF701BB4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -3549,6 +3537,58 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "BF701BB4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "BF701BB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/R/4",
+              "net": "BF701BB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                19
+              ],
+              "after": [
+                176,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "BF701BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            19
+          ],
+          "after": [
+            176,
+            19
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "KD802",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "dc352515345eaf7032e14cae1da57335350f2f2d1fc7a96bde06316e2af4c169",
+  "content sha256": "1305b6fbb649449497bd920c7d4882ffde725581cb9ff2e41e0367c889ab7b24",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KD802\\Source model.json",
@@ -36,20 +36,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BA/pins/R/4",
-          "net": "KD802BA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3475,6 +3462,124 @@
             [
               161,
               33
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KD802BA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KD802BA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BA/pins/R/4",
+              "net": "KD802BA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                33
+              ],
+              "after": [
+                153,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  33
+                ],
+                [
+                  154,
+                  39
+                ],
+                [
+                  242,
+                  39
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  33
+                ],
+                [
+                  154,
+                  33
+                ],
+                [
+                  154,
+                  39
+                ],
+                [
+                  242,
+                  39
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KD802BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            33
+          ],
+          "after": [
+            153,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              33
+            ],
+            [
+              154,
+              39
+            ],
+            [
+              242,
+              39
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              33
+            ],
+            [
+              154,
+              33
+            ],
+            [
+              154,
+              39
+            ],
+            [
+              242,
+              39
             ]
           ]
         }

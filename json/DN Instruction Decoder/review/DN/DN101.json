@@ -2,7 +2,7 @@
   "page": "DN101",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "17fb806a4a2b32e96c8fe64cbc34ff328f007d630cc8b1f94653db1aed07aeeb",
+  "content sha256": "cf69700b888b8912a6ede4226ec7903200fb290810bad49ec04a28b66b102303",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\DN101 independent reconstruction607\\Inputs\\Baseline model.json",
@@ -36,30 +36,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "DN101AD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "DN101AN4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/4",
-          "net": "DN101AT4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2924,6 +2901,208 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DN101AD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "DN101AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DN101AT4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DN101AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "DN101AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  61
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  241,
+                  51
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  61
+                ],
+                [
+                  62,
+                  61
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  241,
+                  51
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "DN101AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/R/4",
+              "net": "DN101AN4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                26
+              ],
+              "after": [
+                130,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DN101AT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AT/pins/R/4",
+              "net": "DN101AT4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                82
+              ],
+              "after": [
+                130,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DN101AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              61
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              241,
+              51
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              61
+            ],
+            [
+              62,
+              61
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              241,
+              51
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "DN101AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            26
+          ],
+          "after": [
+            130,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DN101AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": []
         }
       ]
     }

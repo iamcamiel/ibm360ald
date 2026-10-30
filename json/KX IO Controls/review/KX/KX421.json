@@ -2,7 +2,7 @@
   "page": "KX421",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6722ef050f5a53bf18aa3042219f08cd2487596122646cff2b648b2d4506f676",
+  "content sha256": "cf9e79f1acbf5fdf71c5d9fc8412f4fe72ead167eb9e5e6a9dd0db4f2f8189a1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round015\\Inputs\\KX421\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KX IO Controls\\KX421 IOCE ERROR FORCE CC 3 AND RELEASE.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "KX421AW4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -94310,6 +94297,58 @@
               52
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KX421AW4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KX421AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/4",
+              "net": "KX421AW4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                54
+              ],
+              "after": [
+                176,
+                54
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KX421AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            54
+          ],
+          "after": [
+            176,
+            54
+          ],
+          "annotation offsets": []
         }
       ]
     }

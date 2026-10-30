@@ -2,7 +2,7 @@
   "page": "FA141",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1df5cb1e2eca12b5bd82ee3daabfb110c50bafc3e914573fa582bb3685e4f8dd",
+  "content sha256": "b460388b086ace4a1accbfe9df1cbacce108dce2f5ff51f570f2a2b9666823e8",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FA141\\Source model.json",
@@ -31,24 +31,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "FA141AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
           "terminal": "blocks/AG/pins/L/4",
           "net": "FA141AH4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "FA141AM4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/4",
-          "net": "MC768BX4",
-          "reason": "Another same-net route intersects the changed lead interval"
         }
       ]
     }
@@ -833,6 +818,208 @@
               10
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA141AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FA141AM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC768BX4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA141AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "FA141AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                5
+              ],
+              "after": [
+                84,
+                5
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  5
+                ],
+                [
+                  85,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  5
+                ],
+                [
+                  85,
+                  5
+                ],
+                [
+                  85,
+                  1
+                ],
+                [
+                  241,
+                  1
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FA141AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/4",
+              "net": "FA141AM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                12
+              ],
+              "after": [
+                176,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC768BX4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/4",
+              "net": "MC768BX4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                68,
+                75
+              ],
+              "after": [
+                69,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA141AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            5
+          ],
+          "after": [
+            84,
+            5
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              5
+            ],
+            [
+              85,
+              1
+            ],
+            [
+              241,
+              1
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              5
+            ],
+            [
+              85,
+              5
+            ],
+            [
+              85,
+              1
+            ],
+            [
+              241,
+              1
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FA141AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC768BX4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            75
+          ],
+          "after": [
+            69,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

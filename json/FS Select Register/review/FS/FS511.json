@@ -2,7 +2,7 @@
   "page": "FS511",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1a5d4f9b536d75bc910bf52cff1f424c7055f18bdb33c81b4e8cdfa8443f9431",
+  "content sha256": "1a464c4e54f4a9051393d550cc74ee208853e764a99e3df0fdac6386abddfefa",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FS511\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FS Select Register\\FS511 SELECT REG RESET FROM SCON.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BJ/pins/L/4",
-          "net": "FX051AT4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3386,6 +3373,124 @@
             [
               115,
               54
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "FX051AT4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "FX051AT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BJ/pins/L/4",
+              "net": "FX051AT4",
+              "polyline": 3,
+              "point": 2,
+              "before": [
+                91,
+                47
+              ],
+              "after": [
+                92,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  41,
+                  51
+                ],
+                [
+                  91,
+                  51
+                ],
+                [
+                  91,
+                  47
+                ]
+              ],
+              "after routing": [
+                [
+                  41,
+                  51
+                ],
+                [
+                  91,
+                  51
+                ],
+                [
+                  91,
+                  47
+                ],
+                [
+                  92,
+                  47
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "FX051AT4",
+          "polyline": 3,
+          "point": 2,
+          "before": [
+            91,
+            47
+          ],
+          "after": [
+            92,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              41,
+              51
+            ],
+            [
+              91,
+              51
+            ],
+            [
+              91,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              41,
+              51
+            ],
+            [
+              91,
+              51
+            ],
+            [
+              91,
+              47
+            ],
+            [
+              92,
+              47
             ]
           ]
         }

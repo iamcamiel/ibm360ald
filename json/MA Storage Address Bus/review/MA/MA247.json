@@ -2,7 +2,7 @@
   "page": "MA247",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6a0c416dca71afda15da4834d392861782d3bdd5c7f1ba5aadca2607e0deac0d",
+  "content sha256": "69581a47b9e7ad35396a4e2c3f1efd1272c5cf8bfef09f7835171fdda6a50e08",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Results\\Continuous integration assist20261025-Round021\\Inputs\\MA247\\Source model.json",
@@ -50,20 +50,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "MA247AJ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2549,6 +2536,58 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MA247AJ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MA247AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/4",
+              "net": "MA247AJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                19
+              ],
+              "after": [
+                107,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MA247AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
         }
       ]
     }

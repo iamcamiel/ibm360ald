@@ -2,7 +2,7 @@
   "page": "BF315",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "86f52b16940c69b80871fdef3f78f06777cda620c9c7a282a04a80a9034cee8e",
+  "content sha256": "2af2952b597fbfb452868f1e48c47a6b9edb48ee2531a4f624b575b7e90f1f45",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch786\\BF315 independent reconstruction786\\Inputs\\Baseline model.json",
@@ -54,16 +54,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AK/pins/R/4",
-          "net": "BF315AK4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "BF315AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
         {
           "terminal": "blocks/AP/pins/L/5",
           "net": "BF315AK4",
@@ -115296,6 +115286,100 @@
               40
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF315AK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF315AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF315AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/R/4",
+              "net": "BF315AK4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                82
+              ],
+              "after": [
+                84,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF315AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/2",
+              "net": "BF315AG4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                73
+              ],
+              "after": [
+                92,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF315AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            82
+          ],
+          "after": [
+            84,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF315AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            73
+          ],
+          "after": [
+            92,
+            73
+          ],
+          "annotation offsets": []
         }
       ]
     }

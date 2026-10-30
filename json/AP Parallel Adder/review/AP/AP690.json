@@ -2,7 +2,7 @@
   "page": "AP690",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter (original producer); Team5 DATA251 Reviewer A (/root/data251_a)",
-  "content sha256": "67a9a28e67dd4b28767c4daa1d41ca619048f09b1892e03700b5399992185e91",
+  "content sha256": "af8445aef992e314309f3b02ebf9fa960f5c0d727aed22c5650a8ca08735f610",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\AP690\\Exact source model.json",
@@ -103,21 +103,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AH/pins/R/2",
-          "net": "AP690AH2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "AP691AG4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AJ/pins/R/2",
-          "net": "AP690AJ2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
           "terminal": "blocks/AR/pins/R/4",
           "net": "AP690AR4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
@@ -126,11 +111,6 @@
           "terminal": "blocks/AS/pins/R/4",
           "net": "AP690AS4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BH/pins/R/2",
-          "net": "AP690BH2",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -3706,6 +3686,266 @@
               66
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/R/2",
+          "net": "AP690AH2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP691AG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "AP690AJ2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BH/pins/R/2",
+          "net": "AP690BH2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/R/2",
+          "net": "AP690AH2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/R/2",
+              "net": "AP690AH2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                45
+              ],
+              "after": [
+                84,
+                45
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP691AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/R/4",
+              "net": "AP691AG4",
+              "polyline": 1,
+              "point": 0,
+              "before": [
+                85,
+                47
+              ],
+              "after": [
+                84,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  56
+                ],
+                [
+                  92,
+                  56
+                ],
+                [
+                  92,
+                  68
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  47
+                ],
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  56
+                ],
+                [
+                  92,
+                  56
+                ],
+                [
+                  92,
+                  68
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "AP690AJ2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/2",
+              "net": "AP690AJ2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                52
+              ],
+              "after": [
+                84,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BH/pins/R/2",
+          "net": "AP690BH2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BH/pins/R/2",
+              "net": "AP690BH2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                38
+              ],
+              "after": [
+                84,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/R/2",
+          "net": "AP690AH2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            45
+          ],
+          "after": [
+            84,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP691AG4",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            85,
+            47
+          ],
+          "after": [
+            84,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              56
+            ],
+            [
+              92,
+              56
+            ],
+            [
+              92,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              47
+            ],
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              56
+            ],
+            [
+              92,
+              56
+            ],
+            [
+              92,
+              68
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "AP690AJ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            52
+          ],
+          "after": [
+            84,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BH/pins/R/2",
+          "net": "AP690BH2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            38
+          ],
+          "after": [
+            84,
+            38
+          ],
+          "annotation offsets": []
         }
       ]
     }

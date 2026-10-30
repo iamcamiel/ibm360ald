@@ -2,7 +2,7 @@
   "page": "KX161",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "abcf61d49ef394e197e025066ecb089a453d02de5b896eb577a2e30487f408d2",
+  "content sha256": "fde23989d6672a57c446c276a72844ce623e13f7bf22ff91fc99ccd28726828f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KX161\\Source model.json",
@@ -32,30 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/L/4",
-          "net": "KX161AC2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AV/pins/L/2",
-          "net": "KX161AL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AX/pins/L/2",
-          "net": "KX161AN4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -4148,6 +4125,242 @@
             [
               115,
               10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "KX161AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "KX161AL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "KX161AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "KX161AC2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/L/4",
+              "net": "KX161AC2",
+              "polyline": 0,
+              "point": 5,
+              "before": [
+                95,
+                33
+              ],
+              "after": [
+                92,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "KX161AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/L/2",
+              "net": "KX161AL4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                114,
+                59
+              ],
+              "after": [
+                115,
+                59
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  114,
+                  54
+                ],
+                [
+                  114,
+                  59
+                ]
+              ],
+              "after routing": [
+                [
+                  114,
+                  54
+                ],
+                [
+                  114,
+                  59
+                ],
+                [
+                  115,
+                  59
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "KX161AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/L/2",
+              "net": "KX161AN4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                114,
+                87
+              ],
+              "after": [
+                115,
+                87
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  114,
+                  82
+                ],
+                [
+                  114,
+                  87
+                ]
+              ],
+              "after routing": [
+                [
+                  114,
+                  82
+                ],
+                [
+                  114,
+                  87
+                ],
+                [
+                  115,
+                  87
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "KX161AC2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            95,
+            33
+          ],
+          "after": [
+            92,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "KX161AL4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            114,
+            59
+          ],
+          "after": [
+            115,
+            59
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              114,
+              54
+            ],
+            [
+              114,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              114,
+              54
+            ],
+            [
+              114,
+              59
+            ],
+            [
+              115,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "KX161AN4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            114,
+            87
+          ],
+          "after": [
+            115,
+            87
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              114,
+              82
+            ],
+            [
+              114,
+              87
+            ]
+          ],
+          "after routing": [
+            [
+              114,
+              82
+            ],
+            [
+              114,
+              87
+            ],
+            [
+              115,
+              87
             ]
           ]
         }

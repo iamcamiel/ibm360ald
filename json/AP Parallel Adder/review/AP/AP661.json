@@ -2,7 +2,7 @@
   "page": "AP661",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter (original producer); Team5 DATA251 Reviewer A (/root/data251_a)",
-  "content sha256": "4d4a46cc930837cd790e03f45b253a0b51724120f5073170bb58a7cbfe7c77d8",
+  "content sha256": "2e81857b49cd2756f0c163f90b355441ce54ceb576c603c81d224d672ed7cda0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\AP661\\Exact source model.json",
@@ -87,16 +87,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AM/pins/R/2",
-          "net": "AP661AM2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AX/pins/L/2",
-          "net": "AP661AT4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
         {
           "terminal": "blocks/AY/pins/R/4",
           "net": "AP661AY4",
@@ -3035,6 +3025,100 @@
               56
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "AP661AM2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AP661AT4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "AP661AM2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/2",
+              "net": "AP661AM2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                31
+              ],
+              "after": [
+                107,
+                31
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AP661AT4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/L/2",
+              "net": "AP661AT4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                187,
+                38
+              ],
+              "after": [
+                184,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "AP661AM2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            31
+          ],
+          "after": [
+            107,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AP661AT4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            38
+          ],
+          "after": [
+            184,
+            38
+          ],
+          "annotation offsets": []
         }
       ]
     }

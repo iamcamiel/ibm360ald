@@ -2,7 +2,7 @@
   "page": "KU211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "284040f392e1787df0473671e762d82027d1cdb5a8dd0afe1a94606a2ea5a578",
+  "content sha256": "88cf8ed5cb8e79575adfe48bbf93a13a10f148310eb4e4556089cd7f5e653091",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round010\\KU211\\Currentness successor001\\Current model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KU MCW, Scan, Logout\\KU211 REPEAT CONTROLS AND SPLIT LOGOUT.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BU/pins/R/4",
-          "net": "KU211BU4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1991,6 +1978,142 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BU/pins/R/4",
+          "net": "KU211BU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BU/pins/R/4",
+          "net": "KU211BU4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BU/pins/R/4",
+              "net": "KU211BU4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                47
+              ],
+              "after": [
+                61,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  47
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  46,
+                  51
+                ],
+                [
+                  46,
+                  61
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  47
+                ],
+                [
+                  62,
+                  47
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  46,
+                  51
+                ],
+                [
+                  46,
+                  61
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BU/pins/R/4",
+          "net": "KU211BU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              47
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              46,
+              51
+            ],
+            [
+              46,
+              61
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              47
+            ],
+            [
+              62,
+              47
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              46,
+              51
+            ],
+            [
+              46,
+              61
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

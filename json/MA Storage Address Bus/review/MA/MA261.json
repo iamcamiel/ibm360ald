@@ -2,7 +2,7 @@
   "page": "MA261",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b51b94bd119ca762e9a9c4f4ca497f047ab6a16b988cbbe6b9c503acb26424b8",
+  "content sha256": "9a8ffc9ee6e222f13a53b6c812170ef6bf07d7352d4bfcd1bc14d4f5ab3184f3",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Luna Team5 remaining unreviewed split to finished Team6 001\\Team6 transferred remaining135\\Inputs\\MA261\\Source model.json",
@@ -24,35 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA261 PARITY GENERATION CIRCUITS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "MA261AN4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AU/pins/L/2",
-          "net": "MA261AR4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AV/pins/L/6",
-          "net": "MA261AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AW/pins/L/2",
-          "net": "MA261AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1248,6 +1220,250 @@
               84
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MA261AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "MA261AR4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AV/pins/L/6",
+          "net": "MA261AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AW/pins/L/2",
+          "net": "MA261AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MA261AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/R/4",
+              "net": "MA261AN4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                54
+              ],
+              "after": [
+                130,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  54
+                ],
+                [
+                  131,
+                  61
+                ],
+                [
+                  242,
+                  61
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  54
+                ],
+                [
+                  131,
+                  54
+                ],
+                [
+                  131,
+                  61
+                ],
+                [
+                  242,
+                  61
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "MA261AR4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AU/pins/L/2",
+              "net": "MA261AR4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                73
+              ],
+              "after": [
+                69,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/6",
+          "net": "MA261AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/L/6",
+              "net": "MA261AS4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                72,
+                84
+              ],
+              "after": [
+                69,
+                84
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AW/pins/L/2",
+          "net": "MA261AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/L/2",
+              "net": "MA261AS4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                87
+              ],
+              "after": [
+                69,
+                87
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MA261AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              54
+            ],
+            [
+              131,
+              61
+            ],
+            [
+              242,
+              61
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              54
+            ],
+            [
+              131,
+              54
+            ],
+            [
+              131,
+              61
+            ],
+            [
+              242,
+              61
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "MA261AR4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            73
+          ],
+          "after": [
+            69,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/L/6",
+          "net": "MA261AS4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            72,
+            84
+          ],
+          "after": [
+            69,
+            84
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/L/2",
+          "net": "MA261AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            87
+          ],
+          "after": [
+            69,
+            87
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "MA551",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b402b22fae93c70d58968534205e896d1f31d35bc68525feec0f2d6ce947ada7",
+  "content sha256": "ae497d0c07091d7bf93ef5c1289e0118ba2950f2d5e36b151b4ddb9737c529ed",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA551\\Source model.json",
@@ -30,11 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "MA551AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
         {
           "terminal": "blocks/AD/pins/L/4",
           "net": "MA551AC4",
@@ -1555,6 +1550,124 @@
             [
               184,
               5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MA551AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MA551AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "MA551AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                5
+              ],
+              "after": [
+                61,
+                5
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  17
+                ],
+                [
+                  200,
+                  17
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  5
+                ],
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  17
+                ],
+                [
+                  200,
+                  17
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MA551AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              17
+            ],
+            [
+              200,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              5
+            ],
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              17
+            ],
+            [
+              200,
+              17
             ]
           ]
         }

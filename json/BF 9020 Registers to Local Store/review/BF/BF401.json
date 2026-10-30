@@ -2,7 +2,7 @@
   "page": "BF401",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter (original producer); Team5 DATA251 Reviewer C (/root/data251_c)",
-  "content sha256": "c72cc672eac37f05914d4b24ceb831b830c6079ce578e6bb699cab8ac189de82",
+  "content sha256": "5df458984802b98bb5ec34bb8e0de3e765d10ba0b11459c01bb144dfad1b7ee7",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\BF401\\Exact source model.json",
@@ -32,25 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AQ/pins/L/4",
-          "net": "LS075GB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AV/pins/L/5",
-          "net": "LS075GB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2387,6 +2369,216 @@
             [
               138,
               63
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "LS075GB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AV/pins/L/5",
+          "net": "LS075GB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "LS075GB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/4",
+              "net": "LS075GB4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                45,
+                47
+              ],
+              "after": [
+                46,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  45,
+                  54
+                ],
+                [
+                  45,
+                  47
+                ]
+              ],
+              "after routing": [
+                [
+                  45,
+                  54
+                ],
+                [
+                  45,
+                  47
+                ],
+                [
+                  46,
+                  47
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/5",
+          "net": "LS075GB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/L/5",
+              "net": "LS075GB4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                160,
+                55
+              ],
+              "after": [
+                161,
+                55
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  0,
+                  54
+                ],
+                [
+                  160,
+                  54
+                ],
+                [
+                  160,
+                  55
+                ]
+              ],
+              "after routing": [
+                [
+                  0,
+                  54
+                ],
+                [
+                  160,
+                  54
+                ],
+                [
+                  160,
+                  55
+                ],
+                [
+                  161,
+                  55
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "LS075GB4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            45,
+            47
+          ],
+          "after": [
+            46,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              45,
+              54
+            ],
+            [
+              45,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              45,
+              54
+            ],
+            [
+              45,
+              47
+            ],
+            [
+              46,
+              47
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/5",
+          "net": "LS075GB4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            160,
+            55
+          ],
+          "after": [
+            161,
+            55
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              0,
+              54
+            ],
+            [
+              160,
+              54
+            ],
+            [
+              160,
+              55
+            ]
+          ],
+          "after routing": [
+            [
+              0,
+              54
+            ],
+            [
+              160,
+              54
+            ],
+            [
+              160,
+              55
+            ],
+            [
+              161,
+              55
             ]
           ]
         }

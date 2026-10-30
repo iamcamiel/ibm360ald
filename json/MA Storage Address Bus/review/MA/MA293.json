@@ -2,7 +2,7 @@
   "page": "MA293",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8e99d56a6345f42e90e5f29e79faded15512167b7d5498da06c43cb7d6d63a86",
+  "content sha256": "856df778840900e33e5bc137a803a577dbf8bce35092e3435e38528b159c9065",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-3\\Results\\Continuous integration assist20261025-Round011\\Pages\\MA293\\Successor001\\Current model.json",
@@ -32,20 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "MA293AS4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2712,6 +2699,124 @@
             [
               92,
               70
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "MA293AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "MA293AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/R/4",
+              "net": "MA293AS4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                40
+              ],
+              "after": [
+                130,
+                40
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  23
+                ],
+                [
+                  242,
+                  23
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  40
+                ],
+                [
+                  131,
+                  40
+                ],
+                [
+                  131,
+                  23
+                ],
+                [
+                  242,
+                  23
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "MA293AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            40
+          ],
+          "after": [
+            130,
+            40
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              23
+            ],
+            [
+              242,
+              23
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              40
+            ],
+            [
+              131,
+              40
+            ],
+            [
+              131,
+              23
+            ],
+            [
+              242,
+              23
             ]
           ]
         }

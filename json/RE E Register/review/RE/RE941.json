@@ -2,7 +2,7 @@
   "page": "RE941",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f93a572ddc49aec5c9bbaac232ef1f7689c59c381b5b362317103593ea823275",
+  "content sha256": "556d06b51c6639321ba12e2fd756db24b7d6de8b77c86f7106f0c37ad96b9feb",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch1228\\RE941 independent reconstruction1228\\Inputs\\Baseline model.json",
@@ -40,20 +40,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BD/pins/R/4",
-          "net": "RE941BD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -7767,6 +7754,124 @@
             [
               161,
               77
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "RE941BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "RE941BD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BD/pins/R/4",
+              "net": "RE941BD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                75
+              ],
+              "after": [
+                176,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  75
+                ],
+                [
+                  177,
+                  60
+                ],
+                [
+                  204,
+                  60
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  75
+                ],
+                [
+                  177,
+                  75
+                ],
+                [
+                  177,
+                  60
+                ],
+                [
+                  204,
+                  60
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "RE941BD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            75
+          ],
+          "after": [
+            176,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              75
+            ],
+            [
+              177,
+              60
+            ],
+            [
+              204,
+              60
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              75
+            ],
+            [
+              177,
+              75
+            ],
+            [
+              177,
+              60
+            ],
+            [
+              204,
+              60
             ]
           ]
         }

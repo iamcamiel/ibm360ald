@@ -2,7 +2,7 @@
   "page": "KX311",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6c29ec91be6889837bc479a4ff12563a8049f0667b2b09740eb595d9f37e164a",
+  "content sha256": "4c27a24def3516c25a35929feb8c4d09f59451d5e856e3bf0aa77458c36acbe3",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1161\\KX311 independent reconstruction1161\\Inputs\\Baseline model.json",
@@ -43,25 +43,7 @@
       "output row": 33
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/L/6",
-          "net": "KX181CQ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BS/pins/L/2",
-          "net": "KX181CQ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -101484,6 +101466,216 @@
             [
               138,
               73
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "KX181CQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BS/pins/L/2",
+          "net": "KX181CQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "KX181CQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/6",
+              "net": "KX181CQ4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                91,
+                14
+              ],
+              "after": [
+                92,
+                14
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  10,
+                  21
+                ],
+                [
+                  91,
+                  21
+                ],
+                [
+                  91,
+                  14
+                ]
+              ],
+              "after routing": [
+                [
+                  10,
+                  21
+                ],
+                [
+                  91,
+                  21
+                ],
+                [
+                  91,
+                  14
+                ],
+                [
+                  92,
+                  14
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BS/pins/L/2",
+          "net": "KX181CQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BS/pins/L/2",
+              "net": "KX181CQ4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                68,
+                24
+              ],
+              "after": [
+                69,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  21
+                ],
+                [
+                  68,
+                  24
+                ]
+              ],
+              "after routing": [
+                [
+                  68,
+                  21
+                ],
+                [
+                  68,
+                  24
+                ],
+                [
+                  69,
+                  24
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "KX181CQ4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            91,
+            14
+          ],
+          "after": [
+            92,
+            14
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              10,
+              21
+            ],
+            [
+              91,
+              21
+            ],
+            [
+              91,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              10,
+              21
+            ],
+            [
+              91,
+              21
+            ],
+            [
+              91,
+              14
+            ],
+            [
+              92,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BS/pins/L/2",
+          "net": "KX181CQ4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            68,
+            24
+          ],
+          "after": [
+            69,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              68,
+              21
+            ],
+            [
+              68,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              68,
+              21
+            ],
+            [
+              68,
+              24
+            ],
+            [
+              69,
+              24
             ]
           ]
         }

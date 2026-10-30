@@ -2,7 +2,7 @@
   "page": "DS215",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b3fd4ad149d60c3a34343115d5a93df3f8eba5eeace497ece0eece2e313af0ca",
+  "content sha256": "6c4f660daf2ddfb99858ff5af0d11fc372af20d8a30ff82dabf487491908149b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\DS215\\Source model.json",
@@ -68,80 +68,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/L/4",
-          "net": "DS215AD2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/2",
-          "net": "DS215AM2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AN/pins/R/2",
-          "net": "DS215AN2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/2",
-          "net": "DS215AP2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "DS215AP4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AR/pins/R/2",
-          "net": "DS215AR2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/2",
-          "net": "DS215AS2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/2",
-          "net": "DS215AT2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AY/pins/L/6",
-          "net": "DS215AQ2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AZ/pins/L/6",
-          "net": "DS215AR2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AZ/pins/R/4",
-          "net": "DS215AZ4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BE/pins/L/6",
-          "net": "DS215AS2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "DS215BJ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -5591,6 +5518,562 @@
               91
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "DS215AD2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "DS215AM2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/2",
+          "net": "DS215AN2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/2",
+          "net": "DS215AP2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS215AP4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/2",
+          "net": "DS215AR2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "DS215AS2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/2",
+          "net": "DS215AT2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "DS215AQ2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/6",
+          "net": "DS215AR2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "DS215AZ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "DS215AS2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS215BJ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "DS215AD2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/L/4",
+              "net": "DS215AD2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                61
+              ],
+              "after": [
+                69,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "DS215AM2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/2",
+              "net": "DS215AM2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                17
+              ],
+              "after": [
+                107,
+                17
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/R/2",
+          "net": "DS215AN2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/R/2",
+              "net": "DS215AN2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                24
+              ],
+              "after": [
+                107,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/2",
+          "net": "DS215AP2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/R/2",
+              "net": "DS215AP2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                31
+              ],
+              "after": [
+                107,
+                31
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS215AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/R/4",
+              "net": "DS215AP4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                33
+              ],
+              "after": [
+                107,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/R/2",
+          "net": "DS215AR2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AR/pins/R/2",
+              "net": "DS215AR2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                66
+              ],
+              "after": [
+                107,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "DS215AS2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/R/2",
+              "net": "DS215AS2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                87
+              ],
+              "after": [
+                107,
+                87
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/2",
+          "net": "DS215AT2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AT/pins/R/2",
+              "net": "DS215AT2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                87
+              ],
+              "after": [
+                130,
+                87
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "DS215AQ2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AY/pins/L/6",
+              "net": "DS215AQ2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                118,
+                63
+              ],
+              "after": [
+                115,
+                63
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/6",
+          "net": "DS215AR2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/L/6",
+              "net": "DS215AR2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                118,
+                77
+              ],
+              "after": [
+                115,
+                77
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "DS215AZ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/R/4",
+              "net": "DS215AZ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                75
+              ],
+              "after": [
+                130,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "DS215AS2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/L/6",
+              "net": "DS215AS2",
+              "polyline": 0,
+              "point": 5,
+              "before": [
+                141,
+                77
+              ],
+              "after": [
+                138,
+                77
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS215BJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BJ/pins/R/4",
+              "net": "DS215BJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                173,
+                40
+              ],
+              "after": [
+                176,
+                40
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "DS215AD2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            61
+          ],
+          "after": [
+            69,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "DS215AM2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            17
+          ],
+          "after": [
+            107,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/R/2",
+          "net": "DS215AN2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            24
+          ],
+          "after": [
+            107,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/2",
+          "net": "DS215AP2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            31
+          ],
+          "after": [
+            107,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS215AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/R/2",
+          "net": "DS215AR2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            66
+          ],
+          "after": [
+            107,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "DS215AS2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            87
+          ],
+          "after": [
+            107,
+            87
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/2",
+          "net": "DS215AT2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            87
+          ],
+          "after": [
+            130,
+            87
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "DS215AQ2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            63
+          ],
+          "after": [
+            115,
+            63
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/6",
+          "net": "DS215AR2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            77
+          ],
+          "after": [
+            115,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "DS215AZ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/L/6",
+          "net": "DS215AS2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            141,
+            77
+          ],
+          "after": [
+            138,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS215BJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": []
         }
       ]
     }

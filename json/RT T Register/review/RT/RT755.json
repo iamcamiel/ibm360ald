@@ -2,7 +2,7 @@
   "page": "RT755",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b706b48ec3bd2c5b78e7b2c52c34c46eb1e6197dc7446f4de6a9ff26ebd7d910",
+  "content sha256": "612ed1b69671e79017d7f926a359ec1acb104b55c0984a5c0305ef96d3b96957",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT755\\Source model.json",
@@ -32,35 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RT755AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AB/pins/L/2",
-          "net": "RT755AF4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "RT755AM4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AV/pins/R/4",
-          "net": "RT755AV4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4614,6 +4586,250 @@
               77
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT755AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RT755AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "RT755AM4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "RT755AV4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT755AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RT755AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                19
+              ],
+              "after": [
+                107,
+                19
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  30
+                ],
+                [
+                  242,
+                  30
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  19
+                ],
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  30
+                ],
+                [
+                  242,
+                  30
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RT755AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/L/2",
+              "net": "RT755AF4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                17
+              ],
+              "after": [
+                161,
+                17
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "RT755AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/4",
+              "net": "RT755AM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                82
+              ],
+              "after": [
+                153,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "RT755AV4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/R/4",
+              "net": "RT755AV4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                82
+              ],
+              "after": [
+                84,
+                82
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT755AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              30
+            ],
+            [
+              242,
+              30
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              30
+            ],
+            [
+              242,
+              30
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RT755AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            17
+          ],
+          "after": [
+            161,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "RT755AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            82
+          ],
+          "after": [
+            153,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "RT755AV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            82
+          ],
+          "after": [
+            84,
+            82
+          ],
+          "annotation offsets": []
         }
       ]
     }

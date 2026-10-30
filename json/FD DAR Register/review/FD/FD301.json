@@ -2,7 +2,7 @@
   "page": "FD301",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b98b2292d8014237ae7921b73a36b4c70ff0c3571d044c996b09eca2fa67ab1a",
+  "content sha256": "1abad498aa5755c9e83c859e0cc0650a25d4b607fe89ca402a89724fc1bb9362",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FD301\\Source model.json",
@@ -28,35 +28,7 @@
     "title": "DAR POS 30-31 CE ELC AND OWN OTC AND OWN OBS"
   },
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "FD301AD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "FD301BB4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "FD301BE4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BL/pins/R/4",
-          "net": "FD301BL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3077,6 +3049,382 @@
             [
               138,
               56
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FD301AD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "FD301BB4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "FD301BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "FD301BL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FD301AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "FD301AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                12
+              ],
+              "after": [
+                84,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  12
+                ],
+                [
+                  85,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  12
+                ],
+                [
+                  85,
+                  12
+                ],
+                [
+                  85,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "FD301BB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/R/4",
+              "net": "FD301BB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                178,
+                19
+              ],
+              "after": [
+                176,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "FD301BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/R/4",
+              "net": "FD301BE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                47
+              ],
+              "after": [
+                84,
+                47
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  43
+                ],
+                [
+                  242,
+                  43
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  47
+                ],
+                [
+                  85,
+                  47
+                ],
+                [
+                  85,
+                  43
+                ],
+                [
+                  242,
+                  43
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "FD301BL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BL/pins/R/4",
+              "net": "FD301BL4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                54
+              ],
+              "after": [
+                176,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  54
+                ],
+                [
+                  177,
+                  68
+                ],
+                [
+                  242,
+                  68
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  54
+                ],
+                [
+                  177,
+                  54
+                ],
+                [
+                  177,
+                  68
+                ],
+                [
+                  242,
+                  68
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FD301AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              12
+            ],
+            [
+              85,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              85,
+              12
+            ],
+            [
+              85,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "FD301BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            178,
+            19
+          ],
+          "after": [
+            176,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "FD301BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            47
+          ],
+          "after": [
+            84,
+            47
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              43
+            ],
+            [
+              242,
+              43
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              47
+            ],
+            [
+              85,
+              47
+            ],
+            [
+              85,
+              43
+            ],
+            [
+              242,
+              43
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "FD301BL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            54
+          ],
+          "after": [
+            176,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              54
+            ],
+            [
+              177,
+              68
+            ],
+            [
+              242,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              54
+            ],
+            [
+              177,
+              54
+            ],
+            [
+              177,
+              68
+            ],
+            [
+              242,
+              68
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "KT031",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "fcac736f0ca7a101ea876b7247cc0edc7857ed0ebabaf492e4f4bd7b0ddd4a53",
+  "content sha256": "314da0389f7cf8cc022c8773ff3be6f2813d5bd2e676ab68ca247758064ced57",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT031\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT031 INDICATOR SCAN BUS ROLLER 1 BITS 17-22.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "KT031AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2257,6 +2244,58 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "KT031AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "KT031AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/R/4",
+              "net": "KT031AS4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                33
+              ],
+              "after": [
+                130,
+                33
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "KT031AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": []
         }
       ]
     }

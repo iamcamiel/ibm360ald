@@ -2,7 +2,7 @@
   "page": "DS365",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "544932b0f1e05645470d8944022b0258994ebe8c89be4411ea1164809b932693",
+  "content sha256": "484a1f7657e1b76ef946d3ac763f7b2f1c202f0eb7cca0c0d2944e75f68907c8",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\DS365\\Source model.json",
@@ -54,11 +54,6 @@
           "terminal": "blocks/AB/pins/R/4",
           "net": "DS365AB4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BA/pins/R/2",
-          "net": "DS365BA2",
-          "reason": "The changed lead interval is occupied by another net"
         },
         {
           "terminal": "blocks/BB/pins/R/4",
@@ -98526,6 +98521,58 @@
               26
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BA/pins/R/2",
+          "net": "DS365BA2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BA/pins/R/2",
+          "net": "DS365BA2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BA/pins/R/2",
+              "net": "DS365BA2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                10
+              ],
+              "after": [
+                61,
+                10
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BA/pins/R/2",
+          "net": "DS365BA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
         }
       ]
     }

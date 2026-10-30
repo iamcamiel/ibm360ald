@@ -2,7 +2,7 @@
   "page": "KK211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d5fee3994c7ad93eea58ff220d08c0860652f3cba191dca37874586a1734da70",
+  "content sha256": "983137354d254132efe5d0dfb9c35e52481f702e2f5047c51dd45dc7bec6b573",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KK211\\Source model.json",
@@ -32,20 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/LL/pins/R/4",
-          "net": "KK211LL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2611,6 +2598,124 @@
             [
               161,
               66
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/LL/pins/R/4",
+          "net": "KK211LL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/LL/pins/R/4",
+          "net": "KK211LL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/LL/pins/R/4",
+              "net": "KK211LL4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                82
+              ],
+              "after": [
+                84,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  82
+                ],
+                [
+                  85,
+                  86
+                ],
+                [
+                  241,
+                  86
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  82
+                ],
+                [
+                  85,
+                  82
+                ],
+                [
+                  85,
+                  86
+                ],
+                [
+                  241,
+                  86
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/LL/pins/R/4",
+          "net": "KK211LL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            82
+          ],
+          "after": [
+            84,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              82
+            ],
+            [
+              85,
+              86
+            ],
+            [
+              241,
+              86
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              82
+            ],
+            [
+              85,
+              82
+            ],
+            [
+              85,
+              86
+            ],
+            [
+              241,
+              86
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "MP211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "56cd1aa99627cf0d09b1c3f10f2cbcf9cf0a869042157490e266dbf25d5428fb",
+  "content sha256": "7e000b58446733ff343003d46676d9963ec255d19fe315503d5863bd3a4cc45d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact remaining clean candidate qualification215\\Inputs\\MP211\\Selected exact source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MP PSBAR\\MP211 LOGICAL PSBAR BITS 13-15.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "MP211AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "MP211AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2477,6 +2459,232 @@
             [
               138,
               63
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MP211AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP211AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MP211AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "MP211AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                33
+              ],
+              "after": [
+                84,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  33
+                ],
+                [
+                  85,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  33
+                ],
+                [
+                  85,
+                  33
+                ],
+                [
+                  85,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP211AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/4",
+              "net": "MP211AC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                54
+              ],
+              "after": [
+                84,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  54
+                ],
+                [
+                  85,
+                  73
+                ],
+                [
+                  242,
+                  73
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  54
+                ],
+                [
+                  85,
+                  54
+                ],
+                [
+                  85,
+                  73
+                ],
+                [
+                  242,
+                  73
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MP211AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            33
+          ],
+          "after": [
+            84,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              33
+            ],
+            [
+              85,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              33
+            ],
+            [
+              85,
+              33
+            ],
+            [
+              85,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP211AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            54
+          ],
+          "after": [
+            84,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              54
+            ],
+            [
+              85,
+              73
+            ],
+            [
+              242,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              54
+            ],
+            [
+              85,
+              54
+            ],
+            [
+              85,
+              73
+            ],
+            [
+              242,
+              73
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "RT713",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "112be0952e7c70d86a8eac15583f3bb66b2d29220b5eb8ce4c883e75299956cc",
+  "content sha256": "79cdf601ee7900cf40211a2f1b4bf3f1265df02bf19dc516e48da251fb62e21c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT713\\Source model.json",
@@ -31,24 +31,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RT713AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "RT713AB4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
           "terminal": "blocks/AC/pins/R/4",
           "net": "RT713AC4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "RT713AD4",
-          "reason": "Another same-net route intersects the changed lead interval"
         }
       ]
     }
@@ -3106,6 +3091,208 @@
               62
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT713AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RT713AB4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT713AD4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT713AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RT713AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                19
+              ],
+              "after": [
+                107,
+                19
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  19
+                ],
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RT713AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "RT713AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                19
+              ],
+              "after": [
+                176,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT713AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "RT713AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                61
+              ],
+              "after": [
+                176,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT713AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RT713AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            19
+          ],
+          "after": [
+            176,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT713AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            61
+          ],
+          "after": [
+            176,
+            61
+          ],
+          "annotation offsets": []
         }
       ]
     }

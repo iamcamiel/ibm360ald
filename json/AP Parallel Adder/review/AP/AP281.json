@@ -2,7 +2,7 @@
   "page": "AP281",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2a4f0cc24a879220515ebd81ff6c1b1bd9dfa26c59815fdc67ef8f5e323acf43",
+  "content sha256": "0a3ac515ee21044e67796b0968e1737323a757eb2673e7e889d5c21fe928ce22",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\ALD batch647\\AP281 independent reconstruction647\\Logical alias continuation673\\Corrected V3\\AP281.json",
@@ -109,20 +109,7 @@
       "primary reference": null
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "AP281AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3978,6 +3965,58 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP281AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP281AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/4",
+              "net": "AP281AE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP281AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
         }
       ]
     }

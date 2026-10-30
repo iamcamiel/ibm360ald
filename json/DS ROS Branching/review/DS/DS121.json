@@ -2,7 +2,7 @@
   "page": "DS121",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6959ad0521b79cc1120b8ac4f38015ce44e88211715bb71110741c2ef958a78a",
+  "content sha256": "8b72a98476b14fa007a307f869d98bcd38a229a731258f5d501dd4ce58a830ee",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\DS121 independent reconstruction613\\Final candidate 4\\DS121.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\DS ROS Branching\\DS121 NORMAL BRANCH SET ROSAR BIT 11.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "DS121AM4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AZ/pins/L/2",
-          "net": "DS121AR4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -65646,6 +65628,166 @@
               67
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "DS121AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/2",
+          "net": "DS121AR4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "DS121AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/R/4",
+              "net": "DS121AM4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                82
+              ],
+              "after": [
+                130,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  82
+                ],
+                [
+                  131,
+                  86
+                ],
+                [
+                  242,
+                  86
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  82
+                ],
+                [
+                  131,
+                  82
+                ],
+                [
+                  131,
+                  86
+                ],
+                [
+                  242,
+                  86
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/2",
+          "net": "DS121AR4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/L/2",
+              "net": "DS121AR4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                187,
+                66
+              ],
+              "after": [
+                184,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "DS121AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              82
+            ],
+            [
+              131,
+              86
+            ],
+            [
+              242,
+              86
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              82
+            ],
+            [
+              131,
+              82
+            ],
+            [
+              131,
+              86
+            ],
+            [
+              242,
+              86
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/2",
+          "net": "DS121AR4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            66
+          ],
+          "after": [
+            184,
+            66
+          ],
+          "annotation offsets": []
         }
       ]
     }

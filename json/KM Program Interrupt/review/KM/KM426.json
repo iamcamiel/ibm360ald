@@ -2,7 +2,7 @@
   "page": "KM426",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5b3de35dac4d8df7fa02c0059fb16696358818e2c8a3ea37dcb0d0ba9a1fca24",
+  "content sha256": "387365f7047cca092c3e510b7b7f92dfb088d2d2ad714cf5036d147a762f4ea9",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KM426\\Source model.json",
@@ -34,11 +34,6 @@
           "terminal": "blocks/AD/pins/L/2",
           "net": "KM426AK2",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/L/6",
-          "net": "KM426AV2",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -102432,6 +102427,58 @@
               35
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM426AV2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM426AV2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/L/6",
+              "net": "KM426AV2",
+              "polyline": 0,
+              "point": 5,
+              "before": [
+                164,
+                28
+              ],
+              "after": [
+                161,
+                28
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KM426AV2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            164,
+            28
+          ],
+          "after": [
+            161,
+            28
+          ],
+          "annotation offsets": []
         }
       ]
     }

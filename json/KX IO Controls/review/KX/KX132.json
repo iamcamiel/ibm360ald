@@ -2,7 +2,7 @@
   "page": "KX132",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0831ede42da178d4dd6e1d5b5e70e7c33fb9b4850113f064c2e8a9c332ff8a9d",
+  "content sha256": "4e08e3599b2aecb4a98ad8d73ffdab6084d6411a5bf4e26fa2b97572355d3895",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch009\\Results\\KX132\\Current model.json",
@@ -39,25 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "KX132AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AK/pins/R/2",
-          "net": "KX132AK2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -4112,6 +4094,168 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KX132AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KX132AK2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KX132AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "KX132AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  242,
+                  51
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  12
+                ],
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  51
+                ],
+                [
+                  242,
+                  51
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KX132AK2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/R/2",
+              "net": "KX132AK2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                24
+              ],
+              "after": [
+                84,
+                24
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KX132AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              242,
+              51
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              51
+            ],
+            [
+              242,
+              51
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "KX132AK2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            24
+          ],
+          "after": [
+            84,
+            24
+          ],
+          "annotation offsets": []
+        }
+      ]
     }
   ]
 }

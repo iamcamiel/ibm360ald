@@ -2,7 +2,7 @@
   "page": "KM191",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "abef5c4927259f12161e74a147297595857769619e7c5eaa5b99b0da8e2f1ac0",
+  "content sha256": "5ae971c8d8030a07286dc9f6e00e79b00c8686d3660f09a032e8262da2377721",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KM191\\Source model.json",
@@ -62,25 +62,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AQ/pins/L/2",
-          "net": "KM191AM4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AQ/pins/L/6",
-          "net": "KM191AN4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2331,6 +2313,100 @@
               35
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "KM191AM4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "KM191AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "KM191AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/2",
+              "net": "KM191AM4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                45
+              ],
+              "after": [
+                161,
+                45
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "KM191AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/6",
+              "net": "KM191AN4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                49
+              ],
+              "after": [
+                161,
+                49
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "KM191AM4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            45
+          ],
+          "after": [
+            161,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "KM191AN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            49
+          ],
+          "after": [
+            161,
+            49
+          ],
+          "annotation offsets": []
         }
       ]
     }

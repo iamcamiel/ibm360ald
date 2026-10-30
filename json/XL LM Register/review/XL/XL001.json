@@ -2,7 +2,7 @@
   "page": "XL001",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8992da492e2285aea554a55754c5c8400724e6e161e4af60e197572116380d53",
+  "content sha256": "82260a50471350794a6ef32879947f2c28632873a2647aa1442bba82d12d9ea1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XL001\\Source model.json",
@@ -30,11 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "XL001AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
         {
           "terminal": "blocks/AC/pins/L/4",
           "net": "XL001AA2",
@@ -2278,6 +2273,126 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XL001AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XL001AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "XL001AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                12
+              ],
+              "after": [
+                61,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  205,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  12
+                ],
+                [
+                  62,
+                  12
+                ],
+                [
+                  62,
+                  2
+                ],
+                [
+                  205,
+                  2
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XL001AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              205,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              62,
+              12
+            ],
+            [
+              62,
+              2
+            ],
+            [
+              205,
+              2
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "FE321",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c6343f1aa237864fb42670873eaab14fd4d4939606a641bb17857d9d7cdfc3a4",
+  "content sha256": "6e05a0c3457a9b2d2d37e51150a022c632d90e6688db1e0a918641a1a103e5d2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FE321\\Source model.json",
@@ -39,30 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/L/2",
-          "net": "FE321AAL2-no-source",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AB/pins/L/2",
-          "net": "FE321AAL2-no-source",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AC/pins/L/6",
-          "net": "FX081AM4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4692,6 +4669,258 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "FX081AM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/L/2",
+              "net": "FE321AAL2-no-source",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                68,
+                24
+              ],
+              "after": [
+                69,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  9,
+                  40
+                ],
+                [
+                  68,
+                  40
+                ],
+                [
+                  68,
+                  24
+                ]
+              ],
+              "after routing": [
+                [
+                  9,
+                  40
+                ],
+                [
+                  68,
+                  40
+                ],
+                [
+                  68,
+                  24
+                ],
+                [
+                  69,
+                  24
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/L/2",
+              "net": "FE321AAL2-no-source",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                45,
+                52
+              ],
+              "after": [
+                46,
+                52
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  45,
+                  40
+                ],
+                [
+                  45,
+                  52
+                ]
+              ],
+              "after routing": [
+                [
+                  45,
+                  40
+                ],
+                [
+                  45,
+                  52
+                ],
+                [
+                  46,
+                  52
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "FX081AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/L/6",
+              "net": "FX081AM4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                45,
+                63
+              ],
+              "after": [
+                46,
+                63
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            68,
+            24
+          ],
+          "after": [
+            69,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              9,
+              40
+            ],
+            [
+              68,
+              40
+            ],
+            [
+              68,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              9,
+              40
+            ],
+            [
+              68,
+              40
+            ],
+            [
+              68,
+              24
+            ],
+            [
+              69,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            45,
+            52
+          ],
+          "after": [
+            46,
+            52
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              45,
+              40
+            ],
+            [
+              45,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              45,
+              40
+            ],
+            [
+              45,
+              52
+            ],
+            [
+              46,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "FX081AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            45,
+            63
+          ],
+          "after": [
+            46,
+            63
+          ],
+          "annotation offsets": []
         }
       ]
     }

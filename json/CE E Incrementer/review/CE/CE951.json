@@ -2,7 +2,7 @@
   "page": "CE951",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1d3c4eb82379e662f65ea04777c8b4b1d871828ee7b11202a7694b550f20ec99",
+  "content sha256": "be1b2b86636b0c27100e9f2c9d040697b6d819ee1ac74c4df1cdc2a47d3656a9",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root fourth twenty findings publication qualification266\\Inputs\\CE951\\Exact source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\CE E Incrementer\\CE951 INCREMENTER LATCH DECODING.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "CE951AF4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -5645,6 +5632,126 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CE951AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CE951AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "CE951AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                68
+              ],
+              "after": [
+                84,
+                68
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  68
+                ],
+                [
+                  85,
+                  72
+                ],
+                [
+                  242,
+                  72
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  68
+                ],
+                [
+                  85,
+                  68
+                ],
+                [
+                  85,
+                  72
+                ],
+                [
+                  242,
+                  72
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CE951AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            68
+          ],
+          "after": [
+            84,
+            68
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              68
+            ],
+            [
+              85,
+              72
+            ],
+            [
+              242,
+              72
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              68
+            ],
+            [
+              85,
+              68
+            ],
+            [
+              85,
+              72
+            ],
+            [
+              242,
+              72
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

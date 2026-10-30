@@ -2,7 +2,7 @@
   "page": "KT351",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ee5112d9b18fd480664239e24843cf46489245845e56bf1dc8d0f84cfe8e0065",
+  "content sha256": "e4bc7c4b820996a0a8d2105dd3a7c309ae568c9cca43b092916fb9657885c34c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT351\\Source model.json",
@@ -32,25 +32,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AU/pins/R/4",
-          "net": "KT351AU4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AV/pins/R/4",
-          "net": "KT351AV4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -3999,6 +3981,100 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "KT351AU4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KT351AV4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "KT351AU4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AU/pins/R/4",
+              "net": "KT351AU4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                61
+              ],
+              "after": [
+                130,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KT351AV4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/R/4",
+              "net": "KT351AV4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                75
+              ],
+              "after": [
+                130,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "KT351AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KT351AV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

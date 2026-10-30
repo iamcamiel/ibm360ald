@@ -2,7 +2,7 @@
   "page": "KD611",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d7090278bb2c543b8718b31a145f317708c078e03abe50fef06f2c6283c0b8f1",
+  "content sha256": "a2e72c5a47b09954bcdea892defc8d0f5238ded53f30fdb11d92e839cc4d66af",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KD611\\Source model.json",
@@ -32,30 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "KD611AF4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AJ/pins/L/2",
-          "net": "KD611AP4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AQ/pins/L/4",
-          "net": "KD611AH4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1809,6 +1786,358 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KD611AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "KD611AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "KD611AH4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KD611AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/L/2",
+              "net": "KD611AF4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                114,
+                24
+              ],
+              "after": [
+                115,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  107,
+                  19
+                ],
+                [
+                  114,
+                  19
+                ],
+                [
+                  114,
+                  24
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  19
+                ],
+                [
+                  114,
+                  19
+                ],
+                [
+                  114,
+                  24
+                ],
+                [
+                  115,
+                  24
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "KD611AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/L/2",
+              "net": "KD611AP4",
+              "polyline": 1,
+              "point": 3,
+              "before": [
+                114,
+                38
+              ],
+              "after": [
+                115,
+                38
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  156,
+                  68
+                ],
+                [
+                  156,
+                  75
+                ],
+                [
+                  114,
+                  75
+                ],
+                [
+                  114,
+                  38
+                ]
+              ],
+              "after routing": [
+                [
+                  156,
+                  68
+                ],
+                [
+                  156,
+                  75
+                ],
+                [
+                  114,
+                  75
+                ],
+                [
+                  114,
+                  38
+                ],
+                [
+                  115,
+                  38
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "KD611AH4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AQ/pins/L/4",
+              "net": "KD611AH4",
+              "polyline": 1,
+              "point": 2,
+              "before": [
+                160,
+                26
+              ],
+              "after": [
+                161,
+                26
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  130,
+                  12
+                ],
+                [
+                  160,
+                  12
+                ],
+                [
+                  160,
+                  26
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  12
+                ],
+                [
+                  160,
+                  12
+                ],
+                [
+                  160,
+                  26
+                ],
+                [
+                  161,
+                  26
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KD611AF4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            114,
+            24
+          ],
+          "after": [
+            115,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              107,
+              19
+            ],
+            [
+              114,
+              19
+            ],
+            [
+              114,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              114,
+              19
+            ],
+            [
+              114,
+              24
+            ],
+            [
+              115,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "KD611AP4",
+          "polyline": 1,
+          "point": 3,
+          "before": [
+            114,
+            38
+          ],
+          "after": [
+            115,
+            38
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              156,
+              68
+            ],
+            [
+              156,
+              75
+            ],
+            [
+              114,
+              75
+            ],
+            [
+              114,
+              38
+            ]
+          ],
+          "after routing": [
+            [
+              156,
+              68
+            ],
+            [
+              156,
+              75
+            ],
+            [
+              114,
+              75
+            ],
+            [
+              114,
+              38
+            ],
+            [
+              115,
+              38
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "KD611AH4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            160,
+            26
+          ],
+          "after": [
+            161,
+            26
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              130,
+              12
+            ],
+            [
+              160,
+              12
+            ],
+            [
+              160,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              160,
+              12
+            ],
+            [
+              160,
+              26
+            ],
+            [
+              161,
+              26
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

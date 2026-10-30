@@ -2,7 +2,7 @@
   "page": "RB757",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5d8d8b039ee1c9e44e462ad19c5318e4fd89a1a9c99edaa332cff4d51cc041ec",
+  "content sha256": "4177732f7ef6863e17519a951d8e0d916153cbfae0712e1c36a523d580f2ea1b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RB757\\Source model.json",
@@ -39,11 +39,6 @@
           "terminal": "blocks/AF/pins/L/3",
           "net": "RB757AK4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "RB757AN4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         }
       ]
     }
@@ -1598,6 +1593,124 @@
             [
               92,
               10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RB757AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RB757AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/R/4",
+              "net": "RB757AN4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                12
+              ],
+              "after": [
+                107,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  108,
+                  12
+                ],
+                [
+                  108,
+                  52
+                ],
+                [
+                  241,
+                  52
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  12
+                ],
+                [
+                  108,
+                  12
+                ],
+                [
+                  108,
+                  52
+                ],
+                [
+                  241,
+                  52
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "RB757AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              108,
+              12
+            ],
+            [
+              108,
+              52
+            ],
+            [
+              241,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              12
+            ],
+            [
+              108,
+              12
+            ],
+            [
+              108,
+              52
+            ],
+            [
+              241,
+              52
             ]
           ]
         }

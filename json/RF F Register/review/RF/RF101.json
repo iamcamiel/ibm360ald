@@ -2,7 +2,7 @@
   "page": "RF101",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "323ecaac259564101ef4801bfd9695fc28e26ae61eda09e05c40655365d239c2",
+  "content sha256": "c1c52b6e80c1ad24877dc953e546ce19e14057ca762635b518726140629a3764",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team7\\ALD batch1229\\RF101 independent reconstruction1229\\Inputs\\Baseline model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RF F Register\\RF101 F REGISTER DECODE.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RF101AA4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "RF101AH4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2150,6 +2132,166 @@
             [
               92,
               14
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RF101AA4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "RF101AH4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RF101AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RF101AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                12
+              ],
+              "after": [
+                107,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "RF101AH4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/R/4",
+              "net": "RF101AH4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                89
+              ],
+              "after": [
+                61,
+                89
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  89
+                ],
+                [
+                  62,
+                  78
+                ],
+                [
+                  204,
+                  78
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  89
+                ],
+                [
+                  62,
+                  89
+                ],
+                [
+                  62,
+                  78
+                ],
+                [
+                  204,
+                  78
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RF101AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "RF101AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            89
+          ],
+          "after": [
+            61,
+            89
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              89
+            ],
+            [
+              62,
+              78
+            ],
+            [
+              204,
+              78
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              89
+            ],
+            [
+              62,
+              89
+            ],
+            [
+              62,
+              78
+            ],
+            [
+              204,
+              78
             ]
           ]
         }

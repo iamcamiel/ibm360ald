@@ -2,7 +2,7 @@
   "page": "KZ501",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0d4564032d15db54b18069b1286de42fe941671c4403056926ba1c46c7c5b9df",
+  "content sha256": "b1ea600a59bb6b2e83c32478eb06093a7c07334ff7d4024ca0d3e8c46b632665",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact remaining clean candidate qualification215\\Inputs\\KZ501\\Selected exact source model.json",
@@ -24,45 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KZ Edit Control\\KZ501 EDIT CONTROL AND STEP ABC TRIGGER.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/2",
-          "net": "KZ501AA2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AK/pins/L/6",
-          "net": "KZ501AC2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BB/pins/L/2",
-          "net": "KZ201BL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BB/pins/L/4",
-          "net": "KZ501AJ4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BC/pins/R/4",
-          "net": "KZ501BC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BG/pins/R/4",
-          "net": "KZ501BG4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2269,6 +2231,482 @@
             [
               161,
               56
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "KZ501AA2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/6",
+          "net": "KZ501AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "KZ201BL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KZ501AJ4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "KZ501BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "KZ501BG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "KZ501AA2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/2",
+              "net": "KZ501AA2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                17
+              ],
+              "after": [
+                61,
+                17
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AK/pins/L/6",
+          "net": "KZ501AC2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AK/pins/L/6",
+              "net": "KZ501AC2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                49
+              ],
+              "after": [
+                138,
+                49
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "KZ201BL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/L/2",
+              "net": "KZ201BL4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                137,
+                59
+              ],
+              "after": [
+                138,
+                59
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  13,
+                  51
+                ],
+                [
+                  137,
+                  51
+                ],
+                [
+                  137,
+                  59
+                ]
+              ],
+              "after routing": [
+                [
+                  13,
+                  51
+                ],
+                [
+                  137,
+                  51
+                ],
+                [
+                  137,
+                  59
+                ],
+                [
+                  138,
+                  59
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KZ501AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/L/4",
+              "net": "KZ501AJ4",
+              "polyline": 1,
+              "point": 2,
+              "before": [
+                137,
+                61
+              ],
+              "after": [
+                138,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "KZ501BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BC/pins/R/4",
+              "net": "KZ501BC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                200,
+                54
+              ],
+              "after": [
+                199,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  200,
+                  54
+                ],
+                [
+                  200,
+                  68
+                ],
+                [
+                  138,
+                  68
+                ],
+                [
+                  138,
+                  63
+                ]
+              ],
+              "after routing": [
+                [
+                  199,
+                  54
+                ],
+                [
+                  200,
+                  54
+                ],
+                [
+                  200,
+                  68
+                ],
+                [
+                  138,
+                  68
+                ],
+                [
+                  138,
+                  63
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "KZ501BG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BG/pins/R/4",
+              "net": "KZ501BG4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                82
+              ],
+              "after": [
+                176,
+                82
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  82
+                ],
+                [
+                  177,
+                  86
+                ],
+                [
+                  204,
+                  86
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  82
+                ],
+                [
+                  177,
+                  82
+                ],
+                [
+                  177,
+                  86
+                ],
+                [
+                  204,
+                  86
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "KZ501AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            17
+          ],
+          "after": [
+            61,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/L/6",
+          "net": "KZ501AC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            49
+          ],
+          "after": [
+            138,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "KZ201BL4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            137,
+            59
+          ],
+          "after": [
+            138,
+            59
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              13,
+              51
+            ],
+            [
+              137,
+              51
+            ],
+            [
+              137,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              13,
+              51
+            ],
+            [
+              137,
+              51
+            ],
+            [
+              137,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KZ501AJ4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            137,
+            61
+          ],
+          "after": [
+            138,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "KZ501BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            54
+          ],
+          "after": [
+            199,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              200,
+              54
+            ],
+            [
+              200,
+              68
+            ],
+            [
+              138,
+              68
+            ],
+            [
+              138,
+              63
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              54
+            ],
+            [
+              200,
+              54
+            ],
+            [
+              200,
+              68
+            ],
+            [
+              138,
+              68
+            ],
+            [
+              138,
+              63
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "KZ501BG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            82
+          ],
+          "after": [
+            176,
+            82
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              82
+            ],
+            [
+              177,
+              86
+            ],
+            [
+              204,
+              86
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              82
+            ],
+            [
+              177,
+              82
+            ],
+            [
+              177,
+              86
+            ],
+            [
+              204,
+              86
             ]
           ]
         }

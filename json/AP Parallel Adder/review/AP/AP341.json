@@ -2,7 +2,7 @@
   "page": "AP341",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3239ef8d673b99944421097c3cce29690c31ae0c07368d28af481f3967f16dcb",
+  "content sha256": "424c9554f373e4900950a27db275c03d3131934c5faa22e4360abf55e80a309e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\ALD batch647\\AP341 independent reconstruction647\\Inputs\\Baseline model.json",
@@ -104,18 +104,6 @@
         80
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AZ/pins/R/4",
-          "net": "AP341AZ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -5337,6 +5325,58 @@
               74
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP341AZ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP341AZ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/R/4",
+              "net": "AP341AZ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                75
+              ],
+              "after": [
+                130,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP341AZ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "MC971",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4577dd4c5e9a94a844031a9cca2e32335b0fcfd7358836a2f9fc9f4ab3a215d6",
+  "content sha256": "9d549186999c71d3546cdc755786e577652383601e11fb8084c62427868bb3ae",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team6\\ALD batch1192\\MC971 independent reconstruction1192\\Inputs\\Baseline model.json",
@@ -43,18 +43,6 @@
         22
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "MC971AB4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -1830,6 +1818,126 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MC971AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MC971AB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AB/pins/R/4",
+              "net": "MC971AB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                26
+              ],
+              "after": [
+                84,
+                26
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  26
+                ],
+                [
+                  85,
+                  37
+                ],
+                [
+                  241,
+                  37
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  26
+                ],
+                [
+                  85,
+                  26
+                ],
+                [
+                  85,
+                  37
+                ],
+                [
+                  241,
+                  37
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MC971AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              26
+            ],
+            [
+              85,
+              37
+            ],
+            [
+              241,
+              37
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              26
+            ],
+            [
+              85,
+              26
+            ],
+            [
+              85,
+              37
+            ],
+            [
+              241,
+              37
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

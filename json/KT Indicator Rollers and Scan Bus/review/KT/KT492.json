@@ -2,7 +2,7 @@
   "page": "KT492",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d4ec471a2d8d8a7276043d3dd11f6a6852166e31a32549e4e183fc9a58c0df8b",
+  "content sha256": "919007df445fa0f3db375c7dd531e39671b3be2a9f196d466412569e68378dc5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch1095\\KT492 independent reconstruction1095\\Inputs\\Baseline model.json",
@@ -32,25 +32,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/2",
-          "net": "KT492AW2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AX/pins/R/2",
-          "net": "KT492AX2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -4045,6 +4027,100 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT492AW2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT492AX2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT492AW2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/2",
+              "net": "KT492AW2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                66
+              ],
+              "after": [
+                153,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT492AX2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/R/2",
+              "net": "KT492AX2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                80
+              ],
+              "after": [
+                153,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KT492AW2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            66
+          ],
+          "after": [
+            153,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/R/2",
+          "net": "KT492AX2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            80
+          ],
+          "after": [
+            153,
+            80
+          ],
+          "annotation offsets": []
         }
       ]
     }

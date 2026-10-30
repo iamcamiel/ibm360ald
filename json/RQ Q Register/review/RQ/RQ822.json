@@ -2,7 +2,7 @@
   "page": "RQ822",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "9e3be30356b667e4a45180ae54165ae2ac0f5846f0a8dd8eef4b3590944ec80e",
+  "content sha256": "073bff787a52cd0c396f893a364518d916756f9dfd666ff0d48b15f0af2dc03d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RQ822\\Source model.json",
@@ -24,30 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RQ Q Register\\RQ822 ROS 97-99 BACKUP REG FOR INDICATORS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "RQ831AQ4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BD/pins/L/2",
-          "net": "RQ831AQ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CD/pins/L/2",
-          "net": "RQ831AQ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2171,6 +2148,242 @@
             [
               92,
               56
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RQ831AQ4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RQ831AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CD/pins/L/2",
+          "net": "RQ831AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RQ831AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/2",
+              "net": "RQ831AQ4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                68,
+                17
+              ],
+              "after": [
+                69,
+                17
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RQ831AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BD/pins/L/2",
+              "net": "RQ831AQ4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                68,
+                38
+              ],
+              "after": [
+                69,
+                38
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  17
+                ],
+                [
+                  68,
+                  38
+                ]
+              ],
+              "after routing": [
+                [
+                  68,
+                  17
+                ],
+                [
+                  68,
+                  38
+                ],
+                [
+                  69,
+                  38
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CD/pins/L/2",
+          "net": "RQ831AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CD/pins/L/2",
+              "net": "RQ831AQ4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                68,
+                59
+              ],
+              "after": [
+                69,
+                59
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  17
+                ],
+                [
+                  68,
+                  59
+                ]
+              ],
+              "after routing": [
+                [
+                  68,
+                  17
+                ],
+                [
+                  68,
+                  59
+                ],
+                [
+                  69,
+                  59
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RQ831AQ4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            17
+          ],
+          "after": [
+            69,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RQ831AQ4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            68,
+            38
+          ],
+          "after": [
+            69,
+            38
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              68,
+              17
+            ],
+            [
+              68,
+              38
+            ]
+          ],
+          "after routing": [
+            [
+              68,
+              17
+            ],
+            [
+              68,
+              38
+            ],
+            [
+              69,
+              38
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CD/pins/L/2",
+          "net": "RQ831AQ4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            68,
+            59
+          ],
+          "after": [
+            69,
+            59
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              68,
+              17
+            ],
+            [
+              68,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              68,
+              17
+            ],
+            [
+              68,
+              59
+            ],
+            [
+              69,
+              59
             ]
           ]
         }

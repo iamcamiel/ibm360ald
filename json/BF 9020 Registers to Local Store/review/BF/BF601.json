@@ -2,7 +2,7 @@
   "page": "BF601",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "7a58660551e792570b185206921dabece5f0ecf5d1d00baa7d5cefe47155d123",
+  "content sha256": "e5b2af54735103e7e6a5a59b5255890307ef2b2a8c37684e44623dc7802877c1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\BF601\\Source model.json",
@@ -24,30 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\BF 9020 Registers to Local Store\\BF601 LINE TERMINATORS FOR G REGISTER.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AP/pins/L/4",
-          "net": "BF601AN4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AR/pins/L/4",
-          "net": "BF601AQ4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AT/pins/L/4",
-          "net": "BF601AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -795,6 +772,144 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "BF601AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "BF601AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "BF601AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "BF601AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/4",
+              "net": "BF601AN4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                72,
+                40
+              ],
+              "after": [
+                69,
+                40
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "BF601AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AR/pins/L/4",
+              "net": "BF601AQ4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                141,
+                40
+              ],
+              "after": [
+                138,
+                40
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "BF601AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AT/pins/L/4",
+              "net": "BF601AS4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                187,
+                40
+              ],
+              "after": [
+                184,
+                40
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "BF601AN4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            40
+          ],
+          "after": [
+            69,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "BF601AQ4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            141,
+            40
+          ],
+          "after": [
+            138,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "BF601AS4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            187,
+            40
+          ],
+          "after": [
+            184,
+            40
+          ],
+          "annotation offsets": []
+        }
+      ]
     }
   ]
 }

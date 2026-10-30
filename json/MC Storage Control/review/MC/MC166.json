@@ -2,7 +2,7 @@
   "page": "MC166",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1c970ea4bb148e87f69b59afd99f23e8f2ef2d1d825cc20cc25c453f076900bb",
+  "content sha256": "85aee0a249106b60d95034a78dc65001831131d108b2944397bf1fbdb78bd5eb",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC166\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC166 STG IN KEY GATES.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BX/pins/R/4",
-          "net": "MC166BX4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -843,6 +830,124 @@
             [
               161,
               42
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BX/pins/R/4",
+          "net": "MC166BX4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BX/pins/R/4",
+          "net": "MC166BX4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BX/pins/R/4",
+              "net": "MC166BX4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                26
+              ],
+              "after": [
+                61,
+                26
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  26
+                ],
+                [
+                  62,
+                  16
+                ],
+                [
+                  242,
+                  16
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  26
+                ],
+                [
+                  62,
+                  26
+                ],
+                [
+                  62,
+                  16
+                ],
+                [
+                  242,
+                  16
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BX/pins/R/4",
+          "net": "MC166BX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              26
+            ],
+            [
+              62,
+              16
+            ],
+            [
+              242,
+              16
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              26
+            ],
+            [
+              62,
+              26
+            ],
+            [
+              62,
+              16
+            ],
+            [
+              242,
+              16
             ]
           ]
         }

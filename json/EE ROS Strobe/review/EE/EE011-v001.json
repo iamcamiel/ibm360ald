@@ -2,7 +2,7 @@
   "page": "EE011",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "07fd4b3d33e677276dcfc9331005e81378e98768b027a0e0c0490e56e3d33c8e",
+  "content sha256": "39b83e8b9e7b6301b524affa2f26543bc3d32c6bea33430305e78f8bd3274b7d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\EE011\\Source model.json",
@@ -52,11 +52,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "EE011AP4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
         {
           "terminal": "blocks/AR/pins/R/4",
           "net": "EE011AR4",
@@ -2937,6 +2932,142 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "EE011AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "EE011AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/R/4",
+              "net": "EE011AP4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                12
+              ],
+              "after": [
+                84,
+                12
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  12
+                ],
+                [
+                  85,
+                  16
+                ],
+                [
+                  69,
+                  16
+                ],
+                [
+                  69,
+                  47
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  12
+                ],
+                [
+                  85,
+                  12
+                ],
+                [
+                  85,
+                  16
+                ],
+                [
+                  69,
+                  16
+                ],
+                [
+                  69,
+                  47
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "EE011AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              12
+            ],
+            [
+              85,
+              16
+            ],
+            [
+              69,
+              16
+            ],
+            [
+              69,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              85,
+              12
+            ],
+            [
+              85,
+              16
+            ],
+            [
+              69,
+              16
+            ],
+            [
+              69,
+              47
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

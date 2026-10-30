@@ -2,7 +2,7 @@
   "page": "RW081",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c2f4280e2d2a4a5193a5e2589d6548c684c9c4f12eee9ee6b58694dc9f753991",
+  "content sha256": "be691e96a0d32e33f571b361ac42f3e7379466783738cc792019dc61b6968463",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RW081\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\RW PSW\\RW081 PROGRAM STATUS WORD BITS 8 AND 9 PROTECTION KEY.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/L/2",
-          "net": "RW081AS4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "RW081AS4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2674,6 +2656,232 @@
             [
               69,
               75
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "RW081AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RW081AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "RW081AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/2",
+              "net": "RW081AS4",
+              "polyline": 1,
+              "point": 3,
+              "before": [
+                91,
+                24
+              ],
+              "after": [
+                92,
+                24
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  153,
+                  75
+                ],
+                [
+                  153,
+                  48
+                ],
+                [
+                  91,
+                  48
+                ],
+                [
+                  91,
+                  24
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  75
+                ],
+                [
+                  153,
+                  48
+                ],
+                [
+                  91,
+                  48
+                ],
+                [
+                  91,
+                  24
+                ],
+                [
+                  92,
+                  24
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RW081AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/L/2",
+              "net": "RW081AS4",
+              "polyline": 2,
+              "point": 1,
+              "before": [
+                91,
+                59
+              ],
+              "after": [
+                92,
+                59
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  91,
+                  48
+                ],
+                [
+                  91,
+                  59
+                ]
+              ],
+              "after routing": [
+                [
+                  91,
+                  48
+                ],
+                [
+                  91,
+                  59
+                ],
+                [
+                  92,
+                  59
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "RW081AS4",
+          "polyline": 1,
+          "point": 3,
+          "before": [
+            91,
+            24
+          ],
+          "after": [
+            92,
+            24
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              48
+            ],
+            [
+              91,
+              48
+            ],
+            [
+              91,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              48
+            ],
+            [
+              91,
+              48
+            ],
+            [
+              91,
+              24
+            ],
+            [
+              92,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RW081AS4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            91,
+            59
+          ],
+          "after": [
+            92,
+            59
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              91,
+              48
+            ],
+            [
+              91,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              91,
+              48
+            ],
+            [
+              91,
+              59
+            ],
+            [
+              92,
+              59
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "BF131",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8604eff44970d889509a520c19f433e7dc2164d7c2d65a6fad237cd7e6f23b43",
+  "content sha256": "a644d1173c64a1a573bdd928535f0f99a9636c6370293d4b20faaccce3554c3a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\BF131\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\BF 9020 Registers to Local Store\\BF131 9020 REGISTERS GATED TO LOCAL STORE BUS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "BF131AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1311,6 +1298,58 @@
               40
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF131AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF131AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AP/pins/L/2",
+              "net": "BF131AG4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                73
+              ],
+              "after": [
+                92,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "BF131AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            73
+          ],
+          "after": [
+            92,
+            73
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "MC421",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "7aad947695f74287336253ba185ba526cfd8ba2ebdf75b83b8f7a721f8bda28d",
+  "content sha256": "9ff9ecb79e8c00af32af8392db8de68f2aef008fa8a76507f6b7c4b676268fc1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team9\\ALD batch1190\\MC421 independent reconstruction1190\\Inputs\\Baseline model.json",
@@ -32,25 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "MC421AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AX/pins/R/4",
-          "net": "MC421AX4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3160,6 +3142,100 @@
               28
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MC421AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC421AX4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MC421AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AG/pins/R/4",
+              "net": "MC421AG4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                12
+              ],
+              "after": [
+                84,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC421AX4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AX/pins/R/4",
+              "net": "MC421AX4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                173,
+                26
+              ],
+              "after": [
+                176,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MC421AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MC421AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            26
+          ],
+          "after": [
+            176,
+            26
+          ],
+          "annotation offsets": []
         }
       ]
     }

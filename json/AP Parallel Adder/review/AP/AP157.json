@@ -2,7 +2,7 @@
   "page": "AP157",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8da0f917b062dfc7ab9e096c6c441aa73a0757231d9ae812d0b0309709b47cb6",
+  "content sha256": "d1303ebad76492cc88896abf5c1cfd92f8c1b988b4b53b70d8b4fd14f0084766",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\ALD batch636\\AP157 independent reconstruction636\\Human answer continuation662\\AP157 corrected.json",
@@ -32,25 +32,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "AP157AD4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "AP157AJ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2805,6 +2787,100 @@
               27
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP157AD4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "AP157AJ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP157AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "AP157AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                26
+              ],
+              "after": [
+                61,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "AP157AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/4",
+              "net": "AP157AJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                75
+              ],
+              "after": [
+                61,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP157AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "AP157AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            75
+          ],
+          "after": [
+            61,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

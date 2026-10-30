@@ -2,7 +2,7 @@
   "page": "KD803",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0f3613c461da0773c6f61a6f369415a14da398dda192dd4580be15fb26f2f09a",
+  "content sha256": "9dc7e13b3ff0d837fa4b430a675056c0c02fcb104349acf56b06e913842a9bd3",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KD803\\Source model.json",
@@ -32,30 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "KD803AF4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AS/pins/L/2",
-          "net": "KD803BE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AS/pins/L/4",
-          "net": "KD803BF4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -85377,6 +85354,208 @@
               35
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KD803AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "KD803BE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "KD803BF4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KD803AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "KD803AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                75
+              ],
+              "after": [
+                84,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  85,
+                  75
+                ],
+                [
+                  85,
+                  44
+                ],
+                [
+                  242,
+                  44
+                ]
+              ],
+              "after routing": [
+                [
+                  84,
+                  75
+                ],
+                [
+                  85,
+                  75
+                ],
+                [
+                  85,
+                  44
+                ],
+                [
+                  242,
+                  44
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "KD803BE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/L/2",
+              "net": "KD803BE4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                164,
+                73
+              ],
+              "after": [
+                161,
+                73
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "KD803BF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/L/4",
+              "net": "KD803BF4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                75
+              ],
+              "after": [
+                161,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KD803AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            75
+          ],
+          "after": [
+            84,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              85,
+              75
+            ],
+            [
+              85,
+              44
+            ],
+            [
+              242,
+              44
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              75
+            ],
+            [
+              85,
+              75
+            ],
+            [
+              85,
+              44
+            ],
+            [
+              242,
+              44
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "KD803BE4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            164,
+            73
+          ],
+          "after": [
+            161,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "KD803BF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            75
+          ],
+          "after": [
+            161,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

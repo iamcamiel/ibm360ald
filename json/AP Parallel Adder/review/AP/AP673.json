@@ -2,7 +2,7 @@
   "page": "AP673",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b35222c252bf26ff7e2d4ed3627bc044b9a2d703ab0d53985fa97052cd5b9fc1",
+  "content sha256": "456d9f80ca7395deaa62f5904cd719f53d8a3b9ebcd40c6f990eabffcbd33a83",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root retained actual nineteen DATA and four qualified Ksource keys271\\Selected\\AP673\\model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:/Reference Materials/IBM 360/IBM_360_ALD/AP Parallel Adder/AP673 2S COMPLEMENT B 64-67A TO PADDER 64-67A.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AY/pins/R/4",
-          "net": "AP673AY4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -6109,6 +6096,58 @@
               84
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP673AY4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP673AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AY/pins/R/4",
+              "net": "AP673AY4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                68
+              ],
+              "after": [
+                130,
+                68
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP673AY4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": []
         }
       ]
     }

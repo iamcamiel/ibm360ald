@@ -2,7 +2,7 @@
   "page": "MP421",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "eba394507d420bff61e679c0e698b02dd4c3276a3b90cda05c6cabf94c13ce42",
+  "content sha256": "e0976c16188cbe7dc5679edad88c3a8f77c2d582b4a76f9598647554c3810967",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Batch016\\Results\\MP421\\Producer001\\Current model.json",
@@ -53,20 +53,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "MP421AD4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -3899,6 +3886,58 @@
               59
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MP421AD4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MP421AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AM/pins/L/2",
+              "net": "MP421AD4",
+              "polyline": 1,
+              "point": 2,
+              "before": [
+                72,
+                87
+              ],
+              "after": [
+                69,
+                87
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MP421AD4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            72,
+            87
+          ],
+          "after": [
+            69,
+            87
+          ],
+          "annotation offsets": []
         }
       ]
     }

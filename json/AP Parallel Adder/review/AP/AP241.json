@@ -2,7 +2,7 @@
   "page": "AP241",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d8d4e5ae7b3a112c55c219adcfc75023c547b91fc1aa9884972d82496b946812",
+  "content sha256": "3e4c6afdb1a63b2ffe27d67dfb8cbd6195df6d3695659352f1ad835bbe58ed50",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team4\\ALD batch641\\AP241 independent reconstruction641\\Logical alias continuation\\Final V3\\AP241 model.json",
@@ -124,23 +124,6 @@
         17
       ],
       "candidate nets": []
-    },
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "AP241AE4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AZ/pins/R/4",
-          "net": "AP241AZ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
     }
   ],
   "warnings": [
@@ -5913,6 +5896,100 @@
               74
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP241AE4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP241AZ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP241AE4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AE/pins/R/4",
+              "net": "AP241AE4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                61
+              ],
+              "after": [
+                61,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP241AZ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/R/4",
+              "net": "AP241AZ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                75
+              ],
+              "after": [
+                153,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP241AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP241AZ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "MC561",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5a9c8e03ab84d44365d9811c914f191f1c44355bf3c65bc08425265e336d9487",
+  "content sha256": "47f513d3a85fdd79443f01be78cd79a5467b8b12ebeb86fc75ee1ca938d17814",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MC561\\Source model.json",
@@ -39,25 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/2",
-          "net": "MC561AA2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AF/pins/L/2",
-          "net": "MC561AB2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2187,6 +2169,100 @@
               73
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "MC561AA2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "MC561AB2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "MC561AA2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/2",
+              "net": "MC561AA2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                10
+              ],
+              "after": [
+                61,
+                10
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "MC561AB2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/2",
+              "net": "MC561AB2",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                72,
+                66
+              ],
+              "after": [
+                69,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "MC561AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "MC561AB2",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            66
+          ],
+          "after": [
+            69,
+            66
+          ],
+          "annotation offsets": []
         }
       ]
     }

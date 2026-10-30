@@ -2,7 +2,7 @@
   "page": "RT703",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "02797fa884fb081dcb7c70bc50f15ff3c17e9bd6da032e09c956f1c6a28ac18c",
+  "content sha256": "07d5e395091fee1160773eaf58370cecae09c72b3f79b618c6c5c4935bdaa0f8",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT703\\Source model.json",
@@ -39,19 +39,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "RT703AA4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
           "terminal": "blocks/AC/pins/R/4",
           "net": "RT703AC4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "RT703AG4",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -3055,6 +3045,166 @@
               62
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT703AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "RT703AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT703AA4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/R/4",
+              "net": "RT703AA4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                108,
+                19
+              ],
+              "after": [
+                107,
+                19
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ],
+              "after routing": [
+                [
+                  107,
+                  19
+                ],
+                [
+                  108,
+                  19
+                ],
+                [
+                  108,
+                  2
+                ],
+                [
+                  242,
+                  2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "RT703AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AG/pins/R/4",
+              "net": "RT703AG4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                26
+              ],
+              "after": [
+                84,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RT703AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              108,
+              19
+            ],
+            [
+              108,
+              2
+            ],
+            [
+              242,
+              2
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "RT703AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": []
         }
       ]
     }

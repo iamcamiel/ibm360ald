@@ -2,7 +2,7 @@
   "page": "DS122",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a6e8035ab6a1ded358bc897c53ab1a3f56cf2eedc470176be3abf68ae0568b99",
+  "content sha256": "60594835083e2595460031a8e3f03c48c0a2cf1b2f4b47d2766b33d10a139b89",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact DS122 independently qualified source and key227\\Selected exact DS122 model.json",
@@ -95,20 +95,7 @@
       "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "DS122AJ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -68856,6 +68843,124 @@
             [
               184,
               62
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS122AJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS122AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/4",
+              "net": "DS122AJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                33
+              ],
+              "after": [
+                130,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  33
+                ],
+                [
+                  131,
+                  37
+                ],
+                [
+                  242,
+                  37
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  33
+                ],
+                [
+                  131,
+                  33
+                ],
+                [
+                  131,
+                  37
+                ],
+                [
+                  242,
+                  37
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS122AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              33
+            ],
+            [
+              131,
+              37
+            ],
+            [
+              242,
+              37
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              131,
+              33
+            ],
+            [
+              131,
+              37
+            ],
+            [
+              242,
+              37
             ]
           ]
         }

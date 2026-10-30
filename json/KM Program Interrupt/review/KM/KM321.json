@@ -2,7 +2,7 @@
   "page": "KM321",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3b3ea41b5843d2ca7ffb11420948cf593fbfe8913b3a201a4d36aebd81dcdfeb",
+  "content sha256": "e2a5f9dd61ba5964255b653bf1ca359f83bd54030485c41e9e369f3ddbad6d38",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KM321\\Source model.json",
@@ -50,35 +50,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "KM321AL4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/2",
-          "net": "KM321AK4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/4",
-          "net": "KM321AL4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/6",
-          "net": "KM321AM4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2163,6 +2135,184 @@
               21
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KM321AL4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KM321AK4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KM321AL4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KM321AM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KM321AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AL/pins/R/4",
+              "net": "KM321AL4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                127,
+                12
+              ],
+              "after": [
+                130,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KM321AK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/L/2",
+              "net": "KM321AK4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                140,
+                17
+              ],
+              "after": [
+                138,
+                17
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KM321AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/L/4",
+              "net": "KM321AL4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                19
+              ],
+              "after": [
+                138,
+                19
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KM321AM4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AN/pins/L/6",
+              "net": "KM321AM4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                141,
+                21
+              ],
+              "after": [
+                138,
+                21
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KM321AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            12
+          ],
+          "after": [
+            130,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KM321AK4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            140,
+            17
+          ],
+          "after": [
+            138,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KM321AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            19
+          ],
+          "after": [
+            138,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KM321AM4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            141,
+            21
+          ],
+          "after": [
+            138,
+            21
+          ],
+          "annotation offsets": []
         }
       ]
     }

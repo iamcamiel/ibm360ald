@@ -2,7 +2,7 @@
   "page": "MC271",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0c45aef6d1aec29e515a5096e8dee570e1217f6b0bece6042b18c08953cf83dc",
+  "content sha256": "44c4c1554b7c8fd16c1fcc439b9cc2386011c19d3accb3f338bb1d1ba6bdae2d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MC271\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC271 CPU CLOCK STOPPING TGR.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "MC271AH4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AV/pins/L/2",
-          "net": "MC271AS4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2308,6 +2290,100 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "MC271AH4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "MC271AS4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "MC271AH4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AH/pins/R/4",
+              "net": "MC271AH4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                85,
+                26
+              ],
+              "after": [
+                84,
+                26
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "MC271AS4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AV/pins/L/2",
+              "net": "MC271AS4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                164,
+                80
+              ],
+              "after": [
+                161,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "MC271AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            85,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "MC271AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            80
+          ],
+          "after": [
+            161,
+            80
+          ],
+          "annotation offsets": []
         }
       ]
     }

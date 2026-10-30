@@ -2,7 +2,7 @@
   "page": "RT701",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a5ef522a82c67af89f86336ad100612ed2fa3002d5dd03730f07a74200ea1765",
+  "content sha256": "180c6e0c8ad77faebb1a559a419e6143ef8ff28697640f71b68ca0940a439e98",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT701\\Source model.json",
@@ -64,44 +64,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AC/pins/L/2",
-          "net": "RT701AW4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
           "terminal": "blocks/AC/pins/R/4",
           "net": "RT701AC4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "RT701AN4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AD/pins/L/3",
-          "net": "RT701AP4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "RT701AD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AF/pins/L/5",
-          "net": "RT701AU4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "RT701AF4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "RT701BB4",
-          "reason": "The changed lead interval is occupied by another net"
         }
       ]
     }
@@ -3805,6 +3770,376 @@
               62
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "RT701AW4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RT701AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/3",
+          "net": "RT701AP4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT701AD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "RT701AU4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "RT701AF4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RT701BB4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "RT701AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/L/2",
+              "net": "RT701AW4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                72,
+                38
+              ],
+              "after": [
+                69,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RT701AN4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/2",
+              "net": "RT701AN4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                52
+              ],
+              "after": [
+                138,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/L/3",
+          "net": "RT701AP4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/L/3",
+              "net": "RT701AP4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                53
+              ],
+              "after": [
+                138,
+                53
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT701AD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AD/pins/R/4",
+              "net": "RT701AD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                54
+              ],
+              "after": [
+                153,
+                54
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  54
+                ],
+                [
+                  154,
+                  65
+                ],
+                [
+                  242,
+                  65
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  54
+                ],
+                [
+                  154,
+                  54
+                ],
+                [
+                  154,
+                  65
+                ],
+                [
+                  242,
+                  65
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "RT701AU4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/5",
+              "net": "RT701AU4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                141,
+                90
+              ],
+              "after": [
+                138,
+                90
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "RT701AF4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/R/4",
+              "net": "RT701AF4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                89
+              ],
+              "after": [
+                153,
+                89
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RT701BB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/R/4",
+              "net": "RT701BB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                58,
+                68
+              ],
+              "after": [
+                61,
+                68
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "RT701AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            38
+          ],
+          "after": [
+            69,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "RT701AN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            52
+          ],
+          "after": [
+            138,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/3",
+          "net": "RT701AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            53
+          ],
+          "after": [
+            138,
+            53
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "RT701AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            54
+          ],
+          "after": [
+            153,
+            54
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              54
+            ],
+            [
+              154,
+              65
+            ],
+            [
+              242,
+              65
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              54
+            ],
+            [
+              154,
+              54
+            ],
+            [
+              154,
+              65
+            ],
+            [
+              242,
+              65
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "RT701AU4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            90
+          ],
+          "after": [
+            138,
+            90
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "RT701AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            89
+          ],
+          "after": [
+            153,
+            89
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RT701BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            68
+          ],
+          "after": [
+            61,
+            68
+          ],
+          "annotation offsets": []
         }
       ]
     }

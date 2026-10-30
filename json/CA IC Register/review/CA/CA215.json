@@ -2,7 +2,7 @@
   "page": "CA215",
   "review date": "2026-10-26",
   "reviewer": "fresh-data265-group-c-20261026",
-  "content sha256": "597144ca2b2dbbe5de799d98b6d4a388ffcdbc8019ec56c6a07d8e01698391fe",
+  "content sha256": "8b79d10e0ca25588d007cc5815ba68e0fce3a2dd0dc77b940914072fbcc44fb6",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Inputs\\CA215\\Exact source model.json",
@@ -32,30 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/CC/pins/R/4",
-          "net": "CA215CC4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/CD/pins/R/4",
-          "net": "CA215CD4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CK/pins/R/4",
-          "net": "CA215CK4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3426,6 +3403,274 @@
             [
               46,
               75
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/CC/pins/R/4",
+          "net": "CA215CC4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "CA215CD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "CA215CK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/CC/pins/R/4",
+          "net": "CA215CC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CC/pins/R/4",
+              "net": "CA215CC4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                155,
+                68
+              ],
+              "after": [
+                153,
+                68
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "CA215CD4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CD/pins/R/4",
+              "net": "CA215CD4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                68
+              ],
+              "after": [
+                176,
+                68
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  177,
+                  68
+                ],
+                [
+                  177,
+                  82
+                ],
+                [
+                  242,
+                  82
+                ]
+              ],
+              "after routing": [
+                [
+                  176,
+                  68
+                ],
+                [
+                  177,
+                  68
+                ],
+                [
+                  177,
+                  82
+                ],
+                [
+                  242,
+                  82
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "CA215CK4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CK/pins/R/4",
+              "net": "CA215CK4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                75
+              ],
+              "after": [
+                153,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  75
+                ],
+                [
+                  154,
+                  79
+                ],
+                [
+                  242,
+                  79
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  75
+                ],
+                [
+                  154,
+                  75
+                ],
+                [
+                  154,
+                  79
+                ],
+                [
+                  242,
+                  79
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/CC/pins/R/4",
+          "net": "CA215CC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            155,
+            68
+          ],
+          "after": [
+            153,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "CA215CD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            68
+          ],
+          "after": [
+            176,
+            68
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              177,
+              68
+            ],
+            [
+              177,
+              82
+            ],
+            [
+              242,
+              82
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              68
+            ],
+            [
+              177,
+              68
+            ],
+            [
+              177,
+              82
+            ],
+            [
+              242,
+              82
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "CA215CK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              75
+            ],
+            [
+              154,
+              79
+            ],
+            [
+              242,
+              79
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              75
+            ],
+            [
+              154,
+              75
+            ],
+            [
+              154,
+              79
+            ],
+            [
+              242,
+              79
             ]
           ]
         }

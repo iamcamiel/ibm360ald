@@ -2,7 +2,7 @@
   "page": "RB817",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5ab7dc0b8df1f6a993f3761bdb973c1b6e2758cd9fc71ace36f2f966cdc3a564",
+  "content sha256": "10cfba06b8bf370584001ae37d16c7bc37ef7f01472a235c96cd2115d904bccc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch014\\Results\\RB817\\Producer revision008\\Current model.json",
@@ -32,20 +32,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "RB817AL4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2047,6 +2034,158 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RB817AL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RB817AL4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AL/pins/R/4",
+              "net": "RB817AL4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                68
+              ],
+              "after": [
+                61,
+                68
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  68
+                ],
+                [
+                  62,
+                  44
+                ],
+                [
+                  47,
+                  44
+                ],
+                [
+                  47,
+                  40
+                ],
+                [
+                  46,
+                  40
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  68
+                ],
+                [
+                  62,
+                  68
+                ],
+                [
+                  62,
+                  44
+                ],
+                [
+                  47,
+                  44
+                ],
+                [
+                  47,
+                  40
+                ],
+                [
+                  46,
+                  40
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RB817AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            68
+          ],
+          "after": [
+            61,
+            68
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              68
+            ],
+            [
+              62,
+              44
+            ],
+            [
+              47,
+              44
+            ],
+            [
+              47,
+              40
+            ],
+            [
+              46,
+              40
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              68
+            ],
+            [
+              62,
+              68
+            ],
+            [
+              62,
+              44
+            ],
+            [
+              47,
+              44
+            ],
+            [
+              47,
+              40
+            ],
+            [
+              46,
+              40
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

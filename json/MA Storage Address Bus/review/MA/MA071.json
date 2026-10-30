@@ -2,7 +2,7 @@
   "page": "MA071",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "686e9f580f4e69496b6ac925c788a83b7d96c27185adc15dd5ff2c6f16a15915",
+  "content sha256": "6361ec57f10a1ce162a70f1bea4bbefc87a68d0b9c495c77b99e030107cfff93",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Results\\Continuous integration assist20261025-Round021\\Independent C\\Seven page K complete auxiliary projection024\\MA071\\Proposed model.json",
@@ -44,20 +44,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BA/pins/L/2",
-          "net": "MA071AV4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2809,6 +2796,58 @@
               67
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "MA071AV4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "MA071AV4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BA/pins/L/2",
+              "net": "MA071AV4",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                95,
+                66
+              ],
+              "after": [
+                92,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "MA071AV4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            66
+          ],
+          "after": [
+            92,
+            66
+          ],
+          "annotation offsets": []
         }
       ]
     }

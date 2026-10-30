@@ -2,7 +2,7 @@
   "page": "MB285",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "cb50c1335a0e63280dd5309c7dd495bb168df21223a8f162319acbaf93213b96",
+  "content sha256": "4c3f114c74975dd979bf3091cadf4ad5670c626f4793b9795b6d0b3cbcbf1785",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team10\\ALD batch1181\\MB285 independent reconstruction1181\\Inputs\\Baseline model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MB Storage Data Bus\\MB285 XY STORAGE REQUEST LATCHES.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "MB285AJ4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2281,6 +2268,142 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MB285AJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MB285AJ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AJ/pins/R/4",
+              "net": "MB285AJ4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                131,
+                33
+              ],
+              "after": [
+                130,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  131,
+                  33
+                ],
+                [
+                  131,
+                  49
+                ],
+                [
+                  69,
+                  49
+                ],
+                [
+                  69,
+                  42
+                ]
+              ],
+              "after routing": [
+                [
+                  130,
+                  33
+                ],
+                [
+                  131,
+                  33
+                ],
+                [
+                  131,
+                  49
+                ],
+                [
+                  69,
+                  49
+                ],
+                [
+                  69,
+                  42
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MB285AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              131,
+              33
+            ],
+            [
+              131,
+              49
+            ],
+            [
+              69,
+              49
+            ],
+            [
+              69,
+              42
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              131,
+              33
+            ],
+            [
+              131,
+              49
+            ],
+            [
+              69,
+              49
+            ],
+            [
+              69,
+              42
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

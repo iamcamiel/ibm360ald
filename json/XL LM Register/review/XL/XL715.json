@@ -2,7 +2,7 @@
   "page": "XL715",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2c7666d8460eeeccc10c78b690b26280afaa95395b3deb4a77bc6873490d5abf",
+  "content sha256": "852d08909c176fa87017ebe66449c88d362c0fb7cd9448c9a3b544db15dc0e69",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XL715\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\XL715 LM REG TO N REG GATING.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "XL715AG4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -954,6 +941,58 @@
               66
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XL715AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XL715AG4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AG/pins/R/4",
+              "net": "XL715AG4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                104,
+                75
+              ],
+              "after": [
+                107,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XL715AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            75
+          ],
+          "after": [
+            107,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

@@ -2,7 +2,7 @@
   "page": "KT292",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "311b85e94990b571fa574ab5f81aa7d487c77fc30cf646685365799a760b83e8",
+  "content sha256": "dfe3279175a849462a05bd51a0b55955b5e6402ad8f9ce33aed372a9ee5104c0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT292\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT292 INDICATOR GATES FOR Y OR IOCE AND N.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AZ/pins/R/2",
-          "net": "KT292AZ2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3769,6 +3756,58 @@
               82
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AZ/pins/R/2",
+          "net": "KT292AZ2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AZ/pins/R/2",
+          "net": "KT292AZ2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AZ/pins/R/2",
+              "net": "KT292AZ2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                80
+              ],
+              "after": [
+                153,
+                80
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AZ/pins/R/2",
+          "net": "KT292AZ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            80
+          ],
+          "after": [
+            153,
+            80
+          ],
+          "annotation offsets": []
         }
       ]
     }

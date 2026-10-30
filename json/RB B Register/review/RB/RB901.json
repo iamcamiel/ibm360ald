@@ -2,7 +2,7 @@
   "page": "RB901",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ecb9a10dbbc635afd25e4d785ecef814f09c8146f753c35cdd9b675c0a4d4b63",
+  "content sha256": "7f257bbc911609b0537eb112843eab2617e7316e9c177755d34230d7c4675a16",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch014\\Results\\RB901\\Producer revision007\\Current model.json",
@@ -39,20 +39,7 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "RB901AW4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2719,6 +2706,140 @@
             [
               69,
               5
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "RB901AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "RB901AW4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AW/pins/R/4",
+              "net": "RB901AW4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                62,
+                5
+              ],
+              "after": [
+                61,
+                5
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  10
+                ],
+                [
+                  46,
+                  10
+                ],
+                [
+                  46,
+                  47
+                ]
+              ],
+              "after routing": [
+                [
+                  61,
+                  5
+                ],
+                [
+                  62,
+                  5
+                ],
+                [
+                  62,
+                  10
+                ],
+                [
+                  46,
+                  10
+                ],
+                [
+                  46,
+                  47
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "RB901AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              10
+            ],
+            [
+              46,
+              10
+            ],
+            [
+              46,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              5
+            ],
+            [
+              62,
+              5
+            ],
+            [
+              62,
+              10
+            ],
+            [
+              46,
+              10
+            ],
+            [
+              46,
+              47
             ]
           ]
         }

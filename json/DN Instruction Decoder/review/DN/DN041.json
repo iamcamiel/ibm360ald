@@ -2,7 +2,7 @@
   "page": "DN041",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f490081c1bf297829a265f8e4d4368ef5868b2cdf7f5b9d7868688d121d779d5",
+  "content sha256": "a7dcb6b4e04f88a9c4234daf16166bb6f3cfd1247ae3709e6f6dffd409f6546e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\DN041\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\DN Instruction Decoder\\DN041 E REG OP DECODE FX MULT DVD TRANSLATE AND TEST DIVIDE.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AU/pins/R/4",
-          "net": "DN041AU4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1584,6 +1571,58 @@
               35
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DN041AU4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DN041AU4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AU/pins/R/4",
+              "net": "DN041AU4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                177,
+                68
+              ],
+              "after": [
+                176,
+                68
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DN041AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            68
+          ],
+          "after": [
+            176,
+            68
+          ],
+          "annotation offsets": []
         }
       ]
     }

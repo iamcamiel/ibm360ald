@@ -2,7 +2,7 @@
   "page": "MA111",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2b3a7201733f7735e79c9a3b48c3ca4010b4a5223e214157427609cc1e050e29",
+  "content sha256": "a5f651f98c9b9c1df29eade4a7db2339db01ea616a6c49531a0023dbf287da15",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Results\\Continuous integration assist20261025-Round021\\Independent C\\Seven page K complete auxiliary projection024\\MA111\\Proposed model.json",
@@ -29,20 +29,7 @@
     "title": "LAB BIT 11 AND SAB BIT 11"
   },
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AY/pins/R/4",
-          "net": "MA111AY4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2771,6 +2758,58 @@
               66
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "MA111AY4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "MA111AY4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AY/pins/R/4",
+              "net": "MA111AY4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                75
+              ],
+              "after": [
+                84,
+                75
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "MA111AY4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            75
+          ],
+          "after": [
+            84,
+            75
+          ],
+          "annotation offsets": []
         }
       ]
     }

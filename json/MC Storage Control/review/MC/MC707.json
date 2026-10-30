@@ -2,7 +2,7 @@
   "page": "MC707",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "70df3f93faa565c1629c8ac813efbb3878a85429db44fc9167714649dec5b8bd",
+  "content sha256": "eb70f7a1bcda9460ce476672a3da5fdb7820d2ca226a81f88c1cc581c412e68f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Batch015\\Results\\MC707\\Producer003\\Current model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC707 SELECT TIMING.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AS/pins/L/2",
-          "net": "MC707AQ4",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2256,6 +2243,58 @@
               54
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "MC707AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "MC707AQ4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AS/pins/L/2",
+              "net": "MC707AQ4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                164,
+                52
+              ],
+              "after": [
+                161,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "MC707AQ4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            164,
+            52
+          ],
+          "after": [
+            161,
+            52
+          ],
+          "annotation offsets": []
         }
       ]
     }

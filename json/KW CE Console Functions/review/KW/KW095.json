@@ -2,7 +2,7 @@
   "page": "KW095",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6cca8c165071e09d3a27511dae84503f4c43413fbdbfd782252652c9772d4701",
+  "content sha256": "a1f4c516e2bf732d0eace16333715bd606451c78910c98ec5759ea6e5c0264d4",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KW095\\Source model.json",
@@ -30,11 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AA/pins/L/4",
-          "net": "KW471BB4",
-          "reason": "Another same-net route intersects the changed lead interval"
-        },
         {
           "terminal": "blocks/AH/pins/R/4",
           "net": "KW095AH4",
@@ -2382,6 +2377,58 @@
               31
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "KW471BB4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "KW471BB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AA/pins/L/4",
+              "net": "KW471BB4",
+              "polyline": 0,
+              "point": 1,
+              "before": [
+                45,
+                12
+              ],
+              "after": [
+                46,
+                12
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "KW471BB4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            45,
+            12
+          ],
+          "after": [
+            46,
+            12
+          ],
+          "annotation offsets": []
         }
       ]
     }

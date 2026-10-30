@@ -2,7 +2,7 @@
   "page": "RB561",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "86e1583954c0b52ce056ab0cd8fec5c35c196b584e805f853c54068c4f47cc03",
+  "content sha256": "d6719647f917b0821d4ceb7a5bd478545894b2894bbdf8ac89139426eb96e157",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RB561\\Source model.json",
@@ -56,35 +56,7 @@
       "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AF/pins/L/4",
-          "net": "RB907AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "RB561BB4",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BF/pins/L/4",
-          "net": "RB907AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CF/pins/L/4",
-          "net": "RB907AC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -3443,6 +3415,358 @@
             [
               92,
               66
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "RB907AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RB561BB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "RB907AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "RB907AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "RB907AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AF/pins/L/4",
+              "net": "RB907AC4",
+              "polyline": 1,
+              "point": 0,
+              "before": [
+                68,
+                33
+              ],
+              "after": [
+                69,
+                33
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  33
+                ],
+                [
+                  68,
+                  75
+                ]
+              ],
+              "after routing": [
+                [
+                  69,
+                  33
+                ],
+                [
+                  68,
+                  33
+                ],
+                [
+                  68,
+                  75
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RB561BB4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/R/4",
+              "net": "RB561BB4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                200,
+                61
+              ],
+              "after": [
+                199,
+                61
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "RB907AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BF/pins/L/4",
+              "net": "RB907AC4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                137,
+                61
+              ],
+              "after": [
+                138,
+                61
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  27,
+                  39
+                ],
+                [
+                  137,
+                  39
+                ],
+                [
+                  137,
+                  61
+                ]
+              ],
+              "after routing": [
+                [
+                  27,
+                  39
+                ],
+                [
+                  137,
+                  39
+                ],
+                [
+                  137,
+                  61
+                ],
+                [
+                  138,
+                  61
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "RB907AC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/CF/pins/L/4",
+              "net": "RB907AC4",
+              "polyline": 1,
+              "point": 1,
+              "before": [
+                68,
+                75
+              ],
+              "after": [
+                69,
+                75
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  68,
+                  33
+                ],
+                [
+                  68,
+                  75
+                ]
+              ],
+              "after routing": [
+                [
+                  68,
+                  33
+                ],
+                [
+                  68,
+                  75
+                ],
+                [
+                  69,
+                  75
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "RB907AC4",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            68,
+            33
+          ],
+          "after": [
+            69,
+            33
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              68,
+              33
+            ],
+            [
+              68,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              69,
+              33
+            ],
+            [
+              68,
+              33
+            ],
+            [
+              68,
+              75
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RB561BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            61
+          ],
+          "after": [
+            199,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "RB907AC4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            137,
+            61
+          ],
+          "after": [
+            138,
+            61
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              27,
+              39
+            ],
+            [
+              137,
+              39
+            ],
+            [
+              137,
+              61
+            ]
+          ],
+          "after routing": [
+            [
+              27,
+              39
+            ],
+            [
+              137,
+              39
+            ],
+            [
+              137,
+              61
+            ],
+            [
+              138,
+              61
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "RB907AC4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            68,
+            75
+          ],
+          "after": [
+            69,
+            75
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              69,
+              33
+            ],
+            [
+              68,
+              33
+            ],
+            [
+              68,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              69,
+              33
+            ],
+            [
+              68,
+              33
+            ],
+            [
+              68,
+              75
+            ],
+            [
+              69,
+              75
             ]
           ]
         }

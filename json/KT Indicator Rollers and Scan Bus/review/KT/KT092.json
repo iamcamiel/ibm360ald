@@ -2,7 +2,7 @@
   "page": "KT092",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ebf204bcf39b05cff7345f8c0469dc44882e37cf2fffe923d0b6eaf47f96ca30",
+  "content sha256": "2f41b2e3a7836ba343d122f95e346ac21a42785991ad6e8fd1948b84ae7f647a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team10\\ALD batch1074\\KT092 independent reconstruction1074\\Inputs\\Baseline model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT092 ROLLER 1 INDICATOR GATES SEL REG L REG M REG.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BB/pins/R/2",
-          "net": "KT092BB2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4988,6 +4975,58 @@
               38
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BB/pins/R/2",
+          "net": "KT092BB2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BB/pins/R/2",
+          "net": "KT092BB2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BB/pins/R/2",
+              "net": "KT092BB2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                150,
+                52
+              ],
+              "after": [
+                153,
+                52
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BB/pins/R/2",
+          "net": "KT092BB2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            52
+          ],
+          "after": [
+            153,
+            52
+          ],
+          "annotation offsets": []
         }
       ]
     }

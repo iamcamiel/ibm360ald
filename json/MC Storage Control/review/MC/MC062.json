@@ -2,7 +2,7 @@
   "page": "MC062",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a30cffd31950970515ffd1efdf21bc5b974f5b2ac0b861475172c3d97e757c56",
+  "content sha256": "7148aac7d3676c44d9699fdc18965d1ee1e92389f0e8da8caeb8f3d88f58d500",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round009\\MC062\\Repair candidate003\\Current model.json",
@@ -46,20 +46,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BV/pins/R/4",
-          "net": "MC062BV4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -5868,6 +5855,124 @@
             [
               69,
               42
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BV/pins/R/4",
+          "net": "MC062BV4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BV/pins/R/4",
+          "net": "MC062BV4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BV/pins/R/4",
+              "net": "MC062BV4",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                154,
+                26
+              ],
+              "after": [
+                153,
+                26
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  154,
+                  26
+                ],
+                [
+                  154,
+                  35
+                ],
+                [
+                  242,
+                  35
+                ]
+              ],
+              "after routing": [
+                [
+                  153,
+                  26
+                ],
+                [
+                  154,
+                  26
+                ],
+                [
+                  154,
+                  35
+                ],
+                [
+                  242,
+                  35
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BV/pins/R/4",
+          "net": "MC062BV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            26
+          ],
+          "after": [
+            153,
+            26
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              154,
+              26
+            ],
+            [
+              154,
+              35
+            ],
+            [
+              242,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              26
+            ],
+            [
+              154,
+              26
+            ],
+            [
+              154,
+              35
+            ],
+            [
+              242,
+              35
             ]
           ]
         }

@@ -2,7 +2,7 @@
   "page": "RG001",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6b4bc45980d1dce79134068e0091cc44f4a2d6d9c1f71a959135722e7d445ed7",
+  "content sha256": "0cf79fa2890e0e9799c1ff3488e9b3787d3147f741f1d1bf409accd5c532ae1c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact remaining clean candidate qualification215\\Inputs\\RG001\\Selected exact source model.json",
@@ -74,11 +74,6 @@
           "terminal": "blocks/CC/pins/L/6",
           "net": "RG001CB4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/DB/pins/L/2",
-          "net": "RG051BC4",
-          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
           "terminal": "blocks/DC/pins/L/3",
@@ -3053,6 +3048,126 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/DB/pins/L/2",
+          "net": "RG051BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/DB/pins/L/2",
+          "net": "RG051BC4",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/DB/pins/L/2",
+              "net": "RG051BC4",
+              "polyline": 0,
+              "point": 2,
+              "before": [
+                45,
+                73
+              ],
+              "after": [
+                46,
+                73
+              ],
+              "annotation offsets": [],
+              "added horizontal annotation contact": true,
+              "before routing": [
+                [
+                  12,
+                  10
+                ],
+                [
+                  45,
+                  10
+                ],
+                [
+                  45,
+                  73
+                ]
+              ],
+              "after routing": [
+                [
+                  12,
+                  10
+                ],
+                [
+                  45,
+                  10
+                ],
+                [
+                  45,
+                  73
+                ],
+                [
+                  46,
+                  73
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/DB/pins/L/2",
+          "net": "RG051BC4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            45,
+            73
+          ],
+          "after": [
+            46,
+            73
+          ],
+          "annotation offsets": [],
+          "added horizontal annotation contact": true,
+          "before routing": [
+            [
+              12,
+              10
+            ],
+            [
+              45,
+              10
+            ],
+            [
+              45,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              12,
+              10
+            ],
+            [
+              45,
+              10
+            ],
+            [
+              45,
+              73
+            ],
+            [
+              46,
+              73
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

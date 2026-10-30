@@ -2,7 +2,7 @@
   "page": "MA411",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "75ff756f9d34a33f1ca6e4f9a46b0b322d6456e20f40b1bffa7ccb78584df470",
+  "content sha256": "da050dcdffa5234f394f1a69853662815ae2e49040bd5f8fe13c3b47485d3674",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team9\\ALD batch1178\\MA411 independent reconstruction1178\\Inputs\\Baseline model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA411 SAB 06 AND SAB P8-15 POWERING.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/2",
-          "net": "MA411AC2",
-          "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BE/pins/L/2",
-          "net": "MA411AX2",
-          "reason": "The changed lead interval is occupied by another net"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -4669,6 +4651,100 @@
               70
             ]
           ]
+        }
+      ]
+    },
+    {
+      "rule": "normal-contact-allows-annotations-crossings-and-own-branches",
+      "authority": "Human correction: annotated pins use the normal contact cell, with the annotation replacing its wire glyph; crossings at that cell and existing branches of the same net are valid.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "MA411AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BE/pins/L/2",
+          "net": "MA411AX2",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "MA411AC2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/AC/pins/R/2",
+              "net": "MA411AC2",
+              "polyline": 0,
+              "point": 0,
+              "before": [
+                81,
+                38
+              ],
+              "after": [
+                84,
+                38
+              ],
+              "annotation offsets": []
+            }
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/L/2",
+          "net": "MA411AX2",
+          "basis": "Unique existing endpoint normalized under the corrected contact rule",
+          "normalization": [
+            {
+              "terminal": "blocks/BE/pins/L/2",
+              "net": "MA411AX2",
+              "polyline": 0,
+              "point": 3,
+              "before": [
+                118,
+                66
+              ],
+              "after": [
+                115,
+                66
+              ],
+              "annotation offsets": []
+            }
+          ]
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "MA411AC2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            38
+          ],
+          "after": [
+            84,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/L/2",
+          "net": "MA411AX2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            66
+          ],
+          "after": [
+            115,
+            66
+          ],
+          "annotation offsets": []
         }
       ]
     }
