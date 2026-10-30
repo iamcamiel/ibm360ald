@@ -2,7 +2,7 @@
   "page": "FC401",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "71c500cb09412727c70214b5baede4070b39abf367b757c86abcebf58698902e",
+  "content sha256": "26dc1c4b60127c13562a42acc63cd5c97038a4c37fd6b2d8961c1daec2d659b3",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FC401\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FC CCR Register\\FC401 K GATE CLOCK CONTROL.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/L/4",
-          "net": "FC401AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/L/4",
-          "net": "FC401AC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -147433,6 +147415,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "FC401AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "FC401AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "FC401AA2",
+          "contact": [
+            69,
+            19
+          ],
+          "old endpoint": [
+            72,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "FC401AC2",
+          "contact": [
+            92,
+            40
+          ],
+          "old endpoint": [
+            95,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "FC401AA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            19
+          ],
+          "after": [
+            69,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              17
+            ],
+            [
+              69,
+              17
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              72,
+              19
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              17
+            ],
+            [
+              69,
+              17
+            ],
+            [
+              69,
+              19
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "FC401AC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            40
+          ],
+          "after": [
+            92,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              38
+            ],
+            [
+              92,
+              38
+            ],
+            [
+              92,
+              40
+            ],
+            [
+              95,
+              40
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              38
+            ],
+            [
+              92,
+              38
+            ],
+            [
+              92,
+              40
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

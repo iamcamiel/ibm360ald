@@ -2,7 +2,7 @@
   "page": "AP555",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "04daa98c6e568035dae15055321827da95257fee9c6668918beeb471b1bcff23",
+  "content sha256": "3816b0a6a1d41a0b2f6f3079e59327d68c05eaba99dfbc3f0a2e65e31b07bf66",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch667\\AP555 independent reconstruction667\\Table candidate\\AP555 model.json",
@@ -79,29 +79,14 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "AP555AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AJ/pins/R/4",
           "net": "AP555AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/6",
-          "net": "AP559AL4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AP/pins/R/4",
           "net": "AP555AP4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BC/pins/L/2",
-          "net": "AP555AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BH/pins/R/4",
@@ -2835,6 +2820,222 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP555AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP559AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "AP555AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP555AH4",
+          "contact": [
+            61,
+            54
+          ],
+          "old endpoint": [
+            58,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP559AL4",
+          "contact": [
+            92,
+            49
+          ],
+          "old endpoint": [
+            95,
+            49
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "AP555AF4",
+          "contact": [
+            69,
+            45
+          ],
+          "old endpoint": [
+            72,
+            45
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP555AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              54
+            ],
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              48
+            ],
+            [
+              69,
+              48
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              48
+            ],
+            [
+              69,
+              48
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "AP559AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            49
+          ],
+          "after": [
+            92,
+            49
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              39,
+              65
+            ],
+            [
+              92,
+              65
+            ],
+            [
+              92,
+              49
+            ],
+            [
+              95,
+              49
+            ]
+          ],
+          "after routing": [
+            [
+              39,
+              65
+            ],
+            [
+              92,
+              65
+            ],
+            [
+              92,
+              49
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "AP555AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            45
+          ],
+          "after": [
+            69,
+            45
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              40
+            ],
+            [
+              69,
+              40
+            ],
+            [
+              69,
+              45
+            ],
+            [
+              72,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              40
+            ],
+            [
+              69,
+              40
+            ],
+            [
+              69,
+              45
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

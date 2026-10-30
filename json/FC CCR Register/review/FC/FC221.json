@@ -2,7 +2,7 @@
   "page": "FC221",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8230f86100cb063a41f22a3c3a256beca0f9a06d9dff1a2e94a8a710382014cf",
+  "content sha256": "d8a4dd7fe5747cb15c33976584a298970f2ed407d3fe8e924d8506d1ee4b7cff",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FC221\\Source model.json",
@@ -41,11 +41,6 @@
           "reason": "Another same-net route intersects the changed lead interval"
         },
         {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "FC221AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AG/pins/R/4",
           "net": "FC221AG4",
           "reason": "Another same-net route intersects the changed lead interval"
@@ -56,16 +51,6 @@
           "reason": "Another same-net route intersects the changed lead interval"
         },
         {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "FC221AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/2",
-          "net": "FC221AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AN/pins/L/4",
           "net": "FC221AE4",
           "reason": "Another same-net route intersects the changed lead interval"
@@ -74,11 +59,6 @@
           "terminal": "blocks/AN/pins/L/6",
           "net": "FC221AF4",
           "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "FC221AG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AP/pins/L/4",
@@ -495,5 +475,317 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FC221AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "FC221AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "FC221AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FC221AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FC221AF4",
+          "contact": [
+            107,
+            26
+          ],
+          "old endpoint": [
+            104,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "FC221AJ4",
+          "contact": [
+            107,
+            54
+          ],
+          "old endpoint": [
+            104,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "FC221AD4",
+          "contact": [
+            115,
+            17
+          ],
+          "old endpoint": [
+            118,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FC221AG4",
+          "contact": [
+            115,
+            45
+          ],
+          "old endpoint": [
+            118,
+            45
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FC221AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            26
+          ],
+          "after": [
+            107,
+            26
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                8,
+                0
+              ],
+              "after": [
+                8,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              26
+            ],
+            [
+              107,
+              26
+            ],
+            [
+              107,
+              21
+            ],
+            [
+              118,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              26
+            ],
+            [
+              107,
+              21
+            ],
+            [
+              118,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "FC221AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                8,
+                0
+              ],
+              "after": [
+                8,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              54
+            ],
+            [
+              107,
+              54
+            ],
+            [
+              107,
+              49
+            ],
+            [
+              118,
+              49
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              54
+            ],
+            [
+              107,
+              49
+            ],
+            [
+              118,
+              49
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "FC221AD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            17
+          ],
+          "after": [
+            115,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              12
+            ],
+            [
+              115,
+              12
+            ],
+            [
+              115,
+              17
+            ],
+            [
+              118,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              104,
+              12
+            ],
+            [
+              115,
+              12
+            ],
+            [
+              115,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FC221AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            45
+          ],
+          "after": [
+            115,
+            45
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              40
+            ],
+            [
+              115,
+              40
+            ],
+            [
+              115,
+              45
+            ],
+            [
+              118,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              104,
+              40
+            ],
+            [
+              115,
+              40
+            ],
+            [
+              115,
+              45
+            ]
+          ]
+        }
+      ]
+    }
+  ]
 }

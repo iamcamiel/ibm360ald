@@ -2,7 +2,7 @@
   "page": "CT041",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "de3afd509819be84a5c446dbbdd8fca01d704cb634ddb15d367b21de82484664",
+  "content sha256": "bdc3f06b5228c5dfb5c90bf8cf857f4c49818aca32c9d3e42b9bf306cb295adc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\CT041 independent reconstruction606\\Continuation612\\Candidate\\CT041 model.json",
@@ -58,11 +58,6 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AE/pins/L/2",
-          "net": "CT041AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AH/pins/L/6",
           "net": "CT031AZ4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -103,16 +98,6 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/BL/pins/L/2",
-          "net": "CT041BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BL/pins/L/6",
-          "net": "CT041BK4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BL/pins/R/4",
           "net": "CT041BL4",
           "reason": "Another same-net route intersects the changed lead interval"
@@ -121,16 +106,6 @@
           "terminal": "blocks/BP/pins/L/2",
           "net": "CS031BT4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BQ/pins/L/2",
-          "net": "CT041BN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BQ/pins/L/6",
-          "net": "CT041BP4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BQ/pins/R/4",
@@ -2608,6 +2583,358 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "CT041AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BL/pins/L/2",
+          "net": "CT041BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BL/pins/L/6",
+          "net": "CT041BK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/2",
+          "net": "CT041BN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/6",
+          "net": "CT041BP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "CT041AA4",
+          "contact": [
+            92,
+            17
+          ],
+          "old endpoint": [
+            95,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BL/pins/L/2",
+          "net": "CT041BJ4",
+          "contact": [
+            138,
+            31
+          ],
+          "old endpoint": [
+            141,
+            31
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BL/pins/L/6",
+          "net": "CT041BK4",
+          "contact": [
+            138,
+            35
+          ],
+          "old endpoint": [
+            141,
+            35
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/2",
+          "net": "CT041BN4",
+          "contact": [
+            138,
+            52
+          ],
+          "old endpoint": [
+            141,
+            52
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/6",
+          "net": "CT041BP4",
+          "contact": [
+            138,
+            56
+          ],
+          "old endpoint": [
+            141,
+            56
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "CT041AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            17
+          ],
+          "after": [
+            92,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              17
+            ],
+            [
+              95,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BL/pins/L/2",
+          "net": "CT041BJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            31
+          ],
+          "after": [
+            138,
+            31
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              26
+            ],
+            [
+              138,
+              26
+            ],
+            [
+              138,
+              31
+            ],
+            [
+              141,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              26
+            ],
+            [
+              138,
+              26
+            ],
+            [
+              138,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BL/pins/L/6",
+          "net": "CT041BK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            35
+          ],
+          "after": [
+            138,
+            35
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              33
+            ],
+            [
+              138,
+              33
+            ],
+            [
+              138,
+              35
+            ],
+            [
+              141,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              138,
+              33
+            ],
+            [
+              138,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/2",
+          "net": "CT041BN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            52
+          ],
+          "after": [
+            138,
+            52
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              47
+            ],
+            [
+              138,
+              47
+            ],
+            [
+              138,
+              52
+            ],
+            [
+              141,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              47
+            ],
+            [
+              138,
+              47
+            ],
+            [
+              138,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/6",
+          "net": "CT041BP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            56
+          ],
+          "after": [
+            138,
+            56
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              54
+            ],
+            [
+              138,
+              54
+            ],
+            [
+              138,
+              56
+            ],
+            [
+              141,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              54
+            ],
+            [
+              138,
+              54
+            ],
+            [
+              138,
+              56
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

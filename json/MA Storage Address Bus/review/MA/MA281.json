@@ -2,7 +2,7 @@
   "page": "MA281",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f3b6916ae3ec838816660ea08da9155b3790fa81e94f8341760631e33b15ec9b",
+  "content sha256": "b4aa1bc637f7e5bbed439464719d766c64d656b9a88044cf879c1ec25329115f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA281\\Source model.json",
@@ -39,20 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/GU/pins/R/4",
-          "net": "MA281GU4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -813,6 +800,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/GU/pins/R/4",
+          "net": "MA281GU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/GU/pins/R/4",
+          "net": "MA281GU4",
+          "contact": [
+            61,
+            68
+          ],
+          "old endpoint": [
+            58,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/GU/pins/R/4",
+          "net": "MA281GU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            68
+          ],
+          "after": [
+            61,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              68
+            ],
+            [
+              61,
+              68
+            ],
+            [
+              61,
+              66
+            ],
+            [
+              69,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              68
+            ],
+            [
+              61,
+              66
+            ],
+            [
+              69,
+              66
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

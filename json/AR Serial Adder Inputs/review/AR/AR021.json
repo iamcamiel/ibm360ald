@@ -2,7 +2,7 @@
   "page": "AR021",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter (original producer); Team5 DATA251 Reviewer A (/root/data251_a)",
-  "content sha256": "06252ccef6144aee0b139be1f55a40bf0ab020169ce144b972c124a459d0b2d3",
+  "content sha256": "7972e6e5df7f92423121fa3448352a6df80f30aad64285e3dc439c5ab430d3fd",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\AR021\\Exact source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AR Serial Adder Inputs\\AR021 SADDER FINAL BUS A 02-03.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/L/2",
-          "net": "AR021AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AB/pins/L/2",
-          "net": "AR021AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1641,6 +1623,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "AR021AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "AR021AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "AR021AH4",
+          "contact": [
+            161,
+            17
+          ],
+          "old endpoint": [
+            164,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "AR021AE4",
+          "contact": [
+            161,
+            45
+          ],
+          "old endpoint": [
+            164,
+            45
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "AR021AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            17
+          ],
+          "after": [
+            161,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              17
+            ],
+            [
+              164,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "AR021AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            45
+          ],
+          "after": [
+            161,
+            45
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              40
+            ],
+            [
+              161,
+              40
+            ],
+            [
+              161,
+              45
+            ],
+            [
+              164,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              40
+            ],
+            [
+              161,
+              40
+            ],
+            [
+              161,
+              45
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

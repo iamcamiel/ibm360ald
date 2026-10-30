@@ -2,7 +2,7 @@
   "page": "KX131",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c542ce399fd96142d42a8a0446471d71e43b2baa4943cd19d597fedb6b59bf4f",
+  "content sha256": "8051a7095272992c8b281e0f9b53db36672897845185d95eb7000d613e6efe0e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round015\\Inputs\\KX131\\Source model.json",
@@ -30,11 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "KX131BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/BR/pins/L/4",
           "net": "KX131BK4",
@@ -1387,6 +1382,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX131BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX131BJ4",
+          "contact": [
+            61,
+            19
+          ],
+          "old endpoint": [
+            58,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX131BJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              19
+            ],
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

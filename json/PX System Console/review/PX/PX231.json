@@ -2,7 +2,7 @@
   "page": "PX231",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "04e41978f078d7e03513b958daa952f7f9252cbf901fd371af2bda9238e81c18",
+  "content sha256": "42422683d3985d773cef3a568c368f40f4519b86f05f82cb4de038b3ba3ff0dc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team7\\ALD batch1203\\PX231 independent reconstruction1203\\Inputs\\Baseline model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\PX System Console\\PX231 Address and Data Keys to D Reg Pos 08-15.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AY/pins/L/6",
-          "net": "PX231AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -3104,6 +3091,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "PX231AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "PX231AF4",
+          "contact": [
+            161,
+            91
+          ],
+          "old endpoint": [
+            164,
+            91
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "PX231AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            91
+          ],
+          "after": [
+            161,
+            91
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              89
+            ],
+            [
+              161,
+              89
+            ],
+            [
+              161,
+              91
+            ],
+            [
+              164,
+              91
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              89
+            ],
+            [
+              161,
+              89
+            ],
+            [
+              161,
+              91
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "XN151",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d0f3485291ab55284ac301602de98ed630ad54909590774e554cb61d5eb39982",
+  "content sha256": "8478e5da8bc183bdbbc61099ab7a1aeac7f9c5f3f0de856fcd384a92683ffcea",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XN151\\Source model.json",
@@ -44,21 +44,6 @@
           "terminal": "blocks/AF/pins/R/4",
           "net": "XN151AF4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AR/pins/L/4",
-          "net": "XN151AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AT/pins/L/4",
-          "net": "XN151AC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AV/pins/L/4",
-          "net": "XN151AE2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -2998,6 +2983,270 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "XN151AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "XN151AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AV/pins/L/4",
+          "net": "XN151AE2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "XN151AA2",
+          "contact": [
+            92,
+            12
+          ],
+          "old endpoint": [
+            95,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 1,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "XN151AC2",
+          "contact": [
+            92,
+            40
+          ],
+          "old endpoint": [
+            95,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 1,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/AV/pins/L/4",
+          "net": "XN151AE2",
+          "contact": [
+            92,
+            68
+          ],
+          "old endpoint": [
+            95,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 1,
+          "point": 5
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "XN151AA2",
+          "polyline": 1,
+          "point": 5,
+          "before": [
+            95,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ],
+            [
+              69,
+              8
+            ],
+            [
+              92,
+              8
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              95,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ],
+            [
+              69,
+              8
+            ],
+            [
+              92,
+              8
+            ],
+            [
+              92,
+              12
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "XN151AC2",
+          "polyline": 1,
+          "point": 5,
+          "before": [
+            95,
+            40
+          ],
+          "after": [
+            92,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              40
+            ],
+            [
+              69,
+              40
+            ],
+            [
+              69,
+              36
+            ],
+            [
+              92,
+              36
+            ],
+            [
+              92,
+              40
+            ],
+            [
+              95,
+              40
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              40
+            ],
+            [
+              69,
+              40
+            ],
+            [
+              69,
+              36
+            ],
+            [
+              92,
+              36
+            ],
+            [
+              92,
+              40
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/L/4",
+          "net": "XN151AE2",
+          "polyline": 1,
+          "point": 5,
+          "before": [
+            95,
+            68
+          ],
+          "after": [
+            92,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              68
+            ],
+            [
+              69,
+              68
+            ],
+            [
+              69,
+              64
+            ],
+            [
+              92,
+              64
+            ],
+            [
+              92,
+              68
+            ],
+            [
+              95,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              68
+            ],
+            [
+              69,
+              68
+            ],
+            [
+              69,
+              64
+            ],
+            [
+              92,
+              64
+            ],
+            [
+              92,
+              68
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

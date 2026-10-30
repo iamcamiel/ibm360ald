@@ -2,7 +2,7 @@
   "page": "KW311",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "756693230f6848613628354377658397caf084a69785253cdf528f2ab24df991",
+  "content sha256": "0202b28c4eac932f6f3be56349f0d63d3e99f9c015ec4f3116db8019e8009834",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round010\\KW311\\Candidate001\\Current model.json",
@@ -56,19 +56,9 @@
           "reason": "Another same-net route intersects the changed lead interval"
         },
         {
-          "terminal": "blocks/AV/pins/R/4",
-          "net": "KW311AV4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AW/pins/L/4",
           "net": "KW311BH4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "KW311AW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BH/pins/R/4",
@@ -2960,6 +2950,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KW311AV4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KW311AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KW311AV4",
+          "contact": [
+            153,
+            33
+          ],
+          "old endpoint": [
+            150,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KW311AW4",
+          "contact": [
+            153,
+            40
+          ],
+          "old endpoint": [
+            150,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "KW311AV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            33
+          ],
+          "after": [
+            153,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              33
+            ],
+            [
+              153,
+              33
+            ],
+            [
+              153,
+              31
+            ],
+            [
+              161,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              33
+            ],
+            [
+              153,
+              31
+            ],
+            [
+              161,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "KW311AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            40
+          ],
+          "after": [
+            153,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              40
+            ],
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              35
+            ],
+            [
+              161,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              35
+            ],
+            [
+              161,
+              35
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

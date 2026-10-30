@@ -2,7 +2,7 @@
   "page": "KT381",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4b883f1d4b4fbe98d5e1da1f850a5b80e4781ac3a76c2217b0d6ac1baf62f344",
+  "content sha256": "1d43f653eb6318749eaf391d81b39a9ed018401674f3b2bc013a57d543767350",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KT381\\Source model.json",
@@ -43,25 +43,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "KT381AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "KT381AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1016,6 +998,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KT381AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "KT381AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KT381AF4",
+          "contact": [
+            115,
+            52
+          ],
+          "old endpoint": [
+            118,
+            52
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "KT381AJ4",
+          "contact": [
+            107,
+            61
+          ],
+          "old endpoint": [
+            104,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KT381AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            52
+          ],
+          "after": [
+            115,
+            52
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              47
+            ],
+            [
+              115,
+              47
+            ],
+            [
+              115,
+              52
+            ],
+            [
+              118,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              47
+            ],
+            [
+              115,
+              47
+            ],
+            [
+              115,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "KT381AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            61
+          ],
+          "after": [
+            107,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              61
+            ],
+            [
+              107,
+              61
+            ],
+            [
+              107,
+              56
+            ],
+            [
+              115,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              61
+            ],
+            [
+              107,
+              56
+            ],
+            [
+              115,
+              56
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

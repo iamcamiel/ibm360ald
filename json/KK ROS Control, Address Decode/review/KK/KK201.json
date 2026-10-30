@@ -2,7 +2,7 @@
   "page": "KK201",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "bf21c59b5f435d674c9a8e9cb935b029f33dfae130274d9fdd833b37ab6e1186",
+  "content sha256": "1c28a9d58bc57bc6eaa97e6a494142e8540032ca27eb44c9f14f461f597e3276",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KK201\\Source model.json",
@@ -24,40 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KK ROS Control, Address Decode\\KK201 READ ONLY STORAGE CONTROL.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AL/pins/L/4",
-          "net": "KK201AM4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/4",
-          "net": "KK201AT4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AX/pins/R/4",
-          "net": "KK201AX4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/DF/pins/L/2",
-          "net": "KK201AS4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/WA/pins/L/2",
-          "net": "KK201AW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -726,6 +693,358 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KK201AM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK201AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KK201AX4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DF/pins/L/2",
+          "net": "KK201AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/WA/pins/L/2",
+          "net": "KK201AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KK201AM4",
+          "contact": [
+            138,
+            19
+          ],
+          "old endpoint": [
+            141,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK201AT4",
+          "contact": [
+            153,
+            26
+          ],
+          "old endpoint": [
+            150,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KK201AX4",
+          "contact": [
+            153,
+            61
+          ],
+          "old endpoint": [
+            150,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/DF/pins/L/2",
+          "net": "KK201AS4",
+          "contact": [
+            161,
+            17
+          ],
+          "old endpoint": [
+            164,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/WA/pins/L/2",
+          "net": "KK201AW4",
+          "contact": [
+            161,
+            52
+          ],
+          "old endpoint": [
+            164,
+            52
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KK201AM4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            19
+          ],
+          "after": [
+            138,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              19
+            ],
+            [
+              141,
+              19
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              19
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK201AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            26
+          ],
+          "after": [
+            153,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              26
+            ],
+            [
+              153,
+              26
+            ],
+            [
+              153,
+              21
+            ],
+            [
+              161,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              26
+            ],
+            [
+              153,
+              21
+            ],
+            [
+              161,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "KK201AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            61
+          ],
+          "after": [
+            153,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              61
+            ],
+            [
+              153,
+              61
+            ],
+            [
+              153,
+              56
+            ],
+            [
+              161,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              153,
+              56
+            ],
+            [
+              161,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DF/pins/L/2",
+          "net": "KK201AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            17
+          ],
+          "after": [
+            161,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              17
+            ],
+            [
+              164,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/WA/pins/L/2",
+          "net": "KK201AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            52
+          ],
+          "after": [
+            161,
+            52
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              47
+            ],
+            [
+              161,
+              47
+            ],
+            [
+              161,
+              52
+            ],
+            [
+              164,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              47
+            ],
+            [
+              161,
+              47
+            ],
+            [
+              161,
+              52
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "MC261",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "121640c46441fcf8a714aea83b60bbac28b472700768f4ef2602c464aeecc20c",
+  "content sha256": "532fa8c6c68ca055439ec4f81a110da8b32c86bfc9f4512f8984ea24a84d5459",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MC261\\Source model.json",
@@ -36,19 +36,9 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/CE/pins/L/4",
-          "net": "MC261CC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/CE/pins/R/4",
           "net": "MC261CE4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CV/pins/R/2",
-          "net": "MC261CV2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -1852,6 +1842,186 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/CE/pins/L/4",
+          "net": "MC261CC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CV/pins/R/2",
+          "net": "MC261CV2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/CE/pins/L/4",
+          "net": "MC261CC2",
+          "contact": [
+            138,
+            12
+          ],
+          "old endpoint": [
+            141,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/CV/pins/R/2",
+          "net": "MC261CV2",
+          "contact": [
+            130,
+            10
+          ],
+          "old endpoint": [
+            127,
+            10
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/CE/pins/L/4",
+          "net": "MC261CC2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            141,
+            12
+          ],
+          "after": [
+            138,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              24
+            ],
+            [
+              154,
+              24
+            ],
+            [
+              154,
+              16
+            ],
+            [
+              138,
+              16
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              141,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              24
+            ],
+            [
+              154,
+              24
+            ],
+            [
+              154,
+              16
+            ],
+            [
+              138,
+              16
+            ],
+            [
+              138,
+              12
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CV/pins/R/2",
+          "net": "MC261CV2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            10
+          ],
+          "after": [
+            130,
+            10
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              10
+            ],
+            [
+              130,
+              10
+            ],
+            [
+              130,
+              16
+            ],
+            [
+              113,
+              16
+            ],
+            [
+              113,
+              33
+            ],
+            [
+              115,
+              33
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              10
+            ],
+            [
+              130,
+              16
+            ],
+            [
+              113,
+              16
+            ],
+            [
+              113,
+              33
+            ],
+            [
+              115,
+              33
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "BF411",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter (original producer); Team5 DATA251 Reviewer C (/root/data251_c)",
-  "content sha256": "72e560e6bc0a56cee5ea5a69f15880e151ac0d77c438dfa66f3949c7692355de",
+  "content sha256": "2df4dc1ce93815c0d67521c28fb21e7dca84c18aff96b8296bd36273d92696c1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\BF411\\Exact source model.json",
@@ -30,16 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AK/pins/R/4",
-          "net": "BF411AK4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "BF411AL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/AQ/pins/L/4",
           "net": "LS155GB4",
@@ -2270,6 +2260,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF411AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "BF411AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF411AK4",
+          "contact": [
+            130,
+            61
+          ],
+          "old endpoint": [
+            127,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "BF411AL4",
+          "contact": [
+            130,
+            68
+          ],
+          "old endpoint": [
+            127,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "BF411AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              61
+            ],
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "BF411AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              68
+            ],
+            [
+              130,
+              68
+            ],
+            [
+              130,
+              63
+            ],
+            [
+              138,
+              63
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              68
+            ],
+            [
+              130,
+              63
+            ],
+            [
+              138,
+              63
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

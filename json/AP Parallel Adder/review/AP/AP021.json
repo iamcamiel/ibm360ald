@@ -2,7 +2,7 @@
   "page": "AP021",
   "review date": "2026-10-26",
   "reviewer": "Independent DATA reviewer /root/data245_a (gpt-6.1-sol); original producer: Functional ALD format converter",
-  "content sha256": "7559cbccf902af7ee9024b7a2a4ddc8462a8719f884ae453e8071aa0452b5713",
+  "content sha256": "4c4903398b1f0f904e24e0dad15d8be37bebf96eb224f78937c89e1719ab2a1c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP021\\Exact source model.json",
@@ -36,19 +36,9 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AM/pins/L/4",
-          "net": "AP021AL2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AW/pins/R/4",
           "net": "AP021AW4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AZ/pins/L/4",
-          "net": "AP021AW2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -1365,6 +1355,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "AP021AL2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "AP021AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "AP021AL2",
+          "contact": [
+            69,
+            19
+          ],
+          "old endpoint": [
+            72,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "AP021AW2",
+          "contact": [
+            92,
+            54
+          ],
+          "old endpoint": [
+            95,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "AP021AL2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            19
+          ],
+          "after": [
+            69,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              17
+            ],
+            [
+              69,
+              17
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              72,
+              19
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              17
+            ],
+            [
+              69,
+              17
+            ],
+            [
+              69,
+              19
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "AP021AW2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            54
+          ],
+          "after": [
+            92,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ],
+            [
+              92,
+              54
+            ],
+            [
+              95,
+              54
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ],
+            [
+              92,
+              54
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

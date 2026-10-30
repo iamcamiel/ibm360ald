@@ -2,7 +2,7 @@
   "page": "KT091",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1d9745010852e67145ac26bab4bf7f531613ef060aa42c329449f0871a8d0763",
+  "content sha256": "30d3cef5363b9c7250e04d37bee632d7cd5bca58d3c11f618e136881b30ef6ca",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT091\\Source model.json",
@@ -39,11 +39,6 @@
           "terminal": "blocks/AN/pins/L/4",
           "net": "KT091AH2",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AN/pins/L/6",
-          "net": "KT091AJ2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -508,6 +503,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KT091AJ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KT091AJ2",
+          "contact": [
+            138,
+            56
+          ],
+          "old endpoint": [
+            141,
+            56
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KT091AJ2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            56
+          ],
+          "after": [
+            138,
+            56
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              38
+            ],
+            [
+              138,
+              38
+            ],
+            [
+              138,
+              56
+            ],
+            [
+              141,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              38
+            ],
+            [
+              138,
+              38
+            ],
+            [
+              138,
+              56
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

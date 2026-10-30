@@ -2,7 +2,7 @@
   "page": "XM475",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5a90e0f303be12bf52ee7b476e617b1ba072e8c3ede73aa735fcebe81d3412eb",
+  "content sha256": "a1ee12d2cbe303adec818a383a7ca29d129d31c754c8038a6a1354a90c58d799",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XM475\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XM Mixer\\XM475 LM REG BIT RCVRS FOR PARITY PREDICT.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BE/pins/L/4",
-          "net": "XM475BA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2880,6 +2867,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "XM475BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "XM475BA2",
+          "contact": [
+            161,
+            82
+          ],
+          "old endpoint": [
+            164,
+            82
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "XM475BA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            82
+          ],
+          "after": [
+            161,
+            82
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              80
+            ],
+            [
+              161,
+              80
+            ],
+            [
+              161,
+              82
+            ],
+            [
+              164,
+              82
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              80
+            ],
+            [
+              161,
+              80
+            ],
+            [
+              161,
+              82
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

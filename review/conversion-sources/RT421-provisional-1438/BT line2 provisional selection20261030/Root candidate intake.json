@@ -1,0 +1,106 @@
+{
+  "files": [
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\RT421 candidate.json",
+      "sha256": "39b46e11586300ca9df329657e8225758820d955fac4026eeda9d485e925c0d3",
+      "bytes": 57994
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\review\\RT\\RT421.json",
+      "sha256": "01727bc61aedf0447cd3412d960403faa9a21b227e9319140d4c3b0ec4dfb02f",
+      "bytes": 120571
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\Candidate proof and full reference inventory.json",
+      "sha256": "6326466f916f28007d63044f5933431d4a63f6c3a088526b7a94a84dcd0de2e1",
+      "bytes": 8367
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\Build BT source candidate.py",
+      "sha256": "f69461c8fbb61b97f1967d598b02f19a869181ea8c80a44edc711f5813c42769",
+      "bytes": 7074
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\Current model preimage.json",
+      "sha256": "00f6e93eb16b212cc925b70d77615c1f787dad863104a8821fc926babf4e0145",
+      "bytes": 58051
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Private BT line2 candidate\\Current review preimage.json",
+      "sha256": "a6ad40a0a0f48b5145672de2d6dd066449f4cab316dd3ce14a4c0eca4bf24104",
+      "bytes": 119460
+    }
+  ],
+  "producer_builder_full_TEXT": "from pathlib import Path\nimport json,hashlib,copy,os\nbase=Path(r'D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register');p=Path(r'D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258');d=p/'Private BT line2 candidate';model=base/'RT421 T REGISTER BITS 42 AND 43.json';reviewfile=base/'review/RT/RT421.json';h=lambda b:hashlib.sha256(b).hexdigest();mb=model.read_bytes();rb=reviewfile.read_bytes();assert h(mb)=='00f6e93eb16b212cc925b70d77615c1f787dad863104a8821fc926babf4e0145';assert h(rb)=='a6ad40a0a0f48b5145672de2d6dd066449f4cab316dd3ce14a4c0eca4bf24104';v=json.loads(mb);rv=json.loads(rb);oldref='blocks/BT/pins/L/4';newref='blocks/BT/pins/L/2'\ndef digest(x):return h(json.dumps({k:v for k,v in x.items() if k!='review'},ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode())\nassert rv['content sha256']==digest(v) and v['review']['approved'] is False and v['review']['unresolved discrepancies'] is True\nassert v['blocks'][35]['serial']=='BT';pins=v['blocks'][35]['pins'];assert sum(x.get('side')=='L' and x.get('line')==4 for x in pins)==1 and not any(x.get('side')=='L' and x.get('line')==2 for x in pins)\nassert v['nets'][45]['net number']=='RT421BJ4' and v['nets'][45]['nodes']==['blocks/BJ/pins/R/4',oldref];assert v['nets'][45]['routing']==[[[130,75],[138,75],[138,82],[141,82]]]\ndef walk(o,path=''):\n if isinstance(o,dict):\n  for k,x in o.items():yield from walk(x,path+'/'+k.replace('~','~0').replace('/','~1'))\n elif isinstance(o,list):\n  if o in ([138,82],[141,82],[138,80],[141,80]):yield {'pointer':path,'kind':'coordinate-array','value':o}\n  for i,x in enumerate(o):yield from walk(x,path+'/'+str(i))\n elif isinstance(o,str) and (oldref in o or newref in o):yield {'pointer':path,'kind':'terminal-reference','value':o}\ninv={'model':list(walk(v)),'review':list(walk(rv))};model_oldrefs=[x['pointer'] for x in inv['model'] if x['kind']=='terminal-reference' and oldref in x['value']];model_newrefs=[x for x in inv['model'] if x['kind']=='terminal-reference' and newref in x['value']];assert model_oldrefs==['/nets/45/nodes/1'] and not model_newrefs\nassert {x['pointer'] for x in inv['model'] if x['kind']=='coordinate-array' and x['value'] in ([138,82],[141,82])}=={'/nets/45/routing/0/2','/nets/45/routing/0/3'}\n# Enumerate every unrelated route segment crossing proposed endpoints/approach; guard fails on any other net.\ndef segment(a,b):\n x,y=a;X,Y=b\n if x==X:return {(x,z) for z in range(min(y,Y),max(y,Y)+1)}\n if y==Y:return {(z,y) for z in range(min(x,X),max(x,X)+1)}\n raise ValueError('nonorthogonal')\nprobe=segment([138,75],[138,80]);conflicts=[]\nfor i,n in enumerate(v['nets']):\n if i==45:continue\n for j,path in enumerate(n.get('routing',[])):\n  for k,(a,b) in enumerate(zip(path,path[1:])):\n   shared=sorted(probe & segment(a,b))\n   if shared:conflicts.append({'net_pointer':f'/nets/{i}','route_pointer':f'/nets/{i}/routing/{j}/{k}','shared':shared})\nassert not conflicts\nnew=copy.deepcopy(v);newrv=copy.deepcopy(rv);new['blocks'][35]['pins'][0]['line']=2;new['nets'][45]['nodes'][1]=newref;new['nets'][45]['routing'][0]=[[130,75],[138,75],[138,80]]\nnewrv['content sha256']=digest(new);newrv['private proposed BT row correction']={'status':'proposed; unresolved','original terminal':oldref,'proposed terminal':newref,'old route':[[130,75],[138,75],[138,82],[141,82]],'proposed route':[[130,75],[138,75],[138,80]],'native evidence':str(p/'RT421 three-case native landmark adjudication.json'),'native evidence sha256':'f1faf4414833ea55f51d800bddf43d0e00c9799962cd099705ae8f1feb7113b9','limitations':'Candidate only; preserves height7, footer, lower input, output, net identity and all existing unresolved findings. No runtime validation, electrical approval, or inferred ownership. Old V3 point [141,82] and raw route start [127,75] remain historical; current V4 start [130,75] preserved.'}\ndef diffs(a,b,path=''):\n if type(a)!=type(b):return [{'pointer':path,'before':a,'after':b}]\n if isinstance(a,dict):\n  result=[]\n  for k in sorted(set(a)|set(b)):\n   x=path+'/'+k.replace('~','~0').replace('/','~1')\n   if k not in a:result.append({'pointer':x,'before_missing':True,'after':b[k]})\n   elif k not in b:result.append({'pointer':x,'before':a[k],'after_missing':True})\n   else:result.extend(diffs(a[k],b[k],x))\n  return result\n if isinstance(a,list):\n  if len(a)!=len(b):return [{'pointer':path,'before':a,'after':b}]\n  return sum((diffs(x,y,path+'/'+str(i)) for i,(x,y) in enumerate(zip(a,b))),[])\n return [] if a==b else [{'pointer':path,'before':a,'after':b}]\nmd=diffs(v,new);rd=diffs(rv,newrv);expected={'/blocks/35/pins/0/line','/nets/45/nodes/1','/nets/45/routing/0'};assert {x['pointer'] for x in md}==expected;assert {x['pointer'] for x in rd}=={'/content sha256','/private proposed BT row correction'};assert new['blocks'][35]['height']==7 and new['review']==v['review'];assert newrv['human-confirmed transcription follow-up']==rv['human-confirmed transcription follow-up']\ndef write(path,b):\n path.parent.mkdir(parents=True,exist_ok=True)\n with path.open('xb') as f:f.write(b);f.flush();os.fsync(f.fileno())\nwrite(d/'Current model preimage.json',mb);write(d/'Current review preimage.json',rb)\noutm=(json.dumps(new,ensure_ascii=False,indent=2)+'\\n').encode();outr=(json.dumps(newrv,ensure_ascii=False,indent=2)+'\\n').encode();write(d/'RT421 candidate.json',outm);write(d/'review/RT/RT421.json',outr)\nproof={'page':'RT421','status':'private SOURCE-only candidate; not runtime validated, approved false','inputs':{'current_model_path':str(model),'current_model_sha256':h(mb),'current_review_path':str(reviewfile),'current_review_sha256':h(rb),'historical_raw_sha256':h((p/'Inputs/Page.raw.json').read_bytes()),'historical_typed_v3_sha256':h((p/'Inputs/Baseline model.json').read_bytes()),'historical_original_seal_sha256':h((p/'Immutable final manifest1258.json').read_bytes())},'candidate_model_sha256':h(outm),'candidate_review_sha256':h(outr),'candidate_content_sha256':digest(new),'reference_inventory':inv,'candidate_probe_other_net_conflicts':conflicts,'candidate_BT_L2_unused_in_current_block':True,'model_forward_complete':md,'model_inverse_complete':diffs(new,v),'review_forward_complete':rd,'review_inverse_complete':diffs(newrv,rv),'complement_equal':True,'retained_original_findings':True,'native_support':'f1faf4414833ea55f51d800bddf43d0e00c9799962cd099705ae8f1feb7113b9','limitations':'Source-only. No converter, renderer, validator, runtime test, external schema, electrical ownership or continuity conclusion. Proposed BT coordinates derive from approximate landmark alignment; height7/footer uncertainty remains. No BH/AN edits; no canonical or status/cache mutation.'};write(d/'Candidate proof and full reference inventory.json',(json.dumps(proof,ensure_ascii=False,indent=2)+'\\n').encode());print(json.dumps({'proof_sha256':h((d/'Candidate proof and full reference inventory.json').read_bytes()),'model':h(outm),'review':h(outr),'content':digest(new),'model_diff':md,'review_diff_pointers':[x['pointer'] for x in rd],'conflicts':conflicts},ensure_ascii=False))",
+  "full_model_forward_inverse_complement": true,
+  "exact_only3_model_changes": [
+    {
+      "pointer": "/blocks/35/pins/0/line",
+      "before": 4,
+      "after": 2
+    },
+    {
+      "pointer": "/nets/45/nodes/1",
+      "before": "blocks/BT/pins/L/4",
+      "after": "blocks/BT/pins/L/2"
+    },
+    {
+      "pointer": "/nets/45/routing/0",
+      "before": [
+        [
+          130,
+          75
+        ],
+        [
+          138,
+          75
+        ],
+        [
+          138,
+          82
+        ],
+        [
+          141,
+          82
+        ]
+      ],
+      "after": [
+        [
+          130,
+          75
+        ],
+        [
+          138,
+          75
+        ],
+        [
+          138,
+          80
+        ]
+      ]
+    }
+  ],
+  "full_review_forward_inverse_complement": true,
+  "candidate_digest_matches": true,
+  "all_current_block_pin_references_unique_and_exactly_one_net": true,
+  "all_routes_orthogonal": true,
+  "block_height_lower_input_output_other_nets_claims_unchanged": true,
+  "native_evidence_intake": {
+    "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\Root RT421 native landmark full bounded DATA intake20261030T121524.json",
+    "sha256": "8f00dad7611517765f8b18c642d76c334ae203a791dde8e11a15c9d1931eb4f8"
+  },
+  "current_model": {
+    "path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT421 T REGISTER BITS 42 AND 43.json",
+    "sha256": "00f6e93eb16b212cc925b70d77615c1f787dad863104a8821fc926babf4e0145",
+    "bytes": 58051
+  },
+  "current_review_at_read": {
+    "path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\review\\RT\\RT421.json",
+    "sha256": "e208790760c24c390eef1447d2077bfab3fc6ae37ec0f46792fd7053011c9f3a",
+    "bytes": 119504
+  },
+  "current_review_matches_producer_preimage": false,
+  "disposition": "Bounded SOURCE/DATA review closed for PRIVATE BT L2 variant. Coherent V4 with current framework and explicit partial/unapproved/issues. Standing normal provisional publication may select it recoverably with old alternative/history and actual fresh minimal receipts. No full source/electrical/schema or converter approval.",
+  "runtime": "Root stdlib DATA only. Producer DATA builder execution attributed. No Root/producer converter/renderer/validator/import/compile/test execution under SOURCE authoring; normal serial publication/cache rendering remains separately authorized by human policy.",
+  "limits": "BT height/footer and whole-page source/native/registration/omission/electrical unknowns persist. BH and AN coordinates remain unresolved. Keep all original human flags open pending actual new render/native comparison; merge current serial review additions rather than replace with a stale review."
+}

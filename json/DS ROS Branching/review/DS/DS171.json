@@ -2,7 +2,7 @@
   "page": "DS171",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e30444014c21e0f0c3b0dcb54e368490b5144da6ecdd7d849deec029538127da",
+  "content sha256": "358928b0ffe5c03f07c853c82e1f6db4b1d6a5891d7420a901a63bbc0782509a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\DS171\\Source model.json",
@@ -56,11 +56,6 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/AQ/pins/R/4",
-          "net": "DS171AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AR/pins/L/2",
           "net": "DS171AD2",
           "reason": "The changed lead interval is occupied by another net"
@@ -69,16 +64,6 @@
           "terminal": "blocks/AS/pins/L/2",
           "net": "DS171AE2",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/4",
-          "net": "DS171AT4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AY/pins/L/2",
-          "net": "DS171AW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -989,6 +974,250 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS171AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS171AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AY/pins/L/2",
+          "net": "DS171AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS171AQ4",
+          "contact": [
+            130,
+            26
+          ],
+          "old endpoint": [
+            127,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS171AT4",
+          "contact": [
+            130,
+            54
+          ],
+          "old endpoint": [
+            127,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AY/pins/L/2",
+          "net": "DS171AW4",
+          "contact": [
+            184,
+            31
+          ],
+          "old endpoint": [
+            187,
+            31
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS171AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            26
+          ],
+          "after": [
+            130,
+            26
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                31,
+                0
+              ],
+              "after": [
+                31,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              26
+            ],
+            [
+              130,
+              26
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              161,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              26
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              161,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS171AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                31,
+                0
+              ],
+              "after": [
+                31,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              54
+            ],
+            [
+              130,
+              54
+            ],
+            [
+              130,
+              49
+            ],
+            [
+              161,
+              49
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              54
+            ],
+            [
+              130,
+              49
+            ],
+            [
+              161,
+              49
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AY/pins/L/2",
+          "net": "DS171AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            31
+          ],
+          "after": [
+            184,
+            31
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              19
+            ],
+            [
+              184,
+              19
+            ],
+            [
+              184,
+              31
+            ],
+            [
+              187,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              19
+            ],
+            [
+              184,
+              19
+            ],
+            [
+              184,
+              31
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

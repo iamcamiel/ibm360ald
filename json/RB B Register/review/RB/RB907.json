@@ -2,7 +2,7 @@
   "page": "RB907",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "cf35c1ded7337c60e03a4cf59fb487cc1e11ed1f7bec8d57c0a00afa07455fde",
+  "content sha256": "e7c4f91c8e438d807151d031c40d80c25bac772e5ae8f792c7164687cf091adc",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team9\\ALD batch1219\\RB907 independent reconstruction1219\\Inputs\\Baseline model.json",
@@ -795,11 +795,6 @@
           "terminal": "blocks/AO/pins/L/6",
           "net": "RB817AG4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BG/pins/R/2",
-          "net": "RB907BG2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BH/pins/R/2",
@@ -7305,6 +7300,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BG/pins/R/2",
+          "net": "RB907BG2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BG/pins/R/2",
+          "net": "RB907BG2",
+          "contact": [
+            107,
+            52
+          ],
+          "old endpoint": [
+            104,
+            52
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BG/pins/R/2",
+          "net": "RB907BG2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            52
+          ],
+          "after": [
+            107,
+            52
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              52
+            ],
+            [
+              107,
+              52
+            ],
+            [
+              107,
+              66
+            ],
+            [
+              115,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              52
+            ],
+            [
+              107,
+              66
+            ],
+            [
+              115,
+              66
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

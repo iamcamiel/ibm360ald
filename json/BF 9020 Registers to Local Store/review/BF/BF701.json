@@ -2,7 +2,7 @@
   "page": "BF701",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3fec70bb944629429c3786dc561cf22a22ea9faf34d274dde6f8433fc1c41753",
+  "content sha256": "c5b81a06fb04b696bc2abbb6ad541fd3eef5c0c8a7120fc9f90fef8834c05a0b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch808\\BF701 independent reconstruction808\\Inputs\\Baseline model.json",
@@ -323,11 +323,6 @@
           "terminal": "blocks/BB/pins/R/4",
           "net": "BF701BB4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BQ/pins/R/2",
-          "net": "BF701BQ2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -3476,6 +3471,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BQ/pins/R/2",
+          "net": "BF701BQ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BQ/pins/R/2",
+          "net": "BF701BQ2",
+          "contact": [
+            130,
+            87
+          ],
+          "old endpoint": [
+            127,
+            87
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BQ/pins/R/2",
+          "net": "BF701BQ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            87
+          ],
+          "after": [
+            130,
+            87
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              87
+            ],
+            [
+              130,
+              87
+            ],
+            [
+              130,
+              82
+            ],
+            [
+              138,
+              82
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              87
+            ],
+            [
+              130,
+              82
+            ],
+            [
+              138,
+              82
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

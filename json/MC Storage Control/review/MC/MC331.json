@@ -2,7 +2,7 @@
   "page": "MC331",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4392b8531355997dface6e3f9cb0fda20f96eff0f47418208e32dd5a095c7b6d",
+  "content sha256": "059a4ba61f4b613708fb780ba36fe8af7a5720196c95bf71c6e3f2fe518f014c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC331\\Source model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC331 SELECT CONTROL POWERING.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AP/pins/L/4",
-          "net": "MC331AG2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -673,6 +660,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC331AG2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC331AG2",
+          "contact": [
+            92,
+            54
+          ],
+          "old endpoint": [
+            95,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC331AG2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            54
+          ],
+          "after": [
+            92,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ],
+            [
+              92,
+              54
+            ],
+            [
+              95,
+              54
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ],
+            [
+              92,
+              54
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

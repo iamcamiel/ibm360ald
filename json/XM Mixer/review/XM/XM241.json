@@ -2,7 +2,7 @@
   "page": "XM241",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f22a245e790fa2c0e9c0e95bccdd15f08b9e3c941ffdec5da0eb54a2658ae0db",
+  "content sha256": "41f8f2d2e22e586d771b03d127b02f5e435a8f8ce6fb3f7127d80e35d025f812",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team12\\ALD batch1302\\XM241 independent reconstruction1302\\Inputs\\Baseline model.json",
@@ -53,16 +53,6 @@
           "terminal": "blocks/AA/pins/R/4",
           "net": "XM241AA4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "XM241AG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "XM241AM4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -2165,6 +2155,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XM241AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "XM241AM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XM241AG4",
+          "contact": [
+            130,
+            61
+          ],
+          "old endpoint": [
+            127,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "XM241AM4",
+          "contact": [
+            153,
+            12
+          ],
+          "old endpoint": [
+            150,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "XM241AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              61
+            ],
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "XM241AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              12
+            ],
+            [
+              153,
+              12
+            ],
+            [
+              153,
+              10
+            ],
+            [
+              161,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              12
+            ],
+            [
+              153,
+              10
+            ],
+            [
+              161,
+              10
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "MA181",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "bdea0964b833d90ea2f23cb4b2cbb1db750ae7c5e656bd497c0753842945bc0a",
+  "content sha256": "b713426d04cd781f78295517f742f603384a07575c3fa20052aa2b51bec7ce0f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-3\\Results\\Continuous integration assist20261025-Round014\\Inputs\\MA181\\Source model.json",
@@ -42,16 +42,6 @@
           "terminal": "blocks/AF/pins/R/4",
           "net": "MA181AF4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "MA181AG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AH/pins/L/1",
-          "net": "MA181AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -2495,6 +2485,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MA181AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/1",
+          "net": "MA181AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MA181AG4",
+          "contact": [
+            84,
+            40
+          ],
+          "old endpoint": [
+            81,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AH/pins/L/1",
+          "net": "MA181AC4",
+          "contact": [
+            92,
+            23
+          ],
+          "old endpoint": [
+            95,
+            23
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MA181AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            40
+          ],
+          "after": [
+            84,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              40
+            ],
+            [
+              84,
+              40
+            ],
+            [
+              84,
+              27
+            ],
+            [
+              92,
+              27
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              40
+            ],
+            [
+              84,
+              27
+            ],
+            [
+              92,
+              27
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/L/1",
+          "net": "MA181AC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            23
+          ],
+          "after": [
+            92,
+            23
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              23
+            ],
+            [
+              95,
+              23
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              23
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "KT754",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4d1592ce4f10671f2621e61c2559b4407477fb88069fd01877e6be92b4fc2be5",
+  "content sha256": "50e0d4b3eefd2eb57c140ad61ab704a67769b47f0dafdbfc54f2b414bb92afbd",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT754\\Source model.json",
@@ -81,25 +81,7 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BA/pins/R/4",
-          "net": "KT754BA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "KT754BB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1328,6 +1310,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KT754BA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KT754BB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KT754BA4",
+          "contact": [
+            84,
+            54
+          ],
+          "old endpoint": [
+            81,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KT754BB4",
+          "contact": [
+            84,
+            61
+          ],
+          "old endpoint": [
+            81,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KT754BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            54
+          ],
+          "after": [
+            84,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              54
+            ],
+            [
+              84,
+              54
+            ],
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              54
+            ],
+            [
+              84,
+              52
+            ],
+            [
+              92,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KT754BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            61
+          ],
+          "after": [
+            84,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              61
+            ],
+            [
+              84,
+              61
+            ],
+            [
+              84,
+              56
+            ],
+            [
+              92,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              61
+            ],
+            [
+              84,
+              56
+            ],
+            [
+              92,
+              56
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

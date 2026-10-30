@@ -2,7 +2,7 @@
   "page": "KM181",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2addb14362c4b38b160860d815fce84bdedc5d16b55bc861458f994475c91ae0",
+  "content sha256": "e7a7670c00f35f44baa24fbdb773eed8c464ff29350c43bfb66aff0aa1787f1d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch1026\\KM181 independent reconstruction1026\\Inputs\\Baseline model.json",
@@ -40,11 +40,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AC/pins/L/4",
-          "net": "KM181AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AT/pins/L/6",
           "net": "KM861BE4",
           "reason": "Another same-net route intersects the changed lead interval"
@@ -53,11 +48,6 @@
           "terminal": "blocks/AU/pins/L/2",
           "net": "KM861BE4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CM/pins/L/4",
-          "net": "KM181CL2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -3125,6 +3115,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "KM181AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CM/pins/L/4",
+          "net": "KM181CL2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "KM181AA2",
+          "contact": [
+            92,
+            5
+          ],
+          "old endpoint": [
+            95,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/CM/pins/L/4",
+          "net": "KM181CL2",
+          "contact": [
+            92,
+            12
+          ],
+          "old endpoint": [
+            95,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "KM181AA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            5
+          ],
+          "after": [
+            92,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              3
+            ],
+            [
+              92,
+              3
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              95,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              3
+            ],
+            [
+              92,
+              3
+            ],
+            [
+              92,
+              5
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CM/pins/L/4",
+          "net": "KM181CL2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              10
+            ],
+            [
+              92,
+              10
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              95,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              10
+            ],
+            [
+              92,
+              10
+            ],
+            [
+              92,
+              12
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

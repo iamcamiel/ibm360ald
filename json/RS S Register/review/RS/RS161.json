@@ -2,7 +2,7 @@
   "page": "RS161",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "fa7c87a9142b00dd5790a492bda166975376260289eb75f650824c3aab2f5d41",
+  "content sha256": "46577fb740cc61b1ac290bc5181bd73a463285e517dcc29ce8971e5cf5627292",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team8\\ALD batch1256\\RS161 independent reconstruction1256\\Inputs\\Baseline model.json",
@@ -70,11 +70,6 @@
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
-          "terminal": "blocks/AD/pins/L/8",
-          "net": "RS161AK4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AE/pins/L/2",
           "net": "RS161AG4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
@@ -97,11 +92,6 @@
         {
           "terminal": "blocks/BD/pins/L/6",
           "net": "RS161BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BD/pins/L/8",
-          "net": "RS161BK4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
@@ -76734,6 +76724,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/8",
+          "net": "RS161AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BD/pins/L/8",
+          "net": "RS161BK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/8",
+          "net": "RS161AK4",
+          "contact": [
+            115,
+            30
+          ],
+          "old endpoint": [
+            118,
+            30
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BD/pins/L/8",
+          "net": "RS161BK4",
+          "contact": [
+            115,
+            72
+          ],
+          "old endpoint": [
+            118,
+            72
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/8",
+          "net": "RS161AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            30
+          ],
+          "after": [
+            115,
+            30
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              26
+            ],
+            [
+              115,
+              26
+            ],
+            [
+              115,
+              30
+            ],
+            [
+              118,
+              30
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              26
+            ],
+            [
+              115,
+              26
+            ],
+            [
+              115,
+              30
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BD/pins/L/8",
+          "net": "RS161BK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            72
+          ],
+          "after": [
+            115,
+            72
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              68
+            ],
+            [
+              115,
+              68
+            ],
+            [
+              115,
+              72
+            ],
+            [
+              118,
+              72
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              68
+            ],
+            [
+              115,
+              68
+            ],
+            [
+              115,
+              72
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "FS361",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1e19ad2a2f6efe1e4c7bf7079968b3e2c767216ed55e0af1af3d93215ff0ec1f",
+  "content sha256": "c5a1722f339aa48ad7044956e925b82cd710a8424bc2adc63b5e729ab6ebcf73",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FS361\\Source model.json",
@@ -41,24 +41,9 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "FS361AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AD/pins/L/2",
           "net": "FS501AF4",
           "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "FS361AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "FS361AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AM/pins/R/4",
@@ -74,11 +59,6 @@
           "terminal": "blocks/AP/pins/L/2",
           "net": "FS501AF4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "FS361AP4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -543,6 +523,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FS361AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FS361AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FS361AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "FS361AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FS361AC4",
+          "contact": [
+            107,
+            12
+          ],
+          "old endpoint": [
+            104,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FS361AD4",
+          "contact": [
+            107,
+            19
+          ],
+          "old endpoint": [
+            104,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FS361AE4",
+          "contact": [
+            107,
+            33
+          ],
+          "old endpoint": [
+            104,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "FS361AP4",
+          "contact": [
+            107,
+            40
+          ],
+          "old endpoint": [
+            104,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FS361AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              12
+            ],
+            [
+              107,
+              12
+            ],
+            [
+              107,
+              10
+            ],
+            [
+              115,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              12
+            ],
+            [
+              107,
+              10
+            ],
+            [
+              115,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FS361AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              19
+            ],
+            [
+              107,
+              19
+            ],
+            [
+              107,
+              14
+            ],
+            [
+              115,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              107,
+              14
+            ],
+            [
+              115,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FS361AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              33
+            ],
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              31
+            ],
+            [
+              115,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              31
+            ],
+            [
+              115,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "FS361AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            40
+          ],
+          "after": [
+            107,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              40
+            ],
+            [
+              107,
+              40
+            ],
+            [
+              107,
+              35
+            ],
+            [
+              115,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              40
+            ],
+            [
+              107,
+              35
+            ],
+            [
+              115,
+              35
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

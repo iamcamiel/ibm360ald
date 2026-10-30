@@ -2,7 +2,7 @@
   "page": "MP131",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "73f9bae56e7d3dc2d20765c76d4b85bca88a885ee53180d46301aba5f91b6089",
+  "content sha256": "113070f91d14b0217db86b95dbbb5e8c9c0684d4ee2bb7488d04cb4fba85ca76",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\MP131\\Source model.json",
@@ -41,29 +41,9 @@
           "reason": "Another same-net route intersects the changed lead interval"
         },
         {
-          "terminal": "blocks/AE/pins/L/2",
-          "net": "MP131AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/L/6",
-          "net": "MP131AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "MP131AG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AP/pins/L/4",
           "net": "MP131AN4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AQ/pins/R/4",
-          "net": "MP131AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AR/pins/L/2",
@@ -565,6 +545,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "MP131AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "MP131AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MP131AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MP131AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "MP131AA4",
+          "contact": [
+            115,
+            31
+          ],
+          "old endpoint": [
+            118,
+            31
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "MP131AB4",
+          "contact": [
+            115,
+            35
+          ],
+          "old endpoint": [
+            118,
+            35
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MP131AG4",
+          "contact": [
+            61,
+            54
+          ],
+          "old endpoint": [
+            58,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MP131AQ4",
+          "contact": [
+            61,
+            47
+          ],
+          "old endpoint": [
+            58,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "MP131AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            31
+          ],
+          "after": [
+            115,
+            31
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              31
+            ],
+            [
+              118,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "MP131AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            35
+          ],
+          "after": [
+            115,
+            35
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              33
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              115,
+              35
+            ],
+            [
+              118,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              33
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              115,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MP131AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              54
+            ],
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              49
+            ],
+            [
+              72,
+              49
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              49
+            ],
+            [
+              72,
+              49
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MP131AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              47
+            ],
+            [
+              61,
+              47
+            ],
+            [
+              61,
+              45
+            ],
+            [
+              72,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              47
+            ],
+            [
+              61,
+              45
+            ],
+            [
+              72,
+              45
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

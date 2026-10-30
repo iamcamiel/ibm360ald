@@ -2,7 +2,7 @@
   "page": "XM381",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1683f80f3d73eb8a90c027ef6a55501f5fb9208d44a21a8b500939c05ec3b866",
+  "content sha256": "8c25d9f42953db8e3726aa202ac84536f9f4fc1c2fc73cad1cb83a0826ac0093",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team8\\ALD batch1304\\XM381 independent reconstruction1304\\Inputs\\Baseline model.json",
@@ -52,20 +52,7 @@
       "output row": 57
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AW/pins/L/6",
-          "net": "XM381AU4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3841,6 +3828,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/L/6",
+          "net": "XM381AU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/L/6",
+          "net": "XM381AU4",
+          "contact": [
+            161,
+            63
+          ],
+          "old endpoint": [
+            164,
+            63
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/L/6",
+          "net": "XM381AU4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            63
+          ],
+          "after": [
+            161,
+            63
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              82
+            ],
+            [
+              161,
+              82
+            ],
+            [
+              161,
+              63
+            ],
+            [
+              164,
+              63
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              82
+            ],
+            [
+              161,
+              82
+            ],
+            [
+              161,
+              63
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

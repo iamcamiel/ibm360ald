@@ -2,7 +2,7 @@
   "page": "CA241",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "38ac3b7fd8d00368f80f0f933ae3aac5486d06578f485f429de3931beaae912c",
+  "content sha256": "63ceac4c6e5579a5d8d638762eaf67e44487941d6c8cbd56407d87af81668e7d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch808\\CA241 independent reconstruction808\\Inputs\\Baseline model.json",
@@ -54,11 +54,6 @@
           "terminal": "blocks/AF/pins/L/3",
           "net": "CA211DL4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "CA241AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AJ/pins/L/2",
@@ -3461,6 +3456,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CA241AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CA241AH4",
+          "contact": [
+            61,
+            26
+          ],
+          "old endpoint": [
+            58,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CA241AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              26
+            ],
+            [
+              61,
+              26
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              26
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

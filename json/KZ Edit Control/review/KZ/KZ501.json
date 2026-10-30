@@ -2,7 +2,7 @@
   "page": "KZ501",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c149417971d714020a2acdda95b8a7c2b85e4ef986baae0a0b5c157b2d19197b",
+  "content sha256": "0d4564032d15db54b18069b1286de42fe941671c4403056926ba1c46c7c5b9df",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root exact remaining clean candidate qualification215\\Inputs\\KZ501\\Selected exact source model.json",
@@ -41,11 +41,6 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "KZ501AL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BB/pins/L/2",
           "net": "KZ201BL4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -54,11 +49,6 @@
           "terminal": "blocks/BB/pins/L/4",
           "net": "KZ501AJ4",
           "reason": "Another same-net route intersects the changed lead interval"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "KZ501BB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BC/pins/R/4",
@@ -2135,6 +2125,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KZ501AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KZ501BB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KZ501AL4",
+          "contact": [
+            153,
+            54
+          ],
+          "old endpoint": [
+            150,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KZ501BB4",
+          "contact": [
+            153,
+            61
+          ],
+          "old endpoint": [
+            150,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KZ501AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            54
+          ],
+          "after": [
+            153,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              54
+            ],
+            [
+              153,
+              54
+            ],
+            [
+              153,
+              52
+            ],
+            [
+              161,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              54
+            ],
+            [
+              153,
+              52
+            ],
+            [
+              161,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "KZ501BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            61
+          ],
+          "after": [
+            153,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              61
+            ],
+            [
+              153,
+              61
+            ],
+            [
+              153,
+              56
+            ],
+            [
+              161,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              153,
+              56
+            ],
+            [
+              161,
+              56
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

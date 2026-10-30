@@ -2,7 +2,7 @@
   "page": "RX002",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "310df3f10e33422a47f926cac80e7959409a83eccaa23ebc56699cd38a550597",
+  "content sha256": "3c5dbee6358bb46cdbb8cf6571130710077cfbe8bb15ce54e48e9dd4f25859d9",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team12\\ALD batch1275\\RX002 independent reconstruction1275\\Inputs\\Baseline model.json",
@@ -139,11 +139,6 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/AH/pins/L/4",
-          "net": "RX002AD2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AJ/pins/R/4",
           "net": "RX002AJ4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -157,21 +152,6 @@
           "terminal": "blocks/AQ/pins/L/2",
           "net": "RX002AE4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "RX002AS4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AT/pins/L/2",
-          "net": "RX002AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BD/pins/L/2",
-          "net": "RX002AP4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BE/pins/R/4",
@@ -4770,6 +4750,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "RX002AD2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "RX002AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "RX002AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RX002AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "RX002AD2",
+          "contact": [
+            69,
+            82
+          ],
+          "old endpoint": [
+            72,
+            82
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "RX002AS4",
+          "contact": [
+            153,
+            68
+          ],
+          "old endpoint": [
+            150,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "RX002AQ4",
+          "contact": [
+            161,
+            59
+          ],
+          "old endpoint": [
+            164,
+            59
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RX002AP4",
+          "contact": [
+            138,
+            80
+          ],
+          "old endpoint": [
+            141,
+            80
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "RX002AD2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            82
+          ],
+          "after": [
+            69,
+            82
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              80
+            ],
+            [
+              69,
+              80
+            ],
+            [
+              69,
+              82
+            ],
+            [
+              72,
+              82
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              80
+            ],
+            [
+              69,
+              80
+            ],
+            [
+              69,
+              82
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "RX002AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            68
+          ],
+          "after": [
+            153,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              68
+            ],
+            [
+              153,
+              68
+            ],
+            [
+              153,
+              63
+            ],
+            [
+              161,
+              63
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              68
+            ],
+            [
+              153,
+              63
+            ],
+            [
+              161,
+              63
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "RX002AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            59
+          ],
+          "after": [
+            161,
+            59
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              54
+            ],
+            [
+              161,
+              54
+            ],
+            [
+              161,
+              59
+            ],
+            [
+              164,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              54
+            ],
+            [
+              161,
+              54
+            ],
+            [
+              161,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BD/pins/L/2",
+          "net": "RX002AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            80
+          ],
+          "after": [
+            138,
+            80
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              75
+            ],
+            [
+              138,
+              75
+            ],
+            [
+              138,
+              80
+            ],
+            [
+              141,
+              80
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              75
+            ],
+            [
+              138,
+              75
+            ],
+            [
+              138,
+              80
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,491 @@
+{
+  "$schema": "https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json",
+  "page": {
+    "page": "MA281",
+    "page-type": "ALD",
+    "origin": "scan",
+    "title": [
+      "POWERING TO LCS",
+      "MODEL 65 PARITY GENERATION"
+    ],
+    "date": "08-14-69",
+    "machine": "7201-02",
+    "log": "153B",
+    "frame": "02",
+    "p/n": "2585489",
+    "ibm division": "SDD",
+    "next block": "HN",
+    "revisions": [
+      {
+        "date": "08-08-69",
+        "num": "713380"
+      }
+    ]
+  },
+  "review": {
+    "status": "partial",
+    "approved": false,
+    "unresolved discrepancies": true,
+    "details": "review/MA/MA281.json"
+  },
+  "blocks": [
+    {
+      "serial": "GP",
+      "grid position": "3F",
+      "function": "N",
+      "circuit": "U03AF",
+      "card": "3308",
+      "portion": "B1",
+      "socket": "02A-B3H3",
+      "pins": [
+        {
+          "side": "L",
+          "line": 4,
+          "edge": "negative",
+          "pin": "B05"
+        },
+        {
+          "side": "R",
+          "line": 4,
+          "pin": "D02"
+        }
+      ]
+    },
+    {
+      "serial": "GU",
+      "grid position": "1K",
+      "function": "A",
+      "circuit": "U03AP",
+      "card": "0497",
+      "portion": "A1",
+      "socket": "02A-B3F7",
+      "pins": [
+        {
+          "side": "L",
+          "line": 2,
+          "pin": "D06"
+        },
+        {
+          "side": "L",
+          "line": 4,
+          "pin": "D07"
+        },
+        {
+          "side": "L",
+          "line": 6,
+          "pin": "B04"
+        },
+        {
+          "side": "R",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "serial": "GV",
+      "grid position": "1L",
+      "function": "A",
+      "circuit": "U03AP",
+      "card": "0497",
+      "portion": "A2",
+      "socket": "02A-B3F7",
+      "pins": [
+        {
+          "side": "L",
+          "line": 2,
+          "pin": "B02"
+        },
+        {
+          "side": "L",
+          "line": 4,
+          "pin": "B03"
+        },
+        {
+          "side": "L",
+          "line": 6,
+          "pin": "D05"
+        },
+        {
+          "side": "R",
+          "line": 4
+        }
+      ]
+    },
+    {
+      "serial": "GW",
+      "grid position": "2K",
+      "function": "OR",
+      "circuit": "U03AT",
+      "card": "0497",
+      "portion": "A3",
+      "socket": "02A-B3F7",
+      "pins": [
+        {
+          "side": "L",
+          "line": 2
+        },
+        {
+          "side": "L",
+          "line": 4
+        },
+        {
+          "side": "L",
+          "line": 6
+        },
+        {
+          "side": "R",
+          "line": 4,
+          "edge": "negative",
+          "pin": "D02"
+        }
+      ]
+    },
+    {
+      "serial": "GX",
+      "grid position": "1F",
+      "function": "A",
+      "circuit": "U03AP",
+      "card": "0497",
+      "portion": "A4",
+      "socket": "02A-B3F7",
+      "pins": [
+        {
+          "side": "L",
+          "line": 2,
+          "pin": "B05"
+        },
+        {
+          "side": "L",
+          "line": 4,
+          "pin": "D08"
+        },
+        {
+          "side": "R",
+          "line": 4
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "net number": "MA521AU4",
+      "name": "-SAB 20",
+      "line": 54
+    },
+    {
+      "net number": "MC462AM4",
+      "name": "+ DI OR DI AND REV STOR ADD",
+      "line": 66
+    },
+    {
+      "net number": "MA521AC4",
+      "name": "+SAB BIT 06",
+      "line": 68
+    },
+    {
+      "net number": "MA521BJ4",
+      "name": "-SAB 06",
+      "line": 75
+    }
+  ],
+  "outputs": [
+    {
+      "net number": "MA281GP4",
+      "name": "+SAB 20",
+      "line": 61,
+      "sinks": [
+        "MA275"
+      ]
+    },
+    {
+      "net number": "MA281GW4",
+      "name": "-DI OR DI AND REV STOR ADD",
+      "line": 68,
+      "sinks": [
+        "MA271"
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "net number": "MA521AU4",
+      "nodes": [
+        "inputs/MA521AU4",
+        "blocks/GP/pins/L/4",
+        "blocks/GU/pins/L/6"
+      ],
+      "routing": [
+        [
+          [
+            7,
+            54
+          ],
+          [
+            92,
+            54
+          ],
+          [
+            92,
+            40
+          ]
+        ],
+        [
+          [
+            44,
+            54
+          ],
+          [
+            44,
+            70
+          ],
+          [
+            46,
+            70
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA281GXL2-no-source",
+      "nodes": [
+        "blocks/GX/pins/L/2",
+        "blocks/GX/pins/L/4"
+      ],
+      "routing": [
+        [
+          [
+            46,
+            38
+          ],
+          [
+            46,
+            40
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA281GP4",
+      "nodes": [
+        "blocks/GP/pins/R/4",
+        "blocks/GV/pins/L/2",
+        "outputs/MA281GP4"
+      ],
+      "routing": [
+        [
+          [
+            107,
+            40
+          ],
+          [
+            107,
+            61
+          ],
+          [
+            46,
+            61
+          ],
+          [
+            46,
+            73
+          ]
+        ],
+        [
+          [
+            107,
+            61
+          ],
+          [
+            242,
+            61
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MC462AM4",
+      "nodes": [
+        "inputs/MC462AM4",
+        "blocks/GU/pins/L/2",
+        "blocks/GV/pins/L/6"
+      ],
+      "routing": [
+        [
+          [
+            27,
+            66
+          ],
+          [
+            46,
+            66
+          ]
+        ],
+        [
+          [
+            45,
+            66
+          ],
+          [
+            45,
+            77
+          ],
+          [
+            46,
+            77
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA521AC4",
+      "nodes": [
+        "inputs/MA521AC4",
+        "blocks/GU/pins/L/4"
+      ],
+      "routing": [
+        [
+          [
+            11,
+            68
+          ],
+          [
+            46,
+            68
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA521BJ4",
+      "nodes": [
+        "inputs/MA521BJ4",
+        "blocks/GV/pins/L/4"
+      ],
+      "routing": [
+        [
+          [
+            7,
+            75
+          ],
+          [
+            46,
+            75
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA281GX4",
+      "nodes": [
+        "blocks/GX/pins/R/4",
+        "blocks/GW/pins/L/6"
+      ],
+      "routing": [
+        [
+          [
+            61,
+            40
+          ],
+          [
+            68,
+            40
+          ],
+          [
+            68,
+            70
+          ],
+          [
+            69,
+            70
+          ]
+        ]
+      ],
+      "annotations": [
+        {
+          "at": {
+            "polyline": 0,
+            "point": 2
+          },
+          "offset": [
+            1,
+            0
+          ],
+          "text": "8"
+        }
+      ]
+    },
+    {
+      "net number": "MA281GU4",
+      "nodes": [
+        "blocks/GU/pins/R/4",
+        "blocks/GW/pins/L/2"
+      ],
+      "routing": [
+        [
+          [
+            58,
+            68
+          ],
+          [
+            61,
+            68
+          ],
+          [
+            61,
+            66
+          ],
+          [
+            69,
+            66
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA281GV4",
+      "nodes": [
+        "blocks/GV/pins/R/4",
+        "blocks/GW/pins/L/4"
+      ],
+      "routing": [
+        [
+          [
+            61,
+            75
+          ],
+          [
+            63,
+            75
+          ],
+          [
+            63,
+            68
+          ],
+          [
+            69,
+            68
+          ]
+        ]
+      ]
+    },
+    {
+      "net number": "MA281GW4",
+      "nodes": [
+        "blocks/GW/pins/R/4",
+        "outputs/MA281GW4"
+      ],
+      "routing": [
+        [
+          [
+            84,
+            68
+          ],
+          [
+            242,
+            68
+          ]
+        ]
+      ]
+    }
+  ]
+}

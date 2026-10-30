@@ -2,7 +2,7 @@
   "page": "AR501",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "60ed3b01db92c48de926919e43f915c70d2de494c384c009516d2fe43b71574f",
+  "content sha256": "19e2923c64f298bd45066000f7e4bf7f45ec551b5348aa381990f92a434f434f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\ALD batch736\\AR501 independent reconstruction736\\Inputs\\Baseline model.json",
@@ -45,25 +45,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AX/pins/L/2",
-          "net": "AR501AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AX/pins/L/6",
-          "net": "AR501AR4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2678,6 +2660,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AR501AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "net": "AR501AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AR501AQ4",
+          "contact": [
+            161,
+            38
+          ],
+          "old endpoint": [
+            164,
+            38
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "net": "AR501AR4",
+          "contact": [
+            161,
+            42
+          ],
+          "old endpoint": [
+            164,
+            42
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "AR501AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            38
+          ],
+          "after": [
+            161,
+            38
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              33
+            ],
+            [
+              161,
+              33
+            ],
+            [
+              161,
+              38
+            ],
+            [
+              164,
+              38
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              33
+            ],
+            [
+              161,
+              33
+            ],
+            [
+              161,
+              38
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "net": "AR501AR4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            42
+          ],
+          "after": [
+            161,
+            42
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              40
+            ],
+            [
+              161,
+              40
+            ],
+            [
+              161,
+              42
+            ],
+            [
+              164,
+              42
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              40
+            ],
+            [
+              161,
+              40
+            ],
+            [
+              161,
+              42
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "DN091",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "005ed6cd0e0dc2e50cca4e420712a508459227421a88d7d9c52a7fec910d096c",
+  "content sha256": "ed4724f8dc2e03ed1441dc67203dca719fa42dccc1a94ac1e8d4974076adb099",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch822\\DN091 independent reconstruction822\\Inputs\\Baseline model.json",
@@ -90,11 +90,6 @@
           "terminal": "blocks/AW/pins/R/4",
           "net": "DN091AW4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BE/pins/L/4",
-          "net": "DN091BD2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -2055,6 +2050,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "DN091BD2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "DN091BD2",
+          "contact": [
+            184,
+            75
+          ],
+          "old endpoint": [
+            187,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "DN091BD2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            75
+          ],
+          "after": [
+            184,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              73
+            ],
+            [
+              184,
+              73
+            ],
+            [
+              184,
+              75
+            ],
+            [
+              187,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              73
+            ],
+            [
+              184,
+              73
+            ],
+            [
+              184,
+              75
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

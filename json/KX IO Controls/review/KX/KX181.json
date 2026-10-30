@@ -2,7 +2,7 @@
   "page": "KX181",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "76a86e8559645a68361c7d1972d99433514a8410acab786985da935e96088b22",
+  "content sha256": "89f3c0e1d2f8c816fdbc00ff0d7bbf0d9fdc8850fc8d98e606c5739650ebe7ee",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round015\\Inputs\\KX181\\Source model.json",
@@ -51,11 +51,6 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/BN/pins/R/4",
-          "net": "KX181BN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BQ/pins/L/6",
           "net": "KX181AK4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -66,11 +61,6 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/BX/pins/L/2",
-          "net": "KX181BU4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/CJ/pins/L/4",
           "net": "KU371AX4",
           "reason": "Another same-net route intersects the changed lead interval"
@@ -79,16 +69,6 @@
           "terminal": "blocks/CL/pins/R/4",
           "net": "KX181CL4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/CV/pins/L/2",
-          "net": "KX181CW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/CV/pins/L/6",
-          "net": "KX181CX4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -1089,6 +1069,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "KX181BN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BX/pins/L/2",
+          "net": "KX181BU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CV/pins/L/2",
+          "net": "KX181CW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CV/pins/L/6",
+          "net": "KX181CX4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "KX181BN4",
+          "contact": [
+            107,
+            33
+          ],
+          "old endpoint": [
+            104,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BX/pins/L/2",
+          "net": "KX181BU4",
+          "contact": [
+            115,
+            24
+          ],
+          "old endpoint": [
+            118,
+            24
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/CV/pins/L/2",
+          "net": "KX181CW4",
+          "contact": [
+            184,
+            87
+          ],
+          "old endpoint": [
+            187,
+            87
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/CV/pins/L/6",
+          "net": "KX181CX4",
+          "contact": [
+            184,
+            91
+          ],
+          "old endpoint": [
+            187,
+            91
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BN/pins/R/4",
+          "net": "KX181BN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              33
+            ],
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              28
+            ],
+            [
+              115,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              28
+            ],
+            [
+              115,
+              28
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BX/pins/L/2",
+          "net": "KX181BU4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            24
+          ],
+          "after": [
+            115,
+            24
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              12
+            ],
+            [
+              115,
+              12
+            ],
+            [
+              115,
+              24
+            ],
+            [
+              118,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              12
+            ],
+            [
+              115,
+              12
+            ],
+            [
+              115,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CV/pins/L/2",
+          "net": "KX181CW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            87
+          ],
+          "after": [
+            184,
+            87
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              82
+            ],
+            [
+              184,
+              82
+            ],
+            [
+              184,
+              87
+            ],
+            [
+              187,
+              87
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              82
+            ],
+            [
+              184,
+              82
+            ],
+            [
+              184,
+              87
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CV/pins/L/6",
+          "net": "KX181CX4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            91
+          ],
+          "after": [
+            184,
+            91
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              89
+            ],
+            [
+              184,
+              89
+            ],
+            [
+              184,
+              91
+            ],
+            [
+              187,
+              91
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              89
+            ],
+            [
+              184,
+              89
+            ],
+            [
+              184,
+              91
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

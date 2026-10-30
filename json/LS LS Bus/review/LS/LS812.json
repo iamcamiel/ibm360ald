@@ -2,7 +2,7 @@
   "page": "LS812",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "fa16c040cb3c9cb5940bc07260a57d9894ba60aab41ff21493846919bffd485b",
+  "content sha256": "9a572cee52f64a78508752ff8289ac733cded4f41ba7267c28f80f10f7b7afc1",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team4\\LS812 independent reconstruction603\\Final V3\\LS812 model.json",
@@ -75,11 +75,6 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "LS812BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BJ/pins/L/2",
           "net": "LS991FM4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -118,11 +113,6 @@
           "terminal": "blocks/DL/pins/L/2",
           "net": "LS991DD4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/DN/pins/R/4",
-          "net": "LS812DN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/DN/pins/L/2",
@@ -3699,6 +3689,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "LS812BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DN/pins/R/4",
+          "net": "LS812DN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "LS812BJ4",
+          "contact": [
+            84,
+            61
+          ],
+          "old endpoint": [
+            81,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/DN/pins/R/4",
+          "net": "LS812DN4",
+          "contact": [
+            130,
+            89
+          ],
+          "old endpoint": [
+            127,
+            89
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "LS812BJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            61
+          ],
+          "after": [
+            84,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              61
+            ],
+            [
+              84,
+              61
+            ],
+            [
+              84,
+              56
+            ],
+            [
+              92,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              61
+            ],
+            [
+              84,
+              56
+            ],
+            [
+              92,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DN/pins/R/4",
+          "net": "LS812DN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            89
+          ],
+          "after": [
+            130,
+            89
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              89
+            ],
+            [
+              130,
+              89
+            ],
+            [
+              130,
+              84
+            ],
+            [
+              138,
+              84
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              89
+            ],
+            [
+              130,
+              84
+            ],
+            [
+              138,
+              84
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

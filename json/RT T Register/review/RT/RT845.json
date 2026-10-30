@@ -2,7 +2,7 @@
   "page": "RT845",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "dc7d038348b1745490b16d967d41bb59806576ec1ba31a4399f6306e21b83d5e",
+  "content sha256": "b1cc9ec0a0926748ce8611c00b29a98813a92d72c7080321f32f0f300f865ae2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RT845\\Source model.json",
@@ -39,25 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "RT845AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BG/pins/R/4",
-          "net": "RT845BG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2519,6 +2501,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT845AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "RT845BG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT845AB4",
+          "contact": [
+            69,
+            24
+          ],
+          "old endpoint": [
+            72,
+            24
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "RT845BG4",
+          "contact": [
+            61,
+            33
+          ],
+          "old endpoint": [
+            58,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT845AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            24
+          ],
+          "after": [
+            69,
+            24
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              19
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              69,
+              24
+            ],
+            [
+              72,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              69,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "RT845BG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            33
+          ],
+          "after": [
+            61,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              33
+            ],
+            [
+              61,
+              33
+            ],
+            [
+              61,
+              28
+            ],
+            [
+              69,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              33
+            ],
+            [
+              61,
+              28
+            ],
+            [
+              69,
+              28
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

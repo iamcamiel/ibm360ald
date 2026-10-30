@@ -2,7 +2,7 @@
   "page": "RS081",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "283d9f46560d89c59820cb5315dab6674df296103601d4187765aeedcf80b256",
+  "content sha256": "9af487aea2b18f99a0e19ffcd51dbc2682b37a46f0a727d0cacb121f5517745d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RS081\\Source model.json",
@@ -31,19 +31,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AB/pins/L/2",
-          "net": "RS081AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AD/pins/L/2",
           "net": "RS081AH4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AD/pins/L/6",
-          "net": "RS081AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AD/pins/L/8",
@@ -61,29 +51,9 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "RS081AL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BB/pins/L/2",
-          "net": "RS081BE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BD/pins/L/2",
           "net": "RS081BH4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/BD/pins/L/6",
-          "net": "RS081BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BL/pins/R/4",
-          "net": "RS081BL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -70457,6 +70427,426 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RS081AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "RS081AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RS081AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "RS081BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BD/pins/L/6",
+          "net": "RS081BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "RS081BL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RS081AE4",
+          "contact": [
+            161,
+            24
+          ],
+          "old endpoint": [
+            164,
+            24
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "RS081AJ4",
+          "contact": [
+            115,
+            28
+          ],
+          "old endpoint": [
+            118,
+            28
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RS081AL4",
+          "contact": [
+            107,
+            33
+          ],
+          "old endpoint": [
+            104,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "RS081BE4",
+          "contact": [
+            161,
+            66
+          ],
+          "old endpoint": [
+            164,
+            66
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BD/pins/L/6",
+          "net": "RS081BJ4",
+          "contact": [
+            115,
+            70
+          ],
+          "old endpoint": [
+            118,
+            70
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "RS081BL4",
+          "contact": [
+            107,
+            75
+          ],
+          "old endpoint": [
+            104,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RS081AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            24
+          ],
+          "after": [
+            161,
+            24
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              19
+            ],
+            [
+              161,
+              19
+            ],
+            [
+              161,
+              24
+            ],
+            [
+              164,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              19
+            ],
+            [
+              161,
+              19
+            ],
+            [
+              161,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "RS081AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            28
+          ],
+          "after": [
+            115,
+            28
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              28
+            ],
+            [
+              118,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              28
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RS081AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              33
+            ],
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              31
+            ],
+            [
+              118,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              33
+            ],
+            [
+              107,
+              31
+            ],
+            [
+              118,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "RS081BE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            66
+          ],
+          "after": [
+            161,
+            66
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ],
+            [
+              164,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BD/pins/L/6",
+          "net": "RS081BJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            70
+          ],
+          "after": [
+            115,
+            70
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              61
+            ],
+            [
+              115,
+              61
+            ],
+            [
+              115,
+              70
+            ],
+            [
+              118,
+              70
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              61
+            ],
+            [
+              115,
+              61
+            ],
+            [
+              115,
+              70
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BL/pins/R/4",
+          "net": "RS081BL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            75
+          ],
+          "after": [
+            107,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              75
+            ],
+            [
+              107,
+              75
+            ],
+            [
+              107,
+              73
+            ],
+            [
+              115,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              75
+            ],
+            [
+              107,
+              73
+            ],
+            [
+              115,
+              73
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

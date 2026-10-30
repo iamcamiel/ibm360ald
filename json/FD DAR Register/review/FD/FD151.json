@@ -2,7 +2,7 @@
   "page": "FD151",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8c4e5f41df18edc1e608941766f32aacd4030b35d89844f38bb3a196854ce47a",
+  "content sha256": "8cb4b69508737bf5cd0d1a47acaafbb4ec590aee9012dc34b1fdde2b9382263c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FD151\\Source model.json",
@@ -55,19 +55,9 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AH/pins/L/4",
-          "net": "FD151AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AQ/pins/L/2",
           "net": "FD951BL4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AQ/pins/R/4",
-          "net": "FD151AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BB/pins/R/4",
@@ -2360,6 +2350,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "FD151AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "FD151AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "FD151AD4",
+          "contact": [
+            92,
+            33
+          ],
+          "old endpoint": [
+            95,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "FD151AQ4",
+          "contact": [
+            130,
+            26
+          ],
+          "old endpoint": [
+            127,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "FD151AD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            33
+          ],
+          "after": [
+            92,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              26
+            ],
+            [
+              92,
+              26
+            ],
+            [
+              92,
+              33
+            ],
+            [
+              95,
+              33
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              26
+            ],
+            [
+              92,
+              26
+            ],
+            [
+              92,
+              33
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "FD151AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            26
+          ],
+          "after": [
+            130,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              26
+            ],
+            [
+              130,
+              26
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              138,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              26
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              138,
+              21
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

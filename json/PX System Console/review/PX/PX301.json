@@ -2,7 +2,7 @@
   "page": "PX301",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "efd3deda6e0a55db3cd3cf0d1407a161b697850f0e747dba237d68018cc08c11",
+  "content sha256": "1f5471b10eed354974ae335962d8f90844f4dde2a23caf14c34c145804a6b3f5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team7\\ALD batch1203\\PX301 independent reconstruction1203\\Inputs\\Baseline model.json",
@@ -40,25 +40,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "PX301AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/6",
-          "net": "PX301AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -4497,6 +4479,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "PX301AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "PX301AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "PX301AH4",
+          "contact": [
+            115,
+            38
+          ],
+          "old endpoint": [
+            118,
+            38
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "PX301AJ4",
+          "contact": [
+            115,
+            42
+          ],
+          "old endpoint": [
+            118,
+            42
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "PX301AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            38
+          ],
+          "after": [
+            115,
+            38
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              33
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              115,
+              38
+            ],
+            [
+              118,
+              38
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              33
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              115,
+              38
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "PX301AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            42
+          ],
+          "after": [
+            115,
+            42
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              40
+            ],
+            [
+              115,
+              40
+            ],
+            [
+              115,
+              42
+            ],
+            [
+              118,
+              42
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              40
+            ],
+            [
+              115,
+              40
+            ],
+            [
+              115,
+              42
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

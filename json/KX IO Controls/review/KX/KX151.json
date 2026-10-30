@@ -2,7 +2,7 @@
   "page": "KX151",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f340562f04e1a2ff5a84ee947a0c09baa6b06b5f7c3db87539e4db3b7517079a",
+  "content sha256": "0f83c3b8dfa518b16541b8f7fe9ec8993b66051bd9f8da3e085027fe867d102e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch009\\Results\\KX151\\Current model.json",
@@ -36,25 +36,7 @@
       ]
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "KX151BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BQ/pins/L/4",
-          "net": "KX151BM4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2544,6 +2526,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX151BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/4",
+          "net": "KX151BM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX151BJ4",
+          "contact": [
+            61,
+            19
+          ],
+          "old endpoint": [
+            58,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/4",
+          "net": "KX151BM4",
+          "contact": [
+            92,
+            12
+          ],
+          "old endpoint": [
+            95,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "KX151BJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              19
+            ],
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              69,
+              12
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BQ/pins/L/4",
+          "net": "KX151BM4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              5
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              95,
+              12
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              5
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              92,
+              12
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "MA285",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5ea5974c00c7a06097f2ae6434ffcd479dc00fd8783785f60dd09fc23a4bc57b",
+  "content sha256": "3ab6723dc581e627f628e0819febeb56d2e95368c028a084085e9d9c728c3729",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch011\\Results\\MA285\\Current model.json",
@@ -24,20 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA285 SIMPLEX DRIVERS SAB PARITY PA.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/L/4",
-          "net": "MA285AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -4359,6 +4346,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MA285AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MA285AA2",
+          "contact": [
+            92,
+            5
+          ],
+          "old endpoint": [
+            95,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MA285AA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            5
+          ],
+          "after": [
+            92,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              3
+            ],
+            [
+              92,
+              3
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              95,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              3
+            ],
+            [
+              92,
+              3
+            ],
+            [
+              92,
+              5
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

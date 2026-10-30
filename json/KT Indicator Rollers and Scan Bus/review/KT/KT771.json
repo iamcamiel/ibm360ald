@@ -2,7 +2,7 @@
   "page": "KT771",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "04a47ee9373b8e5cd10de76956364bc07c449a959bb103aa92f84e7714b52966",
+  "content sha256": "92976831700c0201083eb92c378294ccaca1a59009fbb0ecc65bea04987f62a2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT771\\Source model.json",
@@ -53,19 +53,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "KT771AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AB/pins/R/4",
           "net": "KT771AB4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "KT771AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -92112,6 +92102,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KT771AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "KT771AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KT771AA4",
+          "contact": [
+            61,
+            5
+          ],
+          "old endpoint": [
+            58,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "KT771AC4",
+          "contact": [
+            61,
+            19
+          ],
+          "old endpoint": [
+            58,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KT771AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              5
+            ],
+            [
+              61,
+              5
+            ],
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              5
+            ],
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "KT771AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              19
+            ],
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              7
+            ],
+            [
+              69,
+              7
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              7
+            ],
+            [
+              69,
+              7
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

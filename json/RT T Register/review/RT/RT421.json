@@ -2,7 +2,7 @@
   "page": "RT421",
   "review date": "2026-10-30",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "23cfd958738cfa2316abf8421ec7bb5edcb2ca2a7135024f574383379cac17f5",
+  "content sha256": "fc6d1f769325f12209592317301f028e267aedf16ea2535e719e27662cb3bdb4",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\Root RT421 isolated candidate validation PROPOSAL1365\\Inputs\\RT421.json",
@@ -96,29 +96,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "RT421AK4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "RT421AL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AN/pins/R/4",
           "net": "RT421AN4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AT/pins/L/4",
-          "net": "RT421AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BH/pins/L/2",
-          "net": "RT421BK4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BH/pins/L/3",
@@ -161,6 +141,17 @@
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
+    },
+    {
+      "code": "BT_footer_height_local_comparison",
+      "status": "unresolved",
+      "detail": "Selected BT height7 has blank TXT row85 and footer 5M--BT on row86. Native footer appears immediately below B-B4J6 without an obvious blank printed row. Possible local row-spacing/height discrepancy; no exact registered grid row or correction determined. Existing three human-confirmed errors remain open.",
+      "terminal context": "blocks/BT/pins/L/2 (selected variant); historical human flag blocks/BT/pins/L/4 retained",
+      "evidence": {
+        "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\RT421 BT selected local native comparison.json",
+        "sha256": "b5edb7c3d151bb1dd7952aa9571eb626ab246f343bf97ce710fd4f670a767f70",
+        "bytes": 7249
+      }
     }
   ],
   "warnings": [
@@ -3720,7 +3711,7 @@
   },
   "publication issues": {
     "status": "open",
-    "summary": "Provisional partial V4; approved:false. 19 unresolved render/wiring differences and 8 uncertainties retained: missing IBM division, six illegible pin identities, RT421AD4 hanging length explicitly assumed 1. No approved normalizations. External schema NOT_RUN. Full native continuity, registration, omissions, physical ownership and electrical checks remain OPEN (97 routes, 28 junctions, 229 crossings). Private converter remains uninstalled; no canonical SOURCE approval or general converter acceptance. Startup executed global distutils-precedence.pth and _distutils_hack; hook py/pyc hashes are POST-ONLY, with no independently bound preimages or instrumented OS execution-read byte identity. Original V3 and old exit2 text_binding history are preserved. Local provisional publication only. Human confirmed transcription errors at blocks/BH/pins/L/3, blocks/AN/pins/R/4 and blocks/BT/pins/L/4 remain OPEN for follow-up; no coordinate/net/driver/target repairs authorized.",
+    "summary": "Provisional partial V4; approved:false. Historical converter output recorded 19 render/wiring differences and 8 uncertainties, including six 3-label pin identities. Authorized standalone-marker/fixed-slot migrations resolved those six label uncertainties as net annotations (no physical pin inferred) and normalized eligible geometry; original findings/preimages remain preserved. No new full-page difference count is claimed. Missing IBM division and RT421AD4 assumed hanging length 1 remain open. Human-confirmed transcription errors at BH-L3, AN-R4 and BT-L4 remain OPEN; bounded BT-L2 row comparison is recorded; BH/AN remain OPEN. BT height7/footer spacing is unresolved (selected blank row85/footer86); no coordinate correction inferred. External schema NOT_RUN; native continuity/registration/omissions/ownership/electrical coverage OPEN (97 routes, 28 junctions, 229 crossings). Startup .pth pre/post captured; _distutils_hack py/pyc POST-ONLY, no independent hook preimages or OS execution-read byte identity proof. Private converter uninstalled; no SOURCE/general converter approval. V3/blocked history preserved.",
     "qualification": "Access with recorded limitations; no electrical correctness, source approval, user approval, full-schema or native qualification asserted."
   },
   "annotation migrations": [
@@ -4842,5 +4833,454 @@
     },
     "evidence limits": "Native crop pixels match the exact TIFF rectangles; comparison panels were viewed. Existing homography only located broad rectangles, not pixel correspondence/electrical proof. Human confirmation classifies exactly these three source transcription errors; it supplies no repair coordinates or new converter approval.",
     "preservation": "Prior fixed_terminal_slot_layout question, all its other terminals, uncertainties, original render findings and annotation migration/preimage history remain unchanged."
-  }
+  },
+  "private proposed BT row correction": {
+    "status": "proposed; unresolved",
+    "original terminal": "blocks/BT/pins/L/4",
+    "proposed terminal": "blocks/BT/pins/L/2",
+    "old route": [
+      [
+        130,
+        75
+      ],
+      [
+        138,
+        75
+      ],
+      [
+        138,
+        82
+      ],
+      [
+        141,
+        82
+      ]
+    ],
+    "proposed route": [
+      [
+        130,
+        75
+      ],
+      [
+        138,
+        75
+      ],
+      [
+        138,
+        80
+      ]
+    ],
+    "native evidence": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\RT421 three-case native landmark adjudication.json",
+    "native evidence sha256": "f1faf4414833ea55f51d800bddf43d0e00c9799962cd099705ae8f1feb7113b9",
+    "limitations": "Candidate only; preserves height7, footer, lower input, output, net identity and all existing unresolved findings. No runtime validation, electrical approval, or inferred ownership. Old V3 point [141,82] and raw route start [127,75] remain historical; current V4 start [130,75] preserved."
+  },
+  "BT selected local native comparison": {
+    "status": "bounded local comparison recorded; follow-up remains open",
+    "packet": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\RT421 BT selected local native comparison.json",
+      "sha256": "b5edb7c3d151bb1dd7952aa9571eb626ab246f343bf97ce710fd4f670a767f70",
+      "bytes": 7249
+    },
+    "producer builder": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\Build BT selected native comparison.py",
+      "sha256": "bcb8a9fe5f2750f24b28f9a6525ca4e90da32a93d2aadfa3eb1df9f169cf69a2",
+      "bytes": 4341
+    },
+    "selected model": {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\RT421 T REGISTER BITS 42 AND 43.json",
+      "sha256": "39b46e11586300ca9df329657e8225758820d955fac4026eeda9d485e925c0d3",
+      "bytes": 57994
+    },
+    "selected text": {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\ALD\\RT T Register\\RT421 T REGISTER BITS 42 AND 43.txt",
+      "sha256": "32fded5ffb58a44bef11ffc2e10343500bbcc2dc2ed6df80325cd5e382e26edc",
+      "bytes": 31983
+    },
+    "assessment review preimage": {
+      "path": "D:\\Github\\IBM360\\ibm360ald\\json\\RT T Register\\review\\RT\\RT421.json",
+      "sha256": "e5becdaf40134f1646c1a1c1ad6588f6f969c1915738626e1f45b133a01784c0",
+      "bytes": 120626
+    },
+    "selection receipt": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team4\\Local simplified publication RT421 BT line2\\publication receipt.json",
+      "sha256": "efa812f473d02e4b96dc3a2ad89883aa33292f16dfd91b65f351d0a89a0a83e0",
+      "bytes": 12160
+    },
+    "local observations": [
+      {
+        "feature": "upper input and function",
+        "selected": "row80 input approach to BT and function ✲OR OR on same text row; target contact [138,80].",
+        "native": "Upper input horizontal stroke is alongside ✲OR OR function text. The local visual row relationship agrees; no electrical continuity inferred."
+      },
+      {
+        "feature": "circuit and output",
+        "selected": "row82 U03CM and right-side J09",
+        "native": "U03CM and J09 appear on the same printed row, below the function; local row relationship agrees, individual output ownership not assessed."
+      },
+      {
+        "feature": "lower input",
+        "selected": "row84 lower approach and B-B4J6 location",
+        "native": "Lower input horizontal stroke appears alongside B-B4J6 location, beneath circuit/card; local row relationship agrees."
+      },
+      {
+        "feature": "footer and height",
+        "selected": "row85 blank, row86 5M──BT; height7 retained.",
+        "native": "5M—BT footer appears immediately below B-B4J6 in crop, with no obvious blank printed row between. This raises a possible remaining row-spacing/height discrepancy; no exact registered grid row or correction determined."
+      }
+    ],
+    "variant TXT delta": {
+      "count": 9,
+      "meaning": "Exact padded cell differences between previous selected TXT and current BT-L2 TXT; not a new original-source/full-page/native comparison count.",
+      "all changes": [
+        {
+          "column": 138,
+          "row": 80,
+          "before": "│",
+          "after": "└"
+        },
+        {
+          "column": 139,
+          "row": 80,
+          "before": " ",
+          "after": "─"
+        },
+        {
+          "column": 140,
+          "row": 80,
+          "before": " ",
+          "after": "─"
+        },
+        {
+          "column": 141,
+          "row": 80,
+          "before": " ",
+          "after": "─"
+        },
+        {
+          "column": 138,
+          "row": 81,
+          "before": "│",
+          "after": " "
+        },
+        {
+          "column": 138,
+          "row": 82,
+          "before": "└",
+          "after": " "
+        },
+        {
+          "column": 139,
+          "row": 82,
+          "before": "─",
+          "after": " "
+        },
+        {
+          "column": 140,
+          "row": 82,
+          "before": "─",
+          "after": " "
+        },
+        {
+          "column": 141,
+          "row": 82,
+          "before": "─",
+          "after": " "
+        }
+      ]
+    },
+    "native crop": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\BT landmarks overlap.png",
+      "sha256": "36228d357dadb5cf1da17b0d132792a610d54c7990b2153c67398f5699bff354",
+      "provenance": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\ALD batch1258\\RT421 independent reconstruction1258\\RT421 three-case native landmark crop provenance.json",
+      "provenance_sha256": "0bcdff5f75422ab2c7888966ee2569b695f5bd02e5618c28be59e995b6544393",
+      "pixel_equal_original": true
+    },
+    "independent review": "Packet/builder hashes, selection and receipt bindings, full nine padded variant changes and thirteen TXT window rows independently checked. Both BT landmark crops viewed; decoded pixels equal exact authenticated original TIFF rectangles.",
+    "disposition": "All three human-confirmed transcription cases and prior fixed_terminal_slot_layout questions stay OPEN. Upper/function, circuit/output and lower/location local row relationships agree visually; BT footer/height remains unresolved. No new coordinate, endpoint, net, physical ownership, continuity or electrical conclusion.",
+    "limits": "Current TXT row85 blank and row86 footer with height7 retained; native footer appears directly beneath location. Broad locator registration is not exact grid alignment. No crop warp, rerender, converter, validator, diagnostic or full-page test was executed for this assessment."
+  },
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT421AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RT421AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RT421AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BH/pins/L/2",
+          "net": "RT421BK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT421AK4",
+          "contact": [
+            115,
+            10
+          ],
+          "old endpoint": [
+            118,
+            10
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RT421AL4",
+          "contact": [
+            107,
+            12
+          ],
+          "old endpoint": [
+            104,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RT421AJ4",
+          "contact": [
+            138,
+            33
+          ],
+          "old endpoint": [
+            141,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BH/pins/L/2",
+          "net": "RT421BK4",
+          "contact": [
+            115,
+            59
+          ],
+          "old endpoint": [
+            118,
+            59
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RT421AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            10
+          ],
+          "after": [
+            115,
+            10
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              5
+            ],
+            [
+              115,
+              5
+            ],
+            [
+              115,
+              10
+            ],
+            [
+              118,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              5
+            ],
+            [
+              115,
+              5
+            ],
+            [
+              115,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "RT421AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              12
+            ],
+            [
+              107,
+              12
+            ],
+            [
+              107,
+              11
+            ],
+            [
+              115,
+              11
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              12
+            ],
+            [
+              107,
+              11
+            ],
+            [
+              115,
+              11
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RT421AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            33
+          ],
+          "after": [
+            138,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              26
+            ],
+            [
+              138,
+              26
+            ],
+            [
+              138,
+              33
+            ],
+            [
+              141,
+              33
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              26
+            ],
+            [
+              138,
+              26
+            ],
+            [
+              138,
+              33
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BH/pins/L/2",
+          "net": "RT421BK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            59
+          ],
+          "after": [
+            115,
+            59
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              104,
+              54
+            ],
+            [
+              115,
+              54
+            ],
+            [
+              115,
+              59
+            ],
+            [
+              118,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              104,
+              54
+            ],
+            [
+              115,
+              54
+            ],
+            [
+              115,
+              59
+            ]
+          ]
+        }
+      ]
+    }
+  ]
 }

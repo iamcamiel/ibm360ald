@@ -2,7 +2,7 @@
   "page": "KM841",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d893ab5078fbfaae5b12a4c572b084f7bc6a930efe3b2856d74e819fab2efec8",
+  "content sha256": "158d8248ef0a685e280be7c912e2a41e78134cf207fa1e0dc1c3c37db407a0ae",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KM841\\Source model.json",
@@ -76,11 +76,6 @@
           "terminal": "blocks/AV/pins/R/4",
           "net": "KM841AV4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AW/pins/L/4",
-          "net": "KM841AV2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -1785,6 +1780,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "KM841AV2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "KM841AV2",
+          "contact": [
+            92,
+            26
+          ],
+          "old endpoint": [
+            95,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AW/pins/L/4",
+          "net": "KM841AV2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            26
+          ],
+          "after": [
+            92,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              24
+            ],
+            [
+              92,
+              24
+            ],
+            [
+              92,
+              26
+            ],
+            [
+              95,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              24
+            ],
+            [
+              92,
+              24
+            ],
+            [
+              92,
+              26
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
   "page": "AR421",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "89095ac13fbbbdf3aa9ca72c27a0863ce43b90fde4b132776406fbd72b29bf36",
+  "content sha256": "a0021dded2de95ff9b7b0a8c0d295a6f09817f759f920221dfa06d16aec2bd3d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root second twenty findings publication qualification249\\Inputs\\AR421\\Exact source model.json",
@@ -33,11 +33,6 @@
         {
           "terminal": "blocks/AE/pins/L/2",
           "net": "AR421AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/L/6",
-          "net": "AR421AD4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
@@ -4584,6 +4579,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "AR421AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "AR421AD4",
+          "contact": [
+            161,
+            28
+          ],
+          "old endpoint": [
+            164,
+            28
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "AR421AD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            28
+          ],
+          "after": [
+            161,
+            28
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              26
+            ],
+            [
+              161,
+              26
+            ],
+            [
+              161,
+              28
+            ],
+            [
+              164,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              26
+            ],
+            [
+              161,
+              26
+            ],
+            [
+              161,
+              28
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

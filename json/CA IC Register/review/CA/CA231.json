@@ -2,7 +2,7 @@
   "page": "CA231",
   "review date": "2026-10-26",
   "reviewer": "fresh-data265-group-c-20261026",
-  "content sha256": "5ad76ce8f0c4168c519829370b217619296058539f27326415c33bd30e38b0c2",
+  "content sha256": "e7d46b24463f0f46b72c278d05cc9f0747e7f9bc0096aae50d5c55747536c54c",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Inputs\\CA231\\Exact source model.json",
@@ -41,11 +41,6 @@
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
-          "terminal": "blocks/BJ/pins/L/4",
-          "net": "CA231BA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/CA/pins/R/4",
           "net": "CA231CA4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
@@ -53,11 +48,6 @@
         {
           "terminal": "blocks/CH/pins/L/2",
           "net": "CA231CC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/CJ/pins/L/4",
-          "net": "CA231CA4",
           "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
@@ -2838,6 +2828,186 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "CA231BA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/4",
+          "net": "CA231CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "CA231BA4",
+          "contact": [
+            46,
+            47
+          ],
+          "old endpoint": [
+            49,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/4",
+          "net": "CA231CA4",
+          "contact": [
+            46,
+            75
+          ],
+          "old endpoint": [
+            49,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "CA231BA4",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            49,
+            47
+          ],
+          "after": [
+            46,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              33
+            ],
+            [
+              60,
+              33
+            ],
+            [
+              60,
+              37
+            ],
+            [
+              46,
+              37
+            ],
+            [
+              46,
+              47
+            ],
+            [
+              49,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              58,
+              33
+            ],
+            [
+              60,
+              33
+            ],
+            [
+              60,
+              37
+            ],
+            [
+              46,
+              37
+            ],
+            [
+              46,
+              47
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/4",
+          "net": "CA231CA4",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            49,
+            75
+          ],
+          "after": [
+            46,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              61
+            ],
+            [
+              60,
+              61
+            ],
+            [
+              60,
+              65
+            ],
+            [
+              46,
+              65
+            ],
+            [
+              46,
+              75
+            ],
+            [
+              49,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              58,
+              61
+            ],
+            [
+              60,
+              61
+            ],
+            [
+              60,
+              65
+            ],
+            [
+              46,
+              65
+            ],
+            [
+              46,
+              75
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

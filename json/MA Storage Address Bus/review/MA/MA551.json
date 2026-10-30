@@ -2,7 +2,7 @@
   "page": "MA551",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "707baa12093cbd413f837ace75a0384edadc9080f17bbe8403f04c156d5f0dd4",
+  "content sha256": "b402b22fae93c70d58968534205e896d1f31d35bc68525feec0f2d6ce947ada7",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA551\\Source model.json",
@@ -41,24 +41,9 @@
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AJ/pins/L/4",
-          "net": "MA551AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AK/pins/L/4",
-          "net": "MA551AC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BB/pins/L/4",
           "net": "MA551BA4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BJ/pins/L/4",
-          "net": "MA551BA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -1358,6 +1343,222 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MA551AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MA551AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MA551BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MA551AA2",
+          "contact": [
+            69,
+            5
+          ],
+          "old endpoint": [
+            72,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MA551AC2",
+          "contact": [
+            69,
+            26
+          ],
+          "old endpoint": [
+            72,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MA551BA2",
+          "contact": [
+            184,
+            5
+          ],
+          "old endpoint": [
+            187,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MA551AA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            5
+          ],
+          "after": [
+            69,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ],
+            [
+              69,
+              5
+            ],
+            [
+              72,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ],
+            [
+              69,
+              5
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MA551AC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              24
+            ],
+            [
+              69,
+              24
+            ],
+            [
+              69,
+              26
+            ],
+            [
+              72,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              24
+            ],
+            [
+              69,
+              24
+            ],
+            [
+              69,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MA551BA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            5
+          ],
+          "after": [
+            184,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              3
+            ],
+            [
+              184,
+              3
+            ],
+            [
+              184,
+              5
+            ],
+            [
+              187,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              3
+            ],
+            [
+              184,
+              3
+            ],
+            [
+              184,
+              5
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

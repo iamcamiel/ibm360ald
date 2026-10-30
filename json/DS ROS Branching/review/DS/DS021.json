@@ -2,7 +2,7 @@
   "page": "DS021",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a8b46f15676cb5803cd4f17f9e04e32c8a32faa482e4b2a0ff6e1e2260faa790",
+  "content sha256": "b7e02b47c392b163ddc3823bc7998a84cbf433938b9f3a5e4b41f67af2e26811",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\DS021 independent reconstruction621\\Inputs\\Baseline model.json",
@@ -39,135 +39,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AA/pins/R/4",
-          "net": "DS021AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "DS021AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "DS021AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "DS021AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AF/pins/R/4",
-          "net": "DS021AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AG/pins/R/4",
-          "net": "DS021AG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AH/pins/R/4",
-          "net": "DS021AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AJ/pins/R/4",
-          "net": "DS021AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "DS021AP4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AQ/pins/R/4",
-          "net": "DS021AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AR/pins/R/4",
-          "net": "DS021AR4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/4",
-          "net": "DS021AS4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/4",
-          "net": "DS021AT4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AU/pins/R/4",
-          "net": "DS021AU4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AV/pins/R/4",
-          "net": "DS021AV4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "DS021AW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BB/pins/R/4",
-          "net": "DS021BB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BC/pins/R/4",
-          "net": "DS021BC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BD/pins/R/4",
-          "net": "DS021BD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "DS021BE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BF/pins/R/4",
-          "net": "DS021BF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BG/pins/R/4",
-          "net": "DS021BG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BH/pins/R/4",
-          "net": "DS021BH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BJ/pins/R/4",
-          "net": "DS021BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -3419,6 +3291,1650 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "DS021AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "DS021AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DS021AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "DS021AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "DS021AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "DS021AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "DS021AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS021AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS021AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS021AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "DS021AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "DS021AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS021AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DS021AU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "DS021AV4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DS021AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "DS021BB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DS021BC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "DS021BD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "DS021BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "DS021BF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "DS021BG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BH/pins/R/4",
+          "net": "DS021BH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS021BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "DS021AA4",
+          "contact": [
+            61,
+            12
+          ],
+          "old endpoint": [
+            58,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "DS021AB4",
+          "contact": [
+            61,
+            19
+          ],
+          "old endpoint": [
+            58,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DS021AD4",
+          "contact": [
+            61,
+            33
+          ],
+          "old endpoint": [
+            58,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "DS021AE4",
+          "contact": [
+            61,
+            40
+          ],
+          "old endpoint": [
+            58,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "DS021AF4",
+          "contact": [
+            61,
+            54
+          ],
+          "old endpoint": [
+            58,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "DS021AG4",
+          "contact": [
+            61,
+            61
+          ],
+          "old endpoint": [
+            58,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "DS021AH4",
+          "contact": [
+            61,
+            75
+          ],
+          "old endpoint": [
+            58,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS021AJ4",
+          "contact": [
+            61,
+            82
+          ],
+          "old endpoint": [
+            58,
+            82
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS021AP4",
+          "contact": [
+            130,
+            12
+          ],
+          "old endpoint": [
+            127,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS021AQ4",
+          "contact": [
+            130,
+            19
+          ],
+          "old endpoint": [
+            127,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "DS021AR4",
+          "contact": [
+            130,
+            33
+          ],
+          "old endpoint": [
+            127,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "DS021AS4",
+          "contact": [
+            130,
+            40
+          ],
+          "old endpoint": [
+            127,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS021AT4",
+          "contact": [
+            130,
+            54
+          ],
+          "old endpoint": [
+            127,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DS021AU4",
+          "contact": [
+            130,
+            61
+          ],
+          "old endpoint": [
+            127,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "DS021AV4",
+          "contact": [
+            130,
+            75
+          ],
+          "old endpoint": [
+            127,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DS021AW4",
+          "contact": [
+            130,
+            82
+          ],
+          "old endpoint": [
+            127,
+            82
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "DS021BB4",
+          "contact": [
+            176,
+            12
+          ],
+          "old endpoint": [
+            173,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DS021BC4",
+          "contact": [
+            176,
+            19
+          ],
+          "old endpoint": [
+            173,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "DS021BD4",
+          "contact": [
+            176,
+            33
+          ],
+          "old endpoint": [
+            173,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "DS021BE4",
+          "contact": [
+            176,
+            40
+          ],
+          "old endpoint": [
+            173,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "DS021BF4",
+          "contact": [
+            176,
+            54
+          ],
+          "old endpoint": [
+            173,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "DS021BG4",
+          "contact": [
+            176,
+            61
+          ],
+          "old endpoint": [
+            173,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BH/pins/R/4",
+          "net": "DS021BH4",
+          "contact": [
+            176,
+            75
+          ],
+          "old endpoint": [
+            173,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS021BJ4",
+          "contact": [
+            176,
+            82
+          ],
+          "old endpoint": [
+            173,
+            82
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "DS021AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              12
+            ],
+            [
+              61,
+              12
+            ],
+            [
+              61,
+              10
+            ],
+            [
+              69,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              12
+            ],
+            [
+              61,
+              10
+            ],
+            [
+              69,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "DS021AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              19
+            ],
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              14
+            ],
+            [
+              69,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              14
+            ],
+            [
+              69,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DS021AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            33
+          ],
+          "after": [
+            61,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              33
+            ],
+            [
+              61,
+              33
+            ],
+            [
+              61,
+              31
+            ],
+            [
+              69,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              33
+            ],
+            [
+              61,
+              31
+            ],
+            [
+              69,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "DS021AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            40
+          ],
+          "after": [
+            61,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              40
+            ],
+            [
+              61,
+              40
+            ],
+            [
+              61,
+              35
+            ],
+            [
+              69,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              40
+            ],
+            [
+              61,
+              35
+            ],
+            [
+              69,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "DS021AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              54
+            ],
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              52
+            ],
+            [
+              69,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              54
+            ],
+            [
+              61,
+              52
+            ],
+            [
+              69,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "DS021AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              61
+            ],
+            [
+              61,
+              61
+            ],
+            [
+              61,
+              56
+            ],
+            [
+              69,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              61
+            ],
+            [
+              61,
+              56
+            ],
+            [
+              69,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "DS021AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            75
+          ],
+          "after": [
+            61,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              75
+            ],
+            [
+              61,
+              75
+            ],
+            [
+              61,
+              73
+            ],
+            [
+              69,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              75
+            ],
+            [
+              61,
+              73
+            ],
+            [
+              69,
+              73
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "DS021AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            82
+          ],
+          "after": [
+            61,
+            82
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              82
+            ],
+            [
+              61,
+              82
+            ],
+            [
+              61,
+              77
+            ],
+            [
+              69,
+              77
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              82
+            ],
+            [
+              61,
+              77
+            ],
+            [
+              69,
+              77
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DS021AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            12
+          ],
+          "after": [
+            130,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              12
+            ],
+            [
+              130,
+              12
+            ],
+            [
+              130,
+              10
+            ],
+            [
+              138,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              130,
+              10
+            ],
+            [
+              138,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "DS021AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            19
+          ],
+          "after": [
+            130,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              19
+            ],
+            [
+              130,
+              19
+            ],
+            [
+              130,
+              14
+            ],
+            [
+              138,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              19
+            ],
+            [
+              130,
+              14
+            ],
+            [
+              138,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "DS021AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              33
+            ],
+            [
+              130,
+              33
+            ],
+            [
+              130,
+              31
+            ],
+            [
+              138,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              130,
+              31
+            ],
+            [
+              138,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "DS021AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            40
+          ],
+          "after": [
+            130,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              40
+            ],
+            [
+              130,
+              40
+            ],
+            [
+              130,
+              35
+            ],
+            [
+              138,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              40
+            ],
+            [
+              130,
+              35
+            ],
+            [
+              138,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "DS021AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              54
+            ],
+            [
+              130,
+              54
+            ],
+            [
+              130,
+              52
+            ],
+            [
+              138,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              54
+            ],
+            [
+              130,
+              52
+            ],
+            [
+              138,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DS021AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              61
+            ],
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              56
+            ],
+            [
+              138,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              56
+            ],
+            [
+              138,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "DS021AV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              75
+            ],
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              73
+            ],
+            [
+              138,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              73
+            ],
+            [
+              138,
+              73
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DS021AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              82
+            ],
+            [
+              130,
+              82
+            ],
+            [
+              130,
+              77
+            ],
+            [
+              138,
+              77
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              82
+            ],
+            [
+              130,
+              77
+            ],
+            [
+              138,
+              77
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "DS021BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              12
+            ],
+            [
+              176,
+              12
+            ],
+            [
+              176,
+              10
+            ],
+            [
+              184,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              12
+            ],
+            [
+              176,
+              10
+            ],
+            [
+              184,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "DS021BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            19
+          ],
+          "after": [
+            176,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              19
+            ],
+            [
+              176,
+              19
+            ],
+            [
+              176,
+              14
+            ],
+            [
+              184,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              19
+            ],
+            [
+              176,
+              14
+            ],
+            [
+              184,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "DS021BD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            33
+          ],
+          "after": [
+            176,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              33
+            ],
+            [
+              176,
+              33
+            ],
+            [
+              176,
+              31
+            ],
+            [
+              184,
+              31
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              33
+            ],
+            [
+              176,
+              31
+            ],
+            [
+              184,
+              31
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "DS021BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              40
+            ],
+            [
+              176,
+              40
+            ],
+            [
+              176,
+              35
+            ],
+            [
+              184,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              40
+            ],
+            [
+              176,
+              35
+            ],
+            [
+              184,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "DS021BF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            54
+          ],
+          "after": [
+            176,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              54
+            ],
+            [
+              176,
+              54
+            ],
+            [
+              176,
+              52
+            ],
+            [
+              184,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              54
+            ],
+            [
+              176,
+              52
+            ],
+            [
+              184,
+              52
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "DS021BG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            61
+          ],
+          "after": [
+            176,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              61
+            ],
+            [
+              176,
+              61
+            ],
+            [
+              176,
+              56
+            ],
+            [
+              184,
+              56
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              61
+            ],
+            [
+              176,
+              56
+            ],
+            [
+              184,
+              56
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BH/pins/R/4",
+          "net": "DS021BH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            75
+          ],
+          "after": [
+            176,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              75
+            ],
+            [
+              176,
+              75
+            ],
+            [
+              176,
+              73
+            ],
+            [
+              184,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              75
+            ],
+            [
+              176,
+              73
+            ],
+            [
+              184,
+              73
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BJ/pins/R/4",
+          "net": "DS021BJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            82
+          ],
+          "after": [
+            176,
+            82
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              82
+            ],
+            [
+              176,
+              82
+            ],
+            [
+              176,
+              77
+            ],
+            [
+              184,
+              77
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              82
+            ],
+            [
+              176,
+              77
+            ],
+            [
+              184,
+              77
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

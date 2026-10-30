@@ -2,7 +2,7 @@
   "page": "AS034",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "53b77917685f58fe30865682bc570fb3aa5363cfb62216d46bd44f24453fa463",
+  "content sha256": "f8ba730e62950f047fd5f558e5908a300d195e8e5c21347a7df58e8c7aab21d2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root retained actual nineteen DATA and four qualified Ksource keys271\\Selected\\AS034\\model.json",
@@ -59,11 +59,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "AS034AN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/AP/pins/R/4",
           "net": "AS034AP4",
@@ -4245,6 +4240,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "AS034AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "AS034AN4",
+          "contact": [
+            153,
+            40
+          ],
+          "old endpoint": [
+            150,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "AS034AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            40
+          ],
+          "after": [
+            153,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              40
+            ],
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              38
+            ],
+            [
+              161,
+              38
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              38
+            ],
+            [
+              161,
+              38
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

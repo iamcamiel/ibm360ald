@@ -1,0 +1,763 @@
+{
+  "page": "KW301",
+  "review date": "2026-10-25",
+  "reviewer": "Functional ALD format converter",
+  "content sha256": "c4a88279b64074205836f6c1f62fb5ac5bb488e9b7421cf5e2b94503c9eb9939",
+  "sources": [
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Luna Team5 remaining unreviewed split to finished Team6 001\\Team6 transferred remaining135\\Inputs\\KW301\\Source model.json",
+      "sha256": "13cfbbc06c68d636491475be45168e66376fe044564a99bb0abb171844b4ebe0"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Luna Team5 remaining unreviewed split to finished Team6 001\\Team6 transferred remaining135\\Inputs\\KW301\\Source text.txt",
+      "sha256": "3f5530ffd4afc9accda743822bd9a9300061002dd84e5cd1dcb006cdaebcf3df"
+    }
+  ],
+  "inherited review": {
+    "approval_statement": null,
+    "approved_at": null,
+    "content_sha256": "f8eb37eec03fac7dbfab1048db803f4f9e2b32c941f55fbb393fdde36bba7d64",
+    "source_status": "reviewed",
+    "status": "unreviewed",
+    "user_approved": false,
+    "wiring_status": "unreviewed"
+  },
+  "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KW CE Console Functions\\KW301 360 MODE.tif",
+  "uncertainties": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KW301AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/6",
+          "net": "PX331AL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "KW301AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "KW301AM4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "KW501AV4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "KW301AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "KW301AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "KW301AU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "KW301AY4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "title_frame_path",
+      "message": "Decorative title-frame path is reproduced by the ordinary template, not stored as an electrical net."
+    },
+    {
+      "code": "title_frame_path",
+      "message": "Decorative title-frame path is reproduced by the ordinary template, not stored as an electrical net."
+    },
+    {
+      "code": "explicit_fanout_retained",
+      "net": "KW301AB4",
+      "message": "Original routes retained; generated hanging-list lead also reaches its covered first text cell."
+    }
+  ],
+  "conversion evidence": {
+    "old to new net IDs": {
+      "360 MODE PB": "PK041AU2",
+      "CONSOLE PB": "KW301AA4",
+      "STATE 1 0 TEST": "PX331AL4",
+      "MODE PB COMPLEMENT": "KW301AB4",
+      "AD TO AF": "KW301AD4",
+      "SHORT SWITCH": "KW011CS4",
+      "AF TO AK": "KW301AF4",
+      "SHORT SWITCH CLOCK": "KW301AK4",
+      "125 NSEC": "KW301AG4",
+      "AW TO AX": "KW301AW4",
+      "AX TO AM": "KW301AX4",
+      "AM TO AR": "KW301AM4",
+      "AR TO AH": "KW301AR4",
+      "AH TO AN": "KW301AH4",
+      "AN TO AS": "KW301AN4",
+      "250 NSEC": "KW301AS4",
+      "360 MODE LATCH": "KW301AT4",
+      "360 MODE LTH COMPLEMENT": "KW301AY4",
+      "360 MODE INDICATION": "KW301AZ4",
+      "360 MODE LTH POSITIVE": "KW301AU4",
+      "EXT START": "KW311AZ4",
+      "POWER RESET": "KW311BP4",
+      "STATE 2 3": "PX331AW4",
+      "FLT IPL": "KW501AH4",
+      "RESET GATE FEEDBACK": "KW301AC4",
+      "AE TO AJ": "KW301AE4",
+      "AJ TO AQ": "KW301AJ4",
+      "DIAG RESET": "KW501AV4",
+      "DIAG SET INTO LATCH": "KW301BA4",
+      "DIAG SET": "KW501AW4",
+      "AP INTO AT": "KW301AP4",
+      "AQ INTO AT": "KW301AQ4"
+    },
+    "all terminal references retained": true,
+    "original per-net route graphs retained": true,
+    "blocks": 24,
+    "terminals": 59,
+    "nets": 32,
+    "external endpoint observations": [
+      {
+        "kind": "source external reference observation",
+        "source net ID": "360 MODE PB",
+        "new net number": "PK041AU2",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "CONSOLE PB",
+        "new net number": "KW301AA4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "STATE 1 0 TEST",
+        "new net number": "PX331AL4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "MODE PB COMPLEMENT",
+        "new net number": "KW301AB4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "KW011",
+          "KW411"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AD TO AF",
+        "new net number": "KW301AD4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "SHORT SWITCH",
+        "new net number": "KW011CS4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AF TO AK",
+        "new net number": "KW301AF4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "SHORT SWITCH CLOCK",
+        "new net number": "KW301AK4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "125 NSEC",
+        "new net number": "KW301AG4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AW TO AX",
+        "new net number": "KW301AW4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AX TO AM",
+        "new net number": "KW301AX4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AM TO AR",
+        "new net number": "KW301AM4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AR TO AH",
+        "new net number": "KW301AR4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AH TO AN",
+        "new net number": "KW301AH4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AN TO AS",
+        "new net number": "KW301AN4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "250 NSEC",
+        "new net number": "KW301AS4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "360 MODE LATCH",
+        "new net number": "KW301AT4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "360 MODE LTH COMPLEMENT",
+        "new net number": "KW301AY4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "KW421"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "360 MODE INDICATION",
+        "new net number": "KW301AZ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "KX121"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "360 MODE LTH POSITIVE",
+        "new net number": "KW301AU4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "DN111"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "EXT START",
+        "new net number": "KW311AZ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "POWER RESET",
+        "new net number": "KW311BP4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "STATE 2 3",
+        "new net number": "PX331AW4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "FLT IPL",
+        "new net number": "KW501AH4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "RESET GATE FEEDBACK",
+        "new net number": "KW301AC4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AE TO AJ",
+        "new net number": "KW301AE4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AJ TO AQ",
+        "new net number": "KW301AJ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "DIAG RESET",
+        "new net number": "KW501AV4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "DIAG SET INTO LATCH",
+        "new net number": "KW301BA4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "DIAG SET",
+        "new net number": "KW501AW4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AP INTO AT",
+        "new net number": "KW301AP4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AQ INTO AT",
+        "new net number": "KW301AQ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      }
+    ]
+  },
+  "writer options": {
+    "line ending": "CRLF",
+    "trim trailing spaces": true
+  },
+  "scope": "Data conversion only. No original-pixel reading, source correction, approval or publication is inferred.",
+  "render comparison": {
+    "rendered": true,
+    "different cells": 0,
+    "wire glyph differences": 0,
+    "unresolved different cells": 0,
+    "byte identical": true,
+    "wiring findings": [],
+    "raw source render differences": [],
+    "all raw differences included": true,
+    "approved normalizations": [],
+    "first differences": [],
+    "all differences included": true,
+    "interpretation": "Differences trigger source review. Never modify routes or add glyph overrides merely to match old text.",
+    "rendered sha256": "3f5530ffd4afc9accda743822bd9a9300061002dd84e5cd1dcb006cdaebcf3df",
+    "source text used by renderer": false
+  },
+  "publication provenance": {
+    "authority": {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Human clean216 v4 publication and browser ribbon authority001\\Direct human exact clean216 and dual browser publication authority.json",
+      "sha256": "e849122164d36218470420c30fd5a32e8e47db65415359edc5301cbbb3bd371f"
+    },
+    "original canonical v3": {
+      "path": "review/v3/KW CE Console Functions/KW301 360 MODE.json",
+      "sha256": "13cfbbc06c68d636491475be45168e66376fe044564a99bb0abb171844b4ebe0"
+    },
+    "original canonical TXT": {
+      "path": "review/v3/KW CE Console Functions/KW301 360 MODE.txt",
+      "sha256": "3f5530ffd4afc9accda743822bd9a9300061002dd84e5cd1dcb006cdaebcf3df"
+    },
+    "exact selected v3 source": {
+      "path": "review/conversion-sources/KW CE Console Functions/KW301 360 MODE.json",
+      "sha256": "13cfbbc06c68d636491475be45168e66376fe044564a99bb0abb171844b4ebe0"
+    },
+    "original canonical review": {
+      "approval_statement": null,
+      "approved_at": null,
+      "content_sha256": "f8eb37eec03fac7dbfab1048db803f4f9e2b32c941f55fbb393fdde36bba7d64",
+      "source_status": "reviewed",
+      "status": "unreviewed",
+      "user_approved": false,
+      "wiring_status": "unreviewed"
+    },
+    "selected source review": {
+      "approval_statement": null,
+      "approved_at": null,
+      "content_sha256": "f8eb37eec03fac7dbfab1048db803f4f9e2b32c941f55fbb393fdde36bba7d64",
+      "source_status": "reviewed",
+      "status": "unreviewed",
+      "user_approved": false,
+      "wiring_status": "unreviewed"
+    },
+    "conversion is wiring approval": false,
+    "local format transition only": true
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "KW301AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            68,
+            3
+          ],
+          "after": [
+            69,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "PX331AW4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            91,
+            68
+          ],
+          "after": [
+            92,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "KW301AR4",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            118,
+            54
+          ],
+          "after": [
+            115,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/1",
+          "net": "KW301AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            51
+          ],
+          "after": [
+            138,
+            51
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KW301AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            68
+          ],
+          "after": [
+            153,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "KW301AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            137,
+            73
+          ],
+          "after": [
+            138,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "KW301AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            164,
+            40
+          ],
+          "after": [
+            161,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "KW301BA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            75
+          ],
+          "after": [
+            161,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "KW301AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            73
+          ],
+          "after": [
+            161,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "KW301AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            77
+          ],
+          "after": [
+            161,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "KW301AZ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            54
+          ],
+          "after": [
+            199,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "KW301BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            89
+          ],
+          "after": [
+            153,
+            89
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KW301AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/6",
+          "net": "PX331AL4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "KW301AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "KW301AM4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "KW501AV4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "KW301AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "KW301AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "KW301AU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "KW301AY4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "page": "KM301",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4900c167326f2e2c55f5cb348299e79e649a22b95026125b2c9c0ddb1a1fa98b",
+  "content sha256": "b9c0a7034ff1db8a013a9f32a0453292e006e290253f187c7e9408da69c01bd5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KM301\\Source model.json",
@@ -43,45 +43,7 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AE/pins/R/4",
-          "net": "KM301AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AF/pins/L/4",
-          "net": "KM301AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BE/pins/R/4",
-          "net": "KM301BE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BF/pins/L/4",
-          "net": "KM301BE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/CE/pins/R/4",
-          "net": "KM301CE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/CF/pins/L/4",
-          "net": "KM301CE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2207,5 +2169,497 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "KM301AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "KM301AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KM301BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "KM301BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "KM301CE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "KM301CE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "KM301AE4",
+          "contact": [
+            199,
+            12
+          ],
+          "old endpoint": [
+            196,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "KM301AE4",
+          "contact": [
+            184,
+            26
+          ],
+          "old endpoint": [
+            187,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KM301BE4",
+          "contact": [
+            199,
+            33
+          ],
+          "old endpoint": [
+            196,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "KM301BE4",
+          "contact": [
+            184,
+            47
+          ],
+          "old endpoint": [
+            187,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "KM301CE4",
+          "contact": [
+            199,
+            54
+          ],
+          "old endpoint": [
+            196,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "KM301CE4",
+          "contact": [
+            184,
+            75
+          ],
+          "old endpoint": [
+            187,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "KM301AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            196,
+            12
+          ],
+          "after": [
+            199,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              196,
+              12
+            ],
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ],
+            [
+              187,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ],
+            [
+              187,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "KM301AE4",
+          "polyline": 0,
+          "point": 4,
+          "before": [
+            187,
+            26
+          ],
+          "after": [
+            184,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ],
+            [
+              187,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "KM301BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            196,
+            33
+          ],
+          "after": [
+            199,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              196,
+              33
+            ],
+            [
+              199,
+              33
+            ],
+            [
+              199,
+              37
+            ],
+            [
+              184,
+              37
+            ],
+            [
+              184,
+              47
+            ],
+            [
+              187,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              33
+            ],
+            [
+              199,
+              37
+            ],
+            [
+              184,
+              37
+            ],
+            [
+              184,
+              47
+            ],
+            [
+              187,
+              47
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "KM301BE4",
+          "polyline": 0,
+          "point": 4,
+          "before": [
+            187,
+            47
+          ],
+          "after": [
+            184,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              199,
+              33
+            ],
+            [
+              199,
+              37
+            ],
+            [
+              184,
+              37
+            ],
+            [
+              184,
+              47
+            ],
+            [
+              187,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              33
+            ],
+            [
+              199,
+              37
+            ],
+            [
+              184,
+              37
+            ],
+            [
+              184,
+              47
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "KM301CE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            196,
+            54
+          ],
+          "after": [
+            199,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              196,
+              54
+            ],
+            [
+              199,
+              54
+            ],
+            [
+              199,
+              59
+            ],
+            [
+              184,
+              59
+            ],
+            [
+              184,
+              75
+            ],
+            [
+              187,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              54
+            ],
+            [
+              199,
+              59
+            ],
+            [
+              184,
+              59
+            ],
+            [
+              184,
+              75
+            ],
+            [
+              187,
+              75
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "KM301CE4",
+          "polyline": 0,
+          "point": 4,
+          "before": [
+            187,
+            75
+          ],
+          "after": [
+            184,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              199,
+              54
+            ],
+            [
+              199,
+              59
+            ],
+            [
+              184,
+              59
+            ],
+            [
+              184,
+              75
+            ],
+            [
+              187,
+              75
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              54
+            ],
+            [
+              199,
+              59
+            ],
+            [
+              184,
+              59
+            ],
+            [
+              184,
+              75
+            ]
+          ]
+        }
+      ]
+    }
+  ]
 }

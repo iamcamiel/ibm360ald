@@ -2,7 +2,7 @@
   "page": "MC701",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "09eda24494676d41977ac7a25ec40efe730b86339733e18802d13dd35971a9e7",
+  "content sha256": "2dc63942d379b7c0d18b497fd7d744e1901fd9670ee1151b221b19a3f2177c62",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team4 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\MC701 K role closure189\\Source successor\\Source model.json",
@@ -30,26 +30,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AL/pins/R/4",
-          "net": "MC701AL4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "MC701AJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AP/pins/R/4",
-          "net": "MC701AP4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AR/pins/L/2",
-          "net": "MC701AN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/BA/pins/R/4",
           "net": "MC701BA4",
@@ -2668,6 +2648,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "MC701AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MC701AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC701AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MC701AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "MC701AL4",
+          "contact": [
+            130,
+            33
+          ],
+          "old endpoint": [
+            127,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MC701AJ4",
+          "contact": [
+            138,
+            17
+          ],
+          "old endpoint": [
+            141,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC701AP4",
+          "contact": [
+            153,
+            75
+          ],
+          "old endpoint": [
+            150,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MC701AN4",
+          "contact": [
+            161,
+            66
+          ],
+          "old endpoint": [
+            164,
+            66
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "MC701AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              33
+            ],
+            [
+              130,
+              33
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              138,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              130,
+              21
+            ],
+            [
+              138,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "MC701AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            17
+          ],
+          "after": [
+            138,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              5
+            ],
+            [
+              138,
+              5
+            ],
+            [
+              138,
+              17
+            ],
+            [
+              141,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              5
+            ],
+            [
+              138,
+              5
+            ],
+            [
+              138,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC701AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              75
+            ],
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              70
+            ],
+            [
+              161,
+              70
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              70
+            ],
+            [
+              161,
+              70
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MC701AN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            66
+          ],
+          "after": [
+            161,
+            66
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ],
+            [
+              164,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

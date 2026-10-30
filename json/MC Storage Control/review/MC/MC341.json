@@ -2,7 +2,7 @@
   "page": "MC341",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b44cbf95af118c4ec031f60577c59977e1943f0796123db9cfc6e589bd8c2190",
+  "content sha256": "d904539d8a130cf0e75586aa94554617c5456c14b37343935065266177c63567",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Batch015\\Results\\MC341\\Producer003\\Current model.json",
@@ -47,34 +47,14 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AK/pins/L/4",
-          "net": "MC341AC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AU/pins/R/4",
           "net": "MC341AU4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
         },
         {
-          "terminal": "blocks/AX/pins/L/4",
-          "net": "MC341AU2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BA/pins/R/4",
           "net": "MC341BA4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BJ/pins/L/4",
-          "net": "MC341BA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BK/pins/L/4",
-          "net": "MC341BC2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -53633,6 +53613,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MC341AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/4",
+          "net": "MC341AU2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MC341BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "MC341BC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MC341AC2",
+          "contact": [
+            69,
+            26
+          ],
+          "old endpoint": [
+            72,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AX/pins/L/4",
+          "net": "MC341AU2",
+          "contact": [
+            115,
+            33
+          ],
+          "old endpoint": [
+            118,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MC341BA2",
+          "contact": [
+            184,
+            5
+          ],
+          "old endpoint": [
+            187,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "MC341BC2",
+          "contact": [
+            184,
+            26
+          ],
+          "old endpoint": [
+            187,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MC341AC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              24
+            ],
+            [
+              69,
+              24
+            ],
+            [
+              69,
+              26
+            ],
+            [
+              72,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              24
+            ],
+            [
+              69,
+              24
+            ],
+            [
+              69,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/4",
+          "net": "MC341AU2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            33
+          ],
+          "after": [
+            115,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              31
+            ],
+            [
+              115,
+              31
+            ],
+            [
+              115,
+              33
+            ],
+            [
+              118,
+              33
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              31
+            ],
+            [
+              115,
+              31
+            ],
+            [
+              115,
+              33
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MC341BA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            5
+          ],
+          "after": [
+            184,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              3
+            ],
+            [
+              184,
+              3
+            ],
+            [
+              184,
+              5
+            ],
+            [
+              187,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              3
+            ],
+            [
+              184,
+              3
+            ],
+            [
+              184,
+              5
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "MC341BC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            26
+          ],
+          "after": [
+            184,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ],
+            [
+              187,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              17
+            ],
+            [
+              184,
+              17
+            ],
+            [
+              184,
+              26
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

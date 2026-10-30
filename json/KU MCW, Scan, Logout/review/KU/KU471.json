@@ -2,7 +2,7 @@
   "page": "KU471",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b81c2acc357a0f769693e825de1a11097a1df68e812f418e849761296e6bed75",
+  "content sha256": "447da277c3f97df7ae68bd334077d14c82ce34a8f8e4a0959fdadfeabf72944a",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KU471\\Source model.json",
@@ -39,25 +39,7 @@
       }
     }
   ],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "KU471AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/2",
-          "net": "KU471AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2092,6 +2074,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KU471AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "KU471AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KU471AD4",
+          "contact": [
+            84,
+            26
+          ],
+          "old endpoint": [
+            81,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "KU471AA4",
+          "contact": [
+            92,
+            17
+          ],
+          "old endpoint": [
+            95,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "KU471AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              26
+            ],
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              21
+            ],
+            [
+              92,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              21
+            ],
+            [
+              92,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "KU471AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            17
+          ],
+          "after": [
+            92,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              17
+            ],
+            [
+              95,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              92,
+              12
+            ],
+            [
+              92,
+              17
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

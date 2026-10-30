@@ -2,7 +2,7 @@
   "page": "MC501",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "60c5c6d815eeb25f88129ff1838f8827a8a62006e58b229d503723c652df2c0b",
+  "content sha256": "d703f2d1c01a30a549fb8f39a34bb6157a038aca8564f4a31009833ba9b55fc5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC501\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC501 TAPED DELAYED SELECT.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AJ/pins/L/4",
-          "net": "MC501AH5",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AL/pins/L/4",
-          "net": "MC501AK2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -721,6 +703,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MC501AH5",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "MC501AK2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MC501AH5",
+          "contact": [
+            161,
+            89
+          ],
+          "old endpoint": [
+            164,
+            89
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "MC501AK2",
+          "contact": [
+            115,
+            68
+          ],
+          "old endpoint": [
+            118,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MC501AH5",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            89
+          ],
+          "after": [
+            161,
+            89
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              83
+            ],
+            [
+              161,
+              83
+            ],
+            [
+              161,
+              89
+            ],
+            [
+              164,
+              89
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              83
+            ],
+            [
+              161,
+              83
+            ],
+            [
+              161,
+              89
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "MC501AK2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            68
+          ],
+          "after": [
+            115,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              66
+            ],
+            [
+              115,
+              66
+            ],
+            [
+              115,
+              68
+            ],
+            [
+              118,
+              68
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              66
+            ],
+            [
+              115,
+              66
+            ],
+            [
+              115,
+              68
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

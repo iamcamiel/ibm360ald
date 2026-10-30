@@ -2,7 +2,7 @@
   "page": "KK211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5c46dd38f37b757657d1de3d6ad20b102f0ff972d6eed72bc70c7733d7e96d71",
+  "content sha256": "d5fee3994c7ad93eea58ff220d08c0860652f3cba191dca37874586a1734da70",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KK211\\Source model.json",
@@ -38,26 +38,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AK/pins/R/4",
-          "net": "KK211AK2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AM/pins/R/4",
-          "net": "KK211AM2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AT/pins/R/4",
-          "net": "KK211AT4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/KK/pins/L/2",
-          "net": "KK211AS4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/LL/pins/R/4",
           "net": "KK211LL4",
@@ -2351,6 +2331,290 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "KK211AK2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "KK211AM2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK211AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/KK/pins/L/2",
+          "net": "KK211AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "KK211AK2",
+          "contact": [
+            130,
+            12
+          ],
+          "old endpoint": [
+            127,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 1,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "KK211AM2",
+          "contact": [
+            130,
+            61
+          ],
+          "old endpoint": [
+            127,
+            61
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 1,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK211AT4",
+          "contact": [
+            153,
+            75
+          ],
+          "old endpoint": [
+            150,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/KK/pins/L/2",
+          "net": "KK211AS4",
+          "contact": [
+            161,
+            66
+          ],
+          "old endpoint": [
+            164,
+            66
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "KK211AK2",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            127,
+            12
+          ],
+          "after": [
+            130,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              12
+            ],
+            [
+              130,
+              12
+            ],
+            [
+              130,
+              5
+            ],
+            [
+              138,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              130,
+              5
+            ],
+            [
+              138,
+              5
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "KK211AM2",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              61
+            ],
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              54
+            ],
+            [
+              138,
+              54
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              61
+            ],
+            [
+              130,
+              54
+            ],
+            [
+              138,
+              54
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "KK211AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              75
+            ],
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              70
+            ],
+            [
+              161,
+              70
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              75
+            ],
+            [
+              153,
+              70
+            ],
+            [
+              161,
+              70
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/KK/pins/L/2",
+          "net": "KK211AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            66
+          ],
+          "after": [
+            161,
+            66
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ],
+            [
+              164,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              61
+            ],
+            [
+              161,
+              61
+            ],
+            [
+              161,
+              66
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

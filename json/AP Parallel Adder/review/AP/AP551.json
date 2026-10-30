@@ -2,7 +2,7 @@
   "page": "AP551",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f29b262731785792f44d992c7420e88a818659b3068a5c6180e2214a7c8614af",
+  "content sha256": "40645cac280f29ebefd61f6f8437de623143df4d24c3af8a8a58aa81a78a8be6",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch667\\AP551 independent reconstruction667\\Human BM serial continuation694\\Candidate\\AP551 model.json",
@@ -154,11 +154,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/BA/pins/R/4",
-          "net": "AP551BA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/BK/pins/L/10",
           "net": "AP551BB4",
@@ -8179,6 +8174,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "AP551BA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "AP551BA4",
+          "contact": [
+            130,
+            75
+          ],
+          "old endpoint": [
+            127,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "AP551BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              75
+            ],
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              73
+            ],
+            [
+              138,
+              73
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              73
+            ],
+            [
+              138,
+              73
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

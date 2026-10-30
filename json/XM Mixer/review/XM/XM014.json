@@ -2,7 +2,7 @@
   "page": "XM014",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a134c589ecbd700da59cbcb223bf5424dac613a7c61a5d0ed29269f58020b694",
+  "content sha256": "d01089469fa2c8056a6d674f898c65ef72adfbd388983172949b366e34e4fb86",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XM014\\Source model.json",
@@ -110,11 +110,6 @@
           "terminal": "blocks/AL/pins/L/2",
           "net": "XM014AE4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AL/pins/L/3",
-          "net": "XM014AF4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AX/pins/R/4",
@@ -2973,6 +2968,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/L/3",
+          "net": "XM014AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/L/3",
+          "net": "XM014AF4",
+          "contact": [
+            115,
+            25
+          ],
+          "old endpoint": [
+            118,
+            25
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/L/3",
+          "net": "XM014AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            25
+          ],
+          "after": [
+            115,
+            25
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              103,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              25
+            ],
+            [
+              118,
+              25
+            ]
+          ],
+          "after routing": [
+            [
+              103,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              25
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

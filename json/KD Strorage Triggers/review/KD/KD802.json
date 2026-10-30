@@ -2,7 +2,7 @@
   "page": "KD802",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ec1e1d9417efd00a92fe8455716339ffc1351f4dc4c76c82c2fd27933174a93c",
+  "content sha256": "dc352515345eaf7032e14cae1da57335350f2f2d1fc7a96bde06316e2af4c169",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KD802\\Source model.json",
@@ -43,24 +43,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AL/pins/L/4",
-          "net": "KD802AD2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AQ/pins/R/4",
-          "net": "KD802AQ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BA/pins/R/4",
           "net": "KD802BA4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BB/pins/L/4",
-          "net": "KD802BA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -3278,6 +3263,222 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KD802AD2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "KD802AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KD802BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KD802AD2",
+          "contact": [
+            138,
+            47
+          ],
+          "old endpoint": [
+            141,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "KD802AQ4",
+          "contact": [
+            130,
+            68
+          ],
+          "old endpoint": [
+            127,
+            68
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KD802BA2",
+          "contact": [
+            161,
+            33
+          ],
+          "old endpoint": [
+            164,
+            33
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "KD802AD2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            47
+          ],
+          "after": [
+            138,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              45
+            ],
+            [
+              138,
+              45
+            ],
+            [
+              138,
+              47
+            ],
+            [
+              141,
+              47
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              45
+            ],
+            [
+              138,
+              45
+            ],
+            [
+              138,
+              47
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "KD802AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              68
+            ],
+            [
+              130,
+              68
+            ],
+            [
+              130,
+              66
+            ],
+            [
+              138,
+              66
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              68
+            ],
+            [
+              130,
+              66
+            ],
+            [
+              138,
+              66
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "KD802BA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            33
+          ],
+          "after": [
+            161,
+            33
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              31
+            ],
+            [
+              161,
+              31
+            ],
+            [
+              161,
+              33
+            ],
+            [
+              164,
+              33
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              31
+            ],
+            [
+              161,
+              31
+            ],
+            [
+              161,
+              33
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

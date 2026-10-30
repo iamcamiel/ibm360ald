@@ -2,7 +2,7 @@
   "page": "LS311",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2bc5e215f58fbd9253ac78968340ff3323a2a89d5023b6334c07494ace6c20e0",
+  "content sha256": "34daa8bf9a9d5b535c30f372f0b10629f057418b5e40e6a430d6fd80435945b0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round003\\Technical\\LS311\\Attempt001\\Current model.json",
@@ -46,11 +46,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AB/pins/L/4",
-          "net": "LS311AA2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/CF/pins/L/6",
           "net": "LS311BB4",
           "reason": "The changed lead interval is occupied by another net"
@@ -71,29 +66,9 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/CJ/pins/R/4",
-          "net": "LS311CJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/CK/pins/L/6",
           "net": "LS311BF4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/DA/pins/L/6",
-          "net": "LS311CA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/DB/pins/L/6",
-          "net": "LS311CB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/DD/pins/L/6",
-          "net": "LS311CD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/DD/pins/R/4",
@@ -101,34 +76,14 @@
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/DE/pins/R/4",
-          "net": "LS311DE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/DF/pins/L/2",
           "net": "LS311CF4",
           "reason": "The changed lead interval is occupied by another net"
         },
         {
-          "terminal": "blocks/DF/pins/L/3",
-          "net": "LS311CG4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/EA/pins/L/2",
           "net": "LS311DA4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/EA/pins/L/3",
-          "net": "LS311DB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/GA/pins/R/4",
-          "net": "LS311GA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -4275,6 +4230,662 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "LS311AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/R/4",
+          "net": "LS311CJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DA/pins/L/6",
+          "net": "LS311CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DB/pins/L/6",
+          "net": "LS311CB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DD/pins/L/6",
+          "net": "LS311CD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DE/pins/R/4",
+          "net": "LS311DE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DF/pins/L/3",
+          "net": "LS311CG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/EA/pins/L/3",
+          "net": "LS311DB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/GA/pins/R/4",
+          "net": "LS311GA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "LS311AA2",
+          "contact": [
+            69,
+            26
+          ],
+          "old endpoint": [
+            72,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 5
+        },
+        {
+          "terminal": "blocks/CJ/pins/R/4",
+          "net": "LS311CJ4",
+          "contact": [
+            130,
+            75
+          ],
+          "old endpoint": [
+            127,
+            75
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/DA/pins/L/6",
+          "net": "LS311CA4",
+          "contact": [
+            138,
+            14
+          ],
+          "old endpoint": [
+            141,
+            14
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/DB/pins/L/6",
+          "net": "LS311CB4",
+          "contact": [
+            138,
+            21
+          ],
+          "old endpoint": [
+            141,
+            21
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/DD/pins/L/6",
+          "net": "LS311CD4",
+          "contact": [
+            138,
+            35
+          ],
+          "old endpoint": [
+            141,
+            35
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/DE/pins/R/4",
+          "net": "LS311DE4",
+          "contact": [
+            153,
+            40
+          ],
+          "old endpoint": [
+            150,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/DF/pins/L/3",
+          "net": "LS311CG4",
+          "contact": [
+            138,
+            67
+          ],
+          "old endpoint": [
+            141,
+            67
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/EA/pins/L/3",
+          "net": "LS311DB4",
+          "contact": [
+            161,
+            25
+          ],
+          "old endpoint": [
+            164,
+            25
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/GA/pins/R/4",
+          "net": "LS311GA4",
+          "contact": [
+            199,
+            12
+          ],
+          "old endpoint": [
+            196,
+            12
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "LS311AA2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              10
+            ],
+            [
+              88,
+              10
+            ],
+            [
+              88,
+              16
+            ],
+            [
+              69,
+              16
+            ],
+            [
+              69,
+              26
+            ],
+            [
+              72,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              10
+            ],
+            [
+              88,
+              10
+            ],
+            [
+              88,
+              16
+            ],
+            [
+              69,
+              16
+            ],
+            [
+              69,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/CJ/pins/R/4",
+          "net": "LS311CJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              75
+            ],
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              69
+            ],
+            [
+              138,
+              69
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              75
+            ],
+            [
+              130,
+              69
+            ],
+            [
+              138,
+              69
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DA/pins/L/6",
+          "net": "LS311CA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            14
+          ],
+          "after": [
+            138,
+            14
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              14
+            ],
+            [
+              141,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DB/pins/L/6",
+          "net": "LS311CB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            21
+          ],
+          "after": [
+            138,
+            21
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              19
+            ],
+            [
+              138,
+              19
+            ],
+            [
+              138,
+              21
+            ],
+            [
+              141,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              19
+            ],
+            [
+              138,
+              19
+            ],
+            [
+              138,
+              21
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DD/pins/L/6",
+          "net": "LS311CD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            35
+          ],
+          "after": [
+            138,
+            35
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              33
+            ],
+            [
+              138,
+              33
+            ],
+            [
+              138,
+              35
+            ],
+            [
+              141,
+              35
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              33
+            ],
+            [
+              138,
+              33
+            ],
+            [
+              138,
+              35
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DE/pins/R/4",
+          "net": "LS311DE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            40
+          ],
+          "after": [
+            153,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              150,
+              40
+            ],
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              28
+            ],
+            [
+              161,
+              28
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              40
+            ],
+            [
+              153,
+              28
+            ],
+            [
+              161,
+              28
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/DF/pins/L/3",
+          "net": "LS311CG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            67
+          ],
+          "after": [
+            138,
+            67
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              61
+            ],
+            [
+              138,
+              61
+            ],
+            [
+              138,
+              67
+            ],
+            [
+              141,
+              67
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              61
+            ],
+            [
+              138,
+              61
+            ],
+            [
+              138,
+              67
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/EA/pins/L/3",
+          "net": "LS311DB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            25
+          ],
+          "after": [
+            161,
+            25
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              153,
+              19
+            ],
+            [
+              161,
+              19
+            ],
+            [
+              161,
+              25
+            ],
+            [
+              164,
+              25
+            ]
+          ],
+          "after routing": [
+            [
+              153,
+              19
+            ],
+            [
+              161,
+              19
+            ],
+            [
+              161,
+              25
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/GA/pins/R/4",
+          "net": "LS311GA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            196,
+            12
+          ],
+          "after": [
+            199,
+            12
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              196,
+              12
+            ],
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              16
+            ],
+            [
+              184,
+              16
+            ],
+            [
+              184,
+              45
+            ],
+            [
+              185,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              199,
+              12
+            ],
+            [
+              199,
+              16
+            ],
+            [
+              184,
+              16
+            ],
+            [
+              184,
+              45
+            ],
+            [
+              185,
+              45
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

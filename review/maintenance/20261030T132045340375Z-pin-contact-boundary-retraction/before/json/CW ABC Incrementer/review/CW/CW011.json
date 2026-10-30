@@ -1,0 +1,2446 @@
+{
+  "page": "CW011",
+  "review date": "2026-10-28",
+  "reviewer": "Functional ALD format converter",
+  "content sha256": "8a165beb84b23436633d648e186cc01f03ad2422ffc08720019496def139f90b",
+  "sources": [
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\CW011 independent reconstruction617\\Inputs\\Baseline model.json",
+      "sha256": "0757d4804b80ff411f6fb793bcf6821a19b085104b9c108058d58517940dab5b"
+    },
+    {
+      "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\CW011 independent reconstruction617\\Inputs\\Baseline.txt",
+      "sha256": "0436c3728410ba01fcea58509be56360a847a07c9ae5264ed1a1d29f723ced25"
+    }
+  ],
+  "inherited review": {
+    "approval_statement": null,
+    "approved_at": null,
+    "content_sha256": "d736428cc6be9eed7d9b594543e9b71639c1f56b53edcd207746c4bb9f18b03e",
+    "source_status": "needs-review",
+    "status": "needs-review",
+    "user_approved": false,
+    "wiring_status": "unreviewed"
+  },
+  "original scan": {
+    "page": "CW011",
+    "source": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\CW ABC Incrementer\\CW011 ABC TRG 0 AND ABC CONTROLS.tif",
+    "title": "ABC TRG 0 AND ABC CONTROLS"
+  },
+  "uncertainties": [
+    {
+      "field": "nets/CW011AAL4-no-source/source",
+      "kind": "conflicting",
+      "visible text": "external.DR111�",
+      "status": "unresolved",
+      "detail": "Source is not established. Human-authorized no-source ID anchors this net to its first known driven input. Original driver claim is retained for resolution.",
+      "original net ID": "L2",
+      "source finding": {
+        "code": "external_origin",
+        "message": "External net requires one explicit full origin reference",
+        "net": "L2",
+        "references": []
+      }
+    },
+    {
+      "field": "outputs/CW011AJ4/net number",
+      "kind": "conflicting",
+      "visible text": "BJ4",
+      "status": "unresolved",
+      "detail": "Printed output ID disagrees with its explicitly routed source. Conversion preserves that discrepancy for scan review.",
+      "possible readings": [
+        "BJ4",
+        "AJ4"
+      ],
+      "at": [
+        242,
+        51
+      ]
+    },
+    {
+      "field": "blocks/AA/pins/R/4/pin",
+      "kind": "conflicting",
+      "visible text": "H02",
+      "status": "unresolved",
+      "detail": "Printed-label observation conflicts with the retained normalized terminal identity. Both original claims are preserved; no physical pin is guessed.",
+      "possible readings": [
+        "H02",
+        "B02"
+      ]
+    },
+    {
+      "field": "blocks/AE/pins/R/4/pin",
+      "kind": "conflicting",
+      "visible text": "H10",
+      "status": "unresolved",
+      "detail": "Printed-label observation conflicts with the retained normalized terminal identity. Both original claims are preserved; no physical pin is guessed.",
+      "possible readings": [
+        "H10",
+        "B10"
+      ]
+    }
+  ],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AG/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CW011AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CW011AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CW011AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "CW011AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/5",
+          "net": "CW011AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "explicit_fanout_retained",
+      "net": "CW011BH4",
+      "message": "Original routes retained; generated hanging-list lead also reaches its covered first text cell."
+    }
+  ],
+  "conversion evidence": {
+    "old to new net IDs": {
+      "L2": "CW011AAL4-no-source",
+      "EDIT": "KZ501BE4",
+      "IC": "DR111DD4",
+      "PLUS": "DR101DE4",
+      "ZERO": "DR111DG4",
+      "MINUS": "DR125EC4",
+      "FETCH": "CS011BA4",
+      "EREG": "CW011AA4",
+      "ICTO": "CW011AB4",
+      "PLUSOUT": "CW011AC4",
+      "MINUSOUT": "CW011AD4",
+      "CONTROL": "CW011AE4",
+      "REG": "CW011AF4",
+      "STBUS": "KT561BT4",
+      "STBIT": "CW011AW4",
+      "PAL61": "AP681BN4",
+      "STCONTROL": "CW011AW2",
+      "PADDL": "CW011BH4",
+      "LTH0": "CW031AU4",
+      "SCAN": "CS031BF4",
+      "CLOCK": "CS031BB4",
+      "PAL63": "DR091DC4",
+      "PALINV": "CW011AN4",
+      "AGOUT": "CW011AG4",
+      "AHOUT": "CW011AH4",
+      "AKOUT": "CW011AK4",
+      "ALOUT": "CW011AL4",
+      "ABCINCR": "CW011AJ4",
+      "ABCINV": "CW011AM4",
+      "APA": "CW011AP4",
+      "AQA": "CW011AQ4",
+      "ARA": "CW011AR4",
+      "ASA": "CW011AS4",
+      "TRGNEG": "CW011AT4",
+      "TRGPOS": "CW011AU4",
+      "IND": "CW011AV4"
+    },
+    "all terminal references retained": true,
+    "original per-net route graphs retained": true,
+    "original route graph unions retained": true,
+    "logical output partitions": [],
+    "blocks": 30,
+    "terminals": 70,
+    "nets": 36,
+    "terminal coordinate views": [
+      {
+        "block": "BA",
+        "terminal": "nodes:0/t:0",
+        "source_geometry_row": 5,
+        "block_top": 2,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            5
+          ],
+          [
+            "point",
+            5
+          ]
+        ],
+        "effective_page_row": 5,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BB",
+        "terminal": "nodes:1/t:0",
+        "source_geometry_row": 5,
+        "block_top": 2,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            5
+          ],
+          [
+            "point",
+            5
+          ]
+        ],
+        "effective_page_row": 5,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BC",
+        "terminal": "nodes:2/t:0",
+        "source_geometry_row": 19,
+        "block_top": 16,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            19
+          ],
+          [
+            "point",
+            19
+          ]
+        ],
+        "effective_page_row": 19,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BD",
+        "terminal": "nodes:3/t:0",
+        "source_geometry_row": 19,
+        "block_top": 16,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            19
+          ],
+          [
+            "point",
+            19
+          ]
+        ],
+        "effective_page_row": 19,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BE",
+        "terminal": "nodes:4/t:0",
+        "source_geometry_row": 33,
+        "block_top": 30,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            33
+          ],
+          [
+            "point",
+            33
+          ]
+        ],
+        "effective_page_row": 33,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BF",
+        "terminal": "nodes:5/t:0",
+        "source_geometry_row": 33,
+        "block_top": 30,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            33
+          ],
+          [
+            "point",
+            33
+          ]
+        ],
+        "effective_page_row": 33,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AA",
+        "terminal": "nodes:6/t:0",
+        "source_geometry_row": 12,
+        "block_top": 9,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            12
+          ],
+          [
+            "point",
+            12
+          ]
+        ],
+        "effective_page_row": 12,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AA",
+        "terminal": "nodes:6/t:1",
+        "source_geometry_row": 12,
+        "block_top": 9,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            12
+          ],
+          [
+            "point",
+            12
+          ]
+        ],
+        "effective_page_row": 12,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AB",
+        "terminal": "nodes:7/t:0",
+        "source_geometry_row": 19,
+        "block_top": 16,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            19
+          ],
+          [
+            "point",
+            19
+          ]
+        ],
+        "effective_page_row": 19,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AB",
+        "terminal": "nodes:7/t:1",
+        "source_geometry_row": 19,
+        "block_top": 16,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            19
+          ],
+          [
+            "point",
+            19
+          ]
+        ],
+        "effective_page_row": 19,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AC",
+        "terminal": "nodes:8/t:0",
+        "source_geometry_row": 24,
+        "block_top": 23,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            24
+          ],
+          [
+            "point",
+            24
+          ]
+        ],
+        "effective_page_row": 24,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AC",
+        "terminal": "nodes:8/t:1",
+        "source_geometry_row": 28,
+        "block_top": 23,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            28
+          ],
+          [
+            "point",
+            28
+          ]
+        ],
+        "effective_page_row": 28,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AC",
+        "terminal": "nodes:8/t:2",
+        "source_geometry_row": 26,
+        "block_top": 23,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            26
+          ],
+          [
+            "point",
+            26
+          ]
+        ],
+        "effective_page_row": 26,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AD",
+        "terminal": "nodes:9/t:0",
+        "source_geometry_row": 33,
+        "block_top": 30,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            33
+          ],
+          [
+            "point",
+            33
+          ]
+        ],
+        "effective_page_row": 33,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AD",
+        "terminal": "nodes:9/t:1",
+        "source_geometry_row": 33,
+        "block_top": 30,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            33
+          ],
+          [
+            "point",
+            33
+          ]
+        ],
+        "effective_page_row": 33,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AF",
+        "terminal": "nodes:10/t:0",
+        "source_geometry_row": 40,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            40
+          ],
+          [
+            "point",
+            40
+          ]
+        ],
+        "effective_page_row": 40,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AF",
+        "terminal": "nodes:10/t:1",
+        "source_geometry_row": 40,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            40
+          ],
+          [
+            "point",
+            40
+          ]
+        ],
+        "effective_page_row": 40,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AW",
+        "terminal": "nodes:11/t:0",
+        "source_geometry_row": 47,
+        "block_top": 44,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            47
+          ],
+          [
+            "point",
+            47
+          ]
+        ],
+        "effective_page_row": 47,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AW",
+        "terminal": "nodes:11/t:1",
+        "source_geometry_row": 45,
+        "block_top": 44,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            45
+          ],
+          [
+            "point",
+            45
+          ]
+        ],
+        "effective_page_row": 45,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AW",
+        "terminal": "nodes:11/t:2",
+        "source_geometry_row": 47,
+        "block_top": 44,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            47
+          ],
+          [
+            "point",
+            47
+          ]
+        ],
+        "effective_page_row": 47,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BJ",
+        "terminal": "nodes:12/t:0",
+        "source_geometry_row": 54,
+        "block_top": 51,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            54
+          ],
+          [
+            "point",
+            54
+          ]
+        ],
+        "effective_page_row": 54,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BH",
+        "terminal": "nodes:13/t:0",
+        "source_geometry_row": 54,
+        "block_top": 51,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            54
+          ],
+          [
+            "point",
+            54
+          ]
+        ],
+        "effective_page_row": 54,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BH",
+        "terminal": "nodes:13/t:1",
+        "source_geometry_row": 54,
+        "block_top": 51,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            54
+          ],
+          [
+            "point",
+            54
+          ]
+        ],
+        "effective_page_row": 54,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AG",
+        "terminal": "nodes:14/t:0",
+        "source_geometry_row": 68,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            68
+          ],
+          [
+            "point",
+            68
+          ]
+        ],
+        "effective_page_row": 68,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AG",
+        "terminal": "nodes:14/t:1",
+        "source_geometry_row": 68,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            68
+          ],
+          [
+            "point",
+            68
+          ]
+        ],
+        "effective_page_row": 68,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AH",
+        "terminal": "nodes:15/t:0",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AH",
+        "terminal": "nodes:15/t:1",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AK",
+        "terminal": "nodes:16/t:0",
+        "source_geometry_row": 82,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            82
+          ],
+          [
+            "point",
+            82
+          ]
+        ],
+        "effective_page_row": 82,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AK",
+        "terminal": "nodes:16/t:1",
+        "source_geometry_row": 82,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            82
+          ],
+          [
+            "point",
+            82
+          ]
+        ],
+        "effective_page_row": 82,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AL",
+        "terminal": "nodes:17/t:0",
+        "source_geometry_row": 89,
+        "block_top": 86,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            89
+          ],
+          [
+            "point",
+            89
+          ]
+        ],
+        "effective_page_row": 89,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AL",
+        "terminal": "nodes:17/t:1",
+        "source_geometry_row": 89,
+        "block_top": 86,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            89
+          ],
+          [
+            "point",
+            89
+          ]
+        ],
+        "effective_page_row": 89,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AJ",
+        "terminal": "nodes:18/t:0",
+        "source_geometry_row": 66,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            66
+          ],
+          [
+            "point",
+            66
+          ]
+        ],
+        "effective_page_row": 66,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AJ",
+        "terminal": "nodes:18/t:1",
+        "source_geometry_row": 70,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            70
+          ],
+          [
+            "point",
+            70
+          ]
+        ],
+        "effective_page_row": 70,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AJ",
+        "terminal": "nodes:18/t:2",
+        "source_geometry_row": 68,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            68
+          ],
+          [
+            "point",
+            68
+          ]
+        ],
+        "effective_page_row": 68,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AM",
+        "terminal": "nodes:19/t:0",
+        "source_geometry_row": 80,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            80
+          ],
+          [
+            "point",
+            80
+          ]
+        ],
+        "effective_page_row": 80,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AM",
+        "terminal": "nodes:19/t:1",
+        "source_geometry_row": 84,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            84
+          ],
+          [
+            "point",
+            84
+          ]
+        ],
+        "effective_page_row": 84,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AM",
+        "terminal": "nodes:19/t:2",
+        "source_geometry_row": 82,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            82
+          ],
+          [
+            "point",
+            82
+          ]
+        ],
+        "effective_page_row": 82,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "BG",
+        "terminal": "nodes:20/t:0",
+        "source_geometry_row": 82,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            82
+          ],
+          [
+            "point",
+            82
+          ]
+        ],
+        "effective_page_row": 82,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AN",
+        "terminal": "nodes:21/t:0",
+        "source_geometry_row": 89,
+        "block_top": 86,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            89
+          ],
+          [
+            "point",
+            89
+          ]
+        ],
+        "effective_page_row": 89,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AN",
+        "terminal": "nodes:21/t:1",
+        "source_geometry_row": 89,
+        "block_top": 86,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            89
+          ],
+          [
+            "point",
+            89
+          ]
+        ],
+        "effective_page_row": 89,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AP",
+        "terminal": "nodes:22/t:0",
+        "source_geometry_row": 59,
+        "block_top": 58,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            59
+          ],
+          [
+            "point",
+            59
+          ]
+        ],
+        "effective_page_row": 59,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AP",
+        "terminal": "nodes:22/t:1",
+        "source_geometry_row": 63,
+        "block_top": 58,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            63
+          ],
+          [
+            "point",
+            63
+          ]
+        ],
+        "effective_page_row": 63,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AP",
+        "terminal": "nodes:22/t:2",
+        "source_geometry_row": 61,
+        "block_top": 58,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            61
+          ],
+          [
+            "point",
+            61
+          ]
+        ],
+        "effective_page_row": 61,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AQ",
+        "terminal": "nodes:23/t:0",
+        "source_geometry_row": 66,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            66
+          ],
+          [
+            "point",
+            66
+          ]
+        ],
+        "effective_page_row": 66,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AQ",
+        "terminal": "nodes:23/t:1",
+        "source_geometry_row": 70,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            70
+          ],
+          [
+            "point",
+            70
+          ]
+        ],
+        "effective_page_row": 70,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AQ",
+        "terminal": "nodes:23/t:2",
+        "source_geometry_row": 68,
+        "block_top": 65,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            68
+          ],
+          [
+            "point",
+            68
+          ]
+        ],
+        "effective_page_row": 68,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AR",
+        "terminal": "nodes:24/t:0",
+        "source_geometry_row": 73,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            73
+          ],
+          [
+            "point",
+            73
+          ]
+        ],
+        "effective_page_row": 73,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AR",
+        "terminal": "nodes:24/t:1",
+        "source_geometry_row": 77,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            77
+          ],
+          [
+            "point",
+            77
+          ]
+        ],
+        "effective_page_row": 77,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AR",
+        "terminal": "nodes:24/t:2",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AS",
+        "terminal": "nodes:25/t:0",
+        "source_geometry_row": 80,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            80
+          ],
+          [
+            "point",
+            80
+          ]
+        ],
+        "effective_page_row": 80,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AS",
+        "terminal": "nodes:25/t:1",
+        "source_geometry_row": 84,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            84
+          ],
+          [
+            "point",
+            84
+          ]
+        ],
+        "effective_page_row": 84,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AS",
+        "terminal": "nodes:25/t:2",
+        "source_geometry_row": 82,
+        "block_top": 79,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            82
+          ],
+          [
+            "point",
+            82
+          ]
+        ],
+        "effective_page_row": 82,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AU",
+        "terminal": "nodes:26/t:0",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AU",
+        "terminal": "nodes:26/t:1",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AV",
+        "terminal": "nodes:27/t:0",
+        "source_geometry_row": 61,
+        "block_top": 58,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            61
+          ],
+          [
+            "point",
+            61
+          ]
+        ],
+        "effective_page_row": 61,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AV",
+        "terminal": "nodes:27/t:1",
+        "source_geometry_row": 61,
+        "block_top": 58,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            61
+          ],
+          [
+            "point",
+            61
+          ]
+        ],
+        "effective_page_row": 61,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:0",
+        "source_geometry_row": 37,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            37
+          ],
+          [
+            "point",
+            37
+          ]
+        ],
+        "effective_page_row": 37,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:1",
+        "source_geometry_row": 38,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            38
+          ],
+          [
+            "point",
+            38
+          ]
+        ],
+        "effective_page_row": 38,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:2",
+        "source_geometry_row": 39,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            39
+          ],
+          [
+            "point",
+            39
+          ]
+        ],
+        "effective_page_row": 39,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:3",
+        "source_geometry_row": 40,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            40
+          ],
+          [
+            "point",
+            40
+          ]
+        ],
+        "effective_page_row": 40,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:4",
+        "source_geometry_row": 41,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            41
+          ],
+          [
+            "point",
+            41
+          ]
+        ],
+        "effective_page_row": 41,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:5",
+        "source_geometry_row": 42,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            42
+          ],
+          [
+            "point",
+            42
+          ]
+        ],
+        "effective_page_row": 42,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:6",
+        "source_geometry_row": 43,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            43
+          ],
+          [
+            "point",
+            43
+          ]
+        ],
+        "effective_page_row": 43,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:7",
+        "source_geometry_row": 40,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            40
+          ],
+          [
+            "point",
+            40
+          ]
+        ],
+        "effective_page_row": 40,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AE",
+        "terminal": "nodes:28/t:8",
+        "source_geometry_row": 41,
+        "block_top": 37,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            41
+          ],
+          [
+            "border_point",
+            41
+          ],
+          [
+            "point",
+            41
+          ],
+          [
+            "border_point",
+            41
+          ]
+        ],
+        "effective_page_row": 41,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AT",
+        "terminal": "nodes:29/t:0",
+        "source_geometry_row": 73,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            73
+          ],
+          [
+            "point",
+            73
+          ]
+        ],
+        "effective_page_row": 73,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AT",
+        "terminal": "nodes:29/t:1",
+        "source_geometry_row": 74,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            74
+          ],
+          [
+            "point",
+            74
+          ]
+        ],
+        "effective_page_row": 74,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AT",
+        "terminal": "nodes:29/t:2",
+        "source_geometry_row": 76,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            76
+          ],
+          [
+            "point",
+            76
+          ]
+        ],
+        "effective_page_row": 76,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AT",
+        "terminal": "nodes:29/t:3",
+        "source_geometry_row": 77,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            77
+          ],
+          [
+            "point",
+            77
+          ]
+        ],
+        "effective_page_row": 77,
+        "basis": "absolute_geometry"
+      },
+      {
+        "block": "AT",
+        "terminal": "nodes:29/t:4",
+        "source_geometry_row": 75,
+        "block_top": 72,
+        "absolute_row_observation": null,
+        "explicit_point_rows": [
+          [
+            "point",
+            75
+          ],
+          [
+            "point",
+            75
+          ]
+        ],
+        "effective_page_row": 75,
+        "basis": "absolute_geometry"
+      }
+    ],
+    "external endpoint observations": [
+      {
+        "kind": "source external reference observation",
+        "source net ID": "L2",
+        "new net number": "CW011AAL4-no-source",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "EDIT",
+        "new net number": "KZ501BE4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "IC",
+        "new net number": "DR111DD4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PLUS",
+        "new net number": "DR101DE4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ZERO",
+        "new net number": "DR111DG4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "MINUS",
+        "new net number": "DR125EC4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "FETCH",
+        "new net number": "CS011BA4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "EREG",
+        "new net number": "CW011AA4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031",
+          "CW041"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ICTO",
+        "new net number": "CW011AB4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031",
+          "CW041"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PLUSOUT",
+        "new net number": "CW011AC4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031",
+          "CW041"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "MINUSOUT",
+        "new net number": "CW011AD4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031",
+          "CW041"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "CONTROL",
+        "new net number": "CW011AE4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "REG",
+        "new net number": "CW011AF4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031",
+          "CW041"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "STBUS",
+        "new net number": "KT561BT4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "STBIT",
+        "new net number": "CW011AW4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "KS051"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PAL61",
+        "new net number": "AP681BN4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "STCONTROL",
+        "new net number": "CW011AW2",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PADDL",
+        "new net number": "CW011BH4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CS011",
+          "CT011"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "LTH0",
+        "new net number": "CW031AU4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "SCAN",
+        "new net number": "CS031BF4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "CLOCK",
+        "new net number": "CS031BB4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PAL63",
+        "new net number": "DR091DC4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "PALINV",
+        "new net number": "CW011AN4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AGOUT",
+        "new net number": "CW011AG4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AHOUT",
+        "new net number": "CW011AH4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AKOUT",
+        "new net number": "CW011AK4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ALOUT",
+        "new net number": "CW011AL4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ABCINCR",
+        "new net number": "CW011AJ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW021"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ABCINV",
+        "new net number": "CW011AM4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW021"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "APA",
+        "new net number": "CW011AP4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "AQA",
+        "new net number": "CW011AQ4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ARA",
+        "new net number": "CW011AR4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "ASA",
+        "new net number": "CW011AS4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "TRGNEG",
+        "new net number": "CW011AT4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "TRGPOS",
+        "new net number": "CW011AU4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "CW031"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "source external reference observation",
+        "source net ID": "IND",
+        "new net number": "CW011AV4",
+        "field": "external_references",
+        "present": false,
+        "source endpoint claims": [],
+        "printed sink pages": [
+          "KT541"
+        ],
+        "directed terminal inference": false
+      },
+      {
+        "kind": "auxiliary attachment source observation",
+        "source net ID": "CONTROL",
+        "reference": "AE.output.B13",
+        "source field": "passive_terminals",
+        "terminal": {
+          "border_decorations": [
+            {
+              "edge": null,
+              "edge_status": "unspecified",
+              "glyph": null,
+              "kind": "triangle",
+              "observed_value": false,
+              "position_observations": [
+                {
+                  "kind": "border_point",
+                  "value": [
+                    126,
+                    41
+                  ]
+                }
+              ]
+            },
+            {
+              "edge": null,
+              "edge_status": "unspecified",
+              "glyph": "K",
+              "kind": "literal-border-mark",
+              "observed_value": "K",
+              "position_observations": [
+                {
+                  "kind": "border_point",
+                  "value": [
+                    126,
+                    41
+                  ]
+                }
+              ]
+            }
+          ],
+          "declared_container_role": null,
+          "endpoint_aliases": [
+            {
+              "claim": {
+                "declared_role": "output",
+                "kind": "terminal-reference",
+                "object_identifier": "AE",
+                "parse_status": "source-contact-syntax",
+                "terminal": {
+                  "border_decorations": [],
+                  "pin_number": "B13",
+                  "pin_number_status": "observed",
+                  "symbols": {
+                    "observations": [
+                      {
+                        "observation_id": "label:0",
+                        "prefix_mark_ids": [],
+                        "selected_presentation": true,
+                        "suffix_mark_ids": [],
+                        "unplaced_mark_ids": []
+                      }
+                    ],
+                    "prefix": [],
+                    "selected_presentation": {
+                      "observation_id": "label:0",
+                      "prefix_mark_ids": [],
+                      "suffix_mark_ids": [],
+                      "unplaced_mark_ids": []
+                    },
+                    "sequence_status": "ordered within each literal observation; cross-observation placement is not inferred",
+                    "suffix": [],
+                    "unplaced": []
+                  }
+                }
+              },
+              "kind": "reference"
+            }
+          ],
+          "extensions": {
+            "occurrence_kind": "primary",
+            "pin_status": "observed",
+            "references": [],
+            "source_observations": [
+              {
+                "field": "role",
+                "value": "auxiliary-output-modifier"
+              }
+            ]
+          },
+          "geometry": {
+            "border_point": [
+              126,
+              41
+            ],
+            "column": null,
+            "edge_observations": [],
+            "label_column": null,
+            "point": [
+              130,
+              41
+            ],
+            "row": 41
+          },
+          "occurrence_kind": "primary",
+          "pin_number": "B13",
+          "pin_number_status": "observed",
+          "role": "auxiliary-output-modifier",
+          "role_observations": [
+            {
+              "kind": "role",
+              "value": "auxiliary-output-modifier"
+            }
+          ],
+          "side": null,
+          "source_form": {
+            "value_type": "object"
+          },
+          "source_literals": {
+            "border_marker": "K",
+            "border_point": [
+              126,
+              41
+            ],
+            "column": null,
+            "label_column": null,
+            "occurrence_kind": "primary",
+            "pin": "B13",
+            "pin_status": "observed",
+            "point": [
+              130,
+              41
+            ],
+            "printed_label": "B13",
+            "printed_prefix": null,
+            "printed_suffix": null,
+            "reference": "AE.output.B13",
+            "references": [],
+            "row": 41,
+            "side": null,
+            "source_observations": [
+              {
+                "field": "role",
+                "value": "auxiliary-output-modifier"
+              }
+            ],
+            "triangle": false
+          },
+          "symbols": {
+            "observations": [
+              {
+                "observation_id": "label:0",
+                "prefix_mark_ids": [],
+                "selected_presentation": true,
+                "suffix_mark_ids": [],
+                "unplaced_mark_ids": []
+              },
+              {
+                "observation_id": "label:1",
+                "prefix_mark_ids": [],
+                "selected_presentation": false,
+                "suffix_mark_ids": [],
+                "unplaced_mark_ids": []
+              },
+              {
+                "observation_id": "mark-field:0",
+                "prefix_mark_ids": [],
+                "selected_presentation": false,
+                "suffix_mark_ids": [],
+                "unplaced_mark_ids": []
+              },
+              {
+                "observation_id": "mark-field:1",
+                "prefix_mark_ids": [],
+                "selected_presentation": false,
+                "suffix_mark_ids": [],
+                "unplaced_mark_ids": []
+              }
+            ],
+            "prefix": [],
+            "selected_presentation": {
+              "observation_id": "label:0",
+              "prefix_mark_ids": [],
+              "suffix_mark_ids": [],
+              "unplaced_mark_ids": []
+            },
+            "sequence_status": "ordered within each literal observation; cross-observation placement is not inferred",
+            "suffix": [],
+            "unplaced": []
+          },
+          "terminal_id": "nodes:28/t:8"
+        },
+        "interpretation": "Nondirectional auxiliary membership only; retained reference syntax is not a signal-input or net-driver claim."
+      }
+    ]
+  },
+  "writer options": {
+    "line ending": "CRLF",
+    "trim trailing spaces": false
+  },
+  "scope": "Data conversion only. No original-pixel reading, source correction, approval or publication is inferred.",
+  "render comparison": {
+    "rendered": true,
+    "different cells": 3,
+    "wire glyph differences": 1,
+    "unresolved different cells": 3,
+    "byte identical": false,
+    "wiring findings": [
+      {
+        "at": [
+          69,
+          1
+        ],
+        "source": "┼",
+        "inferred": "◇",
+        "kind": "wiring glyph discrepancy",
+        "status": "unresolved"
+      }
+    ],
+    "raw source render differences": [
+      {
+        "at": [
+          244,
+          0
+        ],
+        "source": "�",
+        "inferred": "1",
+        "source present": true,
+        "render present": true
+      },
+      {
+        "at": [
+          69,
+          1
+        ],
+        "source": "┼",
+        "inferred": "◇",
+        "source present": true,
+        "render present": true
+      },
+      {
+        "at": [
+          212,
+          98
+        ],
+        "source": "D",
+        "inferred": "O",
+        "source present": true,
+        "render present": true
+      }
+    ],
+    "all raw differences included": true,
+    "approved normalizations": [],
+    "first differences": [
+      {
+        "at": [
+          244,
+          0
+        ],
+        "source": "�",
+        "inferred": "1",
+        "kind": "text or placement discrepancy",
+        "status": "unresolved"
+      },
+      {
+        "at": [
+          69,
+          1
+        ],
+        "source": "┼",
+        "inferred": "◇",
+        "kind": "wiring glyph discrepancy",
+        "status": "unresolved"
+      },
+      {
+        "at": [
+          212,
+          98
+        ],
+        "source": "D",
+        "inferred": "O",
+        "kind": "text or placement discrepancy",
+        "status": "unresolved"
+      }
+    ],
+    "all differences included": true,
+    "interpretation": "Differences trigger source review. Never modify routes or add glyph overrides merely to match old text.",
+    "rendered sha256": "e134798be4d90240f4a9a0517945cf8a9fa2b7052e4ffcaf3ecb1b928a5beffb",
+    "source text used by renderer": false
+  },
+  "publication issues": {
+    "status": "open",
+    "summary": "The authenticated native scan was reviewed as overview and 20 overlapping regional tiles by the native child, plus AE/AF native detail and parent local panels. Candidate-seeded block registration has 50/54 inliers, median 1.41 render pixels. An independently edge-seeded fit has 21/25 inliers, median 2.03 pixels; font, repeated/neighbor label matches and scanwarp limit both fits. Broad geometry is similar; no global shift was adopted. Before and after share the same block composite because V3 is unchanged. Edge composite and regional views are retained. Parent viewed 17 indexed route-section sheets for all 88 routes, 541 windows with nominal overlapping sections for horizontal and vertical segments. Four single-point paths 2, 19, 64, 68 have explicit point windows. Short paths were visually attempted locally; nearby ink, punched holes, small breaks and registration prevent end-to-end electrical certification. Parent viewed three point sheets covering 29 junctions and 48 unjoined records. Point records/ledger are local assessments, not proof of net membership or missing wires. Native child viewed 20 tiles as regional screens. Route 84/85 TRGPOS lower output shows an apparent scan-versus-data row offset; no geometry adjustment was made without coordinated determination. The top L2 wire is obscured repeatedly by punch holes. No complete omitted-wire proof. Independent data inventory confirms recorded grid relationships only. AE/AF native detail shows upper B10 line and diamond toward AF B13, plus lower K B13 caption and short upward stub near the diamond; it does not establish an extra driver. The CONTROL driver AE.output.B10, AF.input.B13 target and passive AE.output.B13 normal B13, point [130,41], border K [126,41], side null remain unchanged. Source field is a dict and is preserved. No physical driver inferred from K. The unchanged current586 converter ran on canonical baseline model with explicit TXT, --render, --allow-partial, exited 0 and emitted paired Initial V4/review/TXT with findings. Parent inspected all three flagged differences: [244,0] native page suffix damaged so renderer's 1 is unconfirmed; [69,1] punch hole obscures crossing/diamond so no join inferred; [212,98] native footer visually reads LOG while saved literal is LDG and V4 renders LOG. The  Native, source, electrical, full trace and omission claims remain bounded by source review. Current selected json differs from candidate source; historical mismatch retained. The candidate source does not fully match the previous local selection: model match False, text match True. The previous selection is preserved in the publication receipt.",
+    "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "CW011AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            66
+          ],
+          "after": [
+            92,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "CW011AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            70
+          ],
+          "after": [
+            92,
+            70
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "CW011AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            80
+          ],
+          "after": [
+            92,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "CW011AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            84
+          ],
+          "after": [
+            92,
+            84
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "CW011AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "CW011AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "CW011AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CW011AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "CW011AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            73
+          ],
+          "after": [
+            138,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/3",
+          "net": "CW011AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            74
+          ],
+          "after": [
+            138,
+            74
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "CW011AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            77
+          ],
+          "after": [
+            138,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "CW011AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CW011AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AG/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CW011AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CW011AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CW011AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "CW011AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/5",
+          "net": "CW011AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
+}

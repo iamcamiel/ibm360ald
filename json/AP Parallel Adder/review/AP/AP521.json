@@ -2,7 +2,7 @@
   "page": "AP521",
   "review date": "2026-10-26",
   "reviewer": "/root/data256_ap521; independent saved DATA256",
-  "content sha256": "1bf6c5380933a78851ece0120b5f1c4225bb433dcd7b68f166d5f9ddbb035df9",
+  "content sha256": "1f7f3eb0adf5d7befcdf5e385e60d4f6b029983a3ea268ee286df2144d518ea9",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP521\\Exact source model.json",
@@ -405,11 +405,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AC/pins/R/4",
-          "net": "AP521AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/BJ/pins/L/9",
           "net": "AP521AZ4",
@@ -5812,6 +5807,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP521AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP521AC4",
+          "contact": [
+            61,
+            47
+          ],
+          "old endpoint": [
+            58,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP521AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              47
+            ],
+            [
+              61,
+              47
+            ],
+            [
+              61,
+              52
+            ],
+            [
+              69,
+              52
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              47
+            ],
+            [
+              61,
+              52
+            ],
+            [
+              69,
+              52
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

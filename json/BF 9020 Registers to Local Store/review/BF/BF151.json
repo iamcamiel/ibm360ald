@@ -2,7 +2,7 @@
   "page": "BF151",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a78ce1d0ed8eca146689929d6d6b0910c6b333e42a21eaf6097f9fa51bb8cda5",
+  "content sha256": "6b60e03ab2ab95d6c816608e1b0bd7057198cbfa096f2b34d6bed811218a9909",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team5 assigned half\\Inputs\\BF151\\Source model.json",
@@ -31,34 +31,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AD/pins/R/4",
-          "net": "BF151AD4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AM/pins/L/2",
-          "net": "BF151AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AP/pins/L/2",
           "net": "BF151AG4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AP/pins/L/3",
-          "net": "BF151AH4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AQ/pins/L/2",
-          "net": "BF151AM4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AS/pins/R/2",
-          "net": "BF151AS2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -945,6 +920,372 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "BF151AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "BF151AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/3",
+          "net": "BF151AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "BF151AM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "BF151AS2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "BF151AD4",
+          "contact": [
+            84,
+            26
+          ],
+          "old endpoint": [
+            81,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "BF151AA4",
+          "contact": [
+            92,
+            17
+          ],
+          "old endpoint": [
+            95,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AP/pins/L/3",
+          "net": "BF151AH4",
+          "contact": [
+            92,
+            74
+          ],
+          "old endpoint": [
+            95,
+            74
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "BF151AM4",
+          "contact": [
+            115,
+            45
+          ],
+          "old endpoint": [
+            118,
+            45
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "BF151AS2",
+          "contact": [
+            176,
+            45
+          ],
+          "old endpoint": [
+            173,
+            45
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "BF151AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                8,
+                0
+              ],
+              "after": [
+                8,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              26
+            ],
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              20
+            ],
+            [
+              92,
+              20
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              26
+            ],
+            [
+              84,
+              20
+            ],
+            [
+              92,
+              20
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "BF151AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            17
+          ],
+          "after": [
+            92,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              5
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              92,
+              17
+            ],
+            [
+              95,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              5
+            ],
+            [
+              92,
+              5
+            ],
+            [
+              92,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AP/pins/L/3",
+          "net": "BF151AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            74
+          ],
+          "after": [
+            92,
+            74
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              68
+            ],
+            [
+              92,
+              68
+            ],
+            [
+              92,
+              74
+            ],
+            [
+              95,
+              74
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              68
+            ],
+            [
+              92,
+              68
+            ],
+            [
+              92,
+              74
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "BF151AM4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            45
+          ],
+          "after": [
+            115,
+            45
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              45
+            ],
+            [
+              118,
+              45
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              19
+            ],
+            [
+              115,
+              19
+            ],
+            [
+              115,
+              45
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "BF151AS2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            45
+          ],
+          "after": [
+            176,
+            45
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              173,
+              45
+            ],
+            [
+              176,
+              45
+            ],
+            [
+              176,
+              40
+            ],
+            [
+              184,
+              40
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              45
+            ],
+            [
+              176,
+              40
+            ],
+            [
+              184,
+              40
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

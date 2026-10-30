@@ -2,7 +2,7 @@
   "page": "FS511",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f52abdf53d37c691785d3fd0c89d514af39fd292c8db4f4fcda27f895f68dad3",
+  "content sha256": "1a5d4f9b536d75bc910bf52cff1f424c7055f18bdb33c81b4e8cdfa8443f9431",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FS511\\Source model.json",
@@ -31,19 +31,9 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/BD/pins/L/4",
-          "net": "FS511BC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/BJ/pins/L/4",
           "net": "FX051AT4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/BK/pins/L/4",
-          "net": "FS511BJ4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         }
       ]
     }
@@ -3252,6 +3242,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/BD/pins/L/4",
+          "net": "FS511BC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "FS511BJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/BD/pins/L/4",
+          "net": "FS511BC4",
+          "contact": [
+            69,
+            26
+          ],
+          "old endpoint": [
+            72,
+            26
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "FS511BJ4",
+          "contact": [
+            115,
+            54
+          ],
+          "old endpoint": [
+            118,
+            54
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/BD/pins/L/4",
+          "net": "FS511BC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              19
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              69,
+              26
+            ],
+            [
+              72,
+              26
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              69,
+              19
+            ],
+            [
+              69,
+              26
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "FS511BJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            54
+          ],
+          "after": [
+            115,
+            54
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              107,
+              47
+            ],
+            [
+              115,
+              47
+            ],
+            [
+              115,
+              54
+            ],
+            [
+              118,
+              54
+            ]
+          ],
+          "after routing": [
+            [
+              107,
+              47
+            ],
+            [
+              115,
+              47
+            ],
+            [
+              115,
+              54
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

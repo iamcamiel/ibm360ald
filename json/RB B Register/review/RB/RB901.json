@@ -2,7 +2,7 @@
   "page": "RB901",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e173d5098b8dc759e9d9c6bfee8ef5f97048d5a57d3197529dc9964148a18956",
+  "content sha256": "ecb9a10dbbc635afd25e4d785ecef814f09c8146f753c35cdd9b675c0a4d4b63",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch014\\Results\\RB901\\Producer revision007\\Current model.json",
@@ -45,11 +45,6 @@
       "status": "unresolved",
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
-        {
-          "terminal": "blocks/AT/pins/L/4",
-          "net": "RB901AW2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
         {
           "terminal": "blocks/AW/pins/R/4",
           "net": "RB901AW4",
@@ -2648,6 +2643,86 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RB901AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RB901AW2",
+          "contact": [
+            69,
+            5
+          ],
+          "old endpoint": [
+            72,
+            5
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RB901AW2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            5
+          ],
+          "after": [
+            69,
+            5
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ],
+            [
+              69,
+              5
+            ],
+            [
+              72,
+              5
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              3
+            ],
+            [
+              69,
+              3
+            ],
+            [
+              69,
+              5
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

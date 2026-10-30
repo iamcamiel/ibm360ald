@@ -2,7 +2,7 @@
   "page": "FA121",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "757b90c06cb7a2dc04bd094899ee47562469af3cef94edfbcd70fd3b546aff6e",
+  "content sha256": "9e1287c3a222aa753a5d548a698268a3d2b6a2d2bc6e5397deeae04a4ea1d9d5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\FA121 independent reconstruction615\\Inputs\\Baseline model.json",
@@ -24,30 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FA ATR Register\\FA121 ATR GATING CONTROLS.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AB/pins/R/4",
-          "net": "FA121AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "FA121AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AU/pins/L/4",
-          "net": "FA121AS2",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1502,6 +1479,222 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA121AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FA121AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/4",
+          "net": "FA121AS2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA121AB4",
+          "contact": [
+            61,
+            19
+          ],
+          "old endpoint": [
+            58,
+            19
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FA121AA4",
+          "contact": [
+            69,
+            10
+          ],
+          "old endpoint": [
+            72,
+            10
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AU/pins/L/4",
+          "net": "FA121AS2",
+          "contact": [
+            69,
+            40
+          ],
+          "old endpoint": [
+            72,
+            40
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA121AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              58,
+              19
+            ],
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              14
+            ],
+            [
+              69,
+              14
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              19
+            ],
+            [
+              61,
+              14
+            ],
+            [
+              69,
+              14
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FA121AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            10
+          ],
+          "after": [
+            69,
+            10
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              5
+            ],
+            [
+              69,
+              5
+            ],
+            [
+              69,
+              10
+            ],
+            [
+              72,
+              10
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              5
+            ],
+            [
+              69,
+              5
+            ],
+            [
+              69,
+              10
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AU/pins/L/4",
+          "net": "FA121AS2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            40
+          ],
+          "after": [
+            69,
+            40
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              61,
+              38
+            ],
+            [
+              69,
+              38
+            ],
+            [
+              69,
+              40
+            ],
+            [
+              72,
+              40
+            ]
+          ],
+          "after routing": [
+            [
+              61,
+              38
+            ],
+            [
+              69,
+              38
+            ],
+            [
+              69,
+              40
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

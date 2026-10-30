@@ -2,7 +2,7 @@
   "page": "DN081",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3ea2dc6423059c4823d063f670f06138f2fcbc61c0eda135df80b66f1a3a8aeb",
+  "content sha256": "ff0e6642ae8ea7eead1fdaf73608c1b6e1b46bd175f899ae365ec8799dcc8c06",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team2\\ALD batch822\\DN081 independent reconstruction822\\Inputs\\Baseline model.json",
@@ -107,16 +107,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "DN081AA4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AH/pins/L/2",
-          "net": "DN081AE4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AJ/pins/R/4",
           "net": "DN081AJ4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
@@ -150,16 +140,6 @@
           "terminal": "blocks/AU/pins/L/6",
           "net": "DN081AT4",
           "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
-        },
-        {
-          "terminal": "blocks/AW/pins/R/4",
-          "net": "DN081AW4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/BA/pins/L/2",
-          "net": "DN081AX4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/BA/pins/R/4",
@@ -2388,6 +2368,304 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "DN081AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "DN081AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DN081AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "DN081AX4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "DN081AA4",
+          "contact": [
+            92,
+            24
+          ],
+          "old endpoint": [
+            94,
+            24
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "DN081AE4",
+          "contact": [
+            184,
+            24
+          ],
+          "old endpoint": [
+            186,
+            24
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DN081AW4",
+          "contact": [
+            84,
+            89
+          ],
+          "old endpoint": [
+            81,
+            89
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "DN081AX4",
+          "contact": [
+            92,
+            80
+          ],
+          "old endpoint": [
+            94,
+            80
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "DN081AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            94,
+            24
+          ],
+          "after": [
+            92,
+            24
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              19
+            ],
+            [
+              92,
+              19
+            ],
+            [
+              92,
+              24
+            ],
+            [
+              94,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              19
+            ],
+            [
+              92,
+              19
+            ],
+            [
+              92,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "DN081AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            186,
+            24
+          ],
+          "after": [
+            184,
+            24
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              176,
+              19
+            ],
+            [
+              184,
+              19
+            ],
+            [
+              184,
+              24
+            ],
+            [
+              186,
+              24
+            ]
+          ],
+          "after routing": [
+            [
+              176,
+              19
+            ],
+            [
+              184,
+              19
+            ],
+            [
+              184,
+              24
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DN081AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            89
+          ],
+          "after": [
+            84,
+            89
+          ],
+          "annotation offsets": [
+            {
+              "annotation": 0,
+              "before": [
+                5,
+                0
+              ],
+              "after": [
+                5,
+                0
+              ],
+              "point before": 2,
+              "point after": 1
+            }
+          ],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              81,
+              89
+            ],
+            [
+              84,
+              89
+            ],
+            [
+              84,
+              84
+            ],
+            [
+              92,
+              84
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              89
+            ],
+            [
+              84,
+              84
+            ],
+            [
+              92,
+              84
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "DN081AX4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            94,
+            80
+          ],
+          "after": [
+            92,
+            80
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              68
+            ],
+            [
+              92,
+              68
+            ],
+            [
+              92,
+              80
+            ],
+            [
+              94,
+              80
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              68
+            ],
+            [
+              92,
+              68
+            ],
+            [
+              92,
+              80
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

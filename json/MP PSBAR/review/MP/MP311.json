@@ -2,7 +2,7 @@
   "page": "MP311",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "9dc6e88ca19335a2f4c0894046e07164d84945fefd956b5c51566954b81bbe03",
+  "content sha256": "c05dc1fd6f720f0806d4096292bf0442511d787174de5f21786a30eb368c98f6",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\MP311\\Source model.json",
@@ -24,25 +24,7 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MP PSBAR\\MP311 PSBAR CNTR PTY.tif",
   "uncertainties": [],
-  "format questions": [
-    {
-      "code": "fixed_terminal_slot_layout",
-      "status": "unresolved",
-      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
-      "terminals": [
-        {
-          "terminal": "blocks/AD/pins/L/2",
-          "net": "MP311AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
-          "terminal": "blocks/AD/pins/L/6",
-          "net": "MP311AC4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        }
-      ]
-    }
-  ],
+  "format questions": [],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -434,6 +416,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "MP311AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "MP311AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "MP311AB4",
+          "contact": [
+            138,
+            17
+          ],
+          "old endpoint": [
+            141,
+            17
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "MP311AC4",
+          "contact": [
+            138,
+            21
+          ],
+          "old endpoint": [
+            141,
+            21
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "MP311AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            17
+          ],
+          "after": [
+            138,
+            17
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              17
+            ],
+            [
+              141,
+              17
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              12
+            ],
+            [
+              138,
+              12
+            ],
+            [
+              138,
+              17
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "MP311AC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            21
+          ],
+          "after": [
+            138,
+            21
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              130,
+              19
+            ],
+            [
+              138,
+              19
+            ],
+            [
+              138,
+              21
+            ],
+            [
+              141,
+              21
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              19
+            ],
+            [
+              138,
+              19
+            ],
+            [
+              138,
+              21
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

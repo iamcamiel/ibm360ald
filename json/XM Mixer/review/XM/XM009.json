@@ -2,7 +2,7 @@
   "page": "XM009",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "8b80269cb72a0ac95c4e759f2f36513011b1c263bf9d7bb57daa79cf0d2b4885",
+  "content sha256": "0e4d6b5529b9f15fe909c6596039b6072d769fddf666741f47e3cd11bf98c824",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XM009\\Source model.json",
@@ -31,11 +31,6 @@
       "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
       "terminals": [
         {
-          "terminal": "blocks/AN/pins/R/4",
-          "net": "XM009AN4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
-        },
-        {
           "terminal": "blocks/AP/pins/R/4",
           "net": "XM009AP4",
           "reason": "The changed lead interval is occupied by another net"
@@ -44,11 +39,6 @@
           "terminal": "blocks/AX/pins/L/2",
           "net": "XM009AA4",
           "reason": "The changed lead interval is occupied by another net"
-        },
-        {
-          "terminal": "blocks/AX/pins/L/3",
-          "net": "XM009AB4",
-          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
         },
         {
           "terminal": "blocks/AX/pins/R/4",
@@ -3856,6 +3846,154 @@
         }
       ],
       "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ],
+  "format question retractions": [
+    {
+      "rule": "bend-at-fixed-contact-is-implicit",
+      "authority": "Human correction: bends exactly at the new contact cell are ordinary pin connections; the renderer supplies the horizontal pin stub.",
+      "retracted findings": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "XM009AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/3",
+          "net": "XM009AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "contact evidence": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "XM009AN4",
+          "contact": [
+            130,
+            47
+          ],
+          "old endpoint": [
+            127,
+            47
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 0
+        },
+        {
+          "terminal": "blocks/AX/pins/L/3",
+          "net": "XM009AB4",
+          "contact": [
+            161,
+            39
+          ],
+          "old endpoint": [
+            164,
+            39
+          ],
+          "basis": "Adjacent bend equals the fixed contact exactly",
+          "polyline": 0,
+          "point": 3
+        }
+      ],
+      "routing normalization": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "XM009AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            47
+          ],
+          "after": [
+            130,
+            47
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              127,
+              47
+            ],
+            [
+              130,
+              47
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ],
+          "after routing": [
+            [
+              130,
+              47
+            ],
+            [
+              130,
+              59
+            ],
+            [
+              138,
+              59
+            ]
+          ]
+        },
+        {
+          "terminal": "blocks/AX/pins/L/3",
+          "net": "XM009AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            39
+          ],
+          "after": [
+            161,
+            39
+          ],
+          "annotation offsets": [],
+          "removed redundant endpoint": true,
+          "before routing": [
+            [
+              84,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              39
+            ],
+            [
+              164,
+              39
+            ]
+          ],
+          "after routing": [
+            [
+              84,
+              12
+            ],
+            [
+              161,
+              12
+            ],
+            [
+              161,
+              39
+            ]
+          ]
+        }
+      ]
     }
   ]
 }
