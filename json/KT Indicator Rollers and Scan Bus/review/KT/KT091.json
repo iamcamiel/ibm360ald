@@ -2,7 +2,7 @@
   "page": "KT091",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6baec6e89b34e95fc64c61da2fd79b853f1797803c8a209eb4532fe02c3dfb04",
+  "content sha256": "1d9745010852e67145ac26bab4bf7f531613ef060aa42c329449f0871a8d0763",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT091\\Source model.json",
@@ -24,7 +24,30 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KT Indicator Rollers and Scan Bus\\KT091 ROLLER 1 GATE PTY SEL REG L REG M REG.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KT091AG2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KT091AH2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KT091AJ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -400,5 +423,91 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AG/pins/R/2",
+          "net": "KT091AG2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            10
+          ],
+          "after": [
+            130,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/2",
+          "net": "KT091AH2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            24
+          ],
+          "after": [
+            130,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "KT091AJ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            38
+          ],
+          "after": [
+            130,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KT091AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            54
+          ],
+          "after": [
+            176,
+            54
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "KT091AG2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "KT091AH2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "KT091AJ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

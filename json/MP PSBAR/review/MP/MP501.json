@@ -2,7 +2,7 @@
   "page": "MP501",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "108ea6d49fccf7b78014a167c8ba5a31198f02f16c32e326430519953da32bfb",
+  "content sha256": "3248e3fada44362f40ed26d37bc74ff277fbee24d6fefa91f3cf5bb75ccb2465",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round007\\MP501\\Currentness successor001\\Current model.json",
@@ -39,7 +39,25 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "MP501BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "MP501BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2546,5 +2564,41 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "MP501BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            19
+          ],
+          "after": [
+            199,
+            19
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "MP501BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "MP501BE4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

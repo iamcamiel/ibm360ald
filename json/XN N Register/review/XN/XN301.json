@@ -2,7 +2,7 @@
   "page": "XN301",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "1adfea773066e85b060e32ef06bb9b2c0b9e259e11a1ce94e9599f64cfae80a3",
+  "content sha256": "3b66898d9b75e6a703ed39231294e8b78e87dcc28722540a71f0e7a2f255e246",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XN301\\Source model.json",
@@ -39,7 +39,30 @@
       }
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AB/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1918,5 +1941,46 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "XN301AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AB/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "XN301ABL6-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

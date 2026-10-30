@@ -2,7 +2,7 @@
   "page": "AP291",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e90f9f18563b10ca669f5a94988f2e6f446973048494dfbba586621a7ca46c94",
+  "content sha256": "3e2728b3f6f498dd3d2213a9adbf9ab31e8d30118861cd8bd2d2d931b96aa065",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\ALD batch647\\AP291 independent reconstruction647\\Inputs\\Baseline model.json",
@@ -63,22 +63,25 @@
       "field": "blocks/AX/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "2",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AY/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "2",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AZ/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "2",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "outputs/AP291AV2/net number",
@@ -129,7 +132,60 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP291AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP291AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "AP291AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "AP291AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "AP291AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "AP291AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "AP291AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "AP291AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP291AZ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2746,5 +2802,532 @@
     "status": "open",
     "summary": "Result: Baseline V4/AP291.json, Baseline V4/AP291.txt and Baseline V4/review/AP/AP291.json are the actual matched V4 artifacts, created by the authenticated bf038 converter from the canonical private baseline. The V4 is partial and unapproved and has unresolved discrepancies; it is not accepted source or publication. Original V3 model, deterministic restored raw and TXT are in Inputs/. No source, V3, shared or production changes were made, so no inverse is needed. The actual conversion command was python -B -X utf8 ald_json_tools/convert_ald_json.py <Inputs/Baseline model.json> -o <Baseline V4> --text <Inputs/Baseline.txt> --render --allow-partial --report <conversion report.json>. The converter exited 0; stdout said AP291 converted with findings. Report records source writes 0, 29 blocks, 84 terminals, 44 nets, 10 uncertainty records, no format questions, 10 normalized render-cell differences (seven flagged as wire-glyph differences), byte identical false. Exact details remain in conversion report.json and the review sidecar. Internal V4 validation passed, review content digest matched, and sidecar-driven independent renderer reproduced the stored V4 TXT byte for byte. External JSON Schema validation was NOT_RUN. All 10 render differences were visually checked against the scan in Visual/Conversion discrepancies.png and separately classified in Visual/discrepancy review.json. The three printed 2s at (138,63), (138,70), (138,77) lie adjacent to scan elbows/diamond as in V3, whereas the V4 renderer shifts them to x141. They are not grounds to infer physical pin identities. At (0,75), native starts with the printed sign, and the V4 adds a dash before it. Header AP at (240–241,0) is obscured; at (35,94) the native terminal listing shows AV2 whereas V4 uses a replacement character; actual right-edge AV2 output is damaged. All remain recorded rather than overwritten merely to make rendering match. The ten sidecar uncertainty records include missing division, two no-source nets AW-jumper and RIGHT4 (the latter has an illegible inherited external origin), three partial printed 2 pin identities, an AV2 output reading conflict, and AW/AX printed-vs-normalized pin conflict Native/electrical, full tracing and omission remain limited; no approval inferred.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "text": "2",
+          "net": "AP011BB4"
+        },
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "text": "2",
+          "net": "AP011BB4"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/6",
+          "text": "2",
+          "net": "AP011BB4"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "AP291AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "AP291AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "AP745AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            68,
+            13
+          ],
+          "after": [
+            69,
+            13
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "AP291AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            19
+          ],
+          "after": [
+            84,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "AP745AJ4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            68,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "AP745AJ4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            68,
+            33
+          ],
+          "after": [
+            69,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "AP291AD4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            54
+          ],
+          "after": [
+            69,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/6",
+          "net": "AP291AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            56
+          ],
+          "after": [
+            69,
+            56
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "AP291AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            17
+          ],
+          "after": [
+            92,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/5",
+          "net": "AP291AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            20
+          ],
+          "after": [
+            92,
+            20
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "AP291AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            40
+          ],
+          "after": [
+            107,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/L/2",
+          "net": "AP291AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            10
+          ],
+          "after": [
+            138,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/L/6",
+          "net": "AP291AR4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            14
+          ],
+          "after": [
+            138,
+            14
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/L/2",
+          "net": "AP291AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            31
+          ],
+          "after": [
+            138,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/L/6",
+          "net": "AP291AT4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            35
+          ],
+          "after": [
+            138,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/R/2",
+          "net": "AP291AV2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            31
+          ],
+          "after": [
+            153,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP291AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            54
+          ],
+          "after": [
+            153,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "net": "AP011BB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            140,
+            63
+          ],
+          "after": [
+            138,
+            63
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "AP291AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            61
+          ],
+          "after": [
+            153,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AY/pins/L/6",
+          "net": "AP011BB4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            140,
+            70
+          ],
+          "after": [
+            138,
+            70
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AY/pins/R/4",
+          "net": "AP291AY4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            68
+          ],
+          "after": [
+            153,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/6",
+          "net": "AP011BB4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            140,
+            77
+          ],
+          "after": [
+            138,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BA/pins/L/2",
+          "net": "AP011AN4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            137,
+            80
+          ],
+          "after": [
+            138,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BA/pins/R/4",
+          "net": "AP291BA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            82
+          ],
+          "after": [
+            153,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/3",
+          "net": "AP291AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            67
+          ],
+          "after": [
+            161,
+            67
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/4",
+          "net": "AP291AX4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            68
+          ],
+          "after": [
+            161,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/8",
+          "net": "AP291AY4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            72
+          ],
+          "after": [
+            161,
+            72
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/9",
+          "net": "AP291AZ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            73
+          ],
+          "after": [
+            161,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/10",
+          "net": "AP291BA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            74
+          ],
+          "after": [
+            161,
+            74
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "AP291BD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            68
+          ],
+          "after": [
+            199,
+            68
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "AP291AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "AP291AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "AP291AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "AP291AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "AP291AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "AP291AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "AP291AT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "AP291AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AZ/pins/R/4",
+          "net": "AP291AZ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

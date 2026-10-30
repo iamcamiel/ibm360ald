@@ -2,7 +2,7 @@
   "page": "RG051",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "d2a9c073bb56b1f9b0227264d93f6a729280801846c6acea489526ad1105a86d",
+  "content sha256": "63a0267aef35013654f373aba555a0597e2f9c281379106a34a4755b96dca6f3",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\ALD batch1233\\RG051 independent reconstruction1233\\Inputs\\Baseline model.json",
@@ -42,6 +42,28 @@
         8
       ],
       "candidate nets": []
+    },
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RG051BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "RG051AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "RG051AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
     }
   ],
   "warnings": [
@@ -176357,5 +176379,91 @@
     "status": "open",
     "summary": "Early unsealed partial, unapproved candidate: 16 unresolved render cells including 8 wire glyph differences. Source contains both B02 and B03 claims; retain both pending native and route-ownership verification. Unplaced labels and individual discrepancies, full native routes, junctions/crossings, missing-wire audit, independent registration and electrical correctness remain unestablished. External schema status is unestablished; zero converter uncertainties does not resolve the conflict. Team3 reports that native tile 1-4 visibly links AJ B02-star and KB03 on the drawing; the source records both as drivers, and electrical roles and ownership remain unverified. All 15 net endpoints retain unresolved source claims. Block registration was untrusted (7 of 10 controls, median 0.828 px), and the independent edge fit failed. The other 15 native tiles, 8 junctions, 7 crossings, full routes, omissions and local warp remain unassessed; 25 generated route sections were not inspected.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "RG051AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "RG051AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            12
+          ],
+          "after": [
+            61,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "RG051AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            5
+          ],
+          "after": [
+            176,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "RG051AG4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            187,
+            5
+          ],
+          "after": [
+            184,
+            5
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "RG051BC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "RG051AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "RG051AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "page": "KT771",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "66fe31ed3f272ecf4973bc89a7f62247aeffaa9ead78b0ade258309803a31e93",
+  "content sha256": "04a47ee9373b8e5cd10de76956364bc07c449a959bb103aa92f84e7714b52966",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KT771\\Source model.json",
@@ -46,7 +46,30 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KT771AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KT771AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "KT771AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -92019,5 +92042,76 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "KT771AA4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            3
+          ],
+          "after": [
+            69,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "KT771AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            5
+          ],
+          "after": [
+            69,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "KT771AC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            7
+          ],
+          "after": [
+            69,
+            7
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KT771AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "KT771AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "KT771AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

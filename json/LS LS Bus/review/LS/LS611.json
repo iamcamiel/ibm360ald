@@ -2,7 +2,7 @@
   "page": "LS611",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "3e86950b8ef09c9680a0cebc3890256560ef08c7986a1d73ed3d72fa69360c8c",
+  "content sha256": "07a793b00e8f79842263cc51077a89dc2f8efcd7db0bfc4c017cd50f9293850d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\LS611 independent reconstruction596\\Inputs\\Baseline model.json",
@@ -46,7 +46,20 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS611FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2118,5 +2131,66 @@
     "status": "open",
     "summary": "Six unresolved wire differences at repeated initial points; three uncertainties including AG/EG physical pins, two source-unreviewed nets without targets. Sampled routes, seeded edge fit, omission and schema review remain open. Candidate source differs from current selection: model match false, text match false; preserve previous selection. The candidate source does not fully match the previous local selection: model match False, text match False. The previous selection is preserved in the publication receipt.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/EA/pins/R/4",
+          "net": "LS611EA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/L/4",
+          "net": "LS611EA4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            164,
+            12
+          ],
+          "after": [
+            161,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/R/4",
+          "net": "LS611FA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS611FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

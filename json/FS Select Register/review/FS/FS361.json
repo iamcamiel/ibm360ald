@@ -2,7 +2,7 @@
   "page": "FS361",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "a92f04f56f25f07ffe51d0c241dcee4ffb2acd1e2abb80c951ec2747932c3efe",
+  "content sha256": "1e19ad2a2f6efe1e4c7bf7079968b3e2c767216ed55e0af1af3d93215ff0ec1f",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\FS361\\Source model.json",
@@ -24,7 +24,65 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FS Select Register\\FS361 SELECT REGISTER PARITY P16-23 AND P24-31.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "FS361AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FS361AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FS361AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FS501AF4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FS361AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FS361AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FS361AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "FS361AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FS501AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "FS361AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -305,5 +363,186 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "FS361AC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            10
+          ],
+          "after": [
+            115,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/6",
+          "net": "FS361AD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            14
+          ],
+          "after": [
+            115,
+            14
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FS361AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            12
+          ],
+          "after": [
+            130,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/L/2",
+          "net": "FS361AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            31
+          ],
+          "after": [
+            115,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/L/6",
+          "net": "FS361AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            35
+          ],
+          "after": [
+            115,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "FS361AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            33
+          ],
+          "after": [
+            130,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "FS361AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "FS361AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            33
+          ],
+          "after": [
+            176,
+            33
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "FS361AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FS361AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FS361AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FS501AF4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FS361AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FS361AE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FS361AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "FS361AN4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FS501AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "FS361AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "page": "MA551",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0fd39051bfd2f98993bb8141df11a32d6f74622be49e6f835670d5c7078a0ef2",
+  "content sha256": "707baa12093cbd413f837ace75a0384edadc9080f17bbe8403f04c156d5f0dd4",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA551\\Source model.json",
@@ -24,7 +24,45 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MA Storage Address Bus\\MA551 PSBAR PARITY POWERING.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MA551AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "MA551AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MA551AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MA551AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "MA551BA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MA551BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1235,5 +1273,91 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "MA551AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            3
+          ],
+          "after": [
+            61,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "MA551AC2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            24
+          ],
+          "after": [
+            61,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BA/pins/R/2",
+          "net": "MA551BA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            3
+          ],
+          "after": [
+            176,
+            3
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MA551AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "MA551AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MA551AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "MA551AC2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "MA551BA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BJ/pins/L/4",
+          "net": "MA551BA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

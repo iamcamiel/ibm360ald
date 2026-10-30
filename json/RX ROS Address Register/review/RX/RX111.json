@@ -2,7 +2,7 @@
   "page": "RX111",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "0b18ca8cb16ab7804760044914ac3ab9e663b9e8a2a50fc5ddbecfe15cc972d5",
+  "content sha256": "15458cd0c0dd28321b007a18032f5cd7594887b0b8ba2d2253bfacd1baf95936",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\RX111\\Source model.json",
@@ -98,29 +98,33 @@
       "field": "blocks/CE/pins/L/3/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/CE/pins/L/4/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/CF/pins/L/4/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/CF/pins/L/5/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/DU/pins/R/4/pin",
@@ -133,8 +137,9 @@
       "field": "blocks/DH/pins/L/2/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/DH/pins/L/5/pin",
@@ -159,7 +164,80 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "RX111AJ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/R/2",
+          "net": "RX111BC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/2",
+          "net": "RX111BF2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BK/pins/R/4",
+          "net": "RX111BK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BM/pins/L/4",
+          "net": "RX111AM2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CD/pins/L/4",
+          "net": "RX111BD2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CD/pins/L/6",
+          "net": "RX111BK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/CF/pins/R/4",
+          "net": "RX111CF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/R/4",
+          "net": "RX111CJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CK/pins/L/2",
+          "net": "RX003CG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/DE/pins/L/2",
+          "net": "RX111CB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/DE/pins/L/3",
+          "net": "RX111CD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DU/pins/L/2",
+          "net": "RX111DE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4397,5 +4475,712 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/CE/pins/L/3",
+          "text": "8",
+          "net": "RX111AC2"
+        },
+        {
+          "terminal": "blocks/CE/pins/L/4",
+          "text": "8",
+          "net": "RX111AD2"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "text": "8",
+          "net": "RX111AG2"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/5",
+          "text": "8",
+          "net": "RX111BF2"
+        },
+        {
+          "terminal": "blocks/DH/pins/L/2",
+          "text": "8",
+          "net": "RX111CG4"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "RX111AC2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            17
+          ],
+          "after": [
+            61,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/2",
+          "net": "RX111AD2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            24
+          ],
+          "after": [
+            61,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/2",
+          "net": "RX111AE2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            31
+          ],
+          "after": [
+            61,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/2",
+          "net": "RX111AF2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            38
+          ],
+          "after": [
+            61,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/2",
+          "net": "RX111AG2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            45
+          ],
+          "after": [
+            61,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/2",
+          "net": "RX111AM2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            80
+          ],
+          "after": [
+            61,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "RX111BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            54
+          ],
+          "after": [
+            199,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BD/pins/R/2",
+          "net": "RX111BD2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            24
+          ],
+          "after": [
+            84,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BG/pins/R/2",
+          "net": "RX111BG2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            45
+          ],
+          "after": [
+            84,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BK/pins/L/4",
+          "net": "RX003CG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            68,
+            68
+          ],
+          "after": [
+            69,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CB/pins/L/2",
+          "net": "RX111BC2",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            17
+          ],
+          "after": [
+            92,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CB/pins/L/6",
+          "net": "RX111BK4",
+          "polyline": 2,
+          "point": 2,
+          "before": [
+            95,
+            21
+          ],
+          "after": [
+            92,
+            21
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CB/pins/R/4",
+          "net": "RX111CB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "RX111CD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            26
+          ],
+          "after": [
+            107,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/L/3",
+          "net": "RX111AC2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            94,
+            32
+          ],
+          "after": [
+            92,
+            32
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/L/4",
+          "net": "RX111AD2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            94,
+            33
+          ],
+          "after": [
+            92,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/L/5",
+          "net": "RX111AE2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            34
+          ],
+          "after": [
+            92,
+            34
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/L/6",
+          "net": "RX111BK4",
+          "polyline": 4,
+          "point": 1,
+          "before": [
+            95,
+            35
+          ],
+          "after": [
+            92,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "RX111CE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CF/pins/L/3",
+          "net": "RX111AF2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            95,
+            39
+          ],
+          "after": [
+            92,
+            39
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "RX111AG2",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            94,
+            40
+          ],
+          "after": [
+            92,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CF/pins/L/5",
+          "net": "RX111BF2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            94,
+            41
+          ],
+          "after": [
+            92,
+            41
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CF/pins/L/6",
+          "net": "RX111BK4",
+          "polyline": 5,
+          "point": 1,
+          "before": [
+            95,
+            42
+          ],
+          "after": [
+            92,
+            42
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CG/pins/L/2",
+          "net": "RX111BG2",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            45
+          ],
+          "after": [
+            92,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CG/pins/L/6",
+          "net": "RX111BK4",
+          "polyline": 6,
+          "point": 1,
+          "before": [
+            95,
+            49
+          ],
+          "after": [
+            92,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CG/pins/R/4",
+          "net": "RX111CG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            47
+          ],
+          "after": [
+            107,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CH/pins/L/2",
+          "net": "RX111AJ2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            52
+          ],
+          "after": [
+            92,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CH/pins/L/6",
+          "net": "RX111BK4",
+          "polyline": 7,
+          "point": 1,
+          "before": [
+            95,
+            56
+          ],
+          "after": [
+            92,
+            56
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CH/pins/R/4",
+          "net": "RX111CH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/2",
+          "net": "RX111BK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            59
+          ],
+          "after": [
+            92,
+            59
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "RX111CK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            68
+          ],
+          "after": [
+            107,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DE/pins/L/5",
+          "net": "RX111CE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            34
+          ],
+          "after": [
+            115,
+            34
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DE/pins/L/6",
+          "net": "RX111CF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            35
+          ],
+          "after": [
+            115,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/L/2",
+          "net": "RX111CG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            117,
+            52
+          ],
+          "after": [
+            115,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/L/3",
+          "net": "RX111CH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            53
+          ],
+          "after": [
+            115,
+            53
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/L/5",
+          "net": "RX111CJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            117,
+            55
+          ],
+          "after": [
+            115,
+            55
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/L/6",
+          "net": "RX111CK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            56
+          ],
+          "after": [
+            115,
+            56
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DU/pins/L/6",
+          "net": "RX111DH4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            141,
+            49
+          ],
+          "after": [
+            138,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DU/pins/R/4",
+          "net": "RX111DU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            151,
+            47
+          ],
+          "after": [
+            153,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/PP/pins/R/4",
+          "net": "RX111PP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AJ/pins/R/2",
+          "net": "RX111AJ2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/R/2",
+          "net": "RX111BC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/2",
+          "net": "RX111BF2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BK/pins/R/4",
+          "net": "RX111BK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BM/pins/L/4",
+          "net": "RX111AM2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CD/pins/L/4",
+          "net": "RX111BD2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CD/pins/L/6",
+          "net": "RX111BK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/CF/pins/R/4",
+          "net": "RX111CF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/R/4",
+          "net": "RX111CJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CK/pins/L/2",
+          "net": "RX003CG4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/DE/pins/L/2",
+          "net": "RX111CB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/DE/pins/L/3",
+          "net": "RX111CD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DU/pins/L/2",
+          "net": "RX111DE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

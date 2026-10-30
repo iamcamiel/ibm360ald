@@ -2,7 +2,7 @@
   "page": "KM821",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "96a2d43cdfe50dd51911de56a91d194777191dc65fff9ed769b6046a276bf187",
+  "content sha256": "49c8dfc93968314cc502e1896fc4ff1bbadd461a808659f08dc01a0841100791",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\KM821\\Source model.json",
@@ -24,7 +24,50 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KM Program Interrupt\\KM821 EXCEPTIONAL CONDITION FOR I FETCH OR INV INST ADDRESS.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KM821AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "KM821AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "KM821AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "KM821AK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KM821AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/4",
+          "net": "KM821AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "CA215CC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2589,5 +2632,141 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "KM821AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/2",
+          "net": "KM821AC2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            17
+          ],
+          "after": [
+            61,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/1",
+          "net": "KM821AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            37
+          ],
+          "after": [
+            184,
+            37
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "KM821AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            187,
+            38
+          ],
+          "after": [
+            184,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "KM821AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            19
+          ],
+          "after": [
+            199,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "KM821AW2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            80
+          ],
+          "after": [
+            84,
+            80
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "KM821AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "KM821AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "KM821AC2",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "KM821AK4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "KM821AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/4",
+          "net": "KM821AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "CA215CC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

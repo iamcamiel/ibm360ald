@@ -1,0 +1,54 @@
+Current diagram maintenance
+===========================
+
+Run from the repository directory (Python 3.10 or newer):
+
+  python tools/migrate_pin_annotations.py
+  python tools/migrate_pin_annotations.py --apply
+  python tools/render_all_json.py --check
+  python tools/render_all_json.py
+  python tools/build_browser_cache.py
+
+The migration is a dry run unless --apply is given. It changes only exact
+standalone 2, 3, 8 and L stored as physical/unresolved pin labels. It attaches
+each marker to its existing uniquely owned terminal as a net annotation.
+Known compound pin labels, nodes, roles and ownership remain intact.
+The fixed-slot rule below describes permitted terminal endpoint changes.
+Resolved uncertainty records are retained, with the reason for resolution.
+Content-bound review digests and published Source status hashes are refreshed.
+
+render_all_json.py renders current functional V4 models and the established
+JSON-owned character layouts for V3/legacy diagrams. It does not convert V3
+models to V4. Review sidecars, archived input versions and non-page definition
+documents are excluded. It writes the corresponding ALD/*.txt files only
+when bytes change, preserving V4 writer options. A rendering failure prevents
+the complete render batch from being written. --check only reports changes.
+
+build_browser_cache.py calls the same render pass before collecting its
+source snapshot, so manual and cache-build rendering use the same code.
+
+Both commands accept --source-root, --backup-root and --report. Defaults are
+the repository containing the scripts and review/maintenance for exact old
+bytes, plans and receipts. A receipt records each before/after hash and the
+Source status transition. Keep these backups when rolling a change back.
+All replacements are preflighted and recoverable; a write failure rolls back
+files already written. A process/host crash may require restoring preimages
+from the plan. Source editing/publication must be quiescent during a batch;
+the maintenance lock prevents two maintenance scripts from writing together.
+
+No scan interpretation, electrical validation, source pin inference or
+approval of an altered model is produced by these scripts.
+
+Fixed pin slot rule: a known physical pin occupies three characters. Null or
+omitted pin identities instead draw three wire characters; uncertainty evidence
+stays in the review. Net contact coordinates are always four columns outside
+the block border, independent of annotations. The migration also normalizes
+uniquely determined horizontal lead endpoints to this boundary. Bends inside
+the slot, nonhorizontal/missing endpoints and competing wire claims are reported
+as holds; the script does not move bends or guess connectivity. Route-point
+annotation offsets are compensated so their printed absolute positions stay
+unchanged. Re-running the migration after this tool update handles pages whose
+standalone markers were already migrated by the earlier version.
+
+Migration exit 2 means unresolved layout holds were reported. Safe changes
+may already have been applied; inspect the report and receipt before retrying.

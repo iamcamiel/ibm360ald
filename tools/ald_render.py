@@ -108,6 +108,7 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
                 raise ValueError('Multiple uncomposed annotations at one terminal')
             annotations[item['at']] = item['text']
     terminal_points = {}
+    terminal_wires = {}
     terminal_directions = {}
     blocks = {}
     for block in data['blocks']:
@@ -121,13 +122,26 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
         for pin in block['pins']:
             node = f"blocks/{block['serial']}/pins/{pin['side']}/{pin['line']}"
             mark = annotations.get(node, '')
-            number = display(node+'/pin', pin.get('pin',''))
+            number = '' if pin.get('pin') is None else display(node+'/pin',pin['pin'])
             printed = mark + number if pin['side'] == 'L' else number + mark
-            endpoint = x - len(printed) - 1 if pin['side'] == 'L' else right + len(printed) + 1
+            endpoint = x - 4 if pin['side'] == 'L' else right + 4
             terminal_points[node] = (endpoint, y + pin['line'] - 1)
             terminal_directions[node] = 1 if pin['side'] == 'L' else -1
+            if pin.get('pin') is None:
+                terminal_wires[node] = [[endpoint, y + pin['line'] - 1],
+                                        [x if pin['side'] == 'L' else right, y + pin['line'] - 1]]
 
     graphs = {net['net number']: wire_graph(net['routing']) for net in data['nets']}
+    # Null/omitted pins have a functional three-cell wire slot. Compose that
+    # template lead in its declared net before classifying branches/crossings;
+    # painting a literal '───' afterwards would erase existing wire junctions.
+    for net in data['nets']:
+        leads = [terminal_wires[node] for node in net['nodes'] if node in terminal_wires]
+        if leads:
+            combined = defaultdict(set, {p: set(v) for p, v in graphs[net['net number']].items()})
+            for point, neighbors in wire_graph(leads).items():
+                combined[point].update(neighbors)
+            graphs[net['net number']] = dict(combined)
     outputs = {item['net number']: item for item in data['outputs']}
     if len(outputs)!=len(data['outputs']):raise ValueError('Duplicate explicit output net record')
     for number, output in outputs.items():
@@ -224,14 +238,21 @@ def render_page(data, details=None, trim_trailing_spaces=False, line_ending='\n'
         for pin in block['pins']:
             node = f"blocks/{block['serial']}/pins/{pin['side']}/{pin['line']}"
             mark = annotations.get(node, '')
-            number = display(node+'/pin',pin.get('pin',''))
+            number = '' if pin.get('pin') is None else display(node+'/pin',pin['pin'])
             printed = mark + number if pin['side'] == 'L' else number + mark
             row = y + pin['line'] - 1
             border = x if pin['side'] == 'L' else right
             edge = pin.get('edge')
             if edge:
                 put(border, row, {'negative': '◺', 'extension': 'E', 'aux': 'K', 'non-logic': 'X'}[edge])
-            put(x-len(printed) if pin['side'] == 'L' else right+1, row, printed)
+            if pin.get('pin') is None:
+                # Omitted and null pin identities share the ordinary three-cell
+                # slot. The net contact is outside that slot, never label-sized.
+                # The composed terminal lead is already drawn, including any junctions.
+                if mark:
+                    put(x-3-len(mark) if pin['side'] == 'L' else right+4, row, mark)
+            else:
+                put(x-len(printed) if pin['side'] == 'L' else right+1, row, printed)
 
     for entry in data['inputs']:
         row = entry['line']

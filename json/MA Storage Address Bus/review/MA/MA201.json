@@ -2,7 +2,7 @@
   "page": "MA201",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "5ab56f146c1e919c9da26b9a8c99f58e20a44e96bbf7a8dd95bcb99c0174d0bc",
+  "content sha256": "2a64d9d6c117510d07b03827b66345f82bd7cc41381760ea0618a016400375f6",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MA201\\Source model.json",
@@ -39,7 +39,35 @@
       }
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA201AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MA201AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/1",
+          "net": "MA201AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "MA201AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -1501,5 +1529,141 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MA201AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MA201AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            19
+          ],
+          "after": [
+            84,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "MA201AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/3",
+          "net": "MA201AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            25
+          ],
+          "after": [
+            92,
+            25
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "MA201AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            26
+          ],
+          "after": [
+            92,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/5",
+          "net": "MA201AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            27
+          ],
+          "after": [
+            92,
+            27
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "MA201AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MA201AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MA201AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/1",
+          "net": "MA201AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "MA201AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

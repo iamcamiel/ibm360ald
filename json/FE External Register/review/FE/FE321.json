@@ -2,7 +2,7 @@
   "page": "FE321",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "eda305c01562aa1b75a4fe5cc256fd043e613d96d759bd0b47c548afab447936",
+  "content sha256": "e790b917977e2ded3b86c8f5b7eefa94489da121818830137ef1889e2bdbbec5",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FE321\\Source model.json",
@@ -39,7 +39,45 @@
       }
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "FX081AM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "FE321AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "FE321AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "FE321BC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -4310,5 +4348,151 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "FE321BB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            68,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "FE321BB4",
+          "polyline": 1,
+          "point": 3,
+          "before": [
+            45,
+            54
+          ],
+          "after": [
+            46,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FE321AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            54
+          ],
+          "after": [
+            61,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "FE321BC2",
+          "polyline": 0,
+          "point": 4,
+          "before": [
+            45,
+            59
+          ],
+          "after": [
+            46,
+            59
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FE321AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/4",
+          "net": "KX129BJ4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            45,
+            75
+          ],
+          "after": [
+            46,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "FE321BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            75
+          ],
+          "after": [
+            61,
+            75
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "FE321AAL2-no-source",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "FX081AM4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "FE321AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "FE321AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "FE321BC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

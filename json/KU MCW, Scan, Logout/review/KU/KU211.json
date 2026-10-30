@@ -2,7 +2,7 @@
   "page": "KU211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f8bd99fcad0065e076091c29e038a71c67c7548a0187899f51170fbe66fbe7e2",
+  "content sha256": "284040f392e1787df0473671e762d82027d1cdb5a8dd0afe1a94606a2ea5a578",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round010\\KU211\\Currentness successor001\\Current model.json",
@@ -24,7 +24,20 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\KU MCW, Scan, Logout\\KU211 REPEAT CONTROLS AND SPLIT LOGOUT.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/BU/pins/R/4",
+          "net": "KU211BU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1933,5 +1946,51 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "KU211AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            82
+          ],
+          "after": [
+            153,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BK/pins/R/4",
+          "net": "KU211BK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            26
+          ],
+          "after": [
+            153,
+            26
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/BU/pins/R/4",
+          "net": "KU211BU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "page": "MC462",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e1863a11f7593b1817ccfad160eb757048ba53532e5ecc254130410b9e93c56e",
+  "content sha256": "ba5e8d4b9bbe47eadfe4248d375cc67386dc629e5d3fad54dd1cee82839746ff",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC462\\Source model.json",
@@ -24,7 +24,25 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC462 GATES FOR EVEN ODD DECODE.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MC462AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC462AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -345,5 +363,56 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AW/pins/L/2",
+          "net": "MC462AN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            45
+          ],
+          "after": [
+            161,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/L/6",
+          "net": "MC462AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            49
+          ],
+          "after": [
+            161,
+            49
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MC462AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC462AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "page": "CA211",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b0853143ea362c7734e16a481aff844f7bb68410ffaf3772ff671e50a5f57db1",
+  "content sha256": "e92f9a217c5aee4bfe680b4b4ea26bceeae62a42b48279efa7f009b4ef09a984",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Inputs\\CA211\\Exact source model.json",
@@ -28,8 +28,9 @@
       "field": "blocks/DG/pins/L/2/pin",
       "kind": "illegible",
       "visible text": "8",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "outputs/CA211DC4/net number",
@@ -47,7 +48,55 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "CA211AH4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "CA211AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "CA211AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "CA211BH4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/4",
+          "net": "CA211BB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/6",
+          "net": "CA211BF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "CA211BF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DC/pins/R/4",
+          "net": "CA211DC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -14160,5 +14209,517 @@
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Actual current keys\\CA211\\Actual conversion report.json",
       "sha256": "0130bec4e9a15c57db70c07525be2f3fd33c1026d3c77f288e51a3009df447a7"
     }
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/DG/pins/L/2",
+          "text": "8",
+          "net": "CA211DK2"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "CA211AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            12
+          ],
+          "after": [
+            130,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "CA211AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            19
+          ],
+          "after": [
+            153,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "CA211AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            12
+          ],
+          "after": [
+            199,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CA211AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            19
+          ],
+          "after": [
+            130,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CA211AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            19
+          ],
+          "after": [
+            199,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CA211AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            5
+          ],
+          "after": [
+            130,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "CA211AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            26
+          ],
+          "after": [
+            61,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "CA211AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "CA211AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "CA211AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            54
+          ],
+          "after": [
+            69,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "CA211AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "CA211AR4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            72,
+            61
+          ],
+          "after": [
+            69,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/R/4",
+          "net": "CA211BB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            40
+          ],
+          "after": [
+            107,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/R/4",
+          "net": "CA211BC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            40
+          ],
+          "after": [
+            130,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "CA211BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "CA211BG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            47
+          ],
+          "after": [
+            176,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BH/pins/R/4",
+          "net": "CA211BH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DA/pins/R/4",
+          "net": "CA211DA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            26
+          ],
+          "after": [
+            130,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DB/pins/R/4",
+          "net": "CA211DB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            33
+          ],
+          "after": [
+            153,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DD/pins/R/4",
+          "net": "CA211DD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            33
+          ],
+          "after": [
+            199,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DF/pins/R/4",
+          "net": "CA211DF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            5
+          ],
+          "after": [
+            199,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DG/pins/L/2",
+          "net": "CA211DK2",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            163,
+            3
+          ],
+          "after": [
+            161,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DG/pins/R/4",
+          "net": "CA211DG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            5
+          ],
+          "after": [
+            176,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/L/6",
+          "net": "CA211DJ2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            49
+          ],
+          "after": [
+            138,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DH/pins/R/4",
+          "net": "CA211DH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            47
+          ],
+          "after": [
+            153,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DJ/pins/R/2",
+          "net": "CA211DJ2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            45
+          ],
+          "after": [
+            130,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DK/pins/R/2",
+          "net": "CA211DK2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            3
+          ],
+          "after": [
+            153,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DL/pins/L/2",
+          "net": "CA911AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            3
+          ],
+          "after": [
+            69,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DL/pins/L/6",
+          "net": "CA211AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            7
+          ],
+          "after": [
+            69,
+            7
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/DL/pins/R/4",
+          "net": "CA211DL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            5
+          ],
+          "after": [
+            84,
+            5
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "CA211AH4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "CA211AB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/6",
+          "net": "CA211AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "CA211BH4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/4",
+          "net": "CA211BB4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/6",
+          "net": "CA211BF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BF/pins/R/4",
+          "net": "CA211BF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/DC/pins/R/4",
+          "net": "CA211DC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

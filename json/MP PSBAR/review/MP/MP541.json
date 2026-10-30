@@ -2,7 +2,7 @@
   "page": "MP541",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "4acb464cf3e81c6e9a205400f9ff0c1b3cba3a0fb398c5663982b36293e3383e",
+  "content sha256": "9d0ee1283d88a70561c825a97f98d763ad8ca4f75c44ac26c9cd6ef3dd2ab491",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Results\\Continuous integration assist20261025-Round007\\MP541\\Currentness successor001\\Current model.json",
@@ -24,7 +24,25 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MP PSBAR\\MP541 CLOCK.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MP541AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MP541AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1111,5 +1129,116 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "MP541AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MP541AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "MP541AB4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP541AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/L/4",
+          "net": "MP541AD4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            12
+          ],
+          "after": [
+            115,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "MP541AD4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            118,
+            19
+          ],
+          "after": [
+            115,
+            19
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MP541AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MP541AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

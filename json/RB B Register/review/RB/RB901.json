@@ -2,7 +2,7 @@
   "page": "RB901",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "dd1c32d8b9388756ba556cd4749a06edd36d53fd7b08e1254e2c26cd835e6b2f",
+  "content sha256": "e173d5098b8dc759e9d9c6bfee8ef5f97048d5a57d3197529dc9964148a18956",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-1\\Batch014\\Results\\RB901\\Producer revision007\\Current model.json",
@@ -39,7 +39,25 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RB901AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "RB901AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2475,5 +2493,161 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "RB817AG4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            91,
+            7
+          ],
+          "after": [
+            92,
+            7
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/L/6",
+          "net": "RB817AG4",
+          "polyline": 2,
+          "point": 2,
+          "before": [
+            91,
+            14
+          ],
+          "after": [
+            92,
+            14
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/6",
+          "net": "RB817AG4",
+          "polyline": 3,
+          "point": 2,
+          "before": [
+            91,
+            28
+          ],
+          "after": [
+            92,
+            28
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "RB817AG4",
+          "polyline": 4,
+          "point": 2,
+          "before": [
+            91,
+            35
+          ],
+          "after": [
+            92,
+            35
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "RB817AJ4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            91,
+            49
+          ],
+          "after": [
+            92,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "RB817AJ4",
+          "polyline": 2,
+          "point": 2,
+          "before": [
+            91,
+            56
+          ],
+          "after": [
+            92,
+            56
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "RB817AJ4",
+          "polyline": 3,
+          "point": 2,
+          "before": [
+            91,
+            70
+          ],
+          "after": [
+            92,
+            70
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/6",
+          "net": "RB817AJ4",
+          "polyline": 4,
+          "point": 2,
+          "before": [
+            91,
+            77
+          ],
+          "after": [
+            92,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "RB901AW2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            3
+          ],
+          "after": [
+            61,
+            3
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AT/pins/L/4",
+          "net": "RB901AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "RB901AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

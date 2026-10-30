@@ -947,4 +947,156 @@ class Column241OutputTests(ConversionTests):
                 with self.assertRaises(converter.ConversionError) as e:t.outputs()
                 self.assertEqual(e.exception.finding['code'],'output_reference_offset')
 
+
+class StandalonePinAnnotationTests(unittest.TestCase):
+    def trial(self, text, side='L', number=None):
+        trial,node=ConversionTests.k_prefix_block_trial(self,printed=text,number=number,side=side)
+        trial.terminals[node]['pin_number_status']='unparsed-or-control'
+        trial.terminals[node]['source_literals']['source_observations']=[
+            {'field':'printed_pin','value':text},{'field':'control_prefix','value':text}]
+        # Original annotation column, not adjacent to the block border.
+        trial.labels[0]['column']=46 if side=='L' else 61
+        return trial,node
+
+    def test_exact_standalone_markers_keep_declared_membership_without_pin_guess(self):
+        for text in ('2','3','8','L'):
+            for side in ('L','R'):
+                for number in (None,text):
+                    with self.subTest(text=text,side=side,number=number):
+                        trial,node=self.trial(text,side,number)
+                        before=copy.deepcopy((trial.terminals,trial.membership))
+                        blocks,_=trial.blocks()
+                        self.assertEqual(blocks[0]['pins'],[{'side':side,'line':4}])
+                        self.assertEqual(trial.annotations['source-net'],[{'at':node,'text':text}])
+                        self.assertEqual(trial.issues,[])
+                        self.assertEqual(trial.deferred,[])
+                        self.assertEqual((trial.terminals,trial.membership),before)
+                        self.assertIn((46 if side=='L' else 61,5,text),trial.covered)
+
+    def test_other_unknown_labels_stay_unresolved_and_physical_pins_are_preserved(self):
+        for text in ('23','L3','?','B02'):
+            with self.subTest(text=text):
+                trial,node=self.trial(text);blocks,_=trial.blocks()
+                self.assertIsNone(blocks[0]['pins'][0]['pin'])
+                self.assertEqual(trial.annotations['source-net'],[])
+                self.assertEqual(trial.issues[0]['field'],node+'/pin')
+        for side,text in (('L','3B02'),('R','B023')):
+            trial,node=self.trial(text,side,'B02');blocks,_=trial.blocks()
+            self.assertEqual(blocks[0]['pins'][0]['pin'],'B02')
+            self.assertEqual(trial.annotations['source-net'],[{'at':node,'text':'3'}])
+        trial,_=self.trial('3',number='B02')
+        with self.assertRaises(converter.ConversionError):trial.blocks()
+
+    def page(self, side, mark, known=False):
+        trial,node=self.trial((mark+'B02' if side=='L' else 'B02'+mark) if known else mark,
+                              side,'B02' if known else None)
+        blocks,_=trial.blocks()
+        routes=[[[43,5],[46,5]],[[44,5],[44,7]]] if side=='L' else [
+            [[61,5],[64,5]],[[63,5],[63,7]]]
+        page={'page':{'page':'ZZ001','page-type':'ald','title':['TEST'],'date':'','machine':'',
+                      'log':'','frame':'','p/n':'','ibm division':'','next block':''},
+              'blocks':blocks,'inputs':[],'outputs':[],
+              'nets':[{'net number':'ZZ001AA4','nodes':[node],'routing':routes,
+                       'annotations':trial.annotations['source-net']}],
+              'review':{'status':'partial','approved':False,'unresolved discrepancies':False,
+                        'details':'review/ZZ/ZZ001.json'}}
+        return page
+
+    def test_standalone_annotation_slot_preserves_wire_ink_and_graph_junction(self):
+        for side in ('L','R'):
+            for mark in ('2','3','8','L'):
+                with self.subTest(side=side,mark=mark):
+                    page=self.page(side,mark);before=copy.deepcopy(page)
+                    row=render_page(page,{'uncertainties':[]}).decode('utf8').splitlines()[5]
+                    self.assertEqual(row[46 if side=='L' else 61],mark)
+                    self.assertEqual(row[49 if side=='L' else 58],'─')
+                    self.assertEqual(row[44 if side=='L' else 63],'◇')
+                    self.assertEqual(page,before)
+
+    def test_known_pin_annotation_spacing_stays_unchanged(self):
+        for side in ('L','R'):
+            page=self.page(side,'3',known=True)
+            row=render_page(page,{'uncertainties':[]}).decode('utf8').splitlines()[5]
+            self.assertEqual(row[46:50] if side=='L' else row[58:62],
+                             '3B02' if side=='L' else 'B023')
+
+class StandalonePinLeadTests(unittest.TestCase):
+    def page(self, side='L'):
+        page=StandalonePinAnnotationTests().page(side,'3')
+        page['nets'][0]['routing']=[[[43,5],[48,5]]] if side=='L' else [[[64,5],[59,5]]]
+        return page
+
+    def test_unique_old_label_slot_becomes_wire_to_ordinary_unnumbered_terminal(self):
+        for side in ('L','R'):
+            with self.subTest(side=side):
+                page=self.page(side);node=page['nets'][0]['nodes'][0]
+                changes,holds=converter.normalize_annotation_leads(page)
+                self.assertEqual(holds,[]);self.assertEqual(len(changes),1)
+                self.assertEqual(changes[0]['terminal'],node)
+                self.assertEqual(changes[0]['after'],[46 if side=='L' else 61,5])
+                row=render_page(page,{'uncertainties':[]}).decode('utf8').splitlines()[5]
+                self.assertEqual(row[46 if side=='L' else 61],'3')
+                self.assertEqual(row[49 if side=='L' else 58],'─')
+                self.assertEqual(converter.normalize_annotation_leads(page),([],[]))
+
+    def test_foreign_wire_or_ambiguous_endpoint_is_not_bridged(self):
+        for mode in ('foreign','duplicate','missing','vertical'):
+            page=self.page()
+            if mode=='foreign':page['nets'].append({'net number':'OTHER','nodes':[], 'routing':[[[47,4],[47,6]]]})
+            elif mode=='duplicate':page['nets'][0]['routing']*=2
+            elif mode=='missing':page['nets'][0]['routing']=[[[40,5],[47,5]]]
+            else:page['nets'][0]['routing']=[[[48,4],[48,5]]]
+            before=copy.deepcopy(page)
+            changes,holds=converter.normalize_annotation_leads(page)
+            self.assertEqual(changes,[]);self.assertEqual(len(holds),1)
+            self.assertEqual(page,before)
+
+    def test_route_point_annotation_absolute_position_is_preserved(self):
+        page=self.page();net=page['nets'][0]
+        net['annotations'].append({'at':{'polyline':0,'point':1},'offset':[2,1],'text':'NOTE'})
+        changes,holds=converter.normalize_annotation_leads(page)
+        self.assertEqual(holds,[])
+        self.assertEqual(net['annotations'][1]['offset'],[4,1])
+        self.assertEqual(net['routing'][0][1][0]+net['annotations'][1]['offset'][0],50)
+
+    def test_numbered_pin_and_already_complete_route_remain_unchanged(self):
+        for mode in ('numbered','complete'):
+            page=self.page()
+            if mode=='numbered':
+                page['blocks'][0]['pins'][0]['pin']='B02'
+                page['nets'][0]['routing'][0][-1]=[46,5]
+            else:page['nets'][0]['routing'][0][-1]=[46,5]
+            before=copy.deepcopy(page)
+            self.assertEqual(converter.normalize_annotation_leads(page),([],[]))
+            self.assertEqual(page,before)
+
+
+class FixedNullPinSlotTests(unittest.TestCase):
+    def test_null_and_omitted_pins_fill_the_same_three_cell_slot_on_both_sides(self):
+        for side in ('L','R'):
+            for explicit in (True,False):
+                page=StandalonePinAnnotationTests().page(side,'3')
+                pin=page['blocks'][0]['pins'][0]
+                if explicit:pin['pin']=None
+                before=copy.deepcopy(page)
+                node=page['nets'][0]['nodes'][0]
+                details={'uncertainties':[{'field':node+'/pin','status':'unresolved','visible text':'?'}]}
+                row=render_page(page,details).decode('utf8').splitlines()[5]
+                self.assertEqual(row[47:50] if side=='L' else row[58:61],'───')
+                self.assertEqual(row[46 if side=='L' else 61],'3')
+                self.assertEqual(page,before)
+                without_mask=render_page(page,{'uncertainties':[]}).decode('utf8').splitlines()[5]
+                self.assertEqual(without_mask[47:50] if side=='L' else without_mask[58:61],'───')
+
+class FixedSlotGraphTests(unittest.TestCase):
+    def test_wire_slot_composes_branches_instead_of_overpainting_them(self):
+        for side in ('L','R'):
+            page=StandalonePinAnnotationTests().page(side,'3')
+            page['nets'][0]['routing']=[[[43,5],[49,5]],[[48,5],[48,7]]] if side=='L' else [[[58,5],[64,5]],[[59,5],[59,7]]]
+            before=copy.deepcopy(page)
+            row=render_page(page,{'uncertainties':[]}).decode('utf8').splitlines()[5]
+            self.assertEqual(row[48 if side=='L' else 59],'◇')
+            self.assertEqual(row[49 if side=='L' else 58],'─')
+            self.assertEqual(page,before)
+
 if __name__=='__main__':unittest.main()

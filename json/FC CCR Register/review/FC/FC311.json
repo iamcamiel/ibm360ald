@@ -2,7 +2,7 @@
   "page": "FC311",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "29ac5d8c4100806f299f7f71ad984163a8288ebf5f41dcf0fcf69658768f478d",
+  "content sha256": "a3ca18be7eba6c421318e723bc19b8c02ae66d8482c67b7f0055ce1107920d96",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team10\\ALD batch948\\FC311 independent reconstruction948\\Inputs\\Baseline model.json",
@@ -67,7 +67,25 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AD/pins/L/9",
+          "net": "FC311ADL8-strap",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/10",
+          "net": "FC311ADL8-strap",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -70746,5 +70764,101 @@
     "status": "open",
     "summary": "Authenticated scope, canonical/private model, TXT, native TIFF and current tools. Derived raw restores and renormalizes identically, baseline render matches TXT; raw is not independent acquisition. Converter exit 0, approved false, with three unresolved differences at [62,12], [62,14], [241,91] and 6827 raw presence differences retained in report. Internal validation and sidecar digest passed; external schema not run. Initial verification script failed on an assumed versioned filename; corrected verification retained. No source edits or electrical inferences. Parent viewed native overview and tiles 1800 700 and 7200 4900 only; no registration controls or full independent wire, flag, junction, crossing or omission audit. Helper first-half review observed all 0–41 corridors at half-native scale; crossings, point-only records and pin interfaces held. Second-half and flag helper pending. Zero-length paths 1/2/3/6/7/37/48/52, distinct raw differences and all three flagged cells remain unresolved. No source, physical or publication approval.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "FC311AML3-strap",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            91,
+            5
+          ],
+          "after": [
+            92,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/5",
+          "net": "FC311AML3-strap",
+          "polyline": 3,
+          "point": 1,
+          "before": [
+            91,
+            6
+          ],
+          "after": [
+            92,
+            6
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "FC311ANL3-strap",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            91,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/5",
+          "net": "FC311ANL3-strap",
+          "polyline": 3,
+          "point": 1,
+          "before": [
+            91,
+            13
+          ],
+          "after": [
+            92,
+            13
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/4",
+          "net": "PX451BA4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            26
+          ],
+          "after": [
+            69,
+            26
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AD/pins/L/9",
+          "net": "FC311ADL8-strap",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/10",
+          "net": "FC311ADL8-strap",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

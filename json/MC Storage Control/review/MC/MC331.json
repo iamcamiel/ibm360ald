@@ -2,7 +2,7 @@
   "page": "MC331",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "75df9c079225974a66d9a91f9a1b372f7fee282f30725cd5dddc6f545fefa549",
+  "content sha256": "4392b8531355997dface6e3f9cb0fda20f96eff0f47418208e32dd5a095c7b6d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC331\\Source model.json",
@@ -24,7 +24,20 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC331 SELECT CONTROL POWERING.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC331AG2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -495,5 +508,171 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AG/pins/R/2",
+          "net": "MC331AG2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            52
+          ],
+          "after": [
+            84,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "MC331AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "MC331AP4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            54
+          ],
+          "after": [
+            115,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MC331AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "MC331AQ4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            141,
+            54
+          ],
+          "after": [
+            138,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "MC331AQ4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            141,
+            61
+          ],
+          "after": [
+            138,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BA/pins/R/2",
+          "net": "MC331BA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            3
+          ],
+          "after": [
+            61,
+            3
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/L/4",
+          "net": "MC331BA2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            5
+          ],
+          "after": [
+            69,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BD/pins/R/2",
+          "net": "MC331BD2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            17
+          ],
+          "after": [
+            130,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/L/4",
+          "net": "MC331BD2",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            19
+          ],
+          "after": [
+            138,
+            19
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MC331AG2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -2,7 +2,7 @@
   "page": "CE181",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "01b0fa8d8aaf9a6058afbcfe8a25558eea6bd02bab184d34ba823054cafa6763",
+  "content sha256": "1c5691cd1c1560a1f6e7cec6d4390f5f80b582735ce20e5af67e758e79cd22b0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root fourth twenty findings publication qualification266\\Inputs\\CE181\\Exact source model.json",
@@ -35,8 +35,9 @@
       "field": "blocks/AL/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AP/pins/L/6/pin",
@@ -50,7 +51,80 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AC/pins/L/5",
+          "net": "RE701AQ4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CE181AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CE181AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "CE181AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "CE181AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "CE181AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "CE181AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "CE181AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -2202,5 +2276,317 @@
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team4 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\Exact628 serial successful conversion publication276\\Queue intake\\Missing first20 current executions276\\Corrected first actual launches001\\CE181\\Actual conversion report276.json",
       "sha256": "c72dcf952685f2475e4731f5b374fa37101a9d822262100d121a743195226d2b"
     }
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/AL/pins/L/6",
+          "text": "L",
+          "net": "CE181AG4"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "CE181AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "CE181AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "CE181AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            26
+          ],
+          "after": [
+            107,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/L/2",
+          "net": "RE701AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            91,
+            38
+          ],
+          "after": [
+            92,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CE181AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "CE181AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            61
+          ],
+          "after": [
+            107,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/3",
+          "net": "CE181AD4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            25
+          ],
+          "after": [
+            115,
+            25
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "CE181AE4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            26
+          ],
+          "after": [
+            115,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/5",
+          "net": "CE181AF4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            27
+          ],
+          "after": [
+            115,
+            27
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/L/6",
+          "net": "CE181AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            117,
+            28
+          ],
+          "after": [
+            115,
+            28
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "CE181AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "CE181AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "CE181AL4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            141,
+            24
+          ],
+          "after": [
+            138,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "CE181AM4",
+          "polyline": 0,
+          "point": 2,
+          "before": [
+            141,
+            28
+          ],
+          "after": [
+            138,
+            28
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "CE181AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            26
+          ],
+          "after": [
+            153,
+            26
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AC/pins/L/5",
+          "net": "RE701AQ4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/5",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "CE181AF4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CE181AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "RE701AQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/2",
+          "net": "CE181AC4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "CE181AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "CE181AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "CE181AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "CE181AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

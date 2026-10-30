@@ -17,7 +17,18 @@ and generates cross-page links once, before publishing. Serving a page does not
 scan or validate the source collection. Source or editor changes become visible
 after the next successful build; rebuild after saving edits as well as pulling.
 
-The host build account needs write access to ibm360ald/cache. The web server
+Before collecting the cache, the build invokes tools/render_all_json.py to
+regenerate current JSON-owned ALD/*.txt files. You can run that script manually:
+
+    python3 tools/render_all_json.py --check
+    python3 tools/render_all_json.py
+
+Exact backups and Source status update receipts are saved under
+review/maintenance when text changes. See tools/PAGE_MAINTENANCE.txt for the
+standalone pin annotation migration, reports, paths and recovery details.
+
+The host build account needs write access to ibm360ald/cache, ALD, notes and
+review/maintenance. The web server
 needs read access only. For Docker, its served checkout must include that same
 cache directory through the host mount. The cache is ignored by Git: build it
 on each deployment after pulling changes. Do not commit generated cache files.

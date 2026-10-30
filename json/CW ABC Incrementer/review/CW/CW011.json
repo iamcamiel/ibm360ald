@@ -2,7 +2,7 @@
   "page": "CW011",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "103b71b41ae2b7f95abab2626d677aaf74530cd528cdc20bd3f38a6e622db191",
+  "content sha256": "8a165beb84b23436633d648e186cc01f03ad2422ffc08720019496def139f90b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team5\\CW011 independent reconstruction617\\Inputs\\Baseline model.json",
@@ -80,7 +80,50 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AG/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CW011AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CW011AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CW011AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "CW011AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/5",
+          "net": "CW011AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2158,5 +2201,246 @@
     "status": "open",
     "summary": "The authenticated native scan was reviewed as overview and 20 overlapping regional tiles by the native child, plus AE/AF native detail and parent local panels. Candidate-seeded block registration has 50/54 inliers, median 1.41 render pixels. An independently edge-seeded fit has 21/25 inliers, median 2.03 pixels; font, repeated/neighbor label matches and scanwarp limit both fits. Broad geometry is similar; no global shift was adopted. Before and after share the same block composite because V3 is unchanged. Edge composite and regional views are retained. Parent viewed 17 indexed route-section sheets for all 88 routes, 541 windows with nominal overlapping sections for horizontal and vertical segments. Four single-point paths 2, 19, 64, 68 have explicit point windows. Short paths were visually attempted locally; nearby ink, punched holes, small breaks and registration prevent end-to-end electrical certification. Parent viewed three point sheets covering 29 junctions and 48 unjoined records. Point records/ledger are local assessments, not proof of net membership or missing wires. Native child viewed 20 tiles as regional screens. Route 84/85 TRGPOS lower output shows an apparent scan-versus-data row offset; no geometry adjustment was made without coordinated determination. The top L2 wire is obscured repeatedly by punch holes. No complete omitted-wire proof. Independent data inventory confirms recorded grid relationships only. AE/AF native detail shows upper B10 line and diamond toward AF B13, plus lower K B13 caption and short upward stub near the diamond; it does not establish an extra driver. The CONTROL driver AE.output.B10, AF.input.B13 target and passive AE.output.B13 normal B13, point [130,41], border K [126,41], side null remain unchanged. Source field is a dict and is preserved. No physical driver inferred from K. The unchanged current586 converter ran on canonical baseline model with explicit TXT, --render, --allow-partial, exited 0 and emitted paired Initial V4/review/TXT with findings. Parent inspected all three flagged differences: [244,0] native page suffix damaged so renderer's 1 is unconfirmed; [69,1] punch hole obscures crossing/diamond so no join inferred; [212,98] native footer visually reads LOG while saved literal is LDG and V4 renders LOG. The  Native, source, electrical, full trace and omission claims remain bounded by source review. Current selected json differs from candidate source; historical mismatch retained. The candidate source does not fully match the previous local selection: model match False, text match True. The previous selection is preserved in the publication receipt.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "CW011AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            66
+          ],
+          "after": [
+            92,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/6",
+          "net": "CW011AH4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            70
+          ],
+          "after": [
+            92,
+            70
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "CW011AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            80
+          ],
+          "after": [
+            92,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/6",
+          "net": "CW011AL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            95,
+            84
+          ],
+          "after": [
+            92,
+            84
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "CW011AP4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "CW011AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "CW011AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            75
+          ],
+          "after": [
+            130,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CW011AS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            82
+          ],
+          "after": [
+            130,
+            82
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/2",
+          "net": "CW011AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            73
+          ],
+          "after": [
+            138,
+            73
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/3",
+          "net": "CW011AQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            74
+          ],
+          "after": [
+            138,
+            74
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/L/6",
+          "net": "CW011AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            77
+          ],
+          "after": [
+            138,
+            77
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "CW011AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            75
+          ],
+          "after": [
+            153,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CW011AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AG/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "CW011AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "CW011AH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AK/pins/L/4",
+          "net": "CS031BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "CW011AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "CW011AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AT/pins/L/5",
+          "net": "CW011AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

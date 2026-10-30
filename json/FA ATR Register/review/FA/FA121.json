@@ -2,7 +2,7 @@
   "page": "FA121",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f50dd656edaec31bdafd4b02b34f3f2c52b2ceedb04ec4862add0c4edb7e1796",
+  "content sha256": "757b90c06cb7a2dc04bd094899ee47562469af3cef94edfbcd70fd3b546aff6e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\FA121 independent reconstruction615\\Inputs\\Baseline model.json",
@@ -24,7 +24,30 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\FA ATR Register\\FA121 ATR GATING CONTROLS.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA121AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FA121AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/4",
+          "net": "FA121AS2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -1394,5 +1417,91 @@
     "status": "open",
     "summary": "Private guard-correction conversion after earlier auxiliary_placement blocker; original baseline source model differs from current selection, text matches, preserve previous selection. AS D10 driver and passive AT B13 relationship and AV B02 physical pin interpretation remain unproven; sampled routes and point review do not establish complete wiring, omissions, independent registration or electrical approval; external schema not established. The candidate source does not fully match the previous local selection: model match False, text match True. The previous selection is preserved in the publication receipt.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "FA121AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            5
+          ],
+          "after": [
+            61,
+            5
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "FA121AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            14
+          ],
+          "after": [
+            69,
+            14
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "MC151CB4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            45,
+            40
+          ],
+          "after": [
+            46,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/2",
+          "net": "FA121AS2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            38
+          ],
+          "after": [
+            61,
+            38
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FA121AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "FA121AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AU/pins/L/4",
+          "net": "FA121AS2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

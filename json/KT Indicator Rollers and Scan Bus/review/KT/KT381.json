@@ -2,7 +2,7 @@
   "page": "KT381",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "b0f96baf8c707dc9bd876730c4beb36dc0c572f2b56ef2410c84eb4faacb6a38",
+  "content sha256": "4b883f1d4b4fbe98d5e1da1f850a5b80e4781ac3a76c2217b0d6ac1baf62f344",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\KT381\\Source model.json",
@@ -43,7 +43,25 @@
       "detail": "The typed external target remains in source history, but its exact source-backed output row is absent or conflicting. The output projection remains unresolved; no output row, recipient pin, or destination is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KT381AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "KT381AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -948,5 +966,56 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "KT381AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            47
+          ],
+          "after": [
+            107,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "KT381AJ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            56
+          ],
+          "after": [
+            115,
+            56
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "KT381AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "KT381AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

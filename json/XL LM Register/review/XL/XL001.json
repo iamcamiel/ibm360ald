@@ -2,7 +2,7 @@
   "page": "XL001",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "606bfe52e0d178a1c6594d9c212f8530e4db0b50d34dad198bf2e37703e1d7bb",
+  "content sha256": "8992da492e2285aea554a55754c5c8400724e6e161e4af60e197572116380d53",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\XL001\\Source model.json",
@@ -24,7 +24,30 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\XL LM Register\\XL001 LM REG CLOCK AND INGATE POWERING SHEET 1.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XL001AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "XL001AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "XL001AB2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2065,5 +2088,196 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/2",
+          "net": "XL001AA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            10
+          ],
+          "after": [
+            61,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/2",
+          "net": "XL001AB2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            45
+          ],
+          "after": [
+            61,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "XL001AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "XL001AC4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            12
+          ],
+          "after": [
+            92,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "XL001AF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/L/4",
+          "net": "XL001AF4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            12
+          ],
+          "after": [
+            115,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/4",
+          "net": "XL001AF4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            118,
+            19
+          ],
+          "after": [
+            115,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "XL001AK4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            160,
+            38
+          ],
+          "after": [
+            161,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "XL001AK4",
+          "polyline": 2,
+          "point": 1,
+          "before": [
+            160,
+            52
+          ],
+          "after": [
+            161,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "XL001AK4",
+          "polyline": 3,
+          "point": 1,
+          "before": [
+            160,
+            66
+          ],
+          "after": [
+            161,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "XL001AK4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            160,
+            80
+          ],
+          "after": [
+            161,
+            80
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "XL001AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "XL001AA2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "XL001AB2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

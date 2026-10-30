@@ -82,6 +82,17 @@ FORMAT RULES IMPLEMENTED
   external claim remains unchanged and is reported as a review discrepancy.
 * Pin annotations use terminal references; detached annotations use route-point
   references and two-dimensional offsets. Connectors belong to nets.
+* Exact standalone 2, 3, 8 and L on a terminal become net annotations at
+  that terminal, with no physical pin number inferred. Existing unique net
+  membership is required; ambiguous or missing membership remains blocked.
+  Their text uses the ordinary annotation slot beyond the three-column pin
+  space, even when no pin number is printed. All block terminals have a
+  fixed three-character label slot; null/omitted pin identities draw a wire
+  across that slot. Net routing meets the adjacent outside cell, four columns
+  from the border, independently of annotation length. A unique horizontal
+  endpoint can be normalized to that contact. Bends or competing routes that
+  prevent this normalization remain explicit layout-review holds.
+  Characters embedded in pin numbers or longer labels are not this rule.
 * Omitted pin means no printed pin. null means unresolved printed identity;
   its observed text lives in external review details.
 * A leading K before an established ordinary right-side pin number is an

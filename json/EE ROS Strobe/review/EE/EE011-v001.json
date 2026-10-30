@@ -2,7 +2,7 @@
   "page": "EE011",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "6f09244420989e071d7f03df950d5cb65f9a8b171162487f5b56dff9280a78b4",
+  "content sha256": "07fd4b3d33e677276dcfc9331005e81378e98768b027a0e0c0490e56e3d33c8e",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\EE011\\Source model.json",
@@ -46,7 +46,25 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "EE011AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "EE011AR4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -2854,5 +2872,71 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AR/pins/L/4",
+          "net": "KK201AA4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            49,
+            12
+          ],
+          "after": [
+            46,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "KC101AH4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            49,
+            19
+          ],
+          "after": [
+            46,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "EE011AR4",
+          "polyline": 1,
+          "point": 0,
+          "before": [
+            58,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "EE011AP4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "EE011AR4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

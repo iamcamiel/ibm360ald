@@ -2,7 +2,7 @@
   "page": "CE901",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ffe56eba8a729f47ec668025e2d07d487722d4d1d8a1d3b28dfd8a82dd8e74e2",
+  "content sha256": "5d9fc745892f7c87e7d94ee34ace8eb2881688bb12bafbef8dd51702ab34f599",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root fourth twenty findings publication qualification266\\Inputs\\CE901\\Exact source model.json",
@@ -32,7 +32,40 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CE901AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "CE901AV4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "CE901AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "CE901AT4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/3",
+          "net": "CE901AU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1811,5 +1844,146 @@
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Team4 fixed blocker scope\\Results\\GPT61 Sol medium readiness158\\Exact628 serial successful conversion publication276\\Queue intake\\Missing first20 current executions276\\Corrected first actual launches001\\CE901\\Actual conversion report276.json",
       "sha256": "b6fdfdc4f1c6e5f63eb9e8d18ad46f14a497f5e699d4eeaff795b1b887984337"
     }
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "CE901AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            19
+          ],
+          "after": [
+            130,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "CE901AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            47
+          ],
+          "after": [
+            130,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "CE901AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "CE901AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            89
+          ],
+          "after": [
+            130,
+            89
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/L/6",
+          "net": "CE901AS4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            28
+          ],
+          "after": [
+            138,
+            28
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/L/5",
+          "net": "CE901AV4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            69
+          ],
+          "after": [
+            138,
+            69
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BB/pins/L/6",
+          "net": "CE901AW4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            70
+          ],
+          "after": [
+            138,
+            70
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "CE901AS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "CE901AV4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AX/pins/L/2",
+          "net": "CE901AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/2",
+          "net": "CE901AT4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/BB/pins/L/3",
+          "net": "CE901AU4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

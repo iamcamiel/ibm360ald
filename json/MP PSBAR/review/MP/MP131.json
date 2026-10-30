@@ -2,7 +2,7 @@
   "page": "MP131",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "c74fb5690e1242aabc77337432518f3698ebf4bd4666937300a18fc0268b13bb",
+  "content sha256": "73f9bae56e7d3dc2d20765c76d4b85bca88a885ee53180d46301aba5f91b6089",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team6 unreviewed assigned half\\Inputs\\MP131\\Source model.json",
@@ -24,7 +24,60 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MP PSBAR\\MP131 PHYSICAL PSBAR P PTY.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP131AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP131AD4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "MP131AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "MP131AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MP131AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MP131AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MP131AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MP131AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "MP131AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -382,5 +435,136 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "MP131AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MP131AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "MP131AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            19
+          ],
+          "after": [
+            199,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "MP131AJ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "MP131AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            33
+          ],
+          "after": [
+            61,
+            33
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MP131AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MP131AD4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "MP131AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/6",
+          "net": "MP131AB4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "MP131AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "MP131AN4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MP131AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "MP131AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "MP131AG4",
+          "reason": "The changed lead interval is occupied by another net"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

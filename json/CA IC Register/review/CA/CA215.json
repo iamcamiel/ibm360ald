@@ -2,7 +2,7 @@
   "page": "CA215",
   "review date": "2026-10-26",
   "reviewer": "fresh-data265-group-c-20261026",
-  "content sha256": "bcddda831fb411e58c5ee4d57575be04cba6113c1c38143bf416b6ef9d20622d",
+  "content sha256": "f9cdcbdc937b549f7ca47e9497b4103fba9a2338dd2203cad82dd138a1f8135d",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root third twenty findings publication qualification261\\Inputs\\CA215\\Exact source model.json",
@@ -32,7 +32,55 @@
       "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/CA/pins/R/4",
+          "net": "CA215CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CC/pins/L/2",
+          "net": "CA215CH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CC/pins/R/4",
+          "net": "CA215CC4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "CA215CD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "CA215CB2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CG/pins/R/4",
+          "net": "CA215CG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/4",
+          "net": "CA215CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "CA215CK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -2861,5 +2909,176 @@
       "page": "CA215"
     },
     "exact_source_scoped_Root_admission": null
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/CA/pins/R/2",
+          "net": "CA215CA2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            59
+          ],
+          "after": [
+            61,
+            59
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CB/pins/R/2",
+          "net": "CA215CB2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            66
+          ],
+          "after": [
+            84,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CC/pins/L/4",
+          "net": "CA215CF4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            141,
+            68
+          ],
+          "after": [
+            138,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CC/pins/L/6",
+          "net": "CA215CG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            70
+          ],
+          "after": [
+            138,
+            70
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CE/pins/R/4",
+          "net": "CA215CE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            75
+          ],
+          "after": [
+            199,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CF/pins/R/4",
+          "net": "CA215CF4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            128,
+            68
+          ],
+          "after": [
+            130,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CH/pins/L/2",
+          "net": "CA215CA2",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            59
+          ],
+          "after": [
+            115,
+            59
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/CH/pins/R/4",
+          "net": "CA215CH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/CA/pins/R/4",
+          "net": "CA215CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CC/pins/L/2",
+          "net": "CA215CH4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CC/pins/R/4",
+          "net": "CA215CC4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/CD/pins/R/4",
+          "net": "CA215CD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/CF/pins/L/4",
+          "net": "CA215CB2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CG/pins/R/4",
+          "net": "CA215CG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CJ/pins/L/4",
+          "net": "CA215CA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/CK/pins/R/4",
+          "net": "CA215CK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

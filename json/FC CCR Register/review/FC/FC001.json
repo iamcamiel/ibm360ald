@@ -2,7 +2,7 @@
   "page": "FC001",
   "review date": "2026-10-26",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "43e5ea978445bb5efdeb8ea313dd6c7af57a0f0a3ffca4a85c2d58c190a91837",
+  "content sha256": "1de93dda5d54f96b53d54793d21ce5a6cff4a6873a5a2719edf1f6aa814509d2",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna remaining reviewed half allocations003\\Team6 assigned half\\Inputs\\FC001\\Source model.json",
@@ -28,25 +28,126 @@
       "field": "blocks/AN/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AP/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AQ/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "FC001AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FC001AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FC001AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FC001AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "FC001AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FC001AM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "FC001AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "FC001AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FC001AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "FC001AJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "FC001AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "FC001AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "FC001AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "FC001AU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "FC001AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -71461,5 +71562,427 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "text": "L",
+          "net": "FC001AF4"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "text": "L",
+          "net": "FC001AJ4"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "text": "L",
+          "net": "FC001AM4"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/L/4",
+          "net": "FX902AL4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            12
+          ],
+          "after": [
+            69,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "FX902AU4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            40
+          ],
+          "after": [
+            69,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/L/4",
+          "net": "FX902AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            68,
+            68
+          ],
+          "after": [
+            69,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "FC001AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            12
+          ],
+          "after": [
+            107,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "FC001AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "FC321BA4",
+          "polyline": 3,
+          "point": 1,
+          "before": [
+            91,
+            24
+          ],
+          "after": [
+            92,
+            24
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AG/pins/R/4",
+          "net": "FC001AG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            40
+          ],
+          "after": [
+            107,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "FC001AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            47
+          ],
+          "after": [
+            107,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/2",
+          "net": "FC321BA4",
+          "polyline": 4,
+          "point": 1,
+          "before": [
+            91,
+            52
+          ],
+          "after": [
+            92,
+            52
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "FC001AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            68
+          ],
+          "after": [
+            107,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "FC001AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            75
+          ],
+          "after": [
+            107,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/L/2",
+          "net": "FC321BL4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            91,
+            80
+          ],
+          "after": [
+            92,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "FC001AE4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            19
+          ],
+          "after": [
+            115,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "FC001AH4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            47
+          ],
+          "after": [
+            115,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "FC001AL4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            75
+          ],
+          "after": [
+            115,
+            75
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "FC001AR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AT/pins/R/4",
+          "net": "FC001AT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            40
+          ],
+          "after": [
+            153,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AV/pins/R/4",
+          "net": "FC001AV4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            68
+          ],
+          "after": [
+            153,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BG/pins/R/4",
+          "net": "FC001BG4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            19
+          ],
+          "after": [
+            199,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BH/pins/R/4",
+          "net": "FC001BH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            47
+          ],
+          "after": [
+            199,
+            47
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "FC001AA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "FC001AB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "FC001AC4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "FC001AF4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "Another same-net route intersects the changed lead interval"
+        },
+        {
+          "terminal": "blocks/AJ/pins/R/4",
+          "net": "FC001AJ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "FC371BB4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "FC001AM4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/2",
+          "net": "FC001AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "FC001AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/2",
+          "net": "FC001AG4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/L/6",
+          "net": "FC001AJ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/2",
+          "net": "FC001AK4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/6",
+          "net": "FC001AM4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AS/pins/R/4",
+          "net": "FC001AS4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "FC001AU4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "FC001AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

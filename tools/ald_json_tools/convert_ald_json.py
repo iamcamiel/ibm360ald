@@ -21,6 +21,7 @@ from collections import defaultdict
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from ald_render import render_page, wire_graph, input_display_literal, singleton_output_hanging_row
+from pin_annotations import normalize_annotation_leads
 
 PAGE_REF = re.compile(r'[A-Z]{2}\d{3}[A-Z]{2}\d+')
 PAGE_ID = re.compile(r'[A-Z]{2}\d{3}')
@@ -2089,7 +2090,13 @@ class Converter:
                     q['edge']={'K':'aux','E':'extension','X':'non-logic','◺':'negative'}[marker]
                     if marker in ('K','E','X','◺') and printed.startswith(marker):printed=printed[len(marker):]
                 elif lit.get('triangle'):q['edge']='negative'
-                if number is not None:
+                # Exact standalone control labels are net annotations, not
+                # physical pin identities. Membership has already been checked;
+                # never choose a net or infer a contact from the label itself.
+                standalone_annotation=(printed in ('2','3','8','L') and number in (None,printed))
+                if standalone_annotation:
+                    mark=printed
+                elif number is not None:
                     require(isinstance(number,str) and printed.count(number)==1,'pin_presentation','Printed terminal does not uniquely contain its established pin',node=node,pin=number,printed=printed)
                     q['pin']=number;before,after=printed.split(number);mark=before+after
                     require(not(before and after),'pin_annotation','Annotations occur on both sides of a pin; source placement needs review',node=node)
@@ -2109,7 +2116,7 @@ class Converter:
                     q['pin']=None;mark='';self.issue(node+'/pin','illegible',printed,'Printed pin identity remains unresolved; no physical identity is inferred.')
                 expected=x-len(printed) if side=='L' else x+8
                 presentation=[l for l in self.labels if l.get('row')==pin['geometry']['row'] and l.get('text')==printed]
-                if number is None and mark and len(presentation)==1 and presentation[0]['column']!=expected:
+                if not standalone_annotation and number is None and mark and len(presentation)==1 and presentation[0]['column']!=expected:
                     self.deferred.append(presentation[0]);mark=''
                 if mark:self.annotations[self.membership[node]].append({'at':node,'text':mark})
                 pins.append(q)
@@ -2416,6 +2423,13 @@ class Converter:
         data={'$schema':SCHEMA,'page':self.page,'review':{'status':'partial','approved':False,'unresolved discrepancies':bool(self.issues or self.gaps),'details':f'review/{self.pid[:2]}/{self.pid}.json'},
               'blocks':blocks,'inputs':sorted(self.inputs,key=lambda v:v['line']),'outputs':outputs,'nets':newnets}
         if deviations:data['column deviations']=deviations
+        lead_changes, lead_holds = normalize_annotation_leads(data, {'uncertainties':self.issues})
+        if lead_changes:
+            self.warnings.append({'code':'standalone_annotation_lead_normalized',
+                'message':'Terminal routes use the cell outside a fixed three-character pin slot; existing net ownership is unchanged.',
+                'changes':lead_changes})
+        self.gaps.extend({'code':'annotation_terminal_lead', **hold} for hold in lead_holds)
+        if lead_holds:data['review']['unresolved discrepancies']=True
         notes=source_note_labels(self.labels,self.pid)
         if notes:
             note_origin=min(4,min(l['column'] for l in notes))

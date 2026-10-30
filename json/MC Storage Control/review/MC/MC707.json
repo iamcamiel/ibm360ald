@@ -2,7 +2,7 @@
   "page": "MC707",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "9ef75f475a072bb1cd93325b12f9e75c8afaa68a60c44a9fe2cac4c588ac2ecf",
+  "content sha256": "73ff4e5b1fbf2db8a95c904618a585ee66b0ffb6f2cbe2fd0bb48bf5c983e264",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Batch015\\Results\\MC707\\Producer003\\Current model.json",
@@ -24,7 +24,35 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC707 SELECT TIMING.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MC707AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "MC707AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "MC707AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "MC707BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1969,5 +1997,66 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AS/pins/L/6",
+          "net": "MC707AR4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            164,
+            56
+          ],
+          "after": [
+            161,
+            56
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "MC707BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            47
+          ],
+          "after": [
+            153,
+            47
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "MC707AQ4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AR/pins/R/4",
+          "net": "MC707AR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/2",
+          "net": "MC707AQ4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AS/pins/L/4",
+          "net": "MC707BE4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

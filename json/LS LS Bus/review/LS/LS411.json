@@ -2,7 +2,7 @@
   "page": "LS411",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "e719e2241bf51929212d6b2daf2744a9efe76ad5185e4e3bc12f6e16860cd31c",
+  "content sha256": "807a5405e8b04e199739e9ed4f816cd466a117d6f316ab594c7298b8c5d294da",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\LS411 independent reconstruction603\\Final candidate\\LS411 model.json",
@@ -48,7 +48,20 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS411FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1974,5 +1987,66 @@
     "status": "open",
     "summary": "AG2/AG4 output stems may be swapped; protected geometry trial rejected due other route contacts. Five text bends corrected, one render discrepancy and missing division remain; sampled routes do not prove continuity, omission or exact registration; schema not run. Candidate source differs from current selection: model match false, text match false; preserve previous selection. The candidate source does not fully match the previous local selection: model match False, text match False. The previous selection is preserved in the publication receipt.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/EA/pins/R/4",
+          "net": "LS411EA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/L/4",
+          "net": "LS411EA4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            164,
+            12
+          ],
+          "after": [
+            161,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/R/4",
+          "net": "LS411FA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS411FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

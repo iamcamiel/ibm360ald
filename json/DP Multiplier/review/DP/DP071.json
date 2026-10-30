@@ -2,7 +2,7 @@
   "page": "DP071",
   "review date": "2026-10-29",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "ef216e5915b97db273dd8eeb6982b3918619c38a9ca84c52b6c26666f6e5f437",
+  "content sha256": "6a9cbc87d0d9cabf423df312dfbbfc436accfaad06c948465166ea1c02aaf2f7",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team3\\ALD batch823\\DP071 independent reconstruction823\\Inputs\\Baseline model.json",
@@ -28,15 +28,17 @@
       "field": "blocks/AF/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AH/pins/L/6/pin",
       "kind": "illegible",
       "visible text": "L",
-      "status": "unresolved",
-      "detail": "Printed pin identity remains unresolved; no physical identity is inferred."
+      "status": "resolved",
+      "detail": "Printed pin identity remains unresolved; no physical identity is inferred.",
+      "resolution": "Human rule: exact standalone marker is a net annotation at this terminal; no physical pin inferred."
     },
     {
       "field": "blocks/AH/pins/R/5/edge",
@@ -102,7 +104,65 @@
       ]
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "DP071AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "DP071AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "DP071AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DP071AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/6",
+          "net": "CS031BQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "DP071BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "DP071BE2",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "explicit_fanout_retained",
@@ -5824,5 +5884,397 @@
     "status": "open",
     "summary": "DP071 private partial review: baseline conversion under live 41e457 exits 0 with 241 unresolved differences, 8 wire-glyph-class. Rows94-102 account 225 connector-listing cells; remaining 16 include AH D12*/KB10 output positions, two L labels and K5081 label. Native AH clearly shows D12* and K-like border character before B10 with separate stubs, and a lower L-like input glyph; row49 L has not been independently located to precise native coordinate. Bottom connector listing has several columns and faded entries; no grouping, K role, physical pin or electrical equivalence inferred. No source correction. Native overview, selected native tiles, flagged regions and first junction panel viewed; other point panels generated but not individually reviewed. 61 routes/126 segments map to 25 sections; no complete end-to-end electrical or omission proof. Box registration 40/54 median 2.08 render pixels; independent edge 19/20 median 1.59, nine-point maximum disagreement 32.71 pixels. Local offsets visible; global fits do not establish local accuracy. Candidate partial/unapproved; no canonical source, key or publication changed. Native, source, electrical, full trace and omission remain bounded by source review.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [
+        {
+          "terminal": "blocks/AF/pins/L/6",
+          "text": "L",
+          "net": "DP071AC4"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "text": "L",
+          "net": "DP071AE4"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    },
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AA/pins/L/2",
+          "net": "DP071AX4",
+          "polyline": 0,
+          "point": 5,
+          "before": [
+            45,
+            31
+          ],
+          "after": [
+            46,
+            31
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AA/pins/R/4",
+          "net": "DP071AA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            33
+          ],
+          "after": [
+            61,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/L/2",
+          "net": "DP071AX4",
+          "polyline": 1,
+          "point": 1,
+          "before": [
+            45,
+            38
+          ],
+          "after": [
+            46,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "DP071AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            40
+          ],
+          "after": [
+            61,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "DP071AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            47
+          ],
+          "after": [
+            61,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "DP071AX4",
+          "polyline": 2,
+          "point": 2,
+          "before": [
+            68,
+            10
+          ],
+          "after": [
+            69,
+            10
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "DP071AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            12
+          ],
+          "after": [
+            84,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "DP071AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            19
+          ],
+          "after": [
+            84,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/4",
+          "net": "DP071AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            47
+          ],
+          "after": [
+            69,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AF/pins/L/6",
+          "net": "DP071AC4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            71,
+            49
+          ],
+          "after": [
+            69,
+            49
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/L/6",
+          "net": "DP071AE4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            94,
+            21
+          ],
+          "after": [
+            92,
+            21
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/4",
+          "net": "DP071AH4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            108,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "DP071AF4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            91,
+            47
+          ],
+          "after": [
+            92,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/2",
+          "net": "DP071AN4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            38
+          ],
+          "after": [
+            138,
+            38
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AR/pins/L/6",
+          "net": "DP071AP4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            42
+          ],
+          "after": [
+            138,
+            42
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AU/pins/R/4",
+          "net": "DP071AU4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            40
+          ],
+          "after": [
+            176,
+            40
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "DP071AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            200,
+            54
+          ],
+          "after": [
+            199,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BC/pins/L/2",
+          "net": "DP071AG4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            91,
+            80
+          ],
+          "after": [
+            92,
+            80
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BE/pins/R/4",
+          "net": "DP071BE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            68
+          ],
+          "after": [
+            61,
+            68
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BH/pins/L/4",
+          "net": "KD901BL4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            114,
+            61
+          ],
+          "after": [
+            115,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BH/pins/L/6",
+          "net": "DP071BC4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            114,
+            63
+          ],
+          "after": [
+            115,
+            63
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AC/pins/L/2",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AE/pins/L/2",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AF/pins/L/2",
+          "net": "DP071AA4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AH/pins/L/2",
+          "net": "DP071AD4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AN/pins/L/6",
+          "net": "DP071AK4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "DP071AN4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AP/pins/R/4",
+          "net": "DP071AP4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BC/pins/L/6",
+          "net": "CS031BQ4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BD/pins/R/4",
+          "net": "DP071BD4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/BF/pins/L/4",
+          "net": "DP071BE2",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

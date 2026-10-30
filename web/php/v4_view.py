@@ -2,7 +2,7 @@
 import argparse, hashlib, importlib.util, json, math, os, re
 from pathlib import Path
 SCHEMA='https://raw.githubusercontent.com/iamcamiel/ibm360ald/main/schema/ALD_v4.json'
-QUALIFIED_RENDERER_SHA256='a969a8d990aa69c0a1bd6b42a56322bfa562fd1e46e648d8b3700f3c095ae4fa'
+QUALIFIED_RENDERER_SHA256='d97bf4be084eee22f1dbbd1a282b943d8b7cf786f9fa224309f008a82be7c8e2'
 def strict_json(text):
     def pairs(items):
         value={}

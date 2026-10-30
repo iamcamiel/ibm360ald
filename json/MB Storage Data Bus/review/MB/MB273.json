@@ -2,7 +2,7 @@
   "page": "MB273",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "347f496345fe21a3bfa87de8ec9ddff051f82df03a689eefadaebf752321ddf3",
+  "content sha256": "b54d4f18809a07df991b282403fa8cc0fcadb569df0f34321f8ea9f400361302",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\Two Luna unreviewed outside500 conversion halves001\\Team5 unreviewed assigned half\\Inputs\\MB273\\Source model.json",
@@ -39,7 +39,35 @@
       }
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "MB273AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "MB273AC4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MB273AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "MB273AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [],
   "conversion evidence": {
     "old to new net IDs": {
@@ -5568,5 +5596,186 @@
       }
     },
     "selected_raw_absence_not_inferred": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AB/pins/R/4",
+          "net": "MB273AB4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            47
+          ],
+          "after": [
+            130,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AC/pins/R/4",
+          "net": "MB273AC4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            54
+          ],
+          "after": [
+            130,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/L/2",
+          "net": "MB273AB4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            141,
+            45
+          ],
+          "after": [
+            138,
+            45
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AD/pins/R/4",
+          "net": "MB273AD4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            154,
+            47
+          ],
+          "after": [
+            153,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AE/pins/R/4",
+          "net": "MB273AE4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            47
+          ],
+          "after": [
+            176,
+            47
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/R/4",
+          "net": "MB273AK4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            177,
+            61
+          ],
+          "after": [
+            176,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "MB273AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            26
+          ],
+          "after": [
+            84,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "MB273AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            127,
+            61
+          ],
+          "after": [
+            130,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AX/pins/R/4",
+          "net": "MB273AX4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            61
+          ],
+          "after": [
+            61,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "MB273AX4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            72,
+            68
+          ],
+          "after": [
+            69,
+            68
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AD/pins/L/4",
+          "net": "MB273AW4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AD/pins/L/6",
+          "net": "MB273AC4",
+          "reason": "The changed lead interval is occupied by another net"
+        },
+        {
+          "terminal": "blocks/AF/pins/R/4",
+          "net": "MB273AF4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "MB273AL4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

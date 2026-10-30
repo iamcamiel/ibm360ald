@@ -2,7 +2,7 @@
   "page": "MC501",
   "review date": "2026-10-25",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "2136c09a64acb191dcf028cc66048f4530fae60754af9f172a761159e0f9832e",
+  "content sha256": "60c5c6d815eeb25f88129ff1838f8827a8a62006e58b229d503723c652df2c0b",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-4\\Results\\Continuous integration assist20261025-Round013\\Inputs\\MC501\\Source model.json",
@@ -24,7 +24,25 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\MC Storage Control\\MC501 TAPED DELAYED SELECT.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MC501AH5",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "MC501AK2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -623,5 +641,86 @@
     },
     "conversion is wiring approval": false,
     "local format transition only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AB/pins/L/4",
+          "net": "MC501AW4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            19
+          ],
+          "after": [
+            92,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AH/pins/R/5",
+          "net": "MC501AH5",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            83
+          ],
+          "after": [
+            153,
+            83
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AK/pins/R/2",
+          "net": "MC501AK2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            66
+          ],
+          "after": [
+            107,
+            66
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "MC501AW4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            19
+          ],
+          "after": [
+            84,
+            19
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AJ/pins/L/4",
+          "net": "MC501AH5",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AL/pins/L/4",
+          "net": "MC501AK2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

@@ -90,11 +90,21 @@ def build(source_root, output=None):
     if Path(__file__).resolve().is_relative_to(output.resolve()):
         raise BuildError('Output cannot contain the builder code')
     with Publication(root, output) as publication:
+        from render_all_json import run as render_all
+        rendering = render_all(root)
+        if rendering['failures']:
+            raise BuildError('JSON rendering failed: ' + json.dumps(rendering['failures']))
         snapshot = Snapshot(root)
         # Installed builder code is part of the same source snapshot. No source
         # verification or rendering is required when serving the finished cache.
         tools = Path(__file__).resolve().parent
         snapshot.read_code(tools / 'build_browser_cache.py', '@builder/build_browser_cache.py')
+        for name in ('render_all_json.py', 'page_maintenance.py', 'ald_render.py'):
+            snapshot.read_code(tools / name, '@builder/' + name)
+        for folder in ('normalization', 'page_text'):
+            snapshot.track_code_directory(tools / folder, '@builder/' + folder)
+            for path in sorted((tools / folder).glob('*.py')):
+                snapshot.read_code(path, '@builder/' + folder + '/' + path.name)
         snapshot.track_code_directory(tools / 'browser_cache', '@builder/browser_cache')
         for path in sorted((tools / 'browser_cache').glob('*.py')):
             snapshot.read_code(path, '@builder/browser_cache/' + path.name)
@@ -120,7 +130,8 @@ def build(source_root, output=None):
         catalogue['revision'] = catalogue['signature']
         catalogue['delivery'] = 'static-cache-v1'
         changed, sha = publication.publish(catalogue, snapshot)
-        return {**statistics, 'catalogueChanged': changed,
+        return {**statistics, 'renderedPages': sum(rendering['rendered'].values()),
+                'textFilesRegenerated': rendering['textFilesChanged'], 'catalogueChanged': changed,
                 'assetsWritten': publication.written, 'catalogueSha256': sha,
                 'output': str(publication.output)}
 

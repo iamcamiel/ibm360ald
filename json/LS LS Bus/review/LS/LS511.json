@@ -2,7 +2,7 @@
   "page": "LS511",
   "review date": "2026-10-28",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "f2e76ebd2a54ece591afb5c03dbab1a32f8ae8d0dbc323ef49c81cf27d22d98d",
+  "content sha256": "bef29a335b867dc5c90190600c71572d26732c160443dae706f61ecb424ddedf",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-team-resume530\\team1\\LS511 independent reconstruction595\\Visual corrections\\LS511 model.json",
@@ -32,7 +32,20 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS511FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1921,5 +1934,66 @@
     "status": "open",
     "summary": "Six private bend glyph corrections; missing IBM division remains. Sampled routes and points do not prove continuity or missing-wire absence; registration and schema remain open. Candidate source differs from current selection: model match false, text match false; preserve previous selection. The candidate source does not fully match the previous local selection: model match False, text match False. The previous selection is preserved in the publication receipt.",
     "qualification": "Published for access with the recorded review limitations; no electrical correctness or user approval asserted."
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/EA/pins/R/4",
+          "net": "LS511EA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            150,
+            12
+          ],
+          "after": [
+            153,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/L/4",
+          "net": "LS511EA4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            164,
+            12
+          ],
+          "after": [
+            161,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/FA/pins/R/4",
+          "net": "LS511FA4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            173,
+            12
+          ],
+          "after": [
+            176,
+            12
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/GA/pins/L/4",
+          "net": "LS511FA4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

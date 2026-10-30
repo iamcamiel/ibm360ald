@@ -2,7 +2,7 @@
   "page": "AP021",
   "review date": "2026-10-26",
   "reviewer": "Independent DATA reviewer /root/data245_a (gpt-6.1-sol); original producer: Functional ALD format converter",
-  "content sha256": "ed28da4980688287c63fe528b11c6c11ff6b9454a9eb45556f5cf082d8f8dd3c",
+  "content sha256": "7559cbccf902af7ee9024b7a2a4ddc8462a8719f884ae453e8071aa0452b5713",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Root integration planning\\Continuous review and publication20261023\\All ALD six Luna conversion blocker analysis001\\Root first twenty findings publication qualification244\\Inputs\\AP021\\Exact source model.json",
@@ -24,7 +24,35 @@
   },
   "original scan": "D:\\Reference Materials\\IBM 360\\IBM_360_ALD\\AP Parallel Adder\\AP021 CLOCK POWERING.tif",
   "uncertainties": [],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/AA/pins/L/6",
+          "net": "AP021AR4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "AP021AL2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP021AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "AP021AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1172,5 +1200,171 @@
     "source_approval": false,
     "approved": false,
     "local_only": true
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/AL/pins/R/2",
+          "net": "AP021AL2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            58,
+            17
+          ],
+          "after": [
+            61,
+            17
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AL/pins/R/4",
+          "net": "AP021AL4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            62,
+            19
+          ],
+          "after": [
+            61,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AM/pins/R/4",
+          "net": "AP021AM4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            19
+          ],
+          "after": [
+            84,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/L/4",
+          "net": "AP021AM4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            95,
+            19
+          ],
+          "after": [
+            92,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AN/pins/R/4",
+          "net": "AP021AN4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            19
+          ],
+          "after": [
+            107,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AP/pins/L/4",
+          "net": "AP021AN4",
+          "polyline": 1,
+          "point": 2,
+          "before": [
+            118,
+            12
+          ],
+          "after": [
+            115,
+            12
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/L/4",
+          "net": "AP021AN4",
+          "polyline": 0,
+          "point": 1,
+          "before": [
+            118,
+            19
+          ],
+          "after": [
+            115,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AQ/pins/R/4",
+          "net": "AP021AQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            131,
+            19
+          ],
+          "after": [
+            130,
+            19
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/AW/pins/R/2",
+          "net": "AP021AW2",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            81,
+            52
+          ],
+          "after": [
+            84,
+            52
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/AA/pins/L/6",
+          "net": "AP021AR4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AM/pins/L/4",
+          "net": "AP021AL2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/AW/pins/R/4",
+          "net": "AP021AW4",
+          "reason": "No unique horizontal endpoint at the old terminal presentation boundary"
+        },
+        {
+          "terminal": "blocks/AZ/pins/L/4",
+          "net": "AP021AW2",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }

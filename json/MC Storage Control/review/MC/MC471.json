@@ -2,7 +2,7 @@
   "page": "MC471",
   "review date": "2026-10-27",
   "reviewer": "Functional ALD format converter",
-  "content sha256": "85bc857a3a385e5b5188e0ae9de2f9af54f1cb52ca56d1d55047578b29c44daa",
+  "content sha256": "c66d313796dfd662782b7794d2421e63d7bfd864cf6b6d92eefa43b8373b79c0",
   "sources": [
     {
       "path": "D:\\Github\\IBM360\\tmp\\ald-text\\ald\\wiring-review-20261020\\Red blue coordination\\Teams\\Red-Blue-Team-2\\Batch015\\Results\\MC471\\Producer002\\Current model.json",
@@ -32,7 +32,30 @@
       "detail": "Field is absent or unresolved in the existing transcription; no original-scan reading is inferred."
     }
   ],
-  "format questions": [],
+  "format questions": [
+    {
+      "code": "fixed_terminal_slot_layout",
+      "status": "unresolved",
+      "detail": "These stored routes cannot be normalized to the fixed three-character pin slot without separate layout review. No bend or competing wire was moved.",
+      "terminals": [
+        {
+          "terminal": "blocks/BU/pins/L/6",
+          "net": "MC471BR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BW/pins/L/2",
+          "net": "MC471BS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BW/pins/L/6",
+          "net": "MC471BT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ]
+    }
+  ],
   "warnings": [
     {
       "code": "title_frame_path",
@@ -1569,5 +1592,106 @@
       }
     },
     "selected_raw_absence_not_inferred": false
-  }
+  },
+  "annotation migrations": [
+    {
+      "rule": "standalone-2-3-8-L",
+      "changes": [],
+      "lead changes": [
+        {
+          "terminal": "blocks/BQ/pins/R/4",
+          "net": "MC471BQ4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            54
+          ],
+          "after": [
+            107,
+            54
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BR/pins/R/4",
+          "net": "MC471BR4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            61
+          ],
+          "after": [
+            107,
+            61
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BS/pins/R/4",
+          "net": "MC471BS4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            26
+          ],
+          "after": [
+            107,
+            26
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BT/pins/R/4",
+          "net": "MC471BT4",
+          "polyline": 0,
+          "point": 0,
+          "before": [
+            104,
+            33
+          ],
+          "after": [
+            107,
+            33
+          ],
+          "annotation offsets": []
+        },
+        {
+          "terminal": "blocks/BU/pins/L/2",
+          "net": "MC471BQ4",
+          "polyline": 0,
+          "point": 3,
+          "before": [
+            118,
+            59
+          ],
+          "after": [
+            115,
+            59
+          ],
+          "annotation offsets": []
+        }
+      ],
+      "lead holds": [
+        {
+          "terminal": "blocks/BU/pins/L/6",
+          "net": "MC471BR4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BW/pins/L/2",
+          "net": "MC471BS4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        },
+        {
+          "terminal": "blocks/BW/pins/L/6",
+          "net": "MC471BT4",
+          "reason": "A bend lies inside the fixed three-character pin slot; moving it requires separate layout review"
+        }
+      ],
+      "prior render comparison": "Preserved as historical evidence; derived text is regenerated separately."
+    }
+  ]
 }
